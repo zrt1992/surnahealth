@@ -468,7 +468,7 @@
 				<div class="owl-carousel client-says-thirteen owl-theme">
 					<div class="client-says-all">
 						<div class="clients-says-content">
-							<p>"I would like to thank everyone at Doccure for the fantastic way you looked after me. 
+							<p>"I would like to thank everyone at Surna health for the fantastic way you looked after me.
 								I could not fault anyone during the time I spent with you - from the point I arrived in reception, 
 								to the catering team and every member of staff throughout the changes of shift during my stay."</p>
 							<h4>
@@ -485,7 +485,7 @@
 					</div>
 					<div class="client-says-all">
 						<div class="clients-says-content">
-							<p>"I would like to thank everyone at Doccure for the fantastic way you looked after me. 
+							<p>"I would like to thank everyone at Surna health for the fantastic way you looked after me.
 								I could not fault anyone during the time I spent with you - from the point I arrived in reception, 
 								to the catering team and every member of staff throughout the changes of shift during my stay."</p>
 							<h4>Marrie Wells</h4>
@@ -500,7 +500,7 @@
 					</div>
 					<div class="client-says-all">
 						<div class="clients-says-content">
-							<p>"I would like to thank everyone at Doccure for the fantastic way you looked after me. 
+							<p>"I would like to thank everyone at Surna health for the fantastic way you looked after me.
 								I could not fault anyone during the time I spent with you - from the point I arrived in reception, 
 								to the catering team and every member of staff throughout the changes of shift during my stay."</p>
 							<h4>Andrew John</h4>
@@ -609,7 +609,7 @@
 					</div>
 					<div class="col-lg-6">
 						<div class="feedback-main-content aos" data-aos="fade-up">
-							<h2>Download <br>The Doccure App Today!</h2>
+							<h2>Download <br>The Surna health App Today!</h2>
 							<p>Rasakan kemudahan pembayaran melalui aplikasi SmartInPays.  
 								Jalan-jalan, membayar tagihan, donasi di ujung jari Anda. </p>
 							<div class="feedback-inner-img">

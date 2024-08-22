@@ -33,7 +33,7 @@
                                         </li>
                                         <li><i class="far fa-clock"></i> 4 Dec 2023</li>
                                     </ul>
-                                    <h3 class="blog-title"><a href="{{ url('blog-details') }}">Doccure – Making your clinic
+                                    <h3 class="blog-title"><a href="{{ url('blog-details') }}">Surna health – Making your clinic
                                             painless visit?</a></h3>
                                     <p class="mb-0">Lorem ipsum dolor sit amet, consectetur em adipiscing elit, sed do
                                         eiusmod tempor.</p>
@@ -362,7 +362,7 @@
                                     </div>
                                     <div class="post-info">
                                         <h4>
-                                            <a href="{{ url('blog-details') }}">Doccure – Making your clinic painless
+                                            <a href="{{ url('blog-details') }}">Surna health – Making your clinic painless
                                                 visit?</a>
                                         </h4>
                                         <p>4 Dec 2023</p>
@@ -480,7 +480,7 @@
                                 <li><a href="javascript:;" class="tag">Neurology</a></li>
                                 <li><a href="javascript:;" class="tag">Dentists</a></li>
                                 <li><a href="javascript:;" class="tag">Specialist</a></li>
-                                <li><a href="javascript:;" class="tag">Doccure</a></li>
+                                <li><a href="javascript:;" class="tag">Surna health</a></li>
                             </ul>
                         </div>
                     </div>

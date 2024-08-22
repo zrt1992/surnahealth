@@ -9,7 +9,7 @@
                     <div class="banner-content aos" data-aos="fade-up">
                         <h1>Consult <span>Best Doctors</span> Your Nearby Location.</h1>
                         <img src="{{ URL::asset('/assets/img/icons/header-icon.svg') }}" class="header-icon" alt="header-icon">
-                        <p>Embark on your healing journey with Doccure</p>
+                        <p>Embark on your healing journey with Surna health</p>
                         <a href="{{ url('booking') }}" class="btn">Start a Consult</a>
                         <div class="banner-arrow-img">
                             <img src="{{ URL::asset('/assets/img/down-arrow-img.png') }}" class="img-fluid"
@@ -773,7 +773,7 @@
                         <div class="app-content">
                             <div class="app-header aos" data-aos="fade-up">
                                 <h5>Working for Your Better Health.</h5>
-                                <h2>Download the Doccure App today!</h2>
+                                <h2>Download the Surna health App today!</h2>
                             </div>
                             <div class="app-scan aos" data-aos="fade-up">
                                 <p>Scan the QR code to get the app now</p>
@@ -964,10 +964,10 @@
                                         <h2 class="section-title">What Our Client Says</h2>
                                     </div>
                                     <div class="testimonial-details">
-                                        <p>Doccure exceeded my expectations in healthcare. The seamless booking process,
+                                        <p>Surna health exceeded my expectations in healthcare. The seamless booking process,
                                             coupled with the expertise of the doctors, made my experience exceptional. Their
                                             commitment to quality care and convenience truly sets them apart. I highly
-                                            recommend Doccure for anyone seeking reliable and accessible healthcare
+                                            recommend Surna health for anyone seeking reliable and accessible healthcare
                                             services.</p>
                                         <h6><span class="d-block">John Doe</span> New York</h6>
                                     </div>
@@ -987,7 +987,7 @@
                                     </div>
                                     <div class="testimonial-details">
                                         <p>As a busy professional, I don't have time to wait on hold or play phone tag to
-                                            schedule doctor appointments. Thanks to Doccure, booking appointments has never
+                                            schedule doctor appointments. Thanks to Surna health, booking appointments has never
                                             been easier! The user-friendly interface allows me to quickly find available
                                             appointment slots that fit my schedule and book them with just a few clicks.
                                             It's a game-changer for anyone looking to streamline their healthcare
@@ -1010,10 +1010,10 @@
                                     </div>
                                     <div class="testimonial-details">
                                         <p>As a parent, coordinating doctor appointments for my family can be overwhelming.
-                                            Doccure has simplified the process and made scheduling appointments a breeze! I
+                                            Surna health has simplified the process and made scheduling appointments a breeze! I
                                             love being able to see all available appointment times in one place and book
                                             appointments for multiple family members with ease. Plus, the automatic
-                                            reminders ensure we never miss an appointment. I highly recommend Doccure to
+                                            reminders ensure we never miss an appointment. I highly recommend Surna health to
                                             other busy parents!</p>
                                         <h6><span class="d-block">Niya Patel</span> New York</h6>
                                     </div>

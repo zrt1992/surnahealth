@@ -47,7 +47,7 @@
                             </div>
                             <div class="contact-details">
                                 <h4>Email Address</h4>
-                                <p>doccure@example.com</p>
+                                <p>Surna health@example.com</p>
                             </div>
                         </div>
                     </div>

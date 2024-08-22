@@ -49,7 +49,7 @@
                                 <img src="{{ URL::asset('/assets/img/welcome-icon.png') }}" alt="Welcome Icon">
                             </div>
                             <div class="welcome-content">
-                                <h5>Welcome to Doccure</h5>
+                                <h5>Welcome to Surna health</h5>
                                 <p>Download the app get free medicine & 50% off on your first order</p>
                             </div>
                         </div>
@@ -1400,13 +1400,13 @@
                             <h4>100% Trusted Medical Store</h4>
                             <div class="trusted-text">
                                 <h6><i class="fa-solid fa-circle-check"></i> Healthy life.</h6>
-                                <p>At Doccure, we believe that true well-being extends beyond the prescription counter. Our
+                                <p>At Surna health, we believe that true well-being extends beyond the prescription counter. Our
                                     commitment to your health goes beyond medications, a dedicated space designed to empower
                                     you on your journey to a healthier and happier life.</p>
                             </div>
                             <div class="trusted-text">
                                 <h6><i class="fa-solid fa-circle-check"></i> Every day quality products for you.</h6>
-                                <p>At Doccure, we believe that true well-being extends beyond the prescription counter. Our
+                                <p>At Surna health, we believe that true well-being extends beyond the prescription counter. Our
                                     commitment to your health goes beyond medications, a dedicated space designed to empower
                                     you on your journey to a healthier and happier life.</p>
                             </div>
@@ -1503,7 +1503,7 @@
                                     <i class="fas fa-star filled"></i>
                                     <i class="fas fa-star filled"></i>
                                 </div>
-                                <p>The Doccure has been a game-changer for me. Ordering my medications is a breeze, and the
+                                <p>The Surna health has been a game-changer for me. Ordering my medications is a breeze, and the
                                     detailed information provided helps me make informed decisions about my health.</p>
                                 <h5>Claudia Cram</h5>
                             </div>
@@ -1521,7 +1521,7 @@
                                     <i class="fas fa-star filled"></i>
                                 </div>
                                 <p>The convenience of having my medications delivered to my doorstep is unparalleled. The
-                                    Doccure security measures instill confidence in every transaction.</p>
+                                    Surna health security measures instill confidence in every transaction.</p>
                                 <h5>Andrew Morgan</h5>
                             </div>
                         </div>
@@ -1537,7 +1537,7 @@
                                     <i class="fas fa-star filled"></i>
                                     <i class="fas fa-star filled"></i>
                                 </div>
-                                <p>As a busy professional, the Doccure efficient service has saved me countless hours. The
+                                <p>As a busy professional, the Surna health efficient service has saved me countless hours. The
                                     ability to chat with a pharmacist online for quick advice is fantastic, making it so
                                     much easier to manage my health.</p>
                                 <h5>Margaret Sara</h5>
@@ -1555,7 +1555,7 @@
                                     <i class="fas fa-star filled"></i>
                                     <i class="fas fa-star filled"></i>
                                 </div>
-                                <p>I can't thank the Doccure enough for its user-friendly interface and quick prescription
+                                <p>I can't thank the Surna health enough for its user-friendly interface and quick prescription
                                     refills. The automatic reminders for medication schedules have been a lifesaver,
                                     ensuring I never miss a dose.</p>
                                 <h5>Kevin Stoll</h5>
@@ -1739,7 +1739,7 @@
                             <div class="app-content">
                                 <div class="app-header aos" data-aos="fade-up">
                                     <h5>Working for Your Better Health.</h5>
-                                    <h2>Download the Doccure App today!</h2>
+                                    <h2>Download the Surna health App today!</h2>
                                 </div>
                                 <div class="app-scan aos" data-aos="fade-up">
                                     <p>Scan the QR code to get the app now</p>

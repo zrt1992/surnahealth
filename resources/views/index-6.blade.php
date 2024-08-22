@@ -166,7 +166,7 @@
 								<h2><span>Who</span> We Are</h2>
 								<p>The Great Place Of Eyecare Hospital Center</p>
 							</div>
-							<p>At Doccure, we understand the importance of clear vision and 
+							<p>At Surna health, we understand the importance of clear vision and
 								comprehensive eye care. Our dedicated team of experienced optometrists 
 								and ophthalmologists is committed to providing top-notch eye care services 
 								tailored to your individual needs.
@@ -344,7 +344,7 @@
 					<div class="col-md-12 aos" data-aos="fade-up">
 						<div class="section-heading text-center sec-heading-eye">
 							<h2><span>Our</span> Store</h2>
-							<p>Great Reasons For People Choose Doccure Store</p>
+							<p>Great Reasons For People Choose Surna health Store</p>
 						</div>
 						<ul class="store-tab nav">
 							<li>

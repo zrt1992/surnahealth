@@ -41,7 +41,7 @@
                                 <div class="mb-3 form-check-box terms-check-box">
                                     <div class="form-group-flex">
                                         <label class="custom_check">
-                                            I have read and agree to Doccure’s <a href="{{url('terms-condition')}}">Terms of
+                                            I have read and agree to Surna health’s <a href="{{url('terms-condition')}}">Terms of
                                                 Service</a> and <a href="{{url('privacy-policy')}}">Privacy Policy.</a>
                                             <input type="checkbox" name="Terms">
                                             <span class="checkmark"></span>

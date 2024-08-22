@@ -20,7 +20,7 @@
 									<div class="blog-image">
 										<a href="javascript:void(0);"><img alt="blog-image" src="{{URL::asset('/assets/img/blog/blog-01.jpg')}}" class="img-fluid"></a>
 									</div>
-									<h3 class="blog-title">Doccure – Making your clinic painless visit?</h3>
+									<h3 class="blog-title">Surna health – Making your clinic painless visit?</h3>
 									<div class="blog-info clearfix">
 										<div class="post-left">
 											<ul>
@@ -227,7 +227,7 @@
 											</div>
 											<div class="post-info">
 												<h4>
-													<a href="{{url('blog-details')}}">Doccure – Making your clinic painless visit?</a>
+													<a href="{{url('blog-details')}}">Surna health – Making your clinic painless visit?</a>
 												</h4>
 												<p>4 Dec 2023</p>
 											</div>
@@ -333,7 +333,7 @@
 										<li><a href="#" class="tag">Neurology</a></li>
 										<li><a href="#" class="tag">Dentists</a></li>
 										<li><a href="#" class="tag">Specialist</a></li>
-										<li><a href="#" class="tag">Doccure</a></li>
+										<li><a href="#" class="tag">Surna health</a></li>
 									</ul>
 								</div>
 							</div>

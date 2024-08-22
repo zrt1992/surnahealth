@@ -95,7 +95,7 @@
                                 </p>
                                 <p class="mb-0">
                                     <i class="fas fa-envelope"></i>
-                                    doccure@example.com
+                                    Surna health@example.com
                                 </p>
                             </div>
                         </div>
@@ -120,7 +120,7 @@
                                 <p class="mb-0">&copy;
                                     <script>
                                         document.write(new Date().getFullYear())
-                                    </script> Doccure. All rights reserved.
+                                    </script> Surna health. All rights reserved.
                                 </p>
                             </div>
                         </div>
@@ -163,7 +163,7 @@
                                 <img src="{{ URL::asset('/assets/img/footer-logo.png') }}" alt="logo">
                             </div>
                             <div class="footer-about-content">
-                                <p>Effortlessly schedule your medical appointments with Doccure. Connect with healthcare
+                                <p>Effortlessly schedule your medical appointments with Surna health. Connect with healthcare
                                     professionals, manage appointments & prioritize your well being </p>
                                 <div class="social-icon">
                                     <ul>
@@ -231,7 +231,7 @@
                                 </div>
                                 <p><i class="fa-solid fa-mobile-screen-button"></i>+1 315 369 5943</p>
                                 <p class="mb-0"> <i class="fas fa-envelope"></i>
-                                    doccure@example.com</p>
+                                    Surna health@example.com</p>
                             </div>
                         </div>
                         <!-- /Footer Widget -->
@@ -289,7 +289,7 @@
                     <div class="row">
                         <div class="col-lg-4 col-md-6 col-sm-12">
                             <div class="footer-widget footer-about">
-                                <h2 class="footer-title">About Doccure </h2>
+                                <h2 class="footer-title">About Surna health </h2>
                                 <div class="footer-about-content">
                                     <p> We can guide you through issues like Cardiac arrest, Heart Failure, Peripheral
                                         Artery Disease, Arrhythmia, Atrial Fibrillation, Cholesterol and High BP.</p>
@@ -346,7 +346,7 @@
                                         </span>
                                         <div class="addr-info">
                                             <h6>Email Address</h6>
-                                            <p>doccure@example.com</p>
+                                            <p>Surna health@example.com</p>
                                         </div>
                                     </div>
                                     <div class="footer-address mb-0">
@@ -417,7 +417,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="footer-widget footer-about">
                             <div class="footer-widget-title">
-                                <h4>About Doccure </h4>
+                                <h4>About Surna health </h4>
                             </div>
                             <p>We can guide you through issues like Cardiac arrest, Heart Failure,
                                 Peripheral Artery Disease, Arrhythmia, Atrial Fibrillation, Cholesterol and High BP.
@@ -442,7 +442,7 @@
                                 </li>
                                 <li>
                                     <span class="icon-contact"><i class="fa-regular fa-envelope"></i></span>
-                                    <p><span>Email Address</span>doccure@example.com</p>
+                                    <p><span>Email Address</span>Surna health@example.com</p>
                                 </li>
                                 <li>
                                     <span class="icon-contact"><i class="fa-solid fa-location-dot"></i></span>
@@ -549,7 +549,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="footer-widget footer-about">
                             <div class="footer-widget-title">
-                                <h4>About Doccure </h4>
+                                <h4>About Surna health </h4>
                             </div>
                             <p>We can guide you through issues like Cardiac arrest, Heart Failure,
                                 Peripheral Artery Disease, Arrhythmia, Atrial Fibrillation, Cholesterol and High BP.
@@ -620,7 +620,7 @@
                                 </li>
                                 <li>
                                     <span><i class="fa-regular fa-envelope"></i>Email Address</span>
-                                    <p>doccure@example.com</p>
+                                    <p>Surna health@example.com</p>
                                 </li>
                             </ul>
                         </div>
@@ -854,7 +854,7 @@
                                         src="{{ URL::asset('/assets/img/footer-logo.png') }}" alt="logo"></a>
                             </div>
                             <div class="footer-about-content">
-                                <p>Effortlessly schedule your medical appointments with Doccure. Connect with healthcare
+                                <p>Effortlessly schedule your medical appointments with Surna health. Connect with healthcare
                                     professionals, manage appointments & prioritize your well being </p>
                             </div>
                             <div class="social-icon">
@@ -925,7 +925,7 @@
                                 </div>
                                 <div class="footer-address mb-0">
                                     <p class="loc-info"><i class="feather-mail"></i>Email Address</p>
-                                    <p>doccure@example.com</p>
+                                    <p>Surna health@example.com</p>
                                 </div>
                             </div>
                         </div>
@@ -980,7 +980,7 @@
                             <div class="footer-logo">
                                 <img src="{{ URL::asset('/assets/img/logo-15.png') }}" alt="Img">
                             </div>
-                            <p>Effortlessly schedule your medical appointments with Doccure.
+                            <p>Effortlessly schedule your medical appointments with Surna health.
                                 Connect with healthcare professionals, manage appointments & prioritize your well being
                             </p>
                             <div class="social-links">
@@ -1044,7 +1044,7 @@
                                     <span>
                                         <i class="fa-solid fa-envelope"></i>
                                     </span>
-                                    doccure@example.com
+                                    Surna health@example.com
                                 </li>
                             </ul>
                         </div>
@@ -1158,7 +1158,7 @@
                     <div class="row">
                         <div class="col-md-6 col-lg-6">
                             <div class="copyright-text">
-                                <p>© 2024 Doccure. All rights reserved.</p>
+                                <p>© 2024 Surna health. All rights reserved.</p>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-6">
@@ -1202,7 +1202,7 @@
                         <img src="{{ URL::asset('/assets/img/icons/footer-logo-.svg') }}" alt="Img">
                     </div>
                     <div class="footer-buy-btn">
-                        <h6>Ready to get started with Doccure?</h6>
+                        <h6>Ready to get started with Surna health?</h6>
                         <a href="{{ url('booking-2') }}" class="btn btn-primary">Book Now</a>
                     </div>
                 </div>
@@ -1380,7 +1380,7 @@
         <div class="container">
             <div class="footer-bottom">
                 <div class="copy-right">
-                    <P>Copyright © 2024 Doccure. All rights are reserved.</P>
+                    <P>Copyright © 2024 Surna health. All rights are reserved.</P>
                 </div>
                 <div class="footer-select-drops">
                     <div class="input-select">
@@ -1477,7 +1477,7 @@
                                 </li>
                                 <li>
                                     <span class="icon-contact"><i class="fa-regular fa-envelope"></i></span>
-                                    <p><span>Email Address</span>doccure@example.com</p>
+                                    <p><span>Email Address</span>Surna health@example.com</p>
                                 </li>
                                 <li>
                                     <span class="icon-contact"><i class="fa-solid fa-location-dot"></i></span>
@@ -1553,7 +1553,7 @@
                                         src="{{ URL::asset('/assets/img/logo.png') }}" alt="logo"></a>
                             </div>
                             <div class="footer-about-content">
-                                <p>Effortlessly schedule your medical appointments with Doccure. Connect with healthcare
+                                <p>Effortlessly schedule your medical appointments with Surna health. Connect with healthcare
                                     professionals, manage appointments & prioritize your well being </p>
                             </div>
                         </div>
@@ -1591,7 +1591,7 @@
                                             <p><i class="feather-phone-call"></i> +1 315 369 5943</p>
                                         </div>
                                         <div class="footer-address mb-0">
-                                            <p><i class="feather-mail"></i> doccure@example.com</p>
+                                            <p><i class="feather-mail"></i> Surna health@example.com</p>
                                         </div>
                                     </div>
                                 </div>
@@ -1712,8 +1712,8 @@
                     <a href="{{ url('index') }}"><img src="{{ URL::asset('/assets/img/logo.png') }}"
                             alt="logo"></a>
                 </div>
-                <div class="doccure-info">
-                    <p>Doccure is one of India’s most trusted pharmacies, dispensing quality medicines
+                <div class="Surna health-info">
+                    <p>Surna health is one of India’s most trusted pharmacies, dispensing quality medicines
                         at reasonable prices to over 9 million happy customers
                     </p>
                 </div>
@@ -1724,7 +1724,7 @@
                         <div class="footer-links">
                             <h4>Company</h4>
                             <ul class="pages-links">
-                                <li><a href="{{ url('about-us') }}">About Doccure</a></li>
+                                <li><a href="{{ url('about-us') }}">About Surna health</a></li>
                                 <li><a href="javascript:void(0);">Customers Speak</a></li>
                                 <li><a href="javascript:void(0);">In the News</a></li>
                                 <li><a href="javascript:void(0);">Career</a></li>
@@ -1952,7 +1952,7 @@
                                             <p><i class="feather-phone-call"></i> +1 315 369 5943</p>
                                         </div>
                                         <div class="footer-address mb-0">
-                                            <p><i class="feather-mail"></i> doccure@example.com</p>
+                                            <p><i class="feather-mail"></i> Surna health@example.com</p>
                                         </div>
                                     </div>
                                 </div>

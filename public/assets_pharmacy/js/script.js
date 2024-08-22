@@ -1,6 +1,6 @@
 /*
 Author       : Soorna
-Template Name: Doccure - Bootstrap Admin Template
+Template Name: Surna health - Bootstrap Admin Template
 Version      : 1.3
 */
 
