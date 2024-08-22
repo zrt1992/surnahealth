@@ -7220,7 +7220,7 @@ function Datepicker() {
 	this._keyEvent = false; // If the last event was a key event
 	this._disabledInputs = []; // List of date picker inputs that have been disabled
 	this._datepickerShowing = false; // True if the popup picker is showing , false if not
-	this._inDialog = false; // True if showing within a "dialog", false if not
+	this._loremipsmlog = false; // True if showing within a "dialog", false if not
 	this._mainDivId = "ui-datepicker-div"; // The ID of the main datepicker division
 	this._inlineClass = "ui-datepicker-inline"; // The name of the inline marker class
 	this._appendClass = "ui-datepicker-append"; // The name of the append marker class
@@ -7518,7 +7518,7 @@ $.extend( Datepicker.prototype, {
 		// Move input on screen for focus, but hidden behind dialog
 		this._dialogInput.css( "left", ( this._pos[ 0 ] + 20 ) + "px" ).css( "top", this._pos[ 1 ] + "px" );
 		inst.settings.onSelect = onSelect;
-		this._inDialog = true;
+		this._loremipsmlog = true;
 		this.dpDiv.addClass( this._dialogClass );
 		this._showDatepicker( this._dialogInput[ 0 ] );
 		if ( $.blockUI ) {
@@ -7918,7 +7918,7 @@ $.extend( Datepicker.prototype, {
 		$.datepicker._lastInput = input;
 		$.datepicker._setDateFromField( inst );
 
-		if ( $.datepicker._inDialog ) { // hide cursor
+		if ( $.datepicker._loremipsmlog ) { // hide cursor
 			input.value = "";
 		}
 		if ( !$.datepicker._pos ) { // position below input
@@ -7945,7 +7945,7 @@ $.extend( Datepicker.prototype, {
 		// fix width for dynamic number of date pickers
 		// and adjust position before showing
 		offset = $.datepicker._checkOffset( inst, offset, isFixed );
-		inst.dpDiv.css( { position: ( $.datepicker._inDialog && $.blockUI ?
+		inst.dpDiv.css( { position: ( $.datepicker._loremipsmlog && $.blockUI ?
 			"static" : ( isFixed ? "fixed" : "absolute" ) ), display: "none",
 			left: offset.left + "px", top: offset.top + "px" } );
 
@@ -8093,14 +8093,14 @@ $.extend( Datepicker.prototype, {
 			}
 
 			this._lastInput = null;
-			if ( this._inDialog ) {
+			if ( this._loremipsmlog ) {
 				this._dialogInput.css( { position: "absolute", left: "0", top: "-100px" } );
 				if ( $.blockUI ) {
 					$.unblockUI();
 					$( "body" ).append( this.dpDiv );
 				}
 			}
-			this._inDialog = false;
+			this._loremipsmlog = false;
 		}
 	},
 
@@ -8122,7 +8122,7 @@ $.extend( Datepicker.prototype, {
 				$target.parents( "#" + $.datepicker._mainDivId ).length === 0 &&
 				!$target.hasClass( $.datepicker.markerClassName ) &&
 				!$target.closest( "." + $.datepicker._triggerClass ).length &&
-				$.datepicker._datepickerShowing && !( $.datepicker._inDialog && $.blockUI ) ) ) ||
+				$.datepicker._datepickerShowing && !( $.datepicker._loremipsmlog && $.blockUI ) ) ) ||
 			( $target.hasClass( $.datepicker.markerClassName ) && $.datepicker._curInst !== inst ) ) {
 				$.datepicker._hideDatepicker();
 		}

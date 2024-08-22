@@ -1018,7 +1018,7 @@
 						<div class="blog-content">
 							<div class="blog-slug">Diet</div>
 							<h3 class="blog-title"><a href="{{url('blog-details')}}">The prevalence of coronary artery disease in patients presenting ....</a></h3>
-							<p class="mb-0">Explore the rich culinary heritage of Central India with a flavourful recipe thought to be...</p>
+							<p class="mb-0">Explore the rich culinary heritage of Central loremipsm with a flavourful recipe thought to be...</p>
 						</div>
 					</div>
 					<!-- /Blog Post -->

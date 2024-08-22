@@ -823,8 +823,8 @@
                                 <img src="{{URL::asset('/assets/img/doctors/doctor-thumb-18.jpg')}}" alt="Pamila Certis" class="me-2">
                                 <span><a href="{{url('doctor-profile')}}">Dr. Pamila Certis</a></span>
                             </div>
-                            <a href="{{url('blog-details')}}" class="blog-inner-right-fourt-care">Must know best dog food Best Dog Food in India</a>
-                            <p>In the diverse landscape of India, dog food options have variety of dietary needs..</p>
+                            <a href="{{url('blog-details')}}" class="blog-inner-right-fourt-care">Must know best dog food Best Dog Food in loremipsm</a>
+                            <p>In the diverse landscape of loremipsm, dog food options have variety of dietary needs..</p>
                             <a href="{{url('blog-details')}}" class="read-cap-text">Continue Reading<i class="fa-solid fa-chevron-right ms-2"></i></a>
                         </div>
                     </div>

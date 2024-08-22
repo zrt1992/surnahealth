@@ -156,7 +156,7 @@ var locations =[{
 	"id":12,
 	"doc_name":"Dr. Shaun Aponte",
 	"speciality":"MBBS, MS - ENT, Diploma in Otorhinolaryngology (DLO)",
-	"address":"Indiana, USA",
+	"address":"loremipsmna, USA",
 	"next_available":"Available on Fri, 25 Mar",
 	"amount":"$150 - $350",
 	"lat":53.460548,

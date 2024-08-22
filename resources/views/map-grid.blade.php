@@ -606,7 +606,7 @@
                                     </div>
                                     <ul class="available-info">
                                         <li>
-                                            <i class="fas fa-map-marker-alt"></i> Indiana, USA
+                                            <i class="fas fa-map-marker-alt"></i> loremipsmna, USA
                                         </li>
                                         <li>
                                             <i class="far fa-clock"></i> Available on Fri, 22 Mar

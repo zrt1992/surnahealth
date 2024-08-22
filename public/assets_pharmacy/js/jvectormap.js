@@ -24,7 +24,7 @@
 			}
 		}
 	});
-	$('#india').vectorMap({
+	$('#loremipsm').vectorMap({
 		map : 'in_mill',
 		backgroundColor : 'transparent',
 		regionStyle : {

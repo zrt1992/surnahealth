@@ -4034,10 +4034,10 @@ readers do not read off random characters that represent icons */
 .fa-chart-gantt::before {
   content: "\e0e4"; }
 
-.fa-indian-rupee-sign::before {
+.fa-loremipsmn-rupee-sign::before {
   content: "\e1bc"; }
 
-.fa-indian-rupee::before {
+.fa-loremipsmn-rupee::before {
   content: "\e1bc"; }
 
 .fa-inr::before {

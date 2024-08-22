@@ -710,8 +710,8 @@
                                         </li>
                                     </ul>
                                     <h3 class="blog-title"><a href="{{ url('blog-details') }}">Must know best dog food
-                                            Best teeth strength Food in India</a></h3>
-                                    <p>In the diverse landscape of India, teeth options have variety of dietary needs..</p>
+                                            Best teeth strength Food in loremipsm</a></h3>
+                                    <p>In the diverse landscape of loremipsm, teeth options have variety of dietary needs..</p>
                                     <a href="{{ url('blog-details') }}" class="view-link">Continue Reading<i
                                             class="fa-solid fa-chevron-right"></i></a>
                                 </div>
@@ -787,8 +787,8 @@
                                         </li>
                                     </ul>
                                     <h3 class="blog-title"><a href="{{ url('blog-details') }}">Must know best dog food
-                                            Best teeth strength Food in India</a></h3>
-                                    <p>In the diverse landscape of India, teeth options have variety of dietary needs..</p>
+                                            Best teeth strength Food in loremipsm</a></h3>
+                                    <p>In the diverse landscape of loremipsm, teeth options have variety of dietary needs..</p>
                                     <a href="{{ url('blog-details') }}" class="view-link">Continue Reading<i
                                             class="fa-solid fa-chevron-right"></i></a>
                                 </div>

@@ -1386,7 +1386,7 @@
                     <div class="input-select">
                         <span class="select-icon"><i class="feather-globe"></i></span>
                         <select class="select">
-                            <option>India</option>
+                            <option>loremipsm</option>
                             <option>US</option>
                         </select>
                     </div>
@@ -1713,7 +1713,7 @@
                             alt="logo"></a>
                 </div>
                 <div class="Surna health-info">
-                    <p>Surna health is one of India’s most trusted pharmacies, dispensing quality medicines
+                    <p>Surna health is one of loremipsm’s most trusted pharmacies, dispensing quality medicines
                         at reasonable prices to over 9 million happy customers
                     </p>
                 </div>

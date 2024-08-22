@@ -2333,7 +2333,7 @@
                 suffix: " %",
                 allowMinus: !1
             },
-            indianns: {
+            loremipsmnns: {
                 alias: "numeric",
                 _mask: function _mask(opts) {
                     return "(" + opts.groupSeparator + "99){*|1}(" + opts.groupSeparator + "999){1|1}";
