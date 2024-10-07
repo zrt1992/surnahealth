@@ -33,107 +33,107 @@
         'product-list',
         'pharmacy-list',
     ]))
-    <title>Surna health - Dashboard</title>
+    <title>Doccure - Dashboard</title>
 @endif
 @if (Route::is(['appointment-list']))
-    <title>Surna health - Appointment List Page</title>
+    <title>Doccure - Appointment List Page</title>
 @endif
 @if (Route::is(['specialities']))
-    <title>Surna health - Specialities Page</title>
+    <title>Doccure - Specialities Page</title>
 @endif
 @if (Route::is(['doctor-list']))
-    <title>Surna health - Doctor List Page</title>
+    <title>Doccure - Doctor List Page</title>
 @endif
 @if (Route::is(['patient-list']))
-    <title>Surna health - Patient List Page</title>
+    <title>Doccure - Patient List Page</title>
 @endif
 @if (Route::is(['reviews']))
-    <title>Surna health - Reviews Page</title>
+    <title>Doccure - Reviews Page</title>
 @endif
 @if (Route::is(['transactions-list']))
-    <title>Surna health - Transactions List Page</title>
+    <title>Doccure - Transactions List Page</title>
 @endif
 @if (Route::is(['settings']))
-    <title>Surna health - Settings Page</title>
+    <title>Doccure - Settings Page</title>
 @endif
 @if (Route::is(['invoice-report']))
-    <title>Surna health - Invoice Report Page</title>
+    <title>Doccure - Invoice Report Page</title>
 @endif
 @if (Route::is(['profile']))
-    <title>Surna health - Profile</title>
+    <title>Doccure - Profile</title>
 @endif
 @if (Route::is(['login']))
-    <title>Surna health - Login</title>
+    <title>Doccure - Login</title>
 @endif
 @if (Route::is(['register']))
-    <title>Surna health - Register</title>
+    <title>Doccure - Register</title>
 @endif
 @if (Route::is(['forgot-password']))
-    <title>Surna health - Forgot Password</title>
+    <title>Doccure - Forgot Password</title>
 @endif
 @if (Route::is(['lock-screen']))
-    <title>Surna health - Lock Screen</title>
+    <title>Doccure - Lock Screen</title>
 @endif
 @if (Route::is(['error-404']))
-    <title>Surna health - Error 404</title>
+    <title>Doccure - Error 404</title>
 @endif
 @if (Route::is(['error-500']))
-    <title>Surna health - Error 500</title>
+    <title>Doccure - Error 500</title>
 @endif
 @if (Route::is(['blank-page']))
-    <title>Surna health - Blank Page</title>
+    <title>Doccure - Blank Page</title>
 @endif
 @if (Route::is(['components']))
-    <title>Surna health - Components</title>
+    <title>Doccure - Components</title>
 @endif
 @if (Route::is(['form-basic']))
-    <title>Surna health - Basic Inputs</title>
+    <title>Doccure - Basic Inputs</title>
 @endif
 @if (Route::is(['form-inputs']))
-    <title>Surna health - Form Input Groups</title>
+    <title>Doccure - Form Input Groups</title>
 @endif
 @if (Route::is(['form-horizontal']))
-    <title>Surna health - Horizontal Form</title>
+    <title>Doccure - Horizontal Form</title>
 @endif
 @if (Route::is(['form-vertical']))
-    <title>Surna health - Vertical Form</title>
+    <title>Doccure - Vertical Form</title>
 @endif
 @if (Route::is(['form-mask']))
-    <title>Surna health - Form Mask</title>
+    <title>Doccure - Form Mask</title>
 @endif
 @if (Route::is(['form-validation']))
-    <title>Surna health - Form Validation</title>
+    <title>Doccure - Form Validation</title>
 @endif
 @if (Route::is(['tables-basic']))
-    <title>Surna health - Tables Basic</title>
+    <title>Doccure - Tables Basic</title>
 @endif
 @if (Route::is(['data-tables']))
-    <title>Surna health - Data Tables</title>
+    <title>Doccure - Data Tables</title>
 @endif
 @if (Route::is(['invoice']))
-    <title>Surna health - Invoice</title>
+    <title>Doccure - Invoice</title>
 @endif
 @if (Route::is(['calendar']))
-    <title>Surna health - Calendar</title>
+    <title>Doccure - Calendar</title>
 @endif
 @if (Route::is(['blog', 'blog-details']))
-    <title>Surna health - Blog Page</title>
+    <title>Doccure - Blog Page</title>
 @endif
 @if (Route::is(['add-blog']))
-    <title>Surna health - Add Blog Page</title>
+    <title>Doccure - Add Blog Page</title>
 @endif
 @if (Route::is(['edit-blog']))
-    <title>Surna health - Edit Blog Page</title>
+    <title>Doccure - Edit Blog Page</title>
 @endif
 @if (Route::is(['product-list']))
-    <title>Surna health - Product List Page</title>
+    <title>Doccure - Product List Page</title>
 @endif
 @if (Route::is(['pharmacy-list']))
-    <title>Surna health - Pharmacy List Page</title>
+    <title>Doccure - Pharmacy List Page</title>
 @endif
 <!-- Favicon -->
 @if (Route::is(['pending-blog']))
-    <title>Surna health - Pending Blog Page</title>
+    <title>Doccure - Pending Blog Page</title>
 @endif
 <link rel="shortcut icon" type="image/x-icon" href="{{ url('assets_admin/img/favicon.png') }}">
 <!-- Bootstrap CSS -->

@@ -11,11 +11,11 @@
                         <div class="row align-items-center justify-content-center">
                             <div class="col-md-7 col-lg-6 login-left">
                                 <img src="{{ URL::asset('/assets/img/login-banner.png') }}" class="img-fluid"
-                                    alt="Surna health Login">
+                                    alt="Doccure Login">
                             </div>
                             <div class="col-md-12 col-lg-6 login-right">
                                 <div class="login-header">
-                                    <h3>Login <span>Surna health</span></h3>
+                                    <h3>Login <span>Doccure</span></h3>
                                 </div>
                                 <form action="{{ url('/') }}">
                                     <div class="mb-3 form-focus">

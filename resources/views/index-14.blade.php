@@ -687,7 +687,7 @@
                 <div class="col-md-12">
                     <div class=" dentist-blog aos" data-aos="fade-down">
                         <div class="section-header text-center">
-                            <h2>Surna health <span>Recent Blogs</span></h2>
+                            <h2>Doccure <span>Recent Blogs</span></h2>
                             <p>Checkout our Latest blogs by our Experts by Month on Month</p>
                         </div>
                         <div class="dentist-slider owl-carousel">
@@ -710,8 +710,8 @@
                                         </li>
                                     </ul>
                                     <h3 class="blog-title"><a href="{{ url('blog-details') }}">Must know best dog food
-                                            Best teeth strength Food in loremipsm</a></h3>
-                                    <p>In the diverse landscape of loremipsm, teeth options have variety of dietary needs..</p>
+                                            Best teeth strength Food in India</a></h3>
+                                    <p>In the diverse landscape of India, teeth options have variety of dietary needs..</p>
                                     <a href="{{ url('blog-details') }}" class="view-link">Continue Reading<i
                                             class="fa-solid fa-chevron-right"></i></a>
                                 </div>
@@ -787,8 +787,8 @@
                                         </li>
                                     </ul>
                                     <h3 class="blog-title"><a href="{{ url('blog-details') }}">Must know best dog food
-                                            Best teeth strength Food in loremipsm</a></h3>
-                                    <p>In the diverse landscape of loremipsm, teeth options have variety of dietary needs..</p>
+                                            Best teeth strength Food in India</a></h3>
+                                    <p>In the diverse landscape of India, teeth options have variety of dietary needs..</p>
                                     <a href="{{ url('blog-details') }}" class="view-link">Continue Reading<i
                                             class="fa-solid fa-chevron-right"></i></a>
                                 </div>

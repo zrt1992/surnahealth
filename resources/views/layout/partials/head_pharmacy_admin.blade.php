@@ -22,70 +22,70 @@
         'supplier',
         'edit-purchase',
     ]))
-    <title>Surna health -Pharmacy Dashboard</title>
+    <title>Doccure -Pharmacy Dashboard</title>
 @endif
 @if (Route::is(['products']))
-    <title>Surna health - Products Page</title>
+    <title>Doccure - Products Page</title>
 @endif
 @if (Route::is(['add-product']))
-    <title>Surna health - Add Product Page</title>
+    <title>Doccure - Add Product Page</title>
 @endif
 @if (Route::is(['outstock']))
-    <title>Surna health - Outstock Page</title>
+    <title>Doccure - Outstock Page</title>
 @endif
 @if (Route::is(['expired']))
-    <title>Surna health - Expired Page</title>
+    <title>Doccure - Expired Page</title>
 @endif
 @if (Route::is(['categories']))
-    <title>Surna health - Categories Page</title>
+    <title>Doccure - Categories Page</title>
 @endif
 @if (Route::is(['purchase']))
-    <title>Surna health - Purchase Page</title>
+    <title>Doccure - Purchase Page</title>
 @endif
 @if (Route::is(['add-purchase']))
-    <title>Surna health - Add Purchase Page</title>
+    <title>Doccure - Add Purchase Page</title>
 @endif
 @if (Route::is(['order']))
-    <title>Surna health - Order Page</title>
+    <title>Doccure - Order Page</title>
 @endif
 @if (Route::is(['sales']))
-    <title>Surna health - Sales Page</title>
+    <title>Doccure - Sales Page</title>
 @endif
 @if (Route::is(['supplier']))
-    <title>Surna health - Supplier Page</title>
+    <title>Doccure - Supplier Page</title>
 @endif
 @if (Route::is(['add-supplier']))
-    <title>Surna health - Add Supplier Page</title>
+    <title>Doccure - Add Supplier Page</title>
 @endif
 @if (Route::is(['transactions-list']))
-    <title>Surna health - Transactions List Page</title>
+    <title>Doccure - Transactions List Page</title>
 @endif
 @if (Route::is(['invoice-report']))
-    <title>Surna health - Invoice Report Page</title>
+    <title>Doccure - Invoice Report Page</title>
 @endif
 @if (Route::is(['profile']))
-    <title>Surna health - Profile</title>
+    <title>Doccure - Profile</title>
 @endif
 @if (Route::is(['settings']))
-    <title>Surna health - Settings Page</title>
+    <title>Doccure - Settings Page</title>
 @endif
 @if (Route::is(['customer-orders']))
-    <title>Surna health - Customer Order Page</title>
+    <title>Doccure - Customer Order Page</title>
 @endif
 @if (Route::is(['edit-product']))
-    <title>Surna health - Edit Product Page</title>
+    <title>Doccure - Edit Product Page</title>
 @endif
 @if (Route::is(['edit-purchase']))
-    <title>Surna health - Edit Purchase Page</title>
+    <title>Doccure - Edit Purchase Page</title>
 @endif
 @if (Route::is(['edit-supplier']))
-    <title>Surna health - Edit Supplier Page</title>
+    <title>Doccure - Edit Supplier Page</title>
 @endif
 @if (Route::is(['invoice']))
-    <title>Surna health - Invoice</title>
+    <title>Doccure - Invoice</title>
 @endif
 @if (Route::is(['product-list']))
-    <title>Surna health - Product List Page</title>
+    <title>Doccure - Product List Page</title>
 @endif
 <link rel="shortcut icon" type="image/x-icon" href="{{ url('assets_pharmacy/img/favicon.png') }}">
 <!-- Bootstrap CSS -->

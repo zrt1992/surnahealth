@@ -558,7 +558,7 @@
                 <div class="container">
                     <div class="header-top-bar">
                         <ul class="header-contact">
-                            <li><i class="fa-solid fa-envelope"></i>Surna health@example.com</li>
+                            <li><i class="fa-solid fa-envelope"></i>doccure@example.com</li>
                             <li><i class="fa-solid fa-location-dot"></i>231 madison Street, NewYork, USA</li>
                         </ul>
                         <ul class="social-icon">
@@ -612,7 +612,7 @@
         @if (Route::is(['index-7']))
             <div class="veterinary-top-head">
                 <ul>
-                    <li><i class="fa-solid fa-envelope me-2"></i>Surna health@example.com</li>
+                    <li><i class="fa-solid fa-envelope me-2"></i>Doccure@example.com</li>
                     <li><i class="fa-solid fa-location-dot me-2"></i>231 madison Street, NewYork,USA</li>
                 </ul>
                 <ul>

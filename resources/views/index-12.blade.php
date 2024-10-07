@@ -314,7 +314,7 @@
                         <div class="lab-service-title" data-aos="fade-up" data-aos-delay="600">
                             <h2>Versatile Laboratory Service Provider</h2>
                             <h5>Your full service lab for clinical trials. Our mission is to ensure the generation of accurate and precise findings</h5>
-                            <p>One of the most popular services Surna health offers is diagnostic testing. People need to book pathological tests for many reasons. But before booking, they wonder if the diagnostic centre can be trusted to produce accurate results...</p>
+                            <p>One of the most popular services Doccure offers is diagnostic testing. People need to book pathological tests for many reasons. But before booking, they wonder if the diagnostic centre can be trusted to produce accurate results...</p>
                         </div>
                         <div class="lab-service-features">
                             <ul>
@@ -322,7 +322,7 @@
                                     <span>
                                         <img src="{{URL::asset('/assets/img/icons/lab-service-icon-01.svg')}}" alt="Img">
                                     </span>
-                                    <h6>The Surna health - Easy Way To Book Lab Tests Online</h6>
+                                    <h6>The Doccure - Easy Way To Book Lab Tests Online</h6>
                                 </li>
                                 <li data-aos="fade-down" data-aos-delay="500">
                                     <span>
@@ -2064,7 +2064,7 @@
                                 <span>Chennai, Tamilnadu</span>
                             </div>
                         </div>
-                        <p>After struggling with chronic sinus problems, I found relief at Surna health.
+                        <p>After struggling with chronic sinus problems, I found relief at Doccure.
                             The ENT specialists here are not only highly skilled but also genuinely caring.
                             They took the time to understand my concerns, provided a detailed diagnosis,
                             and guided me through a treatment plan that has greatly improved my quality of life.</p>
@@ -2091,7 +2091,7 @@
                                 <span>Chennai, Tamilnadu</span>
                             </div>
                         </div>
-                        <p>After struggling with chronic sinus problems, I found relief at Surna health.
+                        <p>After struggling with chronic sinus problems, I found relief at Doccure.
                             The ENT specialists here are not only highly skilled but also genuinely caring.
                             They took the time to understand my concerns, provided a detailed diagnosis,
                             and guided me through a treatment plan that has greatly improved my quality of life.</p>
@@ -2118,7 +2118,7 @@
                         <div class="app-content">
                             <div class="app-header aos" data-aos="fade-up">
                                 <h5>Working for Your Better Health.</h5>
-                                <h2>Download the Surna health App today!</h2>
+                                <h2>Download the Doccure App today!</h2>
                             </div>
                             <div class="app-scan aos" data-aos="fade-up">
                                 <p>Scan the QR code to get the app now</p>

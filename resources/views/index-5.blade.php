@@ -364,7 +364,7 @@
 				<div class="row">
 					<div class="col-md-12 aos" data-aos="fade-up">
 						<div class="section-header-one section-header-slider">
-							<h2 class="section-title mb-0">Why Choose Surna health?</h2>
+							<h2 class="section-title mb-0">Why Choose Doccure?</h2>
 						</div>
 					</div>
 				</div>
@@ -538,7 +538,7 @@
 									<div class="testmonial-user-coments">
 										<h6>“ Awesome Impact ”</h6>
 										<p>After suffering from a heart condition for a number of years I was very happy
-											to meet Surna health, from the first consultation where he believed there was a
+											to meet Doccure, from the first consultation where he believed there was a
 											solution...</p>
 									</div>
 								</div>
@@ -1018,7 +1018,7 @@
 						<div class="blog-content">
 							<div class="blog-slug">Diet</div>
 							<h3 class="blog-title"><a href="{{url('blog-details')}}">The prevalence of coronary artery disease in patients presenting ....</a></h3>
-							<p class="mb-0">Explore the rich culinary heritage of Central loremipsm with a flavourful recipe thought to be...</p>
+							<p class="mb-0">Explore the rich culinary heritage of Central India with a flavourful recipe thought to be...</p>
 						</div>
 					</div>
 					<!-- /Blog Post -->

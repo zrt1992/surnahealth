@@ -279,7 +279,7 @@
                                                         <option>Select Country</option>
                                                         <option value="1">USA</option>
                                                         <option value="2">France</option>
-                                                        <option value="3">loremipsm</option>
+                                                        <option value="3">India</option>
                                                         <option value="4">Spain</option>
                                                     </select>
                                                 </div>

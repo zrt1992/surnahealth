@@ -12,7 +12,7 @@
                         <div class="inner-right-login">
                             <div class="login-header">
                                 <div class="logo-icon">
-                                    <img src="{{ URL::asset('assets/img/logo.png')}}" alt="Surna health-logo">
+                                    <img src="{{ URL::asset('assets/img/logo.png')}}" alt="doccure-logo">
                                 </div>
                                 <div class="step-list">
                                     <ul>
@@ -183,7 +183,7 @@
                             </div>
                         </div>
                         <div class="login-bottom-copyright">
-                            <span>© <script>document.write(new Date().getFullYear())</script> Surna health. All rights reserved.</span>
+                            <span>© <script>document.write(new Date().getFullYear())</script> Doccure. All rights reserved.</span>
                         </div>
                     </div>
                 </div>

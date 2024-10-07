@@ -753,11 +753,11 @@
                         <div class="testimonial-wrap">
                             <h4>Exceptional Care from Start to Finish</h4>
                             <p>
-                                I recently had liposuction done at Surna health, and the care I received was exceptional
+                                I recently had liposuction done at Doccure, and the care I received was exceptional 
                                 from start to finish. The staff was friendly, and the surgeons were not only skilled 
                                 but also compassionate. They addressed all my concerns, provided detailed pre and post-op 
                                 instructions, and the results are truly 
-                                remarkable. I highly recommend Surna health for anyone considering cosmetic procedures.
+                                remarkable. I highly recommend Doccure for anyone considering cosmetic procedures.
                             </p>
                             <div class="testimonial-user">
                                 <h6>Elizabeth Forsyth</h6>
@@ -767,11 +767,11 @@
                         <div class="testimonial-wrap">
                             <h4>Exceptional Care from Start to Finish</h4>
                             <p>
-                                I recently had liposuction done at Surna health, and the care I received was exceptional
+                                I recently had liposuction done at Doccure, and the care I received was exceptional 
                                 from start to finish. The staff was friendly, and the surgeons were not only skilled 
                                 but also compassionate. They addressed all my concerns, provided detailed pre and post-op 
                                 instructions, and the results are truly 
-                                remarkable. I highly recommend Surna health for anyone considering cosmetic procedures.
+                                remarkable. I highly recommend Doccure for anyone considering cosmetic procedures.
                             </p>
                             <div class="testimonial-user">
                                 <h6>Elizabeth Forsyth</h6>

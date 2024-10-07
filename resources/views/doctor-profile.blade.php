@@ -382,13 +382,13 @@
                         <p>Affiliate members include related allied health professionals- evidence based
                             (Dietitians, Physiotherapist, Occupational therapist and Clinical Psychologist) who will
                             team up with allopathic physicians to
-                            support the Lifestyle Medicine movement in loremipsm through ISLM.
+                            support the Lifestyle Medicine movement in India through ISLM.
                         </p>
                     </div>
                     <div class="member-ship-info mb-0">
                         <span class="mem-check"><i class="fa-solid fa-check"></i></span>
                         <p>Physician members include the allopathic doctors only (MBBS, MD, MS, DM, MCH, DNB or equivalent degree)
-                            who hold a valid medical license as recognized by the Medical Council of loremipsm.
+                            who hold a valid medical license as recognized by the Medical Council of India.
                         </p>
                     </div>
                 </div>

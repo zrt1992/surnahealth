@@ -602,7 +602,7 @@
 											</div>
 										</div>
 									</a>
-									<a href="{{url('blog-details')}}" class="blog-inner-right-fourt-care">Flavourful Recipe of Central loremipsm to Boost Fertility</a>
+									<a href="{{url('blog-details')}}" class="blog-inner-right-fourt-care">Flavourful Recipe of Central India to Boost Fertility</a>
 									<ul class="articles-list nav blog-articles-list">
 										<li>
 											<i class="feather-calendar"></i> 18 Nov 2024
@@ -614,7 +614,7 @@
 											<i class="feather-eye"></i> 1.2k
 										</li>
 									</ul>
-									<p>Explore the rich culinary heritage of Central loremipsm with a flavourful recipe thought to be...</p>
+									<p>Explore the rich culinary heritage of Central India with a flavourful recipe thought to be...</p>
 									<ul class="articles-list nav blog-articles-list-two">
 										<li>Diet</li>
 										<li>Health</li>
