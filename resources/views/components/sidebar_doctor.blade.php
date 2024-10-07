@@ -97,9 +97,10 @@
                     <li class="{{ Request::is('doctor-profile-settings','doctor-awards-settings','doctor-business-settings','doctor-clinics-settings') ? 'active' : '' }}">
                         <a href="{{url('doctor-profile-settings')}}">
                             <i class="fa-solid fa-user-pen"></i>
-                            <span>Profile Settings</span>
+                            <span>Video meet</span>
                         </a>
                     </li>
+
                     <li class="{{ Request::is('social-media') ? 'active' : '' }}">
                         <a href="{{url('social-media')}}">
                             <i class="fa-solid fa-shield-halved"></i>

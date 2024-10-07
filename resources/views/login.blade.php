@@ -17,7 +17,8 @@
                                 <div class="login-header">
                                     <h3>Login <span>Doccure</span></h3>
                                 </div>
-                                <form action="{{ url('/') }}">
+                                <form action="{{ route('login-admin') }}" method="post">
+                                    @csrf
                                     <div class="mb-3 form-focus">
                                         <input type="email" class="form-control floating"
                                             name="email" id="email">

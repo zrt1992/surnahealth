@@ -138,27 +138,42 @@
                         <div class="setting-title">
                             <h5>Memberships</h5>
                         </div>
+                    </form>
+                    <form action="{{route('create-meeting')}}" method="post">
+                        @csrf
                         <div class="setting-card">
                             <div class="add-info membership-infos">
                                 <div class="row membership-content">
                                     <div class="col-lg-3 col-md-6">
                                         <div class="form-wrap">
                                             <label class="col-form-label">Title <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" placeholder="Add Title">
+                                            <input name="title" type="text" class="form-control" placeholder="Add Title">
                                         </div>
                                     </div>
                                     <div class="col-lg-9 col-md-6">
                                         <div class="d-flex align-items-center">
                                             <div class="form-wrap w-100">
-                                                <label class="col-form-label">About Membership</label>
-                                                <input type="text" class="form-control">
+                                                <label class="col-form-label">description</label>
+                                                <input name="description" type="text" class="form-control">
                                             </div>
-                                            <div class="form-wrap ms-2">
-                                                <label class="col-form-label d-block">&nbsp;</label>
-                                                <a href="javascript:void(0);" class="trash-icon trash">Delete</a>
-                                            </div>
+
+{{--                                            <div class="form-wrap ms-2">--}}
+{{--                                                <label class="col-form-label d-block">&nbsp;</label>--}}
+{{--                                                <a href="javascript:void(0);" class="trash-icon trash">Delete</a>--}}
+{{--                                            </div>--}}
                                         </div>
                                     </div>
+                                    <div class="col-lg-9 col-md-6">
+                                        <div class="form-wrap w-100">
+                                            <label class="col-form-label">Start Time</label>
+                                            <input type="date" name="start_date" class="form-control">
+                                        </div>
+                                        <div class="form-wrap w-100">
+                                            <label class="col-form-label">End Time</label>
+                                            <input type="date" name="end_date" class="form-control">
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                             <div class="text-end">

@@ -17,10 +17,12 @@ Route::middleware('guest')->group(function () {
 
     Route::post('register', [RegisteredUserController::class, 'store']);
 
-    Route::get('login', [AuthenticatedSessionController::class, 'create'])
-        ->name('login');
+    Route::get('/login', function () {
+//        dd('asd');
+        return view('login');
+    })->name('login');
 
-    Route::post('login', [AuthenticatedSessionController::class, 'store']);
+    Route::post('login', [AuthenticatedSessionController::class, 'store'])->name('login-admin');
 
     Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
         ->name('password.request');
@@ -36,6 +38,7 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
+    Route::post('create-meeting', [\App\Http\Controllers\MeetingController::class, 'createMeeting'])->name('create-meeting');
     Route::get('verify-email', EmailVerificationPromptController::class)
         ->name('verification.notice');
 
