@@ -136,7 +136,7 @@
                             </div>
                         </div>
                         <div class="setting-title">
-                            <h5>Memberships</h5>
+                            <h5>Start Meeting</h5>
                         </div>
                     </form>
                     <form action="{{route('create-meeting')}}" method="post">
@@ -166,11 +166,11 @@
                                     <div class="col-lg-9 col-md-6">
                                         <div class="form-wrap w-100">
                                             <label class="col-form-label">Start Time</label>
-                                            <input type="date" name="start_date" class="form-control">
+                                            <input type="datetime-local" name="start_date" class="form-control">
                                         </div>
                                         <div class="form-wrap w-100">
                                             <label class="col-form-label">End Time</label>
-                                            <input type="date" name="end_date" class="form-control">
+                                            <input type="datetime-local" name="end_date" class="form-control">
                                         </div>
                                     </div>
 

@@ -15,7 +15,7 @@
                             <p class="account-subtitle">Access to our dashboard</p>
 
                             <!-- Form -->
-                            <form method="post" action="{{ route('login.custom') }}">
+{{--                            <form method="post" action="{{ route('login.custom') }}">--}}
                                 @csrf
                                 <div class="mb-3">
                                     <input class="form-control" type="text" placeholder="Email" value="admin@example.com"

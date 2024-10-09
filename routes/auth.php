@@ -37,8 +37,8 @@ Route::middleware('guest')->group(function () {
         ->name('password.store');
 });
 
+Route::post('create-meeting', [\App\Http\Controllers\MeetingController::class, 'createMeeting'])->name('create-meeting');
 Route::middleware('auth')->group(function () {
-    Route::post('create-meeting', [\App\Http\Controllers\MeetingController::class, 'createMeeting'])->name('create-meeting');
     Route::get('verify-email', EmailVerificationPromptController::class)
         ->name('verification.notice');
 
