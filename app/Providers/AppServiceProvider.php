@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Auth\Middleware\RedirectIfAuthenticated;
 
@@ -21,6 +22,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         RedirectIfAuthenticated::redirectUsing(function () {
+//            dd(Auth::check());
+//            Auth::logout();
             return route('home-page');
         });
     }

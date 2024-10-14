@@ -44,11 +44,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-//Route::middleware('auth')->group(function () {
+Route::middleware('auth')->group(function () {
 //    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 //    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-//});
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
 Route::get('/index', function () {
     return view('index');
@@ -182,6 +182,9 @@ Route::get('/doctor-change-password', function () {
 Route::get('/doctor-dashboard', function () {
     return view('doctor-dashboard');
 })->name('doctor-dashboard');
+Route::get('/doctor-dashboard', function () {
+    return view('doctor-dashboard');
+})->name('dashboard');
 Route::get('/doctor-pending-blog', function () {
     return view('doctor-pending-blog');
 })->name('doctor-pending-blog');

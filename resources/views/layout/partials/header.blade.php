@@ -1522,10 +1522,22 @@
                     <li class="register-btn">
                         <a href="{{url('register')}}" class="btn reg-btn"><i class="feather-user"></i>Register</a>
                     </li>
+                            @if(\Illuminate\Support\Facades\Auth::check())
+
                     <li class="register-btn">
-                        <a href="{{url('login')}}" class="btn btn-primary log-btn"><i
-                                class="feather-lock"></i>Login</a>
+                        <a href="{{route('profile.destroy')}}" class="btn btn-primary log-btn"><i
+                                class="feather-lock"></i>Logout</a>
                     </li>
+                                @else
+                                    <form id="logout-form" action="{{ route('profile.destroy') }}" method="POST" style="display: none;">
+                                        @csrf
+                                        @method('delete')
+                                <li class="register-btn">
+                                    <a href="{{url('login')}}" class="btn btn-primary log-btn"><i
+                                                class="feather-lock"></i>Login</a>
+                                </li>
+                                    </form>
+                                    @endif
                     @endif
                 </ul>
             </div>
@@ -1624,10 +1636,29 @@
                         <a href="{{ url('register') }}" class="btn reg-btn"><i
                                 class="feather-user"></i>Register</a>
                     </li>
-                    <li class="register-btn">
-                        <a href="{{ url('login') }}" class="btn btn-primary log-btn"><i
-                                class="feather-lock"></i>Login</a>
-                    </li>
+                    @if(\Illuminate\Support\Facades\Auth::check())
+
+                            @csrf
+                            @method('delete')
+                        <li class="register-btn">
+                            <a href="{{route('logout-user')}}" class="btn btn-primary log-btn" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <i
+                                        class="feather-lock"></i>Logout
+                            </a>
+                            <form id="logout-form" action="{{ route('logout-user') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </li>
+                    @else
+
+
+
+                        <li class="register-btn">
+                            <a href="{{url('login')}}" class="btn btn-primary log-btn"><i
+                                        class="feather-lock"></i>Login</a>
+                        </li>
+
+                    @endif
                 @endif
                 @if (Route::is(['index-2']))
                     <li class="nav-item">

@@ -15,7 +15,7 @@ Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
         ->name('register');
 
-    Route::post('register', [RegisteredUserController::class, 'store']);
+    Route::post('register', [RegisteredUserController::class, 'store'])->name('register.store');
 
     Route::get('/login', function () {
 //        dd('asd');
@@ -57,6 +57,6 @@ Route::middleware('auth')->group(function () {
 
     Route::put('password', [PasswordController::class, 'update'])->name('password.update');
 
-    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
-        ->name('logout');
+    Route::post('logout-user', [AuthenticatedSessionController::class, 'destroy'])
+        ->name('logout-user');
 });

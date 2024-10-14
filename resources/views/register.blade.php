@@ -19,20 +19,29 @@
                                 </div>
 
                                 <!-- Register Form -->
-                                <form action="{{ url('patient-register-step1') }}">
+                                <form action="{{ route('register.store') }}" method="post">
+                                    @csrf
                                     <div class="mb-3 form-focus">
                                         <input type="text" class="form-control floating" name="name" id="name">
                                         <label class="focus-label">Name</label>
                                     </div>
                                     <div class="mb-3 form-focus">
-                                        <input type="text" class="form-control floating" name="number" id="number">
-                                        <label class="focus-label">Mobile Number</label>
+                                        <input type="text" class="form-control floating" name="email" id="number">
+                                        <label class="focus-label">Email</label>
                                     </div>
                                     <div class="mb-3 form-focus">
                                         <label class="focus-label">Create Password</label>
                                         <div class="pass-group">
                                             <input class="form-control pass-input floating" type="password" name="password"
                                                 id="password">
+
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 form-focus">
+                                        <label class="focus-label">Confirm Password</label>
+                                        <div class="pass-group">
+                                            <input class="form-control pass-input floating" type="password" name="password_confirmation"
+                                                   id="password">
 
                                         </div>
                                     </div>
