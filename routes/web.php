@@ -21,7 +21,7 @@ Route::get('/', function () {
 
     $service = new Google_Service_Calendar($client);
 
-    $calendarList = $service->calendarList->listCalendarList();
+ //   $calendarList = $service->calendarList->listCalendarList();
     $event = new Google_Service_Calendar_Event(array(
         'summary' => 'Test Event',
         'description' => 'Test Event',
@@ -35,7 +35,7 @@ Route::get('/', function () {
 
     $calendarId = 'alraadu58@gmail.com';
     $event = $service->events->insert($calendarId, $event);
-    dd($event);
+   // dd($event);
 
     // dd(storage_path('app/google-calendar/service-account-credentials.json'));
 })->name('home-page');

@@ -28,7 +28,7 @@ class MeetingController extends Controller
 
         $service = new Google_Service_Calendar($client);
 
-        $calendarList = $service->calendarList->listCalendarList();
+//        $calendarList = $service->calendarList->listCalendarList();
 
 //        dd($request->all());
         $start = strtotime($request->get('start_date'));
@@ -37,11 +37,11 @@ class MeetingController extends Controller
             'summary' => $request->get('title'),
             'description' => $request->get('description'),
             'start' => array(
-                'dateTime' => '2024-10-10T10:30:00-07:00',
+                'dateTime' => '2024-10-17T10:30:00-07:00',
                 'timeZone' => 'America/Los_Angeles',
             ),
             'end' => array(
-                'dateTime' => '2024-10-10T11:00:00-07:00',
+                'dateTime' => '2024-10-17T11:00:00-07:00',
                 'timeZone' => 'America/Los_Angeles',
             )
         ));
