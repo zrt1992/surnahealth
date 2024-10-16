@@ -13,7 +13,6 @@ class CustomAuthController extends Controller
 
     public function index()
     {
-        
         return view('admin/login');
     }  
       
@@ -91,10 +90,13 @@ class CustomAuthController extends Controller
     }
     
 
-    public function signOut() {
-        Session::flush();
+    public function signOut(Request $request) 
+    {
+        dd('custom-auth-controller');
+        $request->session()->invalidate();
+        $request->session()->flush();
         Auth::logout();
   
-        return Redirect('admin/login');
+        return redirect()->route('index');
     }
 }

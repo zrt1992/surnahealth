@@ -28,8 +28,30 @@ class AuthenticatedSessionController extends Controller
 
         $request->authenticate();
 
-        $request->session()->regenerate();
-        return redirect()->intended(route('dashboard', absolute: false));
+        
+        // if user is doctor
+        // dd($request->user()->roles);
+        if($request->user()->hasRole('doctor'))
+        {
+            $request->session()->regenerate();
+            return redirect()->intended(route('doctor-dashboard', absolute: false));
+        }
+        if($request->user()->hasRole('admin'))
+        {
+            $request->session()->regenerate();
+            return redirect()->intended(route('admin-dashboard', absolute: false));
+        }
+        if($request->user()->hasRole('patient'))
+        {
+            $request->session()->regenerate();
+            return redirect()->intended(route('patient-dashboard', absolute: false));
+        }
+
+        // if user is admin
+        // return redirect()->intended(route('dashboard', absolute: false));
+        
+        // if suer is patient
+        // return redirect()->intended(route('dashboard', absolute: false));
     }
 
     /**
@@ -37,12 +59,13 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
+    // dd('auth/authenticated session');
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect()->route('index');
     }
 }
