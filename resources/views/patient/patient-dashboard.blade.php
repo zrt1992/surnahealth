@@ -34,7 +34,7 @@
                                         <a class="dropdown-toggle" data-bs-toggle="dropdown" href="javascript:void(0);">
                                             <img src="{{ URL::asset('/assets/img/doctors-dashboard/profile-06.jpg') }}"
                                                 class="avatar dropdown-avatar" alt="Img">
-                                            Hendrita
+                                            {{\Illuminate\Support\Facades\Auth::user()->name}}
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-end">
                                             <a href="javascript:void(0);" class="dropdown-item">

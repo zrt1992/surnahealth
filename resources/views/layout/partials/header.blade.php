@@ -887,197 +887,199 @@
                 <ul class="main-nav">
                     <li
                         class="has-submenu megamenu {{ Request::is('/', 'index', 'index-2', 'index-3', 'index-4', 'index-5', 'index-6', 'index-7', 'index-8', 'index-9', 'index-10', 'index-11', 'index-12', 'index-13', 'index-14') ? 'active' : '' }}">
-                        <a href="javascript:void(0);">Home <i class="fas fa-chevron-down"></i></a>
-                        <ul class="submenu mega-submenu">
-                            <li>
-                                <div class="megamenu-wrapper">
-                                    <div class="row">
-                                        <div class="col-lg-2">
-                                            <div class="single-demo {{ Request::is('/', 'index') ? 'active' : '' }}">
-                                                <div class="demo-img">
-                                                    <a href="{{ url('index') }}" class="inner-demo-img"><img
-                                                            src="{{ URL::asset('/assets/img/home/home-01.jpg') }}"
-                                                            class="img-fluid " alt="img"></a>
-                                                </div>
-                                                <div class="demo-info">
-                                                    <a href="{{ url('index') }}" class="inner-demo-img">General
-                                                        Home 1</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2">
-                                            <div class="single-demo {{ Request::is('index-2') ? 'active' : '' }}">
-                                                <div class="demo-img">
-                                                    <a href="{{ url('index-2') }}" class="inner-demo-img"><img
-                                                            src="{{ URL::asset('/assets/img/home/home-02.jpg') }}"
-                                                            class="img-fluid " alt="img"></a>
-                                                </div>
-                                                <div class="demo-info">
-                                                    <a href="{{ url('index-2') }}" class="inner-demo-img">General
-                                                        Home 2</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2">
-                                            <div class="single-demo {{ Request::is('index-3') ? 'active' : '' }}">
-                                                <div class="demo-img">
-                                                    <a href="{{ url('index-3') }}" class="inner-demo-img"><img
-                                                            src="{{ URL::asset('/assets/img/home/home-03.jpg') }}"
-                                                            class="img-fluid " alt="img"></a>
-                                                </div>
-                                                <div class="demo-info">
-                                                    <a href="{{ url('index-3') }}" class="inner-demo-img">General
-                                                        Home 3</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2">
-                                            <div class="single-demo {{ Request::is('index-5') ? 'active' : '' }}">
-                                                <div class="demo-img">
-                                                    <a href="{{ url('index-5') }}" class="inner-demo-img"><img
-                                                            src="{{ URL::asset('/assets/img/home/home-04.jpg') }}"
-                                                            class="img-fluid " alt="img"></a>
-                                                </div>
-                                                <div class="demo-info">
-                                                    <a href="{{ url('index-5') }}"
-                                                        class="inner-demo-img">Cardiology</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2">
-                                            <div class="single-demo {{ Request::is('index-6') ? 'active' : '' }}">
-                                                <div class="demo-img">
-                                                    <a href="{{ url('index-6') }}" class="inner-demo-img"><img
-                                                            src="{{ URL::asset('/assets/img/home/home-05.jpg') }}"
-                                                            class="img-fluid " alt="img"></a>
-                                                </div>
-                                                <div class="demo-info">
-                                                    <a href="{{ url('index-6') }}"
-                                                        class="inner-demo-img">Eyecare</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2">
-                                            <div class="single-demo {{ Request::is('index-7') ? 'active' : '' }}">
-                                                <div class="demo-img">
-                                                    <a href="{{ url('index-7') }}" class="inner-demo-img"><img
-                                                            src="{{ URL::asset('/assets/img/home/home-06.jpg') }}"
-                                                            class="img-fluid " alt="img"></a>
-                                                </div>
-                                                <div class="demo-info">
-                                                    <a href="{{ url('index-7') }}"
-                                                        class="inner-demo-img">Veterinary</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2">
-                                            <div class="single-demo {{ Request::is('index-8') ? 'active' : '' }}">
-                                                <div class="demo-img">
-                                                    <a href="{{ url('index-8') }}" class="inner-demo-img"><img
-                                                            src="{{ URL::asset('/assets/img/home/home-07.jpg') }}"
-                                                            class="img-fluid " alt="img"></a>
-                                                </div>
-                                                <div class="demo-info">
-                                                    <a href="{{ url('index-8') }}"
-                                                        class="inner-demo-img">Pediatric</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2">
-                                            <div class="single-demo {{ Request::is('index-9') ? 'active' : '' }}">
-                                                <div class="demo-img">
-                                                    <a href="{{ url('index-9') }}" class="inner-demo-img"><img
-                                                            src="{{ URL::asset('/assets/img/home/home-08.jpg') }}"
-                                                            class="img-fluid " alt="img"></a>
-                                                </div>
-                                                <div class="demo-info">
-                                                    <a href="{{ url('index-9') }}"
-                                                        class="inner-demo-img">Fertility</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2">
-                                            <div class="single-demo {{ Request::is('index-10') ? 'active' : '' }}">
-                                                <div class="demo-img">
-                                                    <a href="{{ url('index-10') }}" class="inner-demo-img"><img
-                                                            src="{{ URL::asset('/assets/img/home/home-09.jpg') }}"
-                                                            class="img-fluid " alt="img"></a>
-                                                </div>
-                                                <div class="demo-info">
-                                                    <a href="{{ url('index-10') }}" class="inner-demo-img">ENT</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2">
-                                            <div class="single-demo {{ Request::is('index-11') ? 'active' : '' }}">
-                                                <div class="demo-img">
-                                                    <a href="{{ url('index-11') }}" class="inner-demo-img"><img
-                                                            src="{{ URL::asset('/assets/img/home/home-10.jpg') }}"
-                                                            class="img-fluid " alt="img"></a>
-                                                </div>
-                                                <div class="demo-info">
-                                                    <a href="{{ url('index-11') }}"
-                                                        class="inner-demo-img">Cosmetics</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2">
-                                            <div class="single-demo {{ Request::is('index-12') ? 'active' : '' }}">
-                                                <div class="demo-img">
-                                                    <a href="{{ url('index-12') }}" class="inner-demo-img"><img
-                                                            src="{{ URL::asset('/assets/img/home/home-11.jpg') }}"
-                                                            class="img-fluid " alt="img"></a>
-                                                </div>
-                                                <div class="demo-info">
-                                                    <a href="{{ url('index-12') }}" class="inner-demo-img">Lab
-                                                        Test</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2">
-                                            <div class="single-demo">
-                                                <div class="demo-img">
-                                                    <a href="{{ url('pharmacy-index') }}"
-                                                        class="inner-demo-img"><img
-                                                            src="{{ URL::asset('/assets/img/home/home-12.jpg') }}"
-                                                            class="img-fluid" alt="img"></a>
-                                                </div>
-                                                <div class="demo-info">
-                                                    <a href="{{ url('index-12') }}"
-                                                        class="inner-demo-img">Pharmacy</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2">
-                                            <div class="single-demo {{ Request::is('index-13') ? 'active' : '' }}">
-                                                <div class="demo-img">
-                                                    <a href="{{ url('index-13') }}" class="inner-demo-img"><img
-                                                            src="{{ URL::asset('/assets/img/home/home-13.jpg') }}"
-                                                            class="img-fluid " alt="img"></a>
-                                                </div>
-                                                <div class="demo-info">
-                                                    <a href="{{ url('index-13') }}" class="inner-demo-img">Home
-                                                        Care</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2">
-                                            <div class="single-demo {{ Request::is('index-14') ? 'active' : '' }}">
-                                                <div class="demo-img">
-                                                    <a href="{{ url('index-14') }}" class="inner-demo-img"><img
-                                                            src="{{ URL::asset('/assets/img/home/home-14.jpg') }}"
-                                                            class="img-fluid " alt="img"></a>
-                                                </div>
-                                                <div class="demo-info">
-                                                    <a href="{{ url('index-14') }}"
-                                                        class="inner-demo-img">Dentists</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
+                        <a href="javascript:void(0);">Home
+{{--                            <i class="fas fa-chevron-down"></i>--}}
+                        </a>
+{{--                        <ul class="submenu mega-submenu">--}}
+{{--                            <li>--}}
+{{--                                <div class="megamenu-wrapper">--}}
+{{--                                    <div class="row">--}}
+{{--                                        <div class="col-lg-2">--}}
+{{--                                            <div class="single-demo {{ Request::is('/', 'index') ? 'active' : '' }}">--}}
+{{--                                                <div class="demo-img">--}}
+{{--                                                    <a href="{{ url('index') }}" class="inner-demo-img"><img--}}
+{{--                                                            src="{{ URL::asset('/assets/img/home/home-01.jpg') }}"--}}
+{{--                                                            class="img-fluid " alt="img"></a>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="demo-info">--}}
+{{--                                                    <a href="{{ url('index') }}" class="inner-demo-img">General--}}
+{{--                                                        Home 1</a>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="col-lg-2">--}}
+{{--                                            <div class="single-demo {{ Request::is('index-2') ? 'active' : '' }}">--}}
+{{--                                                <div class="demo-img">--}}
+{{--                                                    <a href="{{ url('index-2') }}" class="inner-demo-img"><img--}}
+{{--                                                            src="{{ URL::asset('/assets/img/home/home-02.jpg') }}"--}}
+{{--                                                            class="img-fluid " alt="img"></a>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="demo-info">--}}
+{{--                                                    <a href="{{ url('index-2') }}" class="inner-demo-img">General--}}
+{{--                                                        Home 2</a>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="col-lg-2">--}}
+{{--                                            <div class="single-demo {{ Request::is('index-3') ? 'active' : '' }}">--}}
+{{--                                                <div class="demo-img">--}}
+{{--                                                    <a href="{{ url('index-3') }}" class="inner-demo-img"><img--}}
+{{--                                                            src="{{ URL::asset('/assets/img/home/home-03.jpg') }}"--}}
+{{--                                                            class="img-fluid " alt="img"></a>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="demo-info">--}}
+{{--                                                    <a href="{{ url('index-3') }}" class="inner-demo-img">General--}}
+{{--                                                        Home 3</a>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="col-lg-2">--}}
+{{--                                            <div class="single-demo {{ Request::is('index-5') ? 'active' : '' }}">--}}
+{{--                                                <div class="demo-img">--}}
+{{--                                                    <a href="{{ url('index-5') }}" class="inner-demo-img"><img--}}
+{{--                                                            src="{{ URL::asset('/assets/img/home/home-04.jpg') }}"--}}
+{{--                                                            class="img-fluid " alt="img"></a>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="demo-info">--}}
+{{--                                                    <a href="{{ url('index-5') }}"--}}
+{{--                                                        class="inner-demo-img">Cardiology</a>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="col-lg-2">--}}
+{{--                                            <div class="single-demo {{ Request::is('index-6') ? 'active' : '' }}">--}}
+{{--                                                <div class="demo-img">--}}
+{{--                                                    <a href="{{ url('index-6') }}" class="inner-demo-img"><img--}}
+{{--                                                            src="{{ URL::asset('/assets/img/home/home-05.jpg') }}"--}}
+{{--                                                            class="img-fluid " alt="img"></a>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="demo-info">--}}
+{{--                                                    <a href="{{ url('index-6') }}"--}}
+{{--                                                        class="inner-demo-img">Eyecare</a>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="col-lg-2">--}}
+{{--                                            <div class="single-demo {{ Request::is('index-7') ? 'active' : '' }}">--}}
+{{--                                                <div class="demo-img">--}}
+{{--                                                    <a href="{{ url('index-7') }}" class="inner-demo-img"><img--}}
+{{--                                                            src="{{ URL::asset('/assets/img/home/home-06.jpg') }}"--}}
+{{--                                                            class="img-fluid " alt="img"></a>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="demo-info">--}}
+{{--                                                    <a href="{{ url('index-7') }}"--}}
+{{--                                                        class="inner-demo-img">Veterinary</a>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="col-lg-2">--}}
+{{--                                            <div class="single-demo {{ Request::is('index-8') ? 'active' : '' }}">--}}
+{{--                                                <div class="demo-img">--}}
+{{--                                                    <a href="{{ url('index-8') }}" class="inner-demo-img"><img--}}
+{{--                                                            src="{{ URL::asset('/assets/img/home/home-07.jpg') }}"--}}
+{{--                                                            class="img-fluid " alt="img"></a>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="demo-info">--}}
+{{--                                                    <a href="{{ url('index-8') }}"--}}
+{{--                                                        class="inner-demo-img">Pediatric</a>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="col-lg-2">--}}
+{{--                                            <div class="single-demo {{ Request::is('index-9') ? 'active' : '' }}">--}}
+{{--                                                <div class="demo-img">--}}
+{{--                                                    <a href="{{ url('index-9') }}" class="inner-demo-img"><img--}}
+{{--                                                            src="{{ URL::asset('/assets/img/home/home-08.jpg') }}"--}}
+{{--                                                            class="img-fluid " alt="img"></a>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="demo-info">--}}
+{{--                                                    <a href="{{ url('index-9') }}"--}}
+{{--                                                        class="inner-demo-img">Fertility</a>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="col-lg-2">--}}
+{{--                                            <div class="single-demo {{ Request::is('index-10') ? 'active' : '' }}">--}}
+{{--                                                <div class="demo-img">--}}
+{{--                                                    <a href="{{ url('index-10') }}" class="inner-demo-img"><img--}}
+{{--                                                            src="{{ URL::asset('/assets/img/home/home-09.jpg') }}"--}}
+{{--                                                            class="img-fluid " alt="img"></a>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="demo-info">--}}
+{{--                                                    <a href="{{ url('index-10') }}" class="inner-demo-img">ENT</a>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="col-lg-2">--}}
+{{--                                            <div class="single-demo {{ Request::is('index-11') ? 'active' : '' }}">--}}
+{{--                                                <div class="demo-img">--}}
+{{--                                                    <a href="{{ url('index-11') }}" class="inner-demo-img"><img--}}
+{{--                                                            src="{{ URL::asset('/assets/img/home/home-10.jpg') }}"--}}
+{{--                                                            class="img-fluid " alt="img"></a>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="demo-info">--}}
+{{--                                                    <a href="{{ url('index-11') }}"--}}
+{{--                                                        class="inner-demo-img">Cosmetics</a>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="col-lg-2">--}}
+{{--                                            <div class="single-demo {{ Request::is('index-12') ? 'active' : '' }}">--}}
+{{--                                                <div class="demo-img">--}}
+{{--                                                    <a href="{{ url('index-12') }}" class="inner-demo-img"><img--}}
+{{--                                                            src="{{ URL::asset('/assets/img/home/home-11.jpg') }}"--}}
+{{--                                                            class="img-fluid " alt="img"></a>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="demo-info">--}}
+{{--                                                    <a href="{{ url('index-12') }}" class="inner-demo-img">Lab--}}
+{{--                                                        Test</a>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="col-lg-2">--}}
+{{--                                            <div class="single-demo">--}}
+{{--                                                <div class="demo-img">--}}
+{{--                                                    <a href="{{ url('pharmacy-index') }}"--}}
+{{--                                                        class="inner-demo-img"><img--}}
+{{--                                                            src="{{ URL::asset('/assets/img/home/home-12.jpg') }}"--}}
+{{--                                                            class="img-fluid" alt="img"></a>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="demo-info">--}}
+{{--                                                    <a href="{{ url('index-12') }}"--}}
+{{--                                                        class="inner-demo-img">Pharmacy</a>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="col-lg-2">--}}
+{{--                                            <div class="single-demo {{ Request::is('index-13') ? 'active' : '' }}">--}}
+{{--                                                <div class="demo-img">--}}
+{{--                                                    <a href="{{ url('index-13') }}" class="inner-demo-img"><img--}}
+{{--                                                            src="{{ URL::asset('/assets/img/home/home-13.jpg') }}"--}}
+{{--                                                            class="img-fluid " alt="img"></a>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="demo-info">--}}
+{{--                                                    <a href="{{ url('index-13') }}" class="inner-demo-img">Home--}}
+{{--                                                        Care</a>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="col-lg-2">--}}
+{{--                                            <div class="single-demo {{ Request::is('index-14') ? 'active' : '' }}">--}}
+{{--                                                <div class="demo-img">--}}
+{{--                                                    <a href="{{ url('index-14') }}" class="inner-demo-img"><img--}}
+{{--                                                            src="{{ URL::asset('/assets/img/home/home-14.jpg') }}"--}}
+{{--                                                            class="img-fluid " alt="img"></a>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="demo-info">--}}
+{{--                                                    <a href="{{ url('index-14') }}"--}}
+{{--                                                        class="inner-demo-img">Dentists</a>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </li>--}}
+{{--                        </ul>--}}
                     </li>
                     <li
                         class="has-submenu {{ Request::is('doctor-request', 'available-timings', 'doctor-dashboard', 'appointments', 'schedule-timings', 'my-patients', 'patient-profile', 'chat-doctor', 'doctor-profile-settings', 'reviews', 'doctor-register', 'doctor-blog', 'doctor-add-blog', 'add-billing', 'add-prescription', 'doctor-pending-blog', 'edit-billing', 'edit-blog', 'edit-prescription', 'doctor-clinics-settings', 'doctor-cancelled-appointment', 'doctor-business-settings', 'doctor-awards-settings', 'doctor-appointment-start', 'doctor-appointments-grid', 'doctor-cancelled-appointment-2', 'doctor-completed-appointment', 'doctor-education-settings', 'doctor-experience-settings', 'doctor-insurance-settings', 'doctor-specialities', 'doctor-upcoming-appointment', 'social-media') ? 'active' : '' }}">
@@ -1282,18 +1284,18 @@
                                     href="{{ url('components') }}">Components</a></li>
                         </ul>
                     </li>
-                    <li
-                        class="has-submenu {{ Request::is('blog-list', 'blog-grid', 'blog-details') ? 'active' : '' }}">
-                        <a href="#">Blog <i class="fas fa-chevron-down"></i></a>
-                        <ul class="submenu">
-                            <li class="{{ Request::is('blog-list') ? 'active' : '' }}"><a
-                                    href="{{ url('blog-list') }}">Blog List</a></li>
-                            <li class="{{ Request::is('blog-grid') ? 'active' : '' }}"><a
-                                    href="{{ url('blog-grid') }}">Blog Grid</a></li>
-                            <li class="{{ Request::is('blog-details') ? 'active' : '' }}"><a
-                                    href="{{ url('blog-details') }}">Blog Details</a></li>
-                        </ul>
-                    </li>
+{{--                    <li--}}
+{{--                        class="has-submenu {{ Request::is('blog-list', 'blog-grid', 'blog-details') ? 'active' : '' }}">--}}
+{{--                        <a href="#">Blog <i class="fas fa-chevron-down"></i></a>--}}
+{{--                        <ul class="submenu">--}}
+{{--                            <li class="{{ Request::is('blog-list') ? 'active' : '' }}"><a--}}
+{{--                                    href="{{ url('blog-list') }}">Blog List</a></li>--}}
+{{--                            <li class="{{ Request::is('blog-grid') ? 'active' : '' }}"><a--}}
+{{--                                    href="{{ url('blog-grid') }}">Blog Grid</a></li>--}}
+{{--                            <li class="{{ Request::is('blog-details') ? 'active' : '' }}"><a--}}
+{{--                                    href="{{ url('blog-details') }}">Blog Details</a></li>--}}
+{{--                        </ul>--}}
+{{--                    </li>--}}
                     <li
                         class="has-submenu {{ Request::is('admin/index_admin', 'pharmacy-admin/index_pharmacy_admin') ? 'active' : '' }}">
                         <a href="#">Admin <i class="fas fa-chevron-down"></i></a>
@@ -1520,7 +1522,7 @@
                     @endif
                     @if(Route::is(['search','about-us','blank-page','blog-details','blog-grid','blog-list','calendar','coming-soon','components','contact-us','doctor-register','doctor-search-grid','email-otp','error-404','error-500','faq','forgot-password','forgot-password2', 'login','login-email','login-email-otp','login-phone','login-phone-otp','map-grid','map-list','mobile-otp','patient-signup','pharmacy-register','pricing','privacy-policy','register','reset-password','search-2','signup-success','terms-condition','maintenance']))
                     <li class="register-btn">
-                        <a href="{{url('register')}}" class="btn reg-btn"><i class="feather-user"></i>Register</a>
+                        <a href="{{url('register')}}" class="btn reg-btn"><i class="feather-user"></i>Registers</a>
                     </li>
                             @if(\Illuminate\Support\Facades\Auth::check())
 

@@ -9,7 +9,7 @@
                     <img src="{{ URL::asset('assets/img/doctors-dashboard/profile-06.jpg') }}" alt="User Image">
                 </a>
                 <div class="profile-det-info">
-                    <h3><a href="{{ route('profile-settings') }}">Hendrita</a></h3>
+                    <h3><a href="{{ route('profile-settings') }}"> {{\Illuminate\Support\Facades\Auth::user()->name}}</a></h3>
                     <div class="patient-details">
                         <h5 class="mb-0">Patient ID : PT254654</h5>
                     </div>

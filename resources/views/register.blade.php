@@ -34,9 +34,9 @@
                                         <div class="pass-group">
                                             <input class="form-control pass-input floating" type="password" name="password"
                                                 id="password">
-
                                         </div>
                                     </div>
+                                    <input type="hidden" name="role" value="patient">
                                     <div class="mb-3 form-focus">
                                         <label class="focus-label">Confirm Password</label>
                                         <div class="pass-group">
