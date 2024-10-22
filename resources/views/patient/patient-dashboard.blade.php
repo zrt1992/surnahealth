@@ -21,14 +21,14 @@
 
                 <div class="col-lg-8 col-xl-9">
                     <div class="dashboard-header">
-                        <h3>Dashboard</h3>
+                        <h3>Dashboards</h3>
                     </div>
                     <div class="row">
                         <div class="col-xl-8 d-flex">
                             <div class="dashboard-card w-100">
                                 <div class="dashboard-card-head">
                                     <div class="header-title">
-                                        <h5>Health Records</h5>
+                                        <h5>Health Recordss</h5>
                                     </div>
                                     <div class="dropdown header-dropdown">
                                         <a class="dropdown-toggle" data-bs-toggle="dropdown" href="javascript:void(0);">

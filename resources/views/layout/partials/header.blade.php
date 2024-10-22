@@ -364,7 +364,7 @@
                                 <li><a href="{{ url('patient-profile') }}">Patients Profile</a></li>
                                 <li><a href="{{ url('chat-doctor') }}">Chat</a></li>
                                 <li><a href="{{ url('invoices') }}">Invoices</a></li>
-                                <li><a href="{{ url('doctor-profile-settings') }}">Profile Settings</a></li>
+                                <li><a href="{{ url('doctor-profile-settings') }}">Profile Settingslk</a></li>
                                 <li><a href="{{ url('reviews') }}">Reviews</a></li>
                                 <li><a href="{{ url('doctor-register') }}">Doctor Register</a></li>
                                 <li class="has-submenu">
@@ -407,7 +407,7 @@
                                 <li><a href="{{ url('patient-dashboard') }}">Patient Dashboard</a></li>
                                 <li><a href="{{ url('favourites') }}">Favourites</a></li>
                                 <li><a href="{{ url('chat') }}">Chat</a></li>
-                                <li><a href="{{ url('profile-settings') }}">Profile Settings</a></li>
+                                <li><a href="{{ url('profile-settings') }}">Profile Settingsk</a></li>
                                 <li><a href="{{ url('change-password') }}">Change Password</a></li>
                             </ul>
                         </li>
@@ -1105,7 +1105,7 @@
                                     href="{{ url('invoices') }}">Invoices</a></li>
                             <li
                                 class="{{ Request::is('doctor-profile-settings', 'doctor-awards-settings', 'doctor-business-settings', 'doctor-clinics-settings', 'doctor-education-settings', 'doctor-experience-settings', 'doctor-insurance-settings') ? 'active' : '' }}">
-                                <a href="{{ url('doctor-profile-settings') }}">Profile Settings</a>
+                                <a href="{{ url('doctor-profile-settings') }}">Profile Settingsssss</a>
                             </li>
                             <li class="{{ Request::is('reviews') ? 'active' : '' }}"><a
                                     href="{{ url('reviews') }}">Reviews</a></li>
@@ -1179,7 +1179,7 @@
                             <li class="{{ Request::is('chat') ? 'active' : '' }}"><a
                                     href="{{ url('chat') }}">Chat</a></li>
                             <li class="{{ Request::is('profile-settings') ? 'active' : '' }}"><a
-                                    href="{{ url('profile-settings') }}">Profile Settings</a></li>
+                                    href="{{ url('profile-settings') }}">ss</a></li>
                             <li class="{{ Request::is('change-password') ? 'active' : '' }}"><a
                                     href="{{ url('change-password') }}">Change Password</a></li>
                         </ul>
@@ -2208,9 +2208,12 @@
                                         'patient-cancelled-appointment',
                                     ]))
                                     <a class="dropdown-item" href="{{ url('profile-settings') }}">Profile
-                                        Settings</a>
+                                        Setting</a>
                                 @endif
-                                <a class="dropdown-item" href="{{ url('login') }}">Logout</a>
+                                <a class="dropdown-item" href="{{route('logout-user')}}" onclick="event.preventDefault(); document.getElementById('logout-forms').submit();">Logout</a>
+                                      <form id="logout-forms" action="{{ route('logout-user') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
                             </div>
                         </li>
                         <!-- /User Menu -->
@@ -2279,8 +2282,13 @@
                                     </div>
                                 </div>
                                 <a class="dropdown-item" href="{{ url('patient-dashboard') }}">Dashboard</a>
-                                <a class="dropdown-item" href="{{ url('profile-settings') }}">Profile Settings</a>
-                                <a class="dropdown-item" href="{{ url('login') }}">Logout</a>
+                                <a class="dropdown-item" href="{{ url('profile-settings') }}">Profile Settingss</a>
+                                <a class="dropdown-item" href="{{route('logout-user')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logouts</a>
+
+                                <form id="logout-forms" action="{{ route('logout-user') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+
                             </div>
                         </li>
                         <!-- /User Menu -->
