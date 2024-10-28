@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
+  //  dd(\Illuminate\Support\Facades\Auth::user()->getRoleNames()->first());
 //    dd(\Illuminate\Support\Facades\Auth::logout());
 //    dd(\Illuminate\Support\Facades\Auth::check());
 //    \Illuminate\Support\Facades\Session::flush();

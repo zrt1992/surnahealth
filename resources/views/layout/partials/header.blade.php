@@ -153,7 +153,7 @@
                     </div>
                     <ul class="main-nav">
                         <li class="has-submenu megamenu">
-                            <a href="javascript:void(0);">Home <i class="fas fa-chevron-down"></i></a>
+                            <a href="{{url('/')}}">Home <i class="fas fa-chevron-down"></i></a>
                             <ul class="submenu mega-submenu">
                                 <li>
                                     <div class="megamenu-wrapper">
@@ -1083,49 +1083,62 @@
                     </li>
                     <li
                         class="has-submenu {{ Request::is('doctor-request', 'available-timings', 'doctor-dashboard', 'appointments', 'schedule-timings', 'my-patients', 'patient-profile', 'chat-doctor', 'doctor-profile-settings', 'reviews', 'doctor-register', 'doctor-blog', 'doctor-add-blog', 'add-billing', 'add-prescription', 'doctor-pending-blog', 'edit-billing', 'edit-blog', 'edit-prescription', 'doctor-clinics-settings', 'doctor-cancelled-appointment', 'doctor-business-settings', 'doctor-awards-settings', 'doctor-appointment-start', 'doctor-appointments-grid', 'doctor-cancelled-appointment-2', 'doctor-completed-appointment', 'doctor-education-settings', 'doctor-experience-settings', 'doctor-insurance-settings', 'doctor-specialities', 'doctor-upcoming-appointment', 'social-media') ? 'active' : '' }}">
-                        <a href="javascript:void(0);">Doctors <i class="fas fa-chevron-down"></i></a>
-                        <ul class="submenu">
-                            <li
-                                class="{{ Request::is('doctor-dashboard', 'doctor-specialities', 'social-media') ? 'active' : '' }}">
-                                <a href="{{ url('doctor-dashboard') }}">Doctor Dashboard</a>
-                            </li>
-                            <li
-                                class="{{ Request::is('appointments', 'doctor-request', 'doctor-appointments-grid', 'doctor-appointment-start', 'doctor-cancelled-appointment', 'doctor-cancelled-appointment-2', 'doctor-completed-appointment', 'doctor-upcoming-appointment') ? 'active' : '' }}">
-                                <a href="{{ url('appointments') }}">Appointments</a>
-                            </li>
-                            <li class="{{ Request::is('available-timings') ? 'active' : '' }}"><a
-                                    href="{{ url('available-timings') }}">Available Timing</a></li>
-                            <li class="{{ Request::is('my-patients', 'edit-prescription') ? 'active' : '' }}"><a
-                                    href="{{ url('my-patients') }}">Patients List</a></li>
-                            <li class="{{ Request::is('patient-profile', 'edit-billing') ? 'active' : '' }}"><a
-                                    href="{{ url('patient-profile') }}">Patients Profile</a></li>
-                            <li class="{{ Request::is('chat-doctor') ? 'active' : '' }}"><a
-                                    href="{{ url('chat-doctor') }}">Chat</a></li>
-                            <li class="{{ Request::is('invoices') ? 'active' : '' }}"><a
-                                    href="{{ url('invoices') }}">Invoices</a></li>
-                            <li
-                                class="{{ Request::is('doctor-profile-settings', 'doctor-awards-settings', 'doctor-business-settings', 'doctor-clinics-settings', 'doctor-education-settings', 'doctor-experience-settings', 'doctor-insurance-settings') ? 'active' : '' }}">
-                                <a href="{{ url('doctor-profile-settings') }}">Profile Settingsssss</a>
-                            </li>
-                            <li class="{{ Request::is('reviews') ? 'active' : '' }}"><a
-                                    href="{{ url('reviews') }}">Reviews</a></li>
-                            <li class="{{ Request::is('doctor-register') ? 'active' : '' }}"><a
-                                    href="{{ url('doctor-register') }}">Doctor Register</a></li>
-                            <li
-                                class="has-submenu {{ Request::is('doctor-blog', 'blog-details', 'doctor-add-blog', 'doctor-pending-blog', 'edit-blog') ? 'active' : '' }}">
-                                <a href="{{ url('doctor-blog') }}">Blog</a>
-                                <ul class="submenu">
-                                    <li
-                                        class="{{ Request::is('doctor-blog', 'doctor-pending-blog', 'edit-blog', 'doctor-pending-blog', 'edit-blog') ? 'active' : '' }}">
-                                        <a href="{{ url('doctor-blog') }}">Blog</a>
-                                    </li>
-                                    <li class="{{ Request::is('blog-details') ? 'active' : '' }}"><a
-                                            href="{{ url('blog-details') }}">Blog view</a></li>
-                                    <li class="{{ Request::is('doctor-add-blog') ? 'active' : '' }}"><a
-                                            href="{{ url('doctor-add-blog') }}">Add Blog</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                        @if(\Illuminate\Support\Facades\Auth::check())
+                        @if(\Illuminate\Support\Facades\Auth::user()->hasRole('admin'))
+                        <a href="{{ route('admin-dashboard') }}"> Dashboard
+                        </a>
+                        @endif
+                            @if(\Illuminate\Support\Facades\Auth::user()->hasRole('patient'))
+                                <a href="{{ route('patient-dashboard') }}">  Dashboard
+                                </a>
+                            @endif
+                            @if(\Illuminate\Support\Facades\Auth::user()->hasRole('doctor'))
+                                <a href="{{ route('doctor-dashboard') }}"> Dashboard
+                                </a>
+                            @endif
+                        @endif
+{{--                        <ul class="submenu">--}}
+{{--                            <li--}}
+{{--                                class="{{ Request::is('doctor-dashboard', 'doctor-specialities', 'social-media') ? 'active' : '' }}">--}}
+{{--                                <a href="{{ url('doctor-dashboard') }}">Doctor Dashboards</a>--}}
+{{--                            </li>--}}
+{{--                            <li--}}
+{{--                                class="{{ Request::is('appointments', 'doctor-request', 'doctor-appointments-grid', 'doctor-appointment-start', 'doctor-cancelled-appointment', 'doctor-cancelled-appointment-2', 'doctor-completed-appointment', 'doctor-upcoming-appointment') ? 'active' : '' }}">--}}
+{{--                                <a href="{{ url('appointments') }}">Appointments</a>--}}
+{{--                            </li>--}}
+{{--                            <li class="{{ Request::is('available-timings') ? 'active' : '' }}"><a--}}
+{{--                                    href="{{ url('available-timings') }}">Available Timing</a></li>--}}
+{{--                            <li class="{{ Request::is('my-patients', 'edit-prescription') ? 'active' : '' }}"><a--}}
+{{--                                    href="{{ url('my-patients') }}">Patients List</a></li>--}}
+{{--                            <li class="{{ Request::is('patient-profile', 'edit-billing') ? 'active' : '' }}"><a--}}
+{{--                                    href="{{ url('patient-profile') }}">Patients Profile</a></li>--}}
+{{--                            <li class="{{ Request::is('chat-doctor') ? 'active' : '' }}"><a--}}
+{{--                                    href="{{ url('chat-doctor') }}">Chat</a></li>--}}
+{{--                            <li class="{{ Request::is('invoices') ? 'active' : '' }}"><a--}}
+{{--                                    href="{{ url('invoices') }}">Invoices</a></li>--}}
+{{--                            <li--}}
+{{--                                class="{{ Request::is('doctor-profile-settings', 'doctor-awards-settings', 'doctor-business-settings', 'doctor-clinics-settings', 'doctor-education-settings', 'doctor-experience-settings', 'doctor-insurance-settings') ? 'active' : '' }}">--}}
+{{--                                <a href="{{ url('doctor-profile-settings') }}">Profile Settingsssss</a>--}}
+{{--                            </li>--}}
+{{--                            <li class="{{ Request::is('reviews') ? 'active' : '' }}"><a--}}
+{{--                                    href="{{ url('reviews') }}">Reviews</a></li>--}}
+{{--                            <li class="{{ Request::is('doctor-register') ? 'active' : '' }}"><a--}}
+{{--                                    href="{{ url('doctor-register') }}">Doctor Register</a></li>--}}
+{{--                            <li--}}
+{{--                                class="has-submenu {{ Request::is('doctor-blog', 'blog-details', 'doctor-add-blog', 'doctor-pending-blog', 'edit-blog') ? 'active' : '' }}">--}}
+{{--                                <a href="{{ url('doctor-blog') }}">Blog</a>--}}
+{{--                                <ul class="submenu">--}}
+{{--                                    <li--}}
+{{--                                        class="{{ Request::is('doctor-blog', 'doctor-pending-blog', 'edit-blog', 'doctor-pending-blog', 'edit-blog') ? 'active' : '' }}">--}}
+{{--                                        <a href="{{ url('doctor-blog') }}">Blog</a>--}}
+{{--                                    </li>--}}
+{{--                                    <li class="{{ Request::is('blog-details') ? 'active' : '' }}"><a--}}
+{{--                                            href="{{ url('blog-details') }}">Blog view</a></li>--}}
+{{--                                    <li class="{{ Request::is('doctor-add-blog') ? 'active' : '' }}"><a--}}
+{{--                                            href="{{ url('doctor-add-blog') }}">Add Blog</a></li>--}}
+{{--                                </ul>--}}
+{{--                            </li>--}}
+{{--                        </ul>--}}
                     </li>
                     <li
                         class="has-submenu {{ Request::is('map-grid', 'map-list', 'search', 'search-2', 'doctor-profile', 'doctor-profile-2','booking', 'booking-2', 'checkout', 'booking-success', 'patient-dashboard', 'favourites', 'chat', 'profile-settings', 'change-password', 'add-dependent', 'dependent', 'edit-dependent', 'patient-upcoming-appointment') ? 'active' : '' }}">
