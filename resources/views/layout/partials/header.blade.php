@@ -1140,163 +1140,164 @@
 {{--                            </li>--}}
 {{--                        </ul>--}}
                     </li>
-                    <li
-                        class="has-submenu {{ Request::is('map-grid', 'map-list', 'search', 'search-2', 'doctor-profile', 'doctor-profile-2','booking', 'booking-2', 'checkout', 'booking-success', 'patient-dashboard', 'favourites', 'chat', 'profile-settings', 'change-password', 'add-dependent', 'dependent', 'edit-dependent', 'patient-upcoming-appointment') ? 'active' : '' }}">
-                        <a href="javascript:void(0);">Patients <i class="fas fa-chevron-down"></i></a>
-                        <ul class="submenu">
-                            <li class="{{ Request::is('patient-dashboard') ? 'active' : '' }}"><a
-                                    href="{{ url('patient-dashboard') }}">Patient Dashboard</a></li>
-                            <li class="has-submenu {{ Request::is('map-grid', 'map-list') ? 'active' : '' }}">
-                                <a href="javascript:void(0);">Doctors</a>
-                                <ul class="submenu inner-submenu">
-                                    <li class="{{ Request::is('map-grid') ? 'active' : '' }}"><a
-                                            href="{{ url('map-grid') }}">Map Grid</a></li>
-                                    <li class="{{ Request::is('map-list') ? 'active' : '' }}"><a
-                                            href="{{ url('map-list') }}">Map List</a></li>
-                                </ul>
-                            </li>
-                            <li class="has-submenu {{ Request::is('search', 'search-2') ? 'active' : '' }}">
-                                <a href="javascript:void(0);">Search Doctor</a>
-                                <ul class="submenu inner-submenu">
-                                    <li class="{{ Request::is('search') ? 'active' : '' }}"><a
-                                            href="{{ url('search') }}">Search Doctor 1</a></li>
-                                    <li class="{{ Request::is('search-2') ? 'active' : '' }}"><a
-                                            href="{{ url('search-2') }}">Search Doctor 2</a></li>
-                                </ul>
-                            </li>
-                            <li
-                                class="has-submenu {{ Request::is('doctor-profile', 'doctor-profile-2') ? 'active' : '' }}">
-                                <a href="javascript:void(0);">Doctor Profile</a>
-                                <ul class="submenu inner-submenu">
-                                    <li class="{{ Request::is('doctor-profile') ? 'active' : '' }}"><a
-                                            href="{{ url('doctor-profile') }}">Doctor Profile 1</a></li>
-                                    <li class="{{ Request::is('doctor-profile-2') ? 'active' : '' }}"><a
-                                            href="{{ url('doctor-profile-2') }}">Doctor Profile 2</a></li>
-                                </ul>
-                            </li>
-                            <li class="has-submenu {{ Request::is('booking', 'booking-2') ? 'active' : '' }}">
-                                <a href="javascript:void(0);">Booking</a>
-                                <ul class="submenu inner-submenu">
-                                    <li class="{{ Request::is('booking') ? 'active' : '' }}"><a
-                                            href="{{ url('booking') }}">Booking 1</a></li>
-                                    <li class="{{ Request::is('booking-2') ? 'active' : '' }}"><a
-                                            href="{{ url('booking-2') }}">Booking 2</a></li>
-                                </ul>
-                            </li>
-                            <li class="{{ Request::is('checkout') ? 'active' : '' }}"><a
-                                    href="{{ url('checkout') }}">Checkout</a></li>
-                            <li class="{{ Request::is('booking-success') ? 'active' : '' }}"><a
-                                    href="{{ url('booking-success') }}">Booking Success</a></li>
-                            <li class="{{ Request::is('favourites') ? 'active' : '' }}"><a
-                                    href="{{ url('favourites') }}">Favourites</a></li>
-                            <li class="{{ Request::is('chat') ? 'active' : '' }}"><a
-                                    href="{{ url('chat') }}">Chat</a></li>
-                            <li class="{{ Request::is('profile-settings') ? 'active' : '' }}"><a
-                                    href="{{ url('profile-settings') }}">ss</a></li>
-                            <li class="{{ Request::is('change-password') ? 'active' : '' }}"><a
-                                    href="{{ url('change-password') }}">Change Password</a></li>
-                        </ul>
-                    </li>
-                    <li
-                        class="has-submenu {{ Request::is('pharmacy-index', 'pharmacy-details', 'pharmacy-search', 'product-all', 'product-description', 'cart', 'product-checkout', 'payment-success', 'pharmacy-register') ? 'active' : '' }}">
-                        <a href="javascript:void(0);">Pharmacy <i class="fas fa-chevron-down"></i></a>
-                        <ul class="submenu">
-                            <li class="{{ Request::is('pharmacy-index') ? 'active' : '' }}"><a
-                                    href="{{ url('pharmacy-index') }}">Pharmacy</a></li>
-                            <li class="{{ Request::is('pharmacy-details') ? 'active' : '' }}"><a
-                                    href="{{ url('pharmacy-details') }}">Pharmacy Details</a></li>
-                            <li class="{{ Request::is('pharmacy-search') ? 'active' : '' }}"><a
-                                    href="{{ url('pharmacy-search') }}">Pharmacy Search</a></li>
-                            <li class="{{ Request::is('product-all') ? 'active' : '' }}"><a
-                                    href="{{ url('product-all') }}">Product</a></li>
-                            <li class="{{ Request::is('product-description') ? 'active' : '' }}"><a
-                                    href="{{ url('product-description') }}">Product Description</a></li>
-                            <li class="{{ Request::is('cart') ? 'active' : '' }}"><a
-                                    href="{{ url('cart') }}">Cart</a></li>
-                            <li class="{{ Request::is('product-checkout') ? 'active' : '' }}"><a
-                                    href="{{ url('product-checkout') }}">Product Checkout</a></li>
-                            <li class="{{ Request::is('payment-success') ? 'active' : '' }}"><a
-                                    href="{{ url('payment-success') }}">Payment Success</a></li>
-                            <li class="{{ Request::is('pharmacy-register') ? 'active' : '' }}"><a
-                                    href="{{ url('pharmacy-register') }}">Pharmacy Register</a></li>
-                        </ul>
-                    </li>
-                    <li
-                        class="has-submenu {{ Request::is('login', 'register', 'reset-password', 'signup-success', 'about-us', 'contact-us', 'mobile-otp', 'voice-call', 'video-call', 'invoices', 'email-otp', 'invoice-view', 'login-email', 'login-phone', 'doctor-signup', 'patient-signup', 'forgot-password', 'forgot-password2', 'login-email-otp', 'login-phone-otp', 'error-404', 'error-500', 'blank-page', 'pricing', 'faq', 'maintenance', 'coming-soon', 'terms-condition', 'privacy-policy', 'components', 'calendar') ? 'active' : '' }}">
-                        <a href="javascript:void(0);">Pages <i class="fas fa-chevron-down"></i></a>
-                        <ul class="submenu">
-                            <li class="{{ Request::is('about-us') ? 'active' : '' }}"><a
-                                    href="{{ url('about-us') }}">About Us</a></li>
-                            <li class="{{ Request::is('contact-us') ? 'active' : '' }}"><a
-                                    href="{{ url('contact-us') }}">Contact Us</a></li>
-                            <li class="has-submenu {{ Request::is('voice-call', 'video-call') ? 'active' : '' }}"">
-                                <a href="javascript:void(0);">Call</a>
-                                <ul class="submenu inner-submenu">
-                                    <li class="{{ Request::is('voice-call') ? 'active' : '' }}"><a
-                                            href="{{ url('voice-call') }}">Voice Call</a></li>
-                                    <li class="{{ Request::is('video-call') ? 'active' : '' }}"><a
-                                            href="{{ url('video-call') }}">Video Call</a></li>
-                                </ul>
-                            </li>
-                            <li
-                                class="has-submenu {{ Request::is('invoices', 'invoice-view', 'doctor-payment') ? 'active' : '' }}">
-                                <a href="javascript:void(0);">Invoices</a>
-                                <ul class="submenu inner-submenu">
-                                    <li class="{{ Request::is('invoices', 'doctor-payment') ? 'active' : '' }}"><a
-                                            href="{{ url('invoices') }}">Invoices</a></li>
-                                    <li class="{{ Request::is('invoice-view') ? 'active' : '' }}"><a
-                                            href="{{ url('invoice-view') }}">Invoice View</a></li>
-                                </ul>
-                            </li>
-                            <li
-                                class="has-submenu {{ Request::is('register', 'reset-password', 'signup-success', 'login-email', 'mobile-otp', 'login-phone', 'doctor-signup', 'patient-signup', 'forgot-password', 'email-otp', 'forgot-password2', 'login-email-otp', 'login-phone-otp', 'login') ? 'active' : '' }}">
-                                <a href="javascript:void(0);">Authentication</a>
-                                <ul class="submenu inner-submenu">
-                                    <li class="{{ Request::is('login-email') ? 'active' : '' }}"><a
-                                            href="{{ url('login-email') }}">Login Email</a></li>
-                                    <li class="{{ Request::is('login-phone') ? 'active' : '' }}"><a
-                                            href="{{ url('login-phone') }}">Login Phone</a></li>
-                                    <li class="{{ Request::is('doctor-signup') ? 'active' : '' }}"><a
-                                            href="{{ url('doctor-signup') }}">Doctor Signup</a></li>
-                                    <li class="{{ Request::is('patient-signup') ? 'active' : '' }}"><a
-                                            href="{{ url('patient-signup') }}">Patient Signup</a></li>
-                                    <li class="{{ Request::is('forgot-password') ? 'active' : '' }}"><a
-                                            href="{{ url('forgot-password') }}">Forgot Password 1</a></li>
-                                    <li class="{{ Request::is('forgot-password2') ? 'active' : '' }}"><a
-                                            href="{{ url('forgot-password2') }}">Forgot Password 2</a></li>
-                                    <li class="{{ Request::is('login-email-otp', 'email-otp') ? 'active' : '' }}"><a
-                                            href="{{ url('login-email-otp') }}">Email OTP</a></li>
-                                    <li class="{{ Request::is('login-phone-otp', 'mobile-otp') ? 'active' : '' }}"><a
-                                            href="{{ url('login-phone-otp') }}">Phone OTP</a></li>
-                                </ul>
-                            </li>
-                            <li class="has-submenu {{ Request::is('error-404', 'error-500') ? 'active' : '' }}">
-                                <a href="javascript:void(0);">Error Pages</a>
-                                <ul class="submenu inner-submenu">
-                                    <li class="{{ Request::is('error-404') ? 'active' : '' }}"><a
-                                            href="{{ url('error-404') }}">404 Error</a></li>
-                                    <li class="{{ Request::is('error-500') ? 'active' : '' }}"><a
-                                            href="{{ url('error-500') }}">500 Error</a></li>
-                                </ul>
-                            </li>
-                            <li class="{{ Request::is('blank-page') ? 'active' : '' }}"><a
-                                    href="{{ url('blank-page') }}">Starter Page</a></li>
-                            <li class="{{ Request::is('pricing') ? 'active' : '' }}"><a
-                                    href="{{ url('pricing') }}">Pricing Plan</a></li>
-                            <li class="{{ Request::is('faq') ? 'active' : '' }}"><a
-                                    href="{{ url('faq') }}">FAQ</a></li>
-                            <li class="{{ Request::is('maintenance') ? 'active' : '' }}"><a
-                                    href="{{ url('maintenance') }}">Maintenance</a></li>
-                            <li class="{{ Request::is('coming-soon') ? 'active' : '' }}"><a
-                                    href="{{ url('coming-soon') }}">Coming Soon</a></li>
-                            <li class="{{ Request::is('terms-condition') ? 'active' : '' }}"><a
-                                    href="{{ url('terms-condition') }}">Terms & Condition</a></li>
-                            <li class="{{ Request::is('privacy-policy') ? 'active' : '' }}"><a
-                                    href="{{ url('privacy-policy') }}">Privacy Policy</a></li>
-                            <li class="{{ Request::is('components') ? 'active' : '' }}"><a
-                                    href="{{ url('components') }}">Components</a></li>
-                        </ul>
-                    </li>
+{{--                    <li--}}
+{{--                        class="has-submenu {{ Request::is('map-grid', 'map-list', 'search', 'search-2', 'doctor-profile', 'doctor-profile-2','booking', 'booking-2', 'checkout', 'booking-success', 'patient-dashboard', 'favourites', 'chat', 'profile-settings', 'change-password', 'add-dependent', 'dependent', 'edit-dependent', 'patient-upcoming-appointment') ? 'active' : '' }}">--}}
+{{--                        <a href="javascript:void(0);">Patients <i class="fas fa-chevron-down"></i></a>--}}
+{{--                        <ul class="submenu">--}}
+{{--                            <li class="{{ Request::is('patient-dashboard') ? 'active' : '' }}"><a--}}
+{{--                                    href="{{ url('patient-dashboard') }}">Patient Dashboard</a></li>--}}
+{{--                            <li class="has-submenu {{ Request::is('map-grid', 'map-list') ? 'active' : '' }}">--}}
+{{--                                <a href="javascript:void(0);">Doctors</a>--}}
+{{--                                <ul class="submenu inner-submenu">--}}
+{{--                                    <li class="{{ Request::is('map-grid') ? 'active' : '' }}"><a--}}
+{{--                                            href="{{ url('map-grid') }}">Map Grid</a></li>--}}
+{{--                                    <li class="{{ Request::is('map-list') ? 'active' : '' }}"><a--}}
+{{--                                            href="{{ url('map-list') }}">Map List</a></li>--}}
+{{--                                </ul>--}}
+{{--                            </li>--}}
+{{--                            <li class="has-submenu {{ Request::is('search', 'search-2') ? 'active' : '' }}">--}}
+{{--                                <a href="javascript:void(0);">Search Doctor</a>--}}
+{{--                                <ul class="submenu inner-submenu">--}}
+{{--                                    <li class="{{ Request::is('search') ? 'active' : '' }}"><a--}}
+{{--                                            href="{{ url('search') }}">Search Doctor 1</a></li>--}}
+{{--                                    <li class="{{ Request::is('search-2') ? 'active' : '' }}"><a--}}
+{{--                                            href="{{ url('search-2') }}">Search Doctor 2</a></li>--}}
+{{--                                </ul>--}}
+{{--                            </li>--}}
+{{--                            <li--}}
+{{--                                class="has-submenu {{ Request::is('doctor-profile', 'doctor-profile-2') ? 'active' : '' }}">--}}
+{{--                                <a href="javascript:void(0);">Doctor Profile</a>--}}
+{{--                                <ul class="submenu inner-submenu">--}}
+{{--                                    <li class="{{ Request::is('doctor-profile') ? 'active' : '' }}"><a--}}
+{{--                                            href="{{ url('doctor-profile') }}">Doctor Profile 1</a></li>--}}
+{{--                                    <li class="{{ Request::is('doctor-profile-2') ? 'active' : '' }}"><a--}}
+{{--                                            href="{{ url('doctor-profile-2') }}">Doctor Profile 2</a></li>--}}
+{{--                                </ul>--}}
+{{--                            </li>--}}
+{{--                            <li class="has-submenu {{ Request::is('booking', 'booking-2') ? 'active' : '' }}">--}}
+{{--                                <a href="javascript:void(0);">Booking</a>--}}
+{{--                                <ul class="submenu inner-submenu">--}}
+{{--                                    <li class="{{ Request::is('booking') ? 'active' : '' }}"><a--}}
+{{--                                            href="{{ url('booking') }}">Booking 1</a></li>--}}
+{{--                                    <li class="{{ Request::is('booking-2') ? 'active' : '' }}"><a--}}
+{{--                                            href="{{ url('booking-2') }}">Booking 2</a></li>--}}
+{{--                                </ul>--}}
+{{--                            </li>--}}
+{{--                            <li class="{{ Request::is('checkout') ? 'active' : '' }}"><a--}}
+{{--                                    href="{{ url('checkout') }}">Checkout</a></li>--}}
+{{--                            <li class="{{ Request::is('booking-success') ? 'active' : '' }}"><a--}}
+{{--                                    href="{{ url('booking-success') }}">Booking Success</a></li>--}}
+{{--                            <li class="{{ Request::is('favourites') ? 'active' : '' }}"><a--}}
+{{--                                    href="{{ url('favourites') }}">Favourites</a></li>--}}
+{{--                            <li class="{{ Request::is('chat') ? 'active' : '' }}"><a--}}
+{{--                                    href="{{ url('chat') }}">Chat</a></li>--}}
+{{--                            <li class="{{ Request::is('profile-settings') ? 'active' : '' }}"><a--}}
+{{--                                    href="{{ url('profile-settings') }}">ss</a></li>--}}
+{{--                            <li class="{{ Request::is('change-password') ? 'active' : '' }}"><a--}}
+{{--                                    href="{{ url('change-password') }}">Change Password</a></li>--}}
+{{--                        </ul>--}}
+{{--                    </li>--}}
+{{--                    <li--}}
+{{--                        class="has-submenu {{ Request::is('pharmacy-index', 'pharmacy-details', 'pharmacy-search', 'product-all', 'product-description', 'cart', 'product-checkout', 'payment-success', 'pharmacy-register') ? 'active' : '' }}">--}}
+{{--                        <a href="javascript:void(0);">Pharmacy <i class="fas fa-chevron-down"></i></a>--}}
+{{--                        <ul class="submenu">--}}
+{{--                            <li class="{{ Request::is('pharmacy-index') ? 'active' : '' }}"><a--}}
+{{--                                    href="{{ url('pharmacy-index') }}">Pharmacy</a></li>--}}
+{{--                            <li class="{{ Request::is('pharmacy-details') ? 'active' : '' }}"><a--}}
+{{--                                    href="{{ url('pharmacy-details') }}">Pharmacy Details</a></li>--}}
+{{--                            <li class="{{ Request::is('pharmacy-search') ? 'active' : '' }}"><a--}}
+{{--                                    href="{{ url('pharmacy-search') }}">Pharmacy Search</a></li>--}}
+{{--                            <li class="{{ Request::is('product-all') ? 'active' : '' }}"><a--}}
+{{--                                    href="{{ url('product-all') }}">Product</a></li>--}}
+{{--                            <li class="{{ Request::is('product-description') ? 'active' : '' }}"><a--}}
+{{--                                    href="{{ url('product-description') }}">Product Description</a></li>--}}
+{{--                            <li class="{{ Request::is('cart') ? 'active' : '' }}"><a--}}
+{{--                                    href="{{ url('cart') }}">Cart</a></li>--}}
+{{--                            <li class="{{ Request::is('product-checkout') ? 'active' : '' }}"><a--}}
+{{--                                    href="{{ url('product-checkout') }}">Product Checkout</a></li>--}}
+{{--                            <li class="{{ Request::is('payment-success') ? 'active' : '' }}"><a--}}
+{{--                                    href="{{ url('payment-success') }}">Payment Success</a></li>--}}
+{{--                            <li class="{{ Request::is('pharmacy-register') ? 'active' : '' }}"><a--}}
+{{--                                    href="{{ url('pharmacy-register') }}">Pharmacy Register</a></li>--}}
+{{--                        </ul>--}}
+{{--                    </li>--}}
+{{--                    <li--}}
+{{--                        class="has-submenu {{ Request::is('login', 'register', 'reset-password', 'signup-success', 'about-us', 'contact-us', 'mobile-otp', 'voice-call', 'video-call', 'invoices', 'email-otp', 'invoice-view', 'login-email', 'login-phone', 'doctor-signup', 'patient-signup', 'forgot-password', 'forgot-password2', 'login-email-otp', 'login-phone-otp', 'error-404', 'error-500', 'blank-page', 'pricing', 'faq', 'maintenance', 'coming-soon', 'terms-condition', 'privacy-policy', 'components', 'calendar') ? 'active' : '' }}">--}}
+{{--                        <a href="javascript:void(0);">Pages <i class="fas fa-chevron-down"></i></a>--}}
+{{--                        <ul class="submenu">--}}
+{{--                            <li class="{{ Request::is('about-us') ? 'active' : '' }}"><a--}}
+{{--                                    href="{{ url('about-us') }}">About Us</a></li>--}}
+{{--                            <li class="{{ Request::is('contact-us') ? 'active' : '' }}"><a--}}
+{{--                                    href="{{ url('contact-us') }}">Contact Us</a></li>--}}
+{{--                            <li class="has-submenu {{ Request::is('voice-call', 'video-call') ? 'active' : '' }}"">--}}
+{{--                                <a href="javascript:void(0);">Call</a>--}}
+{{--                                <ul class="submenu inner-submenu">--}}
+{{--                                    <li class="{{ Request::is('voice-call') ? 'active' : '' }}"><a--}}
+{{--                                            href="{{ url('voice-call') }}">Voice Call</a></li>--}}
+{{--                                    <li class="{{ Request::is('video-call') ? 'active' : '' }}"><a--}}
+{{--                                            href="{{ url('video-call') }}">Video Call</a></li>--}}
+{{--                                </ul>--}}
+
+{{--                            </li>--}}
+{{--                            <li--}}
+{{--                                class="has-submenu {{ Request::is('invoices', 'invoice-view', 'doctor-payment') ? 'active' : '' }}">--}}
+{{--                                <a href="javascript:void(0);">Invoices</a>--}}
+{{--                                <ul class="submenu inner-submenu">--}}
+{{--                                    <li class="{{ Request::is('invoices', 'doctor-payment') ? 'active' : '' }}"><a--}}
+{{--                                            href="{{ url('invoices') }}">Invoices</a></li>--}}
+{{--                                    <li class="{{ Request::is('invoice-view') ? 'active' : '' }}"><a--}}
+{{--                                            href="{{ url('invoice-view') }}">Invoice View</a></li>--}}
+{{--                                </ul>--}}
+{{--                            </li>--}}
+{{--                            <li--}}
+{{--                                class="has-submenu {{ Request::is('register', 'reset-password', 'signup-success', 'login-email', 'mobile-otp', 'login-phone', 'doctor-signup', 'patient-signup', 'forgot-password', 'email-otp', 'forgot-password2', 'login-email-otp', 'login-phone-otp', 'login') ? 'active' : '' }}">--}}
+{{--                                <a href="javascript:void(0);">Authentication</a>--}}
+{{--                                <ul class="submenu inner-submenu">--}}
+{{--                                    <li class="{{ Request::is('login-email') ? 'active' : '' }}"><a--}}
+{{--                                            href="{{ url('login-email') }}">Login Email</a></li>--}}
+{{--                                    <li class="{{ Request::is('login-phone') ? 'active' : '' }}"><a--}}
+{{--                                            href="{{ url('login-phone') }}">Login Phone</a></li>--}}
+{{--                                    <li class="{{ Request::is('doctor-signup') ? 'active' : '' }}"><a--}}
+{{--                                            href="{{ url('doctor-signup') }}">Doctor Signup</a></li>--}}
+{{--                                    <li class="{{ Request::is('patient-signup') ? 'active' : '' }}"><a--}}
+{{--                                            href="{{ url('patient-signup') }}">Patient Signup</a></li>--}}
+{{--                                    <li class="{{ Request::is('forgot-password') ? 'active' : '' }}"><a--}}
+{{--                                            href="{{ url('forgot-password') }}">Forgot Password 1</a></li>--}}
+{{--                                    <li class="{{ Request::is('forgot-password2') ? 'active' : '' }}"><a--}}
+{{--                                            href="{{ url('forgot-password2') }}">Forgot Password 2</a></li>--}}
+{{--                                    <li class="{{ Request::is('login-email-otp', 'email-otp') ? 'active' : '' }}"><a--}}
+{{--                                            href="{{ url('login-email-otp') }}">Email OTP</a></li>--}}
+{{--                                    <li class="{{ Request::is('login-phone-otp', 'mobile-otp') ? 'active' : '' }}"><a--}}
+{{--                                            href="{{ url('login-phone-otp') }}">Phone OTP</a></li>--}}
+{{--                                </ul>--}}
+{{--                            </li>--}}
+{{--                            <li class="has-submenu {{ Request::is('error-404', 'error-500') ? 'active' : '' }}">--}}
+{{--                                <a href="javascript:void(0);">Error Pages</a>--}}
+{{--                                <ul class="submenu inner-submenu">--}}
+{{--                                    <li class="{{ Request::is('error-404') ? 'active' : '' }}"><a--}}
+{{--                                            href="{{ url('error-404') }}">404 Error</a></li>--}}
+{{--                                    <li class="{{ Request::is('error-500') ? 'active' : '' }}"><a--}}
+{{--                                            href="{{ url('error-500') }}">500 Error</a></li>--}}
+{{--                                </ul>--}}
+{{--                            </li>--}}
+{{--                            <li class="{{ Request::is('blank-page') ? 'active' : '' }}"><a--}}
+{{--                                    href="{{ url('blank-page') }}">Starter Page</a></li>--}}
+{{--                            <li class="{{ Request::is('pricing') ? 'active' : '' }}"><a--}}
+{{--                                    href="{{ url('pricing') }}">Pricing Plan</a></li>--}}
+{{--                            <li class="{{ Request::is('faq') ? 'active' : '' }}"><a--}}
+{{--                                    href="{{ url('faq') }}">FAQ</a></li>--}}
+{{--                            <li class="{{ Request::is('maintenance') ? 'active' : '' }}"><a--}}
+{{--                                    href="{{ url('maintenance') }}">Maintenance</a></li>--}}
+{{--                            <li class="{{ Request::is('coming-soon') ? 'active' : '' }}"><a--}}
+{{--                                    href="{{ url('coming-soon') }}">Coming Soon</a></li>--}}
+{{--                            <li class="{{ Request::is('terms-condition') ? 'active' : '' }}"><a--}}
+{{--                                    href="{{ url('terms-condition') }}">Terms & Condition</a></li>--}}
+{{--                            <li class="{{ Request::is('privacy-policy') ? 'active' : '' }}"><a--}}
+{{--                                    href="{{ url('privacy-policy') }}">Privacy Policy</a></li>--}}
+{{--                            <li class="{{ Request::is('components') ? 'active' : '' }}"><a--}}
+{{--                                    href="{{ url('components') }}">Components</a></li>--}}
+{{--                        </ul>--}}
+{{--                    </li>--}}
 {{--                    <li--}}
 {{--                        class="has-submenu {{ Request::is('blog-list', 'blog-grid', 'blog-details') ? 'active' : '' }}">--}}
 {{--                        <a href="#">Blog <i class="fas fa-chevron-down"></i></a>--}}
@@ -1309,17 +1310,17 @@
 {{--                                    href="{{ url('blog-details') }}">Blog Details</a></li>--}}
 {{--                        </ul>--}}
 {{--                    </li>--}}
-                    <li
-                        class="has-submenu {{ Request::is('admin/index_admin', 'pharmacy-admin/index_pharmacy_admin') ? 'active' : '' }}">
-                        <a href="#">Admin <i class="fas fa-chevron-down"></i></a>
-                        <ul class="submenu">
-                            <li class="{{ Request::is('admin/index_admin') ? 'active' : '' }}"><a
-                                    href="{{ url('admin/index_admin') }}" target="_blank">Admin</a></li>
-                            <li class="{{ Request::is('pharmacy-admin/index_pharmacy_admin') ? 'active' : '' }}"><a
-                                    href="{{ url('pharmacy-admin/index_pharmacy_admin') }}" target="_blank">Pharmacy
-                                    Admin</a></li>
-                        </ul>
-                    </li>
+{{--                    <li--}}
+{{--                        class="has-submenu {{ Request::is('admin/index_admin', 'pharmacy-admin/index_pharmacy_admin') ? 'active' : '' }}">--}}
+{{--                        <a href="#">Admin <i class="fas fa-chevron-down"></i></a>--}}
+{{--                        <ul class="submenu">--}}
+{{--                            <li class="{{ Request::is('admin/index_admin') ? 'active' : '' }}"><a--}}
+{{--                                    href="{{ url('admin/index_admin') }}" target="_blank">Admin</a></li>--}}
+{{--                            <li class="{{ Request::is('pharmacy-admin/index_pharmacy_admin') ? 'active' : '' }}"><a--}}
+{{--                                    href="{{ url('pharmacy-admin/index_pharmacy_admin') }}" target="_blank">Pharmacy--}}
+{{--                                    Admin</a></li>--}}
+{{--                        </ul>--}}
+{{--                    </li>--}}
                     @if (Route::is(['index-11']))
                         <li class="login-link"><a href="{{ url('login-email') }}">Login / Signup</a></li>
                     @endif
