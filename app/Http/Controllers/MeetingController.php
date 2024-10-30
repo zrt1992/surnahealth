@@ -32,16 +32,18 @@ class MeetingController extends Controller
 
 //        dd($request->all());
         $start = strtotime($request->get('start_date'));
-//        dd($start);
+        $objDateTime = new \DateTime($request->get('start_date'));
+        $isoDate = $objDateTime->format(\DateTime::ISO8601);
+//        dd($isoDate);
         $event = new Google_Service_Calendar_Event(array(
             'summary' => $request->get('title'),
             'description' => $request->get('description'),
             'start' => array(
-                'dateTime' => '2024-10-10T10:30:00-07:00',
+                'dateTime' => $isoDate,
                 'timeZone' => 'America/Los_Angeles',
             ),
             'end' => array(
-                'dateTime' => '2024-10-10T11:00:00-07:00',
+                'dateTime' => '2024-10-31T11:00:00-07:00',
                 'timeZone' => 'America/Los_Angeles',
             )
         ));
