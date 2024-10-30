@@ -1037,82 +1037,82 @@
                     </div>
                 </div>
             </div>
-            <div class="partners-info aos" data-aos="fade-up">
-                <ul class="owl-carousel partners-slider d-flex">
-                    <li>
-                        <a href="javascript:void(0);">
-                            <img class="img-fluid" src="{{ URL::asset('/assets/img/partners/partners-1.svg') }}"
-                                alt="partners">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);">
-                            <img class="img-fluid" src="{{ URL::asset('/assets/img/partners/partners-2.svg') }}"
-                                alt="partners">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);">
-                            <img class="img-fluid" src="{{ URL::asset('/assets/img/partners/partners-3.svg') }}"
-                                alt="partners">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);">
-                            <img class="img-fluid" src="{{ URL::asset('/assets/img/partners/partners-4.svg') }}"
-                                alt="partners">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);">
-                            <img class="img-fluid" src="{{ URL::asset('/assets/img/partners/partners-5.svg') }}"
-                                alt="partners">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);">
-                            <img class="img-fluid" src="{{ URL::asset('/assets/img/partners/partners-6.svg') }}"
-                                alt="partners">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);">
-                            <img class="img-fluid" src="{{ URL::asset('/assets/img/partners/partners-1.svg') }}"
-                                alt="partners">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);">
-                            <img class="img-fluid" src="{{ URL::asset('/assets/img/partners/partners-2.svg') }}"
-                                alt="partners">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);">
-                            <img class="img-fluid" src="{{ URL::asset('/assets/img/partners/partners-3.svg') }}"
-                                alt="partners">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);">
-                            <img class="img-fluid" src="{{ URL::asset('/assets/img/partners/partners-4.svg') }}"
-                                alt="partners">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);">
-                            <img class="img-fluid" src="{{ URL::asset('/assets/img/partners/partners-5.svg') }}"
-                                alt="partners">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);">
-                            <img class="img-fluid" src="{{ URL::asset('/assets/img/partners/partners-6.svg') }}"
-                                alt="partners">
-                        </a>
-                    </li>
-                </ul>
-            </div>
+{{--            <div class="partners-info aos" data-aos="fade-up">--}}
+{{--                <ul class="owl-carousel partners-slider d-flex">--}}
+{{--                    <li>--}}
+{{--                        <a href="javascript:void(0);">--}}
+{{--                            <img class="img-fluid" src="{{ URL::asset('/assets/img/partners/partners-1.svg') }}"--}}
+{{--                                alt="partners">--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                    <li>--}}
+{{--                        <a href="javascript:void(0);">--}}
+{{--                            <img class="img-fluid" src="{{ URL::asset('/assets/img/partners/partners-2.svg') }}"--}}
+{{--                                alt="partners">--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                    <li>--}}
+{{--                        <a href="javascript:void(0);">--}}
+{{--                            <img class="img-fluid" src="{{ URL::asset('/assets/img/partners/partners-3.svg') }}"--}}
+{{--                                alt="partners">--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                    <li>--}}
+{{--                        <a href="javascript:void(0);">--}}
+{{--                            <img class="img-fluid" src="{{ URL::asset('/assets/img/partners/partners-4.svg') }}"--}}
+{{--                                alt="partners">--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                    <li>--}}
+{{--                        <a href="javascript:void(0);">--}}
+{{--                            <img class="img-fluid" src="{{ URL::asset('/assets/img/partners/partners-5.svg') }}"--}}
+{{--                                alt="partners">--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                    <li>--}}
+{{--                        <a href="javascript:void(0);">--}}
+{{--                            <img class="img-fluid" src="{{ URL::asset('/assets/img/partners/partners-6.svg') }}"--}}
+{{--                                alt="partners">--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                    <li>--}}
+{{--                        <a href="javascript:void(0);">--}}
+{{--                            <img class="img-fluid" src="{{ URL::asset('/assets/img/partners/partners-1.svg') }}"--}}
+{{--                                alt="partners">--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                    <li>--}}
+{{--                        <a href="javascript:void(0);">--}}
+{{--                            <img class="img-fluid" src="{{ URL::asset('/assets/img/partners/partners-2.svg') }}"--}}
+{{--                                alt="partners">--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                    <li>--}}
+{{--                        <a href="javascript:void(0);">--}}
+{{--                            <img class="img-fluid" src="{{ URL::asset('/assets/img/partners/partners-3.svg') }}"--}}
+{{--                                alt="partners">--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                    <li>--}}
+{{--                        <a href="javascript:void(0);">--}}
+{{--                            <img class="img-fluid" src="{{ URL::asset('/assets/img/partners/partners-4.svg') }}"--}}
+{{--                                alt="partners">--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                    <li>--}}
+{{--                        <a href="javascript:void(0);">--}}
+{{--                            <img class="img-fluid" src="{{ URL::asset('/assets/img/partners/partners-5.svg') }}"--}}
+{{--                                alt="partners">--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                    <li>--}}
+{{--                        <a href="javascript:void(0);">--}}
+{{--                            <img class="img-fluid" src="{{ URL::asset('/assets/img/partners/partners-6.svg') }}"--}}
+{{--                                alt="partners">--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                </ul>--}}
+{{--            </div>--}}
         </div>
     </section>
     <!-- /Partners Section -->
