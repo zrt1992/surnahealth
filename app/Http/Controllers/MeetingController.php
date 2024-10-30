@@ -40,10 +40,10 @@ class MeetingController extends Controller
             'description' => $request->get('description'),
             'start' => array(
                 'dateTime' => $isoDate,
-                'timeZone' => 'America/Los_Angeles',
+                'timeZone' => '2024-10-31T10:00:00-07:00',
             ),
             'end' => array(
-                'dateTime' => '2024-10-31T11:00:00-07:00',
+                'dateTime' => '2024-10-31T10:30:00-07:00',
                 'timeZone' => 'America/Los_Angeles',
             )
         ));

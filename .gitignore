@@ -19,4 +19,4 @@ yarn-error.log
 /.vscode
 Archive.zip
 .DS_Store
-storage/service-account-credentials.json
+/storage/service-account-credentials.json
