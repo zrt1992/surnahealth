@@ -53,7 +53,7 @@
                                                     <input type="hidden" name="service_id" id="service_id" value="18">
                                                     <input class="form-control" type="text" name="service_title"
                                                         id="service_title"
-                                                        value="Doccure – Making your clinic painless visit?" required="">
+                                                        value="Surna – Making your clinic painless visit?" required="">
                                                 </div>
                                             </div>
                                         </div>

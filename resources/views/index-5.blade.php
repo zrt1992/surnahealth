@@ -364,7 +364,7 @@
 				<div class="row">
 					<div class="col-md-12 aos" data-aos="fade-up">
 						<div class="section-header-one section-header-slider">
-							<h2 class="section-title mb-0">Why Choose Doccure?</h2>
+							<h2 class="section-title mb-0">Why Choose Surna?</h2>
 						</div>
 					</div>
 				</div>
@@ -538,7 +538,7 @@
 									<div class="testmonial-user-coments">
 										<h6>“ Awesome Impact ”</h6>
 										<p>After suffering from a heart condition for a number of years I was very happy
-											to meet Doccure, from the first consultation where he believed there was a
+											to meet Surna, from the first consultation where he believed there was a
 											solution...</p>
 									</div>
 								</div>

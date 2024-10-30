@@ -4,7 +4,7 @@
     <div class="left-panel">
         <div class="onboarding-logo text-center">
             <a href="{{ url('/') }}"><img src="{{ URL::asset('/assets/img/onboard-img/onb-logo.png') }}" class="img-fluid"
-                    alt="doccure-logo"></a>
+                    alt="Surna-logo"></a>
         </div>
         <div class="onboard-img">
             <img src="{{ URL::asset('/assets/img/onboard-img/onb-slide-img.png') }}" class="img-fluid" alt="onboard-slider">
@@ -15,7 +15,7 @@
                 <!-- Slider Item -->
                 <div class="onboard-item text-center">
                     <div class="onboard-content">
-                        <h3>Welcome to Doccure</h3>
+                        <h3>Welcome to Surna</h3>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                             incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
@@ -26,7 +26,7 @@
                 <!-- Slider Item -->
                 <div class="onboard-item text-center">
                     <div class="onboard-content">
-                        <h3>Welcome to Doccure</h3>
+                        <h3>Welcome to Surna</h3>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                             incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
@@ -37,7 +37,7 @@
                 <!-- Slider Item -->
                 <div class="onboard-item text-center">
                     <div class="onboard-content">
-                        <h3>Welcome to Doccure</h3>
+                        <h3>Welcome to Surna</h3>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                             incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
@@ -56,7 +56,7 @@
                 <div class="col-lg-12 p-0">
                     <div class="right-panel-title text-center">
                         <a href="{{ url('/') }}"> <img src="{{ URL::asset('/assets/img/onboard-img/onb-logo.png') }}"
-                                alt="doccure-logo"></a>
+                                alt="Surna-logo"></a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12">
@@ -137,7 +137,7 @@
                         <div class="onboard-set">
                             <div class="onboarding-title">
                                 <h2>Enter 4-digit code sent to your email.</h2>
-                                <h6>We’ve sent it to doccure@example.com</h6>
+                                <h6>We’ve sent it to surna@example.com</h6>
                             </div>
                             <div class="onboarding-content passcode-wrap">
                                 <div class="d-flex digit-group">

@@ -806,7 +806,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="section-header-fourteen service-inner-fourteen">
-                    <h2>Doccure recent Blogs</h2>
+                    <h2>Surna recent Blogs</h2>
                     <p>Checkout our Latest blogs by our Experts by Month on Month to know more about Petss</p>
                 </div>
             </div>	

@@ -58,7 +58,7 @@
                                             </li>
                                             <li><i class="far fa-clock"></i> 4 Dec 2023</li>
                                         </ul>
-                                        <h3 class="blog-title"><a href="{{ url('blog-details') }}">Doccure – Making your
+                                        <h3 class="blog-title"><a href="{{ url('blog-details') }}">Surna – Making your
                                                 clinic painless visit?</a></h3>
                                         <p class="mb-0">Lorem ipsum dolor sit amet, consectetur em adipiscing elit, sed do
                                             eiusmod tempor.</p>

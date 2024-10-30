@@ -687,7 +687,7 @@
                 <div class="col-md-12">
                     <div class=" dentist-blog aos" data-aos="fade-down">
                         <div class="section-header text-center">
-                            <h2>Doccure <span>Recent Blogs</span></h2>
+                            <h2>Surna <span>Recent Blogs</span></h2>
                             <p>Checkout our Latest blogs by our Experts by Month on Month</p>
                         </div>
                         <div class="dentist-slider owl-carousel">
