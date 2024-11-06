@@ -79,12 +79,23 @@
 
                                     <!-- Slot -->
                                     <div class="tab-pane active show" id="monday">
+                                    @if($errors->any())
+                                        {{ implode('', $errors->all('<div>:message</div>')) }}
+                                    @endif
+
+                                    @if(session()->has('success'))
+                                        {{ session()->get('success') }}
+                                    @endif
+
+                                    @if(session()->has('error'))
+                                        {{ session()->get('error') }}
+                                    @endif
                                         <div class="slot-box">
                                             <div class="slot-header">
                                                 <h5>Monday</h5>
                                                 <ul>
                                                     <li>
-                                                        <a href="#" class="add-slot" data-bs-toggle="modal" data-bs-target="#add_slot">Add Slots</a>
+                                                        <a href="#" id="addSlot" class="add-slot" data-bs-toggle="modal" onclick="slot('monday');" data-bs-target="#add_slot">Add Slots</a>
                                                     </li>
                                                     <li>
                                                         <a href="#" class="del-slot" data-bs-toggle="modal" data-bs-target="#delete_slot">Delete All</a>
@@ -93,11 +104,9 @@
                                             </div>
                                             <div class="slot-body">
                                                 <ul class="time-slots">
-                                                    <li><i class="fa-regular fa-clock"></i>09:00 AM</li>
-                                                    <li><i class="fa-regular fa-clock"></i>09:30 AM</li>
-                                                    <li><i class="fa-regular fa-clock"></i>10:00 AM</li>
-                                                    <li><i class="fa-regular fa-clock"></i>10:30 AM</li>
-                                                    <li><i class="fa-regular fa-clock"></i>11:00 AM</li>
+                                                    @foreach ($doctorSlotsMonday as $monday)
+                                                    <li><i class="fa-regular fa-clock"></i>{{\Carbon\Carbon::parse($monday->slot_start_time)->format('H:i A')}}</li>
+                                                    @endforeach
                                                 </ul>
                                             </div>
                                         </div>
@@ -230,14 +239,14 @@
                                     </div>
                                     <!-- /Slot -->
 
-                                    <div class="form-wrap">
+                                    <!-- <div class="form-wrap">
                                         <label class="col-form-label">Appointment Fees ($)</label>
                                         <input type="text" class="form-control" value="254">
                                     </div>
                                     <div class="modal-btn text-end">
                                         <a href="#" class="btn btn-gray" data-bs-toggle="modal" data-bs-dismiss="modal">Cancel</a>
                                         <button class="btn btn-primary prime-btn">Save Changes</button>
-                                    </div>
+                                    </div> -->
                                 </div>
 
                             </div>
@@ -282,11 +291,6 @@
                                         <li>
                                             <a href="#" data-bs-toggle="tab" data-bs-target="#friday-slot">Friday</a>
                                         </li>
-                                        <li>
-                                            <a href="#" data-bs-toggle="tab" data-bs-target="#saturday-slot">Saturday</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" data-bs-toggle="tab" data-bs-target="#sunday-slot">Sunday</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -469,4 +473,21 @@
 
 </div>		
 <!-- /Page Content -->
+@endsection
+
+@section('page_script')
+<script>
+  
+    function slot($value)
+    {
+        var myForm = document.getElementById('slot-timings-form');
+        console.log(myForm);
+
+        newRowAdd =
+                
+                '<input type="hidden" name="day" value="'+$value+'">';
+
+                $('#slot-timings-form').append(newRowAdd);
+    }
+</script>
 @endsection

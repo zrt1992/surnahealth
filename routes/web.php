@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Doctor\AppointmentController;
 use App\Http\Controllers\Doctor\DashboardController;
 use App\Http\Controllers\Patient\DashboardController as PatientDashboard;
 use App\Http\Controllers\ProfileController;
@@ -63,6 +64,15 @@ Route::middleware('auth')->group(function () {
  Route::middleware(['auth','role:doctor'])->prefix('doctor')->group(function(){
 
     Route::get('/dashboard',[DashboardController::class,'index'])->name('doctor-dashboard');
+    
+    Route::prefix('appointments')->controller(AppointmentController::class)->group(function(){
+        
+        Route::get('/','appointmentsList')->name('doctor.appointments');
+        Route::get('/available-timing','doctorAvailableTimings')->name('doctor.available-timings');
+
+        Route::post('/set/appointment','setAppointmentSlot')->name('doctor.set.appointment.slot');
+    });
+
 
  });
 
@@ -345,12 +355,8 @@ Route::get('/add-billing', function () {
 Route::get('/add-prescription', function () {
     return view('add-prescription');
 })->name('add-prescription');
-Route::get('/appointments', function () {
-    return view('appointments');
-})->name('appointments');
-Route::get('/available-timings', function () {
-    return view('available-timings');
-})->name('available-timings');
+
+
 Route::get('/blank-page', function () {
     return view('blank-page');
 })->name('blank-page');

@@ -444,7 +444,7 @@
 @component('components.modalpopup')
 @endcomponent
 @include('layout.partials.footer-scripts')
-
+@yield('page_script')
 </body>
 
 </html>

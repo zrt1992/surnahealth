@@ -5225,7 +5225,7 @@
     <!-- /Appointment Details Modal -->
 @endif
 
-@if (Route::is(['available-timings']))
+@if (Route::is(['doctor.available-timings']))
     <!-- Add Slots -->
     <div class="modal fade custom-modals" id="add_slot">
         <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -5236,64 +5236,31 @@
                         <i class="fa-solid fa-xmark"></i>
                     </button>
                 </div>
-                <form action="available-timings">
+                <form action="{{route('doctor.set.appointment.slot')}}" method="post" id="slot-timings-form">
+                    @csrf
                     <div class="modal-body">
                         <div class="timing-modal">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-wrap">
                                         <label class="col-form-label">Start Time</label>
-                                        <input type="text" class="form-control timepicker1" value="04:00 PM">
+                                        <input type="time" name="start_time" class="form-control timepicker1">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-wrap">
                                         <label class="col-form-label">End Time</label>
-                                        <input type="text" class="form-control timepicker1">
+                                        <input type="time" name="end_time" class="form-control timepicker1">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-wrap">
                                         <label class="col-form-label">Appointment Intervals</label>
-                                        <select class="select">
-                                            <option>10 Minutes</option>
-                                            <option>20 Minutes</option>
-                                            <option>30 Minutes</option>
+                                        <select class="select" name="appointment_interval">
+                                            <option value="10">10 Minutes</option>
+                                            <option value="20">20 Minutes</option>
+                                            <option value="30">30 Minutes</option>
                                         </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-wrap">
-                                        <label class="col-form-label">Appointment Durations</label>
-                                        <select class="select">
-                                            <option>30 Minutes</option>
-                                            <option>1 Hour</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-wrap mb-0">
-                                        <label class="col-form-label d-block">Assign Appointment Spaces</label>
-                                        <div class="custom-control form-check custom-control-inline">
-                                            <input type="radio" id="space1" name="rating_option"
-                                                class="form-check-input" value="price_free" checked="">
-                                            <label class="form-check-label" for="space1">Space 1</label>
-                                        </div>
-                                        <div class="custom-control form-check custom-control-inline">
-                                            <input type="radio" id="space2" name="rating_option"
-                                                class="form-check-input" value="price_free" checked="">
-                                            <label class="form-check-label" for="space2">Space 2</label>
-                                        </div>
-                                        <div class="custom-control form-check custom-control-inline">
-                                            <input type="radio" id="space3" name="rating_option"
-                                                class="form-check-input" value="price_free" checked="">
-                                            <label class="form-check-label" for="space3">Space 3</label>
-                                        </div>
-                                        <div class="custom-control form-check custom-control-inline">
-                                            <input type="radio" id="space4" name="rating_option"
-                                                class="form-check-input" value="price_free" checked="">
-                                            <label class="form-check-label" for="space4">Space 4</label>
-                                        </div>
                                     </div>
                                 </div>
                             </div>

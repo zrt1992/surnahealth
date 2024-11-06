@@ -39,14 +39,14 @@
                             <small class="unread-msg">2</small>
                         </a>
                     </li>
-                    <li class="{{ Request::is('appointments','doctor-appointments-grid','doctor-appointment-details','doctor-cancelled-appointment','doctor-cancelled-appointment-2','doctor-upcoming-appointment','doctor-appointment-start','doctor-completed-appointment') ? 'active' : '' }}">
-                        <a href="{{route('appointments')}}">
+                    <li class="{{ Request::is('doctor.appointments','doctor-appointments-grid','doctor-appointment-details','doctor-cancelled-appointment','doctor-cancelled-appointment-2','doctor-upcoming-appointment','doctor-appointment-start','doctor-completed-appointment') ? 'active' : '' }}">
+                        <a href="{{route('doctor.appointments')}}">
                             <i class="fa-solid fa-calendar-days"></i>
                             <span>Appointments</span>
                         </a>
                     </li>
-                    <li class="{{ Request::is('available-timings') ? 'active' : '' }}">
-                        <a href="{{route('available-timings')}}">
+                    <li class="{{ Request::is('doctor.available-timings') ? 'active' : '' }}">
+                        <a href="{{route('doctor.available-timings')}}">
                             <i class="fa-solid fa-calendar-day"></i>
                             <span>Available Timings</span>
                         </a>
