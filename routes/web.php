@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\AuthCustomController;
+use App\Http\Controllers\GoogleMeetController;
+use App\Services\GoogleClientService;
+use Illuminate\Http\Request;
+use Google\Service\Calendar\Event;
 
 Route::get('index', [CustomAuthController::class, 'dashboard']);
 Route::get('login', [CustomAuthController::class, 'index'])->name('login');
@@ -710,4 +714,25 @@ Route::Group(['prefix' => 'pharmacy-admin'], function () {
 
 });
 
+Route::get('/google-auth', function () {
+    $client = GoogleClientService::getClient();
+    $authUrl = $client->createAuthUrl();
+
+    return redirect($authUrl);
+})->name('google.auth');
+
+Route::get('/callback', function (Request $request) {
+    $client = GoogleClientService::getClient();
+
+    // Exchange authorization code for access token
+    if ($request->has('code')) {
+        $client->fetchAccessTokenWithAuthCode($request->get('code'));
+        session(['google_access_token' => $client->getAccessToken()]);
+    }
+
+    return redirect()->route('create-meeting');
+})->name('google.callback');
+
+
+Route::get('/create-meeting', [GoogleMeetController::class, 'createMeeting'])->name('create-meeting');
 
