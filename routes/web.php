@@ -717,7 +717,6 @@ Route::Group(['prefix' => 'pharmacy-admin'], function () {
 Route::get('/google-auth', function () {
     $client = GoogleClientService::getClient();
     $authUrl = $client->createAuthUrl();
-
     return redirect($authUrl);
 })->name('google.auth');
 
@@ -730,9 +729,9 @@ Route::get('/callback', function (Request $request) {
         session(['google_access_token' => $client->getAccessToken()]);
     }
 
-    return redirect()->route('create-meeting');
+    return redirect()->route('show-schedule-form');
 })->name('google.callback');
 
-
-Route::get('/create-meeting', [GoogleMeetController::class, 'createMeeting'])->name('create-meeting');
+Route::get('/schedule-meeting', [GoogleMeetController::class, 'showScheduleForm'])->name('show-schedule-form');
+Route::post('/create-meeting', [GoogleMeetController::class, 'createMeeting'])->name('google-meet.create');
 
