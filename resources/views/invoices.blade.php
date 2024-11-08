@@ -52,7 +52,7 @@
                                             <h2 class="table-avatar">
                                                 <a href="{{ url('doctor-profile') }}" class="avatar avatar-sm me-2">
                                                     <img class="avatar-img rounded-3"
-                                                        src="{{ URL::asset('/assets/img/doctors/doctor-thumb-02.jpg') }}"
+                                                        src="{{ URL::asset('/assets/img/patients-img-fifteen.png') }}"
                                                         alt="User Image">
                                                 </a>
                                                 <a href="{{ url('doctor-profile') }}">Edalin Hendry</a>
@@ -80,7 +80,7 @@
                                             <h2 class="table-avatar">
                                                 <a href="{{ url('doctor-profile') }}" class="avatar avatar-sm me-2">
                                                     <img class="avatar-img rounded-3"
-                                                        src="{{ URL::asset('/assets/img/doctors/doctor-thumb-05.jpg') }}"
+                                                        src="{{ URL::asset('/assets/img/services-six-1.png') }}"
                                                         alt="User Image">
                                                 </a>
                                                 <a href="{{ url('doctor-profile') }}">John Homes</a>
@@ -108,7 +108,7 @@
                                             <h2 class="table-avatar">
                                                 <a href="{{ url('doctor-profile') }}" class="avatar avatar-sm me-2">
                                                     <img class="avatar-img rounded-3"
-                                                        src="{{ URL::asset('/assets/img/doctors/doctor-thumb-03.jpg') }}"
+                                                        src="{{ URL::asset('/assets/img/patients-img-fifteen.png') }}"
                                                         alt="User Image">
                                                 </a>
                                                 <a href="{{ url('doctor-profile') }}">Shanta Neill</a>
@@ -136,7 +136,7 @@
                                             <h2 class="table-avatar">
                                                 <a href="{{ url('doctor-profile') }}" class="avatar avatar-sm me-2">
                                                     <img class="avatar-img rounded-3"
-                                                        src="{{ URL::asset('/assets/img/doctors/doctor-thumb-08.jpg') }}"
+                                                        src="{{ URL::asset('/assets/img/services-six-1.png') }}"
                                                         alt="User Image">
                                                 </a>
                                                 <a href="{{ url('doctor-profile') }}">Anthony Tran</a>
@@ -164,7 +164,7 @@
                                             <h2 class="table-avatar">
                                                 <a href="{{ url('doctor-profile') }}" class="avatar avatar-sm me-2">
                                                     <img class="avatar-img rounded-3"
-                                                        src="{{ URL::asset('/assets/img/doctors/doctor-thumb-01.jpg') }}"
+                                                        src="{{ URL::asset('/assets/img/patients-img-fifteen.png') }}"
                                                         alt="User Image">
                                                 </a>
                                                 <a href="{{ url('doctor-profile') }}">Susan Lingo</a>
@@ -192,7 +192,7 @@
                                             <h2 class="table-avatar">
                                                 <a href="{{ url('doctor-profile') }}" class="avatar avatar-sm me-2">
                                                     <img class="avatar-img rounded-3"
-                                                        src="{{ URL::asset('/assets/img/doctors/doctor-thumb-09.jpg') }}"
+                                                        src="{{ URL::asset('/assets/img/services-six-1.png') }}"
                                                         alt="User Image">
                                                 </a>
                                                 <a href="{{ url('doctor-profile') }}">Joseph Boyd</a>
@@ -220,7 +220,7 @@
                                             <h2 class="table-avatar">
                                                 <a href="{{ url('doctor-profile') }}" class="avatar avatar-sm me-2">
                                                     <img class="avatar-img rounded-3"
-                                                        src="{{ URL::asset('/assets/img/doctors/doctor-thumb-07.jpg') }}"
+                                                        src="{{ URL::asset('/assets/img/patients-img-fifteen.png') }}"
                                                         alt="User Image">
                                                 </a>
                                                 <a href="{{ url('doctor-profile') }}">Juliet Gabriel</a>

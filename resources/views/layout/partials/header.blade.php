@@ -2060,7 +2060,7 @@
                                                 <div class="notify-block d-flex">
                                                     <div class="avatar avatar-sm">
                                                         <img class="avatar-img" alt="client-image"
-                                                            src="{{ URL::asset('/assets/img/clients/client-04.jpg') }}">
+                                                            src="{{ URL::asset('/assets/img/doctor-banner.png') }}">
                                                     </div>
                                                     <div class="media-body">
                                                         <h6>Travis Tremble <span class="notification-time">8.30
@@ -2120,7 +2120,7 @@
                                             'patient-cancelled-appointment',
                                         ]))
                                         <img class="rounded-circle"
-                                            src="{{ URL::asset('/assets/img/doctors/doctor-thumb-02.jpg') }}"
+                                            src="{{ URL::asset('/assets/img/doctor-banner.png') }}"
                                             width="31" alt="Darren Elder">
                                     @endif
                                     @if (Route::is([
@@ -2157,7 +2157,7 @@
                                     ]))
                                     <div class="user-header">
                                         <div class="avatar avatar-sm">
-                                            <img src="{{ URL::asset('/assets/img/doctors/doctor-thumb-02.jpg') }}"
+                                            <img src="{{ URL::asset('/assets/img/doctor-banner.png') }}"
                                                 alt="User Image" class="avatar-img rounded-circle">
                                         </div>
                                         <div class="user-text">

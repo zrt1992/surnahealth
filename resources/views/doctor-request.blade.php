@@ -53,7 +53,7 @@
                             <li>
                                 <div class="patinet-information">
                                     <a href="{{ url('patient-profile') }}">
-                                        <img src="{{ URL::asset('assets/img/doctors-dashboard/profile-01.jpg') }}"
+                                        <img src="{{ URL::asset('assets/img/doctors/doctor-26.png') }}"
                                             alt="User Image">
                                     </a>
                                     <div class="patient-info">
@@ -94,7 +94,7 @@
                             <li>
                                 <div class="patinet-information">
                                     <a href="{{ url('patient-profile') }}">
-                                        <img src="{{ URL::asset('assets/img/doctors-dashboard/profile-02.jpg') }}"
+                                        <img src="{{ URL::asset('assets/img/doctors/doctor-25.png') }}"
                                             alt="User Image">
                                     </a>
                                     <div class="patient-info">
@@ -136,7 +136,7 @@
                             <li>
                                 <div class="patinet-information">
                                     <a href="{{ url('patient-profile') }}">
-                                        <img src="{{ URL::asset('assets/img/doctors-dashboard/profile-03.jpg') }}"
+                                        <img src="{{ URL::asset('assets/img/doctors/doctor-27.png') }}"
                                             alt="User Image">
                                     </a>
                                     <div class="patient-info">
@@ -175,7 +175,7 @@
                             <li>
                                 <div class="patinet-information">
                                     <a href="{{ url('patient-profile') }}">
-                                        <img src="{{ URL::asset('assets/img/doctors-dashboard/profile-06.jpg') }}"
+                                        <img src="{{ URL::asset('assets/img/doctors/doctor-26.png') }}"
                                             alt="User Image">
                                     </a>
                                     <div class="patient-info">
@@ -216,7 +216,7 @@
                             <li>
                                 <div class="patinet-information">
                                     <a href="{{ url('patient-profile') }}">
-                                        <img src="{{ URL::asset('assets/img/doctors-dashboard/profile-05.jpg') }}"
+                                        <img src="{{ URL::asset('assets/img/doctors/doctor-25.png') }}"
                                             alt="User Image">
                                     </a>
                                     <div class="patient-info">

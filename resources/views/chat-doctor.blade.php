@@ -69,7 +69,7 @@
                                             <div class="swiper-slide">
                                                 <div class="top-contacts-box">
                                                     <div class="profile-img online">
-                                                        <img src="{{ URL::asset('assets/img/doctors-dashboard/profile-01.jpg')}}"
+                                                        <img src="{{ URL::asset('assets/img/services-six-1.png')}}"
                                                             alt="Img">
                                                     </div>
                                                 </div>
@@ -77,7 +77,7 @@
                                             <div class="swiper-slide">
                                                 <div class="top-contacts-box">
                                                     <div class="profile-img online">
-                                                        <img src="{{ URL::asset('assets/img/doctors-dashboard/profile-04.jpg')}}"
+                                                        <img src="{{ URL::asset('assets/img/patients-img-fifteen.png')}}"
                                                             alt="Img">
                                                     </div>
                                                 </div>
@@ -85,7 +85,7 @@
                                             <div class="swiper-slide">
                                                 <div class="top-contacts-box">
                                                     <div class="profile-img online">
-                                                        <img src="{{ URL::asset('assets/img/doctors-dashboard/profile-03.jpg')}}"
+                                                        <img src="{{ URL::asset('assets/img/services-six-1.png')}}"
                                                             alt="Img">
                                                     </div>
                                                 </div>
@@ -93,7 +93,7 @@
                                             <div class="swiper-slide">
                                                 <div class="top-contacts-box">
                                                     <div class="profile-img online">
-                                                        <img src="{{ URL::asset('assets/img/doctors-dashboard/profile-08.jpg')}}"
+                                                        <img src="{{ URL::asset('assets/img/patients-img-fifteen.png')}}"
                                                             alt="Img">
                                                     </div>
                                                 </div>
@@ -101,7 +101,7 @@
                                             <div class="swiper-slide">
                                                 <div class="top-contacts-box">
                                                     <div class="profile-img online">
-                                                        <img src="{{ URL::asset('assets/img/doctors-dashboard/profile-06.jpg')}}"
+                                                        <img src="{{ URL::asset('assets/img/services-six-1.png')}}"
                                                             alt="Img">
                                                     </div>
                                                 </div>
@@ -109,7 +109,7 @@
                                             <div class="swiper-slide">
                                                 <div class="top-contacts-box">
                                                     <div class="profile-img online">
-                                                        <img src="{{ URL::asset('assets/img/doctors-dashboard/profile-07.jpg')}}"
+                                                        <img src="{{ URL::asset('assets/img/patients-img-fifteen.png')}}"
                                                             alt="Img">
                                                     </div>
                                                 </div>
@@ -133,7 +133,7 @@
                                         <li class="user-list-item">
                                             <a href="javascript:void(0);">
                                                 <div class="avatar avatar-online">
-                                                    <img src="{{ URL::asset('assets/img/doctors-dashboard/profile-01.jpg')}}" alt="image">
+                                                    <img src="{{ URL::asset('assets/img/services-six-1.png')}}" alt="image">
                                                 </div>
                                                 <div class="users-list-body">
                                                     <div>
@@ -153,7 +153,7 @@
                                         <li class="user-list-item">
                                             <a href="javascript:void(0);">
                                                 <div class="avatar ">
-                                                    <img src="{{ URL::asset('assets/img/doctors-dashboard/doctor-profile-img.jpg')}}"
+                                                    <img src="{{ URL::asset('assets/img/services-six-1.png')}}"
                                                         alt="image">
                                                 </div>
                                                 <div class="users-list-body">
@@ -173,7 +173,7 @@
                                         <li class="user-list-item">
                                             <a href="javascript:void(0);">
                                                 <div class="avatar avatar-online">
-                                                    <img src="{{ URL::asset('assets/img/doctors-dashboard/profile-04.jpg')}}" alt="image">
+                                                    <img src="{{ URL::asset('assets/img/patients-img-fifteen.png')}}" alt="image">
                                                 </div>
                                                 <div class="users-list-body">
                                                     <div>
@@ -202,7 +202,7 @@
                                         <li class="user-list-item">
                                             <a href="javascript:void(0);">
                                                 <div class="avatar avatar-online">
-                                                    <img src="{{ URL::asset('assets/img/doctors-dashboard/profile-02.jpg')}}" alt="image">
+                                                    <img src="{{ URL::asset('assets/img/patients-img-fifteen.png')}}" alt="image">
                                                 </div>
                                                 <div class="users-list-body">
                                                     <div>
@@ -220,7 +220,7 @@
                                             <a href="javascript:void(0);">
                                                 <div>
                                                     <div class="avatar avatar-online">
-                                                        <img src="{{ URL::asset('assets/img/doctors-dashboard/profile-05.jpg')}}"
+                                                        <img src="{{ URL::asset('assets/img/services-six-1.png')}}"
                                                             alt="image">
                                                     </div>
                                                 </div>
@@ -241,7 +241,7 @@
                                         <li class="user-list-item">
                                             <a href="javascript:void(0);">
                                                 <div class="avatar">
-                                                    <img src="{{ URL::asset('assets/img/doctors-dashboard/profile-08.jpg')}}" alt="image">
+                                                    <img src="{{ URL::asset('assets/img/patients-img-fifteen.png')}}" alt="image">
                                                 </div>
                                                 <div class="users-list-body">
                                                     <div>
@@ -259,7 +259,7 @@
                                             <a href="javascript:void(0);">
                                                 <div>
                                                     <div class="avatar avatar-online">
-                                                        <img src="{{ URL::asset('assets/img/doctors-dashboard/profile-03.jpg')}}"
+                                                        <img src="{{ URL::asset('assets/img/services-six-1.png')}}"
                                                             alt="image">
                                                     </div>
                                                 </div>
@@ -281,7 +281,7 @@
                                             <a href="javascript:void(0);">
                                                 <div>
                                                     <div class="avatar ">
-                                                        <img src="{{ URL::asset('assets/img/doctors-dashboard/profile-02.jpg')}}"
+                                                        <img src="{{ URL::asset('assets/img/patients-img-fifteen.png')}}"
                                                             alt="image">
                                                     </div>
                                                 </div>
@@ -304,7 +304,7 @@
                                             <a href="javascript:void(0);">
                                                 <div>
                                                     <div class="avatar avatar-online">
-                                                        <img src="{{ URL::asset('assets/img/doctors-dashboard/profile-07.jpg')}}"
+                                                        <img src="{{ URL::asset('assets/img/services-six-1.png')}}"
                                                             alt="image">
                                                     </div>
                                                 </div>
@@ -326,7 +326,7 @@
                                             <a href="javascript:void(0);">
                                                 <div>
                                                     <div class="avatar">
-                                                        <img src="{{ URL::asset('assets/img/doctors-dashboard/profile-06.jpg')}}"
+                                                        <img src="{{ URL::asset('assets/img/patients-img-fifteen.png')}}"
                                                             alt="image">
                                                     </div>
                                                 </div>
@@ -370,7 +370,7 @@
                                             </ul>
                                         </div>
                                         <figure class="avatar avatar-online">
-                                            <img src="assets/img/doctors-dashboard/profile-06.jpg" alt="image">
+                                            <img src="assets/img/patients-img-fifteen.png" alt="image">
                                         </figure>
                                         <div class="mt-1">
                                             <h5>Anderea Kearns</h5>
@@ -417,7 +417,7 @@
                                 <div class="messages">
                                     <div class="chats">
                                         <div class="chat-avatar">
-                                            <img src="{{ URL::asset('assets/img/doctors-dashboard/profile-06.jpg')}}" class="dreams_chat"
+                                            <img src="{{ URL::asset('assets/img/patients-img-fifteen.png')}}" class="dreams_chat"
                                                 alt="image">
                                         </div>
                                         <div class="chat-content">
@@ -544,13 +544,13 @@
                                             </div>
                                         </div>
                                         <div class="chat-avatar">
-                                            <img src="{{ URL::asset('assets/img/doctors-dashboard/doctor-profile-img.jpg')}}"
+                                            <img src="{{ URL::asset('assets/img/services-six-1.png')}}"
                                                 class="dreams_chat" alt="image">
                                         </div>
                                     </div>
                                     <div class="chats">
                                         <div class="chat-avatar">
-                                            <img src="{{ URL::asset('assets/img/doctors-dashboard/profile-06.jpg')}}" class="dreams_chat"
+                                            <img src="{{ URL::asset('assets/img/patients-img-fifteen.png')}}" class="dreams_chat"
                                                 alt="image">
                                         </div>
                                         <div class="chat-content">
@@ -700,14 +700,14 @@
                                             </div>
                                         </div>
                                         <div class="chat-avatar">
-                                            <img src="{{ URL::asset('assets/img/doctors-dashboard/doctor-profile-img.jpg')}}"
+                                            <img src="{{ URL::asset('assets/img/services-six-1.png')}}"
                                                 class="dreams_chat" alt="image">
                                         </div>
                                     </div>
 
                                     <div class="chats">
                                         <div class="chat-avatar">
-                                            <img src="{{ URL::asset('assets/img/doctors-dashboard/profile-06.jpg')}}" class="dreams_chat"
+                                            <img src="{{ URL::asset('assets/img/patients-img-fifteen.png')}}" class="dreams_chat"
                                                 alt="image">
                                         </div>
                                         <div class="chat-content">
@@ -786,7 +786,7 @@
                                     </div>
                                     <div class="chats">
                                         <div class="chat-avatar">
-                                            <img src="{{ URL::asset('assets/img/doctors-dashboard/profile-06.jpg')}}" class="dreams_chat"
+                                            <img src="{{ URL::asset('assets/img/patients-img-fifteen.png')}}" class="dreams_chat"
                                                 alt="image">
                                         </div>
                                         <div class="chat-content">
@@ -846,7 +846,7 @@
                                     </div>
                                     <div class="chats">
                                         <div class="chat-avatar">
-                                            <img src="{{ URL::asset('assets/img/doctors-dashboard/profile-06.jpg')}}" class="dreams_chat"
+                                            <img src="{{ URL::asset('assets/img/patients-img-fifteen.png')}}" class="dreams_chat"
                                                 alt="image">
                                         </div>
                                         <div class="chat-content chat-cont-type">
@@ -858,7 +858,7 @@
 
                                     <div class="chats forward-chat-msg">
                                         <div class="chat-avatar">
-                                            <img src="{{ URL::asset('assets/img/doctors-dashboard/profile-06.jpg')}}" class="dreams_chat"
+                                            <img src="{{ URL::asset('assets/img/patients-img-fifteen.png')}}" class="dreams_chat"
                                                 alt="image">
                                         </div>
                                         <div class="chat-content">

@@ -59,7 +59,7 @@
                                 <div class="comment-head">
                                     <div class="patinet-information">
                                         <a href="javascript:void(0);">
-                                            <img src="{{URL::asset('/assets/img/doctors-dashboard/profile-01.jpg')}}" alt="User Image">
+                                            <img src="{{URL::asset('/assets/img/patients-img-fifteen.png')}}" alt="User Image">
                                         </a>
                                         <div class="patient-info">
                                             <h6><a href="javascript:void(0);">Adrian</a></h6>
@@ -92,7 +92,7 @@
                                 <div class="comment-head">
                                     <div class="patinet-information">
                                         <a href="javascript:void(0);">
-                                            <img src="{{URL::asset('/assets/img/doctors-dashboard/profile-02.jpg')}}" alt="User Image">
+                                            <img src="{{URL::asset('/assets/img/patients-img-fifteen.png')}}" alt="User Image">
                                         </a>
                                         <div class="patient-info">
                                             <h6><a href="javascript:void(0);">Kelly</a></h6>
@@ -125,7 +125,7 @@
                                     <div class="replied-comment">
                                         <div class="patinet-information">
                                             <a href="javascript:void(0);">
-                                                <img src="{{URL::asset('/assets/img/doctors-dashboard/doctor-profile-img.jpg')}}" alt="User Image">
+                                                <img src="{{URL::asset('/assets/img/services-six-1.png')}}" alt="User Image">
                                             </a>
                                             <div class="patient-info">
                                                 <h6><a href="javascript:void(0);">Dr Edalin Hendry</a></h6>
@@ -152,7 +152,7 @@
                                 <div class="comment-head">
                                     <div class="patinet-information">
                                         <a href="javascript:void(0);">
-                                            <img src="{{URL::asset('/assets/img/doctors-dashboard/profile-03.jpg')}}" alt="User Image">
+                                            <img src="{{URL::asset('/assets/img/patients-img-fifteen.png')}}" alt="User Image">
                                         </a>
                                         <div class="patient-info">
                                             <h6><a href="javascript:void(0);">Samuel</a></h6>

@@ -89,7 +89,7 @@
                                                     <td>
                                                         <div class="patient-info-profile">
                                                             <a href="{{ url('appointments') }}" class="table-avatar">
-                                                                <img src="{{ URL::asset('assets/img/doctors-dashboard/profile-01.jpg') }}"
+                                                                <img src="{{ URL::asset('assets/img/services-six-1.png') }}"
                                                                     alt="Img">
                                                             </a>
                                                             <div class="patient-name-info">
@@ -119,7 +119,7 @@
                                                     <td>
                                                         <div class="patient-info-profile">
                                                             <a href="{{ url('appointments') }}" class="table-avatar">
-                                                                <img src="{{ URL::asset('assets/img/doctors-dashboard/profile-02.jpg') }}"
+                                                                <img src="{{ URL::asset('assets/img/services-six-1.png') }}"
                                                                     alt="Img">
                                                             </a>
                                                             <div class="patient-name-info">
@@ -149,7 +149,7 @@
                                                     <td>
                                                         <div class="patient-info-profile">
                                                             <a href="{{ url('appointments') }}" class="table-avatar">
-                                                                <img src="{{ URL::asset('assets/img/doctors-dashboard/profile-03.jpg') }}"
+                                                                <img src="{{ URL::asset('assets/img/services-six-1.png') }}"
                                                                     alt="Img">
                                                             </a>
                                                             <div class="patient-name-info">
@@ -179,7 +179,7 @@
                                                     <td>
                                                         <div class="patient-info-profile">
                                                             <a href="{{ url('appointments') }}" class="table-avatar">
-                                                                <img src="{{ URL::asset('assets/img/doctors-dashboard/profile-04.jpg') }}"
+                                                                <img src="{{ URL::asset('assets/img/services-six-1.png') }}"
                                                                     alt="Img">
                                                             </a>
                                                             <div class="patient-name-info">
@@ -209,7 +209,7 @@
                                                     <td>
                                                         <div class="patient-info-profile">
                                                             <a href="{{ url('appointments') }}" class="table-avatar">
-                                                                <img src="{{ URL::asset('assets/img/doctors-dashboard/profile-05.jpg') }}"
+                                                                <img src="{{ URL::asset('assets/img/services-six-1.png') }}"
                                                                     alt="Img">
                                                             </a>
                                                             <div class="patient-name-info">
@@ -298,7 +298,7 @@
                                         <div class="d-flex recent-patient-grid-boxes">
                                             <div class="recent-patient-grid">
                                                 <a href="{{ url('patient-details') }}" class="patient-img">
-                                                    <img src="{{ URL::asset('assets/img/doctors-dashboard/profile-01.jpg') }}"
+                                                    <img src="{{ URL::asset('assets/img/services-six-1.png') }}"
                                                         alt="Img">
                                                 </a>
                                                 <h5><a href="{{ url('patient-details') }}">Adrian Marshall</a></h5>
@@ -310,7 +310,7 @@
                                             </div>
                                             <div class="recent-patient-grid">
                                                 <a href="{{ url('patient-details') }}" class="patient-img">
-                                                    <img src="{{ URL::asset('assets/img/doctors-dashboard/profile-02.jpg') }}"
+                                                    <img src="{{ URL::asset('assets/img/services-six-1.png') }}"
                                                         alt="Img">
                                                 </a>
                                                 <h5><a href="{{ url('patient-details') }}">Kelly Stevens</a></h5>
@@ -335,7 +335,7 @@
                                     <div class="upcoming-patient-info">
                                         <div class="info-details">
                                             <span class="img-avatar"><img
-                                                    src="{{ URL::asset('assets/img/doctors-dashboard/profile-01.jpg') }}"
+                                                    src="{{ URL::asset('assets/img/services-six-1.png') }}"
                                                     alt="Img"></span>
                                             <div class="name-info">
                                                 <span>#Apt0001</span>
@@ -378,7 +378,7 @@
                                                         <td>
                                                             <div class="patient-info-profile">
                                                                 <a href="{{ url('invoices') }}" class="table-avatar">
-                                                                    <img src="{{ URL::asset('assets/img/doctors-dashboard/profile-01.jpg') }}"
+                                                                    <img src="{{ URL::asset('assets/img/services-six-1.png') }}"
                                                                         alt="Img">
                                                                 </a>
                                                                 <div class="patient-name-info">
@@ -411,7 +411,7 @@
                                                         <td>
                                                             <div class="patient-info-profile">
                                                                 <a href="#" class="table-avatar">
-                                                                    <img src="{{ URL::asset('assets/img/doctors-dashboard/profile-02.jpg') }}"
+                                                                    <img src="{{ URL::asset('assets/img/services-six-1.png') }}"
                                                                         alt="Img">
                                                                 </a>
                                                                 <div class="patient-name-info">
@@ -443,7 +443,7 @@
                                                         <td>
                                                             <div class="patient-info-profile">
                                                                 <a href="#" class="table-avatar">
-                                                                    <img src="{{ URL::asset('assets/img/doctors-dashboard/profile-03.jpg') }}"
+                                                                    <img src="{{ URL::asset('assets/img/services-six-1.png') }}"
                                                                         alt="Img">
                                                                 </a>
                                                                 <div class="patient-name-info">
@@ -475,7 +475,7 @@
                                                         <td>
                                                             <div class="patient-info-profile">
                                                                 <a href="#" class="table-avatar">
-                                                                    <img src="{{ URL::asset('assets/img/doctors-dashboard/profile-04.jpg') }}"
+                                                                    <img src="{{ URL::asset('assets/img/services-six-1.png') }}"
                                                                         alt="Img">
                                                                 </a>
                                                                 <div class="patient-name-info">
@@ -507,7 +507,7 @@
                                                         <td>
                                                             <div class="patient-info-profile">
                                                                 <a href="#" class="table-avatar">
-                                                                    <img src="{{ URL::asset('assets/img/doctors-dashboard/profile-05.jpg') }}"
+                                                                    <img src="{{ URL::asset('assets/img/services-six-1.png') }}"
                                                                         alt="Img">
                                                                 </a>
                                                                 <div class="patient-name-info">
@@ -653,7 +653,7 @@
                                         <div class="clinic-head">
                                             <div class="clinic-info">
                                                 <span class="clinic-img">
-                                                    <img src="{{ URL::asset('assets/img/doctors-dashboard/clinic-02.jpg') }}"
+                                                    <img src="{{ URL::asset('assets/img/clinic/clinic-02.png') }}"
                                                         alt="Img">
                                                 </span>
                                                 <h6>Sofi’s Clinic</h6>
@@ -682,7 +682,7 @@
                                         <div class="clinic-head">
                                             <div class="clinic-info">
                                                 <span class="clinic-img">
-                                                    <img src="{{ URL::asset('assets/img/doctors-dashboard/clinic-01.jpg') }}"
+                                                    <img src="{{ URL::asset('assets/img/clinic/clinic-01.png') }}"
                                                         alt="Img">
                                                 </span>
                                                 <h6>The Family Dentistry Clinic</h6>
