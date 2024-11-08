@@ -224,7 +224,7 @@
                                     <li>
                                         <div class="patinet-information">
                                             <a href="{{ url('doctor-upcoming-appointment', $appointment->id) }}">
-                                                <img src="{{ URL::asset('/assets/img/doctors-dashboard/profile-01.jpg') }}" alt="User Image">
+                                                <img src="{{ URL::asset('/assets/img/services-six-1.png') }}" alt="User Image">
                                             </a>
                                             <div class="patient-info">
                                                 <p>#Apt{{ str_pad($appointment->id, 4, '0', STR_PAD_LEFT) }}</p> <!-- Format appointment ID -->

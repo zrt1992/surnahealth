@@ -3,7 +3,7 @@
         <div class="widget-profile pro-widget-content">
             <div class="profile-info-widget">
                 <a href="{{route('doctor-profile')}}" class="booking-doc-img">
-                    <img src="{{URL::asset('assets/img/doctors-dashboard/doctor-profile-img.jpg')}}" alt="User Image">
+                    <img src="{{URL::asset('assets/img/services-six-1.png')}}" alt="User Image">
                 </a>
                 <div class="profile-det-info">
                     <h3><a href="{{route('doctor-profile')}}">Dr Edalin Hendry</a></h3>
