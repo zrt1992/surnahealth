@@ -94,8 +94,14 @@
                             <small class="unread-msg">7</small>
                         </a>
                     </li>
-                    <li class="{{ Request::is('doctor-profile-settings','doctor-awards-settings','doctor-business-settings','doctor-clinics-settings') ? 'active' : '' }}">
+                    {{-- <li class="{{ Request::is('doctor-profile-settings','doctor-awards-settings','doctor-business-settings','doctor-clinics-settings') ? 'active' : '' }}">
                         <a href="{{route('doctor-profile-settings')}}">
+                            <i class="fa-solid fa-user-pen"></i>
+                            <span>Video meet</span>
+                        </a>
+                    </li> --}}
+                    <li class="{{ Request::is('doctor-profile-settings','doctor-awards-settings','doctor-business-settings','doctor-clinics-settings') ? 'active' : '' }}">
+                        <a href="{{route('google.auth')}}">
                             <i class="fa-solid fa-user-pen"></i>
                             <span>Video meet</span>
                         </a>

@@ -1,8 +1,12 @@
 <?php
 
+use App\Http\Controllers\Doctor\AppointmentController;
 use App\Http\Controllers\Doctor\DashboardController;
+use App\Http\Controllers\GoogleMeetController;
 use App\Http\Controllers\Patient\DashboardController as PatientDashboard;
 use App\Http\Controllers\ProfileController;
+use App\Services\GoogleClientService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -345,9 +349,11 @@ Route::get('/add-billing', function () {
 Route::get('/add-prescription', function () {
     return view('add-prescription');
 })->name('add-prescription');
-Route::get('/appointments', function () {
-    return view('appointments');
-})->name('appointments');
+// Route::get('/appointments', function () {
+//     return view('appointments');
+// })->name('appointments');
+Route::get('/appointments', [AppointmentController::class, 'index'])->name('appointments');
+
 Route::get('/available-timings', function () {
     return view('available-timings');
 })->name('available-timings');
@@ -736,6 +742,26 @@ Route::get('/doctor-profile-2', function () {
 })->name('doctor-profile-2');
 
 
+Route::get('/google-auth', function () {
+    $client = GoogleClientService::getClient();
+    $authUrl = $client->createAuthUrl();
+    return redirect($authUrl);
+})->name('google.auth');
+
+Route::get('/callback', function (Request $request) {
+    $client = GoogleClientService::getClient();
+
+    // Exchange authorization code for access token
+    if ($request->has('code')) {
+        $client->fetchAccessTokenWithAuthCode($request->get('code'));
+        session(['google_access_token' => $client->getAccessToken()]);
+    }
+
+    return redirect()->route('doctor-profile-settings');
+})->name('google.callback');
+
+Route::get('/schedule-meeting', [GoogleMeetController::class, 'showScheduleForm'])->name('show-schedule-form');
+Route::post('/google-meet/create',[GoogleMeetController::class, 'createMeeting'])->name('google.meet.create');
 
 
 

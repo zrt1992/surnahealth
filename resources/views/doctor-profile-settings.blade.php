@@ -139,7 +139,9 @@
                             <h5>Start Meeting</h5>
                         </div>
                     </form>
-                    <form action="{{route('create-meeting')}}" method="post">
+                    {{-- <form action="{{route('create-meeting')}}" method="post">
+                        @csrf --}}
+                    <form action="{{ route('google.meet.create') }}" method="POST">
                         @csrf
                         <div class="setting-card">
                             <div class="add-info membership-infos">
@@ -147,7 +149,8 @@
                                     <div class="col-lg-3 col-md-6">
                                         <div class="form-wrap">
                                             <label class="col-form-label">Title <span class="text-danger">*</span></label>
-                                            <input name="title" type="text" class="form-control" placeholder="Add Title">
+                                            <input  id="title" name="title" type="text" class="form-control"
+                                                placeholder="Add Title">
                                         </div>
                                     </div>
                                     <div class="col-lg-9 col-md-6">
@@ -157,10 +160,10 @@
                                                 <input name="description" type="text" class="form-control">
                                             </div>
 
-{{--                                            <div class="form-wrap ms-2">--}}
-{{--                                                <label class="col-form-label d-block">&nbsp;</label>--}}
-{{--                                                <a href="javascript:void(0);" class="trash-icon trash">Delete</a>--}}
-{{--                                            </div>--}}
+                                            {{--                                            <div class="form-wrap ms-2"> --}}
+                                            {{--                                                <label class="col-form-label d-block">&nbsp;</label> --}}
+                                            {{--                                                <a href="javascript:void(0);" class="trash-icon trash">Delete</a> --}}
+                                            {{--                                            </div> --}}
                                         </div>
                                     </div>
                                     <div class="col-lg-9 col-md-6">
@@ -172,6 +175,13 @@
                                             <label class="col-form-label">End Time</label>
                                             <input type="datetime-local" name="end_date" class="form-control">
                                         </div>
+                                    </div>
+                                    <div class="col-lg-9 col-md-6">
+                                        <div class="form-wrap w-100">
+                                            <label class="col-form-label">Email/add attendee</label>
+                                            <input type="email" name="email" class="form-control">
+                                        </div>
+                                       
                                     </div>
 
                                 </div>
