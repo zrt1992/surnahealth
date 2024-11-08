@@ -228,7 +228,7 @@
                                             </a>
                                             <div class="patient-info">
                                                 <p>#Apt{{ str_pad($appointment->id, 4, '0', STR_PAD_LEFT) }}</p> <!-- Format appointment ID -->
-                                                <h6><a href="{{ url('doctor-upcoming-appointment', $appointment->id) }}">{{ $appointment->title }}</a></h6> <!-- Patient's email as name -->
+                                                <h6><a href="{{ url('doctor-upcoming-appointment') }}">{{ $appointment->title }}</a></h6> <!-- Patient's email as name -->
                                             </div>
                                         </div>
                                     </li>

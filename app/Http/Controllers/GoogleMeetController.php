@@ -62,8 +62,9 @@ class GoogleMeetController extends Controller
             'doctor_id' => $doctorId,
         ]);
 
-
+        $doctor = auth()->user()->id;
+        $appointments = Appointment::where('doctor_id', $doctor)->get();
         // Return a view with the created event data
-        return view('appointments', ['event' => $event, 'appointment' => $appointment]);
+        return view('appointments', ['event' => $event, 'appointments' => $appointments]);
     }
 }
