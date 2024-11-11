@@ -5227,89 +5227,99 @@
 
 @if (Route::is(['available-timings']))
     <!-- Add Slots -->
-    <div class="modal fade custom-modals" id="add_slot">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Add New Slot</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                </div>
-                <form action="available-timings">
-                    <div class="modal-body">
-                        <div class="timing-modal">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-wrap">
-                                        <label class="col-form-label">Start Time</label>
-                                        <input type="text" class="form-control timepicker1" value="04:00 PM">
-                                    </div>
+ <!-- Add Slots Modal -->
+<!-- Add Slots Modal -->
+<div class="modal fade custom-modals" id="add_slot">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add New Slot</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form action="{{ route('available-timings-add') }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    <div class="timing-modal">
+                        <div class="row">
+                            <!-- Start Time -->
+                            <div class="col-md-6">
+                                <div class="form-wrap">
+                                    <label class="col-form-label">Start Time</label>
+                                    <input type="text" name="start_time" class="form-control timepicker1" value="04:00 PM">
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-wrap">
-                                        <label class="col-form-label">End Time</label>
-                                        <input type="text" class="form-control timepicker1">
-                                    </div>
+                            </div>
+                            <!-- End Time -->
+                            <div class="col-md-6">
+                                <div class="form-wrap">
+                                    <label class="col-form-label">End Time</label>
+                                    <input type="text" name="end_time" class="form-control timepicker1" value="04:30 PM"> <!-- Added name -->
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-wrap">
-                                        <label class="col-form-label">Appointment Intervals</label>
-                                        <select class="select">
-                                            <option>10 Minutes</option>
-                                            <option>20 Minutes</option>
-                                            <option>30 Minutes</option>
-                                        </select>
-                                    </div>
+                            </div>
+                            <!-- Appointment Intervals -->
+                            <div class="col-md-6">
+                                <div class="form-wrap">
+                                    <label class="col-form-label">Appointment Intervals</label>
+                                    <select class="select" name="appointment_intervals"> <!-- Added name -->
+                                        <option value="10">10 Minutes</option>
+                                        <option value="20">20 Minutes</option>
+                                        <option value="30">30 Minutes</option>
+                                    </select>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-wrap">
-                                        <label class="col-form-label">Appointment Durations</label>
-                                        <select class="select">
-                                            <option>30 Minutes</option>
-                                            <option>1 Hour</option>
-                                        </select>
-                                    </div>
+                            </div>
+                            <!-- Appointment Durations -->
+                            <div class="col-md-6">
+                                <div class="form-wrap">
+                                    <label class="col-form-label">Appointment Durations</label>
+                                    <select class="select" name="appointment_duration"> <!-- Added name -->
+                                        <option value="30">30 Minutes</option>
+                                        <option value="60">1 Hour</option>
+                                    </select>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="form-wrap mb-0">
-                                        <label class="col-form-label d-block">Assign Appointment Spaces</label>
-                                        <div class="custom-control form-check custom-control-inline">
-                                            <input type="radio" id="space1" name="rating_option"
-                                                class="form-check-input" value="price_free" checked="">
-                                            <label class="form-check-label" for="space1">Space 1</label>
-                                        </div>
-                                        <div class="custom-control form-check custom-control-inline">
-                                            <input type="radio" id="space2" name="rating_option"
-                                                class="form-check-input" value="price_free" checked="">
-                                            <label class="form-check-label" for="space2">Space 2</label>
-                                        </div>
-                                        <div class="custom-control form-check custom-control-inline">
-                                            <input type="radio" id="space3" name="rating_option"
-                                                class="form-check-input" value="price_free" checked="">
-                                            <label class="form-check-label" for="space3">Space 3</label>
-                                        </div>
-                                        <div class="custom-control form-check custom-control-inline">
-                                            <input type="radio" id="space4" name="rating_option"
-                                                class="form-check-input" value="price_free" checked="">
-                                            <label class="form-check-label" for="space4">Space 4</label>
-                                        </div>
+                            </div>
+                            <!-- Appointment Spaces -->
+                            <div class="col-md-12">
+                                <div class="form-wrap mb-0">
+                                    <label class="col-form-label d-block">Assign Appointment Spaces</label>
+                                    <div class="custom-control form-check custom-control-inline">
+                                        <input type="radio" id="space1" name="space" class="form-check-input" value="1" checked="">
+                                        <label class="form-check-label" for="space1">Space 1</label>
+                                    </div>
+                                    <div class="custom-control form-check custom-control-inline">
+                                        <input type="radio" id="space2" name="space" class="form-check-input" value="2">
+                                        <label class="form-check-label" for="space2">Space 2</label>
+                                    </div>
+                                    <div class="custom-control form-check custom-control-inline">
+                                        <input type="radio" id="space3" name="space" class="form-check-input" value="3">
+                                        <label class="form-check-label" for="space3">Space 3</label>
+                                    </div>
+                                    <div class="custom-control form-check custom-control-inline">
+                                        <input type="radio" id="space4" name="space" class="form-check-input" value="4">
+                                        <label class="form-check-label" for="space4">Space 4</label>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <div class="modal-btn text-end">
-                            <a href="#" class="btn btn-gray" data-bs-toggle="modal"
-                                data-bs-dismiss="modal">Cancel</a>
-                            <button type="submit" class="btn btn-primary prime-btn">Save Changes</button>
-                        </div>
+                </div>
+            
+                <!-- Hidden field for selected day -->
+                <input type="hidden" id="selected_day" name="selected_day">
+            
+                <div class="modal-footer">
+                    <div class="modal-btn text-end">
+                        <a href="#" class="btn btn-gray" data-bs-toggle="modal" data-bs-dismiss="modal">Cancel</a>
+                        <button type="submit" class="btn btn-primary prime-btn">Save Changes</button>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
+            
         </div>
     </div>
+</div>
+
+
     <!-- /Add Slots -->
 
     <!-- Remove Slots -->

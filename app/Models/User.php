@@ -18,8 +18,13 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+       
         'name',
         'email',
+        'display_name',
+        'phone',
+        'known_languages',
+        'profile_image',
         'password',
     ];
 
@@ -44,5 +49,44 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function setNameAttribute($value)
+    {
+        // Automatically combine first_name and last_name into the name column
+        $this->attributes['name'] = $this->first_name . ' ' . $this->last_name;
+    }
+    public function getFirstNameAttribute()
+    {
+        $nameParts = explode(' ', $this->name);
+
+        return $nameParts[0] ?? '';
+    }
+
+   
+    public function getLastNameAttribute()
+    {
+        $nameParts = explode(' ', $this->name);
+
+        return $nameParts[1] ?? '';
+    }
+
+
+
+
+    public function specializations()
+    {
+        return $this->belongsToMany(Specialization::class, 'doctor_specialization');
+    }
+
+    // A doctor can have many qualifications
+    public function qualifications()
+    {
+        return $this->hasMany(Qualification::class);
+    }
+
+    public function availableTimings()
+    {
+        return $this->hasMany(AvailableTimming::class);
     }
 }
