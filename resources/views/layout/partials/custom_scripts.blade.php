@@ -1,37 +1,50 @@
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script>
-            $(document).ready(function () {
-                // Accept appointment
-                $('.accept-link').on('click', function (e) {
-                    e.preventDefault();
-                    let appointmentId = $(this).data('appointment-id');
-        
-                    $.ajax({
-                        url: `/doctor-request/accept/${appointmentId}`,
-                        type: 'POST',
-                        data: {
-                            _token: '{{ csrf_token() }}'
-                        },
-                        success: function (response) {
-                            if (response.success) {
-                                toastr.success(response.message);
-                                // You might want to reload the page or update the UI here
-                            }
-                        },
-                        error: function (error) {
-                            toastr.error('There was an error accepting the appointment');
-                        }
-                    });
-                });
+<script>
+    $(document).ready(function() {
+
+        $('.reject-link').on('click', function() {
+
+            var selectedRequestId = $(this).data('appointment-id');
+
+
+            $('#appointment_request_id').val(selectedRequestId);
+            $('.modal-title').text('Add New Slot for ' + selectedRequestId);
+        });
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        // Accept appointment
+        $('.accept-link').on('click', function(e) {
+            e.preventDefault();
+            let appointmentId = $(this).data('appointment-id');
+
+            $.ajax({
+                url: `/doctor-request/accept/${appointmentId}`,
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    if (response.success) {
+                        toastr.success(response.message);
+                        // You might want to reload the page or update the UI here
+                    }
+                },
+                error: function(error) {
+                    toastr.error('There was an error accepting the appointment');
+                }
             });
-        </script>
+        });
+    });
+</script>
 
 
 <script>
     let currentDate = new Date();
-    let currentSelectedSlot = null;  // To keep track of the selected slot
-    let weekOffset = 0;  // Keeps track of the current week offset (0 for current week, 1 for next week, -1 for previous week)
+    let currentSelectedSlot = null; // To keep track of the selected slot
+    let weekOffset =
+    0; // Keeps track of the current week offset (0 for current week, 1 for next week, -1 for previous week)
 
     // Function to get the date of the Monday of the week for the current date
     function getMonday(date) {
@@ -48,11 +61,11 @@
 
         let current = new Date(startDate);
         const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-        
+
         daysOfWeek.forEach((day, index) => {
             const li = document.createElement("li");
             li.classList.add("day");
-            li.dataset.date = current.toISOString();  // Add the date as a data attribute for later use
+            li.dataset.date = current.toISOString(); // Add the date as a data attribute for later use
             li.innerHTML = `
                 <span>${day}</span>
                 <span class="slot-date">${current.toLocaleDateString("en-US", { day: "2-digit", month: "short" })}
@@ -103,7 +116,7 @@
         // Set the booking date based on the selected day of the week
         const selectedDate = getDateFromWeekday(day);
         document.getElementById('booking_date').value = selectedDate.toISOString().split("T")[0];
-        
+
         // Highlight the selected day in the week container
         highlightSelectedDay(selectedDate);
     }
@@ -111,12 +124,13 @@
     // Get date based on the day of the week and current week offset
     function getDateFromWeekday(day) {
         const today = new Date();
-        const selectedDayIndex = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"].indexOf(day);
+        const selectedDayIndex = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"].indexOf(
+            day);
         const currentWeekMonday = getMonday(today);
-        
+
         // Adjust the current date for the selected week offset (current, next, or previous)
         currentWeekMonday.setDate(currentWeekMonday.getDate() + (weekOffset * 7));
-        
+
         // Get the correct date for the selected day
         return new Date(currentWeekMonday.setDate(currentWeekMonday.getDate() + selectedDayIndex));
     }
@@ -126,7 +140,10 @@
         const daySlots = document.querySelectorAll("#week-container .day");
         daySlots.forEach(day => day.classList.remove("highlighted"));
 
-        const selectedDateStr = date.toLocaleDateString("en-US", { day: "2-digit", month: "short" });
+        const selectedDateStr = date.toLocaleDateString("en-US", {
+            day: "2-digit",
+            month: "short"
+        });
         daySlots.forEach(day => {
             const slotDate = day.querySelector(".slot-date");
             if (slotDate && slotDate.textContent.includes(selectedDateStr)) {

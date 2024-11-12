@@ -438,12 +438,7 @@ Route::get('/doctor-change-password', function () {
 Route::get('/doctor-pending-blog', function () {
     return view('doctor-pending-blog');
 })->name('doctor-pending-blog');
-
-// Route::get('/doctor-profile-settings', function () {
-//     return view('doctor-profile-settings');
-// })->name('doctor-profile-settings');
 Route::resource('/doctor-profile-settings', DoctorController::class);
-
 Route::get('/doctor-profile', function () {
     return view('doctor-profile');
 })->name('doctor-profile');
@@ -675,11 +670,9 @@ Route::get('/video-call', function () {
 Route::get('/voice-call', function () {
     return view('voice-call');
 })->name('voice-call');
-
 Route::resource('/doctor-request', DoctorBookingController::class);
 Route::post('/doctor-request/accept/{id}', [DoctorBookingController::class, 'accept'])->name('doctor-request.accept');
 Route::post('/doctor-request/reject', [DoctorBookingController::class, 'reject'])->name('doctor-request.reject');
-
 Route::get('/doctor-appointment-start', function () {
     return view('doctor-appointment-start');
 })->name('doctor-appointment-start');

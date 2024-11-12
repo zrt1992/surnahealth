@@ -85,30 +85,12 @@
                                     <li>
                                         <a href="#" class="accept-link" data-appointment-id="{{ $request->id }}" data-bs-toggle="modal" data-bs-target="#accept_appointment">
                                             <i class="fa-solid fa-check"></i>Accept
-                                        </a>
-                                        
-                                       
-                                        
+                                        </a>     
                                     </li>
                                     <li>
                                         <a href="#" class="reject-link" data-appointment-id="{{ $request->id }}" data-bs-toggle="modal" data-bs-target="#cancel_appointment">
                                             <i class="fa-solid fa-xmark"></i>Reject
                                         </a>
-                                        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-                                        <script>
-                                            $(document).ready(function() {
-
-                                                $('.reject-link').on('click', function() {
-
-                                                    var selectedRequestId = $(this).data('appointment-id');
-                                                   
-
-                                                    $('#appointment_request_id').val(selectedRequestId);
-                                                    $('.modal-title').text('Add New Slot for ' + selectedRequestId);
-                                                });
-                                            });
-                                        </script>
                                     </li>
                                 </ul>
                             </li>
@@ -116,171 +98,7 @@
                            
                         </ul>
                     </div>
-                    <!-- /Request List -->
-
-                    <!-- Request List -->
-                    {{-- <div class="appointment-wrap">
-                        <ul>
-                            <li>
-                                <div class="patinet-information">
-                                    <a href="{{ url('patient-profile') }}">
-                                        <img src="{{ URL::asset('assets/img/doctors/doctor-25.png') }}"
-                                            alt="User Image">
-                                    </a>
-                                    <div class="patient-info">
-                                        <p>#Apt0002</p>
-                                        <h6><a href="{{ url('patient-profile') }}">Kelly</a></h6>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="appointment-info">
-                                <p><i class="fa-solid fa-clock"></i>10 Nov 2024 02.00 PM</p>
-                                <p class="md-text">General Visit</p>
-                            </li>
-                            <li class="appointment-type">
-                                <p class="md-text">Type of Appointment</p>
-                                <p><i class="fa-solid fa-building text-green"></i>Direct Visit <i
-                                        class="fa-solid fa-circle-info" data-bs-toggle="tooltip"
-                                        title="Clinic Location Sofia’s Clinic"></i></p>
-                            </li>
-                            <li>
-                                <ul class="request-action">
-                                    <li>
-                                        <a href="#" class="accept-link" data-bs-toggle="modal"
-                                            data-bs-target="#accept_appointment"><i class="fa-solid fa-check"></i>Accept</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="reject-link" data-bs-toggle="modal"
-                                            data-bs-target="#cancel_appointment"><i class="fa-solid fa-xmark"></i>Reject</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- /Request List -->
-
-
-                    <!-- Request List -->
-                    <div class="appointment-wrap">
-                        <ul>
-                            <li>
-                                <div class="patinet-information">
-                                    <a href="{{ url('patient-profile') }}">
-                                        <img src="{{ URL::asset('assets/img/doctors/doctor-27.png') }}"
-                                            alt="User Image">
-                                    </a>
-                                    <div class="patient-info">
-                                        <p>#Apt0003</p>
-                                        <h6><a href="{{ url('patient-profile') }}">Samuel</a></h6>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="appointment-info">
-                                <p><i class="fa-solid fa-clock"></i>08 Nov 2024 08.30 AM</p>
-                                <p class="md-text">General Visit</p>
-                            </li>
-                            <li class="appointment-type">
-                                <p class="md-text">Type of Appointment</p>
-                                <p><i class="fa-solid fa-phone text-indigo"></i>Audio Call</p>
-                            </li>
-                            <li>
-                                <ul class="request-action">
-                                    <li>
-                                        <a href="#" class="accept-link" data-bs-toggle="modal"
-                                            data-bs-target="#accept_appointment"><i class="fa-solid fa-check"></i>Accept</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="reject-link" data-bs-toggle="modal"
-                                            data-bs-target="#cancel_appointment"><i class="fa-solid fa-xmark"></i>Reject</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- /Request List -->
-
-                    <!-- Request List -->
-                    <div class="appointment-wrap">
-                        <ul>
-                            <li>
-                                <div class="patinet-information">
-                                    <a href="{{ url('patient-profile') }}">
-                                        <img src="{{ URL::asset('assets/img/doctors/doctor-26.png') }}"
-                                            alt="User Image">
-                                    </a>
-                                    <div class="patient-info">
-                                        <p>#Apt0004</p>
-                                        <h6><a href="{{ url('patient-profile') }}">Anderea</a></h6>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="appointment-info">
-                                <p><i class="fa-solid fa-clock"></i>05 Nov 2024 11.00 AM</p>
-                                <p class="md-text">General Visit</p>
-                            </li>
-                            <li class="appointment-type">
-                                <p class="md-text">Type of Appointment</p>
-                                <p><i class="fa-solid fa-phone text-indigo"></i>Audio Call</p>
-                            </li>
-                            <li>
-                                <ul class="request-action">
-                                    <li>
-                                        <a href="#" class="accept-link" data-bs-toggle="modal"
-                                            data-bs-target="#accept_appointment"><i
-                                                class="fa-solid fa-check"></i>Accept</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="reject-link" data-bs-toggle="modal"
-                                            data-bs-target="#cancel_appointment"><i
-                                                class="fa-solid fa-xmark"></i>Reject</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- /Request List -->
-
-                    <!-- Request List -->
-                    <div class="appointment-wrap">
-                        <ul>
-                            <li>
-                                <div class="patinet-information">
-                                    <a href="{{ url('patient-profile') }}">
-                                        <img src="{{ URL::asset('assets/img/doctors/doctor-25.png') }}"
-                                            alt="User Image">
-                                    </a>
-                                    <div class="patient-info">
-                                        <p>#Apt0005</p>
-                                        <h6><a href="{{ url('patient-profile') }}">Robert</a></h6>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="appointment-info">
-                                <p><i class="fa-solid fa-clock"></i>07 Nov 2024 11.00 AM</p>
-                                <p class="md-text">General Visit</p>
-                            </li>
-                            <li class="appointment-type">
-                                <p class="md-text">Type of Appointment</p>
-                                <p><i class="fa-solid fa-phone text-indigo"></i>Audio Call</p>
-                            </li>
-                            <li>
-                                <ul class="request-action">
-                                    <li>
-                                        <a href="#" class="accept-link" data-bs-toggle="modal"
-                                            data-bs-target="#accept_appointment"><i
-                                                class="fa-solid fa-check"></i>Accept</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="reject-link" data-bs-toggle="modal"
-                                            data-bs-target="#cancel_appointment"><i
-                                                class="fa-solid fa-xmark"></i>Reject</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div> --}}
-                    <!-- /Request List -->
-
+                    
                     <div class="row">
                         <div class="col-md-12">
                             <div class="loader-item text-center">

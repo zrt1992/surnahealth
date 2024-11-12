@@ -9,7 +9,7 @@ class AppointmentRequests extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'doctor_id', 'slot_id', 'booking_date', 'status','cancel_reason',
+    protected $fillable = ['user_id', 'doctor_id', 'slot_id', 'booking_date', 'status','cancel_reason', 
     'cancel_with'];
 
     // Define relationships
