@@ -3,6 +3,7 @@
 use App\Http\Controllers\Doctor\AppointmentController;
 use App\Http\Controllers\Doctor\AvailableTimmingController;
 use App\Http\Controllers\Doctor\DashboardController;
+use App\Http\Controllers\Doctor\DoctorBookingController;
 use App\Http\Controllers\Doctor\DoctorController;
 use App\Http\Controllers\GoogleMeetController;
 use App\Http\Controllers\Patient\BookingController;
@@ -383,6 +384,8 @@ Route::get('/booking/{doctor_id}', function () {
     return view('booking');
 })->name('booking');
 Route::get('/booking/{doctor_id}', [BookingController::class, 'showBookingForm'])->name('booking');
+Route::resource('/book-appointment', BookingController::class);
+
 
 Route::get('/calendar', function () {
     return view('calendar');
@@ -672,9 +675,11 @@ Route::get('/video-call', function () {
 Route::get('/voice-call', function () {
     return view('voice-call');
 })->name('voice-call');
-Route::get('/doctor-request', function () {
-    return view('doctor-request');
-})->name('doctor-request');
+
+Route::resource('/doctor-request', DoctorBookingController::class);
+Route::post('/doctor-request/accept/{id}', [DoctorBookingController::class, 'accept'])->name('doctor-request.accept');
+Route::post('/doctor-request/reject', [DoctorBookingController::class, 'reject'])->name('doctor-request.reject');
+
 Route::get('/doctor-appointment-start', function () {
     return view('doctor-appointment-start');
 })->name('doctor-appointment-start');

@@ -3,10 +3,12 @@
 namespace App\Providers;
 
 use App\Interfaces\AvailableTimmingRepositoryInterface;
+use App\Interfaces\BookingRepositoryInterface;
 use App\Interfaces\DoctorRepositoryInterface;
 use App\Models\User;
 use App\Observers\DoctorObserver;
 use App\Repositories\AvailableTimmingRepository;
+use App\Repositories\BookingRepository;
 use App\Repositories\DoctorRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
@@ -23,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(DoctorRepositoryInterface::class, DoctorRepository::class);
         $this->app->bind(AvailableTimmingRepositoryInterface::class, AvailableTimmingRepository::class);
+        $this->app->bind(BookingRepositoryInterface::class, BookingRepository::class);
 
     }
 

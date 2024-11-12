@@ -33,7 +33,7 @@
                         </a>
                     </li>
                     <li class="{{ Request::is('doctor-request') ? 'active' : '' }}">
-                        <a href="{{route('doctor-request')}}">
+                        <a href="{{route('doctor-request.index')}}">
                             <i class="fa-solid fa-calendar-check"></i>
                             <span>Requests</span>
                             <small class="unread-msg">2</small>

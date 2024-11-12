@@ -51,7 +51,7 @@
 										</a>
 									</li>
 									<li>
-										<a href="{{url('doctor-request')}}">
+										<a href="{{url('doctor-request.index')}}">
 											<i class="fa-solid fa-calendar-check"></i>
 											<span>Requests</span>
 											<small class="unread-msg">2</small>

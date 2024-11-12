@@ -89,4 +89,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(AvailableTimming::class);
     }
+
+    public function appointmentRequests()
+    {
+        return $this->hasMany(AppointmentRequests::class,'doctor_id','id');
+    }
 }

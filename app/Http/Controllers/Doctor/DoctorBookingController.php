@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Patient;
+namespace App\Http\Controllers\Doctor;
 
 use App\Http\Controllers\Controller;
 use App\Interfaces\BookingRepositoryInterface;
@@ -9,7 +9,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class BookingController extends Controller
+class DoctorBookingController extends Controller
 {
     private BookingRepositoryInterface $bookingRepository;
 
@@ -18,20 +18,11 @@ class BookingController extends Controller
     {
         $this->bookingRepository = $bookingRepository;
     }
-    public function showBookingForm($doctorId)
-    {
-        // Fetch doctor and their available timings
-        $doctor = User::with('availableTimings')->findOrFail($doctorId);
-        $currentDate = Carbon::now()->format('d F Y');  // e.g., "11 November 2023"
-        $currentDay = Carbon::now()->format('l'); 
-        return view('booking',get_defined_vars());
-    }
 
     public function index()
     {
-        $data = $this->bookingRepository->all();
-        return view('doctor-request');
-        return view('doctor-profile-settings',get_defined_vars());
+        $data = $this->bookingRepository->getDoctorAppointmentRequests();
+        return view('doctor-request', get_defined_vars());
     }
 
     public function store(Request $request)
@@ -46,8 +37,22 @@ class BookingController extends Controller
 
         $validated['user_id'] = getAuthUser()->id;
         $data = $this->bookingRepository->create($validated);
-        
+
         // Return response (can redirect or send back success message)
         return back()->with('success', $data);
+    }
+
+    public function accept($id)
+    {
+        $data = $this->bookingRepository->accept($id);
+        return back()->with(['success', 'data' => 'Appointment accepted successfully']);
+    }
+
+    public function reject(Request $request)
+    {
+        $data = $request->all();
+        $data = $this->bookingRepository->reject($data);
+        return back()->with(['success', 'data' => $data]);
+        // return response()->json(['success' => true, 'message' => 'Appointment rejected successfully']);
     }
 }
