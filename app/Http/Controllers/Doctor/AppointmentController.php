@@ -13,6 +13,14 @@ class AppointmentController extends Controller
         $doctor = auth()->user()->id;
 
         $appointments = Appointment::where('doctor_id', $doctor)->get();
-        return view('appointments',get_defined_vars());
+        return view('appointments', get_defined_vars());
+    }
+
+    public function destroy($id)
+    {
+        // Use the model's static destroy method to delete by ID
+        Appointment::destroy($id);
+
+        return redirect()->back()->with('success', 'Appointment deleted successfully!');
     }
 }

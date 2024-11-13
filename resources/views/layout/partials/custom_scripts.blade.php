@@ -14,30 +14,47 @@
 </script>
 <script>
     $(document).ready(function() {
-        // Accept appointment
+        // Accept appointment with Google token check
         $('.accept-link').on('click', function(e) {
             e.preventDefault();
             let appointmentId = $(this).data('appointment-id');
 
+            // First, check if Google token is in the session
             $.ajax({
-                url: `/doctor-request/accept/${appointmentId}`,
-                type: 'POST',
-                data: {
-                    _token: '{{ csrf_token() }}'
-                },
+                url: '{{ route("check.google.token") }}', // Add this route to check token status
+                type: 'GET',
                 success: function(response) {
-                    if (response.success) {
-                        toastr.success(response.message);
-                        // You might want to reload the page or update the UI here
+                    if (response.requiresAuth) {
+                        // Redirect to Google auth if token is missing
+                        window.location.href = '{{ route("google.auth") }}';
+                    } else {
+                        // Token is present, proceed with accepting the appointment
+                        $.ajax({
+                            url: `/doctor-request/accept/${appointmentId}`,
+                            type: 'POST',
+                            data: {
+                                _token: '{{ csrf_token() }}'
+                            },
+                            success: function(response) {
+                                if (response.success) {
+                                    toastr.success(response.message);
+                                    // You might want to reload the page or update the UI here
+                                }
+                            },
+                            error: function(error) {
+                                toastr.error('There was an error accepting the appointment');
+                            }
+                        });
                     }
                 },
-                error: function(error) {
-                    toastr.error('There was an error accepting the appointment');
+                error: function() {
+                    toastr.error('Unable to check Google token status');
                 }
             });
         });
     });
 </script>
+
 
 
 <script>

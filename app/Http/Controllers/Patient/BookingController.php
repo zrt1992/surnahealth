@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Patient;
 
 use App\Http\Controllers\Controller;
 use App\Interfaces\BookingRepositoryInterface;
+use App\Models\Appointment;
 use App\Models\AppointmentRequests;
 use App\Models\User;
 use Carbon\Carbon;
@@ -30,7 +31,6 @@ class BookingController extends Controller
     public function index()
     {
         $data = $this->bookingRepository->all();
-        return view('doctor-request');
         return view('doctor-profile-settings',get_defined_vars());
     }
 
@@ -49,5 +49,11 @@ class BookingController extends Controller
         
         // Return response (can redirect or send back success message)
         return back()->with('success', $data);
+    }
+
+    public function getPatientAppointments()
+    {
+        $data = $this->bookingRepository->getPatientAppointments();
+        return view('patient.patient-appointments',get_defined_vars());
     }
 }

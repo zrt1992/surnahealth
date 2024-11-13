@@ -354,6 +354,9 @@ Route::get('/add-prescription', function () {
 })->name('add-prescription');
 
 Route::get('/appointments', [AppointmentController::class, 'index'])->name('appointments');
+Route::get('/appointments-remove/{id}', [AppointmentController::class, 'destroy'])->name('appointments-remove');
+
+
 Route::get('/available-timings', [AvailableTimmingController::class, 'index'])->name('available-timings');
 Route::post('/available-timings-add', [AvailableTimmingController::class, 'store'])->name('available-timings-add');
 
@@ -715,9 +718,7 @@ Route::get('/doctor-insurance-settings', function () {
 Route::get('/doctor-cancelled-appointment', function () {
     return view('doctor-cancelled-appointment');
 })->name('doctor-cancelled-appointment');
-Route::get('/patient-appointments', function () {
-    return view('patient-appointments');
-})->name('patient-appointments');
+Route::get('/patient-appointments', [BookingController::class, 'getPatientAppointments'])->name('patient-appointments');
 Route::get('/patient-appointment-details', function () {
     return view('patient-appointment-details');
 })->name('patient-appointment-details');
@@ -748,6 +749,7 @@ Route::get('/doctor-profile-2', function () {
 Route::get('/google-auth', function () {
     $client = GoogleClientService::getClient();
     $authUrl = $client->createAuthUrl();
+
     return redirect($authUrl);
 })->name('google.auth');
 
@@ -760,8 +762,10 @@ Route::get('/callback', function (Request $request) {
         session(['google_access_token' => $client->getAccessToken()]);
     }
 
-    return redirect()->route('doctor-profile-settings');
+    return redirect()->route('doctor-profile-settings.index');
 })->name('google.callback');
+
+Route::get('/check-google-token', [GoogleMeetController::class, 'checkGoogleToken'])->name('check.google.token');
 
 Route::get('/schedule-meeting', [GoogleMeetController::class, 'showScheduleForm'])->name('show-schedule-form');
 Route::post('/google-meet/create',[GoogleMeetController::class, 'createMeeting'])->name('google.meet.create');

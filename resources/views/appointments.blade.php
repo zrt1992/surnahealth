@@ -257,7 +257,7 @@
                                                 <a href="#"><i class="fa-solid fa-comments"></i></a>
                                             </li>
                                             <li>
-                                                <a href="#"><i class="fa-solid fa-xmark"></i></a>
+                                                <a href="{{route('appointments-remove',$appointment->id)}}"><i class="fa-solid fa-xmark"></i></a>
                                             </li>
                                         </ul>
                                     </li>

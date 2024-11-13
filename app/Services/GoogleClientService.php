@@ -34,14 +34,16 @@ class GoogleClientService
 
         return $client;
     }
+    
 
     public static function createGoogleMeetEvent($title, $description, $startTime, $endTime)
     {
+      
         $client = self::getClient();
         $client->setAccessToken(session('google_access_token'));
 
         $calendarService = new Calendar($client);
-
+       
         $event = new Calendar\Event([
             'summary' => $title,
             'description' => $description,
@@ -60,9 +62,8 @@ class GoogleClientService
                 ],
             ]
         ]);
-
+      
         $event = $calendarService->events->insert('primary', $event, ['conferenceDataVersion' => 1]);
-
         return $event;
     }
 
@@ -75,4 +76,25 @@ class GoogleClientService
         $calendarService = new Calendar(self::getClient());
         return $calendarService->events->patch('primary', $event->id, $event);
     }
+
+    public static function getClientDynamically($authMail)
+    {
+        $client = new Client();
+        $client->setAuthConfig(storage_path('google-calendar.json')); // Ensure this path is correct
+        $client->addScope(Calendar::CALENDAR);
+        $client->setSubject($authMail); // Ensure authMail is valid only if using domain-wide delegation
+    
+        if ($client->isAccessTokenExpired()) {
+            // Refresh the token or handle expiration
+            $refreshToken = $client->getRefreshToken();
+            if ($refreshToken) {
+                $client->fetchAccessTokenWithRefreshToken($refreshToken);
+            } else {
+                throw new \Exception('Token has expired and cannot be refreshed.');
+            }
+        }
+    
+        return $client;
+    }
+    
 }

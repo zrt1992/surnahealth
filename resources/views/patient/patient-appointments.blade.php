@@ -211,20 +211,21 @@
 								<div class="tab-pane fade show active" id="pills-upcoming" role="tabpanel" aria-labelledby="pills-upcoming-tab">
 									<!-- Appointment List -->
 									<div class="appointment-wrap">
+										@foreach ($data as $appointment)
 										<ul>
 											<li>
 												<div class="patinet-information">
 													<a href="{{url('patient-upcoming-appointment')}}">
-														<img src="{{URL::asset('/assets/img/doctors/doctor-thumb-21.jpg')}}" alt="User Image">
+														<img src="{{$appointment->doctor->profile_image ??  URL::asset('/assets/img/services-six-1.png') }}" alt="User Image">
 													</a>
 													<div class="patient-info">
-														<p>#Apt0001</p>
-														<h6><a href="{{url('patient-upcoming-appointment')}}">Dr Edalin</a></h6>
+														<p>#Apt{{ str_pad($appointment->id, 4, '0', STR_PAD_LEFT) }}</p>
+														<h6><a href="{{url('patient-upcoming-appointment')}}">Dr {{ $appointment->doctor->name }}</a><span class="badge new-tag">New</span></h6>
 													</div>
 												</div>
 											</li>
 											<li class="appointment-info">
-												<p><i class="fa-solid fa-clock"></i>11 Nov 2024 10.45 AM</p>
+												<p><i class="fa-solid fa-clock"></i>{{ \Carbon\Carbon::parse($appointment->start_date)->format('d M Y h:i A') }}</p>
 												<ul class="d-flex apponitment-types">
 													<li>General Visit</li>
 													<li>Video Call</li>
@@ -232,8 +233,8 @@
 											</li>
 											<li class="mail-info-patient">
 												<ul>
-													<li><i class="fa-solid fa-envelope"></i>edalin@example.com</li>
-													<li><i class="fa-solid fa-phone"></i>+1 504 368 6874</li>
+													<li><i class="fa-solid fa-envelope"></i>{{ $appointment->user->email }}</li>
+													<li><i class="fa-solid fa-phone"></i>{{ $appointment->user->phone ?? ' -- ' }}</li>
 												</ul>
 											</li>
 											<li class="appointment-action">
@@ -245,352 +246,18 @@
 														<a href="#"><i class="fa-solid fa-comments"></i></a>
 													</li>
 													<li>
-														<a href="#"><i class="fa-solid fa-xmark"></i></a>
+														<a href="{{route('appointments-remove',$appointment->id)}}"><i class="fa-solid fa-xmark"></i></a>
 													</li>
 												</ul>
 											</li>
 											<li class="appointment-detail-btn">
-												<a href="#" class="start-link"><i class="fa-solid fa-calendar-check me-1"></i>Attend</a>
-											</li>
-										</ul>
-									</div>
-									<!-- /Appointment List -->
-
-									<!-- Appointment List -->
-									<div class="appointment-wrap">
-										<ul>
-											<li>
-												<div class="patinet-information">
-													<a href="{{url('patient-upcoming-appointment')}}">
-														<img src="{{URL::asset('/assets/img/doctors/doctor-thumb-13.jpg')}}" alt="User Image">
-													</a>
-													<div class="patient-info">
-														<p>#Apt0002</p>
-														<h6><a href="{{url('patient-upcoming-appointment')}}">Dr.Shanta</a><span class="badge new-tag">New</span></h6>
-													</div>
-												</div>
-											</li>
-											<li class="appointment-info">
-												<p><i class="fa-solid fa-clock"></i>05 Nov 2024 11.50 AM</p>
-												<ul class="d-flex apponitment-types">
-													<li>General Visit</li>
-													<li>Audio Call</li>
-												</ul>
 												
-											</li>
-											<li class="mail-info-patient">
-												<ul>
-													<li><i class="fa-solid fa-envelope"></i>shanta@example.com</li>
-													<li><i class="fa-solid fa-phone"></i>+1 832 891 8403</li>
-												</ul>
-											</li>
-											<li class="appointment-action">
-												<ul>
-													<li>
-														<a href="{{url('patient-upcoming-appointment')}}"><i class="fa-solid fa-eye"></i></a>
-													</li>
-													<li>
-														<a href="#"><i class="fa-solid fa-comments"></i></a>
-													</li>
-													<li>
-														<a href="#"><i class="fa-solid fa-xmark"></i></a>
-													</li>
-												</ul>
-											</li>
-											<li class="appointment-detail-btn">
-												<a href="#" class="start-link"><i class="fa-solid fa-calendar-check me-1"></i>Attend</a>
+												<a href="{{ $appointment->google_meet_link }}" class="start-link" target="_blank"><i class="fa-solid fa-calendar-check me-1"></i>Attend</a>
 											</li>
 										</ul>
+										@endforeach
+										
 									</div>
-									<!-- /Appointment List -->
-
-									<!-- Appointment List -->
-									<div class="appointment-wrap">
-										<ul>
-											<li>
-												<div class="patinet-information">
-													<a href="{{url('patient-upcoming-appointment')}}">
-														<img src="{{URL::asset('/assets/img/doctors/doctor-thumb-14.jpg')}}" alt="User Image">
-													</a>
-													<div class="patient-info">
-														<p>#Apt0003</p>
-														<h6><a href="{{url('patient-upcoming-appointment')}}">Dr.John</a></h6>
-													</div>
-												</div>
-											</li>
-											<li class="appointment-info">
-												<p><i class="fa-solid fa-clock"></i>27 Oct 2024 09.30 AM</p>
-												<ul class="d-flex apponitment-types">
-													<li>General Visit</li>
-													<li>Video Call</li>
-												</ul>
-												
-											</li>
-											<li class="mail-info-patient">
-												<ul>
-													<li><i class="fa-solid fa-envelope"></i>john@example.com</li>
-													<li><i class="fa-solid fa-phone"></i>+1 749 104 6291</li>
-												</ul>
-											</li>
-											<li class="appointment-action">
-												<ul>
-													<li>
-														<a href="{{url('patient-upcoming-appointment')}}"><i class="fa-solid fa-eye"></i></a>
-													</li>
-													<li>
-														<a href="#"><i class="fa-solid fa-comments"></i></a>
-													</li>
-													<li>
-														<a href="#"><i class="fa-solid fa-xmark"></i></a>
-													</li>
-												</ul>
-											</li>
-											<li class="appointment-detail-btn">
-												<a href="#" class="start-link"><i class="fa-solid fa-calendar-check me-1"></i>Attend</a>
-											</li>
-										</ul>
-									</div>
-									<!-- /Appointment List -->
-
-									<!-- Appointment List -->
-									<div class="appointment-wrap">
-										<ul>
-											<li>
-												<div class="patinet-information">
-													<a href="{{url('patient-upcoming-appointment')}}">
-														<img src="{{URL::asset('/assets/img/doctors/doctor-thumb-15.jpg')}}" alt="User Image">
-													</a>
-													<div class="patient-info">
-														<p>#Apt0004</p>
-														<h6><a href="{{url('patient-upcoming-appointment')}}">Dr.Susan</a></h6>
-													</div>
-												</div>
-											</li>
-											<li class="appointment-info">
-												<p><i class="fa-solid fa-clock"></i>18 Oct 2024 12.20 PM</p>
-												<ul class="d-flex apponitment-types">
-													<li>General Visit</li>
-													<li>Direct Visit</li>
-												</ul>
-												
-											</li>
-											<li class="mail-info-patient">
-												<ul>
-													<li><i class="fa-solid fa-envelope"></i>susan@example.com</li>
-													<li><i class="fa-solid fa-phone"></i>+1 584 920 7183</li>
-												</ul>
-											</li>
-											<li class="appointment-action">
-												<ul>
-													<li>
-														<a href="{{url('patient-upcoming-appointment')}}"><i class="fa-solid fa-eye"></i></a>
-													</li>
-													<li>
-														<a href="#"><i class="fa-solid fa-comments"></i></a>
-													</li>
-													<li>
-														<a href="#"><i class="fa-solid fa-xmark"></i></a>
-													</li>
-												</ul>
-											</li>
-											<li class="appointment-detail-btn">
-												<a href="#" class="start-link"><i class="fa-solid fa-calendar-check me-1"></i>Attend</a>
-											</li>
-										</ul>
-									</div>
-									<!-- /Appointment List -->
-
-									<!-- Appointment List -->
-									<div class="appointment-wrap">
-										<ul>
-											<li>
-												<div class="patinet-information">
-													<a href="{{url('patient-upcoming-appointment')}}">
-														<img src="{{URL::asset('/assets/img/doctors/doctor-thumb-16.jpg')}}" alt="User Image">
-													</a>
-													<div class="patient-info">
-														<p>#Apt0005</p>
-														<h6><a href="{{url('patient-upcoming-appointment')}}">Dr.Juliet</a></h6>
-													</div>
-												</div>
-											</li>
-											<li class="appointment-info">
-												<p><i class="fa-solid fa-clock"></i>10 Oct 2024 11.30 AM</p>
-												<ul class="d-flex apponitment-types">
-													<li>General Visit</li>
-													<li>Chat</li>
-												</ul>
-												
-											</li>
-											<li class="mail-info-patient">
-												<ul>
-													<li><i class="fa-solid fa-envelope"></i>juliet@example.com</li>
-													<li><i class="fa-solid fa-phone"></i>+1 059 327 6729</li>
-												</ul>
-											</li>
-											<li class="appointment-action">
-												<ul>
-													<li>
-														<a href="{{url('patient-upcoming-appointment')}}"><i class="fa-solid fa-eye"></i></a>
-													</li>
-													<li>
-														<a href="#"><i class="fa-solid fa-comments"></i></a>
-													</li>
-													<li>
-														<a href="#"><i class="fa-solid fa-xmark"></i></a>
-													</li>
-												</ul>
-											</li>
-											<li class="appointment-detail-btn">
-												<a href="#" class="start-link"><i class="fa-solid fa-calendar-check me-1"></i>Attend</a>
-											</li>
-										</ul>
-									</div>
-									<!-- /Appointment List -->
-
-									<!-- Appointment List -->
-									<div class="appointment-wrap">
-										<ul>
-											<li>
-												<div class="patinet-information">
-													<a href="{{url('patient-upcoming-appointment')}}">
-														<img src="{{URL::asset('/assets/img/doctors/doctor-thumb-17.jpg')}}" alt="User Image">
-													</a>
-													<div class="patient-info">
-														<p>#Apt0006</p>
-														<h6><a href="{{url('patient-upcoming-appointment')}}">Dr.Joseph</a></h6>
-													</div>
-												</div>
-											</li>
-											<li class="appointment-info">
-												<p><i class="fa-solid fa-clock"></i>26 Sep 2024 10.20 AM</p>
-												<ul class="d-flex apponitment-types">
-													<li>General Visit</li>
-													<li>Chat</li>
-												</ul>
-												
-											</li>
-											<li class="mail-info-patient">
-												<ul>
-													<li><i class="fa-solid fa-envelope"></i>joseph@example.com</li>
-													<li><i class="fa-solid fa-phone"></i>+1 278 402 7103</li>
-												</ul>
-											</li>
-											<li class="appointment-action">
-												<ul>
-													<li>
-														<a href="{{url('patient-upcoming-appointment')}}"><i class="fa-solid fa-eye"></i></a>
-													</li>
-													<li>
-														<a href="#"><i class="fa-solid fa-comments"></i></a>
-													</li>
-													<li>
-														<a href="#"><i class="fa-solid fa-xmark"></i></a>
-													</li>
-												</ul>
-											</li>
-											<li class="appointment-detail-btn">
-												<a href="#" class="start-link"><i class="fa-solid fa-calendar-check me-1"></i>Attend</a>
-											</li>
-										</ul>
-									</div>
-									<!-- /Appointment List -->
-
-									<!-- Appointment List -->
-									<div class="appointment-wrap">
-										<ul>
-											<li>
-												<div class="patinet-information">
-													<a href="{{url('patient-upcoming-appointment')}}">
-														<img src="{{URL::asset('/assets/img/doctors/doctor-thumb-18.jpg')}}" alt="User Image">
-													</a>
-													<div class="patient-info">
-														<p>#Apt0007</p>
-														<h6><a href="{{url('patient-upcoming-appointment')}}">Dr.Victoria</a></h6>
-													</div>
-												</div>
-											</li>
-											<li class="appointment-info">
-												<p><i class="fa-solid fa-clock"></i>14 Sep 2024 08.10 AM</p>
-												<ul class="d-flex apponitment-types">
-													<li>General Visit</li>
-													<li>Chat</li>
-												</ul>
-												
-											</li>
-											<li class="mail-info-patient">
-												<ul>
-													<li><i class="fa-solid fa-envelope"></i>victoria@example.com</li>
-													<li><i class="fa-solid fa-phone"></i>+1 638 278 0249</li>
-												</ul>
-											</li>
-											<li class="appointment-action">
-												<ul>
-													<li>
-														<a href="{{url('patient-upcoming-appointment')}}"><i class="fa-solid fa-eye"></i></a>
-													</li>
-													<li>
-														<a href="#"><i class="fa-solid fa-comments"></i></a>
-													</li>
-													<li>
-														<a href="#"><i class="fa-solid fa-xmark"></i></a>
-													</li>
-												</ul>
-											</li>
-											<li class="appointment-detail-btn">
-												<a href="#" class="start-link"><i class="fa-solid fa-calendar-check me-1"></i>Attend</a>
-											</li>
-										</ul>
-									</div>
-									<!-- /Appointment List -->
-
-									<!-- Appointment List -->
-									<div class="appointment-wrap">
-										<ul>
-											<li>
-												<div class="patinet-information">
-													<a href="{{url('patient-upcoming-appointment')}}">
-														<img src="{{URL::asset('/assets/img/doctors/doctor-thumb-19.jpg')}}" alt="User Image">
-													</a>
-													<div class="patient-info">
-														<p>#Apt0008</p>
-														<h6><a href="{{url('patient-upcoming-appointment')}}">Dr.Benjamin</a></h6>
-													</div>
-												</div>
-											</li>
-											<li class="appointment-info">
-												<p><i class="fa-solid fa-clock"></i>03 Sep 2024 06.00 PM</p>
-												<ul class="d-flex apponitment-types">
-													<li>General Visit</li>
-													<li>Video Call</li>
-												</ul>
-												
-											</li>
-											<li class="mail-info-patient">
-												<ul>
-													<li><i class="fa-solid fa-envelope"></i>benjamin@example.com</li>
-													<li><i class="fa-solid fa-phone"></i>+1 261 039 1873</li>
-												</ul>
-											</li>
-											<li class="appointment-action">
-												<ul>
-													<li>
-														<a href="{{url('patient-upcoming-appointment')}}"><i class="fa-solid fa-eye"></i></a>
-													</li>
-													<li>
-														<a href="#"><i class="fa-solid fa-comments"></i></a>
-													</li>
-													<li>
-														<a href="#"><i class="fa-solid fa-xmark"></i></a>
-													</li>
-												</ul>
-											</li>
-											<li class="appointment-detail-btn">
-												<a href="#" class="start-link"><i class="fa-solid fa-calendar-check me-1"></i>Attend</a>
-											</li>
-										</ul>
-									</div>
-									<!-- /Appointment List -->
 
 									<!-- Pagination -->
 									<div class="pagination dashboard-pagination">

@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Interfaces\BookingRepositoryInterface;
+use App\Models\Appointment;
 use App\Models\AppointmentRequests;
 use App\Models\User;
 
@@ -85,4 +86,11 @@ class BookingRepository implements BookingRepositoryInterface
         }
         return  $error = 'Not Found';
     }
+
+    public function getPatientAppointments()
+    {
+        return Appointment::where('user_id',getAuthUser()->id)->with('doctor','user')->get();
+    }
+
+
 }
