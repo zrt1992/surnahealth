@@ -858,154 +858,165 @@
 						<i class="fa-solid fa-xmark"></i>
 					</button>
 				</div>
-				<form action="#">					
-					<div class="add-dependent">
-						<div class="modal-body">
-							<div class="row">
-								<div class="col-md-12">
-									<div class="form-wrap pb-0">
-										<div class="change-avatar img-upload">
-											<div class="profile-img">
-												<i class="fa-solid fa-file-image"></i>
-											</div>
-											<div class="upload-img">
-												<h5>Profile Image</h5>
-												<div class="imgs-load d-flex align-items-center">
-													<div class="change-photo">
-														Upload New 
-														<input type="file" class="upload">
-													</div>
-													<a href="#" class="upload-remove">Remove</a>
-												</div>
-												<p>Your Image should Below 4 MB, Accepted format jpg,png,svg</p>
-											</div>			
-										</div>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-wrap">
-										<label class="col-form-label">Name</label>
-										<input type="text" class="form-control">
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-wrap">
-										<label class="col-form-label">Relationship</label>
-										<input type="text" class="form-control">
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-wrap">
-										<label class="col-form-label">DOB <span class="text-danger">*</span></label>
-										<div class="form-icon">
-											<input type="text" class="form-control datetimepicker">
-											<span class="icon"><i class="fa-regular fa-calendar-days"></i></span>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-wrap">
-										<label class="col-form-label">Select Gender</label>
-										<select class="select">
-											<option>Select</option>
-											<option>Male</option>
-											<option>Female</option>
-										</select>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="modal-footer">					
-						<div class="modal-btn text-end">
-							<a href="#" class="btn btn-gray" data-bs-toggle="modal" data-bs-dismiss="modal">Cancel</a>
-							<button type="submit" class="btn btn-primary prime-btn">Save Changes</button>
-						</div>
-					</div>
-				</form>
+				<form action="{{ route('dependents.store') }}" method="POST" enctype="multipart/form-data">	
+                    @csrf				
+                    <div class="add-dependent">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-wrap pb-0">
+                                        <div class="change-avatar img-upload">
+                                            <div class="profile-img">
+                                                <i class="fa-solid fa-file-image"></i>
+                                            </div>
+                                            <div class="upload-img">
+                                                <h5>Profile Image</h5>
+                                                <div class="imgs-load d-flex align-items-center">
+                                                    <div class="change-photo">
+                                                        Upload New 
+                                                        <input type="file" class="upload" name="profile_image" id="profileImageInput">
+                                                    </div>
+                                                    <a href="#" class="upload-remove">Remove</a>
+                                                </div>
+                                                <p>Your image should be below 4 MB, accepted formats: jpg, png, svg</p>
+                                            </div>			
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-wrap">
+                                        <label class="col-form-label">Name</label>
+                                        <input type="text" class="form-control" name="name" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-wrap">
+                                        <label class="col-form-label">Relationship</label>
+                                        <input type="text" class="form-control" name="relationship" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-wrap">
+                                        <label class="col-form-label">DOB <span class="text-danger">*</span></label>
+                                        <div class="form-icon">
+                                            <input type="text" class="form-control datetimepicker" name="dob" required>
+                                            <span class="icon"><i class="fa-regular fa-calendar-days"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-wrap">
+                                        <label class="col-form-label">Select Gender</label>
+                                        <select class="select" name="gender" required>
+                                            <option value="">Select</option>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">					
+                        <div class="modal-btn text-end">
+                            <a href="#" class="btn btn-gray" data-bs-toggle="modal" data-bs-dismiss="modal">Cancel</a>
+                            <button type="submit" class="btn btn-primary prime-btn">Save Changes</button>
+                        </div>
+                    </div>
+                </form>
+                
 			</div>
 		</div>
 	</div>
 	<!-- /Add Dependent Modal-->
 
 	<!-- Edit Dependent Modal-->
-	<div class="modal fade custom-modals" id="edit_dependent">
-		<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h3 class="modal-title">Edit Dependant</h3>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-						<i class="fa-solid fa-xmark"></i>
-					</button>
-				</div>
-				<form action="#">					
-					<div class="add-dependent">
-						<div class="modal-body">
-							<div class="row">
-								<div class="col-md-12">
-									<div class="form-wrap pb-0">
-										<div class="change-avatar img-upload">
-											<div class="profile-img">
-												<i class="fa-solid fa-file-image"></i>
-											</div>
-											<div class="upload-img">
-												<h5>Profile Image</h5>
-												<div class="imgs-load d-flex align-items-center">
-													<div class="change-photo">
-														Upload New 
-														<input type="file" class="upload">
-													</div>
-													<a href="#" class="upload-remove">Remove</a>
-												</div>
-												<p>Your Image should Below 4 MB, Accepted format jpg,png,svg</p>
-											</div>			
-										</div>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-wrap">
-										<label class="col-form-label">Name</label>
-										<input type="text" class="form-control" value="Laura">
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-wrap">
-										<label class="col-form-label">Relationship</label>
-										<input type="text" class="form-control" value="Mother">
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-wrap">
-										<label class="col-form-label">DOB <span class="text-danger">*</span></label>
-										<div class="form-icon">
-											<input type="text" class="form-control datetimepicker" value="08/01/1960">
-											<span class="icon"><i class="fa-regular fa-calendar-days"></i></span>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-wrap">
-										<label class="col-form-label">Select Gender</label>
-										<select class="select">
-											<option>Select</option>
-											<option>Male</option>
-											<option selected>Female</option>
-										</select>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="modal-footer">					
-						<div class="modal-btn text-end">
-							<a href="#" class="btn btn-gray" data-bs-toggle="modal" data-bs-dismiss="modal">Cancel</a>
-							<button type="submit" class="btn btn-primary prime-btn">Save Changes</button>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+	<div class="modal fade custom-modals" id="edit_dependent" tabindex="-1" aria-labelledby="edit_dependent_label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="edit_dependent_label">Edit Dependant</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <form action="{{ route('dependents.update', ':id') }}" method="POST" enctype="multipart/form-data" id="edit_dependent_form">
+                    @csrf
+                    @method('PUT')
+    
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-wrap pb-0">
+                                    <div class="change-avatar img-upload">
+                                        <div class="profile-img">
+                                            <i class="fa-solid fa-file-image"></i>
+                                        </div>
+                                        <div class="upload-img">
+                                            <h5>Profile Image</h5>
+                                            <div class="imgs-load d-flex align-items-center">
+                                                <div class="change-photo">
+                                                    Upload New
+                                                    <input type="file" class="upload" name="profile_image">
+                                                </div>
+                                                <a href="#" class="upload-remove">Remove</a>
+                                            </div>
+                                            <p>Your Image should be below 4 MB, Accepted formats: jpg, png, svg</p>
+                                        </div>            
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="col-md-6">
+                                <div class="form-wrap">
+                                    <label class="col-form-label">Name</label>
+                                    <input type="text" class="form-control" name="name" id="dependant_name" value="">
+                                </div>
+                            </div>
+    
+                            <div class="col-md-6">
+                                <div class="form-wrap">
+                                    <label class="col-form-label">Relationship</label>
+                                    <input type="text" class="form-control" name="relationship" id="dependant_relationship" value="">
+                                </div>
+                            </div>
+    
+                            <div class="col-md-6">
+                                <div class="form-wrap">
+                                    <label class="col-form-label">DOB <span class="text-danger">*</span></label>
+                                    <div class="form-icon">
+                                        <input type="text" class="form-control datetimepicker" name="dob" id="dependant_dob" value="">
+                                        <span class="icon"><i class="fa-regular fa-calendar-days"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="col-md-6">
+                                <div class="form-wrap">
+                                    <label class="col-form-label">Select Gender</label>
+                                    <select class="select" name="gender" id="dependant_gender">
+                                        <option value="">Select</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="modal-footer">                    
+                        <div class="modal-btn text-end">
+                            <a href="#" class="btn btn-gray" data-bs-toggle="modal" data-bs-dismiss="modal">Cancel</a>
+                            <button type="submit" class="btn btn-primary prime-btn">Save Changes</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
 	<!-- /Edit Dependent Modal-->
 @endif
 @if (Route::is(['doctor-blog']))
@@ -1164,39 +1175,40 @@
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
-            <form action="medical-details">
+            <form action="{{ route('medical-detail.store') }}" method="POST">
+                @csrf
                 <div class="modal-body">
                     <div class="timing-modal">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="input-block input-block-new">
                                     <label class="form-label">BMI</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" name="bmi" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="input-block input-block-new">
                                     <label class="form-label">Heart Rate</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" name="heart_rate" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="input-block input-block-new">
                                     <label class="form-label">Weight</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" name="weight" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="input-block input-block-new">
                                     <label class="form-label">FBC</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" name="fbc" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="input-block input-block-new">
                                     <label class="col-form-label">End Date <span class="text-danger">*</span></label>
                                     <div class="form-icon position-relative">
-                                        <input type="text" class="form-control datetimepicker">
+                                        <input type="text" name="end_date" class="form-control datetimepicker">
                                         <span class="icon cal-form-icon"><i class="fa-regular fa-calendar-days"></i></span>
                                     </div>
                                 </div>	
@@ -1359,48 +1371,51 @@
 							<i class="fa-solid fa-xmark"></i>
 						</button>
 					</div>
-					<form>					
+                    <form action="{{ route('medical-record.store') }}" method="POST" enctype="multipart/form-data">	
+                        @csrf						
 						<div class="modal-body">
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-wrap">
 										<label class="col-form-label">Title</label>
-										<input type="text" class="form-control">
+										<input type="text" name="title" class="form-control">
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-wrap">
 										<label class="col-form-label">Select Patient</label>
-										<select class="select">
+										<select class="select" name="patient">
 											<option>Select Patient</option>
-											<option>Adrian Marshall</option>
-											<option>Kelly Stevens</option>
-											<option>Catherine Gracey</option>
+											<option value="Adrian Marshall">Adrian Marshall</option>
+											<option value="Kelly Stevens">Kelly Stevens</option>
+											<option value="Catherine Gracey">Catherine Gracey</option>
 										</select>
 									</div>
 								</div>
-								<div class="col-md-6">
+                                <div class="col-md-6">
 									<div class="form-wrap">
 										<label class="col-form-label">Start Date <span class="text-danger">*</span></label>
-										<input type="text" class="form-control datetimepicker">
+										<input type="text" name="start_date" class="form-control datetimepicker">
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-wrap">
 										<label class="col-form-label">Hospital Name</label>
-										<input type="text" class="form-control">
+										<input type="text" name="hospital_name" class="form-control">
 									</div>
 								</div>
 								<div class="col-md-12">
-									<label class="col-form-label">Symptoms <span class="text-danger">*</span></label>
-									<div class="input-block input-block-new">
-										<input class="input-tags form-control" id="inputBox" type="text" data-role="tagsinput" placeholder="Type New"  name="Label" value="Fever,Headache,Stomach Pain" >
-										<a href="#" class="input-text save-btn">Save</a>
-									</div>		
+									<div class="form-wrap">
+										<label class="col-form-label">Symptoms <span class="text-danger">*</span></label>
+										<div class="input-block input-block-new mb-0">
+											<input class="input-tags form-control" id="inputBox3" type="text" data-role="tagsinput" placeholder="Type New"  name="symptoms" value="Fever, Headache" >
+											<a href="#" class="input-text save-btn">Save</a>
+										</div>
+									</div>
 									<div class="form-wrap mb-0">
 										<label class="col-form-label">Report</label>
 										<div class="upload-file">
-											<input type="file">
+											<input type="file" name="report">
 											<p>Drop files or Click to upload</p>
 										</div>
 									</div>
@@ -1420,73 +1435,76 @@
 		<!-- /Add Medical Records Modal -->
 
         <!-- Edit Medical Records Modal -->
-		<div class="modal fade custom-modals" id="edit_medical_records">
-			<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h3 class="modal-title">Edit Medical Record</h3>
-						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-							<i class="fa-solid fa-xmark"></i>
-						</button>
-					</div>
-					<form>					
-						<div class="modal-body">
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-wrap">
-										<label class="col-form-label">Title</label>
-										<input type="text" class="form-control" value="Glucose Test V12">
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-wrap">
-										<label class="col-form-label">Select Patient</label>
-										<select class="select">
-											<option>Select Patient</option>
-											<option selected>Adrian Marshall</option>
-											<option>Kelly Stevens</option>
-											<option>Catherine Gracey</option>
-										</select>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-wrap">
-										<label class="col-form-label">Start Date <span class="text-danger">*</span></label>
-										<input type="text" class="form-control datetimepicker" value="23/04/2024">
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-wrap">
-										<label class="col-form-label">Hospital Name</label>
-										<input type="text" class="form-control" value="ENT Hospital">
-									</div>
-								</div>
-								<div class="col-md-12">
-									<label class="col-form-label">Symptoms <span class="text-danger">*</span></label>
-									<div class="input-block input-block-new">
-										<input class="input-tags form-control" id="inputBox" type="text" data-role="tagsinput" placeholder="Type New"  name="Label" value="Fever,Headache,Stomach Pain" >
-										<a href="#" class="input-text save-btn">Save</a>
-									</div>		
-									<div class="form-wrap mb-0">
-										<label class="col-form-label">Report</label>
-										<div class="upload-file">
-											<input type="file">
-											<p>Drop files or Click to upload</p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="modal-footer">					
-							<div class="modal-btn text-end">
-								<a href="#" class="btn btn-gray" data-bs-toggle="modal" data-bs-dismiss="modal">Cancel</a>
-								<button type="submit" class="btn btn-primary prime-btn">Save Changes</button>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
+		<div class="modal fade custom-modals" id="edit_medical_records" tabindex="-1" aria-labelledby="edit_medical_label" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Edit Medical Record</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                    <form id="edit_medical_records_form" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-wrap">
+                                        <label class="col-form-label">Title</label>
+                                        <input type="text" class="form-control" id="record_title" name="title" placeholder="Title">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-wrap">
+                                        <label class="col-form-label">Select Patient</label>
+                                        <select class="form-control" id="record_patient" name="patient">
+                                            <option>Select Patient</option>
+                                            <option>Adrian Marshall</option>
+                                            <option>Kelly Stevens</option>
+                                            <option>Catherine Gracey</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-wrap">
+                                        <label class="col-form-label">Start Date <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control datetimepicker" id="record_start_date" name="start_date" placeholder="Start Date">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-wrap">
+                                        <label class="col-form-label">Hospital Name</label>
+                                        <input type="text" class="form-control" id="record_hospital_name" name="hospital_name" placeholder="Hospital Name">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="col-form-label">Symptoms <span class="text-danger">*</span></label>
+                                    <div class="input-block input-block-new">
+                                        <input class="input-tags form-control" id="record_symptoms" name="symptoms" type="text" data-role="tagsinput" placeholder="Type New">
+                                        <a href="#" class="input-text save-btn">Save</a>
+                                    </div>
+                                    <div class="form-wrap mb-0">
+                                        <label class="col-form-label">Report</label>
+                                        <div class="upload-file">
+                                            <input type="file" id="record_report" name="report">
+                                            <p>Drop files or Click to upload</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="modal-btn text-end">
+                                <a href="#" class="btn btn-gray" data-bs-dismiss="modal">Cancel</a>
+                                <button type="submit" class="btn btn-primary prime-btn">Save Changes</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
 		<!-- /Edit Medical Records Modal -->
 
 		<!--View Prescription -->
@@ -2322,50 +2340,51 @@
 							<i class="fa-solid fa-xmark"></i>
 						</button>
 					</div>
-					<form>					
+                    <form action="{{ route('medical-record.store') }}" method="POST" enctype="multipart/form-data">	
+                        @csrf					
 						<div class="modal-body">
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-wrap">
 										<label class="col-form-label">Title</label>
-										<input type="text" class="form-control">
+										<input type="text" name="title" class="form-control">
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-wrap">
 										<label class="col-form-label">Select Patient</label>
-										<select class="select">
-											<option>Select Patient</option>
-											<option>Adrian Marshall</option>
-											<option>Kelly Stevens</option>
-											<option>Catherine Gracey</option>
+										<select class="select" name="patient_id">
+											<option value="1">Select Patient</option>
+											<option value="2">Adrian Marshall</option>
+											<option value="3">Kelly Stevens</option>
+											<option value="4">Catherine Gracey</option>
 										</select>
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-wrap">
 										<label class="col-form-label">Start Date <span class="text-danger">*</span></label>
-										<input type="text" class="form-control datetimepicker">
+										<input type="text" name="start_date" class="form-control datetimepicker">
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-wrap">
 										<label class="col-form-label">Hospital Name</label>
-										<input type="text" class="form-control">
+										<input type="text" name="hospital_name" class="form-control">
 									</div>
 								</div>
 								<div class="col-md-12">
 									<div class="form-wrap">
 										<label class="col-form-label">Symptoms <span class="text-danger">*</span></label>
 										<div class="input-block input-block-new mb-0">
-											<input class="input-tags form-control" id="inputBox3" type="text" data-role="tagsinput" placeholder="Type New"  name="Label" value="Fever, Headache" >
+											<input class="input-tags form-control" id="inputBox3" type="text" data-role="tagsinput" placeholder="Type New"  name="symptoms" value="Fever, Headache" >
 											<a href="#" class="input-text save-btn">Save</a>
 										</div>
 									</div>
 									<div class="form-wrap mb-0">
 										<label class="col-form-label">Report</label>
 										<div class="upload-file">
-											<input type="file">
+											<input type="file" name="report">
 											<p>Drop files or Click to upload</p>
 										</div>
 									</div>

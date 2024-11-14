@@ -8,8 +8,11 @@ use App\Http\Controllers\Doctor\DoctorController;
 use App\Http\Controllers\GoogleMeetController;
 use App\Http\Controllers\Patient\BookingController;
 use App\Http\Controllers\Patient\DashboardController as PatientDashboard;
+use App\Http\Controllers\Patient\DependantController;
 use App\Http\Controllers\Patient\FavoFavouritesController;
 use App\Http\Controllers\Patient\FavouritesController;
+use App\Http\Controllers\Patient\MedicalDetailController;
+use App\Http\Controllers\Patient\MedicalRecordController;
 use App\Http\Controllers\ProfileController;
 use App\Models\AvailableTimming;
 use App\Services\GoogleClientService;
@@ -17,17 +20,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-  //  dd(\Illuminate\Support\Facades\Auth::user()->getRoleNames()->first());
-//    dd(\Illuminate\Support\Facades\Auth::logout());
-//    dd(\Illuminate\Support\Facades\Auth::check());
-//    \Illuminate\Support\Facades\Session::flush();
+    //  dd(\Illuminate\Support\Facades\Auth::user()->getRoleNames()->first());
+    //    dd(\Illuminate\Support\Facades\Auth::logout());
+    //    dd(\Illuminate\Support\Facades\Auth::check());
+    //    \Illuminate\Support\Facades\Session::flush();
     return view('index');
 
     // dd(\Illuminate\Support\Facades\Auth::user());
 
     $client = new Google_Client();
-//The json file you got after creating the service account
-    putenv('GOOGLE_APPLICATION_CREDENTIALS='.storage_path('/service-account-credentials.json'));
+    //The json file you got after creating the service account
+    putenv('GOOGLE_APPLICATION_CREDENTIALS=' . storage_path('/service-account-credentials.json'));
     $client->useApplicationDefaultCredentials();
     $client->setApplicationName("test_calendar");
     $client->setScopes(Google_Service_Calendar::CALENDAR);
@@ -59,8 +62,8 @@ Route::get('/', function () {
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-//    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    //    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    //    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
@@ -71,21 +74,20 @@ Route::middleware('auth')->group(function () {
  * doctors dashboard authenticated routes
  */
 
- Route::middleware(['auth','role:doctor'])->prefix('doctor')->group(function(){
+Route::middleware(['auth', 'role:doctor'])->prefix('doctor')->group(function () {
 
-    Route::get('/dashboard',[DashboardController::class,'index'])->name('doctor-dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('doctor-dashboard');
+});
 
- });
 
 
- 
 /**
  * Patient dashboard authenticated routes
  */
 
- Route::middleware(['auth','role:patient'])->prefix('patient')->group(function(){
+Route::middleware(['auth', 'role:patient'])->prefix('patient')->group(function () {
 
-    Route::get('/dashboard',[PatientDashboard::class,'index'])->name('patient-dashboard');
+    Route::get('/dashboard', [PatientDashboard::class, 'index'])->name('patient-dashboard');
     Route::get('/patient-details', function () {
         return view('patient.patient-details');
     })->name('patient-details');
@@ -132,37 +134,35 @@ Route::middleware('auth')->group(function () {
         return view('patient.patient-signup');
     })->name('patient-signup');
 
-    Route::get('/medical-details', function () {
-        return view('medical-details');
-    })->name('medical-details');
+    Route::resource('medical-detail', MedicalDetailController::class);
+    Route::get('/medical-details', [MedicalDetailController::class, 'index'])->name('medical-details');
+    Route::get('/medical-details-remove/{id}', [MedicalDetailController::class, 'destroy'])->name('medical-details-remove');
+
 
     Route::get('/patient-invoices', function () {
         return view('patient.patient-invoices');
     })->name('patient-invoices');
+    Route::resource('medical-record', MedicalRecordController::class);
+    Route::get('/medical-records', [MedicalRecordController::class, 'index'])->name('medical-records');
+    Route::get('/medical-record-remove/{id}', [MedicalRecordController::class, 'destroy'])->name('medical-record-remove');
 
-    Route::get('/medical-records', function () {
-        return view('medical-records');
-    })->name('medical-records');
 
     Route::get('/add-dependent', function () {
         return view('add-dependent');
     })->name('add-dependent');
-    Route::get('/favourites',[FavouritesController::class,'index'])->name('favourites');
-    Route::get('/dependent', function () {
-        return view('dependent');
-    })->name('dependent');
+    Route::get('/favourites', [FavouritesController::class, 'index'])->name('favourites');
+    Route::get('/dependent', [DependantController::class, 'index'])->name('dependent');
+    Route::resource('dependents', DependantController::class);
 
     Route::get('/profile-settings', function () {
         return view('profile-settings');
     })->name('profile-settings');
-
- });
+});
 
 
 
 /*****************ADMIN ROUTES*******************/
-Route::middleware(['auth','role:admin'])->prefix('admin')->group(function () 
-{
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/index_admin', function () {
         return view('admin.index_admin');
     })->name('admin-dashboard');
@@ -768,7 +768,7 @@ Route::get('/callback', function (Request $request) {
 Route::get('/check-google-token', [GoogleMeetController::class, 'checkGoogleToken'])->name('check.google.token');
 
 Route::get('/schedule-meeting', [GoogleMeetController::class, 'showScheduleForm'])->name('show-schedule-form');
-Route::post('/google-meet/create',[GoogleMeetController::class, 'createMeeting'])->name('google.meet.create');
+Route::post('/google-meet/create', [GoogleMeetController::class, 'createMeeting'])->name('google.meet.create');
 
 
 
@@ -853,4 +853,4 @@ Route::post('/google-meet/create',[GoogleMeetController::class, 'createMeeting']
 
 // });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
