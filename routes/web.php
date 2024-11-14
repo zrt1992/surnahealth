@@ -1,10 +1,17 @@
 <?php
 
 use App\Http\Controllers\Doctor\AppointmentController;
+use App\Http\Controllers\Doctor\AvailableTimmingController;
 use App\Http\Controllers\Doctor\DashboardController;
+use App\Http\Controllers\Doctor\DoctorBookingController;
+use App\Http\Controllers\Doctor\DoctorController;
 use App\Http\Controllers\GoogleMeetController;
+use App\Http\Controllers\Patient\BookingController;
 use App\Http\Controllers\Patient\DashboardController as PatientDashboard;
+use App\Http\Controllers\Patient\FavoFavouritesController;
+use App\Http\Controllers\Patient\FavouritesController;
 use App\Http\Controllers\ProfileController;
+use App\Models\AvailableTimming;
 use App\Services\GoogleClientService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -140,11 +147,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/add-dependent', function () {
         return view('add-dependent');
     })->name('add-dependent');
-
-    Route::get('/favourites', function () {
-        return view('favourites');
-    })->name('favourites');
-
+    Route::get('/favourites',[FavouritesController::class,'index'])->name('favourites');
     Route::get('/dependent', function () {
         return view('dependent');
     })->name('dependent');
@@ -349,14 +352,16 @@ Route::get('/add-billing', function () {
 Route::get('/add-prescription', function () {
     return view('add-prescription');
 })->name('add-prescription');
-// Route::get('/appointments', function () {
-//     return view('appointments');
-// })->name('appointments');
-Route::get('/appointments', [AppointmentController::class, 'index'])->name('appointments');
 
-Route::get('/available-timings', function () {
-    return view('available-timings');
-})->name('available-timings');
+Route::get('/appointments', [AppointmentController::class, 'index'])->name('appointments');
+Route::get('/appointments-remove/{id}', [AppointmentController::class, 'destroy'])->name('appointments-remove');
+
+
+Route::get('/available-timings', [AvailableTimmingController::class, 'index'])->name('available-timings');
+Route::post('/available-timings-add', [AvailableTimmingController::class, 'store'])->name('available-timings-add');
+
+// Route::resource('/available-timings', AvailableTimmingController::class);
+
 Route::get('/blank-page', function () {
     return view('blank-page');
 })->name('blank-page');
@@ -378,9 +383,13 @@ Route::get('/booking-success-one', function () {
 Route::get('/booking-success', function () {
     return view('booking-success');
 })->name('booking-success');
-Route::get('/booking', function () {
+Route::get('/booking/{doctor_id}', function () {
     return view('booking');
 })->name('booking');
+Route::get('/booking/{doctor_id}', [BookingController::class, 'showBookingForm'])->name('booking');
+Route::resource('/book-appointment', BookingController::class);
+
+
 Route::get('/calendar', function () {
     return view('calendar');
 })->name('calendar');
@@ -432,10 +441,7 @@ Route::get('/doctor-change-password', function () {
 Route::get('/doctor-pending-blog', function () {
     return view('doctor-pending-blog');
 })->name('doctor-pending-blog');
-
-Route::get('/doctor-profile-settings', function () {
-    return view('doctor-profile-settings');
-})->name('doctor-profile-settings');
+Route::resource('/doctor-profile-settings', DoctorController::class);
 Route::get('/doctor-profile', function () {
     return view('doctor-profile');
 })->name('doctor-profile');
@@ -667,9 +673,9 @@ Route::get('/video-call', function () {
 Route::get('/voice-call', function () {
     return view('voice-call');
 })->name('voice-call');
-Route::get('/doctor-request', function () {
-    return view('doctor-request');
-})->name('doctor-request');
+Route::resource('/doctor-request', DoctorBookingController::class);
+Route::post('/doctor-request/accept/{id}', [DoctorBookingController::class, 'accept'])->name('doctor-request.accept');
+Route::post('/doctor-request/reject', [DoctorBookingController::class, 'reject'])->name('doctor-request.reject');
 Route::get('/doctor-appointment-start', function () {
     return view('doctor-appointment-start');
 })->name('doctor-appointment-start');
@@ -712,9 +718,7 @@ Route::get('/doctor-insurance-settings', function () {
 Route::get('/doctor-cancelled-appointment', function () {
     return view('doctor-cancelled-appointment');
 })->name('doctor-cancelled-appointment');
-Route::get('/patient-appointments', function () {
-    return view('patient-appointments');
-})->name('patient-appointments');
+Route::get('/patient-appointments', [BookingController::class, 'getPatientAppointments'])->name('patient-appointments');
 Route::get('/patient-appointment-details', function () {
     return view('patient-appointment-details');
 })->name('patient-appointment-details');
@@ -745,6 +749,7 @@ Route::get('/doctor-profile-2', function () {
 Route::get('/google-auth', function () {
     $client = GoogleClientService::getClient();
     $authUrl = $client->createAuthUrl();
+
     return redirect($authUrl);
 })->name('google.auth');
 
@@ -757,8 +762,10 @@ Route::get('/callback', function (Request $request) {
         session(['google_access_token' => $client->getAccessToken()]);
     }
 
-    return redirect()->route('doctor-profile-settings');
+    return redirect()->route('doctor-profile-settings.index');
 })->name('google.callback');
+
+Route::get('/check-google-token', [GoogleMeetController::class, 'checkGoogleToken'])->name('check.google.token');
 
 Route::get('/schedule-meeting', [GoogleMeetController::class, 'showScheduleForm'])->name('show-schedule-form');
 Route::post('/google-meet/create',[GoogleMeetController::class, 'createMeeting'])->name('google.meet.create');

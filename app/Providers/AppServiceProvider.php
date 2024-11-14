@@ -2,6 +2,14 @@
 
 namespace App\Providers;
 
+use App\Interfaces\AvailableTimmingRepositoryInterface;
+use App\Interfaces\BookingRepositoryInterface;
+use App\Interfaces\DoctorRepositoryInterface;
+use App\Models\User;
+use App\Observers\DoctorObserver;
+use App\Repositories\AvailableTimmingRepository;
+use App\Repositories\BookingRepository;
+use App\Repositories\DoctorRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Auth\Middleware\RedirectIfAuthenticated;
@@ -13,7 +21,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        User::observe(DoctorObserver::class);
+
+        $this->app->bind(DoctorRepositoryInterface::class, DoctorRepository::class);
+        $this->app->bind(AvailableTimmingRepositoryInterface::class, AvailableTimmingRepository::class);
+        $this->app->bind(BookingRepositoryInterface::class, BookingRepository::class);
+
     }
 
     /**
@@ -21,6 +34,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        User::observe(DoctorObserver::class);
         RedirectIfAuthenticated::redirectUsing(function () {
 //            dd(Auth::check());
 //            Auth::logout();

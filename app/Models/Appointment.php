@@ -19,6 +19,18 @@ class Appointment extends Model
         'end_date',
         'email',
         'google_meet_link',
-        'doctor_id', 
+        'doctor_id',
+        'user_id',
+
     ];
+
+    public function doctor()
+    {
+        return $this->belongsTo(User::class,'doctor_id','id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id','id');
+    }
 }

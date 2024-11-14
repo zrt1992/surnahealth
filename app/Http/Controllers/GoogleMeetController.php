@@ -67,4 +67,11 @@ class GoogleMeetController extends Controller
         // Return a view with the created event data
         return view('appointments', ['event' => $event, 'appointments' => $appointments]);
     }
+
+    public function checkGoogleToken()
+{
+    $requiresAuth = !session()->has('google_access_token') || session('google_access_token') === 'null';
+    return response()->json(['requiresAuth' => $requiresAuth]);
+}
+
 }
