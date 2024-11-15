@@ -299,31 +299,44 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td><a class="text-blue-600" href="javascript:void(0);">#MR-123</a></td>
-                                                <td>
-                                                    <a href="javascript:void(0);" class="lab-icon">
-                                                        <span><i class="fa-solid fa-paperclip"></i></span>Lab Report
-                                                    </a>
-                                                </td>
-                                                <td>24 Mar 2024</td>
-                                                <td>Glucose Test V12</td>
-                                                <td>
-                                                    <div class="action-item">
-                                                        <a href="javascript:void(0);" data-bs-toggle="modal"
-                                                            data-bs-target="#edit_medical_records">
-                                                            <i class="fa-solid fa-pen-to-square"></i>
+                                            @foreach ($medicalRecords as $records)
+                                                <tr>
+                                                    <td><a class="text-blue-600"
+                                                            href="javascript:void(0);">#MR-{{ $records->id }}</a></td>
+                                                    <td>
+                                                        <a href="javascript:void(0);" class="lab-icon">
+                                                            <span><i class="fa-solid fa-paperclip"></i></span>Lab Report
                                                         </a>
-                                                        <a href="javascript:void(0);">
-                                                            <i class="fa-solid fa-download"></i>
-                                                        </a>
-                                                        <a href="javascript:void(0);">
-                                                            <i class="fa-solid fa-trash-can"></i>
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
+                                                    </td>
+                                                    <td>{{ $records->start_date }}</td>
+                                                    <td>{{ $records->title }}</td>
+                                                    <td>
+                                                        <div class="action-item">
+                                                            <a href="#" class="edit-icon" data-bs-toggle="modal"
+                                                                data-bs-target="#edit_medical_records"
+                                                                data-id="{{ $records->id }}"
+                                                                data-title="{{ $records->title }}"
+                                                                data-patient="{{ $records->patient }}"
+                                                                data-start_date="{{ \Carbon\Carbon::parse($records->start_date)->format('d/m/Y') }}"
+                                                                data-hospital_name="{{ $records->hospital_name }}"
+                                                                data-symptoms="{{ $records->symptoms }}"
+                                                                data-report="{{ $records->report }}">
+                                                                <i class="fa-solid fa-pen-to-square"></i>
+                                                            </a>
+
+                                                            <a href="javascript:void(0);">
+                                                                <i class="fa-solid fa-download"></i>
+                                                            </a>
+                                                            
+                                                            <a href="{{ route('medical-record-remove',$records->id) }}">
+                                                                <i class="fa-solid fa-trash-can"></i>
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+
+                                            {{-- <tr>
                                                 <td><a class="text-blue-600" href="javascript:void(0);">#MR-124</a></td>
                                                 <td>
                                                     <a href="javascript:void(0);" class="lab-icon">
@@ -346,103 +359,8 @@
                                                         </a>
                                                     </div>
                                                 </td>
-                                            </tr>
-                                            <tr>
-                                                <td><a class="text-blue-600" href="javascript:void(0);">#MR-125</a></td>
-                                                <td>
-                                                    <a href="javascript:void(0);" class="lab-icon">
-                                                        <span><i class="fa-solid fa-paperclip"></i></span>Lab Report
-                                                    </a>
-                                                </td>
-                                                <td>10 Apr 2024</td>
-                                                <td>Echocardiogram</td>
-                                                <td>
-                                                    <div class="action-item">
-                                                        <a href="javascript:void(0);" data-bs-toggle="modal"
-                                                            data-bs-target="#edit_medical_records">
-                                                            <i class="fa-solid fa-pen-to-square"></i>
-                                                        </a>
-                                                        <a href="javascript:void(0);">
-                                                            <i class="fa-solid fa-download"></i>
-                                                        </a>
-                                                        <a href="javascript:void(0);">
-                                                            <i class="fa-solid fa-trash-can"></i>
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><a class="text-blue-600" href="javascript:void(0);">#MR-126</a></td>
-                                                <td>
-                                                    <a href="javascript:void(0);" class="lab-icon">
-                                                        <span><i class="fa-solid fa-paperclip"></i></span>Lab Report
-                                                    </a>
-                                                </td>
-                                                <td>19 Apr 2024</td>
-                                                <td>COVID-19 Test</td>
-                                                <td>
-                                                    <div class="action-item">
-                                                        <a href="javascript:void(0);" data-bs-toggle="modal"
-                                                            data-bs-target="#edit_medical_records">
-                                                            <i class="fa-solid fa-pen-to-square"></i>
-                                                        </a>
-                                                        <a href="javascript:void(0);">
-                                                            <i class="fa-solid fa-download"></i>
-                                                        </a>
-                                                        <a href="javascript:void(0);">
-                                                            <i class="fa-solid fa-trash-can"></i>
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><a class="text-blue-600" href="javascript:void(0);">#MR-127</a></td>
-                                                <td>
-                                                    <a href="javascript:void(0);" class="lab-icon">
-                                                        <span><i class="fa-solid fa-paperclip"></i></span>Lab Report
-                                                    </a>
-                                                </td>
-                                                <td>27 Apr 2024</td>
-                                                <td>Allergy Tests</td>
-                                                <td>
-                                                    <div class="action-item">
-                                                        <a href="javascript:void(0);" data-bs-toggle="modal"
-                                                            data-bs-target="#edit_medical_records">
-                                                            <i class="fa-solid fa-pen-to-square"></i>
-                                                        </a>
-                                                        <a href="javascript:void(0);">
-                                                            <i class="fa-solid fa-download"></i>
-                                                        </a>
-                                                        <a href="javascript:void(0);">
-                                                            <i class="fa-solid fa-trash-can"></i>
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><a class="text-blue-600" href="javascript:void(0);">#MR-128</a></td>
-                                                <td>
-                                                    <a href="javascript:void(0);" class="lab-icon">
-                                                        <span><i class="fa-solid fa-paperclip"></i></span>Lab Report
-                                                    </a>
-                                                </td>
-                                                <td>02 May 2024</td>
-                                                <td>Lipid Panel </td>
-                                                <td>
-                                                    <div class="action-item">
-                                                        <a href="javascript:void(0);" data-bs-toggle="modal"
-                                                            data-bs-target="#edit_medical_records">
-                                                            <i class="fa-solid fa-pen-to-square"></i>
-                                                        </a>
-                                                        <a href="javascript:void(0);">
-                                                            <i class="fa-solid fa-download"></i>
-                                                        </a>
-                                                        <a href="javascript:void(0);">
-                                                            <i class="fa-solid fa-trash-can"></i>
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                            </tr> --}}
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -488,5 +406,38 @@
         </div>
 
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#edit_medical_records').on('shown.bs.modal', function(event) {
+                // Get data attributes from the button that triggered the modal
+                var button = $(event.relatedTarget); // Button that triggered the modal
+                var recordId = button.data('id');
+                var recordTitle = button.data('title');
+                var recordPatient = button.data('patient');
+                var recordStartDate = button.data('start_date');
+                var recordHospitalName = button.data('hospital_name');
+                var recordSymptoms = button.data('symptoms');
+                var recordReport = button.data('report');
+
+                // Set the form action URL with the record ID
+                var actionUrl = "{{ route('medical-record.update', ':id') }}".replace(':id', recordId);
+                $('#edit_medical_records_form').attr('action', actionUrl);
+
+                // Fill the fields in the modal
+                $('#record_title').val(recordTitle);
+                $('#record_patient').val(recordPatient);
+                $('#record_start_date').val(recordStartDate);
+                $('#record_hospital_name').val(recordHospitalName);
+                $('#record_symptoms').val(recordSymptoms);
+                $('#record_report').val(recordReport);
+
+                // if (recordReport) {
+                //     $('.profile-img').html('<img src="' + recordReport + '" alt="Profile Image">');
+                // }
+            });
+        });
+    </script>
+
     <!-- /Page Content -->
 @endsection

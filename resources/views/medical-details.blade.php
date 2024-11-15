@@ -106,6 +106,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach ($medicalDetails as $medicalDetail)
                                             <tr>
                                                 <td><a class="text-blue-600" href="javascript:void(0);"
                                                         data-bs-toggle="modal" data-bs-target="#med-detail">#MD-123</a></td>
@@ -114,17 +115,17 @@
                                                         <a href="{{ url('patient-profile') }}"
                                                             class="avatar avatar-sm me-2">
                                                             <img class="avatar-img rounded-3"
-                                                                src="{{ URL::asset('/assets/img/doctors-dashboard/profile-06.jpg') }}"
+                                                                src="{{$medicalDetail->user->profile_image ?? URL::asset('/assets/img/doctors-dashboard/profile-06.jpg') }}"
                                                                 alt="User Image">
                                                         </a>
-                                                        <a href="{{ url('doctor-profile') }}">Hendrita Kearns</a>
+                                                        <a href="{{ url('doctor-profile') }}">{{ $medicalDetail->user->name }}</a>
                                                     </h2>
                                                 </td>
-                                                <td>23.5</td>
-                                                <td>89</td>
-                                                <td>140</td>
-                                                <td>74Kg</td>
-                                                <td>22 Mar 2024</td>
+                                                <td>{{ $medicalDetail->bmi }}</td>
+                                                <td>{{ $medicalDetail->heart_rate }}</td>
+                                                <td>{{ $medicalDetail->fbc }}</td>
+                                                <td>{{ $medicalDetail->weight }}Kg</td>
+                                                <td>{{ \Carbon\Carbon::parse($medicalDetail->end_date)->format('d/m/Y') }}</td>
                                                 <td>
                                                     <div class="action-item">
                                                         <a href="javascript:void(0);" data-bs-toggle="modal"
@@ -135,12 +136,14 @@
                                                             data-bs-target="#edit-med-record">
                                                             <i class="fa-solid fa-pen-to-square"></i>
                                                         </a>
-                                                        <a href="javascript:void(0);">
+                                                        <a href="{{ route('medical-details-remove',$medicalDetail->id) }}">
                                                             <i class="fa-solid fa-trash-can"></i>
                                                         </a>
                                                     </div>
                                                 </td>
                                             </tr>
+                                            @endforeach
+                                           
                                         </tbody>
                                     </table>
                                 </div>
