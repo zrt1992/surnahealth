@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
 
-        <meta charset="utf-8">
-		<title>Surna</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="The responsive professional Surna template offers many features, like scheduling appointments with  top doctors, clinics, and hospitals via voice, video call & chat.">
-		<meta name="keywords" content="practo clone, Surna, doctor appointment, Practo clone html template, doctor booking template">
-		<meta name="author" content="Practo Clone HTML Template - Doctor Booking Template">
-		<meta property="og:url" content="https://Surna.Soorna.com/html/">
-		<meta property="og:type" content="website">
-		<meta property="og:title" content="Doctors Appointment HTML Website Templates | Surna">
-		<meta property="og:description" content="The responsive professional Surna template offers many features, like scheduling appointments with  top doctors, clinics, and hospitals via voice, video call & chat.">
-		<meta property="og:image" content="assets/img/preview-banner.jpg">
-		<meta name="twitter:card" content="summary_large_image">
-		<meta property="twitter:domain" content="https://Surna.Soorna.com/html/">
-		<meta property="twitter:url" content="https://Surna.Soorna.com/html/">
-		<meta name="twitter:title" content="Doctors Appointment HTML Website Templates | Surna">
-		<meta name="twitter:description" content="The responsive professional Surna template offers many features, like scheduling appointments with  top doctors, clinics, and hospitals via voice, video call & chat.">
-		<meta name="twitter:image" content="assets/img/preview-banner.jpg">
+<head>
+
+    <meta charset="utf-8">
+    <title>Surna</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="The responsive professional Surna template offers many features, like scheduling appointments with  top doctors, clinics, and hospitals via voice, video call & chat.">
+    <meta name="keywords"
+        content="practo clone, Surna, doctor appointment, Practo clone html template, doctor booking template">
+    <meta name="author" content="Practo Clone HTML Template - Doctor Booking Template">
+    <meta property="og:url" content="https://Surna.Soorna.com/html/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Doctors Appointment HTML Website Templates | Surna">
+    <meta property="og:description"
+        content="The responsive professional Surna template offers many features, like scheduling appointments with  top doctors, clinics, and hospitals via voice, video call & chat.">
+    <meta property="og:image" content="assets/img/preview-banner.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="https://Surna.Soorna.com/html/">
+    <meta property="twitter:url" content="https://Surna.Soorna.com/html/">
+    <meta name="twitter:title" content="Doctors Appointment HTML Website Templates | Surna">
+    <meta name="twitter:description"
+        content="The responsive professional Surna template offers many features, like scheduling appointments with  top doctors, clinics, and hospitals via voice, video call & chat.">
+    <meta name="twitter:image" content="assets/img/preview-banner.jpg">
 
     @if (
         !Route::is(
@@ -184,7 +189,7 @@
 @endif
 @if (Route::is(['chat-doctor', 'chat']))
 
-<body class="main-chat-blk">
+    <body class="main-chat-blk">
 @endif
 @if (Route::is(['pharmacy-index']))
 
@@ -269,7 +274,7 @@
     <div class="onboard-wrapper">
 @endif
 @if (Route::is(['index-3']))
-<div class="main-wrapper home-three">
+    <div class="main-wrapper home-three">
 @endif
 @if (Route::is(['index-4']))
     <div class="main-wrapper multi-optn">
@@ -296,7 +301,7 @@
     <div class="main-wrapper home-pg-fourteen">
 @endif
 @if (Route::is(['index-14']))
-<div class="main-wrapper home-dentist">
+    <div class="main-wrapper home-dentist">
 @endif
 @if (Route::is(['chat']))
     <div class="main-wrapper chat-wrapper">
@@ -339,7 +344,6 @@
         'pharmacy-register-step1',
         'pharmacy-register-step2',
         'pharmacy-register-step3',
-
     ]))
     @include('layout.partials.header')
 @endif
@@ -446,8 +450,8 @@
     $accounts = $accounts ?? null;
 @endphp
 
-    @component('components.modalpopup', ['accounts' => $accounts])
-    @endcomponent
+@component('components.modalpopup', ['accounts' => $accounts])
+@endcomponent
 
 @include('layout.partials.footer-scripts')
 

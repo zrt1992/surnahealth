@@ -345,9 +345,6 @@ Route::get('/index-14', function () {
 Route::get('/about-us', function () {
     return view('about-us');
 })->name('about-us');
-// Route::get('/accounts', function () {
-//     return view('accounts');
-// })->name('accounts');
 Route::get('/accounts', [AccountController::class, 'index'])->name('accounts');
 Route::resource('/account', AccountController::class);
 Route::get('/account-default/{id}', [AccountController::class, 'setDefault'])->name('account-default');
