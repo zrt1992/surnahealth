@@ -33,7 +33,7 @@
                                                 <div class="payment-amount">
                                                     <h6><i class="fa-solid fa-file-invoice-dollar text-success"></i>Total
                                                         Balance</h6>
-                                                    <span>$900</span>
+                                                    <span>${{ $totalBalance->total_balance ?? '00' }}</span>
                                                 </div>
                                             </div>
                                             <div class="col-lg-5 col-md-6">

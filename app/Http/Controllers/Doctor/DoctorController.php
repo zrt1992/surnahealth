@@ -52,9 +52,14 @@ class DoctorController extends Controller
     {
         // Validate request data
         $request->validate([
-            'name' => 'required|string|max:255',
-            'specialization' => 'required|string|max:255',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'display_name' => 'required|string|max:255',
+            'designation' => 'required|string|max:255',
             'phone' => 'required|string|max:15',
+            'email' => 'required|email|max:255',
+            'known_languages' => 'nullable|string',
+            'profile_image' => 'nullable|image|mimes:jpg,png,svg|max:4096',
         ]);
 
         // Use the repository to create a new doctor

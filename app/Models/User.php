@@ -24,6 +24,13 @@ class User extends Authenticatable
         'display_name',
         'phone',
         'known_languages',
+        'dob',
+        'blood_group',
+        'country',
+        'pincode',
+        'city',
+        'state',
+        'address',
         'profile_image',
         'password',
     ];

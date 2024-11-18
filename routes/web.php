@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\Doctor\AppointmentController;
 use App\Http\Controllers\Doctor\AvailableTimmingController;
 use App\Http\Controllers\Doctor\DashboardController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\Patient\FavoFavouritesController;
 use App\Http\Controllers\Patient\FavouritesController;
 use App\Http\Controllers\Patient\MedicalDetailController;
 use App\Http\Controllers\Patient\MedicalRecordController;
+use App\Http\Controllers\Patient\PatientProfileSettingController;
 use App\Http\Controllers\ProfileController;
 use App\Models\AvailableTimming;
 use App\Services\GoogleClientService;
@@ -91,9 +93,9 @@ Route::middleware(['auth', 'role:patient'])->prefix('patient')->group(function (
     Route::get('/patient-details', function () {
         return view('patient.patient-details');
     })->name('patient-details');
-    Route::get('/patient-accounts', function () {
-        return view('patient.patient-accounts');
-    })->name('patient-accounts');
+    Route::get('/patient-accounts', [AccountController::class, 'index'])->name('patient-accounts');
+    Route::resource('/patient-account', AccountController::class);
+
     Route::get('/patient-dependant-details', function () {
         return view('patient.patient-dependant-details');
     })->name('patient-dependant-details');
@@ -154,9 +156,8 @@ Route::middleware(['auth', 'role:patient'])->prefix('patient')->group(function (
     Route::get('/dependent', [DependantController::class, 'index'])->name('dependent');
     Route::resource('dependents', DependantController::class);
 
-    Route::get('/profile-settings', function () {
-        return view('profile-settings');
-    })->name('profile-settings');
+    Route::get('/profile-settings', [PatientProfileSettingController::class, 'index'])->name('profile-settings');
+    Route::resource('patient-profile-setting', PatientProfileSettingController::class);
 });
 
 

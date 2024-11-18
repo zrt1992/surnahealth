@@ -1689,22 +1689,35 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<form action="patient-accounts">
+                        <form action="{{ route('patient-account.store') }}" method="POST">
+                            @csrf
 							<div class="input-block input-block-new">
 								<label class="form-label">Bank Name</label>
-								<input type="text" class="form-control">
+                                <input type="text" name="bank_name" class="form-control">
+                            @error('bank_name')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
 							</div>	
 							<div class="input-block input-block-new">
 								<label class="form-label">Branch Name</label>
-								<input type="text" class="form-control">
+                                <input type="text" name="branch_name" class="form-control">
+                            @error('branch_name')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
 							</div>
 							<div class="input-block input-block-new">
 								<label class="form-label">Account Number</label>
-								<input type="text" class="form-control">
+								<input type="text" name="account_number" class="form-control">
+                            @error('account_number')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
 							</div>
 							<div class="input-block input-block-new">
 								<label class="form-label">Account Name</label>
-								<input type="text" class="form-control">
+								<input type="text" name="account_name" class="form-control">
+                            @error('account_name')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
 							</div>
 							<div class="form-set-button">
 								<button class="btn btn-light" type="button">Cancel</button>
