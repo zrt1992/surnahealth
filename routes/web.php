@@ -95,6 +95,8 @@ Route::middleware(['auth', 'role:patient'])->prefix('patient')->group(function (
     })->name('patient-details');
     Route::get('/patient-accounts', [AccountController::class, 'index'])->name('patient-accounts');
     Route::resource('/patient-account', AccountController::class);
+    Route::get('/patient-account-default/{id}', [AccountController::class, 'setDefault'])->name('patient-account-default');
+
 
     Route::get('/patient-dependant-details', function () {
         return view('patient.patient-dependant-details');
@@ -343,9 +345,12 @@ Route::get('/index-14', function () {
 Route::get('/about-us', function () {
     return view('about-us');
 })->name('about-us');
-Route::get('/accounts', function () {
-    return view('accounts');
-})->name('accounts');
+// Route::get('/accounts', function () {
+//     return view('accounts');
+// })->name('accounts');
+Route::get('/accounts', [AccountController::class, 'index'])->name('accounts');
+Route::resource('/account', AccountController::class);
+Route::get('/account-default/{id}', [AccountController::class, 'setDefault'])->name('account-default');
 Route::get('/add-billing', function () {
     return view('add-billing');
 })->name('add-billing');

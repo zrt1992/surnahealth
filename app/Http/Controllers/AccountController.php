@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Interfaces\AccountRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Models\Account;
+use Spatie\Permission\Models\Role;
 
 class AccountController extends Controller
 {
@@ -20,7 +21,11 @@ class AccountController extends Controller
     {
         $accounts = $this->AccountRepo->myAccounts();
         $totalBalance = $accounts->where('default',1)->first();
-        return view('patient.patient-accounts', get_defined_vars());
+        if (getAuthUser()->hasRole('patient')) {
+            return view('patient.patient-accounts', get_defined_vars());
+        } else {
+            return view('accounts');
+        }  
     }
 
     public function create()
@@ -39,7 +44,7 @@ class AccountController extends Controller
         ]);
     
         $this->AccountRepo->create($data);
-        return redirect()->route('patient-accounts')->with('success', 'Account created successfully.');
+        return redirect()->back()->with('success', 'Account created successfully.');
     }
 
     
@@ -52,12 +57,18 @@ class AccountController extends Controller
             'account_name' => 'required',
         ]);
         $this->AccountRepo->update($data, $Account);
-        return redirect()->route('patient-accounts')->with('success', 'Account updated successfully.');
+        return redirect()->back()->with('success', 'Account updated successfully.');
     }
 
     public function destroy($id)
     {
         $this->AccountRepo->delete($id);
-        return redirect()->route('patient-accounts')->with('success', 'Account deleted successfully.');
+        return redirect()->back()->with('success', 'Account deleted successfully.');
     }
+
+    public function setDefault($id)
+{
+    $this->AccountRepo->setDefaultAccount($id);
+    return redirect()->back()->with('success', 'Default account updated successfully.');
+}
 }

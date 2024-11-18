@@ -46,4 +46,16 @@ class AccountRepository implements AccountRepositoryInterface
         }
         return false;
     }
+
+    public function setDefaultAccount($id)
+    {
+        $Account = Account::find($id);
+        if ($Account) {
+           
+            $Account->default = true;
+            Account::where('id', '!=', $id)->update(['default' => false]);
+            return $Account->save();
+        }
+        return false;
+    }
 }

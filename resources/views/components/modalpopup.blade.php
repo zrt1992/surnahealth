@@ -42,22 +42,35 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<form action="accounts">
+                        <form action="{{ route('account.store') }}" method="POST">
+                            @csrf
 							<div class="input-block input-block-new">
 								<label class="form-label">Bank Name</label>
-								<input type="text" class="form-control">
+                                <input type="text" name="bank_name" class="form-control">
+                            @error('bank_name')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
 							</div>	
 							<div class="input-block input-block-new">
 								<label class="form-label">Branch Name</label>
-								<input type="text" class="form-control">
+                                <input type="text" name="branch_name" class="form-control">
+                            @error('branch_name')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
 							</div>
 							<div class="input-block input-block-new">
 								<label class="form-label">Account Number</label>
-								<input type="text" class="form-control">
+								<input type="text" name="account_number" class="form-control">
+                            @error('account_number')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
 							</div>
 							<div class="input-block input-block-new">
 								<label class="form-label">Account Name</label>
-								<input type="text" class="form-control">
+								<input type="text" name="account_name" class="form-control">
+                            @error('account_name')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
 							</div>
 							<div class="form-set-button">
 								<button class="btn btn-light" type="button">Cancel</button>
@@ -1733,116 +1746,62 @@
 
 		<!-- Other Accounts Modal-->
         <div class="modal fade custom-modal custom-modal-two modal-lg" id="other_accounts">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title">Other Accounts</h5>
-						<button type="button" data-bs-dismiss="modal" aria-label="Close">
-							<span><i class="fa-solid fa-x"></i></span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<div class="other-accounts-info">
-							<ul>
-								<li>
-									<ul class="other-bank-info">
-										<li>
-											<h6>Name</h6>
-											<span>Citi Bank Inc</span>
-										</li>
-										<li>
-											<h6>Account No</h6>
-											<span>5396 5250 1908 XXXX</span>
-										</li>
-										<li>
-											<h6>Branch</h6>
-											<span>London</span>
-										</li>
-										<li>
-											<h6>Name on Bank Account</h6>
-											<span>Edalin Hendry</span>
-										</li>
-										<li>
-											<a href="#">Current</a>
-										</li>
-									</ul>
-								</li>
-								<li>
-									<ul class="other-bank-info">
-										<li>
-											<h6>Name</h6>
-											<span>HDFC Bank Inc</span>
-										</li>
-										<li>
-											<h6>Account No</h6>
-											<span>7382 4924 4924 XXXX</span>
-										</li>
-										<li>
-											<h6>Branch</h6>
-											<span>New York</span>
-										</li>
-										<li>
-											<h6>Name on Bank Account</h6>
-											<span>Edalin Hendry</span>
-										</li>
-										<li>
-											<a href="#">Change to default</a>
-										</li>
-									</ul>
-								</li>
-								<li>
-									<ul class="other-bank-info">
-										<li>
-											<h6>Name</h6>
-											<span>Union Bank Inc</span>
-										</li>
-										<li>
-											<h6>Account No</h6>
-											<span>8934 4902 9024 XXXX</span>
-										</li>
-										<li>
-											<h6>Branch</h6>
-											<span>Chicago</span>
-										</li>
-										<li>
-											<h6>Name on Bank Account</h6>
-											<span>Edalin Hendry</span>
-										</li>
-										<li>
-											<a href="#">Change to default</a>
-										</li>
-									</ul>
-								</li>
-								<li>
-									<ul class="other-bank-info">
-										<li>
-											<h6>Name</h6>
-											<span>KVB Bank Inc</span>
-										</li>
-										<li>
-											<h6>Account No</h6>
-											<span>5892 4920 4829 XXXX</span>
-										</li>
-										<li>
-											<h6>Branch</h6>
-											<span>Austin</span>
-										</li>
-										<li>
-											<h6>Name on Bank Account</h6>
-											<span>Edalin Hendry</span>
-										</li>
-										<li>
-											<a href="#">Change to default</a>
-										</li>
-									</ul>
-								</li>
-							</ul>
-							<a href="#" class="btn btn-primary prime-btn w-100 mt-2" data-bs-dismiss="modal">Close</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Other Accounts</h5>
+                        <button type="button" data-bs-dismiss="modal" aria-label="Close">
+                            <span><i class="fa-solid fa-x"></i></span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="other-accounts-info">
+                            <ul>
+                                @isset($accounts)
+                                @forelse ($accounts as $account)
+                                <li>
+                                    <ul class="other-bank-info">
+                                        <li>
+                                            <h6>Name</h6>
+                                            <span>{{ $account->bank_name }}</span>
+                                        </li>
+                                        <li>
+                                            <h6>Account No</h6>
+                                            <span>{{ $account->account_number }}</span>
+                                        </li>
+                                        <li>
+                                            <h6>Branch</h6>
+                                            <span>{{ $account->branch_name }}</span>
+                                        </li>
+                                        <li>
+                                            <h6>Name on Bank Account</h6>
+                                            <span>{{ $account->account_name }}</span>
+                                        </li>
+                                        <li>
+                                            @if ($account->default)
+                                                <a href="#">Current</a>
+                                            @else
+                                                <a href="{{ route('patient-account-default',$account->id) }}">Change to default</a>
+                                            @endif
+                                        </li>
+                                    </ul>
+                                </li>
+                            @empty
+                                <p>No accounts found.</p>
+                            @endforelse
+@else
+    <!-- Default content when $accounts is not available -->
+@endisset
+                               
+                            </ul>
+                            
+                            <a href="#" class="btn btn-primary prime-btn w-100 mt-2" data-bs-dismiss="modal">Close</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         <!-- /Other Accounts Modal-->
 
 		<!-- Request Completed Modal-->

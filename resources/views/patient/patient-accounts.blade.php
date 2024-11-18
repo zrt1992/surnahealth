@@ -57,19 +57,19 @@
                                         <ul>
                                             <li>
                                                 <h6>Bank Name</h6>
-                                                <h5>Citi Bank Inc</h5>
+                                                <h5>{{ $totalBalance->bank_name ?? '--' }}</h5>
                                             </li>
                                             <li>
                                                 <h6>Account Number</h6>
-                                                <h5>5396 5250 1908 XXXX</h5>
+                                                <h5>{{ $totalBalance->account_name ?? '--' }}</h5>
                                             </li>
                                             <li>
                                                 <h6>Branch Name</h6>
-                                                <h5>London</h5>
+                                                <h5>{{ $totalBalance->branch_name ?? '--' }}</h5>
                                             </li>
                                             <li>
                                                 <h6>Account Name</h6>
-                                                <h5>Darren</h5>
+                                                <h5>{{ $totalBalance->account_number ?? '--' }}</h5>
                                             </li>
                                         </ul>
                                         <div class="edit-detail-link">
@@ -382,4 +382,5 @@
 
     </div>
     <!-- /Page Content -->
+ 
 @endsection

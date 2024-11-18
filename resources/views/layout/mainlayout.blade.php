@@ -441,8 +441,14 @@
 @endif
 </div>
 <!-- /Main Wrapper -->
-@component('components.modalpopup')
-@endcomponent
+
+@php
+    $accounts = $accounts ?? null;
+@endphp
+
+    @component('components.modalpopup', ['accounts' => $accounts])
+    @endcomponent
+
 @include('layout.partials.footer-scripts')
 
 </body>
