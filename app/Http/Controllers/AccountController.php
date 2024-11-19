@@ -24,7 +24,7 @@ class AccountController extends Controller
         if (getAuthUser()->hasRole('patient')) {
             return view('patient.patient-accounts', get_defined_vars());
         } else {
-            return view('accounts');
+            return view('accounts',get_defined_vars());
         }  
     }
 

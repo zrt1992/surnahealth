@@ -6,17 +6,16 @@ use App\Http\Controllers\Doctor\AvailableTimmingController;
 use App\Http\Controllers\Doctor\DashboardController;
 use App\Http\Controllers\Doctor\DoctorBookingController;
 use App\Http\Controllers\Doctor\DoctorController;
+use App\Http\Controllers\Doctor\DoctorExperienceController;
 use App\Http\Controllers\GoogleMeetController;
 use App\Http\Controllers\Patient\BookingController;
 use App\Http\Controllers\Patient\DashboardController as PatientDashboard;
 use App\Http\Controllers\Patient\DependantController;
-use App\Http\Controllers\Patient\FavoFavouritesController;
 use App\Http\Controllers\Patient\FavouritesController;
 use App\Http\Controllers\Patient\MedicalDetailController;
 use App\Http\Controllers\Patient\MedicalRecordController;
 use App\Http\Controllers\Patient\PatientProfileSettingController;
 use App\Http\Controllers\ProfileController;
-use App\Models\AvailableTimming;
 use App\Services\GoogleClientService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -715,6 +714,8 @@ Route::get('/doctor-education-settings', function () {
 Route::get('/doctor-experience-settings', function () {
     return view('doctor-experience-settings');
 })->name('doctor-experience-settings');
+Route::get('/doctor-experience-settings', [DoctorExperienceController::class, 'index'])->name('doctor-experience-settings');
+Route::resource('/doctor-experience-setting', DoctorExperienceController::class);
 Route::get('/doctor-insurance-settings', function () {
     return view('doctor-insurance-settings');
 })->name('doctor-insurance-settings');

@@ -96,100 +96,44 @@
 					</div>
 					<div class="modal-body">
 						<div class="other-accounts-info">
-							<ul>
-								<li>
-									<ul class="other-bank-info">
-										<li>
-											<h6>Name</h6>
-											<span>Citi Bank Inc</span>
-										</li>
-										<li>
-											<h6>Account No</h6>
-											<span>5396 5250 1908 XXXX</span>
-										</li>
-										<li>
-											<h6>Branch</h6>
-											<span>London</span>
-										</li>
-										<li>
-											<h6>Name on Bank Account</h6>
-											<span>Edalin Hendry</span>
-										</li>
-										<li>
-											<a href="#">Current</a>
-										</li>
-									</ul>
-								</li>
-								<li>
-									<ul class="other-bank-info">
-										<li>
-											<h6>Name</h6>
-											<span>HDFC Bank Inc</span>
-										</li>
-										<li>
-											<h6>Account No</h6>
-											<span>7382 4924 4924 XXXX</span>
-										</li>
-										<li>
-											<h6>Branch</h6>
-											<span>New York</span>
-										</li>
-										<li>
-											<h6>Name on Bank Account</h6>
-											<span>Edalin Hendry</span>
-										</li>
-										<li>
-											<a href="#">Change to default</a>
-										</li>
-									</ul>
-								</li>
-								<li>
-									<ul class="other-bank-info">
-										<li>
-											<h6>Name</h6>
-											<span>Union Bank Inc</span>
-										</li>
-										<li>
-											<h6>Account No</h6>
-											<span>8934 4902 9024 XXXX</span>
-										</li>
-										<li>
-											<h6>Branch</h6>
-											<span>Chicago</span>
-										</li>
-										<li>
-											<h6>Name on Bank Account</h6>
-											<span>Edalin Hendry</span>
-										</li>
-										<li>
-											<a href="#">Change to default</a>
-										</li>
-									</ul>
-								</li>
-								<li>
-									<ul class="other-bank-info">
-										<li>
-											<h6>Name</h6>
-											<span>KVB Bank Inc</span>
-										</li>
-										<li>
-											<h6>Account No</h6>
-											<span>5892 4920 4829 XXXX</span>
-										</li>
-										<li>
-											<h6>Branch</h6>
-											<span>Austin</span>
-										</li>
-										<li>
-											<h6>Name on Bank Account</h6>
-											<span>Edalin Hendry</span>
-										</li>
-										<li>
-											<a href="#">Change to default</a>
-										</li>
-									</ul>
-								</li>
-							</ul>
+                            <ul>
+                                @isset($accounts)
+                                @forelse ($accounts as $account)
+                                <li>
+                                    <ul class="other-bank-info">
+                                        <li>
+                                            <h6>Name</h6>
+                                            <span>{{ $account->bank_name }}</span>
+                                        </li>
+                                        <li>
+                                            <h6>Account No</h6>
+                                            <span>{{ $account->account_number }}</span>
+                                        </li>
+                                        <li>
+                                            <h6>Branch</h6>
+                                            <span>{{ $account->branch_name }}</span>
+                                        </li>
+                                        <li>
+                                            <h6>Name on Bank Account</h6>
+                                            <span>{{ $account->account_name }}</span>
+                                        </li>
+                                        <li>
+                                            @if ($account->default)
+                                                <a href="#">Current</a>
+                                            @else
+                                                <a href="{{ route('account-default',$account->id) }}">Change to default</a>
+                                            @endif
+                                        </li>
+                                    </ul>
+                                </li>
+                            @empty
+                                <p>No accounts found.</p>
+                            @endforelse
+@else
+    <!-- Default content when $accounts is not available -->
+@endisset
+                               
+                            </ul>
 							<a href="#" class="btn btn-primary prime-btn w-100 mt-2" data-bs-dismiss="modal">Close</a>
 						</div>
 					</div>
