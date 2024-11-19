@@ -24,28 +24,28 @@ class GoogleMeetController extends Controller
         // Validation for the incoming request
         $request->validate([
             'title' => 'required|string|max:255',
-            'email' => 'required|email',
+            'email' => 'required',
             'start_date' => 'required|date_format:Y-m-d\TH:i',
             'end_date' => 'required|date_format:Y-m-d\TH:i|after_or_equal:start_date',
         ]);
-
+   
         $doctorId = auth()->user()->id;
-
+       
         if (!$doctorId) {
             // Optionally, you can handle the case where the authenticated user does not have a doctor_id
             return response()->json(['error' => 'Authenticated user is not associated with a doctor'], 403);
         }
-
+    
         $startTime = $request->start_date . ':00-07:00';
         $endTime = $request->end_date . ':00-07:00';
-
+    
         $event = GoogleClientService::createGoogleMeetEvent(
             $request->title,
             $request->description ?? 'No description provided.',
             $startTime,
             $endTime
         );
-
+       
         GoogleClientService::addAttendee($event, $request->email);
 
 
@@ -65,7 +65,8 @@ class GoogleMeetController extends Controller
         $doctor = auth()->user()->id;
         $appointments = Appointment::where('doctor_id', $doctor)->get();
         // Return a view with the created event data
-        return view('appointments', ['event' => $event, 'appointments' => $appointments]);
+        return redirect()->route('appointments');
+        // return view('appointments', ['event' => $event, 'appointments' => $appointments]);
     }
 
     public function checkGoogleToken()

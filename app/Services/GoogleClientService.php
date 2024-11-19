@@ -82,14 +82,14 @@ class GoogleClientService
     $event->attendees = array_merge($event->attendees ?? [], [
         ['email' => $email]
     ]);
-
+  
     $calendarService = new Calendar(self::getClient());
-    
+ 
     // Use 'sendUpdates' to ensure notifications are sent to all attendees
     $response = $calendarService->events->patch('primary', $event->id, $event, [
         'sendUpdates' => 'all' // Ensures email notifications are sent to attendees
     ]);
-
+   
     return $response;
 }
 
