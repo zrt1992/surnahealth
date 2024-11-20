@@ -2,16 +2,16 @@
 
 namespace App\Repositories;
 
-use App\Interfaces\DoctorExperienceRepositoryInterface;
-use App\Models\DoctorExperience;
+use App\Interfaces\DoctorEducationRepositoryInterface;
+use App\Models\DoctorEducation;
 
-class DoctorExperienceRepository implements DoctorExperienceRepositoryInterface
+class DoctorEducationRepository implements DoctorEducationRepositoryInterface
 {
     protected $model;
 
-    public function __construct(DoctorExperience $DoctorExperience)
+    public function __construct(DoctorEducation $DoctorEducation)
     {
-        $this->model = $DoctorExperience;
+        $this->model = $DoctorEducation;
     }
 
     public function all()
@@ -32,10 +32,10 @@ class DoctorExperienceRepository implements DoctorExperienceRepositoryInterface
 
     public function update($id, array $data)
     {
-        $DoctorExperience = $this->find($id);
-        if ($DoctorExperience) {
-            $DoctorExperience->update($data);
-            return $DoctorExperience;
+        $DoctorEducation = $this->find($id);
+        if ($DoctorEducation) {
+            $DoctorEducation->update($data);
+            return $DoctorEducation;
         }
 
         return null;
@@ -43,9 +43,9 @@ class DoctorExperienceRepository implements DoctorExperienceRepositoryInterface
 
     public function delete($id)
     {
-        $DoctorExperience = $this->find($id);
-        if ($DoctorExperience) {
-            return $DoctorExperience->delete();
+        $DoctorEducation = $this->find($id);
+        if ($DoctorEducation) {
+            return $DoctorEducation->delete();
         }
 
         return false;

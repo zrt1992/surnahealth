@@ -6,6 +6,7 @@ use App\Http\Controllers\Doctor\AvailableTimmingController;
 use App\Http\Controllers\Doctor\DashboardController;
 use App\Http\Controllers\Doctor\DoctorBookingController;
 use App\Http\Controllers\Doctor\DoctorController;
+use App\Http\Controllers\Doctor\DoctorEducationController;
 use App\Http\Controllers\Doctor\DoctorExperienceController;
 use App\Http\Controllers\GoogleMeetController;
 use App\Http\Controllers\Patient\BookingController;
@@ -711,6 +712,8 @@ Route::get('/doctor-clinics-settings', function () {
 Route::get('/doctor-education-settings', function () {
     return view('doctor-education-settings');
 })->name('doctor-education-settings');
+Route::get('/doctor-education-settings', [DoctorEducationController::class, 'index'])->name('doctor-education-settings');
+Route::resource('/doctor-education-setting', DoctorEducationController::class);
 Route::get('/doctor-experience-settings', function () {
     return view('doctor-experience-settings');
 })->name('doctor-experience-settings');

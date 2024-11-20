@@ -2,7 +2,7 @@
 
 namespace App\Interfaces;
 
-interface DoctorExperienceRepositoryInterface
+interface DoctorEducationRepositoryInterface
 {
     public function all();
     public function find($id);

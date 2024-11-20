@@ -8,17 +8,21 @@ use App\Traits\FileUpload;
 class DoctorExperienceObserver
 {
     use FileUpload;
-  
-    public function saving(DoctorExperience $doctorExperiences)
-    {
-        $hospital_logo = request()->file('hospital_logo'); 
-        if ($hospital_logo) {
-         
-            $meta = $this->uploadImage($hospital_logo, 'hospital_logos');  
-            if (isset($meta['dirname'], $meta['basename'])) {
-                $full_path = $meta['dirname'] . '/' . $meta['basename'];  
-                $doctorExperiences->hospital_logo = $full_path;
+
+    public function saving(DoctorExperience $doctorExperience)
+{
+    $hospital_logos = request()->file('hospital_logo');
+
+    if ($hospital_logos && is_array($hospital_logos)) {
+        foreach ($hospital_logos as $id => $hospital_logo) {
+            if ($doctorExperience->id == $id) {
+                $meta = $this->uploadImage($hospital_logo, 'hospital_logos');
+                if (isset($meta['dirname'], $meta['basename'])) {
+                    $doctorExperience->hospital_logo = $meta['dirname'] . '/' . $meta['basename'];
+                }
             }
         }
     }
+}
+
 }

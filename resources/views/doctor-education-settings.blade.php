@@ -189,17 +189,20 @@
 								</ul>
 							</div>
 
-							<form action="doctor-education-settings">
+							<form action="{{ route('doctor-education-setting.store') }}" method="POST"
+							enctype="multipart/form-data">
+							@csrf
 								<div class="accordions education-infos" id="list-accord">
-
-									<!-- Education Item -->
-									<div class="user-accordion-item">
-										<a href="#" class="accordion-wrap" data-bs-toggle="collapse" data-bs-target="#education1">Education<span>Delete</span></a>
-										<div class="accordion-collapse collapse show" id="education1" data-bs-parent="#list-accord">
+									@if (empty($DoctorEducations) || count($DoctorEducations) === 0)
+									<div class="user-accordion-item ">
+										<a href="#" class="accordion-wrap" data-bs-toggle="collapse"
+											data-bs-target="#education1">Education <span>Delete</span></a>
+										<div class="accordion-collapse collapse" id="education1" data-bs-parent="#list-accord">
 											<div class="content-collapse">
 												<div class="add-service-info">
 													<div class="add-info">
 														<div class="row align-items-center">
+															<input type="hidden" name="form_type[]" value="create">
 															<div class="col-md-12">
 																<div class="form-wrap mb-2">
 																	<div class="change-avatar img-upload">
@@ -210,58 +213,94 @@
 																			<h5>Logo</h5>
 																			<div class="imgs-load d-flex align-items-center">
 																				<div class="change-photo">
-																					Upload New 
-																					<input type="file" class="upload">
+																					Upload New
+																					<input type="file"
+																						name="logo[]" class="upload">
 																				</div>
-																				<a href="#" class="upload-remove">Remove</a>
+																				<a href="#"
+																					class="upload-remove">Remove</a>
 																			</div>
-																			<p class="form-text">Your Image should Below 4 MB, Accepted format jpg,png,svg</p>
-																		</div>			
-																	</div>	
-																</div>	
+																			<p class="form-text">Your Image should be below 4
+																				MB, accepted formats: jpg, png, svg</p>
+																		</div>
+																	</div>
+																</div>
 															</div>
-															<div class="col-md-6">
+														<div class="col-md-6">
 																<div class="form-wrap">
 																	<label class="col-form-label">Name of the institution</label>
-																	<input type="text" class="form-control">
-																</div>													
+																	<input type="text" name="name_of_institution[]"
+																		class="form-control">
+																	@error('name_of_institution')
+																		<div class="text-danger">{{ $message }}</div>
+																	@enderror
+																</div>
 															</div>
-															<div class="col-md-6">
+														<div class="col-md-6">
 																<div class="form-wrap">
-																	<label class="col-form-label">Course</label>
-																	<input type="text" class="form-control">
-																</div>													
+																	<label class="col-form-label">Course <span
+																			class="text-danger">*</span></label>
+																	<input type="text" name="course[]"
+																		class="form-control">
+																	@error('course')
+																		<div class="text-danger">{{ $message }}</div>
+																	@enderror
+																</div>
 															</div>
+															
 															<div class="col-lg-4 col-md-6">
 																<div class="form-wrap">
-																	<label class="col-form-label">Start Date <span class="text-danger">*</span></label>
+																	<label class="col-form-label">Start Date <span
+																			class="text-danger">*</span></label>
 																	<div class="form-icon">
-																		<input type="text" class="form-control datetimepicker">
-																		<span class="icon"><i class="fa-regular fa-calendar-days"></i></span>
+																		<input type="text" name="start_date[]"
+																			class="form-control datetimepicker">
+																		<span class="icon"><i
+																				class="fa-regular fa-calendar-days"></i></span>
+																		@error('start_date')
+																			<div class="text-danger">{{ $message }}</div>
+																		@enderror
 																	</div>
-																</div>													
+																</div>
 															</div>
 															<div class="col-lg-4 col-md-6">
 																<div class="form-wrap">
-																	<label class="col-form-label">End Date <span class="text-danger">*</span></label>
+																	<label class="col-form-label">End Date <span
+																			class="text-danger">*</span></label>
 																	<div class="form-icon">
-																		<input type="text" class="form-control datetimepicker">
-																		<span class="icon"><i class="fa-regular fa-calendar-days"></i></span>
+																		<input type="text" name="end_date[]"
+																			class="form-control datetimepicker">
+																		<span class="icon"><i
+																				class="fa-regular fa-calendar-days"></i></span>
+																		@error('end_date')
+																			<div class="text-danger">{{ $message }}</div>
+																		@enderror
 																	</div>
-																</div>													
+																</div>
 															</div>
 															<div class="col-lg-4 col-md-6">
 																<div class="form-wrap">
+																	
+																	
 																	<label class="col-form-label">No of Years <span class="text-danger">*</span></label>
-																	<input type="text" class="form-control">
-																</div>													
+																	<input type="text" name="no_of_years[]"
+																		class="form-control">
+																	@error('no_of_years')
+																		<div class="text-danger">{{ $message }}</div>
+																	@enderror
+																</div>
 															</div>
 															<div class="col-lg-12">
 																<div class="form-wrap">
-																	<label class="col-form-label">Description <span class="text-danger">*</span></label>
-																	<textarea class="form-control" rows="3"></textarea>
-																</div>													
+																	<label class="col-form-label">Description <span
+																			class="text-danger">*</span></label>
+																	<textarea name="description[]" class="form-control" rows="3"></textarea>
+																	@error('description')
+																		<div class="text-danger">{{ $message }}</div>
+																	@enderror
+																</div>
 															</div>
+															
 														</div>
 													</div>
 													<div class="text-end">
@@ -271,10 +310,132 @@
 											</div>
 										</div>
 									</div>
-									<!-- /Education Item -->
-
+								@else
+									@foreach ($DoctorEducations as $index => $education)
+										<div class="user-accordion-item">
+											<a href="#" class="accordion-wrap" data-bs-toggle="collapse"
+												data-bs-target="#experience{{ $index }}">
+												{{ $education->hospital }} <span>Delete</span>
+											</a>
+											<div class="accordion-collapse collapse" id="experience{{ $index }}"
+												data-bs-parent="#list-accord">
+												<div class="content-collapse">
+													<div class="add-service-info">
+														<div class="add-info">
+															<div class="row align-items-center">
+																<!-- Existing Experience Fields -->
+																<input type="hidden" name="form_type[{{ $education->id }}]"
+																	value="update">
+																<div class="col-md-12">
+																	<div class="form-wrap mb-2">
+																		<div class="change-avatar img-upload">
+																			<div class="profile-img">
+																				<img src="{{ $education->logo }}"
+																					alt="Logo" style="width: 50px;">
+																			</div>
+																			<div class="upload-img">
+																				<h5>Logo</h5>
+																				<div
+																					class="imgs-load d-flex align-items-center">
+																					<div class="change-photo">
+																						Upload New
+																						<input type="file"
+																							name="logo[{{ $education->id }}]"
+																							class="upload">
+																					</div>
+																					<a href="#"
+																						class="upload-remove">Remove</a>
+																				</div>
+																				<p class="form-text">Your Image should be below
+																					4 MB, accepted formats: jpg, png, svg</p>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																<div class="col-md-6">
+																	<div class="form-wrap">
+																		<label class="col-form-label">Name of the institution</label>
+																		<input type="text"
+																			name="name_of_institution[{{ $education->id }}]"
+																			value="{{ old('name_of_institution.' . $education->id, $education->name_of_institution) }}"
+																			class="form-control @error('name_of_institution.' . $education->id) is-invalid @enderror">
+	
+																		@error('name_of_institution.' . $education->id)
+																			<div class="text-danger">{{ $message }}</div>
+																		@enderror
+																	</div>
+																</div>
+	
+																<div class="col-md-6">
+																	<div class="form-wrap">
+																		<label class="col-form-label">Course</label>
+																		<input type="text"
+																			name="course[{{ $education->id }}]"
+																			value="{{ old('course.' . $education->id, $education->course) }}"
+																			class="form-control">
+																		@error('course.' . $education->id)
+																			<div class="text-danger">{{ $message }}</div>
+																		@enderror
+																	</div>
+																</div>
+																<div class="col-lg-4 col-md-6">
+																	<div class="form-wrap">
+																		<label class="col-form-label">Start Date</label>
+																		<input type="date"
+																			name="start_date[{{ $education->id }}]"
+																			value="{{ old('start_date.' . $education->id, $education->start_date) }}"
+																			class="form-control">
+																		@error('start_date.' . $education->id)
+																			<div class="text-danger">{{ $message }}</div>
+																		@enderror
+																	</div>
+																</div>
+																<div class="col-lg-4 col-md-6">
+																	<div class="form-wrap">
+																		<label class="col-form-label">End Date</label>
+																		<input type="date"
+																			name="end_date[{{ $education->id }}]"
+																			value="{{ old('end_date.' . $education->id, $education->end_date) }}"
+																			class="form-control">
+																		@error('end_date.' . $education->id)
+																			<div class="text-danger">{{ $message }}</div>
+																		@enderror
+																	</div>
+																</div>
+																<div class="col-lg-4 col-md-6">
+																	<div class="form-wrap">
+																		<label class="col-form-label">No of Years <span
+																				class="text-danger">*</span></label>
+																		<input type="text"
+																			name="no_of_years[{{ $education->id }}]"
+																			value="{{ old('no_of_years.' . $education->id, $education->no_of_years) }}"
+																			class="form-control">
+																		@error('no_of_years.' . $education->id)
+																			<div class="text-danger">{{ $message }}</div>
+																		@enderror
+	
+																	</div>
+																</div>
+																<div class="col-lg-12">
+																	<div class="form-wrap">
+																		<label class="col-form-label">Description</label>
+																		<textarea name="description[{{ $education->id }}]" class="form-control" rows="3">{{ $education->description }}</textarea>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="text-end">
+															<a href="{{ route('doctor-experience-setting.destroy', $education->id) }}"
+																class="reset more-item">Delete</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									@endforeach
+								@endif
 									<!-- Education Item -->
-									<div class="user-accordion-item">
+									{{-- <div class="user-accordion-item">
 										<a href="#" class="collapsed accordion-wrap" data-bs-toggle="collapse" data-bs-target="#education2">Cambridge (MBBS)<span>Delete</span></a>
 										<div class="accordion-collapse collapse" id="education2" data-bs-parent="#list-accord">
 											<div class="content-collapse">
@@ -351,7 +512,7 @@
 												</div>
 											</div>
 										</div>
-									</div>
+									</div> --}}
 									<!-- /Education Item -->
 
 								</div>
@@ -368,4 +529,6 @@
 				</div>
 			</div>		
 			<!-- /Page Content -->
+			@include('layout.partials.custom_scripts')
+
     @endsection

@@ -14,10 +14,11 @@ return new class extends Migration
         Schema::create('qualifications', function (Blueprint $table) {
             $table->id();
             $table->foreignId('doctor_id')->constrained('users')->onDelete('cascade');
+            $table->string('logo')->nullable();
             $table->string('name_of_institution')->nullable();
             $table->string('course')->nullable();
-            $table->date('start_date')->nullable();
-            $table->date('end_date')->nullable();
+            $table->string('start_date')->nullable();
+            $table->string('end_date')->nullable();
             $table->string('no_of_years')->nullable();
             $table->string('description')->nullable();
             $table->timestamps();

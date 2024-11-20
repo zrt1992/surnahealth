@@ -6,16 +6,19 @@ use App\Interfaces\AccountRepositoryInterface;
 use App\Interfaces\AvailableTimmingRepositoryInterface;
 use App\Interfaces\BookingRepositoryInterface;
 use App\Interfaces\DependantRepositoryInterface;
+use App\Interfaces\DoctorEducationRepositoryInterface;
 use App\Interfaces\DoctorExperienceRepositoryInterface;
 use App\Interfaces\DoctorRepositoryInterface;
 use App\Interfaces\MedicalDetailRepositoryInterface;
 use App\Interfaces\MedicalRecordRepositoryInterface;
 use App\Interfaces\PatientProfileSettingRepositoryInterface;
 use App\Models\Dependant;
+use App\Models\DoctorEducation;
 use App\Models\DoctorExperience;
 use App\Models\MedicalRecord;
 use App\Models\User;
 use App\Observers\DependantObserver;
+use App\Observers\DoctorEducationObserver;
 use App\Observers\DoctorExperienceObserver;
 use App\Observers\DoctorObserver;
 use App\Observers\MedicalRecordObserver;
@@ -24,6 +27,7 @@ use App\Repositories\AccountRepository;
 use App\Repositories\AvailableTimmingRepository;
 use App\Repositories\BookingRepository;
 use App\Repositories\DependantRepository;
+use App\Repositories\DoctorEducationRepository;
 use App\Repositories\DoctorExperienceRepository;
 use App\Repositories\DoctorRepository;
 use App\Repositories\MedicalDetailRepository;
@@ -55,6 +59,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(PatientProfileSettingRepositoryInterface::class, PatientProfileSettingRepository::class);
         $this->app->bind(AccountRepositoryInterface::class, AccountRepository::class);
         $this->app->bind(DoctorExperienceRepositoryInterface::class, DoctorExperienceRepository::class);
+        $this->app->bind(DoctorEducationRepositoryInterface::class, DoctorEducationRepository::class);
+
 
 
 
@@ -71,6 +77,8 @@ class AppServiceProvider extends ServiceProvider
         MedicalRecord::observe(MedicalRecordObserver::class);
         User::observe(PatientProfileSettingObserver::class);
         DoctorExperience::observe(DoctorExperienceObserver::class);
+        DoctorEducation::observe(DoctorEducationObserver::class);
+
 
         RedirectIfAuthenticated::redirectUsing(function () {
 //            dd(Auth::check());
