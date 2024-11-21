@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class DoctorClinic extends Model
 {
     use HasFactory;
+
+    protected $fillable=[
+        'doctor_id',
+        'clinic_name',
+        'location',
+        'address'
+    ];
+
+    public function gallery(){
+        return $this->hasMany(DoctorClinicGallery::class,'clinic_id','id');
+    }
 }

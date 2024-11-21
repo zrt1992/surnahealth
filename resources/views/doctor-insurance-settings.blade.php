@@ -189,18 +189,23 @@
 								</ul>
 							</div>
 
-							<form action="doctor-insurance-settings">
-
+							<form action="{{ route('doctor-insurance-setting.store') }}" method="POST"
+							enctype="multipart/form-data">
+							@csrf
 								<div class="accordions insurance-infos" id="list-accord">
 
 									<!-- Insurance Item -->
+									@if (empty($DoctorInsurances) || count($DoctorInsurances) === 0)
 									<div class="user-accordion-item">
-										<a href="#" class="accordion-wrap" data-bs-toggle="collapse" data-bs-target="#insurance1">Insurance<span>Delete</span></a>
+										<a href="#" class="accordion-wrap" data-bs-toggle="collapse" data-bs-target="#insurance1">
+											Insurance <span>Delete</span>
+										</a>
 										<div class="accordion-collapse collapse show" id="insurance1" data-bs-parent="#list-accord">
 											<div class="content-collapse">
 												<div class="add-service-info">
 													<div class="add-info">
 														<div class="row align-items-center">
+															<input type="hidden" name="form_type[]" value="create">
 															<div class="col-md-12">
 																<div class="form-wrap mb-2">
 																	<div class="change-avatar img-upload">
@@ -211,19 +216,24 @@
 																			<h5>Logo</h5>
 																			<div class="imgs-load d-flex align-items-center">
 																				<div class="change-photo">
-																					Upload New 
-																					<input type="file" class="upload">
+																					Upload New
+																					<input type="file" name="logo[]" class="upload">
 																				</div>
 																				<a href="#" class="upload-remove">Remove</a>
 																			</div>
-																			<p class="form-text">Your Image should Below 4 MB, Accepted format jpg,png,svg</p>
-																		</div>			
-																	</div>	
-																</div>	
+																			<p class="form-text">
+																				Your Image should be below 4 MB, accepted formats: jpg, png, svg.
+																			</p>
+																		</div>
+																	</div>
+																</div>
 																<div class="form-wrap">
 																	<label class="col-form-label">Insurance Name</label>
-																	<input type="text" class="form-control">
-																</div>													
+																	<input type="text" class="form-control" name="insurance_name[]">
+																	@error('insurance_name')
+																	<div class="text-danger">{{ $message }}</div>
+																	@enderror
+																</div>
 															</div>
 														</div>
 													</div>
@@ -234,10 +244,66 @@
 											</div>
 										</div>
 									</div>
+									@else
+									@foreach ($DoctorInsurances as $index => $insurance)
+									<div class="user-accordion-item">
+										<a href="#" class="accordion-wrap" data-bs-toggle="collapse" data-bs-target="#insurance{{ $index }}">
+											{{ $insurance->insurance_name }} <span>Delete</span>
+										</a>
+										<div class="accordion-collapse collapse" id="insurance{{ $index }}" data-bs-parent="#list-accord">
+											<div class="content-collapse">
+												<div class="add-service-info">
+													<div class="add-info">
+														<div class="row align-items-center">
+															<!-- Existing Insurance Fields -->
+															<input type="hidden" name="form_type[{{ $insurance->id }}]" value="update">
+															<div class="col-md-12">
+																<div class="form-wrap mb-2">
+																	<div class="change-avatar img-upload">
+																		<div class="profile-img">
+																			<img src="{{ $insurance->logo }}" alt="Logo" style="width: 50px;">
+																		</div>
+																		<div class="upload-img">
+																			<h5>Logo</h5>
+																			<div class="imgs-load d-flex align-items-center">
+																				<div class="change-photo">
+																					Upload New
+																					<input type="file" name="logo[{{ $insurance->id }}]" class="upload">
+																				</div>
+																				<a href="#" class="upload-remove">Remove</a>
+																			</div>
+																			<p class="form-text">Your image should be below 4 MB, accepted formats: jpg, png, svg.</p>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="col-md-12">
+																<div class="form-wrap">
+																	<label class="col-form-label">Insurance Name</label>
+																	<input type="text" name="insurance_name[{{ $insurance->id }}]"
+																		value="{{ old('insurance_name.' . $insurance->id, $insurance->insurance_name) }}"
+																		class="form-control @error('insurance_name.' . $insurance->id) is-invalid @enderror">
+																	@error('insurance_name.' . $insurance->id)
+																	<div class="text-danger">{{ $message }}</div>
+																	@enderror
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="text-end">
+														<a href="{{ route('doctor-insurance-setting.destroy', $insurance->id) }}" class="reset more-item">Delete</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									@endforeach
+									@endif
+									
 									<!-- /Insurance Item -->
 
 									<!-- Insurance Item -->
-									<div class="user-accordion-item">
+									{{-- <div class="user-accordion-item">
 										<a href="#" class="collapsed accordion-wrap" data-bs-toggle="collapse" data-bs-target="#insurance2">Star health<span>Delete</span></a>
 										<div class="accordion-collapse collapse" id="insurance2" data-bs-parent="#list-accord">
 											<div class="content-collapse">
@@ -276,7 +342,7 @@
 												</div>
 											</div>
 										</div>
-									</div>
+									</div> --}}
 									<!-- /Insurance Item -->
 
 								</div>
@@ -294,4 +360,5 @@
 				</div>
 			</div>		
 			<!-- /Page Content -->
+			@include('layout.partials.custom_scripts')
     @endsection

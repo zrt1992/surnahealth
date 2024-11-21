@@ -4,10 +4,14 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\Doctor\AppointmentController;
 use App\Http\Controllers\Doctor\AvailableTimmingController;
 use App\Http\Controllers\Doctor\DashboardController;
+use App\Http\Controllers\Doctor\DoctorAwardController;
 use App\Http\Controllers\Doctor\DoctorBookingController;
+use App\Http\Controllers\Doctor\DoctorBusinessHourController;
+use App\Http\Controllers\Doctor\DoctorClinicsController;
 use App\Http\Controllers\Doctor\DoctorController;
 use App\Http\Controllers\Doctor\DoctorEducationController;
 use App\Http\Controllers\Doctor\DoctorExperienceController;
+use App\Http\Controllers\Doctor\DoctorInsurancesController;
 use App\Http\Controllers\GoogleMeetController;
 use App\Http\Controllers\Patient\BookingController;
 use App\Http\Controllers\Patient\DashboardController as PatientDashboard;
@@ -700,28 +704,23 @@ Route::get('/doctor-payment', function () {
 Route::get('/doctor-appointment-details', function () {
     return view('doctor-appointment-details');
 })->name('doctor-appointment-details');
-Route::get('/doctor-awards-settings', function () {
-    return view('doctor-awards-settings');
-})->name('doctor-awards-settings');
-Route::get('/doctor-business-settings', function () {
-    return view('doctor-business-settings');
-})->name('doctor-business-settings');
-Route::get('/doctor-clinics-settings', function () {
-    return view('doctor-clinics-settings');
-})->name('doctor-clinics-settings');
-Route::get('/doctor-education-settings', function () {
-    return view('doctor-education-settings');
-})->name('doctor-education-settings');
+Route::get('/doctor-awards-settings', [DoctorAwardController::class, 'index'])->name('doctor-awards-settings');
+Route::resource('/doctor-awards-setting', DoctorAwardController::class);
+// Route::get('/doctor-business-settings', function () {
+//     return view('doctor-business-settings');
+// })->name('doctor-business-settings');
+Route::get('/doctor-business-settings', [DoctorBusinessHourController::class, 'index'])->name('doctor-business-settings');
+Route::resource('/doctor-business-setting', DoctorBusinessHourController::class);
+Route::get('/doctor-clinics-settings', [DoctorClinicsController::class, 'index'])->name('doctor-clinics-settings');
+Route::get('/doctor-clinics-setting-gallery-remove/{id}', [DoctorClinicsController::class, 'removeGallery'])->name('doctor-clinics-setting-gallery-remove');
+Route::resource('/doctor-clinics-setting', DoctorClinicsController::class);
 Route::get('/doctor-education-settings', [DoctorEducationController::class, 'index'])->name('doctor-education-settings');
 Route::resource('/doctor-education-setting', DoctorEducationController::class);
-Route::get('/doctor-experience-settings', function () {
-    return view('doctor-experience-settings');
-})->name('doctor-experience-settings');
 Route::get('/doctor-experience-settings', [DoctorExperienceController::class, 'index'])->name('doctor-experience-settings');
 Route::resource('/doctor-experience-setting', DoctorExperienceController::class);
-Route::get('/doctor-insurance-settings', function () {
-    return view('doctor-insurance-settings');
-})->name('doctor-insurance-settings');
+Route::get('/doctor-insurance-settings', [DoctorInsurancesController::class, 'index'])->name('doctor-insurance-settings');
+Route::resource('/doctor-insurance-setting', DoctorInsurancesController::class);
+
 Route::get('/doctor-cancelled-appointment', function () {
     return view('doctor-cancelled-appointment');
 })->name('doctor-cancelled-appointment');

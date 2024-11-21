@@ -6,20 +6,28 @@ use App\Interfaces\AccountRepositoryInterface;
 use App\Interfaces\AvailableTimmingRepositoryInterface;
 use App\Interfaces\BookingRepositoryInterface;
 use App\Interfaces\DependantRepositoryInterface;
+use App\Interfaces\DoctorAwardRepositoryInterface;
+use App\Interfaces\DoctorBusinessHourRepositoryInterface;
+use App\Interfaces\DoctorClinicsRepositoryInterface;
 use App\Interfaces\DoctorEducationRepositoryInterface;
 use App\Interfaces\DoctorExperienceRepositoryInterface;
+use App\Interfaces\DoctorInsurancesRepositoryInterface;
 use App\Interfaces\DoctorRepositoryInterface;
 use App\Interfaces\MedicalDetailRepositoryInterface;
 use App\Interfaces\MedicalRecordRepositoryInterface;
 use App\Interfaces\PatientProfileSettingRepositoryInterface;
 use App\Models\Dependant;
+use App\Models\DoctorClinic;
 use App\Models\DoctorEducation;
 use App\Models\DoctorExperience;
+use App\Models\DoctorInsurances;
 use App\Models\MedicalRecord;
 use App\Models\User;
 use App\Observers\DependantObserver;
+use App\Observers\DoctorClinicObserver;
 use App\Observers\DoctorEducationObserver;
 use App\Observers\DoctorExperienceObserver;
+use App\Observers\DoctorInsurancesObserver;
 use App\Observers\DoctorObserver;
 use App\Observers\MedicalRecordObserver;
 use App\Observers\PatientProfileSettingObserver;
@@ -27,8 +35,12 @@ use App\Repositories\AccountRepository;
 use App\Repositories\AvailableTimmingRepository;
 use App\Repositories\BookingRepository;
 use App\Repositories\DependantRepository;
+use App\Repositories\DoctorAwardRepository;
+use App\Repositories\DoctorBusinessHourRepository;
+use App\Repositories\DoctorClinicsRepository;
 use App\Repositories\DoctorEducationRepository;
 use App\Repositories\DoctorExperienceRepository;
+use App\Repositories\DoctorInsurancesRepository;
 use App\Repositories\DoctorRepository;
 use App\Repositories\MedicalDetailRepository;
 
@@ -60,10 +72,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(AccountRepositoryInterface::class, AccountRepository::class);
         $this->app->bind(DoctorExperienceRepositoryInterface::class, DoctorExperienceRepository::class);
         $this->app->bind(DoctorEducationRepositoryInterface::class, DoctorEducationRepository::class);
-
-
-
-
+        $this->app->bind(DoctorAwardRepositoryInterface::class, DoctorAwardRepository::class);
+        $this->app->bind(DoctorInsurancesRepositoryInterface::class, DoctorInsurancesRepository::class);
+        $this->app->bind(DoctorClinicsRepositoryInterface::class, DoctorClinicsRepository::class);
+        $this->app->bind(DoctorBusinessHourRepositoryInterface::class, DoctorBusinessHourRepository::class);
 
     }
 
@@ -78,6 +90,8 @@ class AppServiceProvider extends ServiceProvider
         User::observe(PatientProfileSettingObserver::class);
         DoctorExperience::observe(DoctorExperienceObserver::class);
         DoctorEducation::observe(DoctorEducationObserver::class);
+        DoctorInsurances::observe(DoctorInsurancesObserver::class);
+        DoctorClinic::observe(DoctorClinicObserver::class);
 
 
         RedirectIfAuthenticated::redirectUsing(function () {

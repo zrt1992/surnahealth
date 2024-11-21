@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class DoctorAward extends Model
 {
     use HasFactory;
+
+    protected $fillable=[
+        'doctor_id',
+        'award_name',
+        'year',
+        'description'
+    ];
 }
