@@ -59,6 +59,8 @@ class AvailableTimmingController extends Controller
             'appointment_duration' => 'required|integer',
             'space' => 'required|integer',
             'selected_day' => 'required|string',
+            'availability_type' => 'required|string',
+
         ]);
 
         // Create a new available timing record
@@ -72,6 +74,7 @@ class AvailableTimmingController extends Controller
             'appointment_duration' => $request->appointment_duration,
             'space' => $request->space,
             'availability_day' => $request->selected_day,
+            'availability_type' => $request->availability_type,
         ]);
 
         // Redirect back or to a success page
@@ -109,24 +112,16 @@ class AvailableTimmingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $request->validate([
-
-            'availability_type' => 'required',
-            'start_time' => 'required',
-            'end_time' => 'required',
-            'appointment_intervals' => 'required',
-            'appointment_duration' => 'required',
+            'appointment_fees' => 'required',
         ]);
 
         $input = $request->all();
-        $doctor = $this->AvailableTimmingRepository->update($id, $input);
-        $doctor->specializations()->sync($request->designation);
-
+        $doctor = $this->AvailableTimmingRepository->update($input);
         if ($doctor) {
-            return redirect()->route('doctor-profile-settings.index', $id)
-                ->with('success', 'Available timming updated successfully!');
+            return redirect()->route('available-timings')->with('success', 'Available timming updated successfully!');
         }
 
         return back()->with('error', 'Unable to update Available timming.');

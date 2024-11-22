@@ -18,6 +18,7 @@ class AvailableTimming extends Model
         'appointment_intervals',
         'appointment_duration',
         'availability_day',
+        'appointment_fees',
         'space_1',
         'space_2',
         'space_3',

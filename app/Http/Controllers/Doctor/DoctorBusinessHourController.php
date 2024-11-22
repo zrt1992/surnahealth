@@ -22,7 +22,7 @@ class DoctorBusinessHourController extends Controller
     public function index()
     {
         $DoctorBusinessHours = $this->DoctorBusinessHourRepository->all();
-        $specializations = Specialization::all();
+        $businessSettings = $DoctorBusinessHours->keyBy('select_business_days')->toArray();
         $auth = getAuthUser();
         return  view('doctor-business-settings', get_defined_vars());
     }
@@ -34,7 +34,7 @@ class DoctorBusinessHourController extends Controller
 
     public function store(Request $request)
     {
-       dd($request);
+   
         // Validate the input for business days
         // $request->merge([
         //     'business_days' => collect($request->input('business_days'))->map(function ($day) {
@@ -49,24 +49,20 @@ class DoctorBusinessHourController extends Controller
         $validated = $request->validate([
             'business_days' => 'required|array',
             'business_days.*.active' => 'nullable|boolean',
-            'business_days.*.from' => 'required_if:business_days.*.active,1',
-            'business_days.*.to' => 'required_if:business_days.*.active,1',
+            'business_days.*.from' => 'nullable|string', 
+            'business_days.*.to' => 'nullable|string',
         ]);
       
         // Loop through the business days
         foreach ($validated['business_days'] as $day => $settings) {
-            // dd($request->input('business_days'));
-            // Process only active days
-            if (isset($settings['active']) && $settings['active'] == '1') {
-                dd($validated['business_days']);
+        
+                // dd($validated['business_days']);
                 $data = [
                     'doctor_id' => auth()->id(),
                     'select_business_days' => $day,
                     'start_time' => $settings['from'],
                     'end_time' => $settings['to'],
                 ];
-    
-                // Use your repository or model to create or update the business hours
                 $this->DoctorBusinessHourRepository->updateOrCreate(
                     [
                         'doctor_id' => $data['doctor_id'],
@@ -74,7 +70,7 @@ class DoctorBusinessHourController extends Controller
                     ],
                     $data
                 );
-            }
+           
         }
     
         return redirect()->route('doctor-business-settings')->with('success', 'Business hours updated successfully!');

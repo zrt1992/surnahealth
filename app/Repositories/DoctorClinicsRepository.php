@@ -51,6 +51,8 @@ class DoctorClinicsRepository implements DoctorClinicsRepositoryInterface
     {
         $DoctorClinics = $this->find($id);
         if ($DoctorClinics) {
+          
+            $DoctorClinics->gallery()->delete();
             return $DoctorClinics->delete();
         }
 

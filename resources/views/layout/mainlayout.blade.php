@@ -450,6 +450,8 @@
     $accounts = $accounts ?? null;
 @endphp
 
+@component('components.delete_modal')
+			@endcomponent
 @component('components.modalpopup', ['accounts' => $accounts])
 @endcomponent
 

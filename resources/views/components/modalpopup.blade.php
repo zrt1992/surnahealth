@@ -5241,7 +5241,7 @@
             
                 <!-- Hidden field for selected day -->
                 <input type="hidden" id="selected_day" name="selected_day">
-            
+                <input type="hidden" id="availability_type" name="availability_type">
                 <div class="modal-footer">
                     <div class="modal-btn text-end">
                         <a href="#" class="btn btn-gray" data-bs-toggle="modal" data-bs-dismiss="modal">Cancel</a>
@@ -6304,5 +6304,8 @@
         </div>
     </div>
 </div>
+
+<!-- Modal for delete record Confirmation -->
+
 
    

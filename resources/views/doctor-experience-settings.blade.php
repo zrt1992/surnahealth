@@ -17,130 +17,8 @@
                 <div class="col-lg-4 col-xl-3 theiaStickySidebar">
 
                     <!-- Profile Sidebar -->
-                    <div class="profile-sidebar doctor-sidebar profile-sidebar-new">
-                        <div class="widget-profile pro-widget-content">
-                            <div class="profile-info-widget">
-                                <a href="{{ url('doctor-profile') }}" class="booking-doc-img">
-                                    <img src="{{ URL::asset('assets/img/doctors-dashboard/doctor-profile-img.jpg') }}"
-                                        alt="User Image">
-                                </a>
-                                <div class="profile-det-info">
-                                    <h3><a href="{{ url('doctor-profile') }}">Dr Edalin Hendry</a></h3>
-                                    <div class="patient-details">
-                                        <h5 class="mb-0">BDS, MDS - Oral & Maxillofacial Surgery</h5>
-                                    </div>
-                                    <span class="badge doctor-role-badge"><i class="fa-solid fa-circle"></i>Dentist</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="doctor-available-head">
-                            <div class="input-block input-block-new">
-                                <label class="form-label">Availability <span class="text-danger">*</span></label>
-                                <select class="select form-control">
-                                    <option>I am Available Now</option>
-                                    <option>Not Available</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="dashboard-widget">
-                            <nav class="dashboard-menu">
-                                <ul>
-                                    <li>
-                                        <a href="{{ url('doctor-dashboard') }}">
-                                            <i class="fa-solid fa-shapes"></i>
-                                            <span>Dashboard</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('doctor-request.index') }}">
-                                            <i class="fa-solid fa-calendar-check"></i>
-                                            <span>Requests</span>
-                                            <small class="unread-msg">2</small>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('appointments') }}">
-                                            <i class="fa-solid fa-calendar-days"></i>
-                                            <span>Appointments</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('available-timings') }}">
-                                            <i class="fa-solid fa-calendar-day"></i>
-                                            <span>Available Timings</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('my-patients') }}">
-                                            <i class="fa-solid fa-user-injured"></i>
-                                            <span>My Patients</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('doctor-specialities') }}">
-                                            <i class="fa-solid fa-clock"></i>
-                                            <span>Specialties & Services</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('reviews') }}">
-                                            <i class="fas fa-star"></i>
-                                            <span>Reviews</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('accounts') }}">
-                                            <i class="fa-solid fa-file-contract"></i>
-                                            <span>Accounts</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('invoices') }}">
-                                            <i class="fa-solid fa-file-lines"></i>
-                                            <span>Invoices</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('doctor-payment') }}">
-                                            <i class="fa-solid fa-money-bill-1"></i>
-                                            <span>Payout Settings</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('chat-doctor') }}">
-                                            <i class="fa-solid fa-comments"></i>
-                                            <span>Message</span>
-                                            <small class="unread-msg">7</small>
-                                        </a>
-                                    </li>
-                                    <li class="active">
-                                        <a href="{{ url('doctor-profile-settings') }}">
-                                            <i class="fa-solid fa-user-pen"></i>
-                                            <span>Profile Settings</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('social-media') }}">
-                                            <i class="fa-solid fa-shield"></i>
-                                            <span>Social Media</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('doctor-change-password') }}">
-                                            <i class="fa-solid fa-key"></i>
-                                            <span>Change Password</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('login') }}">
-                                            <i class="fa-solid fa-calendar-check"></i>
-                                            <span>Logout</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
+                    @component('components.sidebar_doctor')
+                    @endcomponent
                     <!-- /Profile Sidebar -->
 
                 </div>
@@ -480,8 +358,10 @@
                                                         </div>
                                                     </div>
                                                     <div class="text-end">
-                                                        <a href="{{ route('doctor-experience-setting.destroy', $experience->id) }}"
-                                                            class="reset more-item">Delete</a>
+                                                        <a href="javascript:void(0)" class="reset more-item"
+                                                            data-bs-toggle="modal" data-bs-target="#delete_record"
+                                                            data-id="{{ $experience->id }}"
+                                                            data-route="{{ route('doctor-experience-settings-delete', ':id') }}">Delete</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -504,6 +384,9 @@
         </div>
     </div>
     </div>
+
     <!-- /Page Content -->
-   @include('layout.partials.custom_scripts')
+    @component('components.delete_modal')
+    @endcomponent
+    @include('layout.partials.custom_scripts')
 @endsection

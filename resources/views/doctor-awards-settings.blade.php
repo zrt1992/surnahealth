@@ -120,6 +120,7 @@
                                         <a href="#" class="accordion-wrap" data-bs-toggle="collapse"
                                             data-bs-target="#award{{ $index }}"> {{ $award->award_name }}<span>Delete</span></a>
                                         </a>
+                                        
                                         <div class="accordion-collapse collapse show" id="award{{ $index }}" data-bs-parent="#list-accord">
                                             <div class="content-collapse">
                                                 <div class="add-service-info">
@@ -165,6 +166,10 @@
                                                     </div>
                                                     <div class="text-end">
                                                         <a href="#" class="reset more-item">Reset</a>
+                                                        <a href="javascript:void(0)" class="reset more-item"
+                                                            data-bs-toggle="modal" data-bs-target="#delete_record"
+                                                            data-id="{{ $award->id }}"
+                                                            data-route="{{ route('doctor-awards-settings-delete', ':id') }}" >Delete</a>
                                                     </div>
                                                 </div>
                                             </div>
