@@ -194,7 +194,7 @@
 										<div class="user-accordion-item">
 											<a href="#" class="accordion-wrap" data-bs-toggle="collapse"
 												data-bs-target="#experience{{ $index }}">
-												{{ $education->hospital }} <span>Delete</span>
+												{{ $education->name_of_institution }} <span></span>
 											</a>
 											<div class="accordion-collapse collapse" id="experience{{ $index }}"
 												data-bs-parent="#list-accord">
@@ -304,6 +304,7 @@
 															</div>
 														</div>
 														<div class="text-end">
+															<a href="#" class="reset more-item">Reset</a>
 															<a href="javascript:void(0)" class="reset more-item"
                                                             data-bs-toggle="modal" data-bs-target="#delete_record"
                                                             data-id="{{ $education->id }}"

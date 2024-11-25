@@ -127,7 +127,7 @@
 									@foreach ($DoctorInsurances as $index => $insurance)
 									<div class="user-accordion-item">
 										<a href="#" class="accordion-wrap" data-bs-toggle="collapse" data-bs-target="#insurance{{ $index }}">
-											{{ $insurance->insurance_name }} <span>Delete</span>
+											{{ $insurance->insurance_name }} <span></span>
 										</a>
 										<div class="accordion-collapse collapse" id="insurance{{ $index }}" data-bs-parent="#list-accord">
 											<div class="content-collapse">

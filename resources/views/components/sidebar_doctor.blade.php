@@ -3,14 +3,14 @@
         <div class="widget-profile pro-widget-content">
             <div class="profile-info-widget">
                 <a href="{{route('doctor-profile')}}" class="booking-doc-img">
-                    <img src="{{URL::asset('assets/img/doctor-banner.png')}}" alt="User Image">
+                    <img src="{{\Illuminate\Support\Facades\Auth::user()->profile_image}}" alt="User Image">
                 </a>
                 <div class="profile-det-info">
-                    <h3><a href="{{route('doctor-profile')}}">Dr Edalin Hendry</a></h3>
+                    <h3><a href="{{route('doctor-profile')}}">{{\Illuminate\Support\Facades\Auth::user()->name}}</a></h3>
                     <div class="patient-details">
                         <h5 class="mb-0">BDS, MDS - Oral & Maxillofacial Surgery</h5>
                     </div>
-                    <span class="badge doctor-role-badge"><i class="fa-solid fa-circle"></i>Dentist</span>
+                    <span class="badge doctor-role-badge"><i class="fa-solid fa-circle"></i> {{ \Illuminate\Support\Facades\Auth::user()->specializations()->first()?->name }}</span>
                 </div>
             </div>
         </div>

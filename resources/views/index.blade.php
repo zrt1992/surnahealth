@@ -10,7 +10,7 @@
                         <h1>Consult <span>Best Doctors</span> Your Nearby Location.</h1>
                         <img src="{{ URL::asset('/assets/img/icons/header-icon.svg') }}" class="header-icon" alt="header-icon">
                         <p>Embark on your healing journey with Surna</p>
-                        <a href="{{ url('booking') }}" class="btn">Start a Consult</a>
+                        <a href="{{ url('booking-2') }}" class="btn">Start a Consult</a>
                         <div class="banner-arrow-img">
                             <img src="{{ URL::asset('/assets/img/down-arrow-img.png') }}" class="img-fluid"
                                 alt="down-arrow">
@@ -75,7 +75,7 @@
                 <div
                     class="row row-cols-7 row-cols-xxl-7 row-cols-xl-4 row-cols-lg-4 rows-cols-md-6 justify-content-center">
                     <div class="col-12 d-flex col-xxl col-lg-3 col-sm-6">
-                        <a href="javascript:void(0);" class="serv-wrap blue-bg flex-fill">
+                        <a href="{{ url('booking-2') }}" class="serv-wrap blue-bg flex-fill">
                             <span>
                                 <img src="{{ URL::asset('/assets/img/icons/service-01.svg') }}" alt="heart-image">
                             </span>
@@ -115,7 +115,7 @@
                         </a>
                     </div>
                     <div class="col-12 d-flex col-xxl col-lg-3 col-sm-6">
-                        <a href="javascript:void(0);" class="serv-wrap pink-bg flex-fill">
+                        <a href="{{ url('chat') }}" class="serv-wrap pink-bg flex-fill">
                             <span>
                                 <img src="{{ URL::asset('/assets/img/icons/service-06.svg') }}" alt="heart-image">
                             </span>

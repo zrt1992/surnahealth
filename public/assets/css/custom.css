@@ -16638,7 +16638,7 @@ html.menu-opened body {
 }
 
 .patient-sidebar.profile-sidebar-new .widget-profile .profile-info-widget::after {
-  background-image: url(../img/doctors-dashboard/patient-sidebar-bg.jpg);
+  background-image: url(../img/banner/banner-05.png);
 }
 .patient-sidebar .profile-det-info span {
   font-size: 14px;

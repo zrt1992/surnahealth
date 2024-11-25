@@ -1918,7 +1918,7 @@
                             'membership-details',
                         ]))
                         <!-- Cart -->
-                        <li class="nav-item dropdown noti-nav view-cart-header me-3">
+                        {{-- <li class="nav-item dropdown noti-nav view-cart-header me-3">
                             <a href="#" class="dropdown-toggle nav-link p-0 position-relative"
                                 data-bs-toggle="dropdown">
                                 <i class="fa-solid fa-cart-shopping"></i> <small class="unread-msg1">7</small>
@@ -1991,7 +1991,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </li>
+                        </li> --}}
                         <!-- /Cart -->
 
                         <!-- Notifications -->
@@ -2120,7 +2120,7 @@
                                             'patient-cancelled-appointment',
                                         ]))
                                         <img class="rounded-circle"
-                                            src="{{ URL::asset('/assets/img/doctor-banner.png') }}"
+                                            src="{{\Illuminate\Support\Facades\Auth::user()->profile_image}}"
                                             width="31" alt="Darren Elder">
                                     @endif
                                     @if (Route::is([
@@ -2136,7 +2136,7 @@
                                             'patient-cancelled-appointment',
                                         ]))
                                         <img class="rounded-circle"
-                                            src="{{ URL::asset('/assets/img/doctors-dashboard/profile-06.jpg') }}"
+                                            src="{{\Illuminate\Support\Facades\Auth::user()->profile_image}}"
                                             width="31" alt="Darren Elder">
                                     @endif
                                 </span>
@@ -2157,11 +2157,11 @@
                                     ]))
                                     <div class="user-header">
                                         <div class="avatar avatar-sm">
-                                            <img src="{{ URL::asset('/assets/img/doctor-banner.png') }}"
+                                            <img src="{{\Illuminate\Support\Facades\Auth::user()->profile_image}}"
                                                 alt="User Image" class="avatar-img rounded-circle">
                                         </div>
                                         <div class="user-text">
-                                            <h6>Darren Elder</h6>
+                                            <h6>{{\Illuminate\Support\Facades\Auth::user()->name}}</h6>
                                             <p class="text-muted mb-0">Doctor</p>
                                         </div>
                                     </div>
@@ -2182,11 +2182,11 @@
                                     ]))
                                     <div class="user-header">
                                         <div class="avatar avatar-sm">
-                                            <img src="{{ URL::asset('/assets/img/doctors-dashboard/profile-06.jpg') }}"
+                                            <img src="{{\Illuminate\Support\Facades\Auth::user()->profile_image}}"
                                                 alt="User Image" class="avatar-img rounded-circle">
                                         </div>
                                         <div class="user-text">
-                                            <h6>Hendrita</h6>
+                                            <h6>{{\Illuminate\Support\Facades\Auth::user()->name}}</h6>
                                             <p class="text-success mb-0">Available</p>
                                         </div>
                                     </div>

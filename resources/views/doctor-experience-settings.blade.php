@@ -113,7 +113,7 @@
                                                                 <label class="col-form-label">Title</label>
                                                                 <input type="text" name="title[]"
                                                                     class="form-control">
-                                                                @error('title.' . $experience->id)
+                                                                @error('title')
                                                                     <div class="text-danger">{{ $message }}</div>
                                                                 @enderror
                                                             </div>
@@ -124,7 +124,7 @@
                                                                         class="text-danger">*</span></label>
                                                                 <input type="text" name="hospital[]"
                                                                     class="form-control">
-                                                                @error('hospital.' . $experience->id)
+                                                                @error('hospital')
                                                                     <div class="text-danger">{{ $message }}</div>
                                                                 @enderror
                                                             </div>
@@ -135,7 +135,7 @@
                                                                         class="text-danger">*</span></label>
                                                                 <input type="text" name="year_of_experience[]"
                                                                     class="form-control">
-                                                                @error('year_of_experience.' . $experience->id)
+                                                                @error('year_of_experience')
                                                                     <div class="text-danger">{{ $message }}</div>
                                                                 @enderror
                                                             </div>
@@ -146,7 +146,7 @@
                                                                         class="text-danger">*</span></label>
                                                                 <input type="text" name="location[]"
                                                                     class="form-control">
-                                                                @error('location.' . $experience->id)
+                                                                @error('location')
                                                                     <div class="text-danger">{{ $message }}</div>
                                                                 @enderror
                                                             </div>
@@ -165,7 +165,7 @@
                                                                 <label class="col-form-label">Job Description <span
                                                                         class="text-danger">*</span></label>
                                                                 <textarea name="job_description[]" class="form-control" rows="3"></textarea>
-                                                                @error('job_description.' . $experience->id)
+                                                                @error('job_description')
                                                                     <div class="text-danger">{{ $message }}</div>
                                                                 @enderror
                                                             </div>
@@ -179,7 +179,7 @@
                                                                         class="form-control datetimepicker">
                                                                     <span class="icon"><i
                                                                             class="fa-regular fa-calendar-days"></i></span>
-                                                                    @error('start_date.' . $experience->id)
+                                                                    @error('start_date')
                                                                         <div class="text-danger">{{ $message }}</div>
                                                                     @enderror
                                                                 </div>
@@ -194,7 +194,7 @@
                                                                         class="form-control datetimepicker">
                                                                     <span class="icon"><i
                                                                             class="fa-regular fa-calendar-days"></i></span>
-                                                                    @error('end_date.' . $experience->id)
+                                                                    @error('end_date')
                                                                         <div class="text-danger">{{ $message }}</div>
                                                                     @enderror
                                                                 </div>
@@ -226,8 +226,9 @@
                                     <div class="user-accordion-item">
                                         <a href="#" class="accordion-wrap" data-bs-toggle="collapse"
                                             data-bs-target="#experience{{ $index }}">
-                                            {{ $experience->hospital }} <span>Delete</span>
+                                            {{ $experience->hospital }} <span></span>
                                         </a>
+                                        
                                         <div class="accordion-collapse collapse" id="experience{{ $index }}"
                                             data-bs-parent="#list-accord">
                                             <div class="content-collapse">
@@ -358,6 +359,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="text-end">
+                                                        <a href="#" class="reset more-item">Reset</a>
                                                         <a href="javascript:void(0)" class="reset more-item"
                                                             data-bs-toggle="modal" data-bs-target="#delete_record"
                                                             data-id="{{ $experience->id }}"

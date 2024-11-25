@@ -6,14 +6,14 @@
         <div class="widget-profile pro-widget-content">
             <div class="profile-info-widget">
                 <a href="{{ route('profile-settings') }}" class="booking-doc-img">
-                    <img src="{{ URL::asset('assets/img/doctors-dashboard/profile-06.jpg') }}" alt="User Image">
+                    <img src="{{\Illuminate\Support\Facades\Auth::user()->profile_image}}" alt="User Image">
                 </a>
                 <div class="profile-det-info">
                     <h3><a href="{{ route('profile-settings') }}"> {{\Illuminate\Support\Facades\Auth::user()->name}}</a></h3>
                     <div class="patient-details">
                         <h5 class="mb-0">Patient ID : PT254654</h5>
                     </div>
-                    <span>Female <i class="fa-solid fa-circle"></i> 32 years 03 Months</span>
+                    <span>{{\Illuminate\Support\Facades\Auth::user()->gender ?? '--'}} <i class="fa-solid fa-circle"></i>{{ calculateAge(\Illuminate\Support\Facades\Auth::user()->dob) }}</span>
                 </div>
             </div>
         </div>

@@ -166,7 +166,7 @@
                                     <div class="user-accordion-item">
                                         <a href="#" class="accordion-wrap" data-bs-toggle="collapse"
                                             data-bs-target="#clinic{{ $index }}">
-                                            {{ $clinic->clinic_name }} <span class="remove-clinic">Delete</span>
+                                            {{ $clinic->clinic_name }} <span class="remove-clinic"></span>
                                         </a>
                                         <div class="accordion-collapse collapse {{ $index === 0 ? 'show' : '' }}"
                                             id="clinic{{ $index }}" data-bs-parent="#list-accord">

@@ -79,7 +79,10 @@ class User extends Authenticatable
     }
 
 
-
+    public function doctorSpecialization()
+    {
+        return $this->hasOne(Specialization::class, 'doctor_specialization');
+    }
 
     public function specializations()
     {
@@ -87,9 +90,9 @@ class User extends Authenticatable
     }
 
     // A doctor can have many qualifications
-    public function qualifications()
+    public function doctorEducation()
     {
-        return $this->hasMany(Qualification::class);
+        return $this->hasMany(DoctorEducation::class);
     }
 
     public function availableTimings()

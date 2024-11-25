@@ -118,7 +118,7 @@
 									@foreach ($DoctorAwards as $index => $award)
                                     <div class="user-accordion-item">
                                         <a href="#" class="accordion-wrap" data-bs-toggle="collapse"
-                                            data-bs-target="#award{{ $index }}"> {{ $award->award_name }}<span>Delete</span></a>
+                                            data-bs-target="#award{{ $index }}"> {{ $award->award_name }}<span></span></a>
                                         </a>
                                         
                                         <div class="accordion-collapse collapse show" id="award{{ $index }}" data-bs-parent="#list-accord">
