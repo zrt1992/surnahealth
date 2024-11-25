@@ -75,7 +75,7 @@
 									@if (empty($DoctorEducations) || count($DoctorEducations) === 0)
 									<div class="user-accordion-item ">
 										<a href="#" class="accordion-wrap" data-bs-toggle="collapse"
-											data-bs-target="#education1">Education <span>Delete</span></a>
+											data-bs-target="#education1">Education <span></span></a>
 										<div class="accordion-collapse collapse" id="education1" data-bs-parent="#list-accord">
 											<div class="content-collapse">
 												<div class="add-service-info">

@@ -187,7 +187,7 @@
 
         newExperience.innerHTML = `
             <a href="#" class="accordion-wrap" data-bs-toggle="collapse" data-bs-target="#collapse-${experienceCount}">
-                New Experience <span class="remove-experience">Delete</span>
+                New Experience <span class="remove-experience"></span>
             </a>
             <div class="accordion-collapse collapse" id="collapse-${experienceCount}" data-bs-parent="#list-accord">
                 <div class="content-collapse">
@@ -321,7 +321,7 @@
 
         newExperience.innerHTML = `
             <a href="#" class="accordion-wrap" data-bs-toggle="collapse" data-bs-target="#collapse-${educationCount}">
-                 Education <span class="remove-experience">Delete</span>
+                 Education <span class="remove-experience"></span>
             </a>
             <div class="accordion-collapse collapse" id="collapse-${educationCount}" data-bs-parent="#list-accord">
               <div class="content-collapse">
@@ -470,7 +470,7 @@
 
         newAward.innerHTML = `
             <a href="#" class="accordion-wrap" data-bs-toggle="collapse" data-bs-target="#award-${awardCount}">
-                Awards <span class="remove-award">Delete</span>
+                Awards <span class="remove-award"></span>
             </a>
             <div class="accordion-collapse collapse" id="award-${awardCount}" data-bs-parent="#list-accord">
                 <div class="content-collapse">
@@ -551,7 +551,7 @@
 
         newInsurance.innerHTML = `
             <a href="#" class="accordion-wrap" data-bs-toggle="collapse" data-bs-target="#insurance-${insuranceCount}">
-                Insurance <span class="remove-insurance">Delete</span>
+                Insurance <span class="remove-insurance"></span>
             </a>
             <div class="accordion-collapse collapse" id="insurance-${insuranceCount}" data-bs-parent="#list-accord">
                 <div class="content-collapse">
@@ -625,7 +625,7 @@
 
         newClinic.innerHTML = `
             <a href="#" class="accordion-wrap" data-bs-toggle="collapse" data-bs-target="#clinic-${clinicCount}">
-                Clinic <span class="remove-clinic">Delete</span>
+                Clinic <span class="remove-clinic"></span>
             </a>
             <div class="accordion-collapse collapse" id="clinic-${clinicCount}" data-bs-parent="#list-accord">
                 <div class="content-collapse">

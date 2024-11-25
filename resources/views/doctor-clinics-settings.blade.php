@@ -78,7 +78,7 @@
                             @if (empty($doctorClinics) || count($doctorClinics) === 0)
                                 <div class="user-accordion-item">
                                     <a href="#" class="accordion-wrap" data-bs-toggle="collapse"
-                                        data-bs-target="#clinic1">Clinic <span class="remove-clinic">Delete</span></a>
+                                        data-bs-target="#clinic1">Clinic <span class="remove-clinic"></span></a>
                                     <div class="accordion-collapse collapse show" id="clinic1"
                                         data-bs-parent="#list-accord">
                                         <div class="content-collapse">

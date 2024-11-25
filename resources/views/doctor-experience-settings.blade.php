@@ -78,7 +78,7 @@
                             @if (empty($DoctorExperiences) || count($DoctorExperiences) === 0)
                                 <div class="user-accordion-item ">
                                     <a href="#" class="accordion-wrap" data-bs-toggle="collapse"
-                                        data-bs-target="#experience1">New Experience <span>Delete</span></a>
+                                        data-bs-target="#experience1">New Experience <span></span></a>
                                     <div class="accordion-collapse collapse" id="experience1" data-bs-parent="#list-accord">
                                         <div class="content-collapse">
                                             <div class="add-service-info">
