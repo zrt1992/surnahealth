@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Qualification extends Model
+class DoctorEducation extends Model
 {
     use HasFactory;
 
+    protected $table = 'qualifications';
     protected $fillable = [
        'doctor_id',
         'name_of_institution',
@@ -19,7 +20,7 @@ class Qualification extends Model
        'description',
     ];
 
-    // A qualification belongs to a doctor
+    // A DoctorEducation belongs to a doctor
     public function doctor()
     {
         return $this->belongsTo(User::class);

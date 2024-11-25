@@ -320,14 +320,18 @@
 
                         <!-- Clinic Availability -->
                         <div class="tab-pane fade" id="clinic-availability">
+                            <form action="{{ route('available-timings-update') }}" method="POST">
+                                @csrf
                             <div class="clinic-wrap">
                                 <h5>Select Clinic</h5>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <select class="select-img">
-                                            <option data-image="assets/img/doctors-dashboard/clinic-01.jpg">The Family
+                                        <select name="select_clinic" class="select-img">
+                                            <option value="The Family
+                                                Dentistry Clinic" data-image="assets/img/doctors-dashboard/clinic-01.jpg">The Family
                                                 Dentistry Clinic</option>
-                                            <option data-image="assets/img/doctors-dashboard/clinic-02.jpg">Dentistry
+                                            <option value="Dentistry
+                                                Clinic" data-image="assets/img/doctors-dashboard/clinic-02.jpg">Dentistry
                                                 Clinic</option>
                                         </select>
                                     </div>
@@ -383,7 +387,7 @@
                                                     <ul>
                                                         <li>
                                                             <a href="#" class="add-slot" data-bs-toggle="modal"
-                                                                data-bs-target="#add_slot" data-day="Monday">Add Slots</a>
+                                                                data-bs-target="#add_slot" data-day="Monday" data-availability="clinic">Add Slots</a>
 
                                                         </li>
                                                         <li>
@@ -424,7 +428,7 @@
                                                     <ul>
                                                         <li>
                                                             <a href="#" class="add-slot" data-bs-toggle="modal"
-                                                                data-bs-target="#add_slot" data-day="Tuesday">Add
+                                                                data-bs-target="#add_slot" data-day="Tuesday" data-availability="clinic">Add
                                                                 Slots</a>
                                                         </li>
                                                         <li>
@@ -458,7 +462,7 @@
                                                     <ul>
                                                         <li>
                                                             <a href="#" class="add-slot" data-bs-toggle="modal"
-                                                                data-bs-target="#add_slot" data-day="Wednesday">Add
+                                                                data-bs-target="#add_slot" data-day="Wednesday" data-availability="clinic">Add
                                                                 Slots</a>
                                                         </li>
                                                         <li>
@@ -492,7 +496,7 @@
                                                     <ul>
                                                         <li>
                                                             <a href="#" class="add-slot" data-bs-toggle="modal"
-                                                                data-bs-target="#add_slot" data-day="Thursday">Add
+                                                                data-bs-target="#add_slot" data-day="Thursday" data-availability="clinic">Add
                                                                 Slots</a>
                                                         </li>
                                                         <li>
@@ -526,7 +530,7 @@
                                                     <ul>
                                                         <li>
                                                             <a href="#" class="add-slot" data-bs-toggle="modal"
-                                                                data-bs-target="#add_slot" data-day="Friday">Add Slots</a>
+                                                                data-bs-target="#add_slot" data-day="Friday" data-availability="clinic">Add Slots</a>
                                                         </li>
                                                         <li>
                                                             <a href="#" class="del-slot" data-bs-toggle="modal"
@@ -559,7 +563,7 @@
                                                     <ul>
                                                         <li>
                                                             <a href="#" class="add-slot" data-bs-toggle="modal"
-                                                                data-bs-target="#add_slot" data-day="Saturday">Add
+                                                                data-bs-target="#add_slot" data-day="Saturday" data-availability="clinic">Add
                                                                 Slots</a>
                                                         </li>
                                                         <li>
@@ -593,7 +597,7 @@
                                                     <ul>
                                                         <li>
                                                             <a href="#" class="add-slot" data-bs-toggle="modal"
-                                                                data-bs-target="#add_slot" data-day="Sunday">Add Slots</a>
+                                                                data-bs-target="#add_slot" data-day="Sunday" data-availability="clinic">Add Slots</a>
                                                         </li>
                                                         <li>
                                                             <a href="#" class="del-slot" data-bs-toggle="modal"
@@ -620,17 +624,18 @@
 
                                         <div class="form-wrap">
                                             <label class="col-form-label">Appointment Fees ($)</label>
-                                            <input type="text" class="form-control" value="254">
+                                            <input type="text" class="form-control" value="" name="appointment_fees">
                                         </div>
                                         <div class="modal-btn text-end">
                                             <a href="#" class="btn btn-gray" data-bs-toggle="modal"
                                                 data-bs-dismiss="modal">Cancel</a>
-                                            <button class="btn btn-primary prime-btn">Save Changes</button>
+                                            <button type="submit" class="btn btn-primary prime-btn">Save Changes</button>
                                         </div>
                                     </div>
 
                                 </div>
                             </div>
+                            </form>
                         </div>
                         <!-- /Clinic Availability -->
 
@@ -649,9 +654,11 @@
             $('.add-slot').on('click', function() {
 
                 var selectedDay = $(this).data('day');
+                var availabilityType = $(this).data('availability');
                 console.log("Selected Day: " + selectedDay);
-
+               
                 $('#selected_day').val(selectedDay);
+                $('#availability_type').val(availabilityType);
                 $('.modal-title').text('Add New Slot for ' + selectedDay);
             });
         });

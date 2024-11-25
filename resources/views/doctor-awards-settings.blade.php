@@ -66,11 +66,12 @@
                         </ul>
                     </div>
 
-                    <form action="doctor-awards-settings">
-
+                    <form action="{{ route('doctor-awards-setting.store') }}" method="POST">
+                    @csrf
                         <div class="accordions awrad-infos" id="list-accord">
 
                             <!-- Awards Item -->
+                            @if (empty($DoctorAwards) || count($DoctorAwards) === 0)
                             <div class="user-accordion-item">
                                 <a href="#" class="accordion-wrap" data-bs-toggle="collapse"
                                     data-bs-target="#award1">Awards<span>Delete</span></a>
@@ -79,10 +80,11 @@
                                         <div class="add-service-info">
                                             <div class="add-info">
                                                 <div class="row align-items-center">
+                                                    <input type="hidden" name="form_type[]" value="create">
                                                     <div class="col-md-6">
                                                         <div class="form-wrap">
                                                             <label class="col-form-label">Award Name</label>
-                                                            <input type="text" class="form-control">
+                                                            <input type="text" class="form-control" name="award_name[]">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
@@ -90,7 +92,7 @@
                                                             <label class="col-form-label">Year <span
                                                                     class="text-danger">*</span></label>
                                                             <div class="form-icon">
-                                                                <input type="text" class="form-control datetimepicker">
+                                                                <input type="text" class="form-control datetimepicker" name="year[]">
                                                                 <span class="icon"><i
                                                                         class="fa-regular fa-calendar-days"></i></span>
                                                             </div>
@@ -100,7 +102,7 @@
                                                         <div class="form-wrap">
                                                             <label class="col-form-label">Description <span
                                                                     class="text-danger">*</span></label>
-                                                            <textarea class="form-control" rows="3"></textarea>
+                                                            <textarea class="form-control" rows="3" name="description[]"></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -112,10 +114,73 @@
                                     </div>
                                 </div>
                             </div>
+                            @else
+									@foreach ($DoctorAwards as $index => $award)
+                                    <div class="user-accordion-item">
+                                        <a href="#" class="accordion-wrap" data-bs-toggle="collapse"
+                                            data-bs-target="#award{{ $index }}"> {{ $award->award_name }}<span>Delete</span></a>
+                                        </a>
+                                        
+                                        <div class="accordion-collapse collapse show" id="award{{ $index }}" data-bs-parent="#list-accord">
+                                            <div class="content-collapse">
+                                                <div class="add-service-info">
+                                                    <div class="add-info">
+                                                        <div class="row align-items-center">
+                                                            <input type="hidden" name="form_type[{{ $award->id }}]" value="update">
+                                                            <div class="col-md-6">
+                                                                <div class="form-wrap">
+                                                                    <label class="col-form-label">Award Name</label>
+                                                                    <input type="text"
+																			name="award_name[{{ $award->id }}]"
+																			value="{{ old('award_name.' . $award->id, $award->award_name) }}"
+																			class="form-control @error('award_name.' . $award->id) is-invalid @enderror">
+	
+																		@error('award_name.' . $award->id)
+																			<div class="text-danger">{{ $message }}</div>
+																		@enderror
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-wrap">
+                                                                    <label class="col-form-label">Year <span
+                                                                            class="text-danger">*</span></label>
+                                                                    <div class="form-icon">
+                                                                        <input type="text" class="form-control datetimepicker" name="year[{{ $award->id }}]"
+                                                                        value="{{ old('year.' . $award->id, $award->year) }}">
+                                                                        <span class="icon"><i
+                                                                                class="fa-regular fa-calendar-days"></i></span>
+                                                                    </div>
+                                                                    @error('year.' . $award->id)
+																			<div class="text-danger">{{ $message }}</div>
+																		@enderror
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-12">
+                                                                <div class="form-wrap">
+                                                                    <label class="col-form-label">Description <span
+                                                                            class="text-danger">*</span></label>
+                                                                    <textarea name="description[{{ $award->id }}]" class="form-control" rows="3">{{ $award->description }}</textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-end">
+                                                        <a href="#" class="reset more-item">Reset</a>
+                                                        <a href="javascript:void(0)" class="reset more-item"
+                                                            data-bs-toggle="modal" data-bs-target="#delete_record"
+                                                            data-id="{{ $award->id }}"
+                                                            data-route="{{ route('doctor-awards-settings-delete', ':id') }}" >Delete</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
+								@endif
                             <!-- /Awards Item -->
 
                             <!-- Awards Item -->
-                            <div class="user-accordion-item">
+                            {{-- <div class="user-accordion-item">
                                 <a href="#" class="collapsed accordion-wrap" data-bs-toggle="collapse"
                                     data-bs-target="#award2">Best Surgeon<span>Delete</span></a>
                                 <div class="accordion-collapse collapse" id="award2" data-bs-parent="#list-accord">
@@ -155,7 +220,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <!-- /Awards Item -->
 
                         </div>
@@ -173,4 +238,5 @@
         </div>
     </div>
     <!-- /Page Content -->
+    @include('layout.partials.custom_scripts')
 @endsection

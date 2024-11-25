@@ -29,16 +29,25 @@ class AvailableTimmingRepository implements AvailableTimmingRepositoryInterface
         return $this->model::create($data);
     }
 
-    public function update($id, array $data)
-    {
-        $availableTimming = $this->find($id);
-        if ($availableTimming) {
-            $availableTimming->update($data);
-            return $availableTimming;
-        }
-
-        return null;
+    public function update( array $data)
+{
+    unset($data['_token']);
+    if (isset($data['select_clinic']) && $data['select_clinic']) {
+      
+        $updated = $this->model::where('user_id', getAuthUser()->id)
+                        ->where('availability_type', 'clinic')
+                        ->update($data);
+    } else {
+       
+        $updated =  $this->model::where('user_id', getAuthUser()->id)
+                        ->where('availability_type', '!=', 'clinic')
+                        ->update($data);
     }
+
+   
+    return $updated;
+}
+
 
     public function delete($id)
     {

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('appointment_intervals')->nullable();
             $table->integer('appointment_duration')->nullable();
            $table->string('availability_day')->nullable();
+           $table->string('availability_fees')->nullable();
             $table->integer('space_1')->default(0);
             $table->integer('space_2')->default(0);
             $table->integer('space_3')->default(0);

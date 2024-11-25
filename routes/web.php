@@ -1,20 +1,26 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\Doctor\AppointmentController;
 use App\Http\Controllers\Doctor\AvailableTimmingController;
 use App\Http\Controllers\Doctor\DashboardController;
+use App\Http\Controllers\Doctor\DoctorAwardController;
 use App\Http\Controllers\Doctor\DoctorBookingController;
+use App\Http\Controllers\Doctor\DoctorBusinessHourController;
+use App\Http\Controllers\Doctor\DoctorClinicsController;
 use App\Http\Controllers\Doctor\DoctorController;
+use App\Http\Controllers\Doctor\DoctorEducationController;
+use App\Http\Controllers\Doctor\DoctorExperienceController;
+use App\Http\Controllers\Doctor\DoctorInsurancesController;
 use App\Http\Controllers\GoogleMeetController;
 use App\Http\Controllers\Patient\BookingController;
 use App\Http\Controllers\Patient\DashboardController as PatientDashboard;
 use App\Http\Controllers\Patient\DependantController;
-use App\Http\Controllers\Patient\FavoFavouritesController;
 use App\Http\Controllers\Patient\FavouritesController;
 use App\Http\Controllers\Patient\MedicalDetailController;
 use App\Http\Controllers\Patient\MedicalRecordController;
+use App\Http\Controllers\Patient\PatientProfileSettingController;
 use App\Http\Controllers\ProfileController;
-use App\Models\AvailableTimming;
 use App\Services\GoogleClientService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -91,9 +97,11 @@ Route::middleware(['auth', 'role:patient'])->prefix('patient')->group(function (
     Route::get('/patient-details', function () {
         return view('patient.patient-details');
     })->name('patient-details');
-    Route::get('/patient-accounts', function () {
-        return view('patient.patient-accounts');
-    })->name('patient-accounts');
+    Route::get('/patient-accounts', [AccountController::class, 'index'])->name('patient-accounts');
+    Route::resource('/patient-account', AccountController::class);
+    Route::get('/patient-account-default/{id}', [AccountController::class, 'setDefault'])->name('patient-account-default');
+
+
     Route::get('/patient-dependant-details', function () {
         return view('patient.patient-dependant-details');
     })->name('patient-dependant-details');
@@ -154,9 +162,8 @@ Route::middleware(['auth', 'role:patient'])->prefix('patient')->group(function (
     Route::get('/dependent', [DependantController::class, 'index'])->name('dependent');
     Route::resource('dependents', DependantController::class);
 
-    Route::get('/profile-settings', function () {
-        return view('profile-settings');
-    })->name('profile-settings');
+    Route::get('/profile-settings', [PatientProfileSettingController::class, 'index'])->name('profile-settings');
+    Route::resource('patient-profile-setting', PatientProfileSettingController::class);
 });
 
 
@@ -342,9 +349,9 @@ Route::get('/index-14', function () {
 Route::get('/about-us', function () {
     return view('about-us');
 })->name('about-us');
-Route::get('/accounts', function () {
-    return view('accounts');
-})->name('accounts');
+Route::get('/accounts', [AccountController::class, 'index'])->name('accounts');
+Route::resource('/account', AccountController::class);
+Route::get('/account-default/{id}', [AccountController::class, 'setDefault'])->name('account-default');
 Route::get('/add-billing', function () {
     return view('add-billing');
 })->name('add-billing');
@@ -359,6 +366,8 @@ Route::get('/appointments-remove/{id}', [AppointmentController::class, 'destroy'
 
 Route::get('/available-timings', [AvailableTimmingController::class, 'index'])->name('available-timings');
 Route::post('/available-timings-add', [AvailableTimmingController::class, 'store'])->name('available-timings-add');
+Route::post('/available-timings-update', [AvailableTimmingController::class, 'update'])->name('available-timings-update');
+
 
 // Route::resource('/available-timings', AvailableTimmingController::class);
 
@@ -697,24 +706,32 @@ Route::get('/doctor-payment', function () {
 Route::get('/doctor-appointment-details', function () {
     return view('doctor-appointment-details');
 })->name('doctor-appointment-details');
-Route::get('/doctor-awards-settings', function () {
-    return view('doctor-awards-settings');
-})->name('doctor-awards-settings');
-Route::get('/doctor-business-settings', function () {
-    return view('doctor-business-settings');
-})->name('doctor-business-settings');
-Route::get('/doctor-clinics-settings', function () {
-    return view('doctor-clinics-settings');
-})->name('doctor-clinics-settings');
-Route::get('/doctor-education-settings', function () {
-    return view('doctor-education-settings');
-})->name('doctor-education-settings');
-Route::get('/doctor-experience-settings', function () {
-    return view('doctor-experience-settings');
-})->name('doctor-experience-settings');
-Route::get('/doctor-insurance-settings', function () {
-    return view('doctor-insurance-settings');
-})->name('doctor-insurance-settings');
+
+Route::get('/doctor-awards-settings', [DoctorAwardController::class, 'index'])->name('doctor-awards-settings');
+Route::get('/doctor-awards-settings-delete/{id}', [DoctorAwardController::class, 'destroy'])->name('doctor-awards-settings-delete');
+Route::resource('/doctor-awards-setting', DoctorAwardController::class);
+
+Route::get('/doctor-business-settings', [DoctorBusinessHourController::class, 'index'])->name('doctor-business-settings');
+Route::get('/doctor-business-settings-delete/{id}', [DoctorBusinessHourController::class, 'destroy'])->name('doctor-business-settings-delete');
+Route::resource('/doctor-business-setting', DoctorBusinessHourController::class);
+
+Route::get('/doctor-clinics-settings', [DoctorClinicsController::class, 'index'])->name('doctor-clinics-settings');
+Route::get('/doctor-clinics-settings-delete/{id}', [DoctorClinicsController::class, 'destroy'])->name('doctor-clinics-settings-delete');
+Route::get('/doctor-clinics-setting-gallery-remove/{id}', [DoctorClinicsController::class, 'removeGallery'])->name('doctor-clinics-setting-gallery-remove');
+Route::resource('/doctor-clinics-setting', DoctorClinicsController::class);
+
+Route::get('/doctor-education-settings', [DoctorEducationController::class, 'index'])->name('doctor-education-settings');
+Route::get('/doctor-education-settings-delete/{id}', [DoctorEducationController::class, 'destroy'])->name('doctor-education-settings-delete');
+Route::resource('/doctor-education-setting', DoctorEducationController::class);
+
+Route::get('/doctor-experience-settings', [DoctorExperienceController::class, 'index'])->name('doctor-experience-settings');
+Route::get('/doctor-experience-settings-delete/{id}', [DoctorExperienceController::class, 'destroy'])->name('doctor-experience-settings-delete');
+Route::resource('/doctor-experience-setting', DoctorExperienceController::class);
+
+Route::get('/doctor-insurance-settings', [DoctorInsurancesController::class, 'index'])->name('doctor-insurance-settings');
+Route::get('/doctor-insurance-settings-delete/{id}', [DoctorInsurancesController::class, 'destroy'])->name('doctor-insurance-settings-delete');
+Route::resource('/doctor-insurance-setting', DoctorInsurancesController::class);
+
 Route::get('/doctor-cancelled-appointment', function () {
     return view('doctor-cancelled-appointment');
 })->name('doctor-cancelled-appointment');
