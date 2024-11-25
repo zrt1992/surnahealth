@@ -83,31 +83,6 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'role:doctor'])->prefix('doctor')->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('doctor-dashboard');
-
-    Route::get('/doctor-awards-settings', [DoctorAwardController::class, 'index'])->name('doctor-awards-settings');
-    Route::get('/doctor-awards-settings-delete/{id}', [DoctorAwardController::class, 'destroy'])->name('doctor-awards-settings-delete');
-    Route::resource('/doctor-awards-setting', DoctorAwardController::class);
-
-    Route::get('/doctor-business-settings', [DoctorBusinessHourController::class, 'index'])->name('doctor-business-settings');
-    Route::get('/doctor-business-settings-delete/{id}', [DoctorBusinessHourController::class, 'destroy'])->name('doctor-business-settings-delete');
-    Route::resource('/doctor-business-setting', DoctorBusinessHourController::class);
-
-    Route::get('/doctor-clinics-settings', [DoctorClinicsController::class, 'index'])->name('doctor-clinics-settings');
-    Route::get('/doctor-clinics-settings-delete/{id}', [DoctorClinicsController::class, 'destroy'])->name('doctor-clinics-settings-delete');
-    Route::get('/doctor-clinics-setting-gallery-remove/{id}', [DoctorClinicsController::class, 'removeGallery'])->name('doctor-clinics-setting-gallery-remove');
-    Route::resource('/doctor-clinics-setting', DoctorClinicsController::class);
-
-    Route::get('/doctor-education-settings', [DoctorEducationController::class, 'index'])->name('doctor-education-settings');
-    Route::get('/doctor-education-settings-delete/{id}', [DoctorEducationController::class, 'destroy'])->name('doctor-education-settings-delete');
-    Route::resource('/doctor-education-setting', DoctorEducationController::class);
-
-    Route::get('/doctor-experience-settings', [DoctorExperienceController::class, 'index'])->name('doctor-experience-settings');
-    Route::get('/doctor-experience-settings-delete/{id}', [DoctorExperienceController::class, 'destroy'])->name('doctor-experience-settings-delete');
-    Route::resource('/doctor-experience-setting', DoctorExperienceController::class);
-
-    Route::get('/doctor-insurance-settings', [DoctorInsurancesController::class, 'index'])->name('doctor-insurance-settings');
-    Route::get('/doctor-insurance-settings-delete/{id}', [DoctorInsurancesController::class, 'destroy'])->name('doctor-insurance-settings-delete');
-    Route::resource('/doctor-insurance-setting', DoctorInsurancesController::class);
 });
 
 
@@ -731,6 +706,31 @@ Route::get('/doctor-payment', function () {
 Route::get('/doctor-appointment-details', function () {
     return view('doctor-appointment-details');
 })->name('doctor-appointment-details');
+
+Route::get('/doctor-awards-settings', [DoctorAwardController::class, 'index'])->name('doctor-awards-settings');
+Route::get('/doctor-awards-settings-delete/{id}', [DoctorAwardController::class, 'destroy'])->name('doctor-awards-settings-delete');
+Route::resource('/doctor-awards-setting', DoctorAwardController::class);
+
+Route::get('/doctor-business-settings', [DoctorBusinessHourController::class, 'index'])->name('doctor-business-settings');
+Route::get('/doctor-business-settings-delete/{id}', [DoctorBusinessHourController::class, 'destroy'])->name('doctor-business-settings-delete');
+Route::resource('/doctor-business-setting', DoctorBusinessHourController::class);
+
+Route::get('/doctor-clinics-settings', [DoctorClinicsController::class, 'index'])->name('doctor-clinics-settings');
+Route::get('/doctor-clinics-settings-delete/{id}', [DoctorClinicsController::class, 'destroy'])->name('doctor-clinics-settings-delete');
+Route::get('/doctor-clinics-setting-gallery-remove/{id}', [DoctorClinicsController::class, 'removeGallery'])->name('doctor-clinics-setting-gallery-remove');
+Route::resource('/doctor-clinics-setting', DoctorClinicsController::class);
+
+Route::get('/doctor-education-settings', [DoctorEducationController::class, 'index'])->name('doctor-education-settings');
+Route::get('/doctor-education-settings-delete/{id}', [DoctorEducationController::class, 'destroy'])->name('doctor-education-settings-delete');
+Route::resource('/doctor-education-setting', DoctorEducationController::class);
+
+Route::get('/doctor-experience-settings', [DoctorExperienceController::class, 'index'])->name('doctor-experience-settings');
+Route::get('/doctor-experience-settings-delete/{id}', [DoctorExperienceController::class, 'destroy'])->name('doctor-experience-settings-delete');
+Route::resource('/doctor-experience-setting', DoctorExperienceController::class);
+
+Route::get('/doctor-insurance-settings', [DoctorInsurancesController::class, 'index'])->name('doctor-insurance-settings');
+Route::get('/doctor-insurance-settings-delete/{id}', [DoctorInsurancesController::class, 'destroy'])->name('doctor-insurance-settings-delete');
+Route::resource('/doctor-insurance-setting', DoctorInsurancesController::class);
 
 Route::get('/doctor-cancelled-appointment', function () {
     return view('doctor-cancelled-appointment');
