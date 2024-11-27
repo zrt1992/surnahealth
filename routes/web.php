@@ -123,24 +123,7 @@ Route::middleware(['auth', 'role:patient'])->prefix('patient')->group(function (
     Route::get('/patient-profile', function () {
         return view('patient.patient-profile');
     })->name('patient-profile');
-    Route::get('/patient-register-step1', function () {
-        return view('patient.patient-register-step1');
-    })->name('patient-register-step1');
-    Route::get('/patient-register-step2', function () {
-        return view('patient.patient-register-step2');
-    })->name('patient-register-step2');
-    Route::get('/patient-register-step3', function () {
-        return view('patient.patient-register-step3');
-    })->name('patient-register-step3');
-    Route::get('/patient-register-step4', function () {
-        return view('patient.patient-register-step4');
-    })->name('patient-register-step4');
-    Route::get('/patient-register-step5', function () {
-        return view('patient.patient-register-step5');
-    })->name('patient-register-step5');
-    Route::get('/patient-signup', function () {
-        return view('patient.patient-signup');
-    })->name('patient-signup');
+
 
     Route::resource('medical-detail', MedicalDetailController::class);
     Route::get('/medical-details', [MedicalDetailController::class, 'index'])->name('medical-details');
@@ -445,7 +428,24 @@ Route::get('/doctor-change-password', function () {
 
 
 
-
+Route::get('/patient-register-step1', function () {
+    return view('patient.patient-register-step1');
+})->name('patient-register-step1');
+Route::get('/patient-register-step2', function () {
+    return view('patient.patient-register-step2');
+})->name('patient-register-step2');
+Route::get('/patient-register-step3', function () {
+    return view('patient.patient-register-step3');
+})->name('patient-register-step3');
+Route::get('/patient-register-step4', function () {
+    return view('patient.patient-register-step4');
+})->name('patient-register-step4');
+Route::get('/patient-register-step5', function () {
+    return view('patient.patient-register-step5');
+})->name('patient-register-step5');
+Route::get('/patient-signup', function () {
+    return view('patient.patient-signup');
+})->name('patient-signup');
 
 Route::get('/doctor-pending-blog', function () {
     return view('doctor-pending-blog');

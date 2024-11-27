@@ -19,19 +19,32 @@
                                 </div>
 
                                 <!-- Register Form -->
-                                <form action="{{ url('doctor-register-step1') }}">
+                                <form action="{{ route('doctor-registration.register') }}" method="POST">
+                                    @csrf
                                     <div class="mb-3 form-focus">
-                                        <input type="text" class="form-control floating">
-                                        <label class="focus-label">Name</label>
+                                        <input type="text" class="form-control floating" name="name">
+                                        <label class="focus-label" >Name</label>
+                                        @error('name')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                     </div>
                                     <div class="mb-3 form-focus">
-                                        <input type="text" class="form-control floating">
-                                        <label class="focus-label">Mobile Number</label>
+                                        <input type="email" class="form-control floating" name="email">
+                                        <label class="focus-label">Email</label>
+                                        @error('email')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                     </div>
                                     <div class="mb-3 form-focus">
-                                        <input class="form-control pass-input floating" type="password">
-
+                                        <input class="form-control pass-input floating" type="password" name="password">
                                         <label class="focus-label">Create Password</label>
+                                        @error('password')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                    </div>
+                                    <div class="mb-3 form-focus">
+                                        <input class="form-control pass-input floating" type="password" name="password_confirmation">
+                                        <label class="focus-label">Confirm Password</label>
                                     </div>
                                     <div class="text-end">
                                         <a class="forgot-link" href="{{ url('login') }}">Already have an account?</a>

@@ -23,7 +23,8 @@
                                         <li><a href="javascript:;">5</a></li>
                                     </ul>
                                 </div>
-                                <form id="personal_details" enctype="multipart/form-data">  
+                                <form id="personal_details" action="{{ route('user-registration.store.step2') }}" method="POST">  
+                                        @csrf
                                     <div class="text-start mt-2">
                                         <h4 class="mt-3">Select Your Gender</h4>
                                     </div>
@@ -90,7 +91,7 @@
                                             <label class="mb-2">Your Height</label>
                                             <div class="row">
                                                 <div class="col-7 pe-2">
-                                                    <input type="text" class="form-control" id="height">
+                                                    <input type="text" class="form-control" id="height" name="height">
                                                 </div>
                                                 <div class="col-5 ps-2">
                                                     <select class="form-select form-control select" id="height_unit" name="height_unit" tabindex="-1" aria-hidden="true">
@@ -177,7 +178,7 @@
                                         </div>
                                     </div>
                                     <div class="mt-5">
-                                        <a href="{{url('patient-register-step3')}}" class="btn btn-primary w-100 btn-lg login-btn step2_submit">Continue </a>
+                                        <button type="submit" class="btn btn-primary w-100 btn-lg login-btn step2_submit">Continue </button>
                                     </div>
                                 </form>
                             </div>

@@ -10,7 +10,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable,HasRoles;
+    use HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -18,7 +18,6 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-       
         'name',
         'email',
         'display_name',
@@ -33,6 +32,12 @@ class User extends Authenticatable
         'address',
         'profile_image',
         'password',
+        'gender',
+        'height',
+        'weight',
+        'quali_certificate',
+        'photo_id',
+        'clinical_employment',
     ];
 
     /**
@@ -60,9 +65,15 @@ class User extends Authenticatable
 
     public function setNameAttribute($value)
     {
-        // Automatically combine first_name and last_name into the name column
-        $this->attributes['name'] = $this->first_name . ' ' . $this->last_name;
+        if (!empty($this->first_name) && !empty($this->last_name)) {
+            // Combine first_name and last_name if they are set
+            $this->attributes['name'] = $this->first_name . ' ' . $this->last_name;
+        } else {
+            // Fallback: use the provided name if first_name and last_name are not set
+            $this->attributes['name'] = $value;
+        }
     }
+    
     public function getFirstNameAttribute()
     {
         $nameParts = explode(' ', $this->name);
@@ -70,7 +81,7 @@ class User extends Authenticatable
         return $nameParts[0] ?? '';
     }
 
-   
+
     public function getLastNameAttribute()
     {
         $nameParts = explode(' ', $this->name);
@@ -102,6 +113,12 @@ class User extends Authenticatable
 
     public function appointmentRequests()
     {
-        return $this->hasMany(AppointmentRequests::class,'doctor_id','id');
+        return $this->hasMany(AppointmentRequests::class, 'doctor_id', 'id');
     }
+
+    // Patient side relations
+    public function medicalDetails()
+{
+    return $this->hasOne(MedicalDetail::class);
+}
 }

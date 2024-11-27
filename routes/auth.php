@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
+use App\Http\Controllers\Auth\DoctorRegistrationController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Auth\NewPasswordController;
@@ -60,3 +61,20 @@ Route::middleware('auth')->group(function () {
     Route::post('logout-user', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout-user');
 });
+
+Route::prefix('doctor-registration')->name('doctor-registration.')->group(function () {
+   
+    Route::post('register', [DoctorRegistrationController::class, 'store'])->name('register');
+    Route::post('/step1', [DoctorRegistrationController::class, 'storeStep1'])->name('store.step1');
+    Route::post('/step2', [DoctorRegistrationController::class, 'storeStep2'])->name('store.step2');
+    Route::post('/step3', [DoctorRegistrationController::class, 'storeStep3'])->name('store.step3');
+});
+
+Route::prefix('user-registration')->name('user-registration.')->group(function () {
+   
+    Route::post('register', [RegisteredUserController::class, 'store'])->name('register');
+    Route::post('/step1', [RegisteredUserController::class, 'storeStep1'])->name('store.step1');
+    Route::post('/step2', [RegisteredUserController::class, 'storeStep2'])->name('store.step2');
+    Route::post('/step3', [RegisteredUserController::class, 'storeStep3'])->name('store.step3');
+});
+

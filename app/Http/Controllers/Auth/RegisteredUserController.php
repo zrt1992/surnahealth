@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\MedicalDetail;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -11,9 +12,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use App\Traits\FileUpload;
 
 class RegisteredUserController extends Controller
 {
+    use FileUpload;
     /**
      * Display the registration view.
      */
@@ -35,15 +38,14 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-//        dd($result);
-
+      
         $role = $request->get('role');
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-        $user->assignRole($role);
+        $user->assignRole('patient');
 //        dd('asd');
 
 
@@ -51,6 +53,69 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('patient-dashboard', absolute: false));
+        return redirect(route('patient-register-step1', absolute: false));
     }
+
+    public function storeStep1(Request $request)
+    {
+        $request->validate([
+            'profile_image' => 'required|image|max:2048',
+        ]);
+
+        $file = $request->file('profile_image');
+        $meta = $this->uploadImage($file, 'profile_images');
+
+        if (isset($meta['dirname'], $meta['basename'])) {
+            $full_path = $meta['dirname'] . '/' . $meta['basename'];
+        }
+
+        $data = $request->except('_token');
+        $data['profile_image'] = $full_path;
+
+        $authUser = auth()->user();
+        $authUser->update($data);
+        return redirect()->route('patient-register-step2');
+    }
+
+    public function storeStep2(Request $request)
+{
+ 
+    $userData = array_merge(
+        $request->only(['gender', 'blood_group','age',])
+    );
+
+    $medicalData = $request->only([
+        'weight',
+         'weight_unit',
+        'height',
+       'height_unit',
+        'allergies',
+        'glucose',
+        'bp',
+        'heart_rate',
+        'pregnant',
+        'preg_term',
+        'cancer',
+        'conditions',
+        'medicine',
+        'medicine_name',
+        'dosage',
+    ]);
+    // dd($medicalData);
+    $medicalData['user_id'] = auth()->user()->id;
+    $medicalData['conditions'] = json_encode($medicalData['conditions']);
+    $medicalData['medicine_name'] = json_encode($medicalData['medicine_name']);
+    $medicalData['dosage'] = json_encode($medicalData['dosage']);
+
+    $authUser = auth()->user();
+    $authUser->update($userData);
+
+   
+    $request['user_id'] = auth()->user()->id;
+    // dd($medicalData);
+    $medicalDetails = MedicalDetail::create($medicalData);
+
+    return redirect()->route('patient-dashboard')->with('success', 'Registration completed!');
+}
+
 }

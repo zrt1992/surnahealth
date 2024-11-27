@@ -21,26 +21,27 @@
                                         <li><a href="javascript:;" class="active">3</a></li>
                                     </ul>
                                 </div>
-                                <form method="post">
+                                <form  action="{{ route('doctor-registration.store.step3') }}" method="POST">
+                                    @csrf
                                     <h3 class="my-4">Your Location</h3>
                                     <div class="mb-3">
                                         <label class="mb-2">Select City</label>
-                                        <select class="form-select form-control select" id="heart_rate" name="heart_rate" tabindex="-1" aria-hidden="true">
+                                        <select class="form-select form-control select" id="heart_rate" name="city" tabindex="-1" aria-hidden="true">
                                             <option value="">Select Your City</option>
-                                            <option value="1">City 1</option>
-                                            <option value="2">City 2</option>
+                                            <option value="city 1">City 1</option>
+                                            <option value="city 2">City 2</option>
                                         </select>
                                     </div>
                                     <div class="mb-3">
                                         <label class="mb-2">Select State</label>
-                                        <select class="form-select form-control select" id="bp" name="bp" tabindex="-1" aria-hidden="true">
+                                        <select class="form-select form-control select" id="bp" name="state" tabindex="-1" aria-hidden="true">
                                             <option value="">Select Your State</option>
-                                            <option value="1">State 1</option>
-                                            <option value="2">State 2</option>
+                                            <option value="state 1">State 1</option>
+                                            <option value="state 2">State 2</option>
                                         </select>
                                     </div>
                                     <div class="mt-5">
-                                        <a href="{{url('doctor-dashboard')}}" class="btn btn-primary w-100 btn-lg login-btn step5_submit">Update </a>
+                                        <button type="submit"  class="btn btn-primary w-100 btn-lg login-btn step5_submit">Update </a>
                                     </div>
                                 </form>
                             </div>

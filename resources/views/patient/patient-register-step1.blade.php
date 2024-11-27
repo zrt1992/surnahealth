@@ -23,7 +23,8 @@
                                         <li><a href="javascript:;">5</a></li>
                                     </ul>
                                 </div>
-                                <form id="profile_pic_form" enctype="multipart/form-data">  
+                                <form id="profile_pic_form" action="{{ route('user-registration.store.step1') }}" method="POST" enctype="multipart/form-data">  
+                                    @csrf
                                     <div class="profile-pic-col">
                                         <h3>Profile Picture</h3>
                                         <div class="profile-pic-upload">
@@ -35,7 +36,7 @@
                                         </div>
                                     </div>
                                     <div class="mt-5">
-                                        <a href="{{url('patient-register-step2')}}" class="btn btn-primary w-100 btn-lg login-btn step1_submit">Continue </a>
+                                        <button type="submit" class="btn btn-primary w-100 btn-lg login-btn step1_submit">Continue </button>
                                     </div>
                                 </form>
                             </div>

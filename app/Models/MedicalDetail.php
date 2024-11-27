@@ -14,8 +14,21 @@ class MedicalDetail extends Model
         'bmi',
         'heart_rate',
         'weight',
+        'height',
+        'weight_unit',
+        'height_unit',
         'fbc',
+        'bp',
         'end_date',
+        'allergies',
+        'glucose',
+        'pregnant',
+        'preg_term',
+        'conditions',
+        'cancer',
+        'medicine',
+        'medicine_name',
+        'dosage',
     ];
 
     public function user()
