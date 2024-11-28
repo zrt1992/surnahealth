@@ -92,7 +92,8 @@ class User extends Authenticatable
 
     public function doctorSpecialization()
     {
-        return $this->hasOne(Specialization::class, 'doctor_specialization');
+        return $this->belongsToMany(Specialization::class, 'doctor_specialization', 'user_id', 'specialization_id')
+                    ->withTimestamps(); // to include created_at and updated_at in the pivot table
     }
 
     public function specializations()
@@ -103,7 +104,27 @@ class User extends Authenticatable
     // A doctor can have many qualifications
     public function doctorEducation()
     {
-        return $this->hasMany(DoctorEducation::class);
+        return $this->hasMany(DoctorEducation::class,'doctor_id','id');
+    }
+
+    public function doctorClinic()
+    {
+        return $this->hasMany(DoctorClinic::class,'doctor_id','id');
+    }
+
+    public function doctorAwards()
+    {
+        return $this->hasMany(DoctorAward::class,'doctor_id','id');
+    }
+
+    public function doctorExperiences()
+    {
+        return $this->hasMany(DoctorExperience::class,'doctor_id','id');
+    }
+
+    public function doctorBusinessHour()
+    {
+        return $this->hasMany(DoctorBusinessHour::class,'doctor_id','id');
     }
 
     public function availableTimings()

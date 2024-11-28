@@ -76,7 +76,7 @@
                             <div class="fav-footer">
                                 <div class="row row-sm">
                                     <div class="col-6">
-                                        <a href="{{ url('doctor-profile-2/') }}"
+                                        <a href="{{ url('doctor-profile-2/'. optional($doctor)->id)}}"
                                             class="btn view-btn">View Profile</a>
                                     </div>
                                     <div class="col-6">

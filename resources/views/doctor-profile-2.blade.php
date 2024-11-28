@@ -20,58 +20,60 @@
                 <div class="doctor-widget">
                     <div class="doc-info-left">
                         <div class="doctor-img">
-                            <img src="{{URL::asset('/assets/img/doctors/doctor-thumb-02.jpg')}}" class="img-fluid" alt="User Image">
+                            <img src="{{$doctor->profile_image ??  URL::asset('/assets/img/doctors/doctor-thumb-02.jpg')}}" class="img-fluid" alt="User Image">
                         </div>
                         <div class="doc-info-cont">
-                            <h4 class="doc-name">Dr. Darren Elder</h4>
-                            <p class="doc-speciality">BDS, MDS - Oral & Maxillofacial Surgery</p>
-                            <p class="doc-department"><img src="{{URL::asset('/assets/img/specialities/specialities-05.png')}}" class="img-fluid" alt="Speciality">Dentist</p>
+                            <h4 class="doc-name">Dr. {{$doctor->name ?? '--'}}</h4>
+                            <p class="doc-speciality">
+                                @if (!empty($doctor->doctorEducation) && $doctor->doctorEducation->isNotEmpty())
+                                @foreach ($doctor->doctorEducation as $education)
+                                    {{ $education->course ?? 'doctor education' }}
+                                @endforeach
+                            @else
+                                No education details available.
+                            @endif
+                            </p>
+                            <p class="doc-department"><img src="{{URL::asset('/assets/img/specialities/specialities-05.png')}}" class="img-fluid" alt="Speciality">{{ $doctor->doctorSpecialization->first()->name }}</p>
                             <div class="rating">
                                 <i class="fas fa-star filled"></i>
                                 <i class="fas fa-star filled"></i>
                                 <i class="fas fa-star filled"></i>
                                 <i class="fas fa-star filled"></i>
                                 <i class="fas fa-star"></i>
-                                <span class="d-inline-block average-rating">(35)</span>
+                                <span class="d-inline-block average-rating">(0)</span>
                             </div>
                             <div class="clinic-details">
-                                <p class="doc-location"><i class="fas fa-map-marker-alt"></i> Newyork, USA - <a href="javascript:void(0);">Get Directions</a></p>
+                                <p class="doc-location"><i class="fas fa-map-marker-alt"></i> {{ $doctor->city ?? '--' }},{{ $doctor->state ?? '--' }}  - <a href="javascript:void(0);">Get Directions</a></p>
                                 <ul class="clinic-gallery">
-                                    <li>
-                                        <a href="assets/img/features/feature-01.jpg')}}" data-fancybox="gallery">
-                                            <img src="{{URL::asset('/assets/img/features/feature-01.jpg')}}" alt="Feature">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="assets/img/features/feature-02.jpg')}}" data-fancybox="gallery">
-                                            <img  src="{{URL::asset('/assets/img/features/feature-02.jpg')}}" alt="Feature Image">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="assets/img/features/feature-03.jpg')}}" data-fancybox="gallery">
-                                            <img src="{{URL::asset('/assets/img/features/feature-03.jpg')}}" alt="Feature">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="assets/img/features/feature-04.jpg')}}" data-fancybox="gallery">
-                                            <img src="{{URL::asset('/assets/img/features/feature-04.jpg')}}" alt="Feature">
-                                        </a>
-                                    </li>
+                                    @foreach ($doctor->doctorClinic->first()->gallery as $gallery )
+                                                <li>
+                                                    <a href="{{$gallery->image ?? URL::asset('/assets/img/features/feature-01.jpg') }}"
+                                                        data-fancybox="gallery">
+                                                        <img src="{{$gallery->image ?? URL::asset('/assets/img/features/feature-01.jpg') }}"
+                                                            alt="Feature">
+                                                    </a>
+                                                </li>
+                                                @endforeach
                                 </ul>
                             </div>
                             <div class="clinic-services">
-                                <span>Dental Fillings</span>
-                                <span>Teeth Whitneing</span>
+                                <span>clinic service 1</span>
+                                <span>clinic service 2</span>
                             </div>
                         </div>
                     </div>
                     <div class="doc-info-right">
                         <div class="clini-infos">
                             <ul>
-                                <li><i class="far fa-thumbs-up"></i> 99%</li>
-                                <li><i class="far fa-comment"></i> 35 Feedback</li>
-                                <li><i class="fas fa-map-marker-alt"></i> Newyork, USA</li>
-                                <li><i class="far fa-money-bill-alt"></i> $100 per hour </li>
+                                <li><i class="far fa-thumbs-up"></i> 0%</li>
+                                <li><i class="far fa-comment"></i> 0 Feedback</li>
+                                <li><i class="fas fa-map-marker-alt"></i> {{ $doctor->state ?? '--' }},  {{ $doctor->country ?? '--' }}</li>
+                                <li>
+                                    <i class="far fa-money-bill-alt"></i>
+                                    ${{ $doctor->availableTimings->min('appointment_fees') ?? 'N/A' }} - ${{ $doctor->availableTimings->max('appointment_fees') ?? 'N/A' }}
+                                    <i class="fas fa-info-circle" data-bs-toggle="tooltip" title="Lorem Ipsum"></i>
+                                </li>
+                                
                             </ul>
                         </div>
                         <div class="doctor-action">
@@ -89,7 +91,7 @@
                             </a>
                         </div>
                         <div class="clinic-booking">
-                            <a class="apt-btn" href="{{url('booking')}}">Book Appointment</a>
+                            <a class="apt-btn" href="{{url('booking/'. optional($doctor)->id)}}">Book Appointment</a>
                         </div>
                     </div>
                 </div>
@@ -140,30 +142,24 @@
                                     <h4 class="widget-title">Education</h4>
                                     <div class="experience-box">
                                         <ul class="experience-list">
+                                            @foreach ($doctor->doctorEducation as $education)
                                             <li>
                                                 <div class="experience-user">
                                                     <div class="before-circle"></div>
                                                 </div>
                                                 <div class="experience-content">
                                                     <div class="timeline-content">
-                                                        <a href="#/" class="name">American Dental Medical University</a>
-                                                        <div>BDS</div>
-                                                        <span class="time">1998 - 2003</span>
+                                                        <a href="#/" class="name">{{ $education->name_of_institution ?? '--' }}</a>
+                                                        <div>{{ $education->course ?? '--' }}</div>
+                                                        <span class="time">
+                                                            {{ \Carbon\Carbon::parse($education->start_date)->format('Y') ?? '--' }} - 
+                                                            {{ \Carbon\Carbon::parse($education->end_date)->format('Y') ?? '--' }}
+                                                        </span>
+                                                        
                                                     </div>
                                                 </div>
                                             </li>
-                                            <li>
-                                                <div class="experience-user">
-                                                    <div class="before-circle"></div>
-                                                </div>
-                                                <div class="experience-content">
-                                                    <div class="timeline-content">
-                                                        <a href="#/" class="name">American Dental Medical University</a>
-                                                        <div>MDS</div>
-                                                        <span class="time">2003 - 2005</span>
-                                                    </div>
-                                                </div>
-                                            </li>
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </div>
@@ -174,39 +170,24 @@
                                     <h4 class="widget-title">Work & Experience</h4>
                                     <div class="experience-box">
                                         <ul class="experience-list">
+                                            @foreach ($doctor->doctorExperiences as $experience)
                                             <li>
                                                 <div class="experience-user">
                                                     <div class="before-circle"></div>
                                                 </div>
                                                 <div class="experience-content">
                                                     <div class="timeline-content">
-                                                        <a href="#/" class="name">Glowing Smiles Family Dental Clinic</a>
-                                                        <span class="time">2010 - Present (5 years)</span>
+                                                        <a href="#/" class="name">{{ $experience->hospital ??  "--"}}</a>
+                                                        <span class="time">
+                                                            {{ \Carbon\Carbon::parse($education['start_date'])->format('Y') }} -
+                                                            {{ $education['currently_working_here'] ? 'Present' : \Carbon\Carbon::parse($education['end_date'])->format('Y') }} 
+                                                            ({{ \Carbon\Carbon::parse($education['start_date'])->diffInYears($education['currently_working_here'] ? now() : \Carbon\Carbon::parse($education['end_date'])) }} years)
+                                                        </span>
+                                                        
                                                     </div>
                                                 </div>
                                             </li>
-                                            <li>
-                                                <div class="experience-user">
-                                                    <div class="before-circle"></div>
-                                                </div>
-                                                <div class="experience-content">
-                                                    <div class="timeline-content">
-                                                        <a href="#/" class="name">Comfort Care Dental Clinic</a>
-                                                        <span class="time">2007 - 2010 (3 years)</span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="experience-user">
-                                                    <div class="before-circle"></div>
-                                                </div>
-                                                <div class="experience-content">
-                                                    <div class="timeline-content">
-                                                        <a href="#/" class="name">Dream Smile Dental Practice</a>
-                                                        <span class="time">2005 - 2007 (2 years)</span>
-                                                    </div>
-                                                </div>
-                                            </li>
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </div>
@@ -217,42 +198,22 @@
                                     <h4 class="widget-title">Awards</h4>
                                     <div class="experience-box">
                                         <ul class="experience-list">
+                                            @foreach ($doctor->doctorAwards as $award)
                                             <li>
                                                 <div class="experience-user">
                                                     <div class="before-circle"></div>
                                                 </div>
                                                 <div class="experience-content">
                                                     <div class="timeline-content">
-                                                        <p class="exp-year">July 2023</p>
-                                                        <h4 class="exp-title">Humanitarian Award</h4>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
+                                                        <p class="exp-year">
+                                                            {{ $award->year ? \Carbon\Carbon::parse($award->year)->format('F Y') : '--' }}
+                                                        </p>
+                                                        <h4 class="exp-title">{{ $award->award_name ?? '--' }}</h4>
+                                                        <p>{{ $award->description ?? '--' }}</p>
                                                     </div>
                                                 </div>
                                             </li>
-                                            <li>
-                                                <div class="experience-user">
-                                                    <div class="before-circle"></div>
-                                                </div>
-                                                <div class="experience-content">
-                                                    <div class="timeline-content">
-                                                        <p class="exp-year">March 2011</p>
-                                                        <h4 class="exp-title">Certificate for International Volunteer Service</h4>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="experience-user">
-                                                    <div class="before-circle"></div>
-                                                </div>
-                                                <div class="experience-content">
-                                                    <div class="timeline-content">
-                                                        <p class="exp-year">May 2008</p>
-                                                        <h4 class="exp-title">The Dental Professional of The Year Award</h4>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-                                                    </div>
-                                                </div>
-                                            </li>
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </div>
@@ -276,12 +237,9 @@
                                 <div class="service-list">
                                     <h4>Specializations</h4>
                                     <ul class="clearfix">
-                                        <li>Children Care</li>
-                                        <li>Dental Care</li>	
-                                        <li>Oral and Maxillofacial Surgery </li>	
-                                        <li>Orthodontist</li>	
-                                        <li>Periodontist</li>	
-                                        <li>Prosthodontics</li>	
+                                        @foreach ($doctor->doctorSpecialization as $specialization)
+                                        <li>{{ $specialization->name }}</li>
+                                        @endforeach
                                     </ul>
                                 </div>
                                 <!-- /Specializations List -->
@@ -298,11 +256,22 @@
                         <div class="location-list">
                             <div class="row">
                             
+                                @foreach ($doctor->doctorClinic as $clinic)
                                 <!-- Clinic Content -->
                                 <div class="col-md-6">
                                     <div class="clinic-content">
-                                        <h4 class="clinic-name"><a href="#">Smile Cute Dental Care Center</a></h4>
-                                        <p class="doc-speciality">MDS - Periodontology and Oral Implantology, BDS</p>
+                                        <h4 class="clinic-name">
+                                            <a href="#">{{ $clinic->clinic_name ?? 'Clinic Name' }}</a>
+                                        </h4>
+                                        <p class="doc-speciality">
+                                            @if (!empty($doctor->doctorEducation) && $doctor->doctorEducation->isNotEmpty())
+                                            @foreach ($doctor->doctorEducation as $education)
+                                                {{ $education->course ?? 'doctor education' }}
+                                            @endforeach
+                                        @else
+                                            No education details available.
+                                        @endif
+                                        </p>
                                         <div class="rating">
                                             <i class="fas fa-star filled"></i>
                                             <i class="fas fa-star filled"></i>
@@ -312,37 +281,30 @@
                                             <span class="d-inline-block average-rating">(4)</span>
                                         </div>
                                         <div class="clinic-details mb-0">
-                                            <h5 class="clinic-direction"> <i class="fas fa-map-marker-alt"></i> 2286  Sundown Lane, Austin, Texas 78749, USA <br><a href="javascript:void(0);">Get Directions</a></h5>
+                                            <h5 class="clinic-direction">
+                                                <i class="fas fa-map-marker-alt"></i>
+                                                {{ $clinic->address ?? 'Address not provided' }}, {{ $clinic->location ?? 'Address not provided' }}
+                                                <br>
+                                                <a href="javascript:void(0);">Get Directions</a>
+                                            </h5>
                                             <ul>
-                                                <li>
-                                                    <a href="assets/img/features/feature-01.jpg')}}" data-fancybox="gallery2">
-                                                        <img src="{{URL::asset('/assets/img/features/feature-01.jpg')}}" alt="Feature Image">
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="assets/img/features/feature-02.jpg')}}" data-fancybox="gallery2">
-                                                        <img src="{{URL::asset('/assets/img/features/feature-02.jpg')}}" alt="Feature Image">
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="assets/img/features/feature-03.jpg')}}" data-fancybox="gallery2">
-                                                        <img src="{{URL::asset('/assets/img/features/feature-03.jpg')}}" alt="Feature Image">
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="assets/img/features/feature-04.jpg')}}" data-fancybox="gallery2">
-                                                        <img src="{{URL::asset('/assets/img/features/feature-04.jpg')}}" alt="Feature Image">
-                                                    </a>
-                                                </li>
+                                                @foreach ($clinic->gallery as $image)
+                                                    <li>
+                                                        <a href="{{ $image->image }}" data-fancybox="gallery2">
+                                                            <img src="{{ $image->image }}" alt="Clinic Image">
+                                                        </a>
+                                                    </li>
+                                                @endforeach
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- /Clinic Content -->
-                                
+                            
                                 <!-- Clinic Timing -->
                                 <div class="col-md-4">
                                     <div class="clinic-timing">
+
                                         <div>
                                             <p class="timings-days">
                                                 <span> Mon - Sat </span>
@@ -353,106 +315,27 @@
                                             </p>
                                         </div>
                                         <div>
-                                        <p class="timings-days">
-                                            <span>Sun</span>
-                                        </p>
-                                        <p class="timings-times">
-                                            <span>10:00 AM - 2:00 PM</span>
-                                        </p>
+                                            <p class="timings-days">
+                                                <span>Sun</span>
+                                            </p>
+                                            <p class="timings-times">
+                                                <span>10:00 AM - 2:00 PM</span>
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- /Clinic Timing -->
-                                
-                                <div class="col-md-2">
-                                    <div class="consult-price">
-                                        $250
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /Location List -->
-                        
-                        <!-- Location List -->
-                        <div class="location-list">
-                            <div class="row">
                             
-                                <!-- Clinic Content -->
-                                <div class="col-md-6">
-                                    <div class="clinic-content">
-                                        <h4 class="clinic-name"><a href="#">The Family Dentistry Clinic</a></h4>
-                                        <p class="doc-speciality">MDS - Periodontology and Oral Implantology, BDS</p>
-                                        <div class="rating">
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star"></i>
-                                            <span class="d-inline-block average-rating">(4)</span>
-                                        </div>
-                                        <div class="clinic-details mb-0">
-                                            <p class="clinic-direction"> <i class="fas fa-map-marker-alt"></i> 2883  University Street, Seattle, Texas Washington, 98155 <br><a href="javascript:void(0);">Get Directions</a></p>
-                                            <ul>
-                                                <li>
-                                                    <a href="assets/img/features/feature-01.jpg')}}" data-fancybox="gallery2">
-                                                        <img src="{{URL::asset('/assets/img/features/feature-01.jpg')}}" alt="Feature Image">
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="assets/img/features/feature-02.jpg')}}" data-fancybox="gallery2">
-                                                        <img src="{{URL::asset('/assets/img/features/feature-02.jpg')}}" alt="Feature Image">
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="assets/img/features/feature-03.jpg')}}" data-fancybox="gallery2">
-                                                        <img src="{{URL::asset('/assets/img/features/feature-03.jpg')}}" alt="Feature Image">
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="assets/img/features/feature-04.jpg')}}" data-fancybox="gallery2">
-                                                        <img src="{{URL::asset('/assets/img/features/feature-04.jpg')}}" alt="Feature Image">
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <!-- /Clinic Content -->
-                                
-                                <!-- Clinic Timing -->
-                                <div class="col-md-4">
-                                    <div class="clinic-timing">
-                                        <div>
-                                            <p class="timings-days">
-                                                <span> Tue - Fri </span>
-                                            </p>
-                                            <p class="timings-times">
-                                                <span>11:00 AM - 1:00 PM</span>
-                                                <span>6:00 PM - 11:00 PM</span>
-                                            </p>
-                                        </div>
-                                        <div>
-                                            <p class="timings-days">
-                                                <span>Sat - Sun</span>
-                                            </p>
-                                            <p class="timings-times">
-                                                <span>8:00 AM - 10:00 AM</span>
-                                                <span>3:00 PM - 7:00 PM</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /Clinic Timing -->
-                                
+                                <!-- Consultation Price -->
                                 <div class="col-md-2">
                                     <div class="consult-price">
-                                        $350
+                                        ${{ $clinic->consultation_fee ?? 'Not provided' }}
                                     </div>
                                 </div>
+                            @endforeach
+                            
                             </div>
                         </div>
-                        <!-- /Location List -->
 
                     </div>
                     <!-- /Locations Content -->
@@ -675,55 +558,48 @@
                                 <div class="widget business-widget">
                                     <div class="widget-content">
                                         <div class="listing-hours">
-                                            <div class="listing-day current">
-                                                <div class="day">Today <span>5 Nov 2023</span></div>
+                                            @foreach ($doctor->doctorBusinessHour as $businessHour)
+                                            <div class="listing-day {{ strtolower($businessHour->select_business_days) === strtolower(now()->format('l')) ? 'current' : '' }}">
+                                                <div class="day">
+                                                    {{ ucfirst($businessHour->select_business_days) }} 
+                                                    @if(strtolower($businessHour->select_business_days) === strtolower(now()->format('l')))
+                                                        <span>{{ now()->format('d M Y') }}</span>
+                                                    @endif
+                                                </div>
                                                 <div class="time-items">
-                                                    <span class="open-status"><span class="badge bg-success-light">Open Now</span></span>
-                                                    <span class="time">07:00 AM - 09:00 PM</span>
+                                                    @if($businessHour->start_time && $businessHour->end_time)
+                                                        <span class="time">{{ $businessHour->start_time }} - {{ $businessHour->end_time }}</span>
+                                                        @if(strtolower($businessHour->select_business_days) === strtolower(now()->format('l')) && now()->format('H:i A') >= $businessHour->start_time && now()->format('H:i A') <= $businessHour->end_time)
+                                                            <span class="open-status">
+                                                                <span class="badge bg-success-light">Open Now</span>
+                                                            </span>
+                                                        @endif
+                                                    @else
+                                                        <span class="badge bg-danger-light">Closed</span>
+                                                    @endif
                                                 </div>
                                             </div>
-                                            <div class="listing-day">
-                                                <div class="day">Monday</div>
-                                                <div class="time-items">
-                                                    <span class="time">07:00 AM - 09:00 PM</span>
+                                        @endforeach
+                                        
+                                        <!-- Handle Days Without Explicit Timings -->
+                                        @php
+                                            $days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+                                            $availableDays = $doctor->doctorBusinessHour->pluck('select_business_days')->map(function($day) {
+                                                return strtolower($day);
+                                            })->toArray();
+                                        @endphp
+                                        
+                                        @foreach ($days as $day)
+                                            @if (!in_array($day, $availableDays))
+                                                <div class="listing-day closed">
+                                                    <div class="day">{{ ucfirst($day) }}</div>
+                                                    <div class="time-items">
+                                                        <span class="badge bg-danger-light">Closed</span>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="listing-day">
-                                                <div class="day">Tuesday</div>
-                                                <div class="time-items">
-                                                    <span class="time">07:00 AM - 09:00 PM</span>
-                                                </div>
-                                            </div>
-                                            <div class="listing-day">
-                                                <div class="day">Wednesday</div>
-                                                <div class="time-items">
-                                                    <span class="time">07:00 AM - 09:00 PM</span>
-                                                </div>
-                                            </div>
-                                            <div class="listing-day">
-                                                <div class="day">Thursday</div>
-                                                <div class="time-items">
-                                                    <span class="time">07:00 AM - 09:00 PM</span>
-                                                </div>
-                                            </div>
-                                            <div class="listing-day">
-                                                <div class="day">Friday</div>
-                                                <div class="time-items">
-                                                    <span class="time">07:00 AM - 09:00 PM</span>
-                                                </div>
-                                            </div>
-                                            <div class="listing-day">
-                                                <div class="day">Saturday</div>
-                                                <div class="time-items">
-                                                    <span class="time">07:00 AM - 09:00 PM</span>
-                                                </div>
-                                            </div>
-                                            <div class="listing-day closed">
-                                                <div class="day">Sunday</div>
-                                                <div class="time-items">
-                                                    <span class="time"><span class="badge bg-danger-light">Closed</span></span>
-                                                </div>
-                                            </div>
+                                            @endif
+                                        @endforeach
+                                        
                                         </div>
                                     </div>
                                 </div>

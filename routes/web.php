@@ -16,11 +16,13 @@ use App\Http\Controllers\GoogleMeetController;
 use App\Http\Controllers\Patient\BookingController;
 use App\Http\Controllers\Patient\DashboardController as PatientDashboard;
 use App\Http\Controllers\Patient\DependantController;
+use App\Http\Controllers\Patient\DoctorProfileController;
 use App\Http\Controllers\Patient\FavouritesController;
 use App\Http\Controllers\Patient\MedicalDetailController;
 use App\Http\Controllers\Patient\MedicalRecordController;
 use App\Http\Controllers\Patient\PatientProfileSettingController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SearchController;
 use App\Services\GoogleClientService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -658,9 +660,11 @@ Route::get('/schedule-timings', function () {
 Route::get('/search-2', function () {
     return view('search-2');
 })->name('search-2');
-Route::get('/search', function () {
-    return view('search');
-})->name('search');
+// Route::get('/search', function () {
+//     return view('search');
+// })->name('search');
+Route::get('/search', [SearchController::class, 'index'])->name('search');
+
 Route::get('/signup-success', function () {
     return view('signup-success');
 })->name('signup-success');
@@ -758,9 +762,10 @@ Route::get('/doctor-cancelled-appointment-2', function () {
 Route::get('/paitent-details', function () {
     return view('paitent-details');
 })->name('paitent-details');
-Route::get('/doctor-profile-2', function () {
-    return view('doctor-profile-2');
-})->name('doctor-profile-2');
+// Route::get('/doctor-profile-2', function () {
+//     return view('doctor-profile-2');
+// })->name('doctor-profile-2');
+Route::get('/doctor-profile-2/{id?}', [DoctorProfileController::class, 'show'])->name('doctor-profile-2');
 
 
 Route::get('/google-auth', function () {

@@ -17,11 +17,11 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="booking-doc-info">
-                                <a href="{{ url('doctor-profile') }}" class="booking-doc-img">
-                                    <img src="{{ URL::asset('/assets/img/doctors/doctor-thumb-02.jpg') }}" alt="User Image">
+                                <a href="{{ url('doctor-profile-2/'. $doctor->id) }}" class="booking-doc-img">
+                                    <img src="{{$doctor->profile_image ?? URL::asset('/assets/img/doctors/doctor-thumb-02.jpg') }}" alt="User Image">
                                 </a>
                                 <div class="booking-info">
-                                    <h4><a href="{{ url('doctor-profile') }}">Dr. {{ $doctor->name }}</a></h4>
+                                    <h4><a href="{{ url('doctor-profile-2/'. $doctor->id) }}">Dr. {{ $doctor->name ?? '--' }}</a></h4>
                                     <div class="rating">
                                         <i class="fas fa-star filled"></i>
                                         <i class="fas fa-star filled"></i>
@@ -51,7 +51,7 @@
                     <!-- Schedule Widget -->
                     <form id="bookingForm" action="{{ route('book-appointment.store') }}" method="POST">
                         @csrf
-                        <input type="hidden" name="doctor_id" id="doctor_id" value="{{ $doctor->id }}">
+                        <input type="hidden" name="doctor_id" id="doctor_id" value="{{ $doctor->id ?? "" }}">
                         <input type="hidden" name="slot_id" id="slot_id" value="">
 
                         <input type="hidden" name="booking_date" id="booking_date" value="">
@@ -94,13 +94,18 @@
                                     <!-- Time Slot -->
                                     <div class="time-slot">
                                         <ul class="clearfix">
+                                            @if($doctor && $doctor->availableTimings->count())
                                             @foreach ($doctor->availableTimings as $slot)
-                                            <li>
-                                                <a class="timing" href="javascript:;" onclick="selectSlot('{{ $slot->id }}','{{ $slot->start_time }}','{{$slot->end_time }}','{{ $slot->availability_day }}')">
-                                                    <span>{{ $slot->start_time }}</span>
-                                                </a>
-                                            </li>
+                                                <li>
+                                                    <a class="timing" href="javascript:;" onclick="selectSlot('{{ $slot->id }}','{{ $slot->start_time }}','{{ $slot->end_time }}','{{ $slot->availability_day }}')">
+                                                        <span>{{ $slot->start_time }}</span>
+                                                    </a>
+                                                </li>
                                             @endforeach
+                                        @else
+                                            <li>No available timings for this doctor.</li>
+                                        @endif
+                                        
                                         </ul>
                                     </div>
                                 </div>

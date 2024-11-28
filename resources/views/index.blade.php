@@ -10,14 +10,14 @@
                         <h1>Consult <span>Best Doctors</span> Your Nearby Location.</h1>
                         <img src="{{ URL::asset('/assets/img/icons/header-icon.svg') }}" class="header-icon" alt="header-icon">
                         <p>Embark on your healing journey with Surna</p>
-                        <a href="{{ url('booking-2') }}" class="btn">Start a Consult</a>
+                        <a href="{{ route('booking', ['doctor_id' => null]) }}" class="btn">Start a Consult</a>
                         <div class="banner-arrow-img">
                             <img src="{{ URL::asset('/assets/img/down-arrow-img.png') }}" class="img-fluid"
                                 alt="down-arrow">
                         </div>
                     </div>
                     <div class="search-box-one aos" data-aos="fade-up">
-                        <form action="{{ url('search-2') }}">
+                        <form action="{{ url('search') }}">
                             <div class="search-input search-line">
                                 <i class="feather-search bficon"></i>
                                 <div class=" mb-0">
@@ -62,6 +62,7 @@
                                 alt="doctors-list">
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </div>
@@ -75,7 +76,7 @@
                 <div
                     class="row row-cols-7 row-cols-xxl-7 row-cols-xl-4 row-cols-lg-4 rows-cols-md-6 justify-content-center">
                     <div class="col-12 d-flex col-xxl col-lg-3 col-sm-6">
-                        <a href="{{ url('booking-2') }}" class="serv-wrap blue-bg flex-fill">
+                        <a href="{{ route('booking', ['doctor_id' => null]) }}" class="serv-wrap blue-bg flex-fill">
                             <span>
                                 <img src="{{ URL::asset('/assets/img/icons/service-01.svg') }}" alt="heart-image">
                             </span>

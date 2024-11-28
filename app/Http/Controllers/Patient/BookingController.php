@@ -19,10 +19,11 @@ class BookingController extends Controller
     {
         $this->bookingRepository = $bookingRepository;
     }
-    public function showBookingForm($doctorId)
+    public function showBookingForm($doctorId = null)
     {
+       
         // Fetch doctor and their available timings
-        $doctor = User::with('availableTimings')->findOrFail($doctorId);
+        $doctor = User::with('availableTimings')->find($doctorId);
         $currentDate = Carbon::now()->format('d F Y');  // e.g., "11 November 2023"
         $currentDay = Carbon::now()->format('l'); 
         return view('booking',get_defined_vars());
