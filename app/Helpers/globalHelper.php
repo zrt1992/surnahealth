@@ -9,10 +9,22 @@ if (!function_exists('getAuthUser')) {
     }
 }
 
+
 if (!function_exists('calculateAge')) {
     function calculateAge($dob)
     {
-        $birthDate = Carbon::parse($dob);
+        try {
+            // Try parsing as 'd/m/Y'
+            $birthDate = Carbon::createFromFormat('d/m/Y', $dob);
+        } catch (\Exception $e) {
+            try {
+                // Fallback to 'Y-m-d'
+                $birthDate = Carbon::createFromFormat('Y-m-d', $dob);
+            } catch (\Exception $e) {
+                return "Invalid date format. Please use 'd/m/Y' or 'Y-m-d'.";
+            }
+        }
+
         $now = Carbon::now();
 
         // Calculate years and remaining days as integers
@@ -22,3 +34,4 @@ if (!function_exists('calculateAge')) {
         return "{$years} years {$days} days";
     }
 }
+

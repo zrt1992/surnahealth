@@ -2120,7 +2120,7 @@
                                             'patient-cancelled-appointment',
                                         ]))
                                         <img class="rounded-circle"
-                                            src="{{\Illuminate\Support\Facades\Auth::user()->profile_image}}"
+                                            src="{{\Illuminate\Support\Facades\Auth::user()->profile_image ?? URL::asset('/assets/img/doctors/doc-profile-img.jpg')}}"
                                             width="31" alt="Darren Elder">
                                     @endif
                                     @if (Route::is([
@@ -2136,7 +2136,7 @@
                                             'patient-cancelled-appointment',
                                         ]))
                                         <img class="rounded-circle"
-                                            src="{{\Illuminate\Support\Facades\Auth::user()->profile_image}}"
+                                            src="{{\Illuminate\Support\Facades\Auth::user()->profile_image ?? URL::asset('/assets/img/doctors/doc-profile-img.jpg')}}"
                                             width="31" alt="Darren Elder">
                                     @endif
                                 </span>
@@ -2157,7 +2157,7 @@
                                     ]))
                                     <div class="user-header">
                                         <div class="avatar avatar-sm">
-                                            <img src="{{\Illuminate\Support\Facades\Auth::user()->profile_image}}"
+                                            <img src="{{\Illuminate\Support\Facades\Auth::user()->profile_image ?? URL::asset('/assets/img/doctors/doc-profile-img.jpg')}}"
                                                 alt="User Image" class="avatar-img rounded-circle">
                                         </div>
                                         <div class="user-text">
@@ -2165,7 +2165,7 @@
                                             <p class="text-muted mb-0">Doctor</p>
                                         </div>
                                     </div>
-                                    <a class="dropdown-item" href="{{ url('doctor-dashboard') }}">Dashboard</a>
+                                    <a class="dropdown-item" href="{{ url('doctor/dashboard') }}">Dashboard</a>
                                 @endif
 
                                 @if (Route::is([
@@ -2182,7 +2182,7 @@
                                     ]))
                                     <div class="user-header">
                                         <div class="avatar avatar-sm">
-                                            <img src="{{\Illuminate\Support\Facades\Auth::user()->profile_image}}"
+                                            <img src="{{\Illuminate\Support\Facades\Auth::user()->profile_image ?? URL::asset('/assets/img/doctors/doc-profile-img.jpg')}}"
                                                 alt="User Image" class="avatar-img rounded-circle">
                                         </div>
                                         <div class="user-text">
@@ -2190,7 +2190,7 @@
                                             <p class="text-success mb-0">Available</p>
                                         </div>
                                     </div>
-                                    <a class="dropdown-item" href="{{ url('patient-dashboard') }}">Dashboard</a>
+                                    <a class="dropdown-item" href="{{ url('patient/dashboard') }}">Dashboard</a>
                                 @endif
 
                                 @if (
@@ -2263,12 +2263,12 @@
                                 <span class="user-img">
                                     @if (!Route::is(['doctor-profile','doctor-profile-2']))
                                         <img class="rounded-circle"
-                                            src="{{ URL::asset('/assets/img/patients/patient.jpg') }}"
+                                            src="{{\Illuminate\Support\Facades\Auth::user()->profile_image ?? URL::asset('/assets/img/doctors/doc-profile-img.jpg') }}"
                                             width="31" alt="Darren Elder">
                                     @endif
                                     @if (Route::is(['doctor-profile','doctor-profile-2']))
                                         <img class="rounded-circle"
-                                            src="{{ URL::asset('/assets/img/doctors/doc-profile-img.jpg') }}"
+                                            src="{{\Illuminate\Support\Facades\Auth::user()->profile_image ?? URL::asset('/assets/img/doctors/doc-profile-img.jpg') }}"
                                             width="31" alt="Darren Elder">
                                     @endif
                                 </span>
@@ -2277,16 +2277,16 @@
                                 <div class="user-header">
                                     <div class="avatar avatar-sm">
                                         @if (!Route::is(['doctor-profile','doctor-profile-2']))
-                                            <img src="{{ URL::asset('/assets/img/patients/patient.jpg') }}"
+                                            <img src="{{\Illuminate\Support\Facades\Auth::user()->profile_image ?? URL::asset('/assets/img/doctors/doc-profile-img.jpg') }}"
                                                 alt="User Image" class="avatar-img rounded-circle">
                                         @endif
                                         @if (Route::is(['doctor-profile','doctor-profile-2']))
-                                            <img src="{{ URL::asset('/assets/img/doctors/doc-profile-img.jpg') }}"
+                                            <img src="{{\Illuminate\Support\Facades\Auth::user()->profile_image ?? URL::asset('/assets/img/doctors/doc-profile-img.jpg') }}"
                                                 alt="User Image" class="avatar-img rounded-circle">
                                         @endif
                                     </div>
                                     <div class="user-text">
-                                        <h6>Richard Wilson</h6>
+                                        <h6>{{\Illuminate\Support\Facades\Auth::user()->name ?? '--' }}</h6>
                                         @if (!Route::is(['doctor-profile','doctor-profile-2']))
                                             <p class="text-muted mb-0">Patient</p>
                                         @endif
@@ -2296,7 +2296,7 @@
                                     </div>
                                 </div>
                                 <a class="dropdown-item" href="{{ url('patient-dashboard') }}">Dashboard</a>
-                                <a class="dropdown-item" href="{{ url('profile-settings') }}">Profile Settingss</a>
+                                <a class="dropdown-item" href="{{ url('profile-settings') }}">Profile Settings</a>
                                 <a class="dropdown-item" href="{{route('logout-user')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logouts</a>
 
                                 <form id="logout-forms" action="{{ route('logout-user') }}" method="POST" style="display: none;">
