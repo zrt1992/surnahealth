@@ -375,9 +375,9 @@ Route::get('/booking-success-one', function () {
 Route::get('/booking-success', function () {
     return view('booking-success');
 })->name('booking-success');
-Route::get('/booking/{doctor_id}', function () {
-    return view('booking');
-})->name('booking');
+// Route::get('/booking/{doctor_id}', function () {
+//     return view('booking');
+// })->name('booking');
 Route::get('/booking/{doctor_id?}', [BookingController::class, 'showBookingForm'])->name('booking');
 Route::resource('/book-appointment', BookingController::class);
 
