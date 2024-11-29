@@ -68,11 +68,8 @@ class DoctorBookingController extends Controller
             $startDateTime,
             $endDateTime
         );
-        // dd($appointment->user->email);
 
         $attendee = GoogleClientService::addAttendee($event, $appointment->user->email);
-        // Convert to MySQL-compatible format
-// dd($attendee);
         
         $startDateTimeForDb = Carbon::parse("$appointment->booking_date $startTime")->format('Y-m-d H:i:s');
         $endDateTimeForDb = Carbon::parse("$appointment->booking_date $endTime")->format('Y-m-d H:i:s');
@@ -89,6 +86,10 @@ class DoctorBookingController extends Controller
             'user_id' => $appointment->user->id,
         ]);
 
+        if ($appointment) {
+            AppointmentRequests::destroy($id);
+        }
+        
         return response()->json([
             'success' => true,
             'message' => 'Appointment accepted and Google Meet scheduled successfully',

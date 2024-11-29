@@ -92,22 +92,102 @@
                                 <div class="col-md-12">
 
                                     <!-- Time Slot -->
-                                    <div class="time-slot">
-                                        <ul class="clearfix">
-                                            @if($doctor && $doctor->availableTimings->count())
+                                    <div class="time-slot d-flex">
+                                      @if($doctor && $doctor->availableTimings->count())
+                                        <ul class=" clearfix list-group w-100">
                                             @foreach ($doctor->availableTimings as $slot)
-                                                <li>
-                                                    <a class="timing" href="javascript:;" onclick="selectSlot('{{ $slot->id }}','{{ $slot->start_time }}','{{ $slot->end_time }}','{{ $slot->availability_day }}')">
-                                                        <span>{{ $slot->start_time }}</span>
-                                                    </a>
-                                                </li>
+                                            @if ($slot->availability_day == "Monday")
+                                            <li class="my-2 list-group-item w-100">
+                                                <a class="timing" href="javascript:;" data-slot-id="{{ $slot->id }}" 
+                                                   onclick="selectSlot('{{ $slot->id }}', '{{ $slot->start_time }}', '{{ $slot->end_time }}', '{{ $slot->availability_day }}')">
+                                                    <span>{{ $slot->start_time }}</span>
+                                                </a>
+                                            </li>
+                                            
+                                            @endif
                                             @endforeach
-                                        @else
-                                            <li>No available timings for this doctor.</li>
-                                        @endif
-                                        
                                         </ul>
+                                        <ul class=" clearfix list-group w-100">
+                                            @foreach ($doctor->availableTimings as $slot)
+                                            @if ($slot->availability_day == "Tuesday")
+                                            <li class="my-2 list-group-item w-100">
+                                               <a class="timing" href="javascript:;" data-slot-id="{{ $slot->id }}" 
+                                                   onclick="selectSlot('{{ $slot->id }}', '{{ $slot->start_time }}', '{{ $slot->end_time }}', '{{ $slot->availability_day }}')">
+                                                    <span>{{ $slot->start_time }}</span>
+                                                </a>
+                                            </li>  
+                                            @endif
+                                            @endforeach
+                                        </ul>
+                                        <ul class=" clearfix list-group w-100">
+                                            @foreach ($doctor->availableTimings as $slot)
+                                            @if ($slot->availability_day == "Wednesday")
+                                            <li class="my-2 list-group-item w-100">
+                                               <a class="timing" href="javascript:;" data-slot-id="{{ $slot->id }}" 
+                                                   onclick="selectSlot('{{ $slot->id }}', '{{ $slot->start_time }}', '{{ $slot->end_time }}', '{{ $slot->availability_day }}')">
+                                                    <span>{{ $slot->start_time }}</span>
+                                                </a>
+                                            </li>  
+                                            @endif
+                                            @endforeach
+                                        </ul>
+                                        <ul class=" clearfix list-group w-100">
+                                            @foreach ($doctor->availableTimings as $slot)
+                                            @if ($slot->availability_day == "Thursday")
+                                            <li class="my-2 list-group-item w-100">
+                                               <a class="timing" href="javascript:;" data-slot-id="{{ $slot->id }}" 
+                                                   onclick="selectSlot('{{ $slot->id }}', '{{ $slot->start_time }}', '{{ $slot->end_time }}', '{{ $slot->availability_day }}')">
+                                                    <span>{{ $slot->start_time }}</span>
+                                                </a>
+                                            </li>  
+                                            @endif
+                                            @endforeach
+                                        </ul>
+                                        <ul class=" clearfix list-group w-100">
+                                            @foreach ($doctor->availableTimings as $slot)
+                                            @if ($slot->availability_day == "Friday")
+                                            <li class="my-2 list-group-item w-100">
+                                               <a class="timing" href="javascript:;" data-slot-id="{{ $slot->id }}" 
+                                                   onclick="selectSlot('{{ $slot->id }}', '{{ $slot->start_time }}', '{{ $slot->end_time }}', '{{ $slot->availability_day }}')">
+                                                    <span>{{ $slot->start_time }}</span>
+                                                </a>
+                                            </li>  
+                                            @endif
+                                            @endforeach
+                                        </ul>
+                                        <ul class=" clearfix list-group w-100">
+                                            @foreach ($doctor->availableTimings as $slot)
+                                            @if ($slot->availability_day == "Saturday")
+                                            <li class="my-2 list-group-item w-100">
+                                               <a class="timing" href="javascript:;" data-slot-id="{{ $slot->id }}" 
+                                                   onclick="selectSlot('{{ $slot->id }}', '{{ $slot->start_time }}', '{{ $slot->end_time }}', '{{ $slot->availability_day }}')">
+                                                    <span>{{ $slot->start_time }}</span>
+                                                </a>
+                                            </li>  
+                                            @endif
+                                            @endforeach
+                                        </ul>
+                                        <ul class=" clearfix list-group w-100">
+                                            @foreach ($doctor->availableTimings as $slot)
+                                            @if ($slot->availability_day == "Sunday")
+                                            <li class="my-2 list-group-item w-100">
+                                               <a class="timing" href="javascript:;" data-slot-id="{{ $slot->id }}" 
+                                                   onclick="selectSlot('{{ $slot->id }}', '{{ $slot->start_time }}', '{{ $slot->end_time }}', '{{ $slot->availability_day }}')">
+                                                    <span>{{ $slot->start_time }}</span>
+                                                </a>
+                                            </li>  
+                                            @endif
+                                            @endforeach
+                                        </ul>
+                                        @else
+                                        <ul>
+                                            <li>No available timings for this doctor.</li>
+
+                                        </ul>
+                                        @endif
                                     </div>
+                                  
+                                  
                                 </div>
                             </div>
                         </div>

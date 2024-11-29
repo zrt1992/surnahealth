@@ -37,7 +37,11 @@ class BookingController extends Controller
 
     public function store(Request $request)
     {
-        // Validate incoming request
+        if (!auth()->check()) {
+           
+            return redirect()->route('login')->with('error', 'You must be logged in to make a booking.');
+        }
+        
         $validated = $request->validate([
             'doctor_id' => 'required',
             'slot_id' => 'required|exists:available_timmings,id',
