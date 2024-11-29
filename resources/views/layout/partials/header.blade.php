@@ -2297,8 +2297,8 @@
                                 </div>
                                 <a class="dropdown-item" href="{{ url('patient-dashboard') }}">Dashboard</a>
                                 <a class="dropdown-item" href="{{ url('profile-settings') }}">Profile Settings</a>
-                                <a class="dropdown-item" href="{{route('logout-user')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logouts</a>
-
+                                {{-- <a class="dropdown-item" href="{{route('logout-user')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logoutssss</a> --}}
+                                <a class="dropdown-item" href="http://127.0.0.1:8000/logout-user" onclick="event.preventDefault(); document.getElementById('logout-forms').submit();">Logout</a>
                                 <form id="logout-forms" action="{{ route('logout-user') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>

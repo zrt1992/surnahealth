@@ -1,4 +1,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ <!-- Toastr JS -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+
 <script>
     $(document).ready(function() {
 
@@ -122,15 +125,15 @@
         // Find the clicked slot element and add the 'selected' class
         const slotElements = document.querySelectorAll(".timing");
 
-// Loop through all the slot elements
-slotElements.forEach(slot => {
-    // Check if the slot's data-id matches the passed slotId
-    if (slot.dataset.slotId == slotId) {
-        // Add the 'selected' class to the clicked slot
-        slot.classList.add('selected');
-        currentSelectedSlot = slot;  // Store the current selected slot
-    }
-});
+        // Loop through all the slot elements
+        slotElements.forEach(slot => {
+            // Check if the slot's data-id matches the passed slotId
+            if (slot.dataset.slotId == slotId) {
+                // Add the 'selected' class to the clicked slot
+                slot.classList.add('selected');
+                currentSelectedSlot = slot; // Store the current selected slot
+            }
+        });
 
         // Update the hidden fields for form submission
         document.getElementById('start_time').value = startTime;
@@ -159,21 +162,21 @@ slotElements.forEach(slot => {
     }
 
     // Highlight the selected day in the week container
-    // function highlightSelectedDay(date) {
-    //     const daySlots = document.querySelectorAll("#week-container .day");
-    //     daySlots.forEach(day => day.classList.remove("highlighted"));
+    function highlightSelectedDay(date) {
+        const daySlots = document.querySelectorAll("#week-container .day");
+        daySlots.forEach(day => day.classList.remove("highlighted"));
 
-    //     const selectedDateStr = date.toLocaleDateString("en-US", {
-    //         day: "2-digit",
-    //         month: "short"
-    //     });
-    //     daySlots.forEach(day => {
-    //         const slotDate = day.querySelector(".slot-date");
-    //         if (slotDate && slotDate.textContent.includes(selectedDateStr)) {
-    //             day.classList.add("highlighted");
-    //         }
-    //     });
-    // }
+        const selectedDateStr = date.toLocaleDateString("en-US", {
+            day: "2-digit",
+            month: "short"
+        });
+        daySlots.forEach(day => {
+            const slotDate = day.querySelector(".slot-date");
+            if (slotDate && slotDate.textContent.includes(selectedDateStr)) {
+                day.classList.add("highlighted");
+            }
+        });
+    }
 </script>
 
 
@@ -459,7 +462,7 @@ slotElements.forEach(slot => {
     });
 </script>
 
-{{--doctor Award setting--}}
+{{-- doctor Award setting --}}
 <script>
     const addAwardBtn = document.querySelector('.add-awrads'); // Button to add awards
     const awardContainer = document.getElementById('list-accord'); // Container for awards
@@ -709,4 +712,23 @@ slotElements.forEach(slot => {
             if (clinicItem) clinicItem.remove();
         }
     });
+</script>
+
+{{-- Toaster --}}
+<script>
+    @if(session('success'))
+        toastr.success("{{ session('success') }}", "Success", {
+            closeButton: true,
+            progressBar: true,
+            positionClass: "toast-top-right",
+            timeOut: 5000
+        });
+    @elseif(session('error'))
+        toastr.error("{{ session('error') }}", "Error", {
+            closeButton: true,
+            progressBar: true,
+            positionClass: "toast-top-right",
+            timeOut: 5000
+        });
+    @endif
 </script>

@@ -41,7 +41,7 @@ class BookingController extends Controller
            
             return redirect()->route('login')->with('error', 'You must be logged in to make a booking.');
         }
-        
+
         $validated = $request->validate([
             'doctor_id' => 'required',
             'slot_id' => 'required|exists:available_timmings,id',
@@ -53,7 +53,7 @@ class BookingController extends Controller
         $data = $this->bookingRepository->create($validated);
         
         // Return response (can redirect or send back success message)
-        return back()->with('success', $data);
+       return back()->with('success', 'Your booking was successful!');
     }
 
     public function getPatientAppointments()
