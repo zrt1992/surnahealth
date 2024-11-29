@@ -129,6 +129,9 @@
                                             <p class="doc-location"><i class="fas fa-map-marker-alt"></i>{{ $doctor->city ?? '--' }}, {{ $doctor->state ?? '--' }},
                                                 {{ $doctor->country ?? '--' }}</p>
                                             <ul class="clinic-gallery">
+                                                @if (!empty($doctor->doctorClinic) && $doctor->doctorClinic->isNotEmpty())
+                                               
+                                         
                                                 @foreach ($doctor->doctorClinic->first()->gallery as $gallery )
                                                 <li>
                                                     <a href="{{$gallery->image ?? URL::asset('/assets/img/features/feature-01.jpg') }}"
@@ -138,6 +141,9 @@
                                                     </a>
                                                 </li>
                                                 @endforeach
+                                                @else
+                                                No doctor clinic available.
+                                            @endif
                                             </ul>
                                         </div>
                                         <div class="clinic-services">

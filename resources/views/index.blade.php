@@ -5,65 +5,79 @@
     <section class="banner-section">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <div class="banner-content aos" data-aos="fade-up">
-                        <h1>Consult <span>Best Doctors</span> Your Nearby Location.</h1>
-                        <img src="{{ URL::asset('/assets/img/icons/header-icon.svg') }}" class="header-icon" alt="header-icon">
-                        <p>Embark on your healing journey with Surna</p>
-                        <a href="{{ route('booking', ['doctor_id' => null]) }}" class="btn">Start a Consult</a>
-                        <div class="banner-arrow-img">
-                            <img src="{{ URL::asset('/assets/img/down-arrow-img.png') }}" class="img-fluid"
-                                alt="down-arrow">
+                <div class="col-lg-3">
+                    <div class="row justify-content-center">
+                        <div class="col-12 d-flex col-xxl-12 col-lg-12 col-sm-6">
+                            <a href="{{ route('booking', ['doctor_id' => null]) }}" class="serv-wrap blue-bg flex-fill">
+                                <span>
+                                    <img src="{{ URL::asset('/assets/img/icons/service-01.svg') }}" alt="heart-image">
+                                </span>
+                                <h4>Book Appointment</h4>
+                            </a>
                         </div>
-                    </div>
-                    <div class="search-box-one aos" data-aos="fade-up">
-                        <form action="{{ url('search') }}">
-                            <div class="search-input search-line">
-                                <i class="feather-search bficon"></i>
-                                <div class=" mb-0">
-                                    <input type="text" class="form-control"
-                                        placeholder="Search doctors, clinics, hospitals, etc">
-                                </div>
-                            </div>
-                            <div class="search-input search-map-line">
-                                <i class="feather-map-pin"></i>
-                                <div class=" mb-0">
-                                    <input type="text" class="form-control" placeholder="Location">
-                                    <a class="current-loc-icon current_location" href="javascript:void(0);">
-                                        <i class="feather-crosshair"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="search-input search-calendar-line">
-                                <i class="feather-calendar"></i>
-                                <div class=" mb-0">
-                                    <input type="text" class="form-control datetimepicker" placeholder="Date">
-                                </div>
-                            </div>
-                            <div class="form-search-btn">
-                                <button class="btn" type="submit">Search</button>
-                            </div>
-                        </form>
+                        <div class="col-12 d-flex col-xxl-12 col-lg-12 col-sm-6">
+                            <a href="javascript:void(0);" class="serv-wrap green-bg flex-fill">
+                                <span>
+                                    <img src="{{ URL::asset('/assets/img/icons/service-02.svg') }}" alt="heart-image">
+                                </span>
+                                <h4>Lab Testing Services</h4>
+                            </a>
+                        </div>
+                        <div class="col-12 d-flex col-xxl col-lg-12 col-sm-6">
+                            <a href="javascript:void(0);" class="serv-wrap info-bg flex-fill">
+                                <span>
+                                    <img src="{{ URL::asset('/assets/img/icons/service-03.svg') }}" alt="heart-image">
+                                </span>
+                                <h4>Medicines & Supplies</h4>
+                            </a>
+                        </div>
+
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="banner-img aos" data-aos="fade-up">
                         <img src="{{ URL::asset('/assets/img/banner-img.png') }}" class="img-fluid" alt="patient-image">
-                        <div class="banner-img1">
-                            <img src="{{ URL::asset('/assets/img/banner/banner-img1.svg') }}" class="img-fluid"
-                                alt="checkup-image">
+                        
+                    </div>
+                  
+                </div>
+                <div class="col-lg-3">
+                    <div class="row justify-content-center">
+                        <div class="col-12 d-flex col-xxl-12 col-lg-12 col-sm-6">
+                            <a href="javascript:void(0);" class="serv-wrap red-bg flex-fill">
+                                <span>
+                                    <img src="{{ URL::asset('/assets/img/icons/service-04.svg') }}" alt="heart-image">
+                                </span>
+                                <h4>Hospitals / Clinics</h4>
+                            </a>
                         </div>
-                        <div class="banner-img2">
-                            <img src="{{ URL::asset('/assets/img/banner/banner-img2.svg') }}" class="img-fluid"
-                                alt="doctor-slide">
+                        <div class="col-12 d-flex col-xxl-12 col-lg-12 col-sm-6">
+                            <a href="javascript:void(0);" class="serv-wrap success-bg flex-fill">
+                                <span>
+                                    <img src="{{ URL::asset('/assets/img/icons/service-05.svg') }}" alt="heart-image">
+                                </span>
+                                <h4>Health Care Services</h4>
+                            </a>
                         </div>
-                        <div class="banner-img3">
-                            <img src="{{ URL::asset('/assets/img/banner/banner-img3.svg') }}" class="img-fluid"
-                                alt="doctors-list">
+                        <div class="col-12 d-flex col-xxl-12 col-lg-12 col-sm-6">
+                            <a href="{{ url('chat') }}" class="serv-wrap pink-bg flex-fill">
+                                <span>
+                                    <img src="{{ URL::asset('/assets/img/icons/service-06.svg') }}" alt="heart-image">
+                                </span>
+                                <h4>Talk to Doctor’s</h4>
+                            </a>
+                        </div>
+                        <div class="col-12 d-flex col-xxl-12 col-lg-12 col-sm-6">
+                            <a href="javascript:void(0);" class="serv-wrap danger-bg flex-fill">
+                                <span>
+                                    <img src="{{ URL::asset('/assets/img/icons/service-07.svg') }}" alt="heart-image">
+                                </span>
+                                <h4>Home Care Services</h4>
+                            </a>
                         </div>
                     </div>
-                    
                 </div>
+               
             </div>
         </div>
     </section>
