@@ -17,6 +17,7 @@ class DoctorProfileController extends Controller
     public function show($id = null)
     {
         $doctor =  User::with('doctorSpecialization','doctorEducation','doctorExperiences','doctorAwards','doctorClinic.gallery','doctorBusinessHour','availableTimings','appointmentRequests')->find($id);
+        
         // dd($doctor);
         return view('doctor-profile-2', get_defined_vars());
     }

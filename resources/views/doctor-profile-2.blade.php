@@ -27,17 +27,24 @@
                                 <h4 class="doc-name">Dr. {{ $doctor->name ?? '--' }}</h4>
                                 <p class="doc-speciality">
                                     @if (!empty($doctor->doctorEducation) && $doctor->doctorEducation->isNotEmpty())
-                                        @foreach ($doctor->doctorEducation as $education)
-                                            {{ $education->course ?? 'doctor education' }}
-                                        @endforeach
-                                    @else
-                                        No education details available.
-                                    @endif
+                                    @foreach ($doctor->doctorEducation as $education)
+                                        {{ $education->course ?? 'doctor education' }}
+                                    @endforeach
+                                @else
+                                    No education details available.
+                                @endif
                                 </p>
-                                <p class="doc-department"><img
-                                        src="{{ URL::asset('/assets/img/specialities/specialities-05.png') }}"
-                                        class="img-fluid"
-                                        alt="Speciality">{{ $doctor->doctorSpecialization->first()->name ?? '--' }}</p>
+                                <p class="doc-department">
+                                    <img src="{{ URL::asset('/assets/img/specialities/specialities-05.png') }}"
+                                         class="img-fluid"
+                                         alt="Speciality">
+                                         @if (!empty($doctor->doctorSpecialization) && $doctor->doctorSpecialization->count() > 0)
+                                         {{ $doctor->doctorSpecialization->first()->name }}
+                                     @else
+                                         No specialization available
+                                     @endif
+                                </p>
+                                
                                 <div class="rating">
                                     <i class="fas fa-star filled"></i>
                                     <i class="fas fa-star filled"></i>
@@ -82,8 +89,12 @@
                                         {{ $doctor->country ?? '--' }}</li>
                                     <li>
                                         <i class="far fa-money-bill-alt"></i>
-                                        ${{ $doctor->availableTimings->min('appointment_fees') ?? 'N/A' }} -
-                                        ${{ $doctor->availableTimings->max('appointment_fees') ?? 'N/A' }}
+                                        @if (!empty($doctor->availableTimings) && $doctor->availableTimings->isNotEmpty())
+                                            ${{ $doctor->availableTimings->min('appointment_fees') ?? 'N/A' }} - 
+                                            ${{ $doctor->availableTimings->max('appointment_fees') ?? 'N/A' }}
+                                        @else
+                                            N/A - N/A
+                                        @endif
                                         <i class="fas fa-info-circle" data-bs-toggle="tooltip" title="Lorem Ipsum"></i>
                                     </li>
 
@@ -160,26 +171,31 @@
                                         <h4 class="widget-title">Education</h4>
                                         <div class="experience-box">
                                             <ul class="experience-list">
+                                                @if (!empty($doctor->doctorEducation) && $doctor->doctorEducation->isNotEmpty())
                                                 @foreach ($doctor->doctorEducation as $education)
-                                                    <li>
-                                                        <div class="experience-user">
-                                                            <div class="before-circle"></div>
-                                                        </div>
-                                                        <div class="experience-content">
-                                                            <div class="timeline-content">
-                                                                <a href="#/"
-                                                                    class="name">{{ $education->name_of_institution ?? '--' }}</a>
-                                                                <div>{{ $education->course ?? '--' }}</div>
-                                                                <span class="time">
-                                                                    {{ \Carbon\Carbon::parse($education->start_date)->format('Y') ?? '--' }}
-                                                                    -
-                                                                    {{ \Carbon\Carbon::parse($education->end_date)->format('Y') ?? '--' }}
-                                                                </span>
+                                                <li>
+                                                    <div class="experience-user">
+                                                        <div class="before-circle"></div>
+                                                    </div>
+                                                    <div class="experience-content">
+                                                        <div class="timeline-content">
+                                                            <a href="#/"
+                                                                class="name">{{ $education->name_of_institution ?? '--' }}</a>
+                                                            <div>{{ $education->course ?? '--' }}</div>
+                                                            <span class="time">
+                                                                {{ \Carbon\Carbon::parse($education->start_date)->format('Y') ?? '--' }}
+                                                                -
+                                                                {{ \Carbon\Carbon::parse($education->end_date)->format('Y') ?? '--' }}
+                                                            </span>
 
-                                                            </div>
                                                         </div>
-                                                    </li>
-                                                @endforeach
+                                                    </div>
+                                                </li>
+                                            @endforeach
+                                            @else
+                                                N/A - N/A
+                                            @endif
+                                             
                                             </ul>
                                         </div>
                                     </div>
@@ -190,27 +206,32 @@
                                         <h4 class="widget-title">Work & Experience</h4>
                                         <div class="experience-box">
                                             <ul class="experience-list">
+                                                @if (!empty($doctor->availableTimings) && $doctor->availableTimings->isNotEmpty())
                                                 @foreach ($doctor->doctorExperiences as $experience)
-                                                    <li>
-                                                        <div class="experience-user">
-                                                            <div class="before-circle"></div>
-                                                        </div>
-                                                        <div class="experience-content">
-                                                            <div class="timeline-content">
-                                                                <a href="#/"
-                                                                    class="name">{{ $experience->hospital ?? '--' }}</a>
-                                                                <span class="time">
-                                                                    {{ \Carbon\Carbon::parse($education['start_date'])->format('Y') }}
-                                                                    -
-                                                                    {{ $education['currently_working_here'] ? 'Present' : \Carbon\Carbon::parse($education['end_date'])->format('Y') }}
-                                                                    ({{ \Carbon\Carbon::parse($education['start_date'])->diffInYears($education['currently_working_here'] ? now() : \Carbon\Carbon::parse($education['end_date'])) }}
-                                                                    years)
-                                                                </span>
+                                                <li>
+                                                    <div class="experience-user">
+                                                        <div class="before-circle"></div>
+                                                    </div>
+                                                    <div class="experience-content">
+                                                        <div class="timeline-content">
+                                                            <a href="#/"
+                                                                class="name">{{ $experience->hospital ?? '--' }}</a>
+                                                            <span class="time">
+                                                                {{ \Carbon\Carbon::parse($education['start_date'])->format('Y') }}
+                                                                -
+                                                                {{ $education['currently_working_here'] ? 'Present' : \Carbon\Carbon::parse($education['end_date'])->format('Y') }}
+                                                                ({{ \Carbon\Carbon::parse($education['start_date'])->diffInYears($education['currently_working_here'] ? now() : \Carbon\Carbon::parse($education['end_date'])) }}
+                                                                years)
+                                                            </span>
 
-                                                            </div>
                                                         </div>
-                                                    </li>
-                                                @endforeach
+                                                    </div>
+                                                </li>
+                                            @endforeach
+                                            @else
+                                                N/A - N/A
+                                            @endif
+                                            
                                             </ul>
                                         </div>
                                     </div>
@@ -221,23 +242,28 @@
                                         <h4 class="widget-title">Awards</h4>
                                         <div class="experience-box">
                                             <ul class="experience-list">
+                                                @if (!empty($doctor->doctorAwards) && $doctor->doctorAwards->isNotEmpty())
                                                 @foreach ($doctor->doctorAwards as $award)
-                                                    <li>
-                                                        <div class="experience-user">
-                                                            <div class="before-circle"></div>
+                                                <li>
+                                                    <div class="experience-user">
+                                                        <div class="before-circle"></div>
+                                                    </div>
+                                                    <div class="experience-content">
+                                                        <div class="timeline-content">
+                                                            <p class="exp-year">
+                                                                {{ $award->year ? \Carbon\Carbon::parse($award->year)->format('F Y') : '--' }}
+                                                            </p>
+                                                            <h4 class="exp-title">{{ $award->award_name ?? '--' }}
+                                                            </h4>
+                                                            <p>{{ $award->description ?? '--' }}</p>
                                                         </div>
-                                                        <div class="experience-content">
-                                                            <div class="timeline-content">
-                                                                <p class="exp-year">
-                                                                    {{ $award->year ? \Carbon\Carbon::parse($award->year)->format('F Y') : '--' }}
-                                                                </p>
-                                                                <h4 class="exp-title">{{ $award->award_name ?? '--' }}
-                                                                </h4>
-                                                                <p>{{ $award->description ?? '--' }}</p>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                @endforeach
+                                                    </div>
+                                                </li>
+                                            @endforeach
+                                            @else
+                                                N/A - N/A
+                                            @endif
+                                              
                                             </ul>
                                         </div>
                                     </div>
@@ -261,9 +287,14 @@
                                     <div class="service-list">
                                         <h4>Specializations</h4>
                                         <ul class="clearfix">
+                                            @if (!empty($doctor->doctorSpecialization) && $doctor->doctorSpecialization->isNotEmpty())
                                             @foreach ($doctor->doctorSpecialization as $specialization)
-                                                <li>{{ $specialization->name }}</li>
-                                            @endforeach
+                                            <li>{{ $specialization->name }}</li>
+                                        @endforeach
+                                        @else
+                                            N/A - N/A
+                                        @endif
+                                         
                                         </ul>
                                     </div>
                                     <!-- /Specializations List -->
@@ -279,7 +310,7 @@
                             <!-- Location List -->
                             <div class="location-list">
                                 <div class="row">
-
+                                    @if (!empty($doctor->doctorClinic) && $doctor->doctorClinic->isNotEmpty())
                                     @foreach ($doctor->doctorClinic as $clinic)
                                         <!-- Clinic Content -->
                                         <div class="col-md-6">
@@ -358,6 +389,10 @@
                                             </div>
                                         </div>
                                     @endforeach
+                                @else
+                                    N/A - N/A
+                                @endif
+                                  
 
                                 </div>
                             </div>
@@ -591,64 +626,69 @@
                                     <div class="widget business-widget">
                                         <div class="widget-content">
                                             <div class="listing-hours">
+                                                @if (!empty($doctor->doctorBusinessHour) && $doctor->doctorBusinessHour->isNotEmpty())
                                                 @foreach ($doctor->doctorBusinessHour as $businessHour)
-                                                    <div
-                                                        class="listing-day {{ strtolower($businessHour->select_business_days) === strtolower(now()->format('l')) ? 'current' : '' }}">
-                                                        <div class="day">
-                                                            {{ ucfirst($businessHour->select_business_days) }}
-                                                            @if (strtolower($businessHour->select_business_days) === strtolower(now()->format('l')))
-                                                                <span>{{ now()->format('d M Y') }}</span>
+                                                <div
+                                                    class="listing-day {{ strtolower($businessHour->select_business_days) === strtolower(now()->format('l')) ? 'current' : '' }}">
+                                                    <div class="day">
+                                                        {{ ucfirst($businessHour->select_business_days) }}
+                                                        @if (strtolower($businessHour->select_business_days) === strtolower(now()->format('l')))
+                                                            <span>{{ now()->format('d M Y') }}</span>
+                                                        @endif
+                                                    </div>
+                                                    <div class="time-items">
+                                                        @if ($businessHour->start_time && $businessHour->end_time)
+                                                            <span class="time">{{ $businessHour->start_time }} -
+                                                                {{ $businessHour->end_time }}</span>
+                                                            @if (strtolower($businessHour->select_business_days) === strtolower(now()->format('l')) &&
+                                                                    now()->format('H:i A') >= $businessHour->start_time &&
+                                                                    now()->format('H:i A') <= $businessHour->end_time)
+                                                                <span class="open-status">
+                                                                    <span class="badge bg-success-light">Open
+                                                                        Now</span>
+                                                                </span>
                                                             @endif
-                                                        </div>
+                                                        @else
+                                                            <span class="badge bg-danger-light">Closed</span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            @endforeach
+
+                                            <!-- Handle Days Without Explicit Timings -->
+                                            @php
+                                                $days = [
+                                                    'monday',
+                                                    'tuesday',
+                                                    'wednesday',
+                                                    'thursday',
+                                                    'friday',
+                                                    'saturday',
+                                                    'sunday',
+                                                ];
+                                                $availableDays = $doctor->doctorBusinessHour
+                                                    ->pluck('select_business_days')
+                                                    ->map(function ($day) {
+                                                        return strtolower($day);
+                                                    })
+                                                    ->toArray();
+                                            @endphp
+
+                                            @foreach ($days as $day)
+                                                @if (!in_array($day, $availableDays))
+                                                    <div class="listing-day closed">
+                                                        <div class="day">{{ ucfirst($day) }}</div>
                                                         <div class="time-items">
-                                                            @if ($businessHour->start_time && $businessHour->end_time)
-                                                                <span class="time">{{ $businessHour->start_time }} -
-                                                                    {{ $businessHour->end_time }}</span>
-                                                                @if (strtolower($businessHour->select_business_days) === strtolower(now()->format('l')) &&
-                                                                        now()->format('H:i A') >= $businessHour->start_time &&
-                                                                        now()->format('H:i A') <= $businessHour->end_time)
-                                                                    <span class="open-status">
-                                                                        <span class="badge bg-success-light">Open
-                                                                            Now</span>
-                                                                    </span>
-                                                                @endif
-                                                            @else
-                                                                <span class="badge bg-danger-light">Closed</span>
-                                                            @endif
+                                                            <span class="badge bg-danger-light">Closed</span>
                                                         </div>
                                                     </div>
-                                                @endforeach
+                                                @endif
+                                            @endforeach
 
-                                                <!-- Handle Days Without Explicit Timings -->
-                                                @php
-                                                    $days = [
-                                                        'monday',
-                                                        'tuesday',
-                                                        'wednesday',
-                                                        'thursday',
-                                                        'friday',
-                                                        'saturday',
-                                                        'sunday',
-                                                    ];
-                                                    $availableDays = $doctor->doctorBusinessHour
-                                                        ->pluck('select_business_days')
-                                                        ->map(function ($day) {
-                                                            return strtolower($day);
-                                                        })
-                                                        ->toArray();
-                                                @endphp
-
-                                                @foreach ($days as $day)
-                                                    @if (!in_array($day, $availableDays))
-                                                        <div class="listing-day closed">
-                                                            <div class="day">{{ ucfirst($day) }}</div>
-                                                            <div class="time-items">
-                                                                <span class="badge bg-danger-light">Closed</span>
-                                                            </div>
-                                                        </div>
-                                                    @endif
-                                                @endforeach
-
+                                            @else
+                                                N/A - N/A
+                                            @endif
+                                               
                                             </div>
                                         </div>
                                     </div>

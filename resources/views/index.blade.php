@@ -86,7 +86,7 @@
     <!-- Specialities Section -->
     <section class="specialities-section-one">
         <div class="container">
-            <div class="service-sec-one">
+            {{-- <div class="service-sec-one">
                 <div
                     class="row row-cols-7 row-cols-xxl-7 row-cols-xl-4 row-cols-lg-4 rows-cols-md-6 justify-content-center">
                     <div class="col-12 d-flex col-xxl col-lg-3 col-sm-6">
@@ -146,7 +146,7 @@
                         </a>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="row">
                 <div class="col-md-6 col-7 aos" data-aos="fade-up">
                     <div class="section-header-one section-header-slider">
