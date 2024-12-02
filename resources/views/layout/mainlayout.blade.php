@@ -405,6 +405,7 @@
     @include('layout.partials.footer')
 @endif
 @if (Route::is([
+    'home-page',
         'index',
         'index-2',
         'index-3',

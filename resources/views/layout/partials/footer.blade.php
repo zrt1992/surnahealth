@@ -1540,7 +1540,13 @@
     </footer>
 @endif
 
-@if (Route::is(['index']))
+@if (Route::is([
+    'home-page',
+    'frontend.doctor-profile',
+    'frontend.booking',
+    'frontend.search',
+    'index',
+    ]))
     <!-- Footer -->
     <footer class="footer footer-one">
         <div class="footer-top aos" data-aos="fade-up">
@@ -1565,8 +1571,8 @@
                                     <h2 class="footer-title">Company</h2>
                                     <ul>
                                         <li><a href="{{ url('index') }}">Home</a></li>
-                                        <li><a href="{{ url('search') }}">Specialities</a></li>
-                                        <li><a href="{{ url('video-call') }}">Video Consult</a></li>
+                                        <li><a href="{{ url('frontend/search') }}">Specialities</a></li>
+                                        <li><a href="{{ url('frontend/search') }}">Video Consult</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -1574,9 +1580,9 @@
                                 <div class="footer-widget footer-menu">
                                     <h2 class="footer-title">Specialities</h2>
                                     <ul>
-                                        <li><a href="{{ url('search') }}">Neurology</a></li>
-                                        <li><a href="{{ url('search') }}">Cardiologist</a></li>
-                                        <li><a href="{{ url('search') }}">Dentist</a></li>
+                                        <li><a href="{{ url('frontend/search') }}">Neurology</a></li>
+                                        <li><a href="{{ url('frontend/search') }}">Cardiologist</a></li>
+                                        <li><a href="{{ url('frontend/search') }}">Dentist</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -1844,6 +1850,10 @@
 
 @if (
     !Route::is([
+       'home-page',
+       'frontend.doctor-profile',
+       'frontend.booking',
+       'frontend.search',
         'index',
         'index-2',
         'index-3',

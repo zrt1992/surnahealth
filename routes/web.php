@@ -12,6 +12,7 @@ use App\Http\Controllers\Doctor\DoctorController;
 use App\Http\Controllers\Doctor\DoctorEducationController;
 use App\Http\Controllers\Doctor\DoctorExperienceController;
 use App\Http\Controllers\Doctor\DoctorInsurancesController;
+use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\GoogleMeetController;
 use App\Http\Controllers\Patient\BookingController;
 use App\Http\Controllers\Patient\DashboardController as PatientDashboard;
@@ -65,9 +66,14 @@ Route::get('/', function () {
     // dd(storage_path('app/google-calendar/service-account-credentials.json'));
 })->name('home-page');
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+// Front end pages
+Route::prefix('frontend')->group(function () {
+    Route::get('/doctor-profile/{id?}', [FrontendController::class, 'doctorProfile'])->name('frontend.doctor-profile');
+    Route::get('/booking/{doctor_id?}', [FrontendController::class, 'showBookingForm'])->name('frontend.booking');
+    Route::get('/search', [FrontendController::class, 'search'])->name('frontend.search');
+});
+
+
 
 Route::middleware('auth')->group(function () {
     //    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

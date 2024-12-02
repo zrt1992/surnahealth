@@ -8,7 +8,7 @@
                 <div class="col-lg-3">
                     <div class="row justify-content-center">
                         <div class="col-12 d-flex col-xxl-12 col-lg-12 col-sm-6">
-                            <a href="{{ route('search', ['doctor_id' => null]) }}" class="serv-wrap blue-bg flex-fill">
+                            <a href="{{ route('frontend.search', ['doctor_id' => null]) }}" class="serv-wrap blue-bg flex-fill">
                                 <span>
                                     <img src="{{ URL::asset('/assets/img/icons/service-01.svg') }}" alt="heart-image">
                                 </span>
@@ -90,7 +90,7 @@
                 <div
                     class="row row-cols-7 row-cols-xxl-7 row-cols-xl-4 row-cols-lg-4 rows-cols-md-6 justify-content-center">
                     <div class="col-12 d-flex col-xxl col-lg-3 col-sm-6">
-                        <a href="{{ route('search', ['doctor_id' => null]) }}" class="serv-wrap blue-bg flex-fill">
+                        <a href="{{ route('frontend.search', ['doctor_id' => null]) }}" class="serv-wrap blue-bg flex-fill">
                             <span>
                                 <img src="{{ URL::asset('/assets/img/icons/service-01.svg') }}" alt="heart-image">
                             </span>
