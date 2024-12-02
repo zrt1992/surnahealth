@@ -15,11 +15,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-//        $this->call([
-//            UserSeeder::class,
-//            PostSeeder::class,
-//            CommentSeeder::class,
-//        ]);
+        //        $this->call([
+        //            UserSeeder::class,
+        //            PostSeeder::class,
+        //            CommentSeeder::class,
+        //        ]);
         //  User::factory(10)->create();
         Role::create(['name' => 'patient']);
         Role::create(['name' => 'doctor']);
@@ -27,21 +27,21 @@ class DatabaseSeeder extends Seeder
 
         // $user = User::where('email','jawad@gmail.com')->first();
         $user = User::create([
-            'email'=>'doctor@gmail.com',
+            'email' => 'doctor@gmail.com',
             'name' => 'jawad',
             'password' => Hash::make('123456789')
 
         ]);
 
         $user1 = User::create([
-            'email'=>'admin@gmail.com',
+            'email' => 'admin@gmail.com',
             'name' => 'jawad',
             'password' => Hash::make('123456789')
 
         ]);
 
         $user2 = User::create([
-            'email'=>'patient@gmail.com',
+            'email' => 'patient@gmail.com',
             'name' => 'jawad',
             'password' => Hash::make('123456789')
 
@@ -49,9 +49,11 @@ class DatabaseSeeder extends Seeder
         $user->assignRole('doctor');
         $user1->assignRole('admin');
         $user2->assignRole('patient');
-//        User::factory()->create([
-//            'name' => 'Test User',
-//            'email' => 'test@example.com',
-//        ]);
+        //        User::factory()->create([
+        //            'name' => 'Test User',
+        //            'email' => 'test@example.com',
+        //        ]);
+
+        $this->call(SpecializationSeeder::class);
     }
 }
