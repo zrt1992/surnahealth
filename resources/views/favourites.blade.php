@@ -43,7 +43,7 @@
                                 <div class="doc-img">
                                     <a href="{{ url('doctor-profile/' . $doctor->id) }}">
                                         <img class="img-fluid" alt="User Image"
-                                            src="{{  $doctor->profile_image }}">
+                                            src="{{  $doctor->profile_image ?? URL::asset('/assets/img/features/feature-01.jpg')}}">
                                     </a>
                                 </div>
                                 <div class="pro-content">
@@ -65,7 +65,7 @@
                                         </li>
                                         <li>
                                             <span><i class="fas fa-map-marker-alt"></i></span>Location :
-                                            {{ $doctor->location }}
+                                            {{ $doctor->address ?? '--' }},{{ $doctor->city ?? '--' }},{{ $doctor->state ?? '--' }}
                                         </li>
                                     </ul>
                                     <div class="last-book">
@@ -76,7 +76,7 @@
                             <div class="fav-footer">
                                 <div class="row row-sm">
                                     <div class="col-6">
-                                        <a href="{{ url('doctor-profile-2/') }}"
+                                        <a href="{{ url('doctor-profile-2/'. optional($doctor)->id)}}"
                                             class="btn view-btn">View Profile</a>
                                     </div>
                                     <div class="col-6">

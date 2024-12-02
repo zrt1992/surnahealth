@@ -97,13 +97,13 @@
                             <div class="doctor-widget">
                                 <div class="doc-info-left">
                                     <div class="doctor-img">
-                                        <a href="{{ url('doctor-profile-2') }}">
+                                        <a href="{{ url('/frontend/doctor-profile') }}">
                                             <img src="{{$doctor->profile_image ?? URL::asset('/assets/img/doctors/doctor-thumb-01.jpg') }}"
                                                 class="img-fluid" alt="User Image">
                                         </a>
                                     </div>
                                     <div class="doc-info-cont">
-                                        <h4 class="doc-name"><a href="{{ url('doctor-profile-2') }}">Dr. {{ $doctor->name ?? '--' }}</a></h4>
+                                        <h4 class="doc-name"><a href="{{ url('/frontend/doctor-profile') }}">Dr. {{ $doctor->name ?? '--' }}</a></h4>
                                         <p class="doc-speciality">
                                             @if (!empty($doctor->doctorEducation) && $doctor->doctorEducation->isNotEmpty())
                                                 @foreach ($doctor->doctorEducation as $education)
@@ -167,8 +167,8 @@
                                         </ul>
                                     </div>
                                     <div class="clinic-booking">
-                                        <a class="view-pro-btn" href="{{ url('doctor-profile-2/'. $doctor->id) }}">View Profile</a>
-                                        <a class="apt-btn" href="{{ url('booking/'. $doctor->id) }}">Book Appointment</a>
+                                        <a class="view-pro-btn" href="{{ url('frontend/doctor-profile/'. $doctor->id) }}">View Profile</a>
+                                        <a class="apt-btn" href="{{ url('frontend/booking/'. $doctor->id) }}">Book Appointment</a>
                                     </div>
                                 </div>
                             </div>

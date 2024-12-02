@@ -1,5 +1,6 @@
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="{{ url('/assets/css/bootstrap.min.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css" />
 
 <!-- Fontawesome CSS -->
 <link rel="stylesheet" href="{{ url('/assets/plugins/fontawesome/css/fontawesome.min.css') }}">

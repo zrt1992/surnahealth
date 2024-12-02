@@ -17,12 +17,12 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="booking-doc-info">
-                                <a href="{{ route('doctor-profile-2', ['doctor_id' => null]) }}" class="booking-doc-img">
+                                <a href="{{ route('frontend.doctor-profile', ['doctor_id' => null]) }}" class="booking-doc-img">
                                     <img src="{{ $doctor->profile_image ?? URL::asset('/assets/img/doctors/doctor-thumb-02.jpg') }}"
                                         alt="User Image">
                                 </a>
                                 <div class="booking-info">
-                                    <h4><a href="{{ route('doctor-profile-2', ['doctor_id' => null]) }}">Dr.
+                                    <h4><a href="{{ route('frontend.doctor-profile', ['doctor_id' => null]) }}">Dr.
                                             {{ $doctor->name ?? '--' }}</a></h4>
                                     <div class="rating">
                                         <i class="fas fa-star filled"></i>

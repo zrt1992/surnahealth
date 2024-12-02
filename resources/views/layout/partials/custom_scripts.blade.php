@@ -1,4 +1,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ <!-- Toastr JS -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+
 <script>
     $(document).ready(function() {
 
@@ -121,10 +124,14 @@
 
         // Find the clicked slot element and add the 'selected' class
         const slotElements = document.querySelectorAll(".timing");
+
+        // Loop through all the slot elements
         slotElements.forEach(slot => {
-            if (slot.textContent.trim() === startTime) {
+            // Check if the slot's data-id matches the passed slotId
+            if (slot.dataset.slotId == slotId) {
+                // Add the 'selected' class to the clicked slot
                 slot.classList.add('selected');
-                currentSelectedSlot = slot;
+                currentSelectedSlot = slot; // Store the current selected slot
             }
         });
 
@@ -455,7 +462,7 @@
     });
 </script>
 
-{{--doctor Award setting--}}
+{{-- doctor Award setting --}}
 <script>
     const addAwardBtn = document.querySelector('.add-awrads'); // Button to add awards
     const awardContainer = document.getElementById('list-accord'); // Container for awards
@@ -705,4 +712,23 @@
             if (clinicItem) clinicItem.remove();
         }
     });
+</script>
+
+{{-- Toaster --}}
+<script>
+    @if(session('success'))
+        toastr.success("{{ session('success') }}", "Success", {
+            closeButton: true,
+            progressBar: true,
+            positionClass: "toast-top-right",
+            timeOut: 5000
+        });
+    @elseif(session('error'))
+        toastr.error("{{ session('error') }}", "Error", {
+            closeButton: true,
+            progressBar: true,
+            positionClass: "toast-top-right",
+            timeOut: 5000
+        });
+    @endif
 </script>

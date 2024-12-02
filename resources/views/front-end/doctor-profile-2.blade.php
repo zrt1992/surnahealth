@@ -115,7 +115,7 @@
                                 </a>
                             </div>
                             <div class="clinic-booking">
-                                <a class="apt-btn" href="{{ url('booking/' . optional($doctor)->id) }}">Book Appointment</a>
+                                <a class="apt-btn" href="{{ url('frontend/booking/' . optional($doctor)->id) }}">Book Appointment</a>
                             </div>
                         </div>
                     </div>

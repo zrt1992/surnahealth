@@ -19,10 +19,11 @@ class BookingController extends Controller
     {
         $this->bookingRepository = $bookingRepository;
     }
-    public function showBookingForm($doctorId)
+    public function showBookingForm($doctorId = null)
     {
+       
         // Fetch doctor and their available timings
-        $doctor = User::with('availableTimings')->findOrFail($doctorId);
+        $doctor = User::with('availableTimings')->find($doctorId);
         $currentDate = Carbon::now()->format('d F Y');  // e.g., "11 November 2023"
         $currentDay = Carbon::now()->format('l'); 
         return view('booking',get_defined_vars());
@@ -36,7 +37,11 @@ class BookingController extends Controller
 
     public function store(Request $request)
     {
-        // Validate incoming request
+        if (!auth()->check()) {
+           
+            return redirect()->route('login')->with('error', 'You must be logged in to make a booking.');
+        }
+
         $validated = $request->validate([
             'doctor_id' => 'required',
             'slot_id' => 'required|exists:available_timmings,id',
@@ -48,7 +53,7 @@ class BookingController extends Controller
         $data = $this->bookingRepository->create($validated);
         
         // Return response (can redirect or send back success message)
-        return back()->with('success', $data);
+       return back()->with('success', 'Your booking was successful!');
     }
 
     public function getPatientAppointments()

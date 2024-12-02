@@ -407,7 +407,7 @@
                                 <li><a href="{{ url('patient-dashboard') }}">Patient Dashboard</a></li>
                                 <li><a href="{{ url('favourites') }}">Favourites</a></li>
                                 <li><a href="{{ url('chat') }}">Chat</a></li>
-                                <li><a href="{{ url('profile-settings') }}">Profile Settingsk</a></li>
+                                <li><a href="{{ url('profile-settings') }}">Profile Settings</a></li>
                                 <li><a href="{{ url('change-password') }}">Change Password</a></li>
                             </ul>
                         </li>
@@ -709,6 +709,7 @@
                             'doctor-cancelled-appointment',
                             'doctor-clinics-settings',
                             'doctor-education-settings',
+                            'doctor-profile-settings',
                             'doctor-experience-settings',
                             'doctor-insurance-settings',
                             'patient-upcoming-appointment',
@@ -1995,6 +1996,7 @@
                         <!-- /Cart -->
 
                         <!-- Notifications -->
+                        @if (Auth::check())
                         <li class="nav-item dropdown noti-nav me-3 pe-0">
                             <a href="#" class="dropdown-toggle nav-link p-0" data-bs-toggle="dropdown">
                                 <i class="fa-solid fa-bell"></i> <span class="badge">5</span>
@@ -2074,6 +2076,7 @@
                                 </div>
                             </div>
                         </li>
+                        @endif
                         <!-- /Notifications -->
                     @endif
                     @if (
@@ -2221,7 +2224,7 @@
                                         'patient-appointment-details',
                                         'patient-cancelled-appointment',
                                     ]))
-                                    <a class="dropdown-item" href="{{ url('profile-settings') }}">Profile
+                                    <a class="dropdown-item" href="{{ url('/patient/profile-settings') }}">Profile
                                         Setting</a>
                                 @endif
                                 <a class="dropdown-item" href="{{route('logout-user')}}" onclick="event.preventDefault(); document.getElementById('logout-forms').submit();">Logout</a>
@@ -2258,17 +2261,18 @@
                             'edit-billing',
                         ]))
                         <!-- User Menu -->
+                        @if (Auth::check()) <!-- Check if the user is authenticated -->
                         <li class="nav-item dropdown has-arrow logged-item">
                             <a href="javascript:;" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
                                 <span class="user-img">
                                     @if (!Route::is(['doctor-profile','doctor-profile-2']))
                                         <img class="rounded-circle"
-                                            src="{{\Illuminate\Support\Facades\Auth::user()->profile_image ?? URL::asset('/assets/img/doctors/doc-profile-img.jpg') }}"
+                                            src="{{ \Illuminate\Support\Facades\Auth::user()->profile_image ?? URL::asset('/assets/img/doctors/doc-profile-img.jpg') }}"
                                             width="31" alt="Darren Elder">
                                     @endif
                                     @if (Route::is(['doctor-profile','doctor-profile-2']))
                                         <img class="rounded-circle"
-                                            src="{{\Illuminate\Support\Facades\Auth::user()->profile_image ?? URL::asset('/assets/img/doctors/doc-profile-img.jpg') }}"
+                                            src="{{ \Illuminate\Support\Facades\Auth::user()->profile_image ?? URL::asset('/assets/img/doctors/doc-profile-img.jpg') }}"
                                             width="31" alt="Darren Elder">
                                     @endif
                                 </span>
@@ -2277,16 +2281,16 @@
                                 <div class="user-header">
                                     <div class="avatar avatar-sm">
                                         @if (!Route::is(['doctor-profile','doctor-profile-2']))
-                                            <img src="{{\Illuminate\Support\Facades\Auth::user()->profile_image ?? URL::asset('/assets/img/doctors/doc-profile-img.jpg') }}"
+                                            <img src="{{ \Illuminate\Support\Facades\Auth::user()->profile_image ?? URL::asset('/assets/img/doctors/doc-profile-img.jpg') }}"
                                                 alt="User Image" class="avatar-img rounded-circle">
                                         @endif
                                         @if (Route::is(['doctor-profile','doctor-profile-2']))
-                                            <img src="{{\Illuminate\Support\Facades\Auth::user()->profile_image ?? URL::asset('/assets/img/doctors/doc-profile-img.jpg') }}"
+                                            <img src="{{ \Illuminate\Support\Facades\Auth::user()->profile_image ?? URL::asset('/assets/img/doctors/doc-profile-img.jpg') }}"
                                                 alt="User Image" class="avatar-img rounded-circle">
                                         @endif
                                     </div>
                                     <div class="user-text">
-                                        <h6>{{\Illuminate\Support\Facades\Auth::user()->name ?? '--' }}</h6>
+                                        <h6>{{ \Illuminate\Support\Facades\Auth::user()->name ?? '--' }}</h6>
                                         @if (!Route::is(['doctor-profile','doctor-profile-2']))
                                             <p class="text-muted mb-0">Patient</p>
                                         @endif
@@ -2295,16 +2299,16 @@
                                         @endif
                                     </div>
                                 </div>
-                                <a class="dropdown-item" href="{{ url('patient-dashboard') }}">Dashboard</a>
-                                <a class="dropdown-item" href="{{ url('profile-settings') }}">Profile Settings</a>
-                                <a class="dropdown-item" href="{{route('logout-user')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logouts</a>
-
+                                <a class="dropdown-item" href="{{ url('/patient/dashboard') }}">Dashboard</a>
+                                <a class="dropdown-item" href="{{ url('/patient/profile-settings') }}">Profile Settings</a>
+                                <a class="dropdown-item" href="http://127.0.0.1:8000/logout-user" onclick="event.preventDefault(); document.getElementById('logout-forms').submit();">Logout</a>
                                 <form id="logout-forms" action="{{ route('logout-user') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
-
                             </div>
                         </li>
+                    @endif
+                    
                         <!-- /User Menu -->
                     @endif
                 @endif
