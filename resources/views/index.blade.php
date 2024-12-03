@@ -15,20 +15,21 @@
                                 <h4>Book Appointment</h4>
                             </a>
                         </div>
-                        <div class="col-12 d-flex col-xxl-12 col-lg-12 col-sm-6">
-                            <a href="javascript:void(0);" class="serv-wrap green-bg flex-fill">
-                                <span>
-                                    <img src="{{ URL::asset('/assets/img/icons/service-02.svg') }}" alt="heart-image">
-                                </span>
-                                <h4>Lab Testing Services</h4>
-                            </a>
-                        </div>
+                       
                         <div class="col-12 d-flex col-xxl col-lg-12 col-sm-6">
                             <a href="javascript:void(0);" class="serv-wrap info-bg flex-fill">
                                 <span>
                                     <img src="{{ URL::asset('/assets/img/icons/service-03.svg') }}" alt="heart-image">
                                 </span>
-                                <h4>Medicines & Supplies</h4>
+                                <h4>Pharmacy</h4>
+                            </a>
+                        </div>
+                        <div class="col-12 d-flex col-xxl-12 col-lg-12 col-sm-6">
+                            <a href="{{ url('chat') }}" class="serv-wrap pink-bg flex-fill">
+                                <span>
+                                    <img src="{{ URL::asset('/assets/img/icons/service-06.svg') }}" alt="heart-image">
+                                </span>
+                                <h4>Talk to Doctor’s</h4>
                             </a>
                         </div>
 
@@ -46,9 +47,9 @@
                         <div class="col-12 d-flex col-xxl-12 col-lg-12 col-sm-6">
                             <a href="javascript:void(0);" class="serv-wrap red-bg flex-fill">
                                 <span>
-                                    <img src="{{ URL::asset('/assets/img/icons/service-04.svg') }}" alt="heart-image">
+                                    <img src="{{ URL::asset('/assets/img/icons/breast-cancer.png') }}" alt="heart-image">
                                 </span>
-                                <h4>Hospitals / Clinics</h4>
+                                <h4>Breast Cancer</h4>
                             </a>
                         </div>
                         <div class="col-12 d-flex col-xxl-12 col-lg-12 col-sm-6">
@@ -56,25 +57,19 @@
                                 <span>
                                     <img src="{{ URL::asset('/assets/img/icons/service-05.svg') }}" alt="heart-image">
                                 </span>
-                                <h4>Health Care Services</h4>
+                                <h4>Prostate Cancer</h4>
                             </a>
                         </div>
                         <div class="col-12 d-flex col-xxl-12 col-lg-12 col-sm-6">
-                            <a href="{{ url('chat') }}" class="serv-wrap pink-bg flex-fill">
+                            <a href="javascript:void(0);" class="serv-wrap info-bg flex-fill">
                                 <span>
-                                    <img src="{{ URL::asset('/assets/img/icons/service-06.svg') }}" alt="heart-image">
+                                    <img src="{{ URL::asset('/assets/img/icons/health-care-love.svg') }}" alt="heart-image">
                                 </span>
-                                <h4>Talk to Doctor’s</h4>
+                                <h4>Cardiac Issues</h4>
                             </a>
                         </div>
-                        <div class="col-12 d-flex col-xxl-12 col-lg-12 col-sm-6">
-                            <a href="javascript:void(0);" class="serv-wrap danger-bg flex-fill">
-                                <span>
-                                    <img src="{{ URL::asset('/assets/img/icons/service-07.svg') }}" alt="heart-image">
-                                </span>
-                                <h4>Home Care Services</h4>
-                            </a>
-                        </div>
+                       
+                       
                     </div>
                 </div>
                
@@ -249,7 +244,7 @@
                         <div class="doc-pro-img">
                             <a href="{{ url('doctor-profile') }}">
                                 <div class="doctor-profile-img">
-                                    <img src="{{ URL::asset('/assets/img/doctors/doctor-03.jpg') }}" class="img-fluid"
+                                    <img src="{{ URL::asset('/assets/img/work-img.png') }}" class="img-fluid"
                                         alt="Ruby Perrin">
                                 </div>
                             </a>
@@ -260,7 +255,7 @@
                         <div class="doc-content">
                             <div class="doc-pro-info">
                                 <div class="doc-pro-name">
-                                    <a href="{{ url('doctor-profile') }}">Dr. Downer</a>
+                                    <a href="{{ url('doctor-profile') }}">Dr. Julia Robert</a>
                                     <p>Orthopedic</p>
                                 </div>
                                 <div class="reviews-ratings">
@@ -285,7 +280,7 @@
                         <div class="doc-pro-img">
                             <a href="{{ url('doctor-profile') }}">
                                 <div class="doctor-profile-img">
-                                    <img src="{{ URL::asset('/assets/img/doctors/doctor-02.jpg') }}" class="img-fluid"
+                                    <img src="{{ URL::asset('/assets/img/services-six-1.png') }}" class="img-fluid"
                                         alt="Paul Richard">
                                 </div>
                             </a>
@@ -321,7 +316,7 @@
                         <div class="doc-pro-img">
                             <a href="{{ url('doctor-profile') }}">
                                 <div class="doctor-profile-img">
-                                    <img src="{{ URL::asset('/assets/img/doctors/doctor-04.jpg') }}" class="img-fluid"
+                                    <img src="{{ URL::asset('/assets/img/doctor-banner1.png') }}" class="img-fluid"
                                         alt="Darren Elder">
                                 </div>
                             </a>
@@ -357,7 +352,7 @@
                         <div class="doc-pro-img">
                             <a href="{{ url('doctor-profile') }}">
                                 <div class="doctor-profile-img">
-                                    <img src="{{ URL::asset('/assets/img/doctors/doctor-05.jpg') }}" class="img-fluid"
+                                    <img src="{{ URL::asset('/assets/img/dr-slider.png') }}" class="img-fluid"
                                         alt="Sofia Brient">
                                 </div>
                             </a>
@@ -646,9 +641,9 @@
                     <div class="articles-grid w-100">
                         <div class="articles-info">
                             <div class="articles-left">
-                                <a href="{{ url('blog-details') }}">
+                                <a href="{{ url('frontend/blog-details') }}">
                                     <div class="articles-img">
-                                        <img src="{{ URL::asset('/assets/img/blog/blog-11.jpg') }}" class="img-fluid"
+                                        <img src="{{ URL::asset('/assets/img/blog/blog-1.jpg') }}" class="img-fluid"
                                             alt="John Doe">
                                     </div>
                                 </a>
@@ -664,12 +659,12 @@
                                         </li>
                                     </ul>
                                     <h4>
-                                        <a href="{{ url('blog-details') }}">Navigating Telehealth: A Guide to Virtual
+                                        <a href="{{ url('frontend/blog-details') }}">Navigating Telehealth: A Guide to Virtual
                                             Healthcare Visits</a>
                                     </h4>
                                     <p>Explore the benefits & challenges of virtual healthcare appointments, along with tips
                                         for making good health.</p>
-                                    <a href="{{ url('blog-details') }}" class="btn">Read More</a>
+                                    <a href="{{ url('frontend/blog-details') }}" class="btn">Read More</a>
                                 </div>
                             </div>
                         </div>
@@ -679,9 +674,9 @@
                     <div class="articles-grid w-100">
                         <div class="articles-info">
                             <div class="articles-left">
-                                <a href="{{ url('blog-details') }}">
+                                <a href="{{ url('frontend/blog-details') }}">
                                     <div class="articles-img">
-                                        <img src="{{ URL::asset('/assets/img/blog/blog-24.jpg') }}" class="img-fluid"
+                                        <img src="{{ URL::asset('/assets/img/blog/blog-2.jpg') }}" class="img-fluid"
                                             alt="Darren Elder">
                                     </div>
                                 </a>
@@ -697,12 +692,12 @@
                                         </li>
                                     </ul>
                                     <h4>
-                                        <a href="{{ url('blog-details') }}">Work-Life Harmony: Balancing Career and
+                                        <a href="{{ url('frontend/blog-details') }}">Work-Life Harmony: Balancing Career and
                                             Personal Wellness</a>
                                     </h4>
                                     <p>Uncover strategies to achieve a harmonious balance between professional commitments
                                         and personal well-being.</p>
-                                    <a href="{{ url('blog-details') }}" class="btn">Read More</a>
+                                    <a href="{{ url('frontend/blog-details') }}" class="btn">Read More</a>
                                 </div>
                             </div>
                         </div>
@@ -712,9 +707,9 @@
                     <div class="articles-grid w-100">
                         <div class="articles-info">
                             <div class="articles-left">
-                                <a href="{{ url('blog-details') }}">
+                                <a href="{{ url('frontend/blog-details') }}">
                                     <div class="articles-img">
-                                        <img src="{{ URL::asset('/assets/img/blog/blog-25.jpg') }}" class="img-fluid"
+                                        <img src="{{ URL::asset('/assets/img/blog/blog-3.png') }}" class="img-fluid"
                                             alt="Ruby Perrin">
                                     </div>
                                 </a>
@@ -730,12 +725,12 @@
                                         </li>
                                     </ul>
                                     <h4>
-                                        <a href="{{ url('blog-details') }}">Sleep Solutions: Unveiling the Secrets to a
+                                        <a href="{{ url('frontend/blog-details') }}">Sleep Solutions: Unveiling the Secrets to a
                                             Restful Night</a>
                                     </h4>
                                     <p>Explore importance of quality sleep & learn tips to improve your sleep, ensuring you
                                         wake up refreshed & ready to face the day.</p>
-                                    <a href="{{ url('blog-details') }}" class="btn">Read More</a>
+                                    <a href="{{ url('frontend/blog-details') }}" class="btn">Read More</a>
                                 </div>
                             </div>
                         </div>
@@ -745,9 +740,9 @@
                     <div class="articles-grid w-100">
                         <div class="articles-info">
                             <div class="articles-left">
-                                <a href="{{ url('blog-details') }}">
+                                <a href="{{ url('frontend/blog-details') }}">
                                     <div class="articles-img">
-                                        <img src="{{ URL::asset('/assets/img/blog/blog-12.jpg') }}" class="img-fluid"
+                                        <img src="{{ URL::asset('/assets/img/blog/blog-4.avif') }}" class="img-fluid"
                                             alt="Sofia Brient">
                                     </div>
                                 </a>
@@ -763,12 +758,12 @@
                                         </li>
                                     </ul>
                                     <h4>
-                                        <a href="{{ url('blog-details') }}">Mental Wellness in a Digital Age: Strategies
+                                        <a href="{{ url('frontend/blog-details') }}">Mental Wellness in a Digital Age: Strategies
                                             for a Healthy Mind Online</a>
                                     </h4>
                                     <p>Delve into the impact of digital life on mental health & discover practical
                                         strategies to maintain mental well-being.</p>
-                                    <a href="{{ url('blog-details') }}" class="btn">Read More</a>
+                                    <a href="{{ url('frontend/blog-details') }}" class="btn">Read More</a>
                                 </div>
                             </div>
                         </div>
@@ -970,8 +965,8 @@
                         <div class="testimonial-grid">
                             <div class="testimonial-info">
                                 <div class="testimonial-img">
-                                    <img src="{{ URL::asset('/assets/img/clients/client-01.jpg') }}" class="img-fluid"
-                                        alt="John Doe">
+                                    {{-- <img src="{{ URL::asset('/assets/img/clients/client-01.jpg') }}" class="img-fluid"
+                                        alt="John Doe"> --}}
                                 </div>
                                 <div class="testimonial-content">
                                     <div class="section-header-one section-header section-inner-header testimonial-header">
@@ -992,8 +987,8 @@
                         <div class="testimonial-grid">
                             <div class="testimonial-info">
                                 <div class="testimonial-img">
-                                    <img src="{{ URL::asset('/assets/img/clients/client-03.jpg') }}" class="img-fluid"
-                                        alt="Amanda Warren">
+                                    {{-- <img src="{{ URL::asset('/assets/img/clients/client-03.jpg') }}" class="img-fluid"
+                                        alt="Amanda Warren"> --}}
                                 </div>
                                 <div class="testimonial-content">
                                     <div class="section-header section-inner-header testimonial-header">
@@ -1015,8 +1010,8 @@
                         <div class="testimonial-grid">
                             <div class="testimonial-info">
                                 <div class="testimonial-img">
-                                    <img src="{{ URL::asset('/assets/img/clients/client-11.jpg') }}" class="img-fluid"
-                                        alt="Betty Carlson">
+                                    {{-- <img src="{{ URL::asset('/assets/img/clients/client-11.jpg') }}" class="img-fluid"
+                                        alt="Betty Carlson"> --}}
                                 </div>
                                 <div class="testimonial-content">
                                     <div class="section-header section-inner-header testimonial-header">
@@ -1043,93 +1038,7 @@
     <!-- /Testimonial Section -->
 
     <!-- Partners Section -->
-    <section class="partners-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="section-header-one text-center aos" data-aos="fade-up">
-                        <h2 class="section-title">Our Partners</h2>
-                    </div>
-                </div>
-            </div>
-{{--            <div class="partners-info aos" data-aos="fade-up">--}}
-{{--                <ul class="owl-carousel partners-slider d-flex">--}}
-{{--                    <li>--}}
-{{--                        <a href="javascript:void(0);">--}}
-{{--                            <img class="img-fluid" src="{{ URL::asset('/assets/img/partners/partners-1.svg') }}"--}}
-{{--                                alt="partners">--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                    <li>--}}
-{{--                        <a href="javascript:void(0);">--}}
-{{--                            <img class="img-fluid" src="{{ URL::asset('/assets/img/partners/partners-2.svg') }}"--}}
-{{--                                alt="partners">--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                    <li>--}}
-{{--                        <a href="javascript:void(0);">--}}
-{{--                            <img class="img-fluid" src="{{ URL::asset('/assets/img/partners/partners-3.svg') }}"--}}
-{{--                                alt="partners">--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                    <li>--}}
-{{--                        <a href="javascript:void(0);">--}}
-{{--                            <img class="img-fluid" src="{{ URL::asset('/assets/img/partners/partners-4.svg') }}"--}}
-{{--                                alt="partners">--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                    <li>--}}
-{{--                        <a href="javascript:void(0);">--}}
-{{--                            <img class="img-fluid" src="{{ URL::asset('/assets/img/partners/partners-5.svg') }}"--}}
-{{--                                alt="partners">--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                    <li>--}}
-{{--                        <a href="javascript:void(0);">--}}
-{{--                            <img class="img-fluid" src="{{ URL::asset('/assets/img/partners/partners-6.svg') }}"--}}
-{{--                                alt="partners">--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                    <li>--}}
-{{--                        <a href="javascript:void(0);">--}}
-{{--                            <img class="img-fluid" src="{{ URL::asset('/assets/img/partners/partners-1.svg') }}"--}}
-{{--                                alt="partners">--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                    <li>--}}
-{{--                        <a href="javascript:void(0);">--}}
-{{--                            <img class="img-fluid" src="{{ URL::asset('/assets/img/partners/partners-2.svg') }}"--}}
-{{--                                alt="partners">--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                    <li>--}}
-{{--                        <a href="javascript:void(0);">--}}
-{{--                            <img class="img-fluid" src="{{ URL::asset('/assets/img/partners/partners-3.svg') }}"--}}
-{{--                                alt="partners">--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                    <li>--}}
-{{--                        <a href="javascript:void(0);">--}}
-{{--                            <img class="img-fluid" src="{{ URL::asset('/assets/img/partners/partners-4.svg') }}"--}}
-{{--                                alt="partners">--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                    <li>--}}
-{{--                        <a href="javascript:void(0);">--}}
-{{--                            <img class="img-fluid" src="{{ URL::asset('/assets/img/partners/partners-5.svg') }}"--}}
-{{--                                alt="partners">--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                    <li>--}}
-{{--                        <a href="javascript:void(0);">--}}
-{{--                            <img class="img-fluid" src="{{ URL::asset('/assets/img/partners/partners-6.svg') }}"--}}
-{{--                                alt="partners">--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                </ul>--}}
-{{--            </div>--}}
-        </div>
-    </section>
+    
     <!-- /Partners Section -->
     @component('components.scrolltotop')
     @endcomponent

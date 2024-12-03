@@ -33,37 +33,10 @@ Route::get('/', function () {
     //    dd(\Illuminate\Support\Facades\Auth::logout());
     //    dd(\Illuminate\Support\Facades\Auth::check());
     //    \Illuminate\Support\Facades\Session::flush();
+
     return view('index');
 
-    // dd(\Illuminate\Support\Facades\Auth::user());
-
-    $client = new Google_Client();
-    //The json file you got after creating the service account
-    putenv('GOOGLE_APPLICATION_CREDENTIALS=' . storage_path('/service-account-credentials.json'));
-    $client->useApplicationDefaultCredentials();
-    $client->setApplicationName("test_calendar");
-    $client->setScopes(Google_Service_Calendar::CALENDAR);
-    $client->setAccessType('offline');
-
-    $service = new Google_Service_Calendar($client);
-
-    $calendarList = $service->calendarList->listCalendarList();
-    $event = new Google_Service_Calendar_Event(array(
-        'summary' => 'Test Event',
-        'description' => 'Test Event',
-        'start' => array(
-            'dateTime' => '2024-10-06T09:00:00-07:00'
-        ),
-        'end' => array(
-            'dateTime' => '2024-10-06T09:00:00-07:00'
-        )
-    ));
-
-    $calendarId = 'alraadu58@gmail.com';
-    $event = $service->events->insert($calendarId, $event);
-    dd($event);
-
-    // dd(storage_path('app/google-calendar/service-account-credentials.json'));
+  
 })->name('home-page');
 
 // Front end pages
@@ -71,6 +44,7 @@ Route::prefix('frontend')->group(function () {
     Route::get('/doctor-profile/{id?}', [FrontendController::class, 'doctorProfile'])->name('frontend.doctor-profile');
     Route::get('/booking/{doctor_id?}', [FrontendController::class, 'showBookingForm'])->name('frontend.booking');
     Route::get('/search', [FrontendController::class, 'search'])->name('frontend.search');
+    Route::get('/blog-details', [FrontendController::class, 'blogDetails'])->name('frontend.blog-details');
 });
 
 
@@ -248,9 +222,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/blog', function () {
         return view('admin.blog');
     })->name('blog');
-    Route::get('/blog-details', function () {
-        return view('admin.blog-details');
-    })->name('blog-details');
+   
     Route::get('/add-blog', function () {
         return view('admin.add-blog');
     })->name('add-blog');
@@ -365,9 +337,9 @@ Route::post('/available-timings-update', [AvailableTimmingController::class, 'up
 Route::get('/blank-page', function () {
     return view('blank-page');
 })->name('blank-page');
-Route::get('/blog-details', function () {
-    return view('blog-details');
-})->name('blog-details');
+// Route::get('/blog-details', function () {
+//     return view('blog-details');
+// })->name('blog-details');
 Route::get('/blog-grid', function () {
     return view('blog-grid');
 })->name('blog-grid');

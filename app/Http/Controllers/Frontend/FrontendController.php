@@ -32,4 +32,9 @@ class FrontendController extends Controller
         $currentDay = Carbon::now()->format('l'); 
         return view('front-end.booking',get_defined_vars());
     }
+
+    public function blogDetails()
+    {
+        return view('front-end.blog-details', get_defined_vars());
+    }
 }

@@ -10,7 +10,7 @@
                     <div class="account-content">
                         <div class="row align-items-center justify-content-center">
                             <div class="col-md-7 col-lg-6 login-left">
-                                <img src="{{ URL::asset('/assets/img/login-banner.png') }}" class="img-fluid"
+                                <img src="{{ URL::asset('/assets/img/choose-us-six.png') }}" class="img-fluid"
                                     alt="Surna Register">
                             </div>
                             <div class="col-md-12 col-lg-6 login-right">
@@ -24,10 +24,16 @@
                                     <div class="mb-3 form-focus">
                                         <input type="text" class="form-control floating" name="name" id="name">
                                         <label class="focus-label">Name</label>
+                                        @error('name')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                     </div>
                                     <div class="mb-3 form-focus">
                                         <input type="text" class="form-control floating" name="email" id="number">
                                         <label class="focus-label">Email</label>
+                                        @error('email')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                     </div>
                                     <div class="mb-3 form-focus">
                                         <label class="focus-label">Create Password</label>
@@ -35,6 +41,9 @@
                                             <input class="form-control pass-input floating" type="password" name="password"
                                                 id="password">
                                         </div>
+                                        @error('password')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                     </div>
                                     <input type="hidden" name="role" value="patient">
                                     <div class="mb-3 form-focus">

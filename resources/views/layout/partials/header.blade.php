@@ -888,7 +888,7 @@
                 <ul class="main-nav">
                     <li
                         class="has-submenu megamenu {{ Request::is('/', 'index', 'index-2', 'index-3', 'index-4', 'index-5', 'index-6', 'index-7', 'index-8', 'index-9', 'index-10', 'index-11', 'index-12', 'index-13', 'index-14') ? 'active' : '' }}">
-                        <a href="{{ url('/') }}">Home
+                        <a href="{{ url('/index') }}">Home
 {{--                            <i class="fas fa-chevron-down"></i>--}}
                         </a>
 {{--                        <ul class="submenu mega-submenu">--}}
