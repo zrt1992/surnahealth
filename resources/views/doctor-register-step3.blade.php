@@ -31,6 +31,9 @@
                                             <option value="city 1">City 1</option>
                                             <option value="city 2">City 2</option>
                                         </select>
+                                        @error('city')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label class="mb-2">Select State</label>
@@ -39,6 +42,9 @@
                                             <option value="state 1">State 1</option>
                                             <option value="state 2">State 2</option>
                                         </select>
+                                        @error('state')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                     </div>
                                     <div class="mt-5">
                                         <button type="submit"  class="btn btn-primary w-100 btn-lg login-btn step5_submit">Update </a>

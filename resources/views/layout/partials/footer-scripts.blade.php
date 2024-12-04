@@ -1,3 +1,4 @@
+
 <!-- jQuery -->
 <script src="{{ URL::asset('/assets/js/jquery-3.7.1.min.js') }}"></script>
 
@@ -615,3 +616,23 @@
 
 <!-- Custom JS -->
 <script src="{{ URL::asset('/assets/js/script.js') }}"></script>
+
+<!-- Toastr JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+<script>
+    @if(session('success'))
+        toastr.success("{{ session('success') }}", "Success", {
+            closeButton: true,
+            progressBar: true,
+            positionClass: "toast-top-right",
+            timeOut: 5000
+        });
+    @elseif(session('error'))
+        toastr.error("{{ session('error') }}", "Error", {
+            closeButton: true,
+            progressBar: true,
+            positionClass: "toast-top-right",
+            timeOut: 5000
+        });
+    @endif
+</script>

@@ -18,9 +18,9 @@
                                     <ul>
                                         <li><a href="javascript:;" class="active-done">1</a></li>
                                         <li><a href="javascript:;" class="active">2</a></li>
-                                        <li><a href="javascript:;">3</a></li>
+                                        {{-- <li><a href="javascript:;">3</a></li>
                                         <li><a href="javascript:;">4</a></li>
-                                        <li><a href="javascript:;">5</a></li>
+                                        <li><a href="javascript:;">5</a></li> --}}
                                     </ul>
                                 </div>
                                 <form id="personal_details" action="{{ route('user-registration.store.step2') }}" method="POST">  
@@ -44,6 +44,9 @@
                                                     <span>Female</span>
                                                 </label>
                                             </div>
+                                            @error('gender')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                         </div>
                                     </div>
                                     <div class="pregnant-col pt-4">
@@ -85,6 +88,9 @@
                                                         <option value="kg">Kg</option>
                                                     </select>
                                                 </div>
+                                                @error('weight')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                             </div>
                                         </div>
                                         <div class="mb-3">
@@ -99,11 +105,17 @@
                                                         <option value="ft">ft</option>
                                                     </select>
                                                 </div>
+                                                @error('height')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                             </div>
                                         </div>
                                         <div class="mb-3">
                                             <label class="mb-2">Your Age</label>
                                             <input type="text" name="age" value="" class="form-control" id="age">
+                                            @error('age')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                         </div>
                                         <div class="mb-3">
                                             <label class="mb-2">Blood Type</label>
@@ -118,6 +130,9 @@
                                                 <option value="O-">O-</option>
                                                 <option value="O+">O+</option>
                                             </select>
+                                            @error('blood_group')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                         </div>
                                         <div class="mb-3">
                                             <label class="mb-2">Heart Rate</label>
@@ -126,6 +141,9 @@
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
                                             </select>
+                                            @error('heart_rate')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                         </div>
                                         <div class="mb-3">
                                             <label class="mb-2">Blood Pressure</label>
@@ -134,6 +152,9 @@
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
                                             </select>
+                                            @error('bp')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                         </div>
                                         <div class="mb-3">
                                             <label class="mb-2">Glucose Level</label>
@@ -142,6 +163,9 @@
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
                                             </select>
+                                            @error('glucose')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                         </div>
                                         <div class="mb-3">
                                             <label class="mb-2">Allergies</label>

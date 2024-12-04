@@ -18,9 +18,9 @@
                                     <ul>
                                         <li><a href="javascript:;" class="active">1</a></li>
                                         <li><a href="javascript:;">2</a></li>
-                                        <li><a href="javascript:;">3</a></li>
+                                        {{-- <li><a href="javascript:;">3</a></li>
                                         <li><a href="javascript:;">4</a></li>
-                                        <li><a href="javascript:;">5</a></li>
+                                        <li><a href="javascript:;">5</a></li> --}}
                                     </ul>
                                 </div>
                                 <form id="profile_pic_form" action="{{ route('user-registration.store.step1') }}" method="POST" enctype="multipart/form-data">  
@@ -34,6 +34,9 @@
                                             <span>Upload Profile Picture</span>
                                             <input type="file" id="profile_image" name="profile_image"> 
                                         </div>
+                                        @error('profile_image')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                     </div>
                                     <div class="mt-5">
                                         <button type="submit" class="btn btn-primary w-100 btn-lg login-btn step1_submit">Continue </button>

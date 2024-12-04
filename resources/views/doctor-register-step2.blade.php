@@ -42,6 +42,9 @@
                                                     <span>Female</span>
                                                 </label>
                                             </div>
+                                            @error('gender')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                         </div>
                                     </div>
                                     <div class="pregnant-col pt-4">
@@ -75,6 +78,9 @@
                                          <div class="mb-3">
                                             <label class="mb-2">Registered Clinic address</label>
                                             <input type="text" name="address" class="form-control" id="address">
+                                            @error('address')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                         </div>
                                          <div class="mb-3">
                                             <label class="mb-2">Address 2</label>
@@ -83,6 +89,9 @@
                                          <div class="mb-3">
                                             <label class="mb-2">Pincode / Zipcoode</label>
                                             <input type="text" name="zipcode" class="form-control" id="zipcode">
+                                            @error('zipcode')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                         </div>
                                           
                                         <div class="mb-3">
@@ -95,6 +104,9 @@
                                                         </div>
                                                         <span class="text-center">Upload Rigth To sell Certigifcate</span>
                                                         <input type="file" id="quali_certificate" name="quali_certificate">
+                                                        @error('quali_certificate')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-md-6 d-flex">
@@ -104,6 +116,9 @@
                                                         </div>
                                                         <span class="text-center">Upload Photo ID</span>
                                                         <input type="file" id="photo_id" name="photo_id">
+                                                        @error('photo_id')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-md-6 d-flex">
@@ -113,6 +128,9 @@
                                                         </div>
                                                         <span class="text-center">Upload Clinical employment</span>
                                                         <input type="file" id="clinical_employment" name="clinical_employment">
+                                                        @error('clinical_employment')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
                                                     </div>
                                                 </div>
                                             </div>
@@ -120,6 +138,9 @@
                                         <div class="mb-3">
                                             <label class="mb-2">Your Age</label>
                                             <input type="text" name="age" class="form-control datetimepicker" id="age">
+                                            @error('age')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                         </div>
                                     </div>
                                     <div class="mt-5">

@@ -38,6 +38,7 @@ class User extends Authenticatable
         'quali_certificate',
         'photo_id',
         'clinical_employment',
+        'registration_step',
     ];
 
     /**
@@ -141,5 +142,10 @@ class User extends Authenticatable
     public function medicalDetails()
 {
     return $this->hasOne(MedicalDetail::class);
+}
+
+public function appointments()
+{
+    return $this->hasMany(Appointment::class,'user_id','id');
 }
 }

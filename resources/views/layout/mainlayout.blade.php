@@ -24,6 +24,7 @@
     <meta name="twitter:description"
         content="The responsive professional Surna template offers many features, like scheduling appointments with  top doctors, clinics, and hospitals via voice, video call & chat.">
     <meta name="twitter:image" content="assets/img/preview-banner.jpg">
+ 
 
     @if (
         !Route::is(

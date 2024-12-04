@@ -36,27 +36,26 @@ class DoctorRegistrationController extends Controller
     }
 
     public function storeStep1(Request $request)
-    {
-        // Validate the request
-        $request->validate([
-            'profile_image' => 'required|image|max:2048',
-        ]);
+{
+    // Validate the request
+    $request->validate([
+        'profile_image' => 'required|image|max:2048',
+    ]);
 
-        // Handle file upload using the existing uploadImage method
-        $file = $request->file('profile_image');
-        $meta = $this->uploadImage($file, 'profile_images');
+    // Handle file upload
+    $file = $request->file('profile_image');
+    $meta = $this->uploadImage($file, 'profile_images');
+    $full_path = isset($meta['dirname'], $meta['basename']) ? $meta['dirname'] . '/' . $meta['basename'] : null;
 
-        if (isset($meta['dirname'], $meta['basename'])) {
-            $full_path = $meta['dirname'] . '/' . $meta['basename'];
-        }
+    // Update the authenticated user's record
+    $authUser = auth()->user();
+    $authUser->update([
+        'profile_image' => $full_path,
+        'registration_step' => "+2",
+    ]);
 
-        // Save the profile image path in session along with other data
-        $data = $request->except('_token');
-        $data['profile_image'] = $full_path;
-
-        session(['registration.step1' => $data]);
-        return redirect()->route('doctor-register-step2');
-    }
+    return redirect()->route('doctor-register-step2');
+}
 
 
     public function storeStep2(Request $request)
@@ -65,6 +64,10 @@ class DoctorRegistrationController extends Controller
             'gender' => 'required|in:Male,Female',
             'address' => 'required|string|max:255',
             'zipcode' => 'required|numeric',
+            'quali_certificate' => 'required',
+            'photo_id' => 'required',
+            'clinical_employment' => 'required',
+            'age' => 'required',
         ]);
 
         if ($request->file('quali_certificate')) {
@@ -98,10 +101,12 @@ class DoctorRegistrationController extends Controller
         $data['photo_id'] = $photoId_full_path;
         $data['clinical_employment'] = $clinicalEmployment_full_path;
         $data['dob'] = $request->age;
-
+        $data['registration_step'] = "+3";
+        $authUser = auth()->user();
+        $authUser->update($data);
         // Merge with step1 session data
-        $data = array_merge(session('registration.step1', []), $data);
-        session(['registration.step2' => $data]);
+        // $data = array_merge(session('registration.step1', []), $data);
+        // session(['registration.step2' => $data]);
 
         return redirect()->route('doctor-register-step3');
     }
@@ -113,12 +118,8 @@ class DoctorRegistrationController extends Controller
             'city' => 'required',
             'state' => 'required',
         ]);
-
-        $data = array_merge(
-            session('registration.step1', []),
-            session('registration.step2', []),
-            $request->all()
-        );
+        $data = $request->all();
+        $data['registration_step'] = "completed";
         $authUser = auth()->user();
         $authUser->update($data);
     

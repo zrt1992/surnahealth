@@ -1542,10 +1542,11 @@
 
 @if (Route::is([
     'home-page',
+    'index',
     'frontend.doctor-profile',
     'frontend.booking',
     'frontend.search',
-    'index',
+    'frontend.blog-details',
     ]))
     <!-- Footer -->
     <footer class="footer footer-one">
@@ -1850,11 +1851,12 @@
 
 @if (
     !Route::is([
-       'home-page',
-       'frontend.doctor-profile',
-       'frontend.booking',
-       'frontend.search',
+        'home-page',
         'index',
+        'frontend.doctor-profile',
+        'frontend.booking',
+        'frontend.search',
+        'frontend.blog-details',
         'index-2',
         'index-3',
         'index-4',

@@ -50,25 +50,25 @@
                             <span>Add Medical Records</span>
                         </a>
                     </li>
-                    <li class="{{ Request::is('patient-accounts') ? 'active' : '' }}">
+                    {{-- <li class="{{ Request::is('patient-accounts') ? 'active' : '' }}">
                         <a href="{{ route('patient-accounts') }}">
                             <i class="fa-solid fa-file-contract"></i>
                             <span>Accounts</span>
                         </a>
-                    </li>
-                    <li class="{{ Request::is('patient-invoices') ? 'active' : '' }}">
+                    </li> --}}
+                    {{-- <li class="{{ Request::is('patient-invoices') ? 'active' : '' }}">
                         <a href="{{ route('patient-invoices') }}">
                             <i class="fa-solid fa-file-lines"></i>
                             <span>Invoices</span>
                         </a>
-                    </li>
-                    <li class="{{ Request::is('chat') ? 'active' : '' }}">
+                    </li> --}}
+                    {{-- <li class="{{ Request::is('chat') ? 'active' : '' }}">
                         <a href="{{ route('chat') }}">
                             <i class="fa-solid fa-comments"></i>
                             <span>Message</span>
                             <small class="unread-msg">7</small>
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="{{ Request::is('profile-settings') ? 'active' : '' }}">
                         <a href="{{ route('profile-settings') }}">
                             <i class="fa-solid fa-user-pen"></i>

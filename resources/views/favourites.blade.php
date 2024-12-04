@@ -41,14 +41,14 @@
                                     <span class="favourite-icon favourite"><i class="fa-solid fa-heart"></i></span>
                                 </a>
                                 <div class="doc-img">
-                                    <a href="{{ url('doctor-profile/' . $doctor->id) }}">
+                                    <a href="{{ url('doctor-profile-2/'. optional($doctor)->id)}}">
                                         <img class="img-fluid" alt="User Image"
                                             src="{{  $doctor->profile_image ?? URL::asset('/assets/img/features/feature-01.jpg')}}">
                                     </a>
                                 </div>
                                 <div class="pro-content">
                                     <h3 class="title">
-                                        <a href="{{ url('doctor-profile/' . $doctor->id) }}">{{ $doctor->name }}</a>
+                                        <a href="{{ url('doctor-profile-2/'. optional($doctor)->id)}}">{{ $doctor->name }}</a>
                                         <i class="fas fa-check-circle verified"></i>
                                     </h3>
                                     <p class="speciality">{{ $doctor->speciality }}</p>

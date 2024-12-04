@@ -12,6 +12,7 @@ use App\Http\Controllers\Doctor\DoctorController;
 use App\Http\Controllers\Doctor\DoctorEducationController;
 use App\Http\Controllers\Doctor\DoctorExperienceController;
 use App\Http\Controllers\Doctor\DoctorInsurancesController;
+use App\Http\Controllers\Doctor\PatientsController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\GoogleMeetController;
 use App\Http\Controllers\Patient\BookingController;
@@ -27,43 +28,17 @@ use App\Http\Controllers\SearchController;
 use App\Services\GoogleClientService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\CheckRegistrationStep;
 
 Route::get('/', function () {
     //  dd(\Illuminate\Support\Facades\Auth::user()->getRoleNames()->first());
     //    dd(\Illuminate\Support\Facades\Auth::logout());
     //    dd(\Illuminate\Support\Facades\Auth::check());
     //    \Illuminate\Support\Facades\Session::flush();
+
     return view('index');
 
-    // dd(\Illuminate\Support\Facades\Auth::user());
-
-    $client = new Google_Client();
-    //The json file you got after creating the service account
-    putenv('GOOGLE_APPLICATION_CREDENTIALS=' . storage_path('/service-account-credentials.json'));
-    $client->useApplicationDefaultCredentials();
-    $client->setApplicationName("test_calendar");
-    $client->setScopes(Google_Service_Calendar::CALENDAR);
-    $client->setAccessType('offline');
-
-    $service = new Google_Service_Calendar($client);
-
-    $calendarList = $service->calendarList->listCalendarList();
-    $event = new Google_Service_Calendar_Event(array(
-        'summary' => 'Test Event',
-        'description' => 'Test Event',
-        'start' => array(
-            'dateTime' => '2024-10-06T09:00:00-07:00'
-        ),
-        'end' => array(
-            'dateTime' => '2024-10-06T09:00:00-07:00'
-        )
-    ));
-
-    $calendarId = 'alraadu58@gmail.com';
-    $event = $service->events->insert($calendarId, $event);
-    dd($event);
-
-    // dd(storage_path('app/google-calendar/service-account-credentials.json'));
+  
 })->name('home-page');
 
 // Front end pages
@@ -71,6 +46,7 @@ Route::prefix('frontend')->group(function () {
     Route::get('/doctor-profile/{id?}', [FrontendController::class, 'doctorProfile'])->name('frontend.doctor-profile');
     Route::get('/booking/{doctor_id?}', [FrontendController::class, 'showBookingForm'])->name('frontend.booking');
     Route::get('/search', [FrontendController::class, 'search'])->name('frontend.search');
+    Route::get('/blog-details', [FrontendController::class, 'blogDetails'])->name('frontend.blog-details');
 });
 
 
@@ -88,9 +64,12 @@ Route::middleware('auth')->group(function () {
  * doctors dashboard authenticated routes
  */
 
-Route::middleware(['auth', 'role:doctor'])->prefix('doctor')->group(function () {
+Route::middleware(['auth', 'role:doctor',CheckRegistrationStep::class])->prefix('doctor')->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('doctor-dashboard');
+    Route::get('/my-patients', [PatientsController::class, 'index'])->name('doctor.my-patients');
+    Route::get('/patient-profile/{id?}', [PatientsController::class, 'patientProfile'])->name('doctor.patient-profile');
+
 });
 
 
@@ -99,17 +78,18 @@ Route::middleware(['auth', 'role:doctor'])->prefix('doctor')->group(function () 
  * Patient dashboard authenticated routes
  */
 
-Route::middleware(['auth', 'role:patient'])->prefix('patient')->group(function () {
+Route::middleware(['auth', 'role:patient',CheckRegistrationStep::class])->prefix('patient')->group(function () {
 
     Route::get('/dashboard', [PatientDashboard::class, 'index'])->name('patient-dashboard');
-    Route::get('/patient-details', function () {
-        return view('patient.patient-details');
-    })->name('patient-details');
+
+
     Route::get('/patient-accounts', [AccountController::class, 'index'])->name('patient-accounts');
     Route::resource('/patient-account', AccountController::class);
     Route::get('/patient-account-default/{id}', [AccountController::class, 'setDefault'])->name('patient-account-default');
 
-
+    Route::get('/patient-details', function () {
+        return view('patient.patient-details');
+    })->name('patient-details');
     Route::get('/patient-dependant-details', function () {
         return view('patient.patient-dependant-details');
     })->name('patient-dependant-details');
@@ -130,31 +110,30 @@ Route::middleware(['auth', 'role:patient'])->prefix('patient')->group(function (
     })->name('patient-Personalize');
     Route::get('/patient-profile', function () {
         return view('patient.patient-profile');
-    })->name('patient-profile');
-
+    })->name('patient.patient-profile');
+    Route::get('/patient-invoices', function () {
+        return view('patient.patient-invoices');
+    })->name('patient-invoices');
+    Route::get('/add-dependent', function () {
+        return view('add-dependent');
+    })->name('add-dependent');
 
     Route::resource('medical-detail', MedicalDetailController::class);
     Route::get('/medical-details', [MedicalDetailController::class, 'index'])->name('medical-details');
     Route::get('/medical-details-remove/{id}', [MedicalDetailController::class, 'destroy'])->name('medical-details-remove');
 
-
-    Route::get('/patient-invoices', function () {
-        return view('patient.patient-invoices');
-    })->name('patient-invoices');
     Route::resource('medical-record', MedicalRecordController::class);
     Route::get('/medical-records', [MedicalRecordController::class, 'index'])->name('medical-records');
     Route::get('/medical-record-remove/{id}', [MedicalRecordController::class, 'destroy'])->name('medical-record-remove');
 
-
-    Route::get('/add-dependent', function () {
-        return view('add-dependent');
-    })->name('add-dependent');
     Route::get('/favourites', [FavouritesController::class, 'index'])->name('favourites');
+
     Route::get('/dependent', [DependantController::class, 'index'])->name('dependent');
     Route::resource('dependents', DependantController::class);
 
     Route::get('/profile-settings', [PatientProfileSettingController::class, 'index'])->name('profile-settings');
     Route::resource('patient-profile-setting', PatientProfileSettingController::class);
+
 });
 
 
@@ -248,9 +227,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/blog', function () {
         return view('admin.blog');
     })->name('blog');
-    Route::get('/blog-details', function () {
-        return view('admin.blog-details');
-    })->name('blog-details');
+   
     Route::get('/add-blog', function () {
         return view('admin.add-blog');
     })->name('add-blog');
@@ -365,9 +342,9 @@ Route::post('/available-timings-update', [AvailableTimmingController::class, 'up
 Route::get('/blank-page', function () {
     return view('blank-page');
 })->name('blank-page');
-Route::get('/blog-details', function () {
-    return view('blog-details');
-})->name('blog-details');
+// Route::get('/blog-details', function () {
+//     return view('blog-details');
+// })->name('blog-details');
 Route::get('/blog-grid', function () {
     return view('blog-grid');
 })->name('blog-grid');
@@ -549,9 +526,7 @@ Route::get('/membership-details', function () {
 Route::get('/mobile-otp', function () {
     return view('mobile-otp');
 })->name('mobile-otp');
-Route::get('/my-patients', function () {
-    return view('my-patients');
-})->name('my-patients');
+
 Route::get('/onboarding-availability', function () {
     return view('onboarding-availability');
 })->name('onboarding-availability');
@@ -746,21 +721,20 @@ Route::get('/doctor-cancelled-appointment', function () {
     return view('doctor-cancelled-appointment');
 })->name('doctor-cancelled-appointment');
 Route::get('/patient-appointments', [BookingController::class, 'getPatientAppointments'])->name('patient-appointments');
+Route::get('/patient-appointments-grid', [BookingController::class, 'getPatientAppointmentsGrid'])->name('patient-appointments-grid');
+
 Route::get('/patient-appointment-details', function () {
     return view('patient-appointment-details');
 })->name('patient-appointment-details');
-Route::get('/patient-appointments-grid', function () {
-    return view('patient-appointments-grid');
-})->name('patient-appointments-grid');
 Route::get('/patient-cancelled-appointment', function () {
-    return view('patient-cancelled-appointment');
+    return view('patient.patient-cancelled-appointment');
 })->name('patient-cancelled-appointment');
 Route::get('/patient-completed-appointment', function () {
-    return view('patient-completed-appointment');
+    return view('patient.patient-completed-appointment');
 })->name('patient-completed-appointment');
 
 Route::get('/patient-upcoming-appointment', function () {
-    return view('patient-upcoming-appointment');
+    return view('patient.patient-upcoming-appointment');
 })->name('patient-upcoming-appointment');
 Route::get('/doctor-cancelled-appointment-2', function () {
     return view('doctor-cancelled-appointment-2');
