@@ -36,7 +36,7 @@
                         <a href="{{route('doctor-request.index')}}">
                             <i class="fa-solid fa-calendar-check"></i>
                             <span>Requests</span>
-                            <small class="unread-msg">2</small>
+                            <small class="unread-msg">0</small>
                         </a>
                     </li>
                     <li class="{{ Request::is('appointments','doctor-appointments-grid','doctor-appointment-details','doctor-cancelled-appointment','doctor-cancelled-appointment-2','doctor-upcoming-appointment','doctor-appointment-start','doctor-completed-appointment') ? 'active' : '' }}">
@@ -51,13 +51,13 @@
                             <span>Available Timings</span>
                         </a>
                     </li>
-                    <li class="{{ Request::is('my-patients','patient-profile') ? 'active' : '' }}">
-                        <a href="{{route('my-patients')}}">
+                    <li class="{{ Request::is('doctor/my-patients','patient-profile') ? 'active' : '' }}">
+                        <a href="{{route('doctor.my-patients')}}">
                             <i class="fa-solid fa-user-injured"></i>
                             <span>My Patients</span>
                         </a>
                     </li>
-                    <li class="{{ Request::is('doctor-specialities') ? 'active' : '' }}">
+                    {{-- <li class="{{ Request::is('doctor-specialities') ? 'active' : '' }}">
                         <a href="{{route('doctor-specialities')}}">
                             <i class="fa-solid fa-clock"></i>
                             <span>Specialties & Services</span>
@@ -80,20 +80,20 @@
                             <i class="fa-solid fa-file-lines"></i>
                             <span>Invoices</span>
                         </a>
-                    </li>
-                    <li class="{{ Request::is('doctor-payment') ? 'active' : '' }}">
+                    </li> --}}
+                    {{-- <li class="{{ Request::is('doctor-payment') ? 'active' : '' }}">
                         <a href="{{route('doctor-payment')}}">
                             <i class="fa-solid fa-money-bill-1"></i>
                             <span>Payout Settings</span>
                         </a>
-                    </li>																																				
-                    <li class="{{ Request::is('chat-doctor') ? 'active' : '' }}">
+                    </li>																																				 --}}
+                    {{-- <li class="{{ Request::is('chat-doctor') ? 'active' : '' }}">
                         <a href="{{route('chat-doctor')}}">
                             <i class="fa-solid fa-comments"></i>
                             <span>Message</span>
                             <small class="unread-msg">7</small>
                         </a>
-                    </li>
+                    </li> --}}
                     {{-- <li class="{{ Request::is('doctor-profile-settings','doctor-awards-settings','doctor-business-settings','doctor-clinics-settings') ? 'active' : '' }}">
                         <a href="{{route('doctor-profile-settings')}}">
                             <i class="fa-solid fa-user-pen"></i>
@@ -107,12 +107,12 @@
                         </a>
                     </li>
 
-                    <li class="{{ Request::is('social-media') ? 'active' : '' }}">
+                    {{-- <li class="{{ Request::is('social-media') ? 'active' : '' }}">
                         <a href="{{route('social-media')}}">
                             <i class="fa-solid fa-shield-halved"></i>
                             <span>Social Media</span>
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="{{ Request::is('doctor-change-password') ? 'active' : '' }}">
                         <a href="{{route('doctor-change-password')}}">
                             <i class="fa-solid fa-key"></i>

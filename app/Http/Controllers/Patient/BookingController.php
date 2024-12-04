@@ -59,6 +59,16 @@ class BookingController extends Controller
     public function getPatientAppointments()
     {
         $data = $this->bookingRepository->getPatientAppointments();
+        $appointmentRequests =AppointmentRequests::where('user_id',auth()->user()->id)->get();
+
         return view('patient.patient-appointments',get_defined_vars());
+    }
+
+    public function getPatientAppointmentsGrid()
+    {
+        $data = $this->bookingRepository->getPatientAppointments();
+        $appointmentRequests =AppointmentRequests::where('user_id',auth()->user()->id)->get();
+
+        return view('patient.patient-appointments-grid',get_defined_vars());
     }
 }

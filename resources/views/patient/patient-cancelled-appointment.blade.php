@@ -90,7 +90,7 @@
                                 <li>
                                     <div class="detail-badge-info">
                                         <span class="badge bg-soft-red me-2">Status : Reschedule</span>
-                                        <a href="{{ url('booking-2') }}"
+                                        <a href="{{ url('booking') }}"
                                             class="reschedule-btn btn-primary-border">Reschedule Appointment</a>
                                     </div>
                                 </li>

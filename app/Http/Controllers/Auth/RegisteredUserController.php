@@ -71,6 +71,7 @@ class RegisteredUserController extends Controller
 
         $data = $request->except('_token');
         $data['profile_image'] = $full_path;
+        $data['registration_step'] = '+2';
 
         $authUser = auth()->user();
         $authUser->update($data);
@@ -79,7 +80,16 @@ class RegisteredUserController extends Controller
 
     public function storeStep2(Request $request)
 {
- 
+    $request->validate([
+        'gender' => 'required|in:Male,Female',
+        'blood_group' => 'required|string|max:255',
+        'age' => 'required|numeric',
+        'weight' => 'required',
+        'height' => 'required',
+        'glucose' => 'required',
+        'bp' => 'required',
+        'heart_rate' => 'required',
+    ]);
     $userData = array_merge(
         $request->only(['gender', 'blood_group','age',])
     );
@@ -108,6 +118,7 @@ class RegisteredUserController extends Controller
     $medicalData['dosage'] = json_encode($medicalData['dosage']);
 
     $authUser = auth()->user();
+    $authUser['registration_step'] = 'completed';
     $authUser->update($userData);
 
    

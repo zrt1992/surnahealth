@@ -1040,6 +1040,7 @@
     <!-- Partners Section -->
     
     <!-- /Partners Section -->
+
     @component('components.scrolltotop')
     @endcomponent
 @endsection

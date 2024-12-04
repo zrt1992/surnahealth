@@ -50,18 +50,18 @@
                                     <button class="nav-link active" id="pills-upcoming-tab" data-bs-toggle="pill"
                                         data-bs-target="#pills-upcoming" type="button" role="tab"
                                         aria-controls="pills-upcoming"
-                                        aria-selected="false">Upcoming<span>21</span></button>
+                                        aria-selected="false">Upcoming<span>0</span></button>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="pills-cancel-tab" data-bs-toggle="pill"
                                         data-bs-target="#pills-cancel" type="button" role="tab"
-                                        aria-controls="pills-cancel" aria-selected="true">Cancelled<span>16</span></button>
+                                        aria-controls="pills-cancel" aria-selected="true">Cancelled<span>0</span></button>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="pills-complete-tab" data-bs-toggle="pill"
                                         data-bs-target="#pills-complete" type="button" role="tab"
                                         aria-controls="pills-complete"
-                                        aria-selected="true">Completed<span>214</span></button>
+                                        aria-selected="true">Completed<span>0</span></button>
                                 </li>
                             </ul>
                         </div>
@@ -238,6 +238,7 @@
                             aria-labelledby="pills-upcoming-tab">
                             <div class="row">
                                 <!-- Appointment Grid -->
+                                @foreach ($appointmentRequests as $appointmentRequest)
                                 <div class="col-xl-4 col-lg-6 col-md-12 d-flex">
                                     <div class="appointment-wrap appointment-grid-wrap">
                                         <ul>
@@ -245,13 +246,13 @@
                                                 <div class="appointment-grid-head">
                                                     <div class="patinet-information">
                                                         <a href="{{ url('patient-upcoming-appointment') }}">
-                                                            <img src="{{ URL::asset('/assets/img/doctors/doctor-thumb-21.jpg') }}"
+                                                            <img src="{{ $appointmentRequest->doctor->profile_image ?? URL::asset('/assets/img/services-six-1.png') }}"
                                                                 alt="User Image">
                                                         </a>
                                                         <div class="patient-info">
                                                             <p>#Apt0001</p>
                                                             <h6><a href="{{ url('patient-upcoming-appointment') }}">Dr
-                                                                    Edalin Hendry</a></h6>
+                                                                {{ $appointmentRequest->doctor->name }}</a></h6>
                                                             <p class="visit">General Visit</p>
                                                         </div>
                                                     </div>
@@ -262,8 +263,8 @@
                                                 </div>
                                             </li>
                                             <li class="appointment-info">
-                                                <p><i class="fa-solid fa-calendar-check"></i>11 Nov 2024</p>
-                                                <p><i class="fa-solid fa-clock"></i>10.45 AM</p>
+                                                <p><i class="fa-solid fa-calendar-check"></i>{{ $appointmentRequest->booking_date ?? '--' }}</p>
+                                                <p><i class="fa-solid fa-clock"></i>{{ $appointmentRequest->slot->start_time ?? '--' }}</p>
                                             </li>
                                             <li class="appointment-action">
                                                 <ul>
@@ -280,15 +281,14 @@
                                                 </ul>
                                                 <div class="appointment-detail-btn">
                                                     <a href="#" class="start-link"><i
-                                                            class="fa-solid fa-calendar-check me-1"></i>Attend</a>
+                                                            class="fa-solid fa-calendar-check me-1"></i>Pending</a>
                                                 </div>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
-                                <!-- /Appointment Grid -->
-
-                                <!-- Appointment Grid -->
+                                @endforeach
+                                @foreach ($data as $appointment)
                                 <div class="col-xl-4 col-lg-6 col-md-12 d-flex">
                                     <div class="appointment-wrap appointment-grid-wrap">
                                         <ul>
@@ -296,166 +296,13 @@
                                                 <div class="appointment-grid-head">
                                                     <div class="patinet-information">
                                                         <a href="{{ url('patient-upcoming-appointment') }}">
-                                                            <img src="{{ URL::asset('/assets/img/doctors/doctor-thumb-13.jpg') }}"
+                                                            <img src="{{ $appointment->doctor->profile_image ?? URL::asset('/assets/img/services-six-1.png') }}"
                                                                 alt="User Image">
                                                         </a>
                                                         <div class="patient-info">
-                                                            <p>#Apt0002</p>
-                                                            <h6><a href="{{ url('patient-upcoming-appointment') }}">Dr.Shanta
-                                                                    Nesmith</a></h6>
-                                                            <p class="visit">General Visit</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="grid-user-msg">
-                                                        <span class="hospital-icon"><a href="#"><i
-                                                                    class="fa-solid fa-hospital"></i></a></span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="appointment-info">
-                                                <p><i class="fa-solid fa-calendar-check"></i>05 Nov 2024</p>
-                                                <p><i class="fa-solid fa-clock"></i>11.50 AM</p>
-                                            </li>
-                                            <li class="appointment-action">
-                                                <ul>
-                                                    <li>
-                                                        <a href="{{ url('patient-upcoming-appointment') }}"><i
-                                                                class="fa-solid fa-eye"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fa-solid fa-comments"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fa-solid fa-xmark"></i></a>
-                                                    </li>
-                                                </ul>
-                                                <div class="appointment-detail-btn">
-                                                    <a href="#" class="start-link"><i
-                                                            class="fa-solid fa-calendar-check me-1"></i>Attend</a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- /Appointment Grid -->
-
-                                <!-- Appointment Grid -->
-                                <div class="col-xl-4 col-lg-6 col-md-12 d-flex">
-                                    <div class="appointment-wrap appointment-grid-wrap">
-                                        <ul>
-                                            <li>
-                                                <div class="appointment-grid-head">
-                                                    <div class="patinet-information">
-                                                        <a href="{{ url('patient-upcoming-appointment') }}">
-                                                            <img src="{{ URL::asset('/assets/img/doctors/doctor-thumb-14.jpg') }}"
-                                                                alt="User Image">
-                                                        </a>
-                                                        <div class="patient-info">
-                                                            <p>#Apt0003</p>
-                                                            <h6><a href="{{ url('patient-upcoming-appointment') }}">Dr.John
-                                                                    Ewel</a></h6>
-                                                            <p class="visit">General Visit</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="grid-user-msg">
-                                                        <span class="telephone-icon"><a href="#"><i
-                                                                    class="fa-solid fa-phone"></i></a></span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="appointment-info">
-                                                <p><i class="fa-solid fa-calendar-check"></i>27 Oct 2024</p>
-                                                <p><i class="fa-solid fa-clock"></i>09.30 AM</p>
-                                            </li>
-                                            <li class="appointment-action">
-                                                <ul>
-                                                    <li>
-                                                        <a href="{{ url('patient-upcoming-appointment') }}"><i
-                                                                class="fa-solid fa-eye"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fa-solid fa-comments"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fa-solid fa-xmark"></i></a>
-                                                    </li>
-                                                </ul>
-                                                <div class="appointment-detail-btn">
-                                                    <a href="#" class="start-link"><i
-                                                            class="fa-solid fa-calendar-check me-1"></i>Attend</a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- /Appointment Grid -->
-
-                                <!-- Appointment Grid -->
-                                <div class="col-xl-4 col-lg-6 col-md-12 d-flex">
-                                    <div class="appointment-wrap appointment-grid-wrap">
-                                        <ul>
-                                            <li>
-                                                <div class="appointment-grid-head">
-                                                    <div class="patinet-information">
-                                                        <a href="{{ url('patient-upcoming-appointment') }}">
-                                                            <img src="{{ URL::asset('/assets/img/doctors/doctor-thumb-15.jpg') }}"
-                                                                alt="User Image">
-                                                        </a>
-                                                        <div class="patient-info">
-                                                            <p>#Apt0004</p>
-                                                            <h6><a href="{{ url('patient-upcoming-appointment') }}">Dr.Susan
-                                                                    Fenimore</a></h6>
-                                                            <p class="visit">General Visit</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="grid-user-msg">
-                                                        <span class="hospital-icon"><a href="#"><i
-                                                                    class="fa-solid fa-hospital"></i></a></span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="appointment-info">
-                                                <p><i class="fa-solid fa-calendar-check"></i>18 Oct 2024</p>
-                                                <p><i class="fa-solid fa-clock"></i>12.20 PM</p>
-                                            </li>
-                                            <li class="appointment-action">
-                                                <ul>
-                                                    <li>
-                                                        <a href="{{ url('patient-upcoming-appointment') }}"><i
-                                                                class="fa-solid fa-eye"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fa-solid fa-comments"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fa-solid fa-xmark"></i></a>
-                                                    </li>
-                                                </ul>
-                                                <div class="appointment-detail-btn">
-                                                    <a href="#" class="start-link"><i
-                                                            class="fa-solid fa-calendar-check me-1"></i>Attend</a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- /Appointment Grid -->
-
-                                <!-- Appointment Grid -->
-                                <div class="col-xl-4 col-lg-6 col-md-12 d-flex">
-                                    <div class="appointment-wrap appointment-grid-wrap">
-                                        <ul>
-                                            <li>
-                                                <div class="appointment-grid-head">
-                                                    <div class="patinet-information">
-                                                        <a href="{{ url('patient-upcoming-appointment') }}">
-                                                            <img src="{{ URL::asset('/assets/img/doctors/doctor-thumb-16.jpg') }}"
-                                                                alt="User Image">
-                                                        </a>
-                                                        <div class="patient-info">
-                                                            <p>#Apt0005</p>
-                                                            <h6><a href="{{ url('patient-upcoming-appointment') }}">Dr.Juliet
-                                                                    Rios</a></h6>
+                                                            <p>#Apt0001</p>
+                                                            <h6><a href="{{ url('patient-upcoming-appointment') }}">Dr
+                                                                {{ $appointment->doctor->name }}</a></h6>
                                                             <p class="visit">General Visit</p>
                                                         </div>
                                                     </div>
@@ -466,8 +313,8 @@
                                                 </div>
                                             </li>
                                             <li class="appointment-info">
-                                                <p><i class="fa-solid fa-calendar-check"></i>10 Oct 2024</p>
-                                                <p><i class="fa-solid fa-clock"></i>11.30 AM</p>
+                                                <p><i class="fa-solid fa-calendar-check"></i>{{ \Carbon\Carbon::parse($appointment->start_date)->format('d M Y h:i A') }}</p>
+                                                <p><i class="fa-solid fa-clock"></i>--</p>
                                             </li>
                                             <li class="appointment-action">
                                                 <ul>
@@ -479,222 +326,24 @@
                                                         <a href="#"><i class="fa-solid fa-comments"></i></a>
                                                     </li>
                                                     <li>
-                                                        <a href="#"><i class="fa-solid fa-xmark"></i></a>
+                                                        <a href="javascript:void(0)" data-bs-toggle="modal"
+                                                        data-bs-target="#delete_record" data-id="{{ $appointment->id }}"
+                                                        data-route="{{ route('appointments-remove', ':id') }}"><i
+                                                            class="fa-solid fa-xmark"></i></a>
                                                     </li>
                                                 </ul>
                                                 <div class="appointment-detail-btn">
-                                                    <a href="#" class="start-link"><i
+                                                    <a href="{{ $appointment->google_meet_link }}" class="start-link"><i
                                                             class="fa-solid fa-calendar-check me-1"></i>Attend</a>
                                                 </div>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
+                                @endforeach
                                 <!-- /Appointment Grid -->
 
-                                <!-- Appointment Grid -->
-                                <div class="col-xl-4 col-lg-6 col-md-12 d-flex">
-                                    <div class="appointment-wrap appointment-grid-wrap">
-                                        <ul>
-                                            <li>
-                                                <div class="appointment-grid-head">
-                                                    <div class="patinet-information">
-                                                        <a href="{{ url('patient-upcoming-appointment') }}">
-                                                            <img src="{{ URL::asset('/assets/img/doctors/doctor-thumb-17.jpg') }}"
-                                                                alt="User Image">
-                                                        </a>
-                                                        <div class="patient-info">
-                                                            <p>#Apt0006</p>
-                                                            <h6><a href="{{ url('patient-upcoming-appointment') }}">Dr.Joseph
-                                                                    Engels</a></h6>
-                                                            <p class="visit">General Visit</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="grid-user-msg">
-                                                        <span class="video-icon"><a href="#"><i
-                                                                    class="fa-solid fa-video"></i></a></span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="appointment-info">
-                                                <p><i class="fa-solid fa-calendar-check"></i>26 Sep 2024</p>
-                                                <p><i class="fa-solid fa-clock"></i>10.20 AM</p>
-                                            </li>
-                                            <li class="appointment-action">
-                                                <ul>
-                                                    <li>
-                                                        <a href="{{ url('patient-upcoming-appointment') }}"><i
-                                                                class="fa-solid fa-eye"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fa-solid fa-comments"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fa-solid fa-xmark"></i></a>
-                                                    </li>
-                                                </ul>
-                                                <div class="appointment-detail-btn">
-                                                    <a href="#" class="start-link"><i
-                                                            class="fa-solid fa-calendar-check me-1"></i>Attend</a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- /Appointment Grid -->
-
-                                <!-- Appointment Grid -->
-                                <div class="col-xl-4 col-lg-6 col-md-12 d-flex">
-                                    <div class="appointment-wrap appointment-grid-wrap">
-                                        <ul>
-                                            <li>
-                                                <div class="appointment-grid-head">
-                                                    <div class="patinet-information">
-                                                        <a href="{{ url('patient-upcoming-appointment') }}">
-                                                            <img src="{{ URL::asset('/assets/img/doctors/doctor-thumb-18.jpg') }}"
-                                                                alt="User Image">
-                                                        </a>
-                                                        <div class="patient-info">
-                                                            <p>#Apt0007</p>
-                                                            <h6><a href="{{ url('patient-upcoming-appointment') }}">Dr.Victoria
-                                                                    Selzer</a></h6>
-                                                            <p class="visit">General Visit</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="grid-user-msg">
-                                                        <span class="video-icon"><a href="#"><i
-                                                                    class="fa-solid fa-video"></i></a></span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="appointment-info">
-                                                <p><i class="fa-solid fa-calendar-check"></i>14 Sep 2024</p>
-                                                <p><i class="fa-solid fa-clock"></i>08.10 AM</p>
-                                            </li>
-                                            <li class="appointment-action">
-                                                <ul>
-                                                    <li>
-                                                        <a href="{{ url('patient-upcoming-appointment') }}"><i
-                                                                class="fa-solid fa-eye"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fa-solid fa-comments"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fa-solid fa-xmark"></i></a>
-                                                    </li>
-                                                </ul>
-                                                <div class="appointment-detail-btn">
-                                                    <a href="#" class="start-link"><i
-                                                            class="fa-solid fa-calendar-check me-1"></i>Attend</a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- /Appointment Grid -->
-
-                                <!-- Appointment Grid -->
-                                <div class="col-xl-4 col-lg-6 col-md-12 d-flex">
-                                    <div class="appointment-wrap appointment-grid-wrap">
-                                        <ul>
-                                            <li>
-                                                <div class="appointment-grid-head">
-                                                    <div class="patinet-information">
-                                                        <a href="{{ url('patient-upcoming-appointment') }}">
-                                                            <img src="{{ URL::asset('/assets/img/doctors/doctor-thumb-19.jpg') }}"
-                                                                alt="User Image">
-                                                        </a>
-                                                        <div class="patient-info">
-                                                            <p>#Apt0008</p>
-                                                            <h6><a href="{{ url('patient-upcoming-appointment') }}">Dr.Benjamin
-                                                                    Hedge</a></h6>
-                                                            <p class="visit">General Visit</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="grid-user-msg">
-                                                        <span class="video-icon"><a href="#"><i
-                                                                    class="fa-solid fa-video"></i></a></span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="appointment-info">
-                                                <p><i class="fa-solid fa-calendar-check"></i>03 Sep 2024</p>
-                                                <p><i class="fa-solid fa-clock"></i>06.00 PM</p>
-                                            </li>
-                                            <li class="appointment-action">
-                                                <ul>
-                                                    <li>
-                                                        <a href="{{ url('patient-upcoming-appointment') }}"><i
-                                                                class="fa-solid fa-eye"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fa-solid fa-comments"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fa-solid fa-xmark"></i></a>
-                                                    </li>
-                                                </ul>
-                                                <div class="appointment-detail-btn">
-                                                    <a href="#" class="start-link"><i
-                                                            class="fa-solid fa-calendar-check me-1"></i>Attend</a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- /Appointment Grid -->
-
-                                <!-- Appointment Grid -->
-                                <div class="col-xl-4 col-lg-6 col-md-12 d-flex">
-                                    <div class="appointment-wrap appointment-grid-wrap">
-                                        <ul>
-                                            <li>
-                                                <div class="appointment-grid-head">
-                                                    <div class="patinet-information">
-                                                        <a href="{{ url('patient-upcoming-appointment') }}">
-                                                            <img src="{{ URL::asset('/assets/img/doctors/doctor-thumb-21.jpg') }}"
-                                                                alt="User Image">
-                                                        </a>
-                                                        <div class="patient-info">
-                                                            <p>#Apt0009</p>
-                                                            <h6><a href="{{ url('patient-upcoming-appointment') }}">Dr.Kristina
-                                                                    Lepley</a></h6>
-                                                            <p class="visit">General Visit</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="grid-user-msg">
-                                                        <span class="video-icon"><a href="#"><i
-                                                                    class="fa-solid fa-video"></i></a></span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="appointment-info">
-                                                <p><i class="fa-solid fa-calendar-check"></i>25 Aug 2024</p>
-                                                <p><i class="fa-solid fa-clock"></i>10.45 AM</p>
-                                            </li>
-                                            <li class="appointment-action">
-                                                <ul>
-                                                    <li>
-                                                        <a href="{{ url('patient-upcoming-appointment') }}"><i
-                                                                class="fa-solid fa-eye"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fa-solid fa-comments"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fa-solid fa-xmark"></i></a>
-                                                    </li>
-                                                </ul>
-                                                <div class="appointment-detail-btn">
-                                                    <a href="#" class="start-link"><i
-                                                            class="fa-solid fa-calendar-check me-1"></i>Attend</a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- /Appointment Grid -->
+                             
 
                                 <div class="col-md-12">
                                     <div class="loader-item text-center">
@@ -707,7 +356,7 @@
                         <div class="tab-pane fade" id="pills-cancel" role="tabpanel" aria-labelledby="pills-cancel-tab">
                             <div class="row">
                                 <!-- Appointment Grid -->
-                                <div class="col-xl-4 col-lg-6 col-md-12 d-flex">
+                                {{-- <div class="col-xl-4 col-lg-6 col-md-12 d-flex">
                                     <div class="appointment-wrap appointment-grid-wrap">
                                         <ul>
                                             <li>
@@ -740,193 +389,9 @@
                                             </li>
                                         </ul>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <!-- /Appointment Grid -->
 
-                                <!-- Appointment Grid -->
-                                <div class="col-xl-4 col-lg-6 col-md-12 d-flex">
-                                    <div class="appointment-wrap appointment-grid-wrap">
-                                        <ul>
-                                            <li>
-                                                <div class="appointment-grid-head">
-                                                    <div class="patinet-information">
-                                                        <a href="{{ url('patient-cancelled-appointment') }}">
-                                                            <img src="{{ URL::asset('/assets/img/doctors/doctor-thumb-13.jpg') }}"
-                                                                alt="User Image">
-                                                        </a>
-                                                        <div class="patient-info">
-                                                            <p>#Apt0002</p>
-                                                            <h6><a href="{{ url('patient-cancelled-appointment') }}">Dr.Shanta
-                                                                    Nesmith</a></h6>
-                                                            <p class="visit">General Visit</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="grid-user-msg">
-                                                        <span class="video-icon"><a href="#"><i
-                                                                    class="fa-solid fa-video"></i></a></span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="appointment-info">
-                                                <p><i class="fa-solid fa-calendar-check"></i>05 Nov 2024</p>
-                                                <p><i class="fa-solid fa-clock"></i>11.50 AM</p>
-                                            </li>
-                                            <li class="appointment-detail-btn">
-                                                <a href="{{ url('patient-cancelled-appointment') }}"
-                                                    class="start-link w-100">View Details</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- /Appointment Grid -->
-
-                                <!-- Appointment Grid -->
-                                <div class="col-xl-4 col-lg-6 col-md-12 d-flex">
-                                    <div class="appointment-wrap appointment-grid-wrap">
-                                        <ul>
-                                            <li>
-                                                <div class="appointment-grid-head">
-                                                    <div class="patinet-information">
-                                                        <a href="{{ url('patient-cancelled-appointment') }}">
-                                                            <img src="{{ URL::asset('/assets/img/doctors/doctor-thumb-14.jpg') }}"
-                                                                alt="User Image">
-                                                        </a>
-                                                        <div class="patient-info">
-                                                            <p>#Apt0003</p>
-                                                            <h6><a href="{{ url('patient-cancelled-appointment') }}">Dr.John
-                                                                    Ewel</a></h6>
-                                                            <p class="visit">General Visit</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="grid-user-msg">
-                                                        <span class="video-icon"><a href="#"><i
-                                                                    class="fa-solid fa-video"></i></a></span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="appointment-info">
-                                                <p><i class="fa-solid fa-calendar-check"></i>27 Oct 2024</p>
-                                                <p><i class="fa-solid fa-clock"></i>09.30 AM</p>
-                                            </li>
-                                            <li class="appointment-detail-btn">
-                                                <a href="{{ url('patient-cancelled-appointment') }}"
-                                                    class="start-link w-100">View Details</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- /Appointment Grid -->
-
-                                <!-- Appointment Grid -->
-                                <div class="col-xl-4 col-lg-6 col-md-12 d-flex">
-                                    <div class="appointment-wrap appointment-grid-wrap">
-                                        <ul>
-                                            <li>
-                                                <div class="appointment-grid-head">
-                                                    <div class="patinet-information">
-                                                        <a href="{{ url('patient-cancelled-appointment') }}">
-                                                            <img src="{{ URL::asset('/assets/img/doctors/doctor-thumb-15.jpg') }}"
-                                                                alt="User Image">
-                                                        </a>
-                                                        <div class="patient-info">
-                                                            <p>#Apt0004</p>
-                                                            <h6><a href="{{ url('patient-cancelled-appointment') }}">Dr.Susan
-                                                                    Fenimore</a></h6>
-                                                            <p class="visit">General Visit</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="grid-user-msg">
-                                                        <span class="hospital-icon"><a href="#"><i
-                                                                    class="fa-solid fa-hospital"></i></a></span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="appointment-info">
-                                                <p><i class="fa-solid fa-calendar-check"></i>18 Oct 2024</p>
-                                                <p><i class="fa-solid fa-clock"></i>12.20 PM</p>
-                                            </li>
-                                            <li class="appointment-detail-btn">
-                                                <a href="{{ url('patient-cancelled-appointment') }}"
-                                                    class="start-link w-100">View Details</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- /Appointment Grid -->
-
-                                <!-- Appointment Grid -->
-                                <div class="col-xl-4 col-lg-6 col-md-12 d-flex">
-                                    <div class="appointment-wrap appointment-grid-wrap">
-                                        <ul>
-                                            <li>
-                                                <div class="appointment-grid-head">
-                                                    <div class="patinet-information">
-                                                        <a href="{{ url('patient-cancelled-appointment') }}">
-                                                            <img src="{{ URL::asset('/assets/img/doctors/doctor-thumb-16.jpg') }}"
-                                                                alt="User Image">
-                                                        </a>
-                                                        <div class="patient-info">
-                                                            <p>#Apt0005</p>
-                                                            <h6><a href="{{ url('patient-cancelled-appointment') }}">Dr.Juliet
-                                                                    Rios</a></h6>
-                                                            <p class="visit">General Visit</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="grid-user-msg">
-                                                        <span class="video-icon"><a href="#"><i
-                                                                    class="fa-solid fa-video"></i></a></span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="appointment-info">
-                                                <p><i class="fa-solid fa-calendar-check"></i>10 Oct 2024</p>
-                                                <p><i class="fa-solid fa-clock"></i>11.30 AM</p>
-                                            </li>
-                                            <li class="appointment-detail-btn">
-                                                <a href="{{ url('patient-cancelled-appointment') }}"
-                                                    class="start-link w-100">View Details</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- /Appointment Grid -->
-
-                                <!-- Appointment Grid -->
-                                <div class="col-xl-4 col-lg-6 col-md-12 d-flex">
-                                    <div class="appointment-wrap appointment-grid-wrap">
-                                        <ul>
-                                            <li>
-                                                <div class="appointment-grid-head">
-                                                    <div class="patinet-information">
-                                                        <a href="{{ url('patient-cancelled-appointment') }}">
-                                                            <img src="{{ URL::asset('/assets/img/doctors/doctor-thumb-17.jpg') }}"
-                                                                alt="User Image">
-                                                        </a>
-                                                        <div class="patient-info">
-                                                            <p>#Apt0006</p>
-                                                            <h6><a href="{{ url('patient-cancelled-appointment') }}">Dr.Joseph
-                                                                    Engels</a></h6>
-                                                            <p class="visit">General Visit</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="grid-user-msg">
-                                                        <span class="video-icon"><a href="#"><i
-                                                                    class="fa-solid fa-video"></i></a></span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="appointment-info">
-                                                <p><i class="fa-solid fa-calendar-check"></i>26 Sep 2024</p>
-                                                <p><i class="fa-solid fa-clock"></i>10.20 AM</p>
-                                            </li>
-                                            <li class="appointment-detail-btn">
-                                                <a href="{{ url('patient-cancelled-appointment') }}"
-                                                    class="start-link w-100">View Details</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- /Appointment Grid -->
 
                                 <div class="col-md-12">
                                     <div class="loader-item text-center">
@@ -939,7 +404,7 @@
                             aria-labelledby="pills-complete-tab">
                             <div class="row">
                                 <!-- Appointment Grid -->
-                                <div class="col-xl-4 col-lg-6 col-md-12 d-flex">
+                                {{-- <div class="col-xl-4 col-lg-6 col-md-12 d-flex">
                                     <div class="appointment-wrap appointment-grid-wrap">
                                         <ul>
                                             <li>
@@ -972,193 +437,10 @@
                                             </li>
                                         </ul>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <!-- /Appointment Grid -->
 
-                                <!-- Appointment Grid -->
-                                <div class="col-xl-4 col-lg-6 col-md-12 d-flex">
-                                    <div class="appointment-wrap appointment-grid-wrap">
-                                        <ul>
-                                            <li>
-                                                <div class="appointment-grid-head">
-                                                    <div class="patinet-information">
-                                                        <a href="{{ url('patient-completed-appointment') }}">
-                                                            <img src="{{ URL::asset('/assets/img/doctors/doctor-thumb-13.jpg') }}"
-                                                                alt="User Image">
-                                                        </a>
-                                                        <div class="patient-info">
-                                                            <p>#Apt0002</p>
-                                                            <h6><a href="{{ url('patient-completed-appointment') }}">Dr.Shanta
-                                                                    Nesmith</a></h6>
-                                                            <p class="visit">General Visit</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="grid-user-msg">
-                                                        <span class="hospital-icon"><a href="#"><i
-                                                                    class="fa-solid fa-hospital"></i></a></span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="appointment-info">
-                                                <p><i class="fa-solid fa-calendar-check"></i>05 Nov 2024</p>
-                                                <p><i class="fa-solid fa-clock"></i>11.50 AM</p>
-                                            </li>
-                                            <li class="appointment-detail-btn">
-                                                <a href="{{ url('patient-completed-appointment') }}"
-                                                    class="start-link w-100">View Details</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- /Appointment Grid -->
-
-                                <!-- Appointment Grid -->
-                                <div class="col-xl-4 col-lg-6 col-md-12 d-flex">
-                                    <div class="appointment-wrap appointment-grid-wrap">
-                                        <ul>
-                                            <li>
-                                                <div class="appointment-grid-head">
-                                                    <div class="patinet-information">
-                                                        <a href="{{ url('patient-completed-appointment') }}">
-                                                            <img src="{{ URL::asset('/assets/img/doctors/doctor-thumb-14.jpg') }}"
-                                                                alt="User Image">
-                                                        </a>
-                                                        <div class="patient-info">
-                                                            <p>#Apt0003</p>
-                                                            <h6><a href="{{ url('patient-completed-appointment') }}">Dr.John
-                                                                    Ewel</a></h6>
-                                                            <p class="visit">General Visit</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="grid-user-msg">
-                                                        <span class="telephone-icon"><a href="#"><i
-                                                                    class="fa-solid fa-phone"></i></a></span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="appointment-info">
-                                                <p><i class="fa-solid fa-calendar-check"></i>27 Oct 2024</p>
-                                                <p><i class="fa-solid fa-clock"></i>09.30 AM</p>
-                                            </li>
-                                            <li class="appointment-detail-btn">
-                                                <a href="{{ url('patient-completed-appointment') }}"
-                                                    class="start-link w-100">View Details</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- /Appointment Grid -->
-
-                                <!-- Appointment Grid -->
-                                <div class="col-xl-4 col-lg-6 col-md-12 d-flex">
-                                    <div class="appointment-wrap appointment-grid-wrap">
-                                        <ul>
-                                            <li>
-                                                <div class="appointment-grid-head">
-                                                    <div class="patinet-information">
-                                                        <a href="{{ url('patient-completed-appointment') }}">
-                                                            <img src="{{ URL::asset('/assets/img/doctors/doctor-thumb-15.jpg') }}"
-                                                                alt="User Image">
-                                                        </a>
-                                                        <div class="patient-info">
-                                                            <p>#Apt0004</p>
-                                                            <h6><a href="{{ url('patient-completed-appointment') }}">Dr.Susan
-                                                                    Fenimore</a></h6>
-                                                            <p class="visit">General Visit</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="grid-user-msg">
-                                                        <span class="hospital-icon"><a href="#"><i
-                                                                    class="fa-solid fa-hospital"></i></a></span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="appointment-info">
-                                                <p><i class="fa-solid fa-calendar-check"></i>18 Oct 2024</p>
-                                                <p><i class="fa-solid fa-clock"></i>12.20 PM</p>
-                                            </li>
-                                            <li class="appointment-detail-btn">
-                                                <a href="{{ url('patient-completed-appointment') }}"
-                                                    class="start-link w-100">View Details</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- /Appointment Grid -->
-
-                                <!-- Appointment Grid -->
-                                <div class="col-xl-4 col-lg-6 col-md-12 d-flex">
-                                    <div class="appointment-wrap appointment-grid-wrap">
-                                        <ul>
-                                            <li>
-                                                <div class="appointment-grid-head">
-                                                    <div class="patinet-information">
-                                                        <a href="{{ url('patient-completed-appointment') }}">
-                                                            <img src="{{ URL::asset('/assets/img/doctors/doctor-thumb-16.jpg') }}"
-                                                                alt="User Image">
-                                                        </a>
-                                                        <div class="patient-info">
-                                                            <p>#Apt0005</p>
-                                                            <h6><a href="{{ url('patient-completed-appointment') }}">Dr.Juliet
-                                                                    Rios</a></h6>
-                                                            <p class="visit">General Visit</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="grid-user-msg">
-                                                        <span class="video-icon"><a href="#"><i
-                                                                    class="fa-solid fa-video"></i></a></span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="appointment-info">
-                                                <p><i class="fa-solid fa-calendar-check"></i>10 Oct 2024</p>
-                                                <p><i class="fa-solid fa-clock"></i>11.30 AM</p>
-                                            </li>
-                                            <li class="appointment-detail-btn">
-                                                <a href="{{ url('patient-completed-appointment') }}"
-                                                    class="start-link w-100">View Details</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- /Appointment Grid -->
-
-                                <!-- Appointment Grid -->
-                                <div class="col-xl-4 col-lg-6 col-md-12 d-flex">
-                                    <div class="appointment-wrap appointment-grid-wrap">
-                                        <ul>
-                                            <li>
-                                                <div class="appointment-grid-head">
-                                                    <div class="patinet-information">
-                                                        <a href="{{ url('patient-completed-appointment') }}">
-                                                            <img src="{{ URL::asset('/assets/img/doctors/doctor-thumb-17.jpg') }}"
-                                                                alt="User Image">
-                                                        </a>
-                                                        <div class="patient-info">
-                                                            <p>#Apt0006</p>
-                                                            <h6><a href="{{ url('patient-completed-appointment') }}">Dr.Joseph
-                                                                    Engels</a></h6>
-                                                            <p class="visit">General Visit</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="grid-user-msg">
-                                                        <span class="video-icon"><a href="#"><i
-                                                                    class="fa-solid fa-video"></i></a></span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="appointment-info">
-                                                <p><i class="fa-solid fa-calendar-check"></i>26 Sep 2024</p>
-                                                <p><i class="fa-solid fa-clock"></i>10.20 AM</p>
-                                            </li>
-                                            <li class="appointment-detail-btn">
-                                                <a href="{{ url('patient-completed-appointment') }}"
-                                                    class="start-link w-100">View Details</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- /Appointment Grid -->
+                              
 
                                 <div class="col-md-12">
                                     <div class="loader-item text-center">

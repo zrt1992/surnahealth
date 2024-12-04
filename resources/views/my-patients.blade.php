@@ -38,10 +38,10 @@
 							<div class="appointment-tabs">
 								<ul class="nav nav-pills inner-tab " id="pills-tab" role="tablist">
 									<li class="nav-item" role="presentation">
-										<button class="nav-link active" id="pills-upcoming-tab" data-bs-toggle="pill" data-bs-target="#pills-upcoming" type="button" role="tab" aria-controls="pills-upcoming" aria-selected="false">Active<span>200</span></button>
+										<button class="nav-link active" id="pills-upcoming-tab" data-bs-toggle="pill" data-bs-target="#pills-upcoming" type="button" role="tab" aria-controls="pills-upcoming" aria-selected="false">Active<span>0</span></button>
 									</li>	
 									<li class="nav-item" role="presentation">
-										<button class="nav-link" id="pills-cancel-tab" data-bs-toggle="pill" data-bs-target="#pills-cancel" type="button" role="tab" aria-controls="pills-cancel" aria-selected="true">InActive<span>22</span></button>
+										<button class="nav-link" id="pills-cancel-tab" data-bs-toggle="pill" data-bs-target="#pills-cancel" type="button" role="tab" aria-controls="pills-cancel" aria-selected="true">InActive<span>0</span></button>
 									</li>
 								</ul>
 							</div>
@@ -202,336 +202,50 @@
 								<div class="row">
 
 									<!-- Appointment Grid -->
-									<div class="col-xl-4 col-lg-6 col-md-6 d-flex">
-										<div class="appointment-wrap appointment-grid-wrap">
-											<ul>
-												<li>
-													<div class="appointment-grid-head">
-														<div class="patinet-information">
-															<a href="{{url('patient-profile')}}">
-																<img src="{{URL::asset('/assets/img/first-visit.png')}}" alt="User Image">
-															</a>
-															<div class="patient-info">
-																<p>#Apt0001</p>
-																<h6><a href="{{url('patient-profile')}}">Adrian</a></h6>
-																<ul>
-																	<li>Age : 42</li>
-																	<li>Male</li>
-																	<li>AB+</li>
-																</ul>
+									@foreach ($appointments as $patient)
+								
+										<div class="col-xl-4 col-lg-6 col-md-6 d-flex">
+											<div class="appointment-wrap appointment-grid-wrap">
+												<ul>
+													<li>
+														<div class="appointment-grid-head">
+															<div class="patinet-information">
+																<a href="{{ route('doctor.patient-profile', $patient->id) }}">
+																	<img src="{{ $patient->profile_image ?? URL::asset('/assets/img/default-user.png') }}" alt="User Image">
+																</a>
+																<div class="patient-info">
+																	<p>#Apt{{ $patient->appointments[0]->id }}</p>
+																	<h6>
+																		<a href="{{ route('doctor.patient-profile', $patient->id) }}">{{ $patient->name }}</a>
+																	</h6>
+																	<ul>
+																		<li>Age: {{ $patient->dob ?? 'N/A' }}</li>
+																		<li>{{ $patient->gender ?? 'N/A' }}</li>
+																		<li>{{ $patient->blood_group ?? 'N/A' }}</li>
+																	</ul>
+																</div>
 															</div>
 														</div>
-													</div>
-												</li>
-												<li class="appointment-info">
-													<p><i class="fa-solid fa-clock"></i>11 Nov 2024 10.45 AM</p>
-													<p class="mb-0"><i class="fa-solid fa-location-dot"></i>Alabama, USA</p>
-												</li>
-												<li class="appointment-action">
-													<div class="patient-book">
-														<p><i class="fa-solid fa-calendar-days"></i>Last Booking <span>27 Feb 2024</span></p>
-													</div>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<!-- /Appointment Grid -->
-
-									<!-- Appointment Grid -->
-									<div class="col-xl-4 col-lg-6 col-md-6 d-flex">
-										<div class="appointment-wrap appointment-grid-wrap">
-											<ul>
-												<li>
-													<div class="appointment-grid-head">
-														<div class="patinet-information">
-															<a href="{{url('patient-profile')}}">
-																<img src="{{URL::asset('/assets/img/first-visit.png')}}" alt="User Image">
-															</a>
-															<div class="patient-info">
-																<p>#Apt0002</p>
-																<h6><a href="{{url('patient-profile')}}">Kelly Stevens</a></h6>
-																<ul>
-																	<li>Age : 37</li>
-																	<li>Female</li>
-																	<li>O+</li>
-																</ul>
-															</div>
+													</li>
+													<li class="appointment-info">
+														<p><i class="fa-solid fa-clock"></i>{{ \Carbon\Carbon::parse($patient->appointments[0]->start_date)->format('d M Y h:i A') }}</p>
+														<p class="mb-0">
+															<i class="fa-solid fa-location-dot"></i>{{ $patient->state ?? 'N/A' }},{{ $patient->country ?? 'N/A' }}
+														</p>
+													</li>
+													<li class="appointment-action">
+														<div class="patient-book">
+															<p><i class="fa-solid fa-calendar-days"></i>Last Booking
+																<span>{{ \Carbon\Carbon::parse($patient->appointments[1]->start_date)->format('d M Y h:i A') }}</span>
+															</p>
 														</div>
-													</div>
-												</li>
-												<li class="appointment-info">
-													<p><i class="fa-solid fa-clock"></i>05 Nov 2024 11.50 AM</p>
-													<p class="mb-0"><i class="fa-solid fa-location-dot"></i>San Diego, USA</p>
-												</li>
-												<li class="appointment-action">
-													<div class="patient-book">
-														<p><i class="fa-solid fa-calendar-days"></i>Last Booking<span>20 Mar 2024</span></p>
-														
-													</div>
-												</li>
-											</ul>
+													</li>
+												</ul>
+											</div>
 										</div>
-									</div>
-									<!-- /Appointment Grid -->
-
-									<!-- Appointment Grid -->
-									<div class="col-xl-4 col-lg-6 col-md-6 d-flex">
-										<div class="appointment-wrap appointment-grid-wrap">
-											<ul>
-												<li>
-													<div class="appointment-grid-head">
-														<div class="patinet-information">
-															<a href="{{url('patient-profile')}}">
-																<img src="{{URL::asset('/assets/img/first-visit.png')}}" alt="User Image">
-															</a>
-															<div class="patient-info">
-																<p>#Apt0003</p>
-																<h6><a href="{{url('patient-profile')}}">Samuel James</a></h6>
-																<ul>
-																	<li>Age : 43</li>
-																	<li>Male</li>
-																	<li>B+</li>
-																</ul>
-															</div>
-														</div>
-													</div>
-												</li>
-												<li class="appointment-info">
-													<p><i class="fa-solid fa-clock"></i>27 Oct 2024 09.30 AM</p>
-													<p class="mb-0"><i class="fa-solid fa-location-dot"></i>Chicago, USA</p>
-												</li>
-												<li class="appointment-action">
-													<div class="patient-book">
-														<p><i class="fa-solid fa-calendar-days"></i>Last Booking<span>12 Mar 2024</span></p>
-														
-													</div>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<!-- /Appointment Grid -->
-
-									<!-- Appointment Grid -->
-									<div class="col-xl-4 col-lg-6 col-md-6 d-flex">
-										<div class="appointment-wrap appointment-grid-wrap">
-											<ul>
-												<li>
-													<div class="appointment-grid-head">
-														<div class="patinet-information">
-															<a href="{{url('patient-profile')}}">
-																<img src="{{URL::asset('/assets/img/first-visit.png')}}" alt="User Image">
-															</a>
-															<div class="patient-info">
-																<p>#Apt0004</p>
-																<h6><a href="{{url('patient-profile')}}">Catherine Gracey</a></h6>
-																<ul>
-																	<li>Age : 36</li>
-																	<li>Female</li>
-																	<li>AB-</li>
-																</ul>
-															</div>
-														</div>
-													</div>
-												</li>
-												<li class="appointment-info">
-													<p><i class="fa-solid fa-clock"></i>18 Oct 2024 12.20 PM</p>
-													<p class="mb-0"><i class="fa-solid fa-location-dot"></i>Los Angeles, USA</p>
-												</li>
-												<li class="appointment-action">
-													<div class="patient-book">
-														<p><i class="fa-solid fa-calendar-days"></i>Last Booking<span>27 Feb 2024</span></p>
-														
-													</div>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<!-- /Appointment Grid -->
-
-									<!-- Appointment Grid -->
-									<div class="col-xl-4 col-lg-6 col-md-6 d-flex">
-										<div class="appointment-wrap appointment-grid-wrap">
-											<ul>
-												<li>
-													<div class="appointment-grid-head">
-														<div class="patinet-information">
-															<a href="{{url('patient-profile')}}">
-																<img src="{{URL::asset('/assets/img/first-visit.png')}}" alt="User Image">
-															</a>
-															<div class="patient-info">
-																<p>#Apt0005</p>
-																<h6><a href="{{url('patient-profile')}}">Robert Miller</a></h6>
-																<ul>
-																	<li>Age : 38</li>
-																	<li>Male</li>
-																	<li>A+</li>
-																</ul>
-															</div>
-														</div>
-													</div>
-												</li>
-												<li class="appointment-info">
-													<p><i class="fa-solid fa-clock"></i>10 Oct 2024 11.30 AM</p>
-													<p class="mb-0"><i class="fa-solid fa-location-dot"></i>Dallas, USA</p>
-												</li>
-												<li class="appointment-action">
-													<div class="patient-book">
-														<p><i class="fa-solid fa-calendar-days"></i>Last Booking<span>18 Feb 2024</span></p>
-														
-													</div>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<!-- /Appointment Grid -->
-
-									<!-- Appointment Grid -->
-									<div class="col-xl-4 col-lg-6 col-md-6 d-flex">
-										<div class="appointment-wrap appointment-grid-wrap">
-											<ul>
-												<li>
-													<div class="appointment-grid-head">
-														<div class="patinet-information">
-															<a href="{{url('patient-profile')}}">
-																<img src="{{URL::asset('/assets/img/first-visit.png')}}" alt="User Image">
-															</a>
-															<div class="patient-info">
-																<p>#Apt0006</p>
-																<h6><a href="{{url('patient-profile')}}">Anderea Kearns</a></h6>
-																<ul>
-																	<li>Age : 40</li>
-																	<li>Female</li>
-																	<li>B-</li>
-																</ul>
-															</div>
-														</div>
-													</div>
-												</li>
-												<li class="appointment-info">
-													<p><i class="fa-solid fa-clock"></i>26 Sep 2024 10.20 AM</p>
-													<p class="mb-0"><i class="fa-solid fa-location-dot"></i>San Francisco, USA</p>
-												</li>
-												<li class="appointment-action">
-													<div class="patient-book">
-														<p><i class="fa-solid fa-calendar-days"></i>Last Booking<span>11 Feb 2024</span></p>
-														
-													</div>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<!-- /Appointment Grid -->
-
-									<!-- Appointment Grid -->
-									<div class="col-xl-4 col-lg-6 col-md-6 d-flex">
-										<div class="appointment-wrap appointment-grid-wrap">
-											<ul>
-												<li>
-													<div class="appointment-grid-head">
-														<div class="patinet-information">
-															<a href="{{url('patient-profile')}}">
-																<<img src="{{URL::asset('/assets/img/first-visit.png')}}" alt="User Image">
-															</a>
-															<div class="patient-info">
-																<p>#Apt0007</p>
-																<h6><a href="{{url('patient-profile')}}">Peter Anderson</a></h6>
-																<ul>
-																	<li>Age : 30</li>
-																	<li>Male</li>
-																	<li>A-</li>
-																</ul>
-															</div>
-														</div>
-													</div>
-												</li>
-												<li class="appointment-info">
-													<p><i class="fa-solid fa-clock"></i>14 Sep 2024 08.10 AM</p>
-													<p class="mb-0"><i class="fa-solid fa-location-dot"></i>Austin, USA</p>
-												</li>
-												<li class="appointment-action">
-													<div class="patient-book">
-														<p><i class="fa-solid fa-calendar-days"></i>Last Booking<span>25 Jan 2024</span></p>
-														
-													</div>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<!-- /Appointment Grid -->
-
-									<!-- Appointment Grid -->
-									<div class="col-xl-4 col-lg-6 col-md-6 d-flex">
-										<div class="appointment-wrap appointment-grid-wrap">
-											<ul>
-												<li>
-													<div class="appointment-grid-head">
-														<div class="patinet-information">
-															<a href="{{url('patient-profile')}}">
-																<img src="{{URL::asset('/assets/img/first-visit.png')}}" alt="User Image">
-															</a>
-															<div class="patient-info">
-																<p>#Apt0008</p>
-																<h6><a href="{{url('patient-profile')}}">Emily Musick</a></h6>
-																<ul>
-																	<li>Age : 32</li>
-																	<li>Female</li>
-																	<li>O-</li>
-																</ul>
-															</div>
-														</div>
-													</div>
-												</li>
-												<li class="appointment-info">
-													<p><i class="fa-solid fa-clock"></i>03 Sep 2024 06.00 PM</p>
-													<p class="mb-0"><i class="fa-solid fa-location-dot"></i>Nashville, USA</p>
-												</li>
-												<li class="appointment-action">
-													<div class="patient-book">
-														<p><i class="fa-solid fa-calendar-days"></i>Last Booking<span>13 Jan 2024</span></p>
-														
-													</div>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<!-- /Appointment Grid -->
-
-									<!-- Appointment Grid -->
-									<div class="col-xl-4 col-lg-6 col-md-6 d-flex">
-										<div class="appointment-wrap appointment-grid-wrap">
-											<ul>
-												<li>
-													<div class="appointment-grid-head">
-														<div class="patinet-information">
-															<a href="{{url('patient-profile')}}">
-																<img src="{{URL::asset('/assets/img/first-visit.png')}}" alt="User Image">
-															</a>
-															<div class="patient-info">
-																<p>#Apt0009</p>
-																<h6><a href="{{url('patient-profile')}}">Darrell Tan</a></h6>
-																<ul>
-																	<li>Age : 31</li>
-																	<li>Male</li>
-																	<li>AB+</li>
-																</ul>
-															</div>
-														</div>
-													</div>
-												</li>
-												<li class="appointment-info">
-													<p><i class="fa-solid fa-clock"></i>25 Aug 2024 10.45 AM</p>
-													<p class="mb-0"><i class="fa-solid fa-location-dot"></i>San Antonio, USA</p>
-												</li>
-												<li class="appointment-action">
-													<div class="patient-book">
-														<p><i class="fa-solid fa-calendar-days"></i>Last Booking<span>03 Jan 2024</span></p>
-														
-													</div>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<!-- /Appointment Grid -->
+								
+								@endforeach
+								
 
 									<div class="col-md-12">
 										<div class="loader-item text-center">
@@ -550,12 +264,12 @@
 												<li>
 													<div class="appointment-grid-head">
 														<div class="patinet-information">
-															<a href="{{url('patient-profile')}}">
+															<a href="{{route('doctor.patient-profile')}}">
 																<img src="{{URL::asset('/assets/img/first-visit.png')}}" alt="User Image">
 															</a>
 															<div class="patient-info">
 																<p>#Apt0006</p>
-																<h6><a href="{{url('patient-profile')}}">Anderea Kearns</a></h6>
+																<h6><a href="{{route('doctor.patient-profile')}}">Anderea Kearns</a></h6>
 																<ul>
 																	<li>Age : 40</li>
 																	<li>Female</li>
