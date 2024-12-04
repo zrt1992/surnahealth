@@ -258,7 +258,7 @@
 							<div class="tab-pane fade" id="pills-cancel" role="tabpanel" aria-labelledby="pills-cancel-tab">
 								<div class="row">
 									<!-- Appointment Grid -->
-									<div class="col-xl-4 col-lg-6 col-md-6 d-flex">
+									{{-- <div class="col-xl-4 col-lg-6 col-md-6 d-flex">
 										<div class="appointment-wrap appointment-grid-wrap">
 											<ul>
 												<li>
@@ -291,82 +291,10 @@
 												</li>
 											</ul>
 										</div>
-									</div>
+									</div> --}}
 									<!-- /Appointment Grid -->
 
-									<!-- Appointment Grid -->
-									<div class="col-xl-4 col-lg-6 col-md-6 d-flex">
-										<div class="appointment-wrap appointment-grid-wrap">
-											<ul>
-												<li>
-													<div class="appointment-grid-head">
-														<div class="patinet-information">
-															<a href="{{url('patient-profile')}}">
-																<img src="{{URL::asset('/assets/img/first-visit.png')}}" alt="User Image">
-															</a>
-															<div class="patient-info">
-																<p>#Apt0009</p>
-																<h6><a href="{{url('patient-profile')}}">Darrell Tan</a></h6>
-																<ul>
-																	<li>Age : 31</li>
-																	<li>Male</li>
-																	<li>AB+</li>
-																</ul>
-															</div>
-														</div>
-													</div>
-												</li>
-												<li class="appointment-info">
-													<p><i class="fa-solid fa-clock"></i>25 Aug 2024 10.45 AM</p>
-													<p class="mb-0"><i class="fa-solid fa-location-dot"></i>San Antonio, USA</p>
-												</li>
-												<li class="appointment-action">
-													<div class="patient-book">
-														<p><i class="fa-solid fa-calendar-days"></i>Last Booking<span>03 Jan 2024</span></p>
-														
-													</div>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<!-- /Appointment Grid -->
-
-									<!-- Appointment Grid -->
-									<div class="col-xl-4 col-lg-6 col-md-6 d-flex">
-										<div class="appointment-wrap appointment-grid-wrap">
-											<ul>
-												<li>
-													<div class="appointment-grid-head">
-														<div class="patinet-information">
-															<a href="{{url('patient-profile')}}">
-																<img src="{{URL::asset('/assets/img/first-visit.png')}}" alt="User Image">
-															</a>
-															<div class="patient-info">
-																<p>#Apt0004</p>
-																<h6><a href="{{url('patient-profile')}}">Catherine Gracey</a></h6>
-																<ul>
-																	<li>Age : 36</li>
-																	<li>Female</li>
-																	<li>AB-</li>
-																</ul>
-															</div>
-														</div>
-													</div>
-												</li>
-												<li class="appointment-info">
-													<p><i class="fa-solid fa-clock"></i>18 Oct 2024 12.20 PM</p>
-													<p class="mb-0"><i class="fa-solid fa-location-dot"></i>Los Angeles, USA</p>
-												</li>
-												<li class="appointment-action">
-													<div class="patient-book">
-														<p><i class="fa-solid fa-calendar-days"></i>Last Booking<span>27 Feb 2024</span></p>
-														
-													</div>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<!-- /Appointment Grid -->
+								
 
 									<div class="col-md-12">
 										<div class="loader-item text-center">
