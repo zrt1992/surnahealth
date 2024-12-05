@@ -26,7 +26,7 @@
         <div class="dashboard-widget">
             <nav class="dashboard-menu">
                 <ul>
-                    <li class="{{ Request::is('doctor-dashboard') ? 'active' : '' }}">
+                    <li class="{{ Request::is('doctor/dashboard') ? 'active' : '' }}">
                         <a href="{{route('doctor-dashboard')}}">
                             <i class="fa-solid fa-shapes"></i>
                             <span>Dashboard</span>
@@ -113,8 +113,8 @@
                             <span>Social Media</span>
                         </a>
                     </li> --}}
-                    <li class="{{ Request::is('doctor-change-password') ? 'active' : '' }}">
-                        <a href="{{route('doctor-change-password')}}">
+                    <li class="{{ Request::is('doctor/doctor-change-password') ? 'active' : '' }}">
+                        <a href="{{route('doctor.doctor-change-password')}}">
                             <i class="fa-solid fa-key"></i>
                             <span>Change Password</span>
                         </a>

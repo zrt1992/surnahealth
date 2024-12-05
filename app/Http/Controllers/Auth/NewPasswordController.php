@@ -58,4 +58,33 @@ class NewPasswordController extends Controller
                     : back()->withInput($request->only('email'))
                         ->withErrors(['email' => __($status)]);
     }
+
+    public function doctorChangePassword()
+    {
+        return view('doctor-change-password');
+    }
+
+    public function patientChangePassword()
+    {
+        return view('change-password');
+    }
+
+    public function updatePassword(Request $request)
+{
+   
+    $request->validate([
+        'old_password' => 'required',
+        'password' => 'required|min:8|confirmed',
+    ]);
+    $user = auth()->user();
+
+    if (!Hash::check($request->old_password, $user->password)) {
+        return back()->withErrors(['old_password' => 'The old password is incorrect.']);
+    }
+
+    $user->update(['password' => Hash::make($request->password)]);
+
+    return redirect()->back()->with('success', 'Password changed successfully.');
+}
+
 }

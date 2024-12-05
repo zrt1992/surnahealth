@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Doctor\AppointmentController;
 use App\Http\Controllers\Doctor\AvailableTimmingController;
 use App\Http\Controllers\Doctor\DashboardController;
@@ -66,9 +67,13 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'role:doctor',CheckRegistrationStep::class])->prefix('doctor')->group(function () {
 
+    Route::get('/doctor-change-password', [NewPasswordController::class, 'doctorChangePassword'])->name('doctor.doctor-change-password');
+    Route::post('/update-password', [NewPasswordController::class, 'UpdatePassword'])->name('doctor.update-password');
+
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('doctor-dashboard');
     Route::get('/my-patients', [PatientsController::class, 'index'])->name('doctor.my-patients');
     Route::get('/patient-profile/{id?}', [PatientsController::class, 'patientProfile'])->name('doctor.patient-profile');
+
 
 });
 
@@ -80,8 +85,10 @@ Route::middleware(['auth', 'role:doctor',CheckRegistrationStep::class])->prefix(
 
 Route::middleware(['auth', 'role:patient',CheckRegistrationStep::class])->prefix('patient')->group(function () {
 
-    Route::get('/dashboard', [PatientDashboard::class, 'index'])->name('patient-dashboard');
+    Route::get('/change-password', [NewPasswordController::class, 'patientChangePassword'])->name('patient.change-password');
+    Route::post('/update-password', [NewPasswordController::class, 'UpdatePassword'])->name('patient.update-password');
 
+    Route::get('/dashboard', [PatientDashboard::class, 'index'])->name('patient-dashboard');
 
     Route::get('/patient-accounts', [AccountController::class, 'index'])->name('patient-accounts');
     Route::resource('/patient-account', AccountController::class);
@@ -373,9 +380,7 @@ Route::get('/calendar', function () {
 Route::get('/cart', function () {
     return view('cart');
 })->name('cart');
-Route::get('/change-password', function () {
-    return view('change-password');
-})->name('change-password');
+
 Route::get('/chat-doctor', function () {
     return view('chat-doctor');
 })->name('chat-doctor');
@@ -404,9 +409,7 @@ Route::get('/doctor-add-blog', function () {
 Route::get('/doctor-blog', function () {
     return view('doctor-blog');
 })->name('doctor-blog');
-Route::get('/doctor-change-password', function () {
-    return view('doctor-change-password');
-})->name('doctor-change-password');
+
 
 
 /********************ADMIN ROUTES END******************************/

@@ -84,6 +84,9 @@ class DoctorBookingController extends Controller
             'google_meet_link' => $event->getHangoutLink(),
             'doctor_id' => getAuthUser()->id,
             'user_id' => $appointment->user->id,
+            'status' => 'approved',
+            'slot_id' => $appointment->slot_id,
+
         ]);
 
         if ($appointment) {

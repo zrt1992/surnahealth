@@ -21,7 +21,8 @@ class Appointment extends Model
         'google_meet_link',
         'doctor_id',
         'user_id',
-
+        'slot_id',
+        'status',
     ];
 
     public function doctor()
@@ -32,5 +33,10 @@ class Appointment extends Model
     public function user()
     {
         return $this->belongsTo(User::class,'user_id','id');
+    }
+
+    public function slot()
+    {
+        return $this->belongsTo(AvailableTimming::class,'slot_id','id');
     }
 }

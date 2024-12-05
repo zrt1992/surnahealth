@@ -24,7 +24,7 @@ class PatientsController extends Controller
 
 public function patientProfile($id = null)
 {
-    $patient =  User::with('appointments.doctor','medicalDetails')->find($id);
+    $patient =  User::with('appointments.doctor','appointments.slot','medicalDetails')->find($id);
         
     return view('doctor.patient-profile', get_defined_vars());
 }

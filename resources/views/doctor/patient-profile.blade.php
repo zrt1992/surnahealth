@@ -101,17 +101,26 @@
                                                     <td>
                                                         <h2 class="table-avatar">
                                                             <a href="{{url('doctor-profile')}}" class="avatar avatar-sm me-2">
-                                                                <img class="avatar-img rounded-3" src="{{URL::asset('/assets/img/doctors/doctor-thumb-02.jpg')}}" alt="User Image">
+                                                                <img class="avatar-img rounded-3" src="{{$appointment->doctor->profile_image ?? URL::asset('/assets/img/doctors/doctor-thumb-02.jpg')}}" alt="User Image">
                                                             </a>
                                                             <a href="{{url('doctor-profile')}}">{{ $appointment->doctor->name ?? 'N/A' }}</a>
                                                         </h2>
                                                     </td>
                                                     <td>{{ \Carbon\Carbon::parse($appointment->start_date)->format('d M Y h:i A') }}</td>
                                                     <td>{{ \Carbon\Carbon::parse($appointment->created_at)->format('d M Y h:i A') }}</td>
-                                                    <td>{{ $appointment->amount ?? '$0' }}</td>
-                                                    <td><span class="badge badge-yellow status-badge">Upcoming</span></td>
-                                                    {{-- <td><span class="badge badge-danger status-badge">Cancelled</span></td>
-                                                    <td><span class="badge badge-green status-badge">Completed</span></td> --}}
+                                                    <td>${{ $appointment->slot->appointment_fees ?? '$0' }}</td>
+                                                    <td>
+                                                        @if(in_array($appointment->status, ['approved', 'accepted', 'upcoming']))
+                                                            <span class="badge badge-yellow status-badge">Upcoming</span>
+                                                        @elseif($appointment->status == 'completed')
+                                                            <span class="badge badge-green status-badge">Completed</span>
+                                                        @elseif(in_array($appointment->status, ['cancelled', 'rejected']))
+                                                            <span class="badge badge-danger status-badge">Cancelled</span>
+                                                        @else
+                                                            <span class="badge badge-secondary status-badge">Unknown</span>
+                                                        @endif
+                                                    </td>
+                                                    
                                                     <td>
                                                         <div class="action-item">
                                                             <a href="{{url('patient-upcoming-appointment')}}">
