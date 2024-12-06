@@ -8,6 +8,7 @@ use App\Http\Controllers\Doctor\DashboardController;
 use App\Http\Controllers\Doctor\DoctorAwardController;
 use App\Http\Controllers\Doctor\DoctorBookingController;
 use App\Http\Controllers\Doctor\DoctorBusinessHourController;
+use App\Http\Controllers\Doctor\DoctorChatController;
 use App\Http\Controllers\Doctor\DoctorClinicsController;
 use App\Http\Controllers\Doctor\DoctorController;
 use App\Http\Controllers\Doctor\DoctorEducationController;
@@ -23,6 +24,7 @@ use App\Http\Controllers\Patient\DoctorProfileController;
 use App\Http\Controllers\Patient\FavouritesController;
 use App\Http\Controllers\Patient\MedicalDetailController;
 use App\Http\Controllers\Patient\MedicalRecordController;
+use App\Http\Controllers\Patient\PatientChatController;
 use App\Http\Controllers\Patient\PatientProfileSettingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
@@ -30,6 +32,7 @@ use App\Services\GoogleClientService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CheckRegistrationStep;
+use Illuminate\Support\Facades\Mail;
 
 Route::get('/', function () {
     //  dd(\Illuminate\Support\Facades\Auth::user()->getRoleNames()->first());
@@ -73,8 +76,7 @@ Route::middleware(['auth', 'role:doctor',CheckRegistrationStep::class])->prefix(
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('doctor-dashboard');
     Route::get('/my-patients', [PatientsController::class, 'index'])->name('doctor.my-patients');
     Route::get('/patient-profile/{id?}', [PatientsController::class, 'patientProfile'])->name('doctor.patient-profile');
-
-
+    Route::get('/chat-doctor', [DoctorChatController::class, 'index'])->name('chat-doctor');
 });
 
 
@@ -140,6 +142,8 @@ Route::middleware(['auth', 'role:patient',CheckRegistrationStep::class])->prefix
 
     Route::get('/profile-settings', [PatientProfileSettingController::class, 'index'])->name('profile-settings');
     Route::resource('patient-profile-setting', PatientProfileSettingController::class);
+
+    Route::get('/chat', [PatientChatController::class, 'index'])->name('patient-chat');
 
 });
 
@@ -380,13 +384,6 @@ Route::get('/calendar', function () {
 Route::get('/cart', function () {
     return view('cart');
 })->name('cart');
-
-Route::get('/chat-doctor', function () {
-    return view('chat-doctor');
-})->name('chat-doctor');
-Route::get('/chat', function () {
-    return view('chat');
-})->name('chat');
 Route::get('/checkout', function () {
     return view('checkout');
 })->name('checkout');
@@ -670,7 +667,7 @@ Route::get('/video-call', function () {
 Route::get('/voice-call', function () {
     return view('voice-call');
 })->name('voice-call');
-Route::resource('/doctor-request', DoctorBookingController::class);
+Route::resource('/doctor-request', DoctorBookingController::class)->middleware('auth');
 Route::post('/doctor-request/accept/{id}', [DoctorBookingController::class, 'accept'])->name('doctor-request.accept');
 Route::post('/doctor-request/reject', [DoctorBookingController::class, 'reject'])->name('doctor-request.reject');
 Route::get('/doctor-appointment-start', function () {
@@ -857,5 +854,44 @@ Route::post('/google-meet/create', [GoogleMeetController::class, 'createMeeting'
 //     })->name('register');
 
 // });
+Route::get('/preview-email', function () {
+    $emailData = [
+        'subject' => 'Test Email',
+        'greeting' => 'Hello User',
+        'body' => 'This is a test email to preview the design.',
+        'actionText' => 'Visit Us',
+        'actionURL' => url('/'),
+        'thanks' => 'Thank you!',
+    ];
+    // dd($emailData);
+    Mail::to('rehmanjunaid215@gmail.com')->send(new App\Mail\DynamicEmail($emailData));
+
+    return 'Test email sent successfully!';
+});
+
+Route::get('/test-email', function () {
+    try {
+        Mail::raw('This is a test email.', function ($message) {
+            $message->to('recipient@example.com')
+                    ->subject('Simple Email Test');
+        });
+        return 'Simple email sent!';
+    } catch (\Exception $e) {
+        return 'Error: ' . $e->getMessage();
+    }
+});
+
+
+Route::get('/env-check', function () {
+    return [
+        'MAIL_MAILER' => env('MAIL_MAILER'),
+        'MAIL_HOST' => env('MAIL_HOST'),
+        'MAIL_PORT' => env('MAIL_PORT'),
+        'MAIL_USERNAME' => env('MAIL_USERNAME'),
+        'MAIL_PASSWORD' => env('MAIL_PASSWORD'),
+        'MAIL_ENCRYPTION' => env('MAIL_ENCRYPTION'),
+    ];
+});
+
 
 require __DIR__ . '/auth.php';

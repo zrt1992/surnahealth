@@ -62,13 +62,13 @@
                             <span>Invoices</span>
                         </a>
                     </li> --}}
-                    {{-- <li class="{{ Request::is('chat') ? 'active' : '' }}">
-                        <a href="{{ route('chat') }}">
+                    <li class="{{ Request::is('patient/chat') ? 'active' : '' }}">
+                        <a href="{{ route('patient-chat') }}">
                             <i class="fa-solid fa-comments"></i>
                             <span>Message</span>
                             <small class="unread-msg">7</small>
                         </a>
-                    </li> --}}
+                    </li>
                     <li class="{{ Request::is('patient/profile-settings') ? 'active' : '' }}">
                         <a href="{{ route('profile-settings') }}">
                             <i class="fa-solid fa-user-pen"></i>

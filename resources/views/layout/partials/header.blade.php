@@ -654,7 +654,7 @@
                             'cart',
                             'patient.change-password',
                             'chat-doctor',
-                            'chat',
+                            'patient-chat',
                             'checkout',
                             'dependent',
                             'doctor-add-blog',
@@ -760,7 +760,7 @@
                             'cart',
                             'patient.change-password',
                             'chat-doctor',
-                            'chat',
+                            'patient-chat',
                             'checkout',
                             'dependent',
                             'doctor-add-blog',
@@ -1142,7 +1142,7 @@
 {{--                        </ul>--}}
                     </li>
 {{--                    <li--}}
-{{--                        class="has-submenu {{ Request::is('map-grid', 'map-list', 'search', 'search-2', 'doctor-profile', 'doctor-profile-2','booking', 'booking-2', 'checkout', 'booking-success', 'patient-dashboard', 'favourites', 'chat', 'profile-settings', 'patient.change-password', 'add-dependent', 'dependent', 'edit-dependent', 'patient-upcoming-appointment') ? 'active' : '' }}">--}}
+{{--                        class="has-submenu {{ Request::is('map-grid', 'map-list', 'search', 'search-2', 'doctor-profile', 'doctor-profile-2','booking', 'booking-2', 'checkout', 'booking-success', 'patient-dashboard', 'favourites', 'patient-chat', 'profile-settings', 'patient.change-password', 'add-dependent', 'dependent', 'edit-dependent', 'patient-upcoming-appointment') ? 'active' : '' }}">--}}
 {{--                        <a href="javascript:void(0);">Patients <i class="fas fa-chevron-down"></i></a>--}}
 {{--                        <ul class="submenu">--}}
 {{--                            <li class="{{ Request::is('patient-dashboard') ? 'active' : '' }}"><a--}}
@@ -1345,7 +1345,7 @@
                             'cart',
                             'patient.change-password',
                             'chat-doctor',
-                            'chat',
+                            'patient-chat',
                             'checkout',
                             'dependent',
                             'doctor-add-blog',
@@ -1465,7 +1465,7 @@
                             'cart',
                             'patient.change-password',
                             'chat-doctor',
-                            'chat',
+                            'patient-chat',
                             'checkout',
                             'dependent',
                             'doctor-add-blog',
@@ -1583,7 +1583,7 @@
                         'cart',
                         'patient.change-password',
                         'chat-doctor',
-                        'chat',
+                        'patient-chat',
                         'checkout',
                         'dependent',
                         'doctor-add-blog',
@@ -1841,7 +1841,7 @@
                         'cart',
                         'patient.change-password',
                         'chat-doctor',
-                        'chat',
+                        'patient-chat',
                         'checkout',
                         'dependent',
                         'doctor-add-blog',
@@ -2086,7 +2086,7 @@
                             'booking',
                             'cart',
                             'patient.change-password',
-                            'chat',
+                            'patient-chat',
                             'checkout',
                             'dependent',
                             'doctor-profile',
@@ -2241,7 +2241,7 @@
                             'booking',
                             'cart',
                             'patient.change-password',
-                            'chat',
+                            'patient-chat',
                             'checkout',
                             'dependent',
                             'doctor-profile',

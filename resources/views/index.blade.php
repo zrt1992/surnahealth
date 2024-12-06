@@ -25,7 +25,7 @@
                             </a>
                         </div>
                         <div class="col-12 d-flex col-xxl-12 col-lg-12 col-sm-6">
-                            <a href="{{ url('chat') }}" class="serv-wrap pink-bg flex-fill">
+                            <a href="{{ url('login') }}" class="serv-wrap pink-bg flex-fill">
                                 <span>
                                     <img src="{{ URL::asset('/assets/img/icons/service-06.svg') }}" alt="heart-image">
                                 </span>

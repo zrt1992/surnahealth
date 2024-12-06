@@ -25,7 +25,7 @@
             <div class="content">
 
                 <div class="dashboard-header">
-                    <h3><a href="{{url('doctor-dashboard')}}"><i class="fa-solid fa-arrow-left"></i> Message</a></h3>
+                    <h3><a href="{{url('doctor/dashboard')}}"><i class="fa-solid fa-arrow-left"></i> Message</a></h3>
                 </div>
 
                 <div class="chat-sec">

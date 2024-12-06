@@ -129,7 +129,7 @@
         'map-grid',
         'onboarding-verification',
         'chat-doctor',
-        'chat',
+        'patient-chat',
         'doctor-register-step1',
         'doctor-register-step2',
         'doctor-register-step3',
@@ -188,7 +188,7 @@
 
     <body class="home-pg-twelve">
 @endif
-@if (Route::is(['chat-doctor', 'chat']))
+@if (Route::is(['chat-doctor', 'patient-chat']))
 
     <body class="main-chat-blk">
 @endif
@@ -242,7 +242,7 @@
         'patient-other-details',
         'patient-Personalize',
         'patient-details',
-        'chat',
+        'patient-chat',
         'chat-doctor',
     ]))
     <div class="main-wrapper">
@@ -304,7 +304,7 @@
 @if (Route::is(['index-14']))
     <div class="main-wrapper home-dentist">
 @endif
-@if (Route::is(['chat']))
+@if (Route::is(['patient-chat']))
     <div class="main-wrapper chat-wrapper">
 @endif
 @if (Route::is(['chat-doctor']))

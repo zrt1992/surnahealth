@@ -312,7 +312,7 @@
     <link rel="stylesheet" href="{{ url('/assets/plugins/apex/apexcharts.css') }}">
 @endif
 
-@if (Route::is(['chat-doctor','chat']))
+@if (Route::is(['chat-doctor','patient-chat']))
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="{{url('assets/plugins/swiper/swiper.min.css')}}">
 @endif

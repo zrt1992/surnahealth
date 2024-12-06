@@ -87,13 +87,13 @@
                             <span>Payout Settings</span>
                         </a>
                     </li>																																				 --}}
-                    {{-- <li class="{{ Request::is('chat-doctor') ? 'active' : '' }}">
+                    <li class="{{ Request::is('chat-doctor') ? 'active' : '' }}">
                         <a href="{{route('chat-doctor')}}">
                             <i class="fa-solid fa-comments"></i>
                             <span>Message</span>
                             <small class="unread-msg">7</small>
                         </a>
-                    </li> --}}
+                    </li>
                     {{-- <li class="{{ Request::is('doctor-profile-settings','doctor-awards-settings','doctor-business-settings','doctor-clinics-settings') ? 'active' : '' }}">
                         <a href="{{route('doctor-profile-settings')}}">
                             <i class="fa-solid fa-user-pen"></i>
