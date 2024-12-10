@@ -20,7 +20,7 @@
         <div class="dashboard-widget">
             <nav class="dashboard-menu">
                 <ul>
-                    <li class="{{ Request::is('patient-dashboard') ? 'active' : '' }}">
+                    <li class="{{ Request::is('patient/dashboard') ? 'active' : '' }}">
                         <a href="{{ route('patient-dashboard') }}">
                             <i class="fa-solid fa-shapes"></i>
                             <span>Dashboard</span>
@@ -32,19 +32,19 @@
                             <span>My Appointments</span>
                         </a>
                     </li>
-                    <li class="{{ Request::is('favourites') ? 'active' : '' }}">
+                    <li class="{{ Request::is('patient/favourites') ? 'active' : '' }}">
                         <a href="{{ route('favourites') }}">
                             <i class="fa-solid fa-user-doctor"></i>
                             <span>Favourites</span>
                         </a>
                     </li>
-                    <li class="{{ Request::is('dependent') ? 'active' : '' }}">
+                    <li class="{{ Request::is('patient/dependent') ? 'active' : '' }}">
                         <a href="{{ route('dependent') }}">
                             <i class="fa-solid fa-user-plus"></i>
                             <span>Dependants</span>
                         </a>
                     </li>
-                    <li class="{{ Request::is('medical-records') ? 'active' : '' }}">
+                    <li class="{{ Request::is('patient/medical-records') ? 'active' : '' }}">
                         <a href="{{ route('medical-records') }}">
                             <i class="fa-solid fa-money-bill-1"></i>
                             <span>Add Medical Records</span>
@@ -62,27 +62,27 @@
                             <span>Invoices</span>
                         </a>
                     </li> --}}
-                    {{-- <li class="{{ Request::is('chat') ? 'active' : '' }}">
-                        <a href="{{ route('chat') }}">
+                    <li class="{{ Request::is('patient/chat') ? 'active' : '' }}">
+                        <a href="{{ route('patient-chat') }}">
                             <i class="fa-solid fa-comments"></i>
                             <span>Message</span>
                             <small class="unread-msg">7</small>
                         </a>
-                    </li> --}}
-                    <li class="{{ Request::is('profile-settings') ? 'active' : '' }}">
+                    </li>
+                    <li class="{{ Request::is('patient/profile-settings') ? 'active' : '' }}">
                         <a href="{{ route('profile-settings') }}">
                             <i class="fa-solid fa-user-pen"></i>
                             <span>Profile Settings</span>
                         </a>
                     </li>
-                    <li class="{{ Request::is('medical-details') ? 'active' : '' }}">
+                    <li class="{{ Request::is('patient/medical-details') ? 'active' : '' }}">
                         <a href="{{ route('medical-details') }}">
                             <i class="fa-solid fa-shield-halved"></i>
                             <span>Medical Details</span>
                         </a>
                     </li>
-                    <li class="{{ Request::is('change-password') ? 'active' : '' }}">
-                        <a href="{{ route('change-password') }}">
+                    <li class="{{ Request::is('patient/change-password') ? 'active' : '' }}">
+                        <a href="{{ route('patient.change-password') }}">
                             <i class="fa-solid fa-key"></i>
                             <span>Change Password</span>
                         </a>

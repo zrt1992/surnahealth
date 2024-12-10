@@ -26,7 +26,7 @@
         <div class="dashboard-widget">
             <nav class="dashboard-menu">
                 <ul>
-                    <li class="{{ Request::is('doctor-dashboard') ? 'active' : '' }}">
+                    <li class="{{ Request::is('doctor/dashboard') ? 'active' : '' }}">
                         <a href="{{route('doctor-dashboard')}}">
                             <i class="fa-solid fa-shapes"></i>
                             <span>Dashboard</span>
@@ -87,13 +87,13 @@
                             <span>Payout Settings</span>
                         </a>
                     </li>																																				 --}}
-                    {{-- <li class="{{ Request::is('chat-doctor') ? 'active' : '' }}">
+                    <li class="{{ Request::is('chat-doctor') ? 'active' : '' }}">
                         <a href="{{route('chat-doctor')}}">
                             <i class="fa-solid fa-comments"></i>
                             <span>Message</span>
                             <small class="unread-msg">7</small>
                         </a>
-                    </li> --}}
+                    </li>
                     {{-- <li class="{{ Request::is('doctor-profile-settings','doctor-awards-settings','doctor-business-settings','doctor-clinics-settings') ? 'active' : '' }}">
                         <a href="{{route('doctor-profile-settings')}}">
                             <i class="fa-solid fa-user-pen"></i>
@@ -113,8 +113,8 @@
                             <span>Social Media</span>
                         </a>
                     </li> --}}
-                    <li class="{{ Request::is('doctor-change-password') ? 'active' : '' }}">
-                        <a href="{{route('doctor-change-password')}}">
+                    <li class="{{ Request::is('doctor/doctor-change-password') ? 'active' : '' }}">
+                        <a href="{{route('doctor.doctor-change-password')}}">
                             <i class="fa-solid fa-key"></i>
                             <span>Change Password</span>
                         </a>

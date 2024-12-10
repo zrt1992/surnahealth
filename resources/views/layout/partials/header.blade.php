@@ -360,7 +360,7 @@
                                 <li><a href="{{ url('doctor-dashboard') }}">Doctor Dashboard</a></li>
                                 <li><a href="{{ url('appointments') }}">Appointments</a></li>
                                 <li><a href="{{ url('schedule-timings') }}">Schedule Timing</a></li>
-                                <li><a href="{{ url('my-patients') }}">Patients List</a></li>
+                                <li><a href="{{ url('doctor/my-patients') }}">Patients List</a></li>
                                 <li><a href="{{ url('patient-profile') }}">Patients Profile</a></li>
                                 <li><a href="{{ url('chat-doctor') }}">Chat</a></li>
                                 <li><a href="{{ url('invoices') }}">Invoices</a></li>
@@ -408,7 +408,7 @@
                                 <li><a href="{{ url('favourites') }}">Favourites</a></li>
                                 <li><a href="{{ url('chat') }}">Chat</a></li>
                                 <li><a href="{{ url('profile-settings') }}">Profile Settings</a></li>
-                                <li><a href="{{ url('change-password') }}">Change Password</a></li>
+                                <li><a href="{{ url('patient.change-password') }}">Change Password</a></li>
                             </ul>
                         </li>
                         <li class="has-submenu active">
@@ -652,14 +652,14 @@
                             'booking-success',
                             'booking',
                             'cart',
-                            'change-password',
+                            'patient.change-password',
                             'chat-doctor',
-                            'chat',
+                            'patient-chat',
                             'checkout',
                             'dependent',
                             'doctor-add-blog',
                             'doctor-blog',
-                            'doctor-change-password',
+                            'doctor.doctor-change-password',
                             'doctor-dashboard',
                             'doctor-pending-blog',
                             'doctor-profile-settings',
@@ -670,7 +670,7 @@
                             'invoices',
                             'medical-details',
                             'medical-records',
-                            'my-patients',
+                            'doctor.my-patients',
                             'orders-list',
                             'patient-accounts',
                             'patient-dashboard',
@@ -695,7 +695,7 @@
                             'edit-dependent',
                             'edit-prescription',
                             'membership-details',
-                            'doctor-request',
+                            'doctor-request.index',
                             'doctor-payment',
                             'doctor-specialities',
                             'doctor-appointments-grid',
@@ -758,14 +758,14 @@
                             'booking-success',
                             'booking',
                             'cart',
-                            'change-password',
+                            'patient.change-password',
                             'chat-doctor',
-                            'chat',
+                            'patient-chat',
                             'checkout',
                             'dependent',
                             'doctor-add-blog',
                             'doctor-blog',
-                            'doctor-change-password',
+                            'doctor.doctor-change-password',
                             'doctor-dashboard',
                             'doctor-pending-blog',
                             'doctor-profile-settings',
@@ -776,7 +776,7 @@
                             'invoices',
                             'medical-details',
                             'medical-records',
-                            'my-patients',
+                            'doctor.my-patients',
                             'orders-list',
                             'patient-accounts',
                             'patient-dashboard',
@@ -801,7 +801,7 @@
                             'edit-dependent',
                             'edit-prescription',
                             'membership-details',
-                            'doctor-request',
+                            'doctor-request.index',
                             'doctor-payment',
                             'doctor-specialities',
                             'doctor-appointment-start',
@@ -1083,7 +1083,7 @@
 {{--                        </ul>--}}
                     </li>
                     <li
-                        class="has-submenu {{ Request::is('doctor-request', 'available-timings', 'doctor-dashboard', 'appointments', 'schedule-timings', 'my-patients', 'patient-profile', 'chat-doctor', 'doctor-profile-settings', 'reviews', 'doctor-register', 'doctor-blog', 'doctor-add-blog', 'add-billing', 'add-prescription', 'doctor-pending-blog', 'edit-billing', 'edit-blog', 'edit-prescription', 'doctor-clinics-settings', 'doctor-cancelled-appointment', 'doctor-business-settings', 'doctor-awards-settings', 'doctor-appointment-start', 'doctor-appointments-grid', 'doctor-cancelled-appointment-2', 'doctor-completed-appointment', 'doctor-education-settings', 'doctor-experience-settings', 'doctor-insurance-settings', 'doctor-specialities', 'doctor-upcoming-appointment', 'social-media') ? 'active' : '' }}">
+                        class="has-submenu {{ Request::is('doctor-request', 'available-timings', 'doctor-dashboard', 'appointments', 'schedule-timings', 'doctor/my-patients', 'patient-profile', 'chat-doctor', 'doctor-profile-settings', 'reviews', 'doctor-register', 'doctor-blog', 'doctor-add-blog', 'add-billing', 'add-prescription', 'doctor-pending-blog', 'edit-billing', 'edit-blog', 'edit-prescription', 'doctor-clinics-settings', 'doctor-cancelled-appointment', 'doctor-business-settings', 'doctor-awards-settings', 'doctor-appointment-start', 'doctor-appointments-grid', 'doctor-cancelled-appointment-2', 'doctor-completed-appointment', 'doctor-education-settings', 'doctor-experience-settings', 'doctor-insurance-settings', 'doctor-specialities', 'doctor-upcoming-appointment', 'social-media') ? 'active' : '' }}">
                         @if(\Illuminate\Support\Facades\Auth::check())
                         @if(\Illuminate\Support\Facades\Auth::user()->hasRole('admin'))
                         <a href="{{ route('admin-dashboard') }}"> Dashboard
@@ -1109,8 +1109,8 @@
 {{--                            </li>--}}
 {{--                            <li class="{{ Request::is('available-timings') ? 'active' : '' }}"><a--}}
 {{--                                    href="{{ url('available-timings') }}">Available Timing</a></li>--}}
-{{--                            <li class="{{ Request::is('my-patients', 'edit-prescription') ? 'active' : '' }}"><a--}}
-{{--                                    href="{{ url('my-patients') }}">Patients List</a></li>--}}
+{{--                            <li class="{{ Request::is('doctor/my-patients', 'edit-prescription') ? 'active' : '' }}"><a--}}
+{{--                                    href="{{ url('doctor/my-patients') }}">Patients List</a></li>--}}
 {{--                            <li class="{{ Request::is('patient-profile', 'edit-billing') ? 'active' : '' }}"><a--}}
 {{--                                    href="{{ url('patient-profile') }}">Patients Profile</a></li>--}}
 {{--                            <li class="{{ Request::is('chat-doctor') ? 'active' : '' }}"><a--}}
@@ -1142,7 +1142,7 @@
 {{--                        </ul>--}}
                     </li>
 {{--                    <li--}}
-{{--                        class="has-submenu {{ Request::is('map-grid', 'map-list', 'search', 'search-2', 'doctor-profile', 'doctor-profile-2','booking', 'booking-2', 'checkout', 'booking-success', 'patient-dashboard', 'favourites', 'chat', 'profile-settings', 'change-password', 'add-dependent', 'dependent', 'edit-dependent', 'patient-upcoming-appointment') ? 'active' : '' }}">--}}
+{{--                        class="has-submenu {{ Request::is('map-grid', 'map-list', 'search', 'search-2', 'doctor-profile', 'doctor-profile-2','booking', 'booking-2', 'checkout', 'booking-success', 'patient-dashboard', 'favourites', 'patient-chat', 'profile-settings', 'patient.change-password', 'add-dependent', 'dependent', 'edit-dependent', 'patient-upcoming-appointment') ? 'active' : '' }}">--}}
 {{--                        <a href="javascript:void(0);">Patients <i class="fas fa-chevron-down"></i></a>--}}
 {{--                        <ul class="submenu">--}}
 {{--                            <li class="{{ Request::is('patient-dashboard') ? 'active' : '' }}"><a--}}
@@ -1194,8 +1194,8 @@
 {{--                                    href="{{ url('chat') }}">Chat</a></li>--}}
 {{--                            <li class="{{ Request::is('profile-settings') ? 'active' : '' }}"><a--}}
 {{--                                    href="{{ url('profile-settings') }}">ss</a></li>--}}
-{{--                            <li class="{{ Request::is('change-password') ? 'active' : '' }}"><a--}}
-{{--                                    href="{{ url('change-password') }}">Change Password</a></li>--}}
+{{--                            <li class="{{ Request::is('patient.change-password') ? 'active' : '' }}"><a--}}
+{{--                                    href="{{ url('patient.change-password') }}">Change Password</a></li>--}}
 {{--                        </ul>--}}
 {{--                    </li>--}}
 {{--                    <li--}}
@@ -1343,14 +1343,14 @@
                             'booking-success',
                             'booking',
                             'cart',
-                            'change-password',
+                            'patient.change-password',
                             'chat-doctor',
-                            'chat',
+                            'patient-chat',
                             'checkout',
                             'dependent',
                             'doctor-add-blog',
                             'doctor-blog',
-                            'doctor-change-password',
+                            'doctor.doctor-change-password',
                             'doctor-dashboard',
                             'doctor-pending-blog',
                             'doctor-profile-settings',
@@ -1361,7 +1361,7 @@
                             'invoices',
                             'medical-details',
                             'medical-records',
-                            'my-patients',
+                            'doctor.my-patients',
                             'orders-list',
                             'patient-accounts',
                             'patient-dashboard',
@@ -1386,7 +1386,7 @@
                             'edit-dependent',
                             'edit-prescription',
                             'membership-details',
-                            'doctor-request',
+                            'doctor-request.index',
                             'doctor-payment',
                             'doctor-specialities',
                             'doctor-appointment-start',
@@ -1463,14 +1463,14 @@
                             'booking-success',
                             'booking',
                             'cart',
-                            'change-password',
+                            'patient.change-password',
                             'chat-doctor',
-                            'chat',
+                            'patient-chat',
                             'checkout',
                             'dependent',
                             'doctor-add-blog',
                             'doctor-blog',
-                            'doctor-change-password',
+                            'doctor.doctor-change-password',
                             'doctor-dashboard',
                             'doctor-pending-blog',
                             'doctor-profile-settings',
@@ -1481,7 +1481,7 @@
                             'invoices',
                             'medical-details',
                             'medical-records',
-                            'my-patients',
+                            'doctor.my-patients',
                             'orders-list',
                             'patient-accounts',
                             'patient-dashboard',
@@ -1506,7 +1506,7 @@
                             'edit-dependent',
                             'edit-prescription',
                             'membership-details',
-                            'doctor-request',
+                            'doctor-request.index',
                             'doctor-payment',
                             'doctor-specialities',
                             'doctor-appointment-start',
@@ -1581,14 +1581,14 @@
                         'booking-success',
                         'booking',
                         'cart',
-                        'change-password',
+                        'patient.change-password',
                         'chat-doctor',
-                        'chat',
+                        'patient-chat',
                         'checkout',
                         'dependent',
                         'doctor-add-blog',
                         'doctor-blog',
-                        'doctor-change-password',
+                        'doctor.doctor-change-password',
                         'doctor-dashboard',
                         'doctor-pending-blog',
                         'doctor-profile-settings',
@@ -1599,7 +1599,7 @@
                         'invoices',
                         'medical-details',
                         'medical-records',
-                        'my-patients',
+                        'doctor.my-patients',
                         'orders-list',
                         'patient-accounts',
                         'patient-dashboard',
@@ -1624,7 +1624,7 @@
                         'edit-dependent',
                         'edit-prescription',
                         'membership-details',
-                        'doctor-request',
+                        'doctor-request.index',
                         'doctor-payment',
                         'doctor-specialities',
                         'doctor-appointment-start',
@@ -1839,14 +1839,14 @@
                         'booking-success',
                         'booking',
                         'cart',
-                        'change-password',
+                        'patient.change-password',
                         'chat-doctor',
-                        'chat',
+                        'patient-chat',
                         'checkout',
                         'dependent',
                         'doctor-add-blog',
                         'doctor-blog',
-                        'doctor-change-password',
+                        'doctor.doctor-change-password',
                         'doctor-dashboard',
                         'doctor-pending-blog',
                         'doctor-profile-settings',
@@ -1857,7 +1857,7 @@
                         'invoices',
                         'medical-details',
                         'medical-records',
-                        'my-patients',
+                        'doctor.my-patients',
                         'orders-list',
                         'patient-accounts',
                         'patient-dashboard',
@@ -1882,7 +1882,7 @@
                         'edit-dependent',
                         'edit-prescription',
                         'membership-details',
-                        'doctor-request',
+                        'doctor-request.index',
                         'doctor-payment',
                         'doctor-specialities',
                         'doctor-appointment-start',
@@ -2085,8 +2085,8 @@
                             'booking-success',
                             'booking',
                             'cart',
-                            'change-password',
-                            'chat',
+                            'patient.change-password',
+                            'patient-chat',
                             'checkout',
                             'dependent',
                             'doctor-profile',
@@ -2240,8 +2240,8 @@
                             'booking-success',
                             'booking',
                             'cart',
-                            'change-password',
-                            'chat',
+                            'patient.change-password',
+                            'patient-chat',
                             'checkout',
                             'dependent',
                             'doctor-profile',

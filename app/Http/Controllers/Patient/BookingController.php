@@ -4,11 +4,14 @@ namespace App\Http\Controllers\Patient;
 
 use App\Http\Controllers\Controller;
 use App\Interfaces\BookingRepositoryInterface;
+use App\Mail\Doctor\BookingAppointmentEmail;
+use App\Mail\Doctor\RegistrationEmail;
 use App\Models\Appointment;
 use App\Models\AppointmentRequests;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class BookingController extends Controller
 {
@@ -51,7 +54,18 @@ class BookingController extends Controller
 
         $validated['user_id'] = getAuthUser()->id;
         $data = $this->bookingRepository->create($validated);
-        
+        if ($data) {
+            $doctor = User::where('id',$request->doctor_id)->first();
+            $emailData = [
+                'subject' => 'Welcome to Our Platform',
+                'greeting' => 'Hello ' . $doctor->name,
+                'body' => 'You have new Booking Request!',
+                'actionText' => 'Appointment Request',
+                'actionURL' => url('/doctor-request'),
+                'thanks' => 'Thank you for choosing us!',
+            ];
+            Mail::to($doctor->email)->send(new BookingAppointmentEmail($emailData));
+        }
         // Return response (can redirect or send back success message)
        return back()->with('success', 'Your booking was successful!');
     }

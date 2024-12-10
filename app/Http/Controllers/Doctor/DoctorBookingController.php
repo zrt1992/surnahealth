@@ -4,12 +4,18 @@ namespace App\Http\Controllers\Doctor;
 
 use App\Http\Controllers\Controller;
 use App\Interfaces\BookingRepositoryInterface;
+
+
+use App\Mail\Doctor\BookingAppointmentEmail;
+use App\Mail\Patient\AppointmentApprovedEmail;
+use App\Mail\Patient\AppointmentRejectedEmail;
 use App\Models\Appointment;
 use App\Models\AppointmentRequests;
 use App\Models\User;
 use App\Services\GoogleClientService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class DoctorBookingController extends Controller
 {
@@ -84,7 +90,23 @@ class DoctorBookingController extends Controller
             'google_meet_link' => $event->getHangoutLink(),
             'doctor_id' => getAuthUser()->id,
             'user_id' => $appointment->user->id,
+            'status' => 'approved',
+            'slot_id' => $appointment->slot_id,
+
         ]);
+
+        if ($appointment) {
+            $patient = User::where('id',$appointment->user_id)->first();
+            $emailData = [
+                'subject' => 'Appointment Approved',
+                'greeting' => 'Hello ' . $patient->name,
+                'body' => 'Your appointment have approved!',
+                'actionText' => 'Appointments',
+                'actionURL' => url('/patient-appointments'),
+                'thanks' => 'Thank you for choosing us!',
+            ];
+            Mail::to($patient->email)->send(new AppointmentApprovedEmail($emailData));
+        }
 
         if ($appointment) {
             AppointmentRequests::destroy($id);
@@ -102,6 +124,22 @@ class DoctorBookingController extends Controller
     {
         $data = $request->all();
         $data = $this->bookingRepository->reject($data);
+
+        if ($data) {
+            $appointment = AppointmentRequests::where('id',$request->appointment_request_id)->first();
+            $patient = User::where('id',$appointment->user_id)->first();
+
+            $emailData = [
+                'subject' => 'Appointment rejected',
+                'greeting' => 'Hello ' . $patient->name,
+                'body' => 'Your appointment have been rejected!',
+                'actionText' => 'Appointments',
+                'actionURL' => url('/patient-appointments'),
+                'thanks' => 'Thank you for choosing us!',
+            ];
+            Mail::to($patient->email)->send(new AppointmentRejectedEmail($emailData));
+        }
+
         return back()->with(['success', 'data' => $data]);
         // return response()->json(['success' => true, 'message' => 'Appointment rejected successfully']);
     }

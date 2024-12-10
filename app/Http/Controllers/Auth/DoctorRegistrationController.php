@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\Doctor\RegistrationEmail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Storage;
 use App\Traits\FileUpload;
+use Illuminate\Support\Facades\Mail;
 
 class DoctorRegistrationController extends Controller
 {
@@ -23,7 +25,7 @@ class DoctorRegistrationController extends Controller
             // 'password' => ['required'],
 
         ]);
-      
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -36,26 +38,26 @@ class DoctorRegistrationController extends Controller
     }
 
     public function storeStep1(Request $request)
-{
-    // Validate the request
-    $request->validate([
-        'profile_image' => 'required|image|max:2048',
-    ]);
+    {
+        // Validate the request
+        $request->validate([
+            'profile_image' => 'required|image|max:2048',
+        ]);
 
-    // Handle file upload
-    $file = $request->file('profile_image');
-    $meta = $this->uploadImage($file, 'profile_images');
-    $full_path = isset($meta['dirname'], $meta['basename']) ? $meta['dirname'] . '/' . $meta['basename'] : null;
+        // Handle file upload
+        $file = $request->file('profile_image');
+        $meta = $this->uploadImage($file, 'profile_images');
+        $full_path = isset($meta['dirname'], $meta['basename']) ? $meta['dirname'] . '/' . $meta['basename'] : null;
 
-    // Update the authenticated user's record
-    $authUser = auth()->user();
-    $authUser->update([
-        'profile_image' => $full_path,
-        'registration_step' => "+2",
-    ]);
+        // Update the authenticated user's record
+        $authUser = auth()->user();
+        $authUser->update([
+            'profile_image' => $full_path,
+            'registration_step' => "+2",
+        ]);
 
-    return redirect()->route('doctor-register-step2');
-}
+        return redirect()->route('doctor-register-step2');
+    }
 
 
     public function storeStep2(Request $request)
@@ -121,9 +123,21 @@ class DoctorRegistrationController extends Controller
         $data = $request->all();
         $data['registration_step'] = "completed";
         $authUser = auth()->user();
-        $authUser->update($data);
-    
+        $registration = $authUser->update($data);
+
         session()->forget('registration');
+        if ($registration) {
+            $emailData = [
+                'subject' => 'Welcome to Our Platform',
+                'greeting' => 'Hello ' . $authUser->name,
+                'body' => 'Thank you for signing up. We are excited to have you onboard!',
+                'actionText' => 'Get Started',
+                'actionURL' => url('/doctor-dashboard'),
+                'thanks' => 'Thank you for choosing us!',
+            ];
+            Mail::to($authUser->email)->send(new RegistrationEmail($emailData));
+        }
+
 
         return redirect()->route('doctor-dashboard')->with('success', 'Registration completed!');
     }

@@ -21,28 +21,39 @@
                     <div class="dashboard-header">
                         <h3>Change Password</h3>
                     </div>
-                    <form action="doctor-change-password">
+                    <form action="{{ route('doctor.update-password') }}" method="POST">
+                        @csrf
                         <div class="card pass-card">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="input-block input-block-new">
                                             <label class="form-label">Old Password</label>
-                                            <input type="password" class="form-control">
+                                            <input type="password" id="old_password" name="old_password"
+                                                class="form-control" placeholder="Enter your old password" required>
+                                            @error('old_password')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="input-block input-block-new">
                                             <label class="form-label">New Password</label>
                                             <div class="pass-group">
-                                                <input type="password" class="form-control pass-input">
+                                                <input type="password" id="new_password" name="password" class="form-control pass-input">
                                                 <span class="feather-eye-off toggle-password"></span>
                                             </div>
+                                            @error('password')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                         </div>
                                         <div class="input-block input-block-new mb-0">
                                             <label class="form-label">Confirm Password</label>
                                             <div class="pass-group">
-                                                <input type="password" class="form-control pass-input-sub">
+                                                <input type="password" id="password_confirmation" name="password_confirmation" class="form-control pass-input-sub">
                                                 <span class="feather-eye-off toggle-password-sub"></span>
                                             </div>
+                                            @error('password_confirmation')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                         </div>
                                     </div>
                                 </div>
