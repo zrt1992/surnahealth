@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\MyEvent;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Doctor\AppointmentController;
@@ -33,6 +34,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CheckRegistrationStep;
 use Illuminate\Support\Facades\Mail;
+use Pusher\Pusher;
 
 Route::get('/', function () {
     //  dd(\Illuminate\Support\Facades\Auth::user()->getRoleNames()->first());
@@ -893,5 +895,24 @@ Route::get('/env-check', function () {
     ];
 });
 
+
+Route::get('/chat-testing', function () {
+    return view('chat.chat');
+
+})->name('chat-testing');
+Route::get('/send-test-event', function () {
+    $message = [
+        'from' => 'User A',
+        'to' => 'User B',
+        'message' => 'Test message!',
+    ];
+
+    // Trigger the event using MyEvent
+    event(new App\Events\MyEvent(['from' => 'User Aa', 'to' => 'User Ba', 'message' => 'Hello from Tinkerab!']));
+
+    // event(new MyEvent('hello world'));
+
+    return 'Test event sent!';
+});
 
 require __DIR__ . '/auth.php';
