@@ -9,14 +9,16 @@ class DoctorClinic extends Model
 {
     use HasFactory;
 
-    protected $fillable=[
+    protected $fillable = [
         'doctor_id',
         'clinic_name',
         'location',
-        'address'
+        'address',
+        'hospital_clinic_affiliation',
     ];
 
-    public function gallery(){
-        return $this->hasMany(DoctorClinicGallery::class,'clinic_id','id');
+    public function gallery()
+    {
+        return $this->hasMany(DoctorClinicGallery::class, 'clinic_id', 'id');
     }
 }

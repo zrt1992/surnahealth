@@ -340,8 +340,8 @@
 
                                             <div class="form-wrap">
                                                 <label class="col-form-label">Appointment Fees ($)</label>
-                                                <input type="text" class="form-control" value=""
-                                                    name="appointment_fees">
+                                                <input type="text" class="form-control" value="{{ $auth->consultation_fees ?? '' }}"
+                                                    name="consultation_fees">
                                             </div>
                                             <div class="modal-btn text-end">
                                                 <a href="#" class="btn btn-gray" data-bs-toggle="modal"
@@ -674,8 +674,8 @@
 
                                             <div class="form-wrap">
                                                 <label class="col-form-label">Appointment Fees ($)</label>
-                                                <input type="text" class="form-control" value=""
-                                                    name="appointment_fees">
+                                                <input type="text" class="form-control" value="{{ $auth->consultation_fees ?? '' }}"
+                                                    name="consultation_fees">
                                             </div>
                                             <div class="modal-btn text-end">
                                                 <a href="#" class="btn btn-gray" data-bs-toggle="modal"

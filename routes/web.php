@@ -440,14 +440,17 @@ Route::get('/doctor-profile', function () {
     return view('doctor-profile');
 })->name('doctor-profile');
 Route::get('/doctor-register-step1', function () {
-    return view('doctor-register-step1');
+    return view('auth.doctor.doctor-register-step1');
 })->name('doctor-register-step1');
 Route::get('/doctor-register-step2', function () {
-    return view('doctor-register-step2');
+    return view('auth.doctor.doctor-register-step2');
 })->name('doctor-register-step2');
 Route::get('/doctor-register-step3', function () {
-    return view('doctor-register-step3');
+    return view('auth.doctor.doctor-register-step3');
 })->name('doctor-register-step3');
+Route::get('/doctor-register-step4', function () {
+    return view('auth.doctor.doctor-register-step4');
+})->name('doctor-register-step4');
 Route::get('/doctor-register', function () {
     return view('doctor-register');
 })->name('doctor-register');

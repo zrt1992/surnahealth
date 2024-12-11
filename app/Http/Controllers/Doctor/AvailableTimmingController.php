@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Interfaces\AvailableTimmingRepositoryInterface;
 use App\Models\AvailableTimming;
 use App\Models\Specialization;
+use App\Models\User;
 use App\Repositories\AvailableTimmingRepository;
 use Illuminate\Http\Request;
 
@@ -115,12 +116,15 @@ class AvailableTimmingController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'appointment_fees' => 'required',
+            'consultation_fees' => 'required',
         ]);
 
-        $input = $request->all();
+        $input = $request->except('consultation_fees');
         $doctor = $this->AvailableTimmingRepository->update($input);
         if ($doctor) {
+
+            $updateConsultationFees = User::where('id', auth()->user()->id)->update(['consultation_fees' => $request->consultation_fees]);
+        
             return redirect()->route('available-timings')->with('success', 'Available timming updated successfully!');
         }
 

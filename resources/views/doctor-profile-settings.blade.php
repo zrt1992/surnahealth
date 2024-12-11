@@ -160,8 +160,16 @@
                                         @enderror
                                     </div>
                                 </div>
-                    
-                                <div class="col-lg-12">
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="form-wrap">
+                                        <label class="col-form-label">Consultation fees <span class="text-danger">*</span></label>
+                                        <input type="text" name="consultation_fees" class="form-control" value="{{ old('consultation_fees', $auth->consultation_fees) }}">
+                                        @error('consultation_fees')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-lg-8">
                                     <div class="form-wrap">
                                         <label class="col-form-label">Known Languages <span class="text-danger">*</span></label>
                                         <div class="input-block input-block-new mb-0">

@@ -343,12 +343,12 @@
 																			<i class="fa-solid fa-file-image"></i>
 																		</div>
 																		<div class="upload-img">
-																			<h5>Logo</h5>
+																			<h5>Certifications</h5>
 																			<div class="imgs-load d-flex align-items-center">
 																				<div class="change-photo">
 																					Upload New
 																					<input type="file"
-																						name="logo[]" class="upload">
+																						name="certifications[]" class="upload">
 																				</div>
 																				<a href="#"
 																					class="upload-remove">Remove</a>
@@ -361,79 +361,26 @@
 															</div>
 														<div class="col-md-6">
 																<div class="form-wrap">
-																	<label class="col-form-label">Name of the institution</label>
-																	<input type="text" name="name_of_institution[]"
+																	<label class="col-form-label">Medical School</label>
+																	<input type="text" name="medical_school[]"
 																		class="form-control">
-																	@error('name_of_institution')
+																	@error('medical_school')
 																		<div class="text-danger">{{ $message }}</div>
 																	@enderror
 																</div>
 															</div>
 														<div class="col-md-6">
 																<div class="form-wrap">
-																	<label class="col-form-label">Course <span
+																	<label class="col-form-label">Residency <span
 																			class="text-danger">*</span></label>
-																	<input type="text" name="course[]"
+																	<input type="text" name="residency[]"
 																		class="form-control">
-																	@error('course')
+																	@error('residency')
 																		<div class="text-danger">{{ $message }}</div>
 																	@enderror
 																</div>
 															</div>
-															
-															<div class="col-lg-4 col-md-6">
-																<div class="form-wrap">
-																	<label class="col-form-label">Start Date <span
-																			class="text-danger">*</span></label>
-																	<div class="form-icon">
-																		<input type="text" name="start_date[]"
-																			class="form-control datetimepicker">
-																		<span class="icon"><i
-																				class="fa-regular fa-calendar-days"></i></span>
-																		@error('start_date')
-																			<div class="text-danger">{{ $message }}</div>
-																		@enderror
-																	</div>
-																</div>
-															</div>
-															<div class="col-lg-4 col-md-6">
-																<div class="form-wrap">
-																	<label class="col-form-label">End Date <span
-																			class="text-danger">*</span></label>
-																	<div class="form-icon">
-																		<input type="text" name="end_date[]"
-																			class="form-control datetimepicker">
-																		<span class="icon"><i
-																				class="fa-regular fa-calendar-days"></i></span>
-																		@error('end_date')
-																			<div class="text-danger">{{ $message }}</div>
-																		@enderror
-																	</div>
-																</div>
-															</div>
-															<div class="col-lg-4 col-md-6">
-																<div class="form-wrap">
-																	
-																	
-																	<label class="col-form-label">No of Years <span class="text-danger">*</span></label>
-																	<input type="text" name="no_of_years[]"
-																		class="form-control">
-																	@error('no_of_years')
-																		<div class="text-danger">{{ $message }}</div>
-																	@enderror
-																</div>
-															</div>
-															<div class="col-lg-12">
-																<div class="form-wrap">
-																	<label class="col-form-label">Description <span
-																			class="text-danger">*</span></label>
-																	<textarea name="description[]" class="form-control" rows="3"></textarea>
-																	@error('description')
-																		<div class="text-danger">{{ $message }}</div>
-																	@enderror
-																</div>
-															</div>
-															
+																
 														</div>
 													</div>
 													<div class="text-end">

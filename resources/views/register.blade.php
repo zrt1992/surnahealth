@@ -36,6 +36,13 @@
                                     @enderror
                                     </div>
                                     <div class="mb-3 form-focus">
+                                        <input type="text" class="form-control floating" name="phone" id="number">
+                                        <label class="focus-label">Phone</label>
+                                        @error('phone')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                    </div>
+                                    <div class="mb-3 form-focus">
                                         <label class="focus-label">Create Password</label>
                                         <div class="pass-group">
                                             <input class="form-control pass-input floating" type="password" name="password"
