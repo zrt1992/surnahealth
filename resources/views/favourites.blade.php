@@ -20,7 +20,7 @@
             <div class="col-lg-8 col-xl-9">
 
                 <div class="dashboard-header">
-                    <h3>Favourites</h3>
+                    <h3>Doctors</h3>
                     <ul class="header-list-btns">
                         <li>
                             <div class="input-block dash-search-input">

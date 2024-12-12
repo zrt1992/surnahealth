@@ -13,12 +13,18 @@ return new class extends Migration
     {
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
-            $table->string('title'); // Meeting title
-            $table->text('description'); // Meeting description
-            $table->dateTime('start_date'); // Start date and time
-            $table->dateTime('end_date'); // End date and time
-            $table->string('email'); // Attendee's email
+            $table->unsignedBigInteger('user_id')->nullable();  
+            $table->unsignedBigInteger('doctor_id')->nullable(); 
+            $table->string('title')->nullable(); // Meeting title
+            $table->text('description')->nullable(); // Meeting description
+            $table->dateTime('start_date')->nullable(); // Start date and time
+            $table->dateTime('end_date')->nullable(); // End date and time
+            $table->string('email')->nullable(); // Attendee's email
             $table->string('google_meet_link')->nullable();
+            $table->string('slot_id')->nullable();
+            $table->string('status')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null'); 
+            $table->foreign('doctor_id')->references('id')->on('users')->onDelete('set null');  
             $table->timestamps();
         });
     }

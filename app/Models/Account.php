@@ -17,6 +17,8 @@ class Account extends Model
        'account_name',
        'stripe',
        'paypal',
+       'credit_card',
+       'mobile_money',
        'default',
        'status',
     ];

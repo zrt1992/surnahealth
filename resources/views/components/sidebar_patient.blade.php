@@ -35,7 +35,7 @@
                     <li class="{{ Request::is('patient/favourites') ? 'active' : '' }}">
                         <a href="{{ route('favourites') }}">
                             <i class="fa-solid fa-user-doctor"></i>
-                            <span>Favourites</span>
+                            <span>Doctors</span>
                         </a>
                     </li>
                     <li class="{{ Request::is('patient/dependent') ? 'active' : '' }}">

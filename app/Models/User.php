@@ -41,6 +41,7 @@ class User extends Authenticatable
         'consultation_fees',
         'medical_licence_number',
         'medical_licence',
+        'referral_code',
     ];
 
     /**

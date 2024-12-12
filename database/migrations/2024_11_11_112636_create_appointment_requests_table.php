@@ -18,6 +18,8 @@ return new class extends Migration
             $table->foreignId('slot_id')->nullable()->constrained('available_timmings')->onDelete('set null');
             $table->string('booking_date')->nullable();
             $table->string('status')->nullable();
+            $table->string('cancel_reason')->nullable();
+            $table->string('cancel_with')->nullable();
             $table->timestamps();
         });
     }

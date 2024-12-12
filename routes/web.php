@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\Auth\DoctorRegistrationController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Doctor\AppointmentController;
 use App\Http\Controllers\Doctor\AvailableTimmingController;
@@ -414,19 +415,19 @@ Route::get('/doctor-blog', function () {
 
 
 Route::get('/patient-register-step1', function () {
-    return view('patient.patient-register-step1');
+    return view('auth.patient.patient-register-step1');
 })->name('patient-register-step1');
 Route::get('/patient-register-step2', function () {
-    return view('patient.patient-register-step2');
+    return view('auth.patient.patient-register-step2');
 })->name('patient-register-step2');
 Route::get('/patient-register-step3', function () {
-    return view('patient.patient-register-step3');
+    return view('auth.patient.patient-register-step3');
 })->name('patient-register-step3');
 Route::get('/patient-register-step4', function () {
-    return view('patient.patient-register-step4');
+    return view('auth.patient.patient-register-step4');
 })->name('patient-register-step4');
 Route::get('/patient-register-step5', function () {
-    return view('patient.patient-register-step5');
+    return view('auth.patient.patient-register-step5');
 })->name('patient-register-step5');
 Route::get('/patient-signup', function () {
     return view('patient.patient-signup');
@@ -439,18 +440,23 @@ Route::resource('/doctor-profile-settings', DoctorController::class);
 Route::get('/doctor-profile', function () {
     return view('doctor-profile');
 })->name('doctor-profile');
-Route::get('/doctor-register-step1', function () {
-    return view('auth.doctor.doctor-register-step1');
-})->name('doctor-register-step1');
-Route::get('/doctor-register-step2', function () {
-    return view('auth.doctor.doctor-register-step2');
-})->name('doctor-register-step2');
-Route::get('/doctor-register-step3', function () {
-    return view('auth.doctor.doctor-register-step3');
-})->name('doctor-register-step3');
-Route::get('/doctor-register-step4', function () {
-    return view('auth.doctor.doctor-register-step4');
-})->name('doctor-register-step4');
+// Route::get('/doctor-register-step1', function () {
+//     return view('auth.doctor.doctor-register-step1');
+// })->name('doctor-register-step1');
+Route::get('/doctor-register-step1', [DoctorRegistrationController::class, 'step1'])->name('doctor-register-step1');
+Route::get('/doctor-register-step2', [DoctorRegistrationController::class, 'step2'])->name('doctor-register-step2');
+Route::get('/doctor-register-step3', [DoctorRegistrationController::class, 'step3'])->name('doctor-register-step3');
+Route::get('/doctor-register-step4', [DoctorRegistrationController::class, 'step4'])->name('doctor-register-step4');
+
+// Route::get('/doctor-register-step2', function () {
+//     return view('auth.doctor.doctor-register-step2');
+// })->name('doctor-register-step2');
+// Route::get('/doctor-register-step3', function () {
+//     return view('auth.doctor.doctor-register-step3');
+// })->name('doctor-register-step3');
+// Route::get('/doctor-register-step4', function () {
+//     return view('auth.doctor.doctor-register-step4');
+// })->name('doctor-register-step4');
 Route::get('/doctor-register', function () {
     return view('doctor-register');
 })->name('doctor-register');

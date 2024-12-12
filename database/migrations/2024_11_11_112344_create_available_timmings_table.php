@@ -21,11 +21,13 @@ return new class extends Migration
             $table->integer('appointment_intervals')->nullable();
             $table->integer('appointment_duration')->nullable();
            $table->string('availability_day')->nullable();
+           $table->decimal('appointment_fees', 8, 2)->nullable();
            $table->string('availability_fees')->nullable();
             $table->integer('space_1')->default(0);
             $table->integer('space_2')->default(0);
             $table->integer('space_3')->default(0);
             $table->integer('space_4')->default(0);
+           
             $table->timestamps();
         });
         

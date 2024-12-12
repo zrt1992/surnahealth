@@ -10,6 +10,7 @@ use App\Models\DoctorBusinessHour;
 use App\Models\DoctorClinic;
 use App\Models\DoctorEducation;
 use App\Models\DoctorExperience;
+use App\Models\Specialization;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,6 +23,28 @@ use Illuminate\Support\Facades\Mail;
 class DoctorRegistrationController extends Controller
 {
     use FileUpload;
+
+    public function step1()
+    {
+        return view('auth.doctor.doctor-register-step1');
+    }
+
+    public function step2()
+    {
+        $specializations = Specialization::all(); 
+        return view('auth.doctor.doctor-register-step2', get_defined_vars());
+    }
+
+    public function step3()
+    {
+        return view('auth.doctor.doctor-register-step3');
+    }
+
+    public function step4()
+    {
+        return view('auth.doctor.doctor-register-step4');
+    }
+
     public function store(Request $request)
     {
         $result = $request->validate([
@@ -75,7 +98,7 @@ class DoctorRegistrationController extends Controller
             'specialization' => 'required|string|max:255',
             'medical_school' => 'required',
             'residency' => 'required',
-            'certifications' => 'required',
+            'certifications' => 'required|image|max:2048',
         ]);
 
 

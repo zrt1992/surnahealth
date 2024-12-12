@@ -20,15 +20,13 @@ class MedicalDetail extends Model
         'fbc',
         'bp',
         'end_date',
-        'allergies',
         'glucose',
         'pregnant',
         'preg_term',
-        'conditions',
-        'cancer',
-        'medicine',
-        'medicine_name',
-        'dosage',
+        'existing_medical_conditions',
+        'medications_currently_using',
+        'primarly_health_concern',
+       
     ];
 
     public function user()
