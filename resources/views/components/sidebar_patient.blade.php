@@ -26,28 +26,35 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
-                    <li class="{{ Request::is('patient-appointments','patient-upcoming-appointments','patient-completed-appointments','patient-cancelled-appointments','patient-appointments-grid','patient-appointment-details','patient-upcoming-appointment','patient-completed-appointment','patient-cancelled-appointment') ? 'active' : '' }}">
-                        <a href="{{ route('patient-appointments') }}">
-                            <i class="fa-solid fa-calendar-days"></i>
-                            <span>My Appointments</span>
-                        </a>
-                    </li>
                     <li class="{{ Request::is('patient/favourites') ? 'active' : '' }}">
                         <a href="{{ route('favourites') }}">
                             <i class="fa-solid fa-user-doctor"></i>
                             <span>Doctors</span>
                         </a>
                     </li>
-                    <li class="{{ Request::is('patient/dependent') ? 'active' : '' }}">
+                    <li class="{{ Request::is('patient-appointments','patient-upcoming-appointments','patient-completed-appointments','patient-cancelled-appointments','patient-appointments-grid','patient-appointment-details','patient-upcoming-appointment','patient-completed-appointment','patient-cancelled-appointment') ? 'active' : '' }}">
+                        <a href="{{ route('patient-appointments') }}">
+                            <i class="fa-solid fa-calendar-days"></i>
+                            <span>My Appointments</span>
+                        </a>
+                    </li>
+                   
+                    {{-- <li class="{{ Request::is('patient/dependent') ? 'active' : '' }}">
                         <a href="{{ route('dependent') }}">
                             <i class="fa-solid fa-user-plus"></i>
                             <span>Dependants</span>
                         </a>
-                    </li>
-                    <li class="{{ Request::is('patient/medical-records') ? 'active' : '' }}">
-                        <a href="{{ route('medical-records') }}">
+                    </li> --}}
+                    <li class="{{ Request::is('patient-prescription') ? 'active' : '' }}">
+                        <a href="{{ route('patient-prescription') }}">
                             <i class="fa-solid fa-money-bill-1"></i>
-                            <span>Add Medical Records</span>
+                            <span>Presciptions</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="#">
+                            <i class="fa-solid fa-money-bill-1"></i>
+                            <span>Health Tracker</span>
                         </a>
                     </li>
                     {{-- <li class="{{ Request::is('patient-accounts') ? 'active' : '' }}">
@@ -66,7 +73,7 @@
                         <a href="{{ route('patient-chat') }}">
                             <i class="fa-solid fa-comments"></i>
                             <span>Message</span>
-                            <small class="unread-msg">7</small>
+                            <small class="unread-msg">0</small>
                         </a>
                     </li>
                     <li class="{{ Request::is('patient/profile-settings') ? 'active' : '' }}">
@@ -75,16 +82,22 @@
                             <span>Profile Settings</span>
                         </a>
                     </li>
-                    <li class="{{ Request::is('patient/medical-details') ? 'active' : '' }}">
+                    {{-- <li class="{{ Request::is('patient/medical-details') ? 'active' : '' }}">
                         <a href="{{ route('medical-details') }}">
                             <i class="fa-solid fa-shield-halved"></i>
                             <span>Medical Details</span>
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="{{ Request::is('patient/change-password') ? 'active' : '' }}">
                         <a href="{{ route('patient.change-password') }}">
                             <i class="fa-solid fa-key"></i>
-                            <span>Change Password</span>
+                            <span>Setting</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="#">
+                            <i class="fa-solid fa-key"></i>
+                            <span>Help & Support</span>
                         </a>
                     </li>
                     

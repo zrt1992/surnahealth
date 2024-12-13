@@ -21,14 +21,14 @@
 
                 <div class="col-lg-8 col-xl-9">
                     <div class="dashboard-header">
-                        <h3>Dashboards</h3>
+                        <h3>Dashboard</h3>
                     </div>
                     <div class="row">
-                        <div class="col-xl-8 d-flex">
+                        <div class="col-xl-7 d-flex">
                             <div class="dashboard-card w-100">
                                 <div class="dashboard-card-head">
                                     <div class="header-title">
-                                        <h5>Health Recordss</h5>
+                                        <h5>Health Records</h5>
                                     </div>
                                     <div class="dropdown header-dropdown">
                                         <a class="dropdown-toggle" data-bs-toggle="dropdown" href="javascript:void(0);">
@@ -126,84 +126,6 @@
 
                             </div>
                         </div>
-                        <div class="col-xl-4 d-flex">
-                            <div class="favourites-dashboard w-100">
-                                <div class="book-appointment-head">
-                                    <h3><span>Book a new</span>Appointment</h3>
-                                    <span class="add-icon"><a href="#"><i
-                                                class="fa-solid fa-circle-plus"></i></a></span>
-                                </div>
-                                <div class="dashboard-card w-100">
-                                    <div class="dashboard-card-head">
-                                        <div class="header-title">
-                                            <h5>Favourites</h5>
-                                        </div>
-                                        <div class="card-view-link">
-                                            <a href="{{ url('favourites') }}">View All</a>
-                                        </div>
-                                    </div>
-                                    <div class="dashboard-card-body">
-                                        <div class="doctor-fav-list">
-                                            <div class="doctor-info-profile">
-                                                <a href="#" class="table-avatar">
-                                                    <img src="{{ URL::asset('/assets/img/doctors-dashboard/doctor-profile-img.jpg') }}"
-                                                        alt="Img">
-                                                </a>
-                                                <div class="doctor-name-info">
-                                                    <h5><a href="#">Dr. Edalin</a></h5>
-                                                    <span>Endodontists</span>
-                                                </div>
-                                            </div>
-                                            <a href="#" class="cal-plus-icon"><i
-                                                    class="fa-solid fa-calendar-plus"></i></a>
-                                        </div>
-                                        <div class="doctor-fav-list">
-                                            <div class="doctor-info-profile">
-                                                <a href="#" class="table-avatar">
-                                                    <img src="{{ URL::asset('/assets/img/doctors/doctor-thumb-11.jpg') }}"
-                                                        alt="Img">
-                                                </a>
-                                                <div class="doctor-name-info">
-                                                    <h5><a href="#">Dr. Maloney</a></h5>
-                                                    <span>Cardiologist</span>
-                                                </div>
-                                            </div>
-                                            <a href="#" class="cal-plus-icon"><i
-                                                    class="fa-solid fa-calendar-plus"></i></a>
-                                        </div>
-                                        <div class="doctor-fav-list">
-                                            <div class="doctor-info-profile">
-                                                <a href="#" class="table-avatar">
-                                                    <img src="{{ URL::asset('/assets/img/doctors/doctor-14.jpg') }}"
-                                                        alt="Img">
-                                                </a>
-                                                <div class="doctor-name-info">
-                                                    <h5><a href="#">Dr. Wayne </a></h5>
-                                                    <span>Dental Specialist</span>
-                                                </div>
-                                            </div>
-                                            <a href="#" class="cal-plus-icon"><i
-                                                    class="fa-solid fa-calendar-plus"></i></a>
-                                        </div>
-                                        <div class="doctor-fav-list">
-                                            <div class="doctor-info-profile">
-                                                <a href="#" class="table-avatar">
-                                                    <img src="{{ URL::asset('/assets/img/doctors/doctor-15.jpg') }}"
-                                                        alt="Img">
-                                                </a>
-                                                <div class="doctor-name-info">
-                                                    <h5><a href="#">Dr. Marla</a></h5>
-                                                    <span>Endodontists</span>
-                                                </div>
-                                            </div>
-                                            <a href="#" class="cal-plus-icon"><i
-                                                    class="fa-solid fa-calendar-plus"></i></a>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
                         <div class="col-xl-5 d-flex">
                             <div class="dashboard-main-col w-100">
                                 <div class="dashboard-card w-100">
@@ -274,8 +196,8 @@
                                                     <p><i class="fa-solid fa-clock"></i>21 Mar 2024 - 10:30 PM </p>
                                                 </div>
                                                 <div class="card-btns">
-                                                    <a href="{{ url('chat') }}" class="btn btn-gray"><i
-                                                            class="fa-solid fa-comment-dots"></i>Chat Now</a>
+                                                    {{-- <a href="{{ url('chat') }}" class="btn btn-gray"><i
+                                                            class="fa-solid fa-comment-dots"></i>Chat Now</a> --}}
                                                     <a href="{{ url('patient-appointments') }}"
                                                         class="btn btn-outline-primary"><i
                                                             class="fa-solid fa-calendar-check"></i>Attend</a>
@@ -300,8 +222,8 @@
                                                     <p><i class="fa-solid fa-clock"></i>22 Mar 2024 - 10:30 PM </p>
                                                 </div>
                                                 <div class="card-btns">
-                                                    <a href="{{ url('chat') }}" class="btn btn-gray"><i
-                                                            class="fa-solid fa-comment-dots"></i>Chat Now</a>
+                                                    {{-- <a href="{{ url('chat') }}" class="btn btn-gray"><i
+                                                            class="fa-solid fa-comment-dots"></i>Chat Now</a> --}}
                                                     <a href="{{ url('patient-appointments') }}"
                                                         class="btn btn-outline-primary"><i
                                                             class="fa-solid fa-calendar-check"></i>Attend</a>
@@ -311,7 +233,7 @@
                                     </div>
 
                                 </div>
-                                <div class="dashboard-card w-100">
+                                {{-- <div class="dashboard-card w-100">
                                     <div class="dashboard-card-head">
                                         <div class="header-title">
                                             <h5>Notifications</h5>
@@ -405,10 +327,89 @@
                                         </div>
                                     </div>
 
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
-                        <div class="col-xl-7 d-flex">
+                        {{-- <div class="col-xl-4 d-flex">
+                            <div class="favourites-dashboard w-100">
+                                <div class="book-appointment-head">
+                                    <h3><span>Book a new</span>Appointment</h3>
+                                    <span class="add-icon"><a href="#"><i
+                                                class="fa-solid fa-circle-plus"></i></a></span>
+                                </div>
+                                <div class="dashboard-card w-100">
+                                    <div class="dashboard-card-head">
+                                        <div class="header-title">
+                                            <h5>Favourites</h5>
+                                        </div>
+                                        <div class="card-view-link">
+                                            <a href="{{ url('favourites') }}">View All</a>
+                                        </div>
+                                    </div>
+                                    <div class="dashboard-card-body">
+                                        <div class="doctor-fav-list">
+                                            <div class="doctor-info-profile">
+                                                <a href="#" class="table-avatar">
+                                                    <img src="{{ URL::asset('/assets/img/doctors-dashboard/doctor-profile-img.jpg') }}"
+                                                        alt="Img">
+                                                </a>
+                                                <div class="doctor-name-info">
+                                                    <h5><a href="#">Dr. Edalin</a></h5>
+                                                    <span>Endodontists</span>
+                                                </div>
+                                            </div>
+                                            <a href="#" class="cal-plus-icon"><i
+                                                    class="fa-solid fa-calendar-plus"></i></a>
+                                        </div>
+                                        <div class="doctor-fav-list">
+                                            <div class="doctor-info-profile">
+                                                <a href="#" class="table-avatar">
+                                                    <img src="{{ URL::asset('/assets/img/doctors/doctor-thumb-11.jpg') }}"
+                                                        alt="Img">
+                                                </a>
+                                                <div class="doctor-name-info">
+                                                    <h5><a href="#">Dr. Maloney</a></h5>
+                                                    <span>Cardiologist</span>
+                                                </div>
+                                            </div>
+                                            <a href="#" class="cal-plus-icon"><i
+                                                    class="fa-solid fa-calendar-plus"></i></a>
+                                        </div>
+                                        <div class="doctor-fav-list">
+                                            <div class="doctor-info-profile">
+                                                <a href="#" class="table-avatar">
+                                                    <img src="{{ URL::asset('/assets/img/doctors/doctor-14.jpg') }}"
+                                                        alt="Img">
+                                                </a>
+                                                <div class="doctor-name-info">
+                                                    <h5><a href="#">Dr. Wayne </a></h5>
+                                                    <span>Dental Specialist</span>
+                                                </div>
+                                            </div>
+                                            <a href="#" class="cal-plus-icon"><i
+                                                    class="fa-solid fa-calendar-plus"></i></a>
+                                        </div>
+                                        <div class="doctor-fav-list">
+                                            <div class="doctor-info-profile">
+                                                <a href="#" class="table-avatar">
+                                                    <img src="{{ URL::asset('/assets/img/doctors/doctor-15.jpg') }}"
+                                                        alt="Img">
+                                                </a>
+                                                <div class="doctor-name-info">
+                                                    <h5><a href="#">Dr. Marla</a></h5>
+                                                    <span>Endodontists</span>
+                                                </div>
+                                            </div>
+                                            <a href="#" class="cal-plus-icon"><i
+                                                    class="fa-solid fa-calendar-plus"></i></a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div> --}}
+                       
+                        {{-- <div class="col-xl-7 d-flex">
                             <div class="dashboard-main-col w-100">
                                 <div class="dashboard-card w-100">
                                     <div class="dashboard-card-head">
@@ -626,7 +627,7 @@
                                 </div>
                             </div>
 
-                        </div>
+                        </div> --}}
                         <div class="col-xl-12 d-flex">
                             <div class="dashboard-card w-100">
                                 <div class="dashboard-card-head">
@@ -664,22 +665,22 @@
                                         <!-- Tab Menu -->
                                         <nav class="patient-dash-tab border-0 pb-0 mb-3 mt-3">
                                             <ul class="nav nav-tabs-bottom">
-                                                <li class="nav-item">
+                                                {{-- <li class="nav-item">
                                                     <a class="nav-link active" href="#appoint-tab"
                                                         data-bs-toggle="tab">Appointments</a>
-                                                </li>
-                                                <li class="nav-item">
+                                                </li> --}}
+                                                {{-- <li class="nav-item">
                                                     <a class="nav-link" href="#medical-tab" data-bs-toggle="tab">Medical
                                                         Records</a>
-                                                </li>
+                                                </li> --}}
                                                 <li class="nav-item">
-                                                    <a class="nav-link" href="#prsc-tab"
+                                                    <a class="nav-link active" href="#prsc-tab"
                                                         data-bs-toggle="tab">Prescriptions</a>
                                                 </li>
-                                                <li class="nav-item">
+                                                {{-- <li class="nav-item">
                                                     <a class="nav-link" href="#invoice-tab"
                                                         data-bs-toggle="tab">Invoices</a>
-                                                </li>
+                                                </li> --}}
                                             </ul>
                                         </nav>
                                         <!-- /Tab Menu -->
@@ -688,7 +689,7 @@
                                         <div class="tab-content pt-0">
 
                                             <!-- Appointments Tab -->
-                                            <div id="appoint-tab" class="tab-pane fade show active">
+                                            <div id="appoint-tab" class="tab-pane fade show ">
                                                 <div class="custom-new-table">
                                                     <div class="table-responsive">
                                                         <table class="table table-hover table-center mb-0">
@@ -1046,7 +1047,7 @@
                                             <!-- /Medical Records Tab -->
 
                                             <!-- Prescriptions Tab -->
-                                            <div class="tab-pane fade" id="prsc-tab">
+                                            <div class="tab-pane fade show active" id="prsc-tab ">
                                                 <div class="custom-table">
                                                     <div class="table-responsive">
                                                         <table class="table table-center mb-0">

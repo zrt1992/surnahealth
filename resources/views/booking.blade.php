@@ -54,8 +54,10 @@
                     <!-- Schedule Widget -->
                     <form id="bookingForm" action="{{ route('book-appointment.store') }}" method="POST">
                         @csrf
+                        <input type="hidden" name="appointment_req_id" value="{{ $appoitmentReqId ?? '' }}">
                         <input type="hidden" name="doctor_id" id="doctor_id" value="{{ $doctor->id ?? '' }}">
                         <input type="hidden" name="slot_id" id="slot_id" value="">
+
 
                         <input type="hidden" name="booking_date" id="booking_date" value="">
                         <input type="hidden" name="start_time" id="start_time" value="">

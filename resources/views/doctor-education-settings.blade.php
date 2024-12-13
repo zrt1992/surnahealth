@@ -42,7 +42,7 @@
 										<li class="nav-item">
 											<a class="nav-link active" href="{{url('doctor-education-settings')}}">Education</a>
 										</li>
-										<li class="nav-item">
+										{{-- <li class="nav-item">
 											<a class="nav-link" href="{{url('doctor-awards-settings')}}">Awards</a>
 										</li>
 										<li class="nav-item">
@@ -50,7 +50,7 @@
 										</li>
 										<li class="nav-item">
 											<a class="nav-link" href="{{url('doctor-clinics-settings')}}">Clinics</a>
-										</li>
+										</li> --}}
 										<li class="nav-item">
 											<a class="nav-link" href="{{url('doctor-business-settings')}}">Business Hours</a>
 										</li>

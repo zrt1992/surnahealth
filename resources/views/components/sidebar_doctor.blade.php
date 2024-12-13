@@ -62,36 +62,42 @@
                             <i class="fa-solid fa-clock"></i>
                             <span>Specialties & Services</span>
                         </a>
-                    </li>
-                    <li class="{{ Request::is('reviews') ? 'active' : '' }}">
+                    </li> --}}
+                    {{-- <li class="{{ Request::is('reviews') ? 'active' : '' }}">
                         <a href="{{route('reviews')}}">
                             <i class="fas fa-star"></i>
                             <span>Reviews</span>
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="{{ Request::is('accounts') ? 'active' : '' }}">
                         <a href="{{route('accounts')}}">
                             <i class="fa-solid fa-file-contract"></i>
                             <span>Accounts</span>
                         </a>
                     </li>
-                    <li class="{{ Request::is('invoices') ? 'active' : '' }}">
+                    {{-- <li class="{{ Request::is('invoices') ? 'active' : '' }}">
                         <a href="{{route('invoices')}}">
                             <i class="fa-solid fa-file-lines"></i>
                             <span>Invoices</span>
                         </a>
                     </li> --}}
-                    {{-- <li class="{{ Request::is('doctor-payment') ? 'active' : '' }}">
+                    <li class="{{ Request::is('doctor-payment') ? 'active' : '' }}">
                         <a href="{{route('doctor-payment')}}">
                             <i class="fa-solid fa-money-bill-1"></i>
                             <span>Payout Settings</span>
                         </a>
-                    </li>																																				 --}}
+                    </li>																																				
                     <li class="{{ Request::is('chat-doctor') ? 'active' : '' }}">
                         <a href="{{route('chat-doctor')}}">
                             <i class="fa-solid fa-comments"></i>
                             <span>Message</span>
                             <small class="unread-msg">7</small>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="#">
+                            <i class="fa-solid fa-money-bill-1"></i>
+                            <span>Presciptions</span>
                         </a>
                     </li>
                     {{-- <li class="{{ Request::is('doctor-profile-settings','doctor-awards-settings','doctor-business-settings','doctor-clinics-settings') ? 'active' : '' }}">
@@ -101,9 +107,11 @@
                         </a>
                     </li> --}}
                     <li class="{{ Request::is('doctor-profile-settings','doctor-awards-settings','doctor-business-settings','doctor-clinics-settings') ? 'active' : '' }}">
-                        <a href="{{route('google.auth')}}">
+                        {{-- <a href="{{route('google.auth')}}"> --}}
+                        <a href="{{ url('doctor-profile-settings') }}">
+
                             <i class="fa-solid fa-user-pen"></i>
-                            <span>Video meet</span>
+                            <span>Profile setting</span>
                         </a>
                     </li>
 
@@ -116,7 +124,13 @@
                     <li class="{{ Request::is('doctor/doctor-change-password') ? 'active' : '' }}">
                         <a href="{{route('doctor.doctor-change-password')}}">
                             <i class="fa-solid fa-key"></i>
-                            <span>Change Password</span>
+                            <span>Setting</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="#">
+                            <i class="fa-solid fa-key"></i>
+                            <span>Help & Support</span>
                         </a>
                     </li>
                     <li class="{{ Request::is('logout-user') ? 'active' : '' }}">

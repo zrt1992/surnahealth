@@ -49,18 +49,18 @@
                                     <button class="nav-link active" id="pills-upcoming-tab" data-bs-toggle="pill"
                                         data-bs-target="#pills-upcoming" type="button" role="tab"
                                         aria-controls="pills-upcoming"
-                                        aria-selected="false">Upcoming<span>0</span></button>
+                                        aria-selected="false">Upcoming<span>{{ $upcommingCount ?? '0' }}</span></button>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="pills-cancel-tab" data-bs-toggle="pill"
                                         data-bs-target="#pills-cancel" type="button" role="tab"
-                                        aria-controls="pills-cancel" aria-selected="true">Cancelled<span>0</span></button>
+                                        aria-controls="pills-cancel" aria-selected="true">Cancelled<span>{{ $rejectedCount ?? '0' }}</span></button>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="pills-complete-tab" data-bs-toggle="pill"
                                         data-bs-target="#pills-complete" type="button" role="tab"
                                         aria-controls="pills-complete"
-                                        aria-selected="true">Completed<span>0</span></button>
+                                        aria-selected="true">Completed<span>{{ $completedCount ?? '0' }}</span></button>
                                 </li>
                             </ul>
                         </div>
@@ -390,24 +390,25 @@
                         
 
                             <!-- Appointment List -->
-                            {{-- <div class="appointment-wrap">
+                            <div class="appointment-wrap">
+                                @foreach ($appointmentRejectedRequests as $rejectedRequest)
                                 <ul>
                                     <li>
                                         <div class="patinet-information">
                                             <a href="{{ url('patient-cancelled-appointment') }}">
-                                                <img src="{{ URL::asset('/assets/img/doctors/doctor-thumb-13.jpg') }}"
+                                                <img src="{{$rejectedRequest->doctor->profile_image ?? URL::asset('/assets/img/doctors/doctor-thumb-13.jpg') }}"
                                                     alt="User Image">
                                             </a>
                                             <div class="patient-info">
                                                 <p>#Apt0002</p>
                                                 <h6><a
-                                                        href="{{ url('patient-cancelled-appointment') }}">Dr.Shanta</a><span
+                                                        href="{{ url('patient-cancelled-appointment') }}">Dr.{{ $rejectedRequest->doctor->name ?? '--' }}</a><span
                                                         class="badge new-tag">New</span></h6>
                                             </div>
                                         </div>
                                     </li>
                                     <li class="appointment-info">
-                                        <p><i class="fa-solid fa-clock"></i>05 Nov 2024 11.50 AM</p>
+                                        <p><i class="fa-solid fa-clock"></i>{{ $rejectedRequest->booking_date ?? '--' }}</p>
                                         <ul class="d-flex apponitment-types">
                                             <li>General Visit</li>
                                             <li>Audio Call</li>
@@ -415,11 +416,12 @@
 
                                     </li>
                                     <li class="appointment-detail-btn">
-                                        <a href="{{ url('patient-cancelled-appointment') }}" class="start-link">View
+                                        <a href="{{ route('patient-cancelled-appointment',$rejectedRequest->id) }}" class="start-link">View
                                             Details<i class="fa-regular fa-circle-right ms-1"></i></a>
                                     </li>
                                 </ul>
-                            </div> --}}
+                                @endforeach
+                            </div>
                             <!-- /Appointment List -->
 
                          
@@ -458,24 +460,25 @@
                       
 
                             <!-- Appointment List -->
-                            {{-- <div class="appointment-wrap">
+                            <div class="appointment-wrap">
+                                @foreach ($appointmentCompleted as $completedRequests)
                                 <ul>
                                     <li>
                                         <div class="patinet-information">
                                             <a href="{{ url('patient-completed-appointment') }}">
-                                                <img src="{{ URL::asset('/assets/img/doctors/doctor-thumb-13.jpg') }}"
+                                                <img src="{{$completedRequests->doctor->profile_image ?? URL::asset('/assets/img/doctors/doctor-thumb-13.jpg') }}"
                                                     alt="User Image">
                                             </a>
                                             <div class="patient-info">
                                                 <p>#Apt0002</p>
                                                 <h6><a
-                                                        href="{{ url('patient-completed-appointment') }}">Dr.Shanta</a><span
+                                                        href="{{ url('patient-completed-appointment') }}">Dr.{{ $completedRequests->doctor->name ?? '--' }}</a><span
                                                         class="badge new-tag">New</span></h6>
                                             </div>
                                         </div>
                                     </li>
                                     <li class="appointment-info">
-                                        <p><i class="fa-solid fa-clock"></i>05 Nov 2024 11.50 AM</p>
+                                        <p><i class="fa-solid fa-clock"></i>{{ $completedRequests->start_date ?? '--' }}</p>
                                         <ul class="d-flex apponitment-types">
                                             <li>General Visit</li>
                                             <li>Audio Call</li>
@@ -487,7 +490,9 @@
                                             Details<i class="fa-regular fa-circle-right ms-1"></i></a>
                                     </li>
                                 </ul>
-                            </div> --}}
+                                @endforeach
+                                
+                            </div>
                             <!-- /Appointment List -->
 
                            

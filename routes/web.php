@@ -15,6 +15,7 @@ use App\Http\Controllers\Doctor\DoctorController;
 use App\Http\Controllers\Doctor\DoctorEducationController;
 use App\Http\Controllers\Doctor\DoctorExperienceController;
 use App\Http\Controllers\Doctor\DoctorInsurancesController;
+use App\Http\Controllers\Doctor\DoctorPresciptionController;
 use App\Http\Controllers\Doctor\PatientsController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\GoogleMeetController;
@@ -26,6 +27,7 @@ use App\Http\Controllers\Patient\FavouritesController;
 use App\Http\Controllers\Patient\MedicalDetailController;
 use App\Http\Controllers\Patient\MedicalRecordController;
 use App\Http\Controllers\Patient\PatientChatController;
+use App\Http\Controllers\Patient\PatientPresciptionController;
 use App\Http\Controllers\Patient\PatientProfileSettingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
@@ -78,6 +80,10 @@ Route::middleware(['auth', 'role:doctor',CheckRegistrationStep::class])->prefix(
     Route::get('/my-patients', [PatientsController::class, 'index'])->name('doctor.my-patients');
     Route::get('/patient-profile/{id?}', [PatientsController::class, 'patientProfile'])->name('doctor.patient-profile');
     Route::get('/chat-doctor', [DoctorChatController::class, 'index'])->name('chat-doctor');
+
+    Route::get('/add-prescription/{id?}', [DoctorPresciptionController::class, 'index'])->name('add-prescription');
+    Route::get('/store-prescription', [DoctorPresciptionController::class, 'store'])->name('store-prescription');
+
 });
 
 
@@ -145,6 +151,8 @@ Route::middleware(['auth', 'role:patient',CheckRegistrationStep::class])->prefix
     Route::resource('patient-profile-setting', PatientProfileSettingController::class);
 
     Route::get('/chat', [PatientChatController::class, 'index'])->name('patient-chat');
+    
+    Route::get('/patient-prescription', [PatientPresciptionController::class, 'index'])->name('patient-prescription');
 
 });
 
@@ -336,9 +344,7 @@ Route::get('/add-billing', function () {
     return view('add-billing');
 })->name('add-billing');
 
-Route::get('/add-prescription', function () {
-    return view('add-prescription');
-})->name('add-prescription');
+
 
 Route::get('/appointments', [AppointmentController::class, 'index'])->name('appointments');
 Route::get('/appointments-remove/{id}', [AppointmentController::class, 'destroy'])->name('appointments-remove');
@@ -701,18 +707,18 @@ Route::get('/doctor-appointment-details', function () {
     return view('doctor-appointment-details');
 })->name('doctor-appointment-details');
 
-Route::get('/doctor-awards-settings', [DoctorAwardController::class, 'index'])->name('doctor-awards-settings');
-Route::get('/doctor-awards-settings-delete/{id}', [DoctorAwardController::class, 'destroy'])->name('doctor-awards-settings-delete');
-Route::resource('/doctor-awards-setting', DoctorAwardController::class);
+// Route::get('/doctor-awards-settings', [DoctorAwardController::class, 'index'])->name('doctor-awards-settings');
+// Route::get('/doctor-awards-settings-delete/{id}', [DoctorAwardController::class, 'destroy'])->name('doctor-awards-settings-delete');
+// Route::resource('/doctor-awards-setting', DoctorAwardController::class);
 
 Route::get('/doctor-business-settings', [DoctorBusinessHourController::class, 'index'])->name('doctor-business-settings');
 Route::get('/doctor-business-settings-delete/{id}', [DoctorBusinessHourController::class, 'destroy'])->name('doctor-business-settings-delete');
 Route::resource('/doctor-business-setting', DoctorBusinessHourController::class);
 
-Route::get('/doctor-clinics-settings', [DoctorClinicsController::class, 'index'])->name('doctor-clinics-settings');
-Route::get('/doctor-clinics-settings-delete/{id}', [DoctorClinicsController::class, 'destroy'])->name('doctor-clinics-settings-delete');
-Route::get('/doctor-clinics-setting-gallery-remove/{id}', [DoctorClinicsController::class, 'removeGallery'])->name('doctor-clinics-setting-gallery-remove');
-Route::resource('/doctor-clinics-setting', DoctorClinicsController::class);
+// Route::get('/doctor-clinics-settings', [DoctorClinicsController::class, 'index'])->name('doctor-clinics-settings');
+// Route::get('/doctor-clinics-settings-delete/{id}', [DoctorClinicsController::class, 'destroy'])->name('doctor-clinics-settings-delete');
+// Route::get('/doctor-clinics-setting-gallery-remove/{id}', [DoctorClinicsController::class, 'removeGallery'])->name('doctor-clinics-setting-gallery-remove');
+// Route::resource('/doctor-clinics-setting', DoctorClinicsController::class);
 
 Route::get('/doctor-education-settings', [DoctorEducationController::class, 'index'])->name('doctor-education-settings');
 Route::get('/doctor-education-settings-delete/{id}', [DoctorEducationController::class, 'destroy'])->name('doctor-education-settings-delete');
@@ -722,22 +728,24 @@ Route::get('/doctor-experience-settings', [DoctorExperienceController::class, 'i
 Route::get('/doctor-experience-settings-delete/{id}', [DoctorExperienceController::class, 'destroy'])->name('doctor-experience-settings-delete');
 Route::resource('/doctor-experience-setting', DoctorExperienceController::class);
 
-Route::get('/doctor-insurance-settings', [DoctorInsurancesController::class, 'index'])->name('doctor-insurance-settings');
-Route::get('/doctor-insurance-settings-delete/{id}', [DoctorInsurancesController::class, 'destroy'])->name('doctor-insurance-settings-delete');
-Route::resource('/doctor-insurance-setting', DoctorInsurancesController::class);
+// Route::get('/doctor-insurance-settings', [DoctorInsurancesController::class, 'index'])->name('doctor-insurance-settings');
+// Route::get('/doctor-insurance-settings-delete/{id}', [DoctorInsurancesController::class, 'destroy'])->name('doctor-insurance-settings-delete');
+// Route::resource('/doctor-insurance-setting', DoctorInsurancesController::class);
 
 Route::get('/doctor-cancelled-appointment', function () {
     return view('doctor-cancelled-appointment');
 })->name('doctor-cancelled-appointment');
 Route::get('/patient-appointments', [BookingController::class, 'getPatientAppointments'])->name('patient-appointments');
 Route::get('/patient-appointments-grid', [BookingController::class, 'getPatientAppointmentsGrid'])->name('patient-appointments-grid');
+Route::get('/patient-cancelled-appointments/{id?}', [BookingController::class, 'getPatientCancelledAppointments'])->name('patient-cancelled-appointment');
+Route::get('/patient-reschedule-appointment/{doctorId?}/{appointmentReqId?}', [BookingController::class, 'showBookingForm'])->name('patient-reschedule-appointment');
 
 Route::get('/patient-appointment-details', function () {
     return view('patient-appointment-details');
 })->name('patient-appointment-details');
-Route::get('/patient-cancelled-appointment', function () {
-    return view('patient.patient-cancelled-appointment');
-})->name('patient-cancelled-appointment');
+// Route::get('/patient-cancelled-appointment', function () {
+//     return view('patient.patient-cancelled-appointment');
+// })->name('patient-cancelled-appointment');
 Route::get('/patient-completed-appointment', function () {
     return view('patient.patient-completed-appointment');
 })->name('patient-completed-appointment');

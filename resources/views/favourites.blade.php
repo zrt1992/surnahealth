@@ -9,85 +9,295 @@
             Favourites
         @endslot
     @endcomponent
-   <!-- Page Content -->
-   <div class="content doctor-content">
-    <div class="container">
-        <div class="row">
+    <!-- Page Content -->
+    <div class="content doctor-content">
+        <div class="container">
+            <div class="row">
 
-            @component('components.sidebar_patient')
+                @component('components.sidebar_patient')
                 @endcomponent
 
-            <div class="col-lg-8 col-xl-9">
+                <div class="col-lg-8 col-xl-9">
 
-                <div class="dashboard-header">
-                    <h3>Doctors</h3>
-                    <ul class="header-list-btns">
-                        <li>
-                            <div class="input-block dash-search-input">
-                                <input type="text" class="form-control" placeholder="Search">
-                                <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+                    <div class="dashboard-header">
+                        <h3>Doctors</h3>
 
-                <!-- Favourites -->
-                <div class="row">
-                    @foreach ($data as $doctor)
-                    <div class="col-md-6 col-lg-4">
-                        <div class="profile-widget patient-favour">
-                            <div class="fav-head">
-                                <a href="javascript:void(0)" class="fav-btn favourite-btn">
-                                    <span class="favourite-icon favourite"><i class="fa-solid fa-heart"></i></span>
-                                </a>
-                                <div class="doc-img">
-                                    <a href="{{ url('doctor-profile-2/'. optional($doctor)->id)}}">
-                                        <img class="img-fluid" alt="User Image"
-                                            src="{{  $doctor->profile_image ?? URL::asset('/assets/img/features/feature-01.jpg')}}">
-                                    </a>
+                        <ul class="header-list-btns">
+                            <li>
+                                <div class="input-block dash-search-input">
+                                    <form method="GET" action="{{ route('favourites') }}" id="searchForm">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Search" name="search"
+                                                id="searchInput" value="{{ request('search') }}">
+                                            <span class="search-icon" id="searchIcon" style="cursor: pointer;">
+                                                <i class="fa-solid fa-magnifying-glass"></i>
+                                            </span>
+                                        </div>
+                                    </form>
+
+
                                 </div>
-                                <div class="pro-content">
-                                    <h3 class="title">
-                                        <a href="{{ url('doctor-profile-2/'. optional($doctor)->id)}}">{{ $doctor->name }}</a>
-                                        <i class="fas fa-check-circle verified"></i>
-                                    </h3>
-                                    <p class="speciality">{{ $doctor->speciality }}</p>
-                                    <div class="rating">
-                                        @for ($i = 0; $i < 5; $i++)
-                                            <i class="fas fa-star {{ $i < $doctor->rating ? 'filled' : '' }}"></i>
-                                        @endfor
-                                        <span class="d-inline-block average-rating">{{ $doctor->rating }}</span>
-                                    </div>
-                                    <ul class="available-info">
-                                        <li>
-                                            <span><i class="fa-solid fa-calendar-day"></i></span>Next Availability :
-                                            {{ $doctor->next_availability }}
-                                        </li>
-                                        <li>
-                                            <span><i class="fas fa-map-marker-alt"></i></span>Location :
-                                            {{ $doctor->address ?? '--' }},{{ $doctor->city ?? '--' }},{{ $doctor->state ?? '--' }}
-                                        </li>
-                                    </ul>
-                                    <div class="last-book">
-                                        <p>Last Booked on {{ $doctor->last_booked }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="fav-footer">
-                                <div class="row row-sm">
-                                    <div class="col-6">
-                                        <a href="{{ url('doctor-profile-2/'. optional($doctor)->id)}}"
-                                            class="btn view-btn">View Profile</a>
-                                    </div>
-                                    <div class="col-6">
-                                        <a href="{{ url('booking/' . $doctor->id) }}" class="btn book-btn">Book Now</a>
+
+
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="appointment-tab-head d-flex justify-content-end">
+
+                        <div class="filter-head">
+
+                            <div class="form-sorts dropdown">
+                                <a href="javascript:void(0);" class="dropdown-toggle" id="table-filter"><i
+                                        class="fa-solid fa-filter me-2"></i>Filter By</a>
+                                <div class="filter-dropdown-menu">
+                                    <div class="filter-set-view">
+                                        <form method="GET" action="{{ route('favourites') }}">
+                                            <div class="accordion" id="accordionExample">
+                                                <div class="filter-set-content">
+                                                    <div class="filter-set-content-head">
+                                                        <a href="#" data-bs-toggle="collapse"
+                                                            data-bs-target="#collapseTwo" aria-expanded="false"
+                                                            aria-controls="collapseTwo">Specialization<i
+                                                                class="fa-solid fa-chevron-right"></i></a>
+                                                    </div>
+                                                    <div class="filter-set-contents accordion-collapse collapse show"
+                                                        id="collapseTwo" data-bs-parent="#accordionExample">
+                                                        {{-- <ul>
+                                                        <li>
+                                                            <div class="input-block dash-search-input w-100">
+                                                                <input type="text" class="form-control"
+                                                                    placeholder="Search">
+                                                                <span class="search-icon"><i
+                                                                        class="fa-solid fa-magnifying-glass"></i></span>
+                                                            </div>
+                                                        </li>
+                                                    </ul> --}}
+                                                        <ul>
+                                                            <li>
+
+                                                            </li>
+                                                            <li>
+                                                                <div class="filter-checks">
+                                                                    <label class="checkboxs">
+                                                                        <input type="checkbox" name="specialization[]"
+                                                                            value="Cardiology">
+                                                                        <span class="checkmarks"></span>
+                                                                        <span class="check-title">Cardiology</span>
+                                                                    </label>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="filter-checks">
+                                                                    <label class="checkboxs">
+                                                                        <input type="checkbox" name="specialization[]"
+                                                                            value="Dermatology">
+                                                                        <span class="checkmarks"></span>
+                                                                        <span class="check-title">Dermatology</span>
+                                                                    </label>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="filter-checks">
+                                                                    <label class="checkboxs">
+                                                                        <input type="checkbox" name="specialization[]"
+                                                                            value="Neurology">
+                                                                        <span class="checkmarks"></span>
+                                                                        <span class="check-title">Neurology</span>
+                                                                    </label>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="filter-checks">
+                                                                    <label class="checkboxs">
+                                                                        <input type="checkbox" name="specialization[]"
+                                                                            value="Surgery">
+                                                                        <span class="checkmarks"></span>
+                                                                        <span class="check-title">Surgery</span>
+                                                                    </label>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="filter-set-content">
+                                                    <div class="filter-set-content-head">
+                                                        <a href="#" data-bs-toggle="collapse"
+                                                            data-bs-target="#collapseOne" aria-expanded="true"
+                                                            aria-controls="collapseOne">Location<i
+                                                                class="fa-solid fa-chevron-right"></i></a>
+                                                    </div>
+                                                    <div class="filter-set-contents accordion-collapse collapse show"
+                                                        id="collapseOne" data-bs-parent="#accordionExample">
+                                                        <ul>
+                                                            <li>
+
+                                                            </li>
+                                                            <li>
+                                                                <div class="filter-checks">
+                                                                    <label class="checkboxs">
+                                                                        <input type="checkbox" name="location[]"
+                                                                            value="new york">
+                                                                        <span class="checkmarks"></span>
+                                                                        <span class="check-title">New York</span>
+                                                                    </label>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="filter-checks">
+                                                                    <label class="checkboxs">
+                                                                        <input type="checkbox" name="location[]"
+                                                                            value="lisbon">
+                                                                        <span class="checkmarks"></span>
+                                                                        <span class="check-title">Lisbon</span>
+                                                                    </label>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="filter-checks">
+                                                                    <label class="checkboxs">
+                                                                        <input type="checkbox" name="location[]"
+                                                                            value="dubai">
+                                                                        <span class="checkmarks"></span>
+                                                                        <span class="check-title">Dubai</span>
+                                                                    </label>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="filter-checks">
+                                                                    <label class="checkboxs">
+                                                                        <input type="checkbox" name="location[]"
+                                                                            value="london">
+                                                                        <span class="checkmarks"></span>
+                                                                        <span class="check-title">London</span>
+                                                                    </label>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="filter-set-content">
+                                                    <div class="filter-set-content-head">
+                                                        <a href="#" data-bs-toggle="collapse"
+                                                            data-bs-target="#collapseThree" aria-expanded="false"
+                                                            aria-controls="collapseThree">Language<i
+                                                                class="fa-solid fa-chevron-right"></i></a>
+                                                    </div>
+                                                    <div class="filter-set-contents accordion-collapse collapse show"
+                                                        id="collapseThree" data-bs-parent="#accordionExample">
+                                                        <ul>
+                                                            <li>
+                                                                <div class="filter-checks">
+                                                                    <label class="checkboxs">
+                                                                        <input type="checkbox" name="language[]"
+                                                                            value="english">
+                                                                        <span class="checkmarks"></span>
+                                                                        <span class="check-title">English</span>
+                                                                    </label>
+                                                                </div>
+
+                                                            </li>
+                                                            <li>
+                                                                <div class="filter-checks">
+                                                                    <label class="checkboxs">
+                                                                        <input type="checkbox" name="language[]"
+                                                                            value="portugues">
+                                                                        <span class="checkmarks"></span>
+                                                                        <span class="check-title">Portugues</span>
+                                                                    </label>
+                                                                </div>
+
+                                                            </li>
+
+
+                                                            <li>
+                                                                <div class="filter-checks">
+                                                                    <label class="checkboxs">
+                                                                        <input type="checkbox" name="language[]"
+                                                                            value="Arabic">
+                                                                        <span class="checkmarks"></span>
+                                                                        <span class="check-title">Arabic</span>
+                                                                    </label>
+                                                                </div>
+
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="filter-reset-btns">
+                                                <a href="{{ url('appointments') }}" class="btn btn-light">Reset</a>
+                                                <button type="submit" class="btn btn-primary">Filter Now</button>
+                                                {{-- <a href="{{ url('appointments') }}" class="btn btn-primary">Filter Now</a> --}}
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                @endforeach
-                    {{-- <div class="col-md-6 col-lg-4">
+                    <!-- Favourites -->
+                    <div class="row">
+                        @foreach ($data as $doctor)
+                            <div class="col-md-6 col-lg-4">
+                                <div class="profile-widget patient-favour">
+                                    <div class="fav-head">
+                                        <a href="javascript:void(0)" class="fav-btn favourite-btn">
+                                            <span class="favourite-icon favourite"><i
+                                                    class="fa-solid fa-heart"></i></span>
+                                        </a>
+                                        <div class="doc-img">
+                                            <a href="{{ url('doctor-profile-2/' . optional($doctor)->id) }}">
+                                                <img class="img-fluid" alt="User Image"
+                                                    src="{{ $doctor->profile_image ?? URL::asset('/assets/img/features/feature-01.jpg') }}">
+                                            </a>
+                                        </div>
+                                        <div class="pro-content">
+                                            <h3 class="title">
+                                                <a
+                                                    href="{{ url('doctor-profile-2/' . optional($doctor)->id) }}">{{ $doctor->name }}</a>
+                                                <i class="fas fa-check-circle verified"></i>
+                                            </h3>
+                                            <p class="speciality">{{ $doctor->speciality }}</p>
+                                            <div class="rating">
+                                                @for ($i = 0; $i < 5; $i++)
+                                                    <i class="fas fa-star {{ $i < $doctor->rating ? 'filled' : '' }}"></i>
+                                                @endfor
+                                                <span class="d-inline-block average-rating">{{ $doctor->rating }}</span>
+                                            </div>
+                                            <ul class="available-info">
+                                                <li>
+                                                    <span><i class="fa-solid fa-calendar-day"></i></span>Next Availability
+                                                    :
+                                                    {{ $doctor->next_availability }}
+                                                </li>
+                                                <li>
+                                                    <span><i class="fas fa-map-marker-alt"></i></span>Location :
+                                                    {{ $doctor->address ?? '--' }},{{ $doctor->city ?? '--' }},{{ $doctor->state ?? '--' }}
+                                                </li>
+                                            </ul>
+                                            <div class="last-book">
+                                                <p>Last Booked on {{ $doctor->last_booked }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="fav-footer">
+                                        <div class="row row-sm">
+                                            <div class="col-6">
+                                                <a href="{{ url('doctor-profile-2/' . optional($doctor)->id) }}"
+                                                    class="btn view-btn">View Profile</a>
+                                            </div>
+                                            <div class="col-6">
+                                                <a href="{{ url('booking/' . $doctor->id) }}" class="btn book-btn">Book
+                                                    Now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                        {{-- <div class="col-md-6 col-lg-4">
                         <div class="profile-widget patient-favour">
                             <div class="fav-head">
                                 <a href="javascript:void(0)" class="fav-btn favourite-btn">
@@ -137,22 +347,22 @@
                             </div>
                         </div>
                     </div> --}}
-                    
-                    							
-                    
-                </div>
-                <!-- /Favourites -->
 
-                <div class="col-md-12">
-                    <div class="loader-item text-center">
-                        <a href="javascript:void(0);" class="btn btn-load">Load More</a>
+
+
                     </div>
-                </div>	
+                    <!-- /Favourites -->
 
+                    <div class="col-md-12">
+                        <div class="loader-item text-center">
+                            <a href="javascript:void(0);" class="btn btn-load">Load More</a>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
-    </div>
 
-</div>		
-<!-- /Page Content -->
+    </div>
+    <!-- /Page Content -->
 @endsection

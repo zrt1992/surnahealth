@@ -184,6 +184,115 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="setting-title">
+                                <h5>Medical Detail</h5>
+                            </div>
+                            <div class="setting-card">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-wrap">
+                                            <label class="col-form-label">Existing medical conditions <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" name="existing_medical_conditions" class="form-control"
+                                                value="{{ old('existing_medical_conditions', $medicalDetails->existing_medical_conditions) }}">
+                                            @error('existing_medical_conditions')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-wrap">
+                                            <label class="col-form-label">Medications_currently_using <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" name="medications_currently_using" class="form-control"
+                                                value="{{ old('medications_currently_using', $medicalDetails->medications_currently_using) }}">
+                                            @error('medications_currently_using')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-wrap">
+                                            <label class="col-form-label">Primarly health concern <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" name="primarly_health_concern" class="form-control"
+                                                value="{{ old('primarly_health_concern', $medicalDetails->primarly_health_concern) }}">
+                                            @error('primarly_health_concern')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                  
+                                </div>
+                            </div>
+
+                            <div class="setting-title">
+                                <h5>Appointment preferences</h5>
+                            </div>
+                            <div class="setting-card">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-wrap">
+                                            <label class="col-form-label">Preferred doctor <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" name="preferred_doctor" class="form-control"
+                                                value="{{ old('preferred_doctor', $appointmentPreferences->preferred_doctor) }}">
+                                            @error('preferred_doctor')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-wrap">
+                                            <label class="col-form-label">Preferred time <span class="text-danger">*</span></label>
+                                            <input type="time" class="form-control" name="preferred_time" class="form-control"
+                                                value="{{ old('preferred_time', $appointmentPreferences->preferred_time) }}">
+                                            @error('preferred_time')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-wrap">
+                                            <label class="col-form-label">Preferred consultation mode <span class="text-danger">*</span></label>
+                                            
+                                            <div class="remember-me-col d-flex justify-content-between">
+                                                <label class="custom_check">Video call
+                                                    <input type="checkbox" 
+                                                        id="video_call" 
+                                                        name="video_call" 
+                                                        value="1"
+                                                        {{ old('video_call', $appointmentPreferences->video_call) == 1 ? 'checked' : '' }}>
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </div>
+                                    
+                                            <div class="remember-me-col d-flex justify-content-between">
+                                                <label class="custom_check">Audio call
+                                                    <input type="checkbox" 
+                                                        id="audio_call" 
+                                                        name="audio_call" 
+                                                        value="1"
+                                                        {{ old('audio_call', $appointmentPreferences->audio_call) == 1 ? 'checked' : '' }}>
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </div>
+                                    
+                                            <div class="remember-me-col d-flex justify-content-between">
+                                                <label class="custom_check">Chat
+                                                    <input type="checkbox" 
+                                                        id="chat" 
+                                                        name="chat" 
+                                                        value="1"
+                                                        {{ old('chat', $appointmentPreferences->chat) == 1 ? 'checked' : '' }}>
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </div>
+                                    
+                                        </div>
+                                    </div>
+                                    
+                                  
+                                </div>
+                            </div>
                             <div class="modal-btn text-end">
                                 <a href="#" class="btn btn-gray">Cancel</a>
                                 <button type="submit" class="btn btn-primary prime-btn">Save Changes</button>

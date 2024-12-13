@@ -1,6 +1,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
- <!-- Toastr JS -->
- <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+<!-- Toastr JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
 
 <script>
     $(document).ready(function() {
@@ -661,16 +661,70 @@
     });
 </script>
 
+{{-- presciption setting --}}
+<script>
+    // Get the "Add Item" button and the prescription table body
+    const addPrescriptionBtn = document.querySelector('.add-prescription');
+    const prescriptionTable = document.querySelector('#prescription-table tbody');
+
+    // Event listener to add a new prescription row
+    addPrescriptionBtn.addEventListener('click', () => {
+        const newRow = document.createElement('tr');
+        newRow.classList.add('test');
+        newRow.innerHTML = `
+                        <input type="hidden" name="user_id[]" value="{{ $id ?? '' }}">
+                        <td><input class="form-control" type="text" name="name[]"></td>
+                        <td><input class="form-control" type="text" name="quantity[]"></td>
+                        <td><input class="form-control" type="text" name="days[]"></td>
+                        <td>
+                        <div class="form-check form-check-inline">
+                        <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="morning[]"> Morning
+                        </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                        <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="afternoon[]"> Afternoon
+                        </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                        <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="evening[]"> Evening
+                        </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                        <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="night[]"> Night
+                        </label>
+                        </div>
+                        </td>
+                        <td>
+                        <a href="#" class="btn bg-danger-light trash"><i class="far fa-trash-alt"></i></a>
+                        </td>
+                        `;
+        prescriptionTable.appendChild(newRow);
+    });
+
+    // Event delegation to handle row deletion
+    prescriptionTable.addEventListener('click', (event) => {
+        if (event.target.closest('.trash')) {
+            event.preventDefault();
+            const row = event.target.closest('tr');
+            if (row) row.remove();
+        }
+    });
+</script>
+
 {{-- Toaster --}}
 <script>
-    @if(session('success'))
+    @if (session('success'))
         toastr.success("{{ session('success') }}", "Success", {
             closeButton: true,
             progressBar: true,
             positionClass: "toast-top-right",
             timeOut: 5000
         });
-    @elseif(session('error'))
+    @elseif (session('error'))
         toastr.error("{{ session('error') }}", "Error", {
             closeButton: true,
             progressBar: true,

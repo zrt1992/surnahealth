@@ -151,4 +151,9 @@ public function appointments()
 {
     return $this->hasMany(Appointment::class,'user_id','id');
 }
+
+public function prescriptions()
+{
+    return $this->hasMany(Prescription::class,'user_id','id');
+}
 }
