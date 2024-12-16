@@ -20,6 +20,7 @@ use App\Http\Controllers\Doctor\DoctorPresciptionController;
 use App\Http\Controllers\Doctor\PatientsController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\GoogleMeetController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\Patient\BookingController;
 use App\Http\Controllers\Patient\DashboardController as PatientDashboard;
 use App\Http\Controllers\Patient\DependantController;
@@ -81,7 +82,7 @@ Route::middleware(['auth', 'role:doctor',CheckRegistrationStep::class])->prefix(
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('doctor-dashboard');
     Route::get('/my-patients', [PatientsController::class, 'index'])->name('doctor.my-patients');
     Route::get('/patient-profile/{id?}', [PatientsController::class, 'patientProfile'])->name('doctor.patient-profile');
-    Route::get('/chat-doctor', [DoctorChatController::class, 'index'])->name('chat-doctor');
+    Route::get('/chat-doctor/{id?}', [DoctorChatController::class, 'index'])->name('chat-doctor');
 
     Route::get('/add-prescription/{id?}', [DoctorPresciptionController::class, 'index'])->name('add-prescription');
     Route::get('/store-prescription', [DoctorPresciptionController::class, 'store'])->name('store-prescription');
@@ -152,7 +153,7 @@ Route::middleware(['auth', 'role:patient',CheckRegistrationStep::class])->prefix
     Route::get('/profile-settings', [PatientProfileSettingController::class, 'index'])->name('profile-settings');
     Route::resource('patient-profile-setting', PatientProfileSettingController::class);
 
-    Route::get('/chat', [PatientChatController::class, 'index'])->name('patient-chat');
+    Route::get('/chat/{id?}', [PatientChatController::class, 'index'])->name('patient-chat');
     
     Route::get('/patient-prescription', [PatientPresciptionController::class, 'index'])->name('patient-prescription');
 
@@ -931,5 +932,13 @@ Route::get('/send-test-event', function () {
 
     return 'Test event sent!';
 });
+
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/chat/{doctor_id?}', [MessageController::class, 'index'])->name('chat');
+    Route::post('/messages/send', [MessageController::class, 'send'])->name('messages.send');
+});
+
 
 require __DIR__ . '/auth.php';

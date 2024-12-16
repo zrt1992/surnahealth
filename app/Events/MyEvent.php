@@ -13,15 +13,20 @@ class MyEvent implements ShouldBroadcast
  
   public $connection = 'sync';
   public $message;
+  public $senderId;
+  public $receiverId;
+
 
   public function __construct($message)
   {
+    $this->senderId = $message['sender_id'];
+    $this->receiverId = $message['receiver_id'];
       $this->message = $message;
   }
 
   public function broadcastOn()
   {
-    return new Channel('chat.1.3');
+    return new Channel('chat.' . $this->senderId . '.' . $this->receiverId);
   }
 
   public function broadcastAs()

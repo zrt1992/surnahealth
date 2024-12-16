@@ -1,6 +1,55 @@
 <?php $page = 'chat-doctor'; ?>
 @extends('layout.mainlayout')
 @section('content')
+<script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+<script>
+    // Enable Pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('1ddf07e5f24285e83686', {
+        cluster: 'mt1'
+    });
+
+    var channelName = 'chat.' + {{ $doctorId ?? 'null' }} + '.' + '{{ auth()->id() }}';
+    var channel = pusher.subscribe(channelName);
+    // var channel = pusher.subscribe('chat.1.3');
+    channel.bind('my-event', function(data) {
+        console.log('New message: ', data.message);
+
+        var fromName = data.message.from_name;
+        var profileImage = data.message.from_profile_image ||
+            '{{ URL::asset('assets/img/patients-img-fifteen.png') }}';
+        var messageText = data.message.message;
+        var timestamp = new Date().toLocaleTimeString([], {
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+
+        // Create the new message element
+        var messageContainer = document.getElementById('message-container');
+        var messageElement = document.createElement('div');
+        messageElement.classList.add('messages');
+
+        messageElement.innerHTML = `
+       <div class="chats">
+      <div class="chat-avatar">
+          <img src="${profileImage}" class="dreams_chat" alt="image">
+      </div>
+      <div class="chat-content">
+          <div class="chat-profile-name">
+              <h6>${fromName} <span>${timestamp}</span></h6>
+          </div>
+          <div class="message-content">
+              ${messageText}
+          </div>
+      </div>
+       </div>
+    `;
+
+        // Append the new message element to the container
+        messageContainer.appendChild(messageElement);
+    });
+</script>
     <!-- Breadcrumb -->
     <div class="breadcrumb-bar-two">
         <div class="container">
@@ -9,7 +58,7 @@
                     <h2 class="breadcrumb-title">Message</h2>
                     <nav aria-label="breadcrumb" class="page-breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{url('index')}}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ url('index') }}">Home</a></li>
                             <li class="breadcrumb-item" aria-current="page">Message</li>
                         </ol>
                     </nav>
@@ -25,7 +74,7 @@
             <div class="content">
 
                 <div class="dashboard-header">
-                    <h3><a href="{{url('doctor/dashboard')}}"><i class="fa-solid fa-arrow-left"></i> Message</a></h3>
+                    <h3><a href="{{ url('patient/dashboard') }}"><i class="fa-solid fa-arrow-left"></i> Message</a></h3>
                 </div>
 
                 <div class="chat-sec">
@@ -66,54 +115,27 @@
                                     </div>
                                     <div class="swiper-container">
                                         <div class="swiper-wrapper">
-                                            <div class="swiper-slide">
-                                                <div class="top-contacts-box">
-                                                    <div class="profile-img online">
-                                                        <img src="{{ URL::asset('assets/img/services-six-1.png')}}"
-                                                            alt="Img">
+                                            @foreach ($onlineUsers as $user)
+                                                <div class="swiper-slide">
+                                                    <div class="top-contacts-box">
+                                                        <a href="{{ route('patient-chat', $user->id ?? '') }}">
+                                                            <div class="profile-img online">
+                                                                <img src="{{ URL::asset($user->profile_image ?? 'assets/img/default-user.png') }}"
+                                                                    alt="Img">
+                                                            </div>
+                                                            <div class="user-name">
+                                                                <p>{{ $user->name ?? 'Unknown User' }}</p>
+                                                            </div>
+                                                        </a>
+                                                     
+
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div class="top-contacts-box">
-                                                    <div class="profile-img online">
-                                                        <img src="{{ URL::asset('assets/img/patients-img-fifteen.png')}}"
-                                                            alt="Img">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div class="top-contacts-box">
-                                                    <div class="profile-img online">
-                                                        <img src="{{ URL::asset('assets/img/services-six-1.png')}}"
-                                                            alt="Img">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div class="top-contacts-box">
-                                                    <div class="profile-img online">
-                                                        <img src="{{ URL::asset('assets/img/patients-img-fifteen.png')}}"
-                                                            alt="Img">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div class="top-contacts-box">
-                                                    <div class="profile-img online">
-                                                        <img src="{{ URL::asset('assets/img/services-six-1.png')}}"
-                                                            alt="Img">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div class="top-contacts-box">
-                                                    <div class="profile-img online">
-                                                        <img src="{{ URL::asset('assets/img/patients-img-fifteen.png')}}"
-                                                            alt="Img">
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            @endforeach
+
+                                            @if ($onlineUsers->isEmpty())
+                                                <p class="text-center">No users online at the moment.</p>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -133,7 +155,8 @@
                                         <li class="user-list-item">
                                             <a href="javascript:void(0);">
                                                 <div class="avatar avatar-online">
-                                                    <img src="{{ URL::asset('assets/img/services-six-1.png')}}" alt="image">
+                                                    <img src="{{ URL::asset('assets/img/services-six-1.png') }}"
+                                                        alt="image">
                                                 </div>
                                                 <div class="users-list-body">
                                                     <div>
@@ -150,46 +173,7 @@
                                                 </div>
                                             </a>
                                         </li>
-                                        <li class="user-list-item">
-                                            <a href="javascript:void(0);">
-                                                <div class="avatar ">
-                                                    <img src="{{ URL::asset('assets/img/services-six-1.png')}}"
-                                                        alt="image">
-                                                </div>
-                                                <div class="users-list-body">
-                                                    <div>
-                                                        <h5>Dr Joseph Boyd</h5>
-                                                        <p><i class="fa-solid fa-video me-1"></i>Video</p>
-                                                    </div>
-                                                    <div class="last-chat-time">
-                                                        <small class="text-muted">Yesterday</small>
-                                                        <div class="chat-pin">
-                                                            <i class="fa-solid fa-thumbtack"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li class="user-list-item">
-                                            <a href="javascript:void(0);">
-                                                <div class="avatar avatar-online">
-                                                    <img src="{{ URL::asset('assets/img/patients-img-fifteen.png')}}" alt="image">
-                                                </div>
-                                                <div class="users-list-body">
-                                                    <div>
-                                                        <h5>Catherine Gracey</h5>
-                                                        <p><i class="fa-solid fa-file-lines me-1"></i>Prescription.doc</p>
-                                                    </div>
-                                                    <div class="last-chat-time">
-                                                        <small class="text-muted">10:20 PM</small>
-                                                        <div class="chat-pin">
-                                                            <i class="fa-solid fa-thumbtack me-2"></i>
-                                                            <i class="fa-solid fa-check-double green-check"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
+
                                     </ul>
                                     <!-- Left Chat Title -->
                                     <div class="d-flex justify-content-between align-items-center ps-0 pe-0">
@@ -202,7 +186,8 @@
                                         <li class="user-list-item">
                                             <a href="javascript:void(0);">
                                                 <div class="avatar avatar-online">
-                                                    <img src="{{ URL::asset('assets/img/patients-img-fifteen.png')}}" alt="image">
+                                                    <img src="{{ URL::asset('assets/img/patients-img-fifteen.png') }}"
+                                                        alt="image">
                                                 </div>
                                                 <div class="users-list-body">
                                                     <div>
@@ -216,134 +201,7 @@
                                                 </div>
                                             </a>
                                         </li>
-                                        <li class="user-list-item">
-                                            <a href="javascript:void(0);">
-                                                <div>
-                                                    <div class="avatar avatar-online">
-                                                        <img src="{{ URL::asset('assets/img/services-six-1.png')}}"
-                                                            alt="image">
-                                                    </div>
-                                                </div>
-                                                <div class="users-list-body">
-                                                    <div>
-                                                        <h5>Robert Miller</h5>
-                                                        <p><i class="fa-solid fa-video me-1"></i>Video</p>
-                                                    </div>
-                                                    <div class="last-chat-time">
-                                                        <small class="text-muted">Yesterday</small>
-                                                        <div class="chat-pin">
-                                                            <i class="fa-solid fa-check"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li class="user-list-item">
-                                            <a href="javascript:void(0);">
-                                                <div class="avatar">
-                                                    <img src="{{ URL::asset('assets/img/patients-img-fifteen.png')}}" alt="image">
-                                                </div>
-                                                <div class="users-list-body">
-                                                    <div>
-                                                        <h5>Emily Musick</h5>
-                                                        <p><i class="fa-solid fa-file-lines me-1"></i>Project Tools.doc</p>
-                                                    </div>
-                                                    <div class="last-chat-time">
-                                                        <small class="text-muted">10:20 PM</small>
 
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li class="user-list-item">
-                                            <a href="javascript:void(0);">
-                                                <div>
-                                                    <div class="avatar avatar-online">
-                                                        <img src="{{ URL::asset('assets/img/services-six-1.png')}}"
-                                                            alt="image">
-                                                    </div>
-                                                </div>
-                                                <div class="users-list-body">
-                                                    <div>
-                                                        <h5>Samuel James</h5>
-                                                        <p><i class="fa-solid fa-microphone me-1"></i>Audio</p>
-                                                    </div>
-                                                    <div class="last-chat-time">
-                                                        <small class="text-muted">12:30 PM</small>
-                                                        <div class="chat-pin">
-                                                            <i class="fa-solid fa-check-double green-check"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li class="user-list-item">
-                                            <a href="javascript:void(0);">
-                                                <div>
-                                                    <div class="avatar ">
-                                                        <img src="{{ URL::asset('assets/img/patients-img-fifteen.png')}}"
-                                                            alt="image">
-                                                    </div>
-                                                </div>
-                                                <div class="users-list-body">
-                                                    <div>
-                                                        <h5>Dr Shanta Neill</h5>
-                                                        <p class="missed-call-col"><i
-                                                                class="fa-solid fa-phone-flip me-1"></i>Missed Call</p>
-                                                    </div>
-                                                    <div class="last-chat-time">
-                                                        <small class="text-muted">Yesterday</small>
-                                                        <div class="chat-pin">
-                                                            <i class="bx bx-microphone-off"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li class="user-list-item">
-                                            <a href="javascript:void(0);">
-                                                <div>
-                                                    <div class="avatar avatar-online">
-                                                        <img src="{{ URL::asset('assets/img/services-six-1.png')}}"
-                                                            alt="image">
-                                                    </div>
-                                                </div>
-                                                <div class="users-list-body">
-                                                    <div>
-                                                        <h5>Peter Anderson</h5>
-                                                        <p>Have you called them?</p>
-                                                    </div>
-                                                    <div class="last-chat-time">
-                                                        <small class="text-muted">23/03/24</small>
-                                                        <div class="chat-pin">
-                                                            <i class="fa-solid fa-check"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li class="user-list-item">
-                                            <a href="javascript:void(0);">
-                                                <div>
-                                                    <div class="avatar">
-                                                        <img src="{{ URL::asset('assets/img/patients-img-fifteen.png')}}"
-                                                            alt="image">
-                                                    </div>
-                                                </div>
-                                                <div class="users-list-body">
-                                                    <div>
-                                                        <h5>Anderea Kearns</h5>
-                                                        <p><i class="fa-solid fa-image me-1"></i>Photo</p>
-                                                    </div>
-                                                    <div class="last-chat-time">
-                                                        <small class="text-muted">20/03/24</small>
-                                                        <div class="chat-pin">
-                                                            <i class="fa-solid fa-check-double"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
                                     </ul>
                                 </div>
 
@@ -370,10 +228,12 @@
                                             </ul>
                                         </div>
                                         <figure class="avatar avatar-online">
-                                            <img src="assets/img/patients-img-fifteen.png" alt="image">
+                                            <img src="{{ URL::asset(auth()->user()->profile_image ?? 'assets/img/doctors-dashboard/profile-06.jpg') }}"
+                                                alt="image">
                                         </figure>
                                         <div class="mt-1">
-                                            <h5>Anderea Kearns</h5>
+                                            <h5>{{ auth()->user()->name }}</h5>
+
                                             <small class="last-seen">
                                                 Online
                                             </small>
@@ -381,23 +241,31 @@
                                     </div>
                                     <div class="chat-options ">
                                         <ul class="list-inline">
-                                            <li class="list-inline-item" >
-                                                <a href="javascript:void(0)" class="btn btn-outline-light chat-search-btn" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Search">
+                                            <li class="list-inline-item">
+                                                <a href="javascript:void(0)" class="btn btn-outline-light chat-search-btn"
+                                                    data-bs-toggle="tooltip" data-bs-placement="bottom" title="Search">
                                                     <i class="fa-solid fa-magnifying-glass"></i>
                                                 </a>
                                             </li>
                                             <li class="list-inline-item">
-                                                <a class="btn btn-outline-light no-bg" href="#" data-bs-toggle="dropdown">
+                                                <a class="btn btn-outline-light no-bg" href="#"
+                                                    data-bs-toggle="dropdown">
                                                     <i class="fa-solid fa-ellipsis-vertical"></i>
                                                 </a>
-                                                <div class="dropdown-menu dropdown-menu-end" >
-                                                    <a href="#" class="dropdown-item "><span><i class="bx bx-x" ></i></span>Close Chat </a>
-                                                    <a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#mute-notification"><span><i class="bx bx-volume-mute"></i></span>Mute Notification</a>
-                                                    <a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#disappearing-messages"><span><i class="bx bx-time-five"></i></span>Disappearing Message</a>
-                                                    <a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#clear-chat"><span><i class="bx bx-brush-alt"></i></span>Clear Message</a>
-                                                    <a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#change-chat"><span><i class="bx bx-trash-alt"></i></span>Delete Chat</a>
-                                                    <a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#report-user"><span><i class="bx bx-dislike"></i></span>Report</a>
-                                                    <a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#block-user"><span><i class="bx bx-block"></i></span>Block</a>
+                                                <div class="dropdown-menu dropdown-menu-end">
+                                                    <a href="#" class="dropdown-item ">Close Chat </a>
+                                                    <a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#mute-notification">Mute Notification</a>
+                                                    <a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#disappearing-messages">Disappearing Message</a>
+                                                    <a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#clear-chat">Clear Message</a>
+                                                    <a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#change-chat">Delete Chat</a>
+                                                    <a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#report-user">Report</a>
+                                                    <a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#block-user">Block</a>
                                                 </div>
                                             </li>
                                         </ul>
@@ -405,8 +273,10 @@
                                     <!-- Chat Search -->
                                     <div class="chat-search">
                                         <form>
-                                            <span class="form-control-feedback"><i class="fa-solid fa-magnifying-glass"></i></span>
-                                            <input type="text" name="chat-search" placeholder="Search Chats" class="form-control">
+                                            <span class="form-control-feedback"><i
+                                                    class="fa-solid fa-magnifying-glass"></i></span>
+                                            <input type="text" name="chat-search" placeholder="Search Chats"
+                                                class="form-control">
                                             <div class="close-btn-chat"><i class="fa fa-close"></i></div>
                                         </form>
                                     </div>
@@ -414,530 +284,54 @@
                                 </div>
                             </div>
                             <div class="chat-body">
-                                <div class="messages">
-                                    <div class="chats">
-                                        <div class="chat-avatar">
-                                            <img src="{{ URL::asset('assets/img/patients-img-fifteen.png')}}" class="dreams_chat"
-                                                alt="image">
-                                        </div>
-                                        <div class="chat-content">
-                                            <div class="chat-profile-name">
-                                                <h6>Andrea Kearns<span>8:16 PM</span></h6>
-                                                <div class="chat-action-btns ms-3">
-                                                    <div class="chat-action-col">
-                                                        <a class="#" href="#" data-bs-toggle="dropdown">
-                                                            <i class="fa-solid fa-ellipsis"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu chat-drop-menu dropdown-menu-end">
-                                                            <a href="#"
-                                                                class="dropdown-item message-info-left">Message Info </a>
-                                                            <a href="#" class="dropdown-item">Reply</a>
-                                                            <a href="#" class="dropdown-item">React</a>
-                                                            <a href="#" class="dropdown-item">Forward</a>
-                                                            <a href="#" class="dropdown-item">Delete</a>
-                                                        </div>
+                                <div class="messages" id="message-container">
+                                    @foreach ($messages as $message)
+                                        @if ($message->sender_id == auth()->id())
+                                            <div class="chats chats-right">
+                                                <div class="chat-content">
+                                                    <div class="chat-profile-name text-end justify-content-end">
+                                                        <h6>{{ $message->receiver->name ?? '' }}<span>{{ $message->created_at->format('g:i A') }}
+                                                                <i class="fa-solid fa-check-double green-check"></i></span>
+                                                        </h6>
+                                                    </div>
+                                                    <div class="message-content">
+                                                        {{ $message->content }}
+                                                    </div>
+                                                </div>
+                                                <div class="chat-avatar">
+                                                    <img src="{{ $message->receiver->profile_image ?? URL::asset('assets/img/services-six-1.png') }}"
+                                                        class="dreams_chat" alt="image">
+                                                </div>
+                                            </div>
+                                        @else
+                                            <div class="chats">
+                                                <div class="chat-avatar">
+                                                    <img src="{{ $message->sender->profile_image ?? URL::asset('assets/img/patients-img-fifteen.png') }}"
+                                                        class="dreams_chat" alt="image">
+                                                </div>
+                                                <div class="chat-content">
+                                                    <div class="chat-profile-name">
+                                                        <h6>{{ $message->sender->name ?? '' }}<span>{{ $message->created_at->format('g:i A') }}</span>
+                                                        </h6>
+                                                    </div>
+                                                    <div class="message-content">
+                                                        {{ $message->content }}
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="message-content">
-                                                <a href="javascript:void(0);">Hello Doctor, </a> could you tell a diet plan
-                                                that suits for me?
-                                                <div class="emoj-group">
-                                                    <ul>
-                                                        <li class="emoj-action"><a href="javascript:void(0);"><i
-                                                                    class="fa-regular fa-face-smile"></i></a>
-                                                            <div class="emoj-group-list">
-                                                                <ul>
-                                                                    <li><a href="javascript:void(0);"><img
-                                                                                src="{{ URL::asset('assets/img/icons/emoj-icon-01.svg')}}"
-                                                                                alt="Icon"></a></li>
-                                                                    <li><a href="javascript:void(0);"><img
-                                                                                src="{{ URL::asset('assets/img/icons/emoj-icon-02.svg')}}"
-                                                                                alt="Icon"></a></li>
-                                                                    <li><a href="javascript:void(0);"><img
-                                                                                src="{{ URL::asset('assets/img/icons/emoj-icon-03.svg')}}"
-                                                                                alt="Icon"></a></li>
-                                                                    <li><a href="javascript:void(0);"><img
-                                                                                src="{{ URL::asset('assets/img/icons/emoj-icon-04.svg')}}"
-                                                                                alt="Icon"></a></li>
-                                                                    <li><a href="javascript:void(0);"><img
-                                                                                src="{{ URL::asset('assets/img/icons/emoj-icon-05.svg')}}"
-                                                                                alt="Icon"></a></li>
-                                                                    <li class="add-emoj"><a href="javascript:void(0);"><i
-                                                                                class="bx bx-plus"></i></a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </li>
-                                                        <li><a href="#" data-bs-toggle="modal"
-                                                                data-bs-target="#forward-message"><i
-                                                                    class="fa-solid fa-share"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="chat-line">
-                                        <span class="chat-date">Today, March 25</span>
-                                    </div>
-                                    <div class="chats chats-right">
-                                        <div class="chat-content">
-                                            <div class="chat-profile-name text-end justify-content-end">
-                                                <h6>Edalin Hendry<span>9:45 AM <i
-                                                            class="fa-solid fa-check-double green-check"></i></span></h6>
-                                                <div class="chat-action-btns ms-3">
-                                                    <div class="chat-action-col">
-                                                        <a class="#" href="#" data-bs-toggle="dropdown">
-                                                            <i class="fa-solid fa-ellipsis"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu chat-drop-menu dropdown-menu-end">
-                                                            <a href="#"
-                                                                class="dropdown-item message-info-left">Message Info </a>
-                                                            <a href="#" class="dropdown-item">Reply</a>
-                                                            <a href="#" class="dropdown-item">React</a>
-                                                            <a href="#" class="dropdown-item">Forward</a>
-                                                            <a href="#" class="dropdown-item">Delete</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="message-content ">
-                                                <div class="emoj-group rig-emoji-group">
-                                                    <ul>
-                                                        <li class="emoj-action"><a href="javascript:void(0);"><i
-                                                                    class="fa-regular fa-face-smile"></i></a>
-                                                            <div class="emoj-group-list">
-                                                                <ul>
-                                                                    <li><a href="javascript:void(0);"><img
-                                                                                src="{{ URL::asset('assets/img/icons/emoj-icon-01.svg')}}"
-                                                                                alt="Icon"></a></li>
-                                                                    <li><a href="javascript:void(0);"><img
-                                                                                src="{{ URL::asset('assets/img/icons/emoj-icon-02.svg')}}"
-                                                                                alt="Icon"></a></li>
-                                                                    <li><a href="javascript:void(0);"><img
-                                                                                src="{{ URL::asset('assets/img/icons/emoj-icon-03.svg')}}"
-                                                                                alt="Icon"></a></li>
-                                                                    <li><a href="javascript:void(0);"><img
-                                                                                src="{{ URL::asset('assets/img/icons/emoj-icon-04.svg')}}"
-                                                                                alt="Icon"></a></li>
-                                                                    <li><a href="javascript:void(0);"><img
-                                                                                src="{{ URL::asset('assets/img/icons/emoj-icon-05.svg')}}"
-                                                                                alt="Icon"></a></li>
-                                                                    <li class="add-emoj"><a href="javascript:void(0);"><i
-                                                                                class="bx bx-plus"></i></a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </li>
-                                                        <li><a href="#" data-bs-toggle="modal"
-                                                                data-bs-target="#forward-message"><i
-                                                                    class="fa-solid fa-share"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="chat-voice-group">
-                                                    <ul>
-                                                        <li><a href="javascript:void(0);"><span><img
-                                                                        src="{{ URL::asset('assets/img/icons/play-01.svg')}}"
-                                                                        alt="image"></span></a></li>
-                                                        <li><img src="{{ URL::asset('assets/img/icons/voice.svg')}}" alt="image"></li>
-                                                        <li>0:05</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="chat-avatar">
-                                            <img src="{{ URL::asset('assets/img/services-six-1.png')}}"
-                                                class="dreams_chat" alt="image">
-                                        </div>
-                                    </div>
-                                    <div class="chats">
-                                        <div class="chat-avatar">
-                                            <img src="{{ URL::asset('assets/img/patients-img-fifteen.png')}}" class="dreams_chat"
-                                                alt="image">
-                                        </div>
-                                        <div class="chat-content">
-                                            <div class="chat-profile-name">
-                                                <h6>Andrea Kearns<span>9:47 AM</span><span class="check-star"><i
-                                                            class="bx bxs-star"></i></span></h6>
-                                                <div class="chat-action-btns ms-2">
-                                                    <div class="chat-action-col">
-                                                        <a class="#" href="#" data-bs-toggle="dropdown">
-                                                            <i class="fa-solid fa-ellipsis"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu chat-drop-menu dropdown-menu-end">
-                                                            <a href="#"
-                                                                class="dropdown-item message-info-left">Message Info </a>
-                                                            <a href="#" class="dropdown-item">Reply</a>
-                                                            <a href="#" class="dropdown-item">React</a>
-                                                            <a href="#" class="dropdown-item">Forward</a>
-                                                            <a href="#" class="dropdown-item">Delete</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="message-content award-link chat-award-link">
-                                                <a href="javascript:void(0);"
-                                                    class="mb-1">https://www.youtube.com/watch?v=GCmL3mS0Psk</a>
-                                                <img src="{{ URL::asset('assets/img/sending-img.jpg')}}" alt="img">
-                                                <div class="emoj-group">
-                                                    <ul>
-                                                        <li class="emoj-action"><a href="javascript:void(0);"><i
-                                                                    class="fa-regular fa-face-smile"></i></a>
-                                                            <div class="emoj-group-list">
-                                                                <ul>
-                                                                    <li><a href="javascript:void(0);"><img
-                                                                                src="{{ URL::asset('assets/img/icons/emoj-icon-01.svg')}}"
-                                                                                alt="Icon"></a></li>
-                                                                    <li><a href="javascript:void(0);"><img
-                                                                                src="{{ URL::asset('assets/img/icons/emoj-icon-02.svg')}}"
-                                                                                alt="Icon"></a></li>
-                                                                    <li><a href="javascript:void(0);"><img
-                                                                                src="{{ URL::asset('assets/img/icons/emoj-icon-03.svg')}}"
-                                                                                alt="Icon"></a></li>
-                                                                    <li><a href="javascript:void(0);"><img
-                                                                                src="{{ URL::asset('assets/img/icons/emoj-icon-04.svg')}}"
-                                                                                alt="Icon"></a></li>
-                                                                    <li><a href="javascript:void(0);"><img
-                                                                                src="{{ URL::asset('assets/img/icons/emoj-icon-05.svg')}}"
-                                                                                alt="Icon"></a></li>
-                                                                    <li class="add-emoj"><a href="javascript:void(0);"><i
-                                                                                class="bx bx-plus"></i></a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </li>
-                                                        <li><a href="#" data-bs-toggle="modal"
-                                                                data-bs-target="#forward-message"><i
-                                                                    class="fa-solid fa-share"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="chats chats-right">
-                                        <div class="chat-content">
-                                            <div class="chat-profile-name text-end justify-content-end">
-                                                <h6>Edalin Hendry<span>9:50 AM <i
-                                                            class="fa-solid fa-check-double green-check"></i></span></h6>
-                                                <div class="chat-action-btns ms-3">
-                                                    <div class="chat-action-col">
-                                                        <a class="#" href="#" data-bs-toggle="dropdown">
-                                                            <i class="fa-solid fa-ellipsis"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu chat-drop-menu dropdown-menu-end">
-                                                            <a href="#"
-                                                                class="dropdown-item message-info-left">Message Info </a>
-                                                            <a href="#" class="dropdown-item">Reply</a>
-                                                            <a href="#" class="dropdown-item">React</a>
-                                                            <a href="#" class="dropdown-item">Forward</a>
-                                                            <a href="#" class="dropdown-item">Delete</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="message-content fancy-msg-box">
-                                                <div class="emoj-group wrap-emoji-group ">
-                                                    <ul>
-                                                        <li class="emoj-action"><a href="javascript:void(0);"><i
-                                                                    class="fa-regular fa-face-smile"></i></a>
-                                                            <div class="emoj-group-list">
-                                                                <ul>
-                                                                    <li><a href="javascript:void(0);"><img
-                                                                                src="{{ URL::asset('assets/img/icons/emoj-icon-01.svg')}}"
-                                                                                alt="Icon"></a></li>
-                                                                    <li><a href="javascript:void(0);"><img
-                                                                                src="{{ URL::asset('assets/img/icons/emoj-icon-02.svg')}}"
-                                                                                alt="Icon"></a></li>
-                                                                    <li><a href="javascript:void(0);"><img
-                                                                                src="{{ URL::asset('assets/img/icons/emoj-icon-03.svg')}}"
-                                                                                alt="Icon"></a></li>
-                                                                    <li><a href="javascript:void(0);"><img
-                                                                                src="{{ URL::asset('assets/img/icons/emoj-icon-04.svg')}}"
-                                                                                alt="Icon"></a></li>
-                                                                    <li><a href="javascript:void(0);"><img
-                                                                                src="{{ URL::asset('assets/img/icons/emoj-icon-05.svg')}}"
-                                                                                alt="Icon"></a></li>
-                                                                    <li class="add-emoj"><a href="javascript:void(0);"><i
-                                                                                class="bx bx-plus"></i></a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </li>
-                                                        <li><a href="javascript:void(0);" data-bs-toggle="modal"
-                                                                data-bs-target="#forward-message"><i
-                                                                    class="fa-solid fa-share"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="download-col">
-                                                    <ul class="nav mb-0">
-                                                        <li>
-                                                            <div class="image-download-col">
-                                                                <a href="{{ URL::asset('assets/img/media/media-02.jpg')}}"
-                                                                    data-fancybox="gallery" class="fancybox">
-                                                                    <img src="{{ URL::asset('assets/img/media/media-02.jpg')}}"
-                                                                        alt="Img">
-                                                                </a>
-
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="image-download-col ">
-                                                                <a href="{{ URL::asset('assets/img/media/media-03.jpg')}}"
-                                                                    data-fancybox="gallery" class="fancybox">
-                                                                    <img src="{{ URL::asset('assets/img/media/media-03.jpg')}}"
-                                                                        alt="Img">
-                                                                </a>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="image-download-col image-not-download">
-                                                                <a href="{{ URL::asset('assets/img/media/media-01.jpg')}}"
-                                                                    data-fancybox="gallery" class="fancybox">
-                                                                    <img src="{{ URL::asset('assets/img/media/media-01.jpg')}}"
-                                                                        alt="Img">
-                                                                    <span>10+</span>
-                                                                </a>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="chat-avatar">
-                                            <img src="{{ URL::asset('assets/img/services-six-1.png')}}"
-                                                class="dreams_chat" alt="image">
-                                        </div>
-                                    </div>
-
-                                    <div class="chats">
-                                        <div class="chat-avatar">
-                                            <img src="{{ URL::asset('assets/img/patients-img-fifteen.png')}}" class="dreams_chat"
-                                                alt="image">
-                                        </div>
-                                        <div class="chat-content">
-                                            <div class="chat-profile-name">
-                                                <h6>Andrea Kearns<span>8:16 PM</span></h6>
-                                                <div class="chat-action-btns ms-3">
-                                                    <div class="chat-action-col">
-                                                        <a class="#" href="#" data-bs-toggle="dropdown">
-                                                            <i class="fa-solid fa-ellipsis"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu chat-drop-menu dropdown-menu-end">
-                                                            <a href="#"
-                                                                class="dropdown-item message-info-left">Message Info </a>
-                                                            <a href="#" class="dropdown-item">Reply</a>
-                                                            <a href="#" class="dropdown-item">React</a>
-                                                            <a href="#" class="dropdown-item">Forward</a>
-                                                            <a href="#" class="dropdown-item">Delete</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="message-content review-files">
-                                                <div class="file-download d-flex align-items-center mb-0">
-                                                    <div
-                                                        class="file-type d-flex align-items-center justify-content-center me-2">
-                                                        <i class="fa-solid fa-location-dot"></i>
-                                                    </div>
-                                                    <div class="file-details">
-                                                        <span class="file-name">My Location</span>
-                                                        <ul>
-                                                            <li><a href="javascript:void(0);">Download</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div class="emoj-group">
-                                                    <ul>
-                                                        <li class="emoj-action"><a href="javascript:void(0);"><i
-                                                                    class="fa-regular fa-face-smile"></i></a>
-                                                            <div class="emoj-group-list">
-                                                                <ul>
-                                                                    <li><a href="javascript:void(0);"><img
-                                                                                src="{{ URL::asset('assets/img/icons/emoj-icon-01.svg')}}"
-                                                                                alt="Icon"></a></li>
-                                                                    <li><a href="javascript:void(0);"><img
-                                                                                src="{{ URL::asset('assets/img/icons/emoj-icon-02.svg')}}"
-                                                                                alt="Icon"></a></li>
-                                                                    <li><a href="javascript:void(0);"><img
-                                                                                src="{{ URL::asset('assets/img/icons/emoj-icon-03.svg')}}"
-                                                                                alt="Icon"></a></li>
-                                                                    <li><a href="javascript:void(0);"><img
-                                                                                src="{{ URL::asset('assets/img/icons/emoj-icon-04.svg')}}"
-                                                                                alt="Icon"></a></li>
-                                                                    <li><a href="javascript:void(0);"><img
-                                                                                src="{{ URL::asset('assets/img/icons/emoj-icon-05.svg')}}"
-                                                                                alt="Icon"></a></li>
-                                                                    <li class="add-emoj"><a href="javascript:void(0);"><i
-                                                                                class="bx bx-plus"></i></a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </li>
-                                                        <li><a href="#" data-bs-toggle="modal"
-                                                                data-bs-target="#forward-message"><i
-                                                                    class="fa-solid fa-share"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="like-chat-grp">
-                                                <ul>
-                                                    <li class="like-chat"><a href="javascript:void(0);">2<img
-                                                                src="{{ URL::asset('assets/img/icons/like.svg')}}" alt="Icon"></a></li>
-                                                    <li class="comment-chat"><a href="javascript:void(0);">2<img
-                                                                src="{{ URL::asset('assets/img/icons/heart.svg')}}" alt="Icon"></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="chats">
-                                        <div class="chat-avatar">
-                                            <img src="{{ URL::asset('assets/img/patients-img-fifteen.png')}}" class="dreams_chat"
-                                                alt="image">
-                                        </div>
-                                        <div class="chat-content">
-                                            <div class="chat-profile-name">
-                                                <h6>Andrea Kearns<span>8:16 PM</span></h6>
-                                                <div class="chat-action-btns ms-3">
-                                                    <div class="chat-action-col">
-                                                        <a class="#" href="#" data-bs-toggle="dropdown">
-                                                            <i class="fa-solid fa-ellipsis"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu chat-drop-menu dropdown-menu-end">
-                                                            <a href="#"
-                                                                class="dropdown-item message-info-left">Message Info </a>
-                                                            <a href="#" class="dropdown-item">Reply</a>
-                                                            <a href="#" class="dropdown-item">React</a>
-                                                            <a href="#" class="dropdown-item">Forward</a>
-                                                            <a href="#" class="dropdown-item">Delete</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="message-content">
-                                                Thank you for your support
-                                                <div class="emoj-group">
-                                                    <ul>
-                                                        <li class="emoj-action"><a href="javascript:void(0);"><i
-                                                                    class="fa-regular fa-face-smile"></i></a>
-                                                            <div class="emoj-group-list">
-                                                                <ul>
-                                                                    <li><a href="javascript:void(0);"><img
-                                                                                src="{{ URL::asset('assets/img/icons/emoj-icon-01.svg')}}"
-                                                                                alt="Icon"></a></li>
-                                                                    <li><a href="javascript:void(0);"><img
-                                                                                src="{{ URL::asset('assets/img/icons/emoj-icon-02.svg')}}"
-                                                                                alt="Icon"></a></li>
-                                                                    <li><a href="javascript:void(0);"><img
-                                                                                src="{{ URL::asset('assets/img/icons/emoj-icon-03.svg')}}"
-                                                                                alt="Icon"></a></li>
-                                                                    <li><a href="javascript:void(0);"><img
-                                                                                src="{{ URL::asset('assets/img/icons/emoj-icon-04.svg')}}"
-                                                                                alt="Icon"></a></li>
-                                                                    <li><a href="javascript:void(0);"><img
-                                                                                src="{{ URL::asset('assets/img/icons/emoj-icon-05.svg')}}"
-                                                                                alt="Icon"></a></li>
-                                                                    <li class="add-emoj"><a href="javascript:void(0);"><i
-                                                                                class="bx bx-plus"></i></a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </li>
-                                                        <li><a href="javascript:void(0);" data-bs-toggle="modal"
-                                                                data-bs-target="#forward-message"><i
-                                                                    class="fa-solid fa-share"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="chats">
-                                        <div class="chat-avatar">
-                                            <img src="{{ URL::asset('assets/img/patients-img-fifteen.png')}}" class="dreams_chat"
-                                                alt="image">
-                                        </div>
-                                        <div class="chat-content chat-cont-type">
-                                            <div class="chat-profile-name chat-type-wrapper">
-                                                <p>Andrea Kearns Typing...</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="chats forward-chat-msg">
-                                        <div class="chat-avatar">
-                                            <img src="{{ URL::asset('assets/img/patients-img-fifteen.png')}}" class="dreams_chat"
-                                                alt="image">
-                                        </div>
-                                        <div class="chat-content">
-                                            <div class="chat-profile-name">
-                                                <h6>Andrea Kearns<span>8:16 PM</span></h6>
-                                                <div class="chat-action-btns ms-3">
-                                                    <div class="chat-action-col">
-                                                        <a class="#" href="#" data-bs-toggle="dropdown">
-                                                            <i class="fa-solid fa-ellipsis"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu chat-drop-menu dropdown-menu-end">
-                                                            <a href="#"
-                                                                class="dropdown-item message-info-left">Message Info </a>
-                                                            <a href="#" class="dropdown-item">Reply</a>
-                                                            <a href="#" class="dropdown-item">React</a>
-                                                            <a href="#" class="dropdown-item">Forward</a>
-                                                            <a href="#" class="dropdown-item">Delete</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="message-content">
-                                                Thank you for your support
-                                            </div>
-                                        </div>
-                                    </div>
-
+                                        @endif
+                                    @endforeach
                                 </div>
+
                             </div>
                         </div>
                         <div class="chat-footer">
-                            <form>
-                                <div class="smile-foot">
-                                    <div class="chat-action-btns">
-                                        <div class="chat-action-col">
-                                            <a class="action-circle" href="#" data-bs-toggle="dropdown">
-                                                <i class="fa-solid fa-ellipsis-vertical"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-end">
-                                                <a href="#" class="dropdown-item "><span><i
-                                                            class="fa-solid fa-file-lines"></i></span>Document</a>
-                                                <a href="#" class="dropdown-item"><span><i
-                                                            class="fa-solid fa-camera"></i></span>Camera</a>
-                                                <a href="#" class="dropdown-item"><span><i
-                                                            class="fa-solid fa-image"></i></span>Gallery</a>
-                                                <a href="#" class="dropdown-item"><span><i
-                                                            class="fa-solid fa-volume-high"></i></span>Audio</a>
-                                                <a href="#" class="dropdown-item"><span><i
-                                                            class="fa-solid fa-location-dot"></i></span>Location</a>
-                                                <a href="#" class="dropdown-item"><span><i
-                                                            class="fa-solid fa-user"></i></span>Contact</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="smile-foot emoj-action-foot">
-                                    <a href="#" class="action-circle"><i class="fa-regular fa-face-smile"></i></a>
-                                    <div class="emoj-group-list-foot down-emoji-circle">
-                                        <ul>
-                                            <li><a href="javascript:void(0);"><img src="{{ URL::asset('assets/img/icons/emoj-icon-01.svg')}}"
-                                                        alt="Icon"></a></li>
-                                            <li><a href="javascript:void(0);"><img src="{{ URL::asset('assets/img/icons/emoj-icon-02.svg')}}"
-                                                        alt="Icon"></a></li>
-                                            <li><a href="javascript:void(0);"><img src="{{ URL::asset('assets/img/icons/emoj-icon-03.svg')}}"
-                                                        alt="Icon"></a></li>
-                                            <li><a href="javascript:void(0);"><img src="{{ URL::asset('assets/img/icons/emoj-icon-04.svg')}}"
-                                                        alt="Icon"></a></li>
-                                            <li><a href="javascript:void(0);"><img src="{{ URL::asset('assets/img/icons/emoj-icon-05.svg')}}"
-                                                        alt="Icon"></a></li>
-                                            <li class="add-emoj"><a href="javascript:void(0);"><i
-                                                        class="fa-solid fa-plus"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="smile-foot">
-                                    <a href="#" class="action-circle"><i class="fa-solid fa-microphone"></i></a>
-                                </div>
-                                <input type="text" class="form-control chat_form"
-                                    placeholder="Type your message here...">
+                            <form id="messageForm">
+                                @csrf
+                                <input type="hidden" name="receiver_id" id="receiver_id"
+                                    value="{{ $doctorId ?? '' }}">
+                                <input type="text" name="content" id="messageContent" class="form-control chat_form"
+                                    placeholder="Type your message here..." required>
                                 <div class="form-buttons">
                                     <button class="btn send-btn" type="submit">
                                         <i class="fa-solid fa-paper-plane"></i>
@@ -945,6 +339,7 @@
                                 </div>
                             </form>
                         </div>
+
                     </div>
                     <!-- /Chat -->
 
@@ -953,5 +348,68 @@
             </div>
         </div>
     </div>
-    <!-- /Page Content -->
+   
+    <script>
+        document.getElementById('messageForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent the form from submitting traditionally
+    
+            let receiverId = document.getElementById('receiver_id').value;
+            let messageContent = document.getElementById('messageContent').value;
+            let csrfToken = document.querySelector('input[name="_token"]').value;
+    
+            fetch("{{ route('messages.send') }}", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': csrfToken,
+                },
+                body: JSON.stringify({
+                    receiver_id: receiverId,
+                    content: messageContent
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Clear the input field
+                document.getElementById('messageContent').value = '';
+    
+                // Get the necessary data
+                let fromName = data.message.sender_name; // assuming sender's name is returned in the response
+                let profileImage = data.message.sender_profile_image || '{{ URL::asset("assets/img/patients-img-fifteen.png") }}'; // Default profile image if none
+                let messageText = data.message.content;
+                let timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    
+                // Create the new message element
+                let messageContainer = document.getElementById('message-container');
+                let messageElement = document.createElement('div');
+                messageElement.classList.add('chats', 'chats-right');
+    
+                // Append the message HTML
+                messageElement.innerHTML = `
+                    <div class="chat-content">
+                        <div class="chat-profile-name text-end justify-content-end">
+                            <h6>${fromName} <span>${timestamp}</span>
+                                <i class="fa-solid fa-check-double green-check"></i></h6>
+                        </div>
+                        <div class="message-content">
+                            ${messageText}
+                        </div>
+                    </div>
+                    <div class="chat-avatar">
+                        <img src="${profileImage}" class="dreams_chat" alt="image">
+                    </div>
+                `;
+    
+                // Append the new message element to the message container
+                messageContainer.appendChild(messageElement);
+    
+                // Optionally scroll to the bottom of the chat container after appending the message
+                messageContainer.scrollTop = messageContainer.scrollHeight;
+    
+                console.log('Message sent:', data);
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+
 @endsection
