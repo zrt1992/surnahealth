@@ -34,14 +34,17 @@
                                 <div class="stripe-img">
                                     <img src="{{ URL::asset('assets/img/icons/stripe.svg')}}" alt="img">
                                 </div>
-                                <a href="javascript:void(0);" class="btn"><i class="fa-solid fa-gear"></i>Configure</a>
+                                <a href="" class="btn"><i class="fa-solid fa-gear"></i>Configure</a>
+                              
                             </div>
                             <div class="stripe-box active">
                                 <div class="stripe-img">
                                     <img src="{{ URL::asset('assets/img/icons/paypal.svg')}}" alt="img">
                                 </div>
-                                <a href="javascript:void(0);" class="btn" data-bs-toggle="modal"
-                                    data-bs-target="#add_configure"><i class="fa-solid fa-gear"></i>Configure</a>
+                                {{-- <a href="javascript:void(0);" class="btn" data-bs-toggle="modal"
+                                    data-bs-target="#add_configure"><i class="fa-solid fa-gear"></i>Configure</a> --}}
+
+                                     <a href="javascript:void(0);" class="btn" ><i class="fa-solid fa-gear"></i>Configure</a> 
                             </div>
                         </div>
                     </div>

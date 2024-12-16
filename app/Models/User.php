@@ -30,15 +30,18 @@ class User extends Authenticatable
         'city',
         'state',
         'address',
+        'years_of_experience',
         'profile_image',
         'password',
         'gender',
         'height',
         'weight',
-        'quali_certificate',
         'photo_id',
-        'clinical_employment',
         'registration_step',
+        'consultation_fees',
+        'medical_licence_number',
+        'medical_licence',
+        'referral_code',
     ];
 
     /**
@@ -147,5 +150,10 @@ class User extends Authenticatable
 public function appointments()
 {
     return $this->hasMany(Appointment::class,'user_id','id');
+}
+
+public function prescriptions()
+{
+    return $this->hasMany(Prescription::class,'user_id','id');
 }
 }

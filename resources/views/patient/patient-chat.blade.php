@@ -457,8 +457,9 @@ Message
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="message-content ">
-                                                <div class="emoj-group">
+                                            <div class="message-content">
+                                                <a href="javascript:void(0);">Hello Doctor, </a> could you tell a diet plan that suits for me?
+                                                <div class="emoj-group  right-emoji-group">
                                                     <ul>
                                                         <li class="emoj-action"><a href="javascript:void(0);"  ><i class="fa-regular fa-face-smile"></i></a>
                                                             <div class="emoj-group-list">
@@ -474,13 +475,6 @@ Message
                                                         <li><a href="#" data-bs-toggle="modal" data-bs-target="#forward-message"><i class="fa-solid fa-share"></i></a></li>
                                                     </ul>
                                                 </div>
-                                                <div class="chat-voice-group">
-                                                    <ul>
-                                                        <li><a href="javascript:void(0);"><span><img src="{{URL::asset('/assets/img/icons/play-01.svg')}}" alt="image"></span></a></li>
-                                                        <li><img src="{{URL::asset('/assets/img/icons/voice.svg')}}" alt="image"></li>
-                                                        <li>0:05</li>
-                                                    </ul>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -491,25 +485,11 @@ Message
                                         <div class="chat-content">
                                             <div class="chat-profile-name text-end justify-content-end">
                                                 <h6>Andrea Kearns<span>9:47 AM</span></h6>
-                                                <div class="chat-action-btns ms-2">
-                                                    <div class="chat-action-col">
-                                                        <a class="#" href="#" data-bs-toggle="dropdown">
-                                                            <i class="fa-solid fa-ellipsis"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu chat-drop-menu dropdown-menu-end" >
-                                                            <a href="#" class="dropdown-item message-info-left">Message Info </a>
-                                                            <a href="#" class="dropdown-item">Reply</a>
-                                                            <a href="#" class="dropdown-item" >React</a>
-                                                            <a href="#" class="dropdown-item">Forward</a>
-                                                            <a href="#" class="dropdown-item">Delete</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                
                                             </div>
-                                            <div class="message-content award-link chat-award-link">
-                                                <a href="javascript:void(0);" class="mb-1">https://www.youtube.com/watch?v=GCmL3mS0Psk</a>
-                                                <img src="{{URL::asset('/assets/img/sending-img.jpg')}}" alt="img">
-                                                <div class="emoj-group right-emoji-group">
+                                            <div class="message-content">
+                                                <a href="javascript:void(0);">Hello Doctor, </a> could you tell a diet plan that suits for me?
+                                                <div class="emoj-group  right-emoji-group">
                                                     <ul>
                                                         <li class="emoj-action"><a href="javascript:void(0);"  ><i class="fa-regular fa-face-smile"></i></a>
                                                             <div class="emoj-group-list">
@@ -535,7 +515,7 @@ Message
                                         <div class="chat-content">
                                             <div class="chat-profile-name">
                                                 <h6>Edalin Hendry<span>9:50 AM <i class="fa-solid fa-check-double green-check"></i></span></h6>
-                                                <div class="chat-action-btns ms-3">
+                                                {{-- <div class="chat-action-btns ms-3">
                                                     <div class="chat-action-col">
                                                         <a class="#" href="#" data-bs-toggle="dropdown">
                                                             <i class="fa-solid fa-ellipsis"></i>
@@ -548,10 +528,11 @@ Message
                                                             <a href="#" class="dropdown-item">Delete</a>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                             </div>
-                                            <div class="message-content fancy-msg-box">
-                                                <div class="emoj-group">
+                                            <div class="message-content">
+                                                <a href="javascript:void(0);">Hello Doctor, </a> could you tell a diet plan that suits for me?
+                                                <div class="emoj-group  right-emoji-group">
                                                     <ul>
                                                         <li class="emoj-action"><a href="javascript:void(0);"  ><i class="fa-regular fa-face-smile"></i></a>
                                                             <div class="emoj-group-list">
@@ -564,34 +545,7 @@ Message
                                                                 </ul>
                                                             </div>
                                                         </li>
-                                                        <li><a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#forward-message"><i class="fa-solid fa-share"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="download-col">
-                                                    <ul class="nav mb-0">
-                                                        <li>
-                                                            <div class="image-download-col">
-                                                                <a href="{{ URL::asset('assets/img/media/media-02.jpg')}}" data-fancybox="gallery" class="fancybox">
-                                                                    <img src="{{URL::asset('/assets/img/media/media-02.jpg')}}" alt="Img">
-                                                                </a>
-                                                                
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="image-download-col ">
-                                                                <a href="{{ URL::asset('assets/img/media/media-03.jpg')}}" data-fancybox="gallery" class="fancybox">
-                                                                    <img src="{{URL::asset('/assets/img/media/media-03.jpg')}}" alt="Img">
-                                                                </a>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="image-download-col image-not-download">
-                                                                <a href="{{ URL::asset('assets/img/media/media-01.jpg')}}" data-fancybox="gallery" class="fancybox">
-                                                                    <img src="{{URL::asset('/assets/img/media/media-01.jpg')}}" alt="Img">
-                                                                    <span>10+</span>
-                                                                </a>
-                                                            </div>
-                                                        </li>
+                                                        <li><a href="#" data-bs-toggle="modal" data-bs-target="#forward-message"><i class="fa-solid fa-share"></i></a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -620,19 +574,9 @@ Message
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="message-content review-files">
-                                                <div class="file-download d-flex align-items-center mb-0">
-                                                    <div class="file-type d-flex align-items-center justify-content-center me-2">
-                                                        <i class="fa-solid fa-location-dot"></i>
-                                                    </div>
-                                                    <div class="file-details">
-                                                        <span class="file-name">My Location</span>
-                                                        <ul>
-                                                            <li><a href="javascript:void(0);">Download</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div class="emoj-group right-emoji-group">
+                                            <div class="message-content">
+                                                <a href="javascript:void(0);">Hello Doctor, </a> could you tell a diet plan that suits for me?
+                                                <div class="emoj-group  right-emoji-group">
                                                     <ul>
                                                         <li class="emoj-action"><a href="javascript:void(0);"  ><i class="fa-regular fa-face-smile"></i></a>
                                                             <div class="emoj-group-list">
@@ -649,12 +593,12 @@ Message
                                                     </ul>
                                                 </div>
                                             </div>
-                                            <div class="like-chat-grp">
+                                            {{-- <div class="like-chat-grp">
                                                 <ul>
                                                     <li class="like-chat"><a href="javascript:void(0);">2<img src="{{URL::asset('/assets/img/icons/like.svg')}}"  alt="Icon"></a></li>
                                                     <li class="comment-chat"><a href="javascript:void(0);">2<img src="{{URL::asset('/assets/img/icons/heart.svg')}}"  alt="Icon"></a></li>
                                                 </ul>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                     <div class="chats chats-right">

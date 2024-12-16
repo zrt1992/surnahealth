@@ -33,16 +33,16 @@
                                 <li>
                                     <div class="patinet-information">
                                         <a href="#">
-                                            <img src="{{ URL::asset('/assets/img/doctors-dashboard/doctor-profile-img.jpg') }}"
+                                            <img src="{{$appointmentCancelledRequest->doctor->profile_image ??  URL::asset('/assets/img/doctors-dashboard/doctor-profile-img.jpg') }}"
                                                 alt="User Image">
                                         </a>
                                         <div class="patient-info">
                                             <p>#Apt0001</p>
-                                            <h6><a href="#">Dr Edalin Hendry </a></h6>
+                                            <h6><a href="#">Dr {{ $appointmentCancelledRequest->doctor->name ?? '' }} </a></h6>
                                             <div class="mail-info-patient">
                                                 <ul>
-                                                    <li><i class="fa-solid fa-envelope"></i>edalin@example.com</li>
-                                                    <li><i class="fa-solid fa-phone"></i> +1 504 368 6874</li>
+                                                    <li><i class="fa-solid fa-envelope"></i>{{ $appointmentCancelledRequest->doctor->email ?? '' }}</li>
+                                                    <li><i class="fa-solid fa-phone"></i> {{ $appointmentCancelledRequest->doctor->phone ?? '' }}</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -69,7 +69,7 @@
                                         <a href="#reject_reason" class="reject-popup" data-bs-toggle="modal">Reason</a>
                                     </div>
                                     <div class="consult-fees">
-                                        <h6>Consultation Fees : $200</h6>
+                                        <h6>Consultation Fees : ${{ $appointmentCancelledRequest->doctor->consultation_fees ?? '' }}</h6>
                                     </div>
                                     <ul>
                                         <li>
@@ -81,7 +81,9 @@
                             <ul class="detail-card-bottom-info">
                                 <li>
                                     <h6>Appointment Date & Time</h6>
-                                    <span>22 Jul 2023 - 12:00 pm</span>
+                                    {{-- <span>22 Jul 2023 - 12:00 pm</span> --}}
+                                    <span>{{ $appointmentCancelledRequest->booking_date?? '' }} - {{ $appointmentCancelledRequest->slot->start_time?? '' }}</span>
+
                                 </li>
                                 <li>
                                     <h6>Visit Type</h6>
@@ -90,7 +92,7 @@
                                 <li>
                                     <div class="detail-badge-info">
                                         <span class="badge bg-soft-red me-2">Status : Reschedule</span>
-                                        <a href="{{ url('booking') }}"
+                                        <a href="{{ route('patient-reschedule-appointment',['doctorId' => $appointmentCancelledRequest->doctor->id,'appointmentReqId' => $appointmentCancelledRequest->id]) }}"
                                             class="reschedule-btn btn-primary-border">Reschedule Appointment</a>
                                     </div>
                                 </li>

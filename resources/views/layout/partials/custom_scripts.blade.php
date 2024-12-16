@@ -1,6 +1,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
- <!-- Toastr JS -->
- <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+<!-- Toastr JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
 
 <script>
     $(document).ready(function() {
@@ -343,12 +343,12 @@
 																			<i class="fa-solid fa-file-image"></i>
 																		</div>
 																		<div class="upload-img">
-																			<h5>Logo</h5>
+																			<h5>Certifications</h5>
 																			<div class="imgs-load d-flex align-items-center">
 																				<div class="change-photo">
 																					Upload New
 																					<input type="file"
-																						name="logo[]" class="upload">
+																						name="certifications[]" class="upload">
 																				</div>
 																				<a href="#"
 																					class="upload-remove">Remove</a>
@@ -361,79 +361,26 @@
 															</div>
 														<div class="col-md-6">
 																<div class="form-wrap">
-																	<label class="col-form-label">Name of the institution</label>
-																	<input type="text" name="name_of_institution[]"
+																	<label class="col-form-label">Medical School</label>
+																	<input type="text" name="medical_school[]"
 																		class="form-control">
-																	@error('name_of_institution')
+																	@error('medical_school')
 																		<div class="text-danger">{{ $message }}</div>
 																	@enderror
 																</div>
 															</div>
 														<div class="col-md-6">
 																<div class="form-wrap">
-																	<label class="col-form-label">Course <span
+																	<label class="col-form-label">Residency <span
 																			class="text-danger">*</span></label>
-																	<input type="text" name="course[]"
+																	<input type="text" name="residency[]"
 																		class="form-control">
-																	@error('course')
+																	@error('residency')
 																		<div class="text-danger">{{ $message }}</div>
 																	@enderror
 																</div>
 															</div>
-															
-															<div class="col-lg-4 col-md-6">
-																<div class="form-wrap">
-																	<label class="col-form-label">Start Date <span
-																			class="text-danger">*</span></label>
-																	<div class="form-icon">
-																		<input type="text" name="start_date[]"
-																			class="form-control datetimepicker">
-																		<span class="icon"><i
-																				class="fa-regular fa-calendar-days"></i></span>
-																		@error('start_date')
-																			<div class="text-danger">{{ $message }}</div>
-																		@enderror
-																	</div>
-																</div>
-															</div>
-															<div class="col-lg-4 col-md-6">
-																<div class="form-wrap">
-																	<label class="col-form-label">End Date <span
-																			class="text-danger">*</span></label>
-																	<div class="form-icon">
-																		<input type="text" name="end_date[]"
-																			class="form-control datetimepicker">
-																		<span class="icon"><i
-																				class="fa-regular fa-calendar-days"></i></span>
-																		@error('end_date')
-																			<div class="text-danger">{{ $message }}</div>
-																		@enderror
-																	</div>
-																</div>
-															</div>
-															<div class="col-lg-4 col-md-6">
-																<div class="form-wrap">
-																	
-																	
-																	<label class="col-form-label">No of Years <span class="text-danger">*</span></label>
-																	<input type="text" name="no_of_years[]"
-																		class="form-control">
-																	@error('no_of_years')
-																		<div class="text-danger">{{ $message }}</div>
-																	@enderror
-																</div>
-															</div>
-															<div class="col-lg-12">
-																<div class="form-wrap">
-																	<label class="col-form-label">Description <span
-																			class="text-danger">*</span></label>
-																	<textarea name="description[]" class="form-control" rows="3"></textarea>
-																	@error('description')
-																		<div class="text-danger">{{ $message }}</div>
-																	@enderror
-																</div>
-															</div>
-															
+																
 														</div>
 													</div>
 													<div class="text-end">
@@ -714,16 +661,70 @@
     });
 </script>
 
+{{-- presciption setting --}}
+<script>
+    // Get the "Add Item" button and the prescription table body
+    const addPrescriptionBtn = document.querySelector('.add-prescription');
+    const prescriptionTable = document.querySelector('#prescription-table tbody');
+
+    // Event listener to add a new prescription row
+    addPrescriptionBtn.addEventListener('click', () => {
+        const newRow = document.createElement('tr');
+        newRow.classList.add('test');
+        newRow.innerHTML = `
+                        <input type="hidden" name="user_id[]" value="{{ $id ?? '' }}">
+                        <td><input class="form-control" type="text" name="name[]"></td>
+                        <td><input class="form-control" type="text" name="quantity[]"></td>
+                        <td><input class="form-control" type="text" name="days[]"></td>
+                        <td>
+                        <div class="form-check form-check-inline">
+                        <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="morning[]"> Morning
+                        </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                        <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="afternoon[]"> Afternoon
+                        </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                        <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="evening[]"> Evening
+                        </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                        <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="night[]"> Night
+                        </label>
+                        </div>
+                        </td>
+                        <td>
+                        <a href="#" class="btn bg-danger-light trash"><i class="far fa-trash-alt"></i></a>
+                        </td>
+                        `;
+        prescriptionTable.appendChild(newRow);
+    });
+
+    // Event delegation to handle row deletion
+    prescriptionTable.addEventListener('click', (event) => {
+        if (event.target.closest('.trash')) {
+            event.preventDefault();
+            const row = event.target.closest('tr');
+            if (row) row.remove();
+        }
+    });
+</script>
+
 {{-- Toaster --}}
 <script>
-    @if(session('success'))
+    @if (session('success'))
         toastr.success("{{ session('success') }}", "Success", {
             closeButton: true,
             progressBar: true,
             positionClass: "toast-top-right",
             timeOut: 5000
         });
-    @elseif(session('error'))
+    @elseif (session('error'))
         toastr.error("{{ session('error') }}", "Error", {
             closeButton: true,
             progressBar: true,

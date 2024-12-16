@@ -37,33 +37,24 @@ class DoctorEducationController extends Controller
         // dd($request);
 
         $request->validate([
-            'logo.*' => 'nullable|image|mimes:jpg,png,svg|max:4096',
-            'name_of_institution.*' => 'required',
-            'course.*' => 'required',
-            'start_date.*' => 'required',
-            'no_of_years.*' => 'required',
-            'description.*' => 'required',
+            'certifications.*' => 'nullable|image|mimes:jpg,png,svg|max:4096',
+            'medical_school.*' => 'required',
+            'residency.*' => 'required',
         ]);
 
-        foreach ($request->name_of_institution as $index => $name_of_institution) {
+        foreach ($request->medical_school as $index => $medical_school) {
 
             $data = [
                 'doctor_id' => getAuthUser()->id,
-                'name_of_institution' => $request->name_of_institution[$index] ?? null,
-                'course' => $request->course[$index] ?? null,
-                'start_date' => $request->start_date[$index] ?? null,
-                'end_date' => $request->end_date[$index] ?? null,
-                'no_of_years' => $request->no_of_years[$index] ?? null,
-                'description' => $request->description[$index] ?? null,
+                'medical_school' => $request->medical_school[$index] ?? null,
+                'residency' => $request->residency[$index] ?? null,
             ];
-            // $data['row_index'] = $index;
            
-            $formType = $request->form_type[$index] ?? null; // Match by $index directly
+           
+            $formType = $request->form_type[$index] ?? null; 
             if ($formType === 'update') {
-                // Update existing record
                 $this->DoctorEducationRepository->update($index, $data);
             } elseif ($formType === 'create') {
-                // Create new record
                 $this->DoctorEducationRepository->create($data);
             } else {
                 // Handle unexpected cases or log for debugging
@@ -91,12 +82,9 @@ class DoctorEducationController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'hospital_logo' => 'nullable|image|mimes:jpg,png,svg|max:4096',
-            'hospital' => 'required',
-            'year_of_experience' => 'required',
-            'location' => 'required',
-            'job_description' => 'required',
-            'start_date' => 'required',
+            'certifications' => 'nullable|image|mimes:jpg,png,svg|max:4096',
+            'medical_school' => 'required',
+            'residency' => 'required',
         ]);
 
         $input = $request->all();

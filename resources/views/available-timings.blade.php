@@ -34,10 +34,10 @@
                                 <a class="nav-link active" href="#" data-bs-toggle="tab"
                                     data-bs-target="#general-availability">General Availability</a>
                             </li>
-                            <li class="nav-item" role="presentation">
+                            {{-- <li class="nav-item" role="presentation">
                                 <a class="nav-link" href="#" data-bs-toggle="tab"
                                     data-bs-target="#clinic-availability">Clinic Availability</a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </div>
                     <div class="tab-content pt-0 timing-content">
@@ -116,7 +116,7 @@
                                                     </ul> --}}
                                                         <ul class="time-slots">
                                                             @forelse ($data as $slots)
-                                                                @if ($slots->availability_type == 'global' && $slots->availability_day == 'Monday')
+                                                                @if ($slots->user_id == $auth->id && $slots->availability_type == 'global' && $slots->availability_day == 'Monday')
                                                                     <li><i
                                                                             class="fa-regular fa-clock"></i>{{ $slots->start_time }}
                                                                     </li>
@@ -151,7 +151,7 @@
                                                     <div class="slot-body">
                                                         <ul class="time-slots">
                                                             @forelse ($data as $slots)
-                                                                @if ($slots->availability_type == 'global' && $slots->availability_day == 'Tuesday')
+                                                                @if ($slots->user_id == $auth->id && $slots->availability_type == 'global' && $slots->availability_day == 'Tuesday')
                                                                     <li><i
                                                                             class="fa-regular fa-clock"></i>{{ $slots->start_time }}
                                                                     </li>
@@ -186,7 +186,7 @@
                                                     <div class="slot-body">
                                                         <ul class="time-slots">
                                                             @forelse ($data as $slots)
-                                                                @if ($slots->availability_type == 'global' && $slots->availability_day == 'Wednesday')
+                                                                @if ($slots->user_id == $auth->id && $slots->availability_type == 'global' && $slots->availability_day == 'Wednesday')
                                                                     <li><i
                                                                             class="fa-regular fa-clock"></i>{{ $slots->start_time }}
                                                                     </li>
@@ -221,7 +221,7 @@
                                                     <div class="slot-body">
                                                         <ul class="time-slots">
                                                             @forelse ($data as $slots)
-                                                                @if ($slots->availability_type == 'global' && $slots->availability_day == 'Thursday')
+                                                                @if ($slots->user_id == $auth->id && $slots->availability_type == 'global' && $slots->availability_day == 'Thursday')
                                                                     <li><i
                                                                             class="fa-regular fa-clock"></i>{{ $slots->start_time }}
                                                                     </li>
@@ -255,7 +255,7 @@
                                                     <div class="slot-body">
                                                         <ul class="time-slots">
                                                             @forelse ($data as $slots)
-                                                                @if ($slots->availability_type == 'global' && $slots->availability_day == 'Friday')
+                                                                @if ($slots->user_id == $auth->id && $slots->availability_type == 'global' && $slots->availability_day == 'Friday')
                                                                     <li><i
                                                                             class="fa-regular fa-clock"></i>{{ $slots->start_time }}
                                                                     </li>
@@ -290,7 +290,7 @@
                                                     <div class="slot-body">
                                                         <ul class="time-slots">
                                                             @forelse ($data as $slots)
-                                                                @if ($slots->availability_type == 'global' && $slots->availability_day == 'Saturday')
+                                                                @if ($slots->user_id == $auth->id && $slots->availability_type == 'global' && $slots->availability_day == 'Saturday')
                                                                     <li><i
                                                                             class="fa-regular fa-clock"></i>{{ $slots->start_time }}
                                                                     </li>
@@ -324,7 +324,7 @@
                                                     <div class="slot-body">
                                                         <ul class="time-slots">
                                                             @forelse ($data as $slots)
-                                                                @if ($slots->availability_type == 'global' && $slots->availability_day == 'Sunday')
+                                                                @if ($slots->user_id == $auth->id && $slots->availability_type == 'global' && $slots->availability_day == 'Sunday')
                                                                     <li><i
                                                                             class="fa-regular fa-clock"></i>{{ $slots->start_time }}
                                                                     </li>
@@ -340,8 +340,8 @@
 
                                             <div class="form-wrap">
                                                 <label class="col-form-label">Appointment Fees ($)</label>
-                                                <input type="text" class="form-control" value=""
-                                                    name="appointment_fees">
+                                                <input type="text" class="form-control" value="{{ $auth->consultation_fees ?? '' }}"
+                                                    name="consultation_fees">
                                             </div>
                                             <div class="modal-btn text-end">
                                                 <a href="#" class="btn btn-gray" data-bs-toggle="modal"
@@ -450,7 +450,7 @@
                                                     </ul> --}}
                                                         <ul class="time-slots">
                                                             @forelse ($data as $slots)
-                                                                @if ($slots->availability_type == 'clinic' && $slots->availability_day == 'Monday')
+                                                                @if ($slots->user_id == $auth->id && $slots->availability_type == 'clinic' && $slots->availability_day == 'Monday')
                                                                     <li><i
                                                                             class="fa-regular fa-clock"></i>{{ $slots->start_time }}
                                                                     </li>
@@ -485,7 +485,7 @@
                                                     <div class="slot-body">
                                                         <ul class="time-slots">
                                                             @forelse ($data as $slots)
-                                                                @if ($slots->availability_type == 'clinic' && $slots->availability_day == 'Tuesday')
+                                                                @if ($slots->user_id == $auth->id && $slots->availability_type == 'clinic' && $slots->availability_day == 'Tuesday')
                                                                     <li><i
                                                                             class="fa-regular fa-clock"></i>{{ $slots->start_time }}
                                                                     </li>
@@ -520,7 +520,7 @@
                                                     <div class="slot-body">
                                                         <ul class="time-slots">
                                                             @forelse ($data as $slots)
-                                                                @if ($slots->availability_type == 'clinic' && $slots->availability_day == 'Wednesday')
+                                                                @if ($slots->user_id == $auth->id && $slots->availability_type == 'clinic' && $slots->availability_day == 'Wednesday')
                                                                     <li><i
                                                                             class="fa-regular fa-clock"></i>{{ $slots->start_time }}
                                                                     </li>
@@ -555,7 +555,7 @@
                                                     <div class="slot-body">
                                                         <ul class="time-slots">
                                                             @forelse ($data as $slots)
-                                                                @if ($slots->availability_type == 'clinic' && $slots->availability_day == 'Thursday')
+                                                                @if ($slots->user_id == $auth->id && $slots->availability_type == 'clinic' && $slots->availability_day == 'Thursday')
                                                                     <li><i
                                                                             class="fa-regular fa-clock"></i>{{ $slots->start_time }}
                                                                     </li>
@@ -589,7 +589,7 @@
                                                     <div class="slot-body">
                                                         <ul class="time-slots">
                                                             @forelse ($data as $slots)
-                                                                @if ($slots->availability_type == 'clinic' && $slots->availability_day == 'Friday')
+                                                                @if ($slots->user_id == $auth->id && $slots->availability_type == 'clinic' && $slots->availability_day == 'Friday')
                                                                     <li><i
                                                                             class="fa-regular fa-clock"></i>{{ $slots->start_time }}
                                                                     </li>
@@ -624,7 +624,7 @@
                                                     <div class="slot-body">
                                                         <ul class="time-slots">
                                                             @forelse ($data as $slots)
-                                                                @if ($slots->availability_type == 'clinic' && $slots->availability_day == 'Saturday')
+                                                                @if ($slots->user_id == $auth->id && $slots->availability_type == 'clinic' && $slots->availability_day == 'Saturday')
                                                                     <li><i
                                                                             class="fa-regular fa-clock"></i>{{ $slots->start_time }}
                                                                     </li>
@@ -658,7 +658,7 @@
                                                     <div class="slot-body">
                                                         <ul class="time-slots">
                                                             @forelse ($data as $slots)
-                                                                @if ($slots->availability_type == 'clinic' && $slots->availability_day == 'Sunday')
+                                                                @if ($slots->user_id == $auth->id && $slots->availability_type == 'clinic' && $slots->availability_day == 'Sunday')
                                                                     <li><i
                                                                             class="fa-regular fa-clock"></i>{{ $slots->start_time }}
                                                                     </li>
@@ -674,8 +674,8 @@
 
                                             <div class="form-wrap">
                                                 <label class="col-form-label">Appointment Fees ($)</label>
-                                                <input type="text" class="form-control" value=""
-                                                    name="appointment_fees">
+                                                <input type="text" class="form-control" value="{{ $auth->consultation_fees ?? '' }}"
+                                                    name="consultation_fees">
                                             </div>
                                             <div class="modal-btn text-end">
                                                 <a href="#" class="btn btn-gray" data-bs-toggle="modal"

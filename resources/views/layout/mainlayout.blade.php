@@ -133,6 +133,7 @@
         'doctor-register-step1',
         'doctor-register-step2',
         'doctor-register-step3',
+        'doctor-register-step4',
         'patient-register-step1',
         'patient-register-step2',
         'patient-register-step3',
@@ -168,6 +169,8 @@
         'doctor-register-step1',
         'doctor-register-step2',
         'doctor-register-step3',
+        'doctor-register-step4',
+
     ]))
 
     <body class="account-page">
@@ -315,6 +318,7 @@
         'doctor-register-step1',
         'doctor-register-step2',
         'doctor-register-step3',
+        'doctor-register-step4',
         'onboarding-availability',
         'onboarding-consultation',
         'onboarding-cost',
@@ -357,6 +361,7 @@
         'doctor-register-step1',
         'doctor-register-step2',
         'doctor-register-step3',
+        'doctor-register-step4',
         'doctor-signup',
         'email-otp',
         'forgot-password2',

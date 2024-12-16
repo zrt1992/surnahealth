@@ -1967,7 +1967,7 @@
 		<!-- /Add Dependent Modal-->
 @endif
 
-@if (Route::is(['patient-profile']))
+@if (Route::is(['patient-profile','doctor.patient-profile']))
 		<!--View Prescription -->
 		<div class="modal fade custom-modals" id="view_prescription">
 			<div class="modal-dialog modal-dialog-centered modal-lg" role="document">

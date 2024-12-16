@@ -19,6 +19,10 @@ return new class extends Migration
             $table->string('account_number')->nullable();
             $table->string('account_name')->nullable();
             $table->decimal('total_balance', 10, 2)->default(0);
+            $table->string('stripe')->nullable();
+            $table->string('paypal')->nullable();
+            $table->string('credit_card')->nullable();
+            $table->string('mobile_money')->nullable();
             $table->string('default')->nullable();
             $table->string('status')->nullable();
             $table->timestamps();

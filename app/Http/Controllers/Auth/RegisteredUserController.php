@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Account;
+use App\Models\InsuranceInformation;
 use App\Models\MedicalDetail;
+use App\Models\PatientAppoitmentPreferences;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -36,6 +39,7 @@ class RegisteredUserController extends Controller
         $result = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'phone' => ['required', 'string', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
       
@@ -43,6 +47,7 @@ class RegisteredUserController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'phone' => $request->phone,
             'password' => Hash::make($request->password),
         ]);
         $user->assignRole('patient');
@@ -82,49 +87,99 @@ class RegisteredUserController extends Controller
 {
     $request->validate([
         'gender' => 'required|in:Male,Female',
-        'blood_group' => 'required|string|max:255',
-        'age' => 'required|numeric',
-        'weight' => 'required',
-        'height' => 'required',
-        'glucose' => 'required',
-        'bp' => 'required',
-        'heart_rate' => 'required',
+        'age' => 'required',
+        'city' => 'required',
+        'country' => 'required',
+        'preferred_language' => 'required',
+        'existing_medical_conditions' => 'required',
+        'preferred_time' => 'required',
     ]);
-    $userData = array_merge(
-        $request->only(['gender', 'blood_group','age',])
-    );
+    $userData = [
+        'gender' => $request->gender,
+        'dob' => $request->age,
+        'city' => $request->city,
+        'country' => $request->country,
+        'known_languages' => $request->preferred_language,
+        'registration_step' => '+3',
+    ];
+   
+    $medicalData = [
+        'user_id' => auth()->user()->id,
+        'existing_medical_conditions' => $request->existing_medical_conditions,
+        'medications_currently_using' => $request->medications_currently_using,
+        'primarly_health_concern' => $request->primarly_health_concern,
+    ];
 
-    $medicalData = $request->only([
-        'weight',
-         'weight_unit',
-        'height',
-       'height_unit',
-        'allergies',
-        'glucose',
-        'bp',
-        'heart_rate',
-        'pregnant',
-        'preg_term',
-        'cancer',
-        'conditions',
-        'medicine',
-        'medicine_name',
-        'dosage',
-    ]);
-    // dd($medicalData);
-    $medicalData['user_id'] = auth()->user()->id;
-    $medicalData['conditions'] = json_encode($medicalData['conditions']);
-    $medicalData['medicine_name'] = json_encode($medicalData['medicine_name']);
-    $medicalData['dosage'] = json_encode($medicalData['dosage']);
+    $appointmentPreferences = [
+        'user_id' => auth()->user()->id,
+        'preferred_doctor' => $request->preferred_doctor,
+        'video_call' => $request->video_call,
+        'audio_call' => $request->audio_call,
+        'chat' => $request->chat,
+        'preferred_time' => $request->preferred_time,
+
+    ];
 
     $authUser = auth()->user();
-    $authUser['registration_step'] = 'completed';
-    $authUser->update($userData);
-
-   
-    $request['user_id'] = auth()->user()->id;
-    // dd($medicalData);
+    $userdata = $authUser->update($userData);
     $medicalDetails = MedicalDetail::create($medicalData);
+    $medicalDetails = PatientAppoitmentPreferences::create($appointmentPreferences);
+
+    return redirect()->route('patient-register-step3');
+}
+
+public function storeStep3(Request $request)
+{
+    $request->validate([
+        'insurance_provider_name' => 'required',
+        'insurance_id' => 'required',
+        'emergency_contact' => 'required',
+        'name' => 'required',
+        'relationship' => 'required',
+        'phone_number' => 'required',
+    ]);
+   
+    $userData = [
+        'registration_step' => '+4',
+    ];
+
+    $authUser = auth()->user();
+    $userdata = $authUser->update($userData);
+    $medicalDetails = $request->all();    
+    $medicalDetails['user_id'] = $authUser->id;
+    $medicalDetails = InsuranceInformation::create($medicalDetails);
+
+    return redirect()->route('patient-register-step4');
+}
+
+public function storeStep4(Request $request)
+{
+    $request->validate([
+        'bank_name' => 'required',
+        'branch_name' => 'required|string|max:255',
+        'account_name' => 'required',
+        'account_number' => 'required',
+    ]);
+   
+    $userData = [
+        'registration_step' => 'completed',
+    ];
+
+    $authUser = auth()->user();
+    $userdata = $authUser->update($userData);
+    $bankDetails = [
+        'user_id' => $authUser->id,
+        'bank_name' =>  $request->bank_name,
+        'branch_name' => $request->branch_name,
+        'account_name' => $request->account_name,
+        'account_number' => $request->account_number,
+        'stripe' => $request->stripe,
+        'paypal' => $request->paypal,
+        'credit_card' => $request->credit_card,
+        'mobile_money' => $request->mobile_money,
+        'default' => '1',
+    ];
+    Account::create($bankDetails);
 
     return redirect()->route('patient-dashboard')->with('success', 'Registration completed!');
 }

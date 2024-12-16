@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('select_business_days')->nullable(); 
             $table->string('start_time')->nullable(); 
             $table->string('end_time')->nullable();
+            $table->string('time_zone')->nullable();
             $table->timestamps();
         });
     }

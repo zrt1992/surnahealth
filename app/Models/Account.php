@@ -15,6 +15,10 @@ class Account extends Model
        'branch_name',
        'account_number',
        'account_name',
+       'stripe',
+       'paypal',
+       'credit_card',
+       'mobile_money',
        'default',
        'status',
     ];

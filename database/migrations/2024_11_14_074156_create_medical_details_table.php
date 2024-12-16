@@ -16,9 +16,22 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->float('bmi')->nullable();
             $table->integer('heart_rate')->nullable();
-            $table->float('weight')->nullable();
+            $table->string('glucose')->nullable(); // Add column
+            $table->string('bp')->nullable(); // Add column
             $table->string('fbc')->nullable(); // Full blood count or similar metric
-            $table->date('end_date');
+            $table->float('weight')->nullable();
+            $table->string('weight_unit')->nullable(); // Add column
+            $table->string('height')->nullable(); // Add column
+            $table->string('height_unit')->nullable(); // Add column
+            $table->string('pregnant')->nullable(); // Add column
+            $table->string('preg_term')->nullable(); // Add column
+            $table->string('existing_medical_conditions')->nullable();
+            $table->string('medications_currently_using')->nullable();
+            $table->string('primarly_health_concern')->nullable();
+            $table->string('end_date')->nullable();
+          
+           
+
             $table->timestamps();
         });
     }

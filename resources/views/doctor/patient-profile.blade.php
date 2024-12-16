@@ -9,17 +9,17 @@
             My Patient
         @endslot
     @endcomponent
-   
-   	<!-- Page Content -->
-       <div class="content doctor-content">
+
+    <!-- Page Content -->
+    <div class="content doctor-content">
         <div class="container">
 
             <div class="row">
                 <div class="col-lg-4 col-xl-3 theiaStickySidebar">
-                
+
                     @component('components.sidebar_doctor')
-    @endcomponent
-                    
+                    @endcomponent
+
                 </div>
 
                 <!-- Patient Details -->
@@ -27,12 +27,14 @@
                     <div class="appointment-patient">
 
                         <div class="dashboard-header">
-                            <h3><a href="{{url('my-patients')}}"><i class="fa-solid fa-arrow-left"></i> Patient Details</a></h3>
+                            <h3><a href="{{ url('my-patients') }}"><i class="fa-solid fa-arrow-left"></i> Patient Details</a>
+                            </h3>
                         </div>
 
                         <div class="patient-wrap">
                             <div class="patient-info">
-                                <img src="{{ $patient->profile_image ?? URL::asset('/assets/img/default-user.png') }}" alt="img">
+                                <img src="{{ $patient->profile_image ?? URL::asset('/assets/img/default-user.png') }}"
+                                    alt="img">
                                 <div class="user-patient">
                                     <h6>#{{ $patient->id }}</h6>
                                     <h5>{{ $patient->name }}</h5>
@@ -53,23 +55,24 @@
                         <div class="appointment-tabs user-tab">
                             <ul class="nav">
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="#pat_appointments" data-bs-toggle="tab">Appointments</a>
+                                    <a class="nav-link active" href="#pat_appointments"
+                                        data-bs-toggle="tab">Appointments</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#prescription" data-bs-toggle="tab">Prescription</a>
                                 </li>
-                                <li class="nav-item">
+                                {{-- <li class="nav-item">
                                     <a class="nav-link" href="#medical" data-bs-toggle="tab">Medical Records</a>
-                                </li>
-                                <li class="nav-item">
+                                </li> --}}
+                                {{-- <li class="nav-item">
                                     <a class="nav-link" href="#billing" data-bs-toggle="tab">Billing</a>
-                                </li> 
+                                </li> --}}
                             </ul>
                         </div>
                         <!-- /Appoitment Tabs -->
 
                         <div class="tab-content pt-0">
-                                
+
                             <!-- Appointment Tab -->
                             <div id="pat_appointments" class="tab-pane fade show active">
 
@@ -96,39 +99,51 @@
                                             </thead>
                                             <tbody>
                                                 @foreach ($patient->appointments as $appointment)
-                                                <tr>
-                                                    <td><a class="text-blue-600" href="{{url('patient-upcoming-appointment')}}">#{{ $appointment->id ?? 'N/A' }}</a></td>
-                                                    <td>
-                                                        <h2 class="table-avatar">
-                                                            <a href="{{url('doctor-profile')}}" class="avatar avatar-sm me-2">
-                                                                <img class="avatar-img rounded-3" src="{{$appointment->doctor->profile_image ?? URL::asset('/assets/img/doctors/doctor-thumb-02.jpg')}}" alt="User Image">
-                                                            </a>
-                                                            <a href="{{url('doctor-profile')}}">{{ $appointment->doctor->name ?? 'N/A' }}</a>
-                                                        </h2>
-                                                    </td>
-                                                    <td>{{ \Carbon\Carbon::parse($appointment->start_date)->format('d M Y h:i A') }}</td>
-                                                    <td>{{ \Carbon\Carbon::parse($appointment->created_at)->format('d M Y h:i A') }}</td>
-                                                    <td>${{ $appointment->slot->appointment_fees ?? '$0' }}</td>
-                                                    <td>
-                                                        @if(in_array($appointment->status, ['approved', 'accepted', 'upcoming']))
-                                                            <span class="badge badge-yellow status-badge">Upcoming</span>
-                                                        @elseif($appointment->status == 'completed')
-                                                            <span class="badge badge-green status-badge">Completed</span>
-                                                        @elseif(in_array($appointment->status, ['cancelled', 'rejected']))
-                                                            <span class="badge badge-danger status-badge">Cancelled</span>
-                                                        @else
-                                                            <span class="badge badge-secondary status-badge">Unknown</span>
-                                                        @endif
-                                                    </td>
-                                                    
-                                                    <td>
-                                                        <div class="action-item">
-                                                            <a href="{{url('patient-upcoming-appointment')}}">
-                                                                <i class="fa-solid fa-link"></i>
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                                    <tr>
+                                                        <td><a class="text-blue-600"
+                                                                href="{{ url('patient-upcoming-appointment') }}">#{{ $appointment->id ?? 'N/A' }}</a>
+                                                        </td>
+                                                        <td>
+                                                            <h2 class="table-avatar">
+                                                                <a href="{{ url('doctor-profile') }}"
+                                                                    class="avatar avatar-sm me-2">
+                                                                    <img class="avatar-img rounded-3"
+                                                                        src="{{ $appointment->doctor->profile_image ?? URL::asset('/assets/img/doctors/doctor-thumb-02.jpg') }}"
+                                                                        alt="User Image">
+                                                                </a>
+                                                                <a
+                                                                    href="{{ url('doctor-profile') }}">{{ $appointment->doctor->name ?? 'N/A' }}</a>
+                                                            </h2>
+                                                        </td>
+                                                        <td>{{ \Carbon\Carbon::parse($appointment->start_date)->format('d M Y h:i A') }}
+                                                        </td>
+                                                        <td>{{ \Carbon\Carbon::parse($appointment->created_at)->format('d M Y h:i A') }}
+                                                        </td>
+                                                        <td>${{ $appointment->slot->appointment_fees ?? '0' }}</td>
+                                                        <td>
+                                                            @if (in_array($appointment->status, ['approved', 'accepted', 'upcoming']))
+                                                                <span
+                                                                    class="badge badge-yellow status-badge">Upcoming</span>
+                                                            @elseif($appointment->status == 'completed')
+                                                                <span
+                                                                    class="badge badge-green status-badge">Completed</span>
+                                                            @elseif(in_array($appointment->status, ['cancelled', 'rejected']))
+                                                                <span
+                                                                    class="badge badge-danger status-badge">Cancelled</span>
+                                                            @else
+                                                                <span
+                                                                    class="badge badge-secondary status-badge">Unknown</span>
+                                                            @endif
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="action-item">
+                                                                <a href="{{ url('patient-upcoming-appointment') }}">
+                                                                    <i class="fa-solid fa-link"></i>
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
                                                 @endforeach
                                             </tbody>
                                         </table>
@@ -142,10 +157,10 @@
                                             <a href="#" class="page-link"><i class="fa-solid fa-chevron-left"></i></a>
                                         </li>
                                         <li>
-                                            <a href="#" class="page-link">1</a>
+                                            <a href="#" class="page-link active">1</a>
                                         </li>
                                         <li>
-                                            <a href="#" class="page-link active">2</a>
+                                            <a href="#" class="page-link ">2</a>
                                         </li>
                                         <li>
                                             <a href="#" class="page-link">3</a>
@@ -157,7 +172,8 @@
                                             <a href="#" class="page-link">...</a>
                                         </li>
                                         <li>
-                                            <a href="#" class="page-link"><i class="fa-solid fa-chevron-right"></i></a>
+                                            <a href="#" class="page-link"><i
+                                                    class="fa-solid fa-chevron-right"></i></a>
                                         </li>
                                     </ul>
                                 </div>
@@ -165,7 +181,7 @@
 
                             </div>
                             <!-- /Appointment Tab -->
-                                
+
                             <!-- Prescription Tab -->
                             <div class="tab-pane fade" id="prescription">
                                 <div class="search-header">
@@ -174,7 +190,8 @@
                                         <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
                                     </div>
                                     <div>
-                                        <a href="#" class="btn btn-primary prime-btn" data-bs-toggle="modal" data-bs-target="#add_prescription">Add New Prescription</a>
+                                        <a href="{{ route('add-prescription',$patient->id) }}" class="btn btn-primary prime-btn" 
+                                            data-bs-target="#add_prescription">Add New Prescription</a>
                                     </div>
                                 </div>
 
@@ -185,114 +202,44 @@
                                                 <tr>
                                                     <th>ID</th>
                                                     <th>Prescriped By</th>
-                                                    <th>Type</th>
+                                                    {{-- <th>Type</th> --}}
                                                     <th>Date</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @if (!empty($patient->prescriptions) && $patient->prescriptions->isNotEmpty())
+                                                @foreach ($patient->prescriptions as $prescription)
                                                 <tr>
-                                                    <td><a href="javascript:void(0);" class="text-blue-600" data-bs-toggle="modal" data-bs-target="#view_prescription">#Apt123</a></td>
+                                                    <td><a href="javascript:void(0);" class="text-blue-600"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#view_prescription">#Apt123</a></td>
                                                     <td>
                                                         <h2 class="table-avatar">
-                                                            <a href="{{url('doctor-profile')}}" class="avatar avatar-sm me-2">
-                                                                <img class="avatar-img rounded-3" src="{{URL::asset('/assets/img/doctors/doctor-thumb-02.jpg')}}" alt="User Image">
+                                                            <a href="{{ url('doctor-profile') }}"
+                                                                class="avatar avatar-sm me-2">
+                                                                <img class="avatar-img rounded-3"
+                                                                    src="{{ URL::asset('/assets/img/doctors/doctor-thumb-02.jpg') }}"
+                                                                    alt="User Image">
                                                             </a>
-                                                            <a href="{{url('doctor-profile')}}">Edalin Hendry</a>
+                                                            <a href="{{ url('doctor-profile-2',$prescription->doctor->id) }}">{{ $prescription->doctor->name ?? '' }}</a>
                                                         </h2>
                                                     </td>
-                                                    <td>Visit</td>
-                                                    <td>25 Jan 2024</td>
+                                                    {{-- <td>Visit</td> --}}
+                                                    <td>{{ $prescription->date ?? '--' }}</td>
                                                     <td>
                                                         <div class="action-item">
-                                                            <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#view_prescription">
+                                                            <a href="javascript:void(0);" data-bs-toggle="modal"
+                                                                data-bs-target="#view_prescription">
                                                                 <i class="fa-solid fa-link"></i>
                                                             </a>
                                                         </div>
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <td><a href="javascript:void(0);" class="text-blue-600" data-bs-toggle="modal" data-bs-target="#view_prescription">#Apt124</a></td>
-                                                    <td>
-                                                        <h2 class="table-avatar">
-                                                            <a href="{{url('doctor-profile')}}" class="avatar avatar-sm me-2">
-                                                                <img class="avatar-img rounded-3" src="{{URL::asset('/assets/img/doctors/doctor-thumb-05.jpg')}}" alt="User Image">
-                                                            </a>
-                                                            <a href="{{url('doctor-profile')}}">John Homes</a>
-                                                        </h2>
-                                                    </td>
-                                                    <td>Visit</td>
-                                                    <td>28 Jan 2024</td>
-                                                    <td>
-                                                        <div class="action-item">
-                                                            <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#view_prescription">
-                                                                <i class="fa-solid fa-link"></i>
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    
-                                                    <td><a href="javascript:void(0);" class="text-blue-600" data-bs-toggle="modal" data-bs-target="#view_prescription">#Apt125</a></td>
-                                                    <td>
-                                                        <h2 class="table-avatar">
-                                                            <a href="{{url('doctor-profile')}}" class="avatar avatar-sm me-2">
-                                                                <img class="avatar-img rounded-3" src="{{URL::asset('/assets/img/doctors/doctor-thumb-03.jpg')}}" alt="User Image">
-                                                            </a>
-                                                            <a href="{{url('doctor-profile')}}">Shanta Neill</a>
-                                                        </h2>
-                                                    </td>
-                                                    <td>Visit</td>
-                                                    <td>11 Feb 2024</td>
-                                                    <td>
-                                                        <div class="action-item">
-                                                            <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#view_prescription">
-                                                                <i class="fa-solid fa-link"></i>
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    
-                                                    <td><a href="javascript:void(0);" class="text-blue-600" data-bs-toggle="modal" data-bs-target="#view_prescription">#Apt126</a></td>
-                                                    <td>
-                                                        <h2 class="table-avatar">
-                                                            <a href="{{url('doctor-profile')}}" class="avatar avatar-sm me-2">
-                                                                <img class="avatar-img rounded-3" src="{{URL::asset('/assets/img/doctors/doctor-thumb-08.jpg')}}" alt="User Image">
-                                                            </a>
-                                                            <a href="{{url('doctor-profile')}}">Anthony Tran</a>
-                                                        </h2>
-                                                    </td>
-                                                    <td>Visit</td>
-                                                    <td>19 Feb 2024</td>
-                                                    <td>
-                                                        <div class="action-item">
-                                                            <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#view_prescription">
-                                                                <i class="fa-solid fa-link"></i>
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>															
-                                                    <td><a href="javascript:void(0);" class="text-blue-600" data-bs-toggle="modal" data-bs-target="#view_prescription">#Apt127</a></td>
-                                                    <td>
-                                                        <h2 class="table-avatar">
-                                                            <a href="{{url('doctor-profile')}}" class="avatar avatar-sm me-2">
-                                                                <img class="avatar-img rounded-3" src="{{URL::asset('/assets/img/doctors/doctor-thumb-01.jpg')}}" alt="User Image">
-                                                            </a>
-                                                            <a href="{{url('doctor-profile')}}">Susan Lingo</a>
-                                                        </h2>
-                                                    </td>
-                                                    <td>Visit</td>
-                                                    <td>27 Feb 2024</td>
-                                                    <td>
-                                                        <div class="action-item">
-                                                            <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#view_prescription">
-                                                                <i class="fa-solid fa-link"></i>
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                                @endforeach
+                                                @endif
+                                              
+                                                
                                             </tbody>
                                         </table>
                                     </div>
@@ -302,13 +249,14 @@
                                 <div class="pagination dashboard-pagination">
                                     <ul>
                                         <li>
-                                            <a href="#" class="page-link"><i class="fa-solid fa-chevron-left"></i></a>
+                                            <a href="#" class="page-link"><i
+                                                    class="fa-solid fa-chevron-left"></i></a>
                                         </li>
                                         <li>
-                                            <a href="#" class="page-link">1</a>
+                                            <a href="#" class="page-link active">1</a>
                                         </li>
                                         <li>
-                                            <a href="#" class="page-link active">2</a>
+                                            <a href="#" class="page-link ">2</a>
                                         </li>
                                         <li>
                                             <a href="#" class="page-link">3</a>
@@ -320,7 +268,8 @@
                                             <a href="#" class="page-link">...</a>
                                         </li>
                                         <li>
-                                            <a href="#" class="page-link"><i class="fa-solid fa-chevron-right"></i></a>
+                                            <a href="#" class="page-link"><i
+                                                    class="fa-solid fa-chevron-right"></i></a>
                                         </li>
                                     </ul>
                                 </div>
@@ -337,7 +286,8 @@
                                         <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
                                     </div>
                                     <div>
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#add_medical_records" class="btn btn-primary prime-btn">Add Medical Record</a>
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#add_medical_records"
+                                            class="btn btn-primary prime-btn">Add Medical Record</a>
                                     </div>
                                 </div>
 
@@ -363,7 +313,8 @@
                                                     <td>Glucose Test V12</td>
                                                     <td>
                                                         <div class="action-item">
-                                                            <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#edit_medical_records">
+                                                            <a href="javascript:void(0);" data-bs-toggle="modal"
+                                                                data-bs-target="#edit_medical_records">
                                                                 <i class="fa-solid fa-pen-to-square"></i>
                                                             </a>
                                                             <a href="javascript:void(0);">
@@ -385,7 +336,8 @@
                                                     <td>Complete Blood Count(CBC)</td>
                                                     <td>
                                                         <div class="action-item">
-                                                            <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#edit_medical_records">
+                                                            <a href="javascript:void(0);" data-bs-toggle="modal"
+                                                                data-bs-target="#edit_medical_records">
                                                                 <i class="fa-solid fa-pen-to-square"></i>
                                                             </a>
                                                             <a href="javascript:void(0);">
@@ -407,7 +359,8 @@
                                                     <td>Echocardiogram</td>
                                                     <td>
                                                         <div class="action-item">
-                                                            <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#edit_medical_records">
+                                                            <a href="javascript:void(0);" data-bs-toggle="modal"
+                                                                data-bs-target="#edit_medical_records">
                                                                 <i class="fa-solid fa-pen-to-square"></i>
                                                             </a>
                                                             <a href="javascript:void(0);">
@@ -429,7 +382,8 @@
                                                     <td>COVID-19 Test</td>
                                                     <td>
                                                         <div class="action-item">
-                                                            <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#edit_medical_records">
+                                                            <a href="javascript:void(0);" data-bs-toggle="modal"
+                                                                data-bs-target="#edit_medical_records">
                                                                 <i class="fa-solid fa-pen-to-square"></i>
                                                             </a>
                                                             <a href="javascript:void(0);">
@@ -451,7 +405,8 @@
                                                     <td>Allergy Tests</td>
                                                     <td>
                                                         <div class="action-item">
-                                                            <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#edit_medical_records">
+                                                            <a href="javascript:void(0);" data-bs-toggle="modal"
+                                                                data-bs-target="#edit_medical_records">
                                                                 <i class="fa-solid fa-pen-to-square"></i>
                                                             </a>
                                                             <a href="javascript:void(0);">
@@ -469,11 +424,12 @@
                                                             <span><i class="fa-solid fa-paperclip"></i></span>Lab Report
                                                         </a>
                                                     </td>
-                                                    <td>02 May  2024</td>
+                                                    <td>02 May 2024</td>
                                                     <td>Lipid Panel </td>
                                                     <td>
                                                         <div class="action-item">
-                                                            <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#edit_medical_records">
+                                                            <a href="javascript:void(0);" data-bs-toggle="modal"
+                                                                data-bs-target="#edit_medical_records">
                                                                 <i class="fa-solid fa-pen-to-square"></i>
                                                             </a>
                                                             <a href="javascript:void(0);">
@@ -494,7 +450,8 @@
                                 <div class="pagination dashboard-pagination">
                                     <ul>
                                         <li>
-                                            <a href="#" class="page-link"><i class="fa-solid fa-chevron-left"></i></a>
+                                            <a href="#" class="page-link"><i
+                                                    class="fa-solid fa-chevron-left"></i></a>
                                         </li>
                                         <li>
                                             <a href="#" class="page-link">1</a>
@@ -512,7 +469,8 @@
                                             <a href="#" class="page-link">...</a>
                                         </li>
                                         <li>
-                                            <a href="#" class="page-link"><i class="fa-solid fa-chevron-right"></i></a>
+                                            <a href="#" class="page-link"><i
+                                                    class="fa-solid fa-chevron-right"></i></a>
                                         </li>
                                     </ul>
                                 </div>
@@ -520,7 +478,7 @@
 
                             </div>
                             <!-- /Medical Records Tab -->
-                                
+
                             <!-- Billing Tab -->
                             <div class="tab-pane" id="billing">
                                 <div class="search-header">
@@ -529,7 +487,8 @@
                                         <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
                                     </div>
                                     <div>
-                                        <a href="#" class="btn btn-primary prime-btn" data-bs-toggle="modal" data-bs-target="#add_billing">Add New Billing</a>
+                                        <a href="#" class="btn btn-primary prime-btn" data-bs-toggle="modal"
+                                            data-bs-target="#add_billing">Add New Billing</a>
                                     </div>
                                 </div>
 
@@ -551,7 +510,8 @@
                                                     <td><span class="badge badge-green status-badge">Paid</span></td>
                                                     <td>
                                                         <div class="action-item">
-                                                            <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#view_bill">
+                                                            <a href="javascript:void(0);" data-bs-toggle="modal"
+                                                                data-bs-target="#view_bill">
                                                                 <i class="fa-solid fa-link"></i>
                                                             </a>
                                                         </div>
@@ -563,7 +523,8 @@
                                                     <td><span class="badge badge-green status-badge">Paid</span></td>
                                                     <td>
                                                         <div class="action-item">
-                                                            <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#view_bill">
+                                                            <a href="javascript:void(0);" data-bs-toggle="modal"
+                                                                data-bs-target="#view_bill">
                                                                 <i class="fa-solid fa-link"></i>
                                                             </a>
                                                         </div>
@@ -575,7 +536,8 @@
                                                     <td><span class="badge badge-green status-badge">Paid</span></td>
                                                     <td>
                                                         <div class="action-item">
-                                                            <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#view_bill">
+                                                            <a href="javascript:void(0);" data-bs-toggle="modal"
+                                                                data-bs-target="#view_bill">
                                                                 <i class="fa-solid fa-link"></i>
                                                             </a>
                                                         </div>
@@ -587,7 +549,8 @@
                                                     <td><span class="badge badge-green status-badge">Paid</span></td>
                                                     <td>
                                                         <div class="action-item">
-                                                            <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#view_bill">
+                                                            <a href="javascript:void(0);" data-bs-toggle="modal"
+                                                                data-bs-target="#view_bill">
                                                                 <i class="fa-solid fa-link"></i>
                                                             </a>
                                                         </div>
@@ -599,7 +562,8 @@
                                                     <td><span class="badge badge-green status-badge">Paid</span></td>
                                                     <td>
                                                         <div class="action-item">
-                                                            <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#view_bill">
+                                                            <a href="javascript:void(0);" data-bs-toggle="modal"
+                                                                data-bs-target="#view_bill">
                                                                 <i class="fa-solid fa-link"></i>
                                                             </a>
                                                         </div>
@@ -611,7 +575,8 @@
                                                     <td><span class="badge badge-danger status-badge">Unpaid</span></td>
                                                     <td>
                                                         <div class="action-item">
-                                                            <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#view_bill">
+                                                            <a href="javascript:void(0);" data-bs-toggle="modal"
+                                                                data-bs-target="#view_bill">
                                                                 <i class="fa-solid fa-link"></i>
                                                             </a>
                                                         </div>
@@ -626,7 +591,8 @@
                                 <div class="pagination dashboard-pagination">
                                     <ul>
                                         <li>
-                                            <a href="#" class="page-link"><i class="fa-solid fa-chevron-left"></i></a>
+                                            <a href="#" class="page-link"><i
+                                                    class="fa-solid fa-chevron-left"></i></a>
                                         </li>
                                         <li>
                                             <a href="#" class="page-link">1</a>
@@ -644,14 +610,15 @@
                                             <a href="#" class="page-link">...</a>
                                         </li>
                                         <li>
-                                            <a href="#" class="page-link"><i class="fa-solid fa-chevron-right"></i></a>
+                                            <a href="#" class="page-link"><i
+                                                    class="fa-solid fa-chevron-right"></i></a>
                                         </li>
                                     </ul>
                                 </div>
                                 <!-- /Pagination -->
                             </div>
                             <!-- Billing Tab -->
-                                        
+
                         </div>
                     </div>
                 </div>
@@ -660,6 +627,6 @@
             </div>
         </div>
 
-    </div>		
+    </div>
     <!-- /Page Content -->
 @endsection

@@ -24,12 +24,12 @@
                         <h3>Records</h3>
                         <div class="appointment-tabs">
                             <ul class="nav">
-                                <li>
+                                {{-- <li>
                                     <a href="#" class="nav-link active" data-bs-toggle="tab"
                                         data-bs-target="#medical">Medical Records</a>
-                                </li>
+                                </li> --}}
                                 <li>
-                                    <a href="#" class="nav-link" data-bs-toggle="tab"
+                                    <a href="#" class="nav-link active" data-bs-toggle="tab"
                                         data-bs-target="#prescription">Prescriptions</a>
                                 </li>
                             </ul>
@@ -39,7 +39,7 @@
                     <div class="tab-content pt-0">
 
                         <!-- Prescription Tab -->
-                        <div class="tab-pane fade" id="prescription">
+                        <div class="tab-pane fade show active" id="prescription">
                             <div class="search-header">
                                 <div class="search-field">
                                     <input type="text" class="form-control" placeholder="Search">
@@ -60,24 +60,26 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @if (!empty($prescriptions) && $prescriptions->isNotEmpty())
+                                            @foreach ($prescriptions as $prescription)
                                             <tr>
                                                 <td><a class="text-blue-600" href="javascript:void(0);"
                                                         data-bs-toggle="modal"
-                                                        data-bs-target="#view_prescription">#PR-123</a></td>
+                                                        data-bs-target="#view_prescription">#{{ $prescription->id ?? '' }}</a></td>
                                                 <td>
                                                     <a href="javascript:void(0);" class="lab-icon prescription">
                                                         <span><i class="fa-solid fa-prescription"></i></span>Prescription
                                                     </a>
                                                 </td>
-                                                <td>24 Mar 2024, 10:30 AM</td>
+                                                <td>{{ $prescription->date ?? '' }}</td>
                                                 <td>
                                                     <h2 class="table-avatar">
                                                         <a href="{{ url('doctor-profile') }}" class="avatar avatar-sm me-2">
                                                             <img class="avatar-img rounded-3"
-                                                                src="{{ URL::asset('/assets/img/doctors/doctor-thumb-02.jpg') }}"
+                                                                src="{{ $prescription->doctor->profile_image ??   URL::asset('/assets/img/doctors/doctor-thumb-02.jpg') }}"
                                                                 alt="User Image">
                                                         </a>
-                                                        <a href="{{ url('doctor-profile') }}">Edalin Hendry</a>
+                                                        <a href="{{ url('doctor-profile-2',$prescription->doctor->id) }}">{{ $prescription->doctor->name ?? '' }}</a>
                                                     </h2>
                                                 </td>
                                                 <td>
@@ -95,148 +97,8 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td><a class="text-blue-600" href="javascript:void(0);"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#view_prescription">#PR-124</a></td>
-                                                <td>
-                                                    <a href="javascript:void(0);" class="lab-icon prescription">
-                                                        <span><i class="fa-solid fa-prescription"></i></span>Prescription
-                                                    </a>
-                                                </td>
-                                                <td>27 Mar 2024, 11:15 AM</td>
-                                                <td>
-                                                    <h2 class="table-avatar">
-                                                        <a href="{{ url('doctor-profile') }}" class="avatar avatar-sm me-2">
-                                                            <img class="avatar-img rounded-3"
-                                                                src="{{ URL::asset('/assets/img/doctors/doctor-thumb-05.jpg') }}"
-                                                                alt="User Image">
-                                                        </a>
-                                                        <a href="{{ url('doctor-profile') }}">John Homes</a>
-                                                    </h2>
-                                                </td>
-                                                <td>
-                                                    <div class="action-item">
-                                                        <a href="javascript:void(0);" data-bs-toggle="modal"
-                                                            data-bs-target="#view_prescription">
-                                                            <i class="fa-solid fa-link"></i>
-                                                        </a>
-                                                        <a href="javascript:void(0);">
-                                                            <i class="fa-solid fa-download"></i>
-                                                        </a>
-                                                        <a href="javascript:void(0);">
-                                                            <i class="fa-solid fa-trash-can"></i>
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><a class="text-blue-600" href="javascript:void(0);"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#view_prescription">#PR-125</a></td>
-                                                <td>
-                                                    <a href="javascript:void(0);" class="lab-icon prescription">
-                                                        <span><i class="fa-solid fa-prescription"></i></span>Prescription
-                                                    </a>
-                                                </td>
-                                                <td>11 Apr 2024, 09:00 AM</td>
-                                                <td>
-                                                    <h2 class="table-avatar">
-                                                        <a href="{{ url('doctor-profile') }}" class="avatar avatar-sm me-2">
-                                                            <img class="avatar-img rounded-3"
-                                                                src="{{ URL::asset('/assets/img/doctors/doctor-thumb-03.jpg') }}"
-                                                                alt="User Image">
-                                                        </a>
-                                                        <a href="{{ url('doctor-profile') }}">Shanta Neill</a>
-                                                    </h2>
-                                                </td>
-                                                <td>
-                                                    <div class="action-item">
-                                                        <a href="javascript:void(0);" data-bs-toggle="modal"
-                                                            data-bs-target="#view_prescription">
-                                                            <i class="fa-solid fa-link"></i>
-                                                        </a>
-                                                        <a href="javascript:void(0);">
-                                                            <i class="fa-solid fa-download"></i>
-                                                        </a>
-                                                        <a href="javascript:void(0);">
-                                                            <i class="fa-solid fa-trash-can"></i>
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><a class="text-blue-600" href="javascript:void(0);"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#view_prescription">#PR-126</a></td>
-                                                <td>
-                                                    <a href="javascript:void(0);" class="lab-icon prescription">
-                                                        <span><i class="fa-solid fa-prescription"></i></span>Prescription
-                                                    </a>
-                                                </td>
-                                                <td>15 Apr 2024, 02:30 PM</td>
-                                                <td>
-                                                    <h2 class="table-avatar">
-                                                        <a href="{{ url('doctor-profile') }}"
-                                                            class="avatar avatar-sm me-2">
-                                                            <img class="avatar-img rounded-3"
-                                                                src="{{ URL::asset('/assets/img/doctors/doctor-thumb-08.jpg') }}"
-                                                                alt="User Image">
-                                                        </a>
-                                                        <a href="{{ url('doctor-profile') }}">Anthony Tran</a>
-                                                    </h2>
-                                                </td>
-                                                <td>
-                                                    <div class="action-item">
-                                                        <a href="javascript:void(0);" data-bs-toggle="modal"
-                                                            data-bs-target="#view_prescription">
-                                                            <i class="fa-solid fa-link"></i>
-                                                        </a>
-                                                        <a href="javascript:void(0);">
-                                                            <i class="fa-solid fa-download"></i>
-                                                        </a>
-                                                        <a href="javascript:void(0);">
-                                                            <i class="fa-solid fa-trash-can"></i>
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><a class="text-blue-600" href="javascript:void(0);"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#view_prescription">#PR-127</a></td>
-                                                <td>
-                                                    <a href="javascript:void(0);" class="lab-icon prescription">
-                                                        <span><i class="fa-solid fa-prescription"></i></span>Prescription
-                                                    </a>
-                                                </td>
-                                                <td>23 Apr 2024, 06:40 PM</td>
-                                                <td>
-                                                    <h2 class="table-avatar">
-                                                        <a href="{{ url('doctor-profile') }}"
-                                                            class="avatar avatar-sm me-2">
-                                                            <img class="avatar-img rounded-3"
-                                                                src="{{ URL::asset('/assets/img/doctors/doctor-thumb-01.jpg') }}"
-                                                                alt="User Image">
-                                                        </a>
-                                                        <a href="{{ url('doctor-profile') }}">Susan Lingo</a>
-                                                    </h2>
-                                                </td>
-                                                <td>
-                                                    <div class="action-item">
-                                                        <a href="javascript:void(0);" data-bs-toggle="modal"
-                                                            data-bs-target="#view_prescription">
-                                                            <i class="fa-solid fa-link"></i>
-                                                        </a>
-                                                        <a href="javascript:void(0);">
-                                                            <i class="fa-solid fa-download"></i>
-                                                        </a>
-                                                        <a href="javascript:void(0);">
-                                                            <i class="fa-solid fa-trash-can"></i>
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                            @endforeach
+                                            @endif
                                         </tbody>
                                     </table>
                                 </div>
@@ -274,7 +136,7 @@
                         <!-- /Prescription Tab -->
 
                         <!-- Medical Records Tab -->
-                        <div class="tab-pane fade show active" id="medical">
+                        <div class="tab-pane fade " id="medical">
                             <div class="search-header">
                                 <div class="search-field">
                                     <input type="text" class="form-control" placeholder="Search">

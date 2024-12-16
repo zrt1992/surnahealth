@@ -12,12 +12,9 @@ class DoctorEducation extends Model
     protected $table = 'qualifications';
     protected $fillable = [
        'doctor_id',
-        'name_of_institution',
-        'course',
-       'start_date',
-       'end_date',
-       'no_of_years',
-       'description',
+        'medical_school',
+        'residency',
+       'certifications',
     ];
 
     // A DoctorEducation belongs to a doctor

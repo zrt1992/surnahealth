@@ -13,6 +13,7 @@ class DoctorBusinessHour extends Model
         'doctor_id',
         'select_business_days',
         'start_time',
-        'end_time'
+        'end_time',
+        'time_zone'
     ];
 }

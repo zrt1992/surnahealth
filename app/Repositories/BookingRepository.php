@@ -39,6 +39,7 @@ class BookingRepository implements BookingRepositoryInterface
 
     public function update($id, array $data)
     {
+        $data['status'] = null;
         $user = $this->find($id);
         if ($user) {
             $user->update($data);

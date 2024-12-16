@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('clinic_name')->nullable(); 
             $table->string('location')->nullable();
             $table->string('address')->nullable();
+            $table->string('hospital_clinic_affiliation')->nullable();
             $table->timestamps();
         });
     }

@@ -42,7 +42,7 @@
 										<li class="nav-item">
 											<a class="nav-link active" href="{{url('doctor-education-settings')}}">Education</a>
 										</li>
-										<li class="nav-item">
+										{{-- <li class="nav-item">
 											<a class="nav-link" href="{{url('doctor-awards-settings')}}">Awards</a>
 										</li>
 										<li class="nav-item">
@@ -50,7 +50,7 @@
 										</li>
 										<li class="nav-item">
 											<a class="nav-link" href="{{url('doctor-clinics-settings')}}">Clinics</a>
-										</li>
+										</li> --}}
 										<li class="nav-item">
 											<a class="nav-link" href="{{url('doctor-business-settings')}}">Business Hours</a>
 										</li>
@@ -89,12 +89,12 @@
 																			<i class="fa-solid fa-file-image"></i>
 																		</div>
 																		<div class="upload-img">
-																			<h5>Logo</h5>
+																			<h5>Certifications</h5>
 																			<div class="imgs-load d-flex align-items-center">
 																				<div class="change-photo">
 																					Upload New
 																					<input type="file"
-																						name="logo[]" class="upload">
+																						name="certifications[]" class="upload">
 																				</div>
 																				<a href="#"
 																					class="upload-remove">Remove</a>
@@ -107,74 +107,21 @@
 															</div>
 														<div class="col-md-6">
 																<div class="form-wrap">
-																	<label class="col-form-label">Name of the institution</label>
-																	<input type="text" name="name_of_institution[]"
+																	<label class="col-form-label">Medical school</label>
+																	<input type="text" name="medical_school[]"
 																		class="form-control">
-																	@error('name_of_institution')
+																	@error('medical_school')
 																		<div class="text-danger">{{ $message }}</div>
 																	@enderror
 																</div>
 															</div>
 														<div class="col-md-6">
 																<div class="form-wrap">
-																	<label class="col-form-label">Course <span
+																	<label class="col-form-label">residency <span
 																			class="text-danger">*</span></label>
-																	<input type="text" name="course[]"
+																	<input type="text" name="residency[]"
 																		class="form-control">
-																	@error('course')
-																		<div class="text-danger">{{ $message }}</div>
-																	@enderror
-																</div>
-															</div>
-															
-															<div class="col-lg-4 col-md-6">
-																<div class="form-wrap">
-																	<label class="col-form-label">Start Date <span
-																			class="text-danger">*</span></label>
-																	<div class="form-icon">
-																		<input type="text" name="start_date[]"
-																			class="form-control datetimepicker">
-																		<span class="icon"><i
-																				class="fa-regular fa-calendar-days"></i></span>
-																		@error('start_date')
-																			<div class="text-danger">{{ $message }}</div>
-																		@enderror
-																	</div>
-																</div>
-															</div>
-															<div class="col-lg-4 col-md-6">
-																<div class="form-wrap">
-																	<label class="col-form-label">End Date <span
-																			class="text-danger">*</span></label>
-																	<div class="form-icon">
-																		<input type="text" name="end_date[]"
-																			class="form-control datetimepicker">
-																		<span class="icon"><i
-																				class="fa-regular fa-calendar-days"></i></span>
-																		@error('end_date')
-																			<div class="text-danger">{{ $message }}</div>
-																		@enderror
-																	</div>
-																</div>
-															</div>
-															<div class="col-lg-4 col-md-6">
-																<div class="form-wrap">
-																	
-																	
-																	<label class="col-form-label">No of Years <span class="text-danger">*</span></label>
-																	<input type="text" name="no_of_years[]"
-																		class="form-control">
-																	@error('no_of_years')
-																		<div class="text-danger">{{ $message }}</div>
-																	@enderror
-																</div>
-															</div>
-															<div class="col-lg-12">
-																<div class="form-wrap">
-																	<label class="col-form-label">Description <span
-																			class="text-danger">*</span></label>
-																	<textarea name="description[]" class="form-control" rows="3"></textarea>
-																	@error('description')
+																	@error('residency')
 																		<div class="text-danger">{{ $message }}</div>
 																	@enderror
 																</div>
@@ -194,7 +141,7 @@
 										<div class="user-accordion-item">
 											<a href="#" class="accordion-wrap" data-bs-toggle="collapse"
 												data-bs-target="#experience{{ $index }}">
-												{{ $education->name_of_institution }} <span></span>
+												{{ $education->medical_school }} <span></span>
 											</a>
 											<div class="accordion-collapse collapse" id="experience{{ $index }}"
 												data-bs-parent="#list-accord">
@@ -209,17 +156,17 @@
 																	<div class="form-wrap mb-2">
 																		<div class="change-avatar img-upload">
 																			<div class="profile-img">
-																				<img src="{{ $education->logo }}"
-																					alt="Logo" style="width: 50px;">
+																				<img src="{{ $education->certifications }}"
+																					alt="certifications" style="width: 50px;">
 																			</div>
 																			<div class="upload-img">
-																				<h5>Logo</h5>
+																				<h5>Certifications</h5>
 																				<div
 																					class="imgs-load d-flex align-items-center">
 																					<div class="change-photo">
 																						Upload New
 																						<input type="file"
-																							name="logo[{{ $education->id }}]"
+																							name="certifications[{{ $education->id }}]"
 																							class="upload">
 																					</div>
 																					<a href="#"
@@ -233,13 +180,13 @@
 																</div>
 																<div class="col-md-6">
 																	<div class="form-wrap">
-																		<label class="col-form-label">Name of the institution</label>
+																		<label class="col-form-label">Medical school</label>
 																		<input type="text"
-																			name="name_of_institution[{{ $education->id }}]"
-																			value="{{ old('name_of_institution.' . $education->id, $education->name_of_institution) }}"
-																			class="form-control @error('name_of_institution.' . $education->id) is-invalid @enderror">
+																			name="medical_school[{{ $education->id }}]"
+																			value="{{ old('medical_school.' . $education->id, $education->medical_school) }}"
+																			class="form-control @error('medical_school.' . $education->id) is-invalid @enderror">
 	
-																		@error('name_of_institution.' . $education->id)
+																		@error('medical_school.' . $education->id)
 																			<div class="text-danger">{{ $message }}</div>
 																		@enderror
 																	</div>
@@ -247,58 +194,14 @@
 	
 																<div class="col-md-6">
 																	<div class="form-wrap">
-																		<label class="col-form-label">Course</label>
+																		<label class="col-form-label">Residency</label>
 																		<input type="text"
-																			name="course[{{ $education->id }}]"
-																			value="{{ old('course.' . $education->id, $education->course) }}"
+																			name="residency[{{ $education->id }}]"
+																			value="{{ old('residency.' . $education->id, $education->residency) }}"
 																			class="form-control">
-																		@error('course.' . $education->id)
+																		@error('residency.' . $education->id)
 																			<div class="text-danger">{{ $message }}</div>
 																		@enderror
-																	</div>
-																</div>
-																<div class="col-lg-4 col-md-6">
-																	<div class="form-wrap">
-																		<label class="col-form-label">Start Date</label>
-																		<input type="date"
-																			name="start_date[{{ $education->id }}]"
-																			value="{{ old('start_date.' . $education->id, $education->start_date) }}"
-																			class="form-control">
-																		@error('start_date.' . $education->id)
-																			<div class="text-danger">{{ $message }}</div>
-																		@enderror
-																	</div>
-																</div>
-																<div class="col-lg-4 col-md-6">
-																	<div class="form-wrap">
-																		<label class="col-form-label">End Date</label>
-																		<input type="date"
-																			name="end_date[{{ $education->id }}]"
-																			value="{{ old('end_date.' . $education->id, $education->end_date) }}"
-																			class="form-control">
-																		@error('end_date.' . $education->id)
-																			<div class="text-danger">{{ $message }}</div>
-																		@enderror
-																	</div>
-																</div>
-																<div class="col-lg-4 col-md-6">
-																	<div class="form-wrap">
-																		<label class="col-form-label">No of Years <span
-																				class="text-danger">*</span></label>
-																		<input type="text"
-																			name="no_of_years[{{ $education->id }}]"
-																			value="{{ old('no_of_years.' . $education->id, $education->no_of_years) }}"
-																			class="form-control">
-																		@error('no_of_years.' . $education->id)
-																			<div class="text-danger">{{ $message }}</div>
-																		@enderror
-	
-																	</div>
-																</div>
-																<div class="col-lg-12">
-																	<div class="form-wrap">
-																		<label class="col-form-label">Description</label>
-																		<textarea name="description[{{ $education->id }}]" class="form-control" rows="3">{{ $education->description }}</textarea>
 																	</div>
 																</div>
 															</div>
@@ -331,7 +234,7 @@
 																			<i class="fa-solid fa-file-image"></i>
 																		</div>
 																		<div class="upload-img">
-																			<h5>Logo</h5>
+																			<h5>Certifications</h5>
 																			<div class="imgs-load d-flex align-items-center">
 																				<div class="change-photo">
 																					Upload New 
@@ -352,7 +255,7 @@
 															</div>
 															<div class="col-md-6">
 																<div class="form-wrap">
-																	<label class="col-form-label">Course</label>
+																	<label class="col-form-label">residency</label>
 																	<input type="text" class="form-control" value="MBBS">
 																</div>													
 															</div>

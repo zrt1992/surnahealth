@@ -11,14 +11,14 @@ class DoctorEducationObserver
 
     public function saving(DoctorEducation $DoctorEducation)
 {
-    $logos = request()->file('logo');
+    $certification = request()->file('certifications');
 
-    if ($logos && is_array($logos)) {
-        foreach ($logos as $id => $logo) {
+    if ($certification && is_array($certification)) {
+        foreach ($certification as $id => $certification) {
             if ($DoctorEducation->id == $id) {
-                $meta = $this->uploadImage($logo, 'logos');
+                $meta = $this->uploadImage($certification, 'certifications');
                 if (isset($meta['dirname'], $meta['basename'])) {
-                    $DoctorEducation->logo = $meta['dirname'] . '/' . $meta['basename'];
+                    $DoctorEducation->certifications = $meta['dirname'] . '/' . $meta['basename'];
                 }
             }
         }

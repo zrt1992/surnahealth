@@ -122,9 +122,10 @@ class DoctorBookingController extends Controller
 
     public function reject(Request $request)
     {
+        
         $data = $request->all();
         $data = $this->bookingRepository->reject($data);
-
+      
         if ($data) {
             $appointment = AppointmentRequests::where('id',$request->appointment_request_id)->first();
             $patient = User::where('id',$appointment->user_id)->first();

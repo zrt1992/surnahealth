@@ -28,8 +28,15 @@
                         <ul class="header-list-btns">
                             <li>
                                 <div class="input-block dash-search-input">
-                                    <input type="text" class="form-control" placeholder="Search">
-                                    <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                                    <form method="GET" action="{{ route('doctor.my-patients') }}" id="searchForm">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Search" name="search"
+                                                id="searchInput" value="{{ request('search') }}">
+                                            <span class="search-icon" id="searchIcon" style="cursor: pointer;">
+                                                <i class="fa-solid fa-magnifying-glass"></i>
+                                            </span>
+                                        </div>
+                                    </form>
                                 </div>
                             </li>
                         </ul>
@@ -40,7 +47,7 @@
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link active" id="pills-upcoming-tab" data-bs-toggle="pill"
                                         data-bs-target="#pills-upcoming" type="button" role="tab"
-                                        aria-controls="pills-upcoming" aria-selected="false">Active<span>0</span></button>
+                                        aria-controls="pills-upcoming" aria-selected="false">Active<span>{{ $totalPatients ?? '' }}</span></button>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="pills-cancel-tab" data-bs-toggle="pill"

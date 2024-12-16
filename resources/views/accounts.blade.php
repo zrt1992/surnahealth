@@ -50,11 +50,11 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="payment-request">
+                                        {{-- <div class="payment-request">
                                             <span>Last Payment request : 24 Mar 2023</span>
                                             <a href="#payment_request" class="btn btn-primary prime-btn"
                                                 data-bs-toggle="modal">Request Payment</a>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                                 <div class="col-xxl-1 d-lg-none d-xxl-block"></div>

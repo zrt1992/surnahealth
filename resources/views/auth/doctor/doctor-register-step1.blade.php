@@ -19,6 +19,7 @@
 												<li><a href="javascript:;" class="active">1</a></li>
 												<li><a href="javascript:;">2</a></li>
 												<li><a href="javascript:;">3</a></li>
+												<li><a href="javascript:;">4</a></li>
 											</ul>
 										</div>
 										<form  id="profile_pic_form" action="{{ route('doctor-registration.store.step1') }}" method="POST" enctype="multipart/form-data">  

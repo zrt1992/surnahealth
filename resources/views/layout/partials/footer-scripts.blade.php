@@ -636,3 +636,25 @@
         });
     @endif
 </script>
+
+{{-- search script --}}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const searchForm = document.getElementById('searchForm');
+        const searchInput = document.getElementById('searchInput');
+        const searchIcon = document.getElementById('searchIcon');
+
+        // Submit form on Enter key press
+        searchInput.addEventListener('keypress', function (event) {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Prevent default form submission
+                searchForm.submit();
+            }
+        });
+
+        // Submit form on search icon click
+        searchIcon.addEventListener('click', function () {
+            searchForm.submit();
+        });
+    });
+</script>

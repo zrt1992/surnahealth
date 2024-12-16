@@ -364,7 +364,7 @@
                                 <li><a href="{{ url('patient-profile') }}">Patients Profile</a></li>
                                 <li><a href="{{ url('chat-doctor') }}">Chat</a></li>
                                 <li><a href="{{ url('invoices') }}">Invoices</a></li>
-                                <li><a href="{{ url('doctor-profile-settings') }}">Profile Settingslk</a></li>
+                                <li><a href="{{ url('doctor-profile-settings') }}">Profile Settings</a></li>
                                 <li><a href="{{ url('reviews') }}">Reviews</a></li>
                                 <li><a href="{{ url('doctor-register') }}">Doctor Register</a></li>
                                 <li class="has-submenu">
@@ -662,7 +662,7 @@
                             'doctor.doctor-change-password',
                             'doctor-dashboard',
                             'doctor-pending-blog',
-                            'doctor-profile-settings',
+                            'doctor-profile-settings.index',
                             'doctor-profile',
                             'doctor-profile-2',
                             'favourites',
@@ -670,6 +670,7 @@
                             'invoices',
                             'medical-details',
                             'medical-records',
+                            'patient-prescription',
                             'doctor.my-patients',
                             'orders-list',
                             'patient-accounts',
@@ -709,7 +710,7 @@
                             'doctor-cancelled-appointment',
                             'doctor-clinics-settings',
                             'doctor-education-settings',
-                            'doctor-profile-settings',
+                            'doctor-profile-settings.index',
                             'doctor-experience-settings',
                             'doctor-insurance-settings',
                             'patient-upcoming-appointment',
@@ -768,7 +769,7 @@
                             'doctor.doctor-change-password',
                             'doctor-dashboard',
                             'doctor-pending-blog',
-                            'doctor-profile-settings',
+                            'doctor-profile-settings.index',
                             'doctor-profile',
                             'doctor-profile-2',
                             'favourites',
@@ -776,6 +777,7 @@
                             'invoices',
                             'medical-details',
                             'medical-records',
+                            'patient-prescription',
                             'doctor.my-patients',
                             'orders-list',
                             'patient-accounts',
@@ -1083,7 +1085,7 @@
 {{--                        </ul>--}}
                     </li>
                     <li
-                        class="has-submenu {{ Request::is('doctor-request', 'available-timings', 'doctor-dashboard', 'appointments', 'schedule-timings', 'doctor/my-patients', 'patient-profile', 'chat-doctor', 'doctor-profile-settings', 'reviews', 'doctor-register', 'doctor-blog', 'doctor-add-blog', 'add-billing', 'add-prescription', 'doctor-pending-blog', 'edit-billing', 'edit-blog', 'edit-prescription', 'doctor-clinics-settings', 'doctor-cancelled-appointment', 'doctor-business-settings', 'doctor-awards-settings', 'doctor-appointment-start', 'doctor-appointments-grid', 'doctor-cancelled-appointment-2', 'doctor-completed-appointment', 'doctor-education-settings', 'doctor-experience-settings', 'doctor-insurance-settings', 'doctor-specialities', 'doctor-upcoming-appointment', 'social-media') ? 'active' : '' }}">
+                        class="has-submenu {{ Request::is('doctor-request', 'available-timings', 'doctor-dashboard', 'appointments', 'schedule-timings', 'doctor/my-patients', 'patient-profile', 'chat-doctor', 'doctor-profile-settings.index', 'reviews', 'doctor-register', 'doctor-blog', 'doctor-add-blog', 'add-billing', 'add-prescription', 'doctor-pending-blog', 'edit-billing', 'edit-blog', 'edit-prescription', 'doctor-clinics-settings', 'doctor-cancelled-appointment', 'doctor-business-settings', 'doctor-awards-settings', 'doctor-appointment-start', 'doctor-appointments-grid', 'doctor-cancelled-appointment-2', 'doctor-completed-appointment', 'doctor-education-settings', 'doctor-experience-settings', 'doctor-insurance-settings', 'doctor-specialities', 'doctor-upcoming-appointment', 'social-media') ? 'active' : '' }}">
                         @if(\Illuminate\Support\Facades\Auth::check())
                         @if(\Illuminate\Support\Facades\Auth::user()->hasRole('admin'))
                         <a href="{{ route('admin-dashboard') }}"> Dashboard
@@ -1118,7 +1120,7 @@
 {{--                            <li class="{{ Request::is('invoices') ? 'active' : '' }}"><a--}}
 {{--                                    href="{{ url('invoices') }}">Invoices</a></li>--}}
 {{--                            <li--}}
-{{--                                class="{{ Request::is('doctor-profile-settings', 'doctor-awards-settings', 'doctor-business-settings', 'doctor-clinics-settings', 'doctor-education-settings', 'doctor-experience-settings', 'doctor-insurance-settings') ? 'active' : '' }}">--}}
+{{--                                class="{{ Request::is('doctor-profile-settings.index', 'doctor-awards-settings', 'doctor-business-settings', 'doctor-clinics-settings', 'doctor-education-settings', 'doctor-experience-settings', 'doctor-insurance-settings') ? 'active' : '' }}">--}}
 {{--                                <a href="{{ url('doctor-profile-settings') }}">Profile Settingsssss</a>--}}
 {{--                            </li>--}}
 {{--                            <li class="{{ Request::is('reviews') ? 'active' : '' }}"><a--}}
@@ -1353,7 +1355,7 @@
                             'doctor.doctor-change-password',
                             'doctor-dashboard',
                             'doctor-pending-blog',
-                            'doctor-profile-settings',
+                            'doctor-profile-settings.index',
                             'doctor-profile',
                             'doctor-profile-2',
                             'favourites',
@@ -1361,6 +1363,7 @@
                             'invoices',
                             'medical-details',
                             'medical-records',
+                            'patient-prescription',
                             'doctor.my-patients',
                             'orders-list',
                             'patient-accounts',
@@ -1473,7 +1476,7 @@
                             'doctor.doctor-change-password',
                             'doctor-dashboard',
                             'doctor-pending-blog',
-                            'doctor-profile-settings',
+                            'doctor-profile-settings.index',
                             'doctor-profile',
                             'doctor-profile-2',
                             'favourites',
@@ -1481,6 +1484,7 @@
                             'invoices',
                             'medical-details',
                             'medical-records',
+                            'patient-prescription',
                             'doctor.my-patients',
                             'orders-list',
                             'patient-accounts',
@@ -1591,7 +1595,7 @@
                         'doctor.doctor-change-password',
                         'doctor-dashboard',
                         'doctor-pending-blog',
-                        'doctor-profile-settings',
+                        'doctor-profile-settings.index',
                         'doctor-profile',
                         'doctor-profile-2',
                         'favourites',
@@ -1599,6 +1603,7 @@
                         'invoices',
                         'medical-details',
                         'medical-records',
+                        'patient-prescription',
                         'doctor.my-patients',
                         'orders-list',
                         'patient-accounts',
@@ -1849,7 +1854,7 @@
                         'doctor.doctor-change-password',
                         'doctor-dashboard',
                         'doctor-pending-blog',
-                        'doctor-profile-settings',
+                        'doctor-profile-settings.index',
                         'doctor-profile',
                         'doctor-profile-2',
                         'favourites',
@@ -1857,6 +1862,7 @@
                         'invoices',
                         'medical-details',
                         'medical-records',
+                        'patient-prescription',
                         'doctor.my-patients',
                         'orders-list',
                         'patient-accounts',
@@ -2093,6 +2099,7 @@
                             'doctor-profile-2',
                             'medical-details',
                             'medical-records',
+                            'patient-prescription',
                             'orders-list',
                             'payment-success',
                             'pharmacy-details',
@@ -2248,6 +2255,7 @@
                             'doctor-profile-2',
                             'medical-details',
                             'medical-records',
+                            'patient-prescription',
                             'orders-list',
                             'payment-success',
                             'pharmacy-details',

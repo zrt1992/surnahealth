@@ -43,6 +43,9 @@ class AvailableTimmingRepository implements AvailableTimmingRepositoryInterface
                         ->where('availability_type', '!=', 'clinic')
                         ->update($data);
     }
+   
+   
+
 
    
     return $updated;
