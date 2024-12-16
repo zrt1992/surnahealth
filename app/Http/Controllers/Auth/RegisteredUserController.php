@@ -62,26 +62,32 @@ class RegisteredUserController extends Controller
     }
 
     public function storeStep1(Request $request)
-    {
-        $request->validate([
-            'profile_image' => 'required|image|max:2048',
-        ]);
+{
+    $request->validate([
+        'profile_image' => 'nullable|image|max:2048', // Make it optional
+    ]);
 
+    $data = $request->except('_token');
+
+    // Check if a profile image is provided
+    if ($request->hasFile('profile_image')) {
         $file = $request->file('profile_image');
         $meta = $this->uploadImage($file, 'profile_images');
 
         if (isset($meta['dirname'], $meta['basename'])) {
             $full_path = $meta['dirname'] . '/' . $meta['basename'];
+            $data['profile_image'] = $full_path; // Only add profile_image if it exists
         }
-
-        $data = $request->except('_token');
-        $data['profile_image'] = $full_path;
-        $data['registration_step'] = '+2';
-
-        $authUser = auth()->user();
-        $authUser->update($data);
-        return redirect()->route('patient-register-step2');
     }
+
+    $data['registration_step'] = '+2';
+
+    $authUser = auth()->user();
+    $authUser->update($data);
+
+    return redirect()->route('patient-register-step2');
+}
+
 
     public function storeStep2(Request $request)
 {

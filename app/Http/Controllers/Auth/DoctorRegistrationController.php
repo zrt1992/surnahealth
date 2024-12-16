@@ -72,20 +72,26 @@ class DoctorRegistrationController extends Controller
     {
         // Validate the request
         $request->validate([
-            'profile_image' => 'required|image|max:2048',
+            'profile_image' => 'nullable|image|max:2048', // Make it optional
         ]);
-
-        // Handle file upload
-        $file = $request->file('profile_image');
-        $meta = $this->uploadImage($file, 'profile_images');
-        $full_path = isset($meta['dirname'], $meta['basename']) ? $meta['dirname'] . '/' . $meta['basename'] : null;
-
-        // Update the authenticated user's record
+    
+        $data = $request->except('_token');
+    
+        // Check if a profile image is provided
+        if ($request->hasFile('profile_image')) {
+            $file = $request->file('profile_image');
+            $meta = $this->uploadImage($file, 'profile_images');
+    
+            if (isset($meta['dirname'], $meta['basename'])) {
+                $full_path = $meta['dirname'] . '/' . $meta['basename'];
+                $data['profile_image'] = $full_path; // Only add profile_image if it exists
+            }
+        }
+    
+        $data['registration_step'] = '+2';
+    
         $authUser = auth()->user();
-        $authUser->update([
-            'profile_image' => $full_path,
-            'registration_step' => "+2",
-        ]);
+        $authUser->update($data);
 
         return redirect()->route('doctor-register-step2');
     }
