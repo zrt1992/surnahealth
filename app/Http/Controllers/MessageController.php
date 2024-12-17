@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\MyEvent;
+use App\Models\ChatRoom;
 use App\Models\Message;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -32,8 +33,23 @@ class MessageController extends Controller
         $request->validate([
             'content' => 'required|string|max:255',
         ]);
+
+        $senderId = auth()->id();
+        $receiverId = $request->receiver_id;
+    
+        // Ensure user1_id is always the smaller ID to prevent duplicate rooms
+        $user1Id = min($senderId, $receiverId);
+        $user2Id = max($senderId, $receiverId);
+    
+        // Check if a chat room already exists or create a new one
+        $chatRoom = ChatRoom::firstOrCreate([
+            'user1_id' => $user1Id,
+            'user2_id' => $user2Id,
+        ]);
+    
     
         $message = Message::create([
+            'chat_room_id' => $chatRoom->id,
             'sender_id' => auth()->id(),
             'receiver_id' => $request->receiver_id,
             'content' => $request->input('content'),
@@ -59,6 +75,5 @@ class MessageController extends Controller
             ],
         ]);
     }
-    
 
 }

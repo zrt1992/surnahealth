@@ -609,7 +609,7 @@
     <script src="{{ URL::asset('/assets/js/jquery.counterup.min.js') }}"></script>
 @endif
 
-@if (Route::is(['chat-doctor', 'chat']))
+@if (Route::is(['chat-doctor', 'patient-chat']))
     <!-- Swiper JS -->
     <script src="{{ URL::asset('assets/plugins/swiper/swiper.min.js') }}"></script>
 @endif

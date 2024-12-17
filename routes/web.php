@@ -154,6 +154,8 @@ Route::middleware(['auth', 'role:patient',CheckRegistrationStep::class])->prefix
     Route::resource('patient-profile-setting', PatientProfileSettingController::class);
 
     Route::get('/chat/{id?}', [PatientChatController::class, 'index'])->name('patient-chat');
+    Route::get('/patient-recent-chats', [PatientChatController::class, 'getRecentChats']);
+
     
     Route::get('/patient-prescription', [PatientPresciptionController::class, 'index'])->name('patient-prescription');
 

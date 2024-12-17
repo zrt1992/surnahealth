@@ -26,7 +26,7 @@ class MyEvent implements ShouldBroadcast
 
   public function broadcastOn()
   {
-    return new Channel('chat.' . $this->senderId . '.' . $this->receiverId);
+    return new Channel('chat');
   }
 
   public function broadcastAs()

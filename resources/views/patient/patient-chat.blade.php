@@ -19,43 +19,137 @@
             cluster: 'mt1'
         });
 
-        var channelName = 'chat.' + {{ $doctorId ?? 'null' }} + '.' + '{{ auth()->id() }}';
+        // var channelName = 'chat.' + {{ $doctorId ?? 'null' }} + '.' + '{{ auth()->id() }}';
+        var channelName = 'chat';
         var channel = pusher.subscribe(channelName);
+        var receiverId = '{{ auth()->id() }}';
+        var senderId = '{{ $doctorId ?? 'null' }}';
+
         channel.bind('my-event', function(data) {
             console.log('New message: ', data.message);
 
-            var fromName = data.message.from_name;
+            // Define variables with default values
+            var fromName = data.message.from_name || 'Unknown User';
             var profileImage = data.message.from_profile_image ||
-                '{{ URL::asset('assets/img/patients-img-fifteen.png') }}';
-            var messageText = data.message.message;
-            var timestamp = new Date().toLocaleTimeString([], {
-                hour: '2-digit',
-                minute: '2-digit'
-            });
+                '{{ URL::asset('assets/img/default-avatar.png') }}';
+            var messageText = data.message.message || '';
 
-            // Create the new message element
-            var messageContainer = document.getElementById('message-container');
-            var messageElement = document.createElement('div');
-            messageElement.classList.add('messages');
+            const chatPartnerIds = @json(
+                $chatRooms->map(function ($chatRoom) {
+                    return $chatRoom->user1_id == auth()->id() ? $chatRoom->user2_id : $chatRoom->user1_id;
+                }));
 
-            messageElement.innerHTML = `
-           <div class="chats">
-          <div class="chat-avatar">
-              <img src="${profileImage}" class="dreams_chat" alt="image">
-          </div>
-          <div class="chat-content">
-              <div class="chat-profile-name">
-                  <h6>${fromName} <span>${timestamp}</span></h6>
-              </div>
-              <div class="message-content">
-                  ${messageText}
-              </div>
-          </div>
-           </div>
+            if (chatPartnerIds.includes(data.message.sender_id) || chatPartnerIds.includes(data.message
+                    .receiver_id)) {
+                // Append to recent chat list if not already present
+                var userList = document.querySelector('.user-list');
+                var existingChat = document.querySelector(
+                    `.user-list-item[data-partner-id="${data.message.sender_id}"]`
+                );
+
+                if (!existingChat) {
+                    var listItem = document.createElement('li');
+                    listItem.classList.add('user-list-item');
+                    listItem.setAttribute('data-partner-id', data.message.sender_id);
+
+                    listItem.innerHTML = `
+                        <a href="/chat-doctor/${data.message.sender_id}">
+                            <div class="avatar">
+                                <img src="${profileImage}" alt="image">
+                            </div>
+                            <div class="users-list-body">
+                                <div>
+                                    <h5>${fromName}</h5>
+                                    <p>${messageText.length > 30 ? messageText.substring(0, 30) + '...' : messageText}</p>
+                                </div>
+                                <div class="last-chat-time">
+                                    <small class="text-muted">Just now</small>
+                                    <div class="new-message-count">1</div>
+                                </div>
+                            </div>
+                        </a>
+                    `;
+
+                    userList.prepend(listItem);
+                } else {
+                    // Update the existing chat with the new message and time
+                    existingChat.querySelector('.users-list-body p').textContent =
+                        messageText.length > 30 ? messageText.substring(0, 30) + '...' : messageText;
+                    existingChat.querySelector('.last-chat-time small').textContent = 'Just now';
+
+                    // // Optional: Increment the unread message count
+                    var newMessageCount = existingChat.querySelector('.new-message-count');
+                    if (newMessageCount) {
+                        newMessageCount.textContent = parseInt(newMessageCount.textContent) + 1;
+                    }
+                }
+            } else {
+
+                fetch('/patient/patient-recent-chats')
+                    .then(response => response.json())
+                    .then(data => {
+                        var chatContainer = document.getElementById('chatList');
+                            var listItem = document.createElement('li');
+                            listItem.classList.add('user-list-item');
+                            listItem.innerHTML = ''; // Clear existing list
+                        data.chatRooms.forEach(chatRoom => {
+                           
+
+                            listItem.innerHTML = `
+                        <a href="/chat-doctor/${chatRoom.partner_id}">
+                            <div class="avatar">
+                                <img src="${chatRoom.profile_image}" alt="image">
+                            </div>
+                            <div class="users-list-body">
+                                <div>
+                                    <h5>${chatRoom.partner_name}</h5>
+                                    <p>${chatRoom.latest_message}</p>
+                                </div>
+                                <div class="last-chat-time">
+                                    <small class="text-muted">${chatRoom.last_chat_time}</small>
+                                    <div class="new-message-count">${chatRoom.unseen_count}</div>
+                                </div>
+                            </div>
+                        </a>
+                    `;
+                            userList.prepend(listItem);
+                        });
+                    })
+                    .catch(error => console.error('Error fetching recent chats:', error));
+
+
+
+            }
+
+            if (data.message.receiver_id == receiverId && data.message.sender_id == senderId) {
+                var timestamp = new Date().toLocaleTimeString([], {
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+
+                // Create the new message element in the message container
+                var messageContainer = document.getElementById('message-container');
+                var messageElement = document.createElement('div');
+                messageElement.classList.add('messages');
+
+                messageElement.innerHTML = `
+            <div class="chats">
+                <div class="chat-avatar">
+                    <img src="${profileImage}" class="dreams_chat" alt="image">
+                </div>
+                <div class="chat-content">
+                    <div class="chat-profile-name">
+                        <h6>${fromName} <span>${timestamp}</span></h6>
+                    </div>
+                    <div class="message-content">
+                        ${messageText}
+                    </div>
+                </div>
+            </div>
         `;
 
-            // Append the new message element to the container
-            messageContainer.appendChild(messageElement);
+                messageContainer.appendChild(messageElement);
+            }
         });
     </script>
 
@@ -106,12 +200,13 @@
                                     </div>
                                     <div class="swiper-container">
                                         <div class="swiper-wrapper">
+
                                             @foreach ($onlineUsers as $user)
                                                 <div class="swiper-slide">
                                                     <div class="top-contacts-box">
                                                         <a href="{{ route('patient-chat', $user->id ?? '') }}">
                                                             <div class="profile-img online">
-                                                                <img src="{{ URL::asset($user->profile_image ?? 'assets/img/default-user.png') }}"
+                                                                <img src="{{ URL::asset($user->profile_image ?? 'assets/img/services-six-1.png') }}"
                                                                     alt="Img">
                                                             </div>
                                                             <div class="user-name">
@@ -135,7 +230,7 @@
                                 <div class="sidebar-body chat-body" id="chatsidebar">
 
                                     <!-- Left Chat Title -->
-                                    <div class="d-flex justify-content-between align-items-center ps-0 pe-0">
+                                    {{-- <div class="d-flex justify-content-between align-items-center ps-0 pe-0">
                                         <div class="fav-title pin-chat">
                                             <h6>Pinned Chat</h6>
                                         </div>
@@ -165,7 +260,7 @@
                                             </a>
                                         </li>
 
-                                    </ul>
+                                    </ul> --}}
                                     <!-- Left Chat Title -->
                                     <div class="d-flex justify-content-between align-items-center ps-0 pe-0">
                                         <div class="fav-title pin-chat">
@@ -173,26 +268,50 @@
                                         </div>
                                     </div>
                                     <!-- /Left Chat Title -->
-                                    <ul class="user-list">
-                                        <li class="user-list-item">
-                                            <a href="javascript:void(0);">
-                                                <div class="avatar avatar-online">
-                                                    <img src="{{ URL::asset('assets/img/patients-img-fifteen.png') }}"
-                                                        alt="image">
-                                                </div>
-                                                <div class="users-list-body">
-                                                    <div>
-                                                        <h5>Kelly Stevens</h5>
-                                                        <p>Have you called them?</p>
-                                                    </div>
-                                                    <div class="last-chat-time">
-                                                        <small class="text-muted">Just Now</small>
-                                                        <div class="new-message-count">2</div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
+                                    <ul class="user-list" id="chatList">
+                                        @forelse ($chatRooms as $chatRoom)
+                                            @php
 
+                                                $chatPartner =
+                                                    $chatRoom->user1_id == auth()->id()
+                                                        ? $chatRoom->user2_id
+                                                        : $chatRoom->user1_id;
+                                                $chatPartnerUser = \App\Models\User::find($chatPartner);
+                                                $latestMessage = $chatRoom->messages->first();
+                                                $unseenCount = \App\Models\Message::where('chat_room_id', $chatRoom->id)
+                                                    ->where('receiver_id', auth()->id())
+                                                    ->where('seen', null)
+                                                    ->count();
+
+                                            @endphp
+
+                                            @if ($chatPartnerUser)
+                                                <li class="user-list-item" data-partner-id="{{ $chatPartnerUser->id }}">
+                                                    <a href="{{ route('patient-chat', $chatPartnerUser->id ?? '') }}">
+                                                        <div class="avatar">
+                                                            <img src="{{ $chatPartnerUser->profile_image ?? URL::asset('assets/img/default-avatar.png') }}"
+                                                                alt="image">
+                                                        </div>
+                                                        <div class="users-list-body">
+                                                            <div>
+                                                                <h5>{{ $chatPartnerUser->name }}</h5>
+                                                                <p>{{ \Illuminate\Support\Str::limit($latestMessage->content ?? 'No messages yet', 30) }}
+                                                                </p>
+                                                            </div>
+                                                            <div class="last-chat-time">
+                                                                <small
+                                                                    class="text-muted">{{ $latestMessage ? $latestMessage->created_at->diffForHumans() : '' }}</small>
+                                                                <div class="new-message-count">{{ $unseenCount }}</div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            @endif
+                                        @empty
+                                            <li class="text-muted text-center py-3">
+                                                No recent chats found.
+                                            </li>
+                                        @endforelse
                                     </ul>
                                 </div>
 
@@ -205,7 +324,7 @@
 
                     <!-- Chat -->
                     <div class="chat chat-messages" id="middle">
-                        <div class="slimscroll mb-3" id="scrollDown">
+                        <div class="slimscroll mb-3" id="scroll">
                             <div class="chat-inner-header">
                                 <div class="chat-header">
                                     <div class="user-details">
@@ -341,12 +460,16 @@
     </div>
 
     <script>
+        function scrollToBottom() {
+            let messageContainer = document.getElementById('scroll');
+            messageContainer.scrollTop = messageContainer.scrollHeight;
+        }
+
         document.getElementById('messageForm').addEventListener('submit', function(e) {
             e.preventDefault(); // Prevent the form from submitting traditionally
 
             let receiverId = document.getElementById('receiver_id').value;
             let messageContent = document.getElementById('messageContent').value;
-            let scrollContainer = document.getElementById('scrollDown').value;
             let csrfToken = document.querySelector('input[name="_token"]').value;
 
             let authUser = @json(auth()->user());
@@ -379,11 +502,10 @@
                     </div>
                 `;
 
-            // Append the new message element to the message container
             messageContainer.appendChild(messageElement);
 
-            // Optionally scroll to the bottom of the chat container after appending the message
-            // scrollContainer.scrollDown = scrollContainer.scrollHeight;
+            scrollToBottom();
+
             document.getElementById('messageContent').value = '';
             fetch("{{ route('messages.send') }}", {
                     method: 'POST',
@@ -399,10 +521,15 @@
                 .then(response => response.json())
                 .then(data => {
                     // Clear the input field
-                   
+
                     console.log('Message sent:', data);
                 })
                 .catch(error => console.error('Error:', error));
+        });
+
+        // Scroll to the bottom when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            scrollToBottom();
         });
     </script>
 
