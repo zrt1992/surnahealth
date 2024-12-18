@@ -20,7 +20,12 @@ class GoogleMeetController extends Controller
     public function createMeeting(Request $request)
     {
 
+        $client = GoogleClientService::getClient();
 
+        if (!$client->getAccessToken() || $client->isAccessTokenExpired()) {
+            // If OAuth token is not available or expired, redirect to the Google auth route
+            return redirect()->route('google.auth');
+        }
         // Validation for the incoming request
         $request->validate([
             'title' => 'required|string|max:255',

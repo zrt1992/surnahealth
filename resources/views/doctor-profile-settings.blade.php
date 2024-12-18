@@ -96,7 +96,7 @@
                                 <div class="col-lg-4 col-md-6">
                                     <div class="form-wrap">
                                         <label class="col-form-label">First Name <span class="text-danger">*</span></label>
-                                        <input type="text" name="first_name" class="form-control" value="{{ old('first_name', $auth->first_name) }}">
+                                        <input type="text" name="first_name" class="form-control" value="{{ old('first_name', $auth->first_name) }}"  readonly>
                                         @error('first_name')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -106,7 +106,7 @@
                                 <div class="col-lg-4 col-md-6">
                                     <div class="form-wrap">
                                         <label class="col-form-label">Last Name <span class="text-danger">*</span></label>
-                                        <input type="text" name="last_name" class="form-control" value="{{ old('last_name', $auth->last_name) }}">
+                                        <input type="text" name="last_name" class="form-control" value="{{ old('last_name', $auth->last_name) }}" readonly>
                                         @error('last_name')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -116,7 +116,7 @@
                                 <div class="col-lg-4 col-md-6">
                                     <div class="form-wrap">
                                         <label class="col-form-label">Display Name <span class="text-danger">*</span></label>
-                                        <input type="text" name="display_name" class="form-control" value="{{ old('display_name', $auth->display_name) }}">
+                                        <input type="text" name="display_name" class="form-control" value="{{ old('display_name', $auth->display_name) }}" readonly>
                                         @error('display_name')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -126,7 +126,7 @@
                                 <div class="col-lg-4 col-md-6">
                                     <div class="form-wrap">
                                         <label class="col-form-label">Designation <span class="text-danger">*</span></label>
-                                        <select class="select form-control" name="designation">
+                                        <select class="select form-control" name="designation" readonly>
                                             <option value="">Select Designation</option>
                                             @foreach($specializations as $specialization)
                                                 <option value="{{ $specialization->id }}" 
@@ -163,7 +163,7 @@
                                 <div class="col-lg-4 col-md-6">
                                     <div class="form-wrap">
                                         <label class="col-form-label">Consultation fees <span class="text-danger">*</span></label>
-                                        <input type="text" name="consultation_fees" class="form-control" value="{{ old('consultation_fees', $auth->consultation_fees) }}">
+                                        <input type="text" name="consultation_fees" class="form-control" value="{{ old('consultation_fees', $auth->consultation_fees) }}" readonly>
                                         @error('consultation_fees')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -173,7 +173,7 @@
                                     <div class="form-wrap">
                                         <label class="col-form-label">Known Languages <span class="text-danger">*</span></label>
                                         <div class="input-block input-block-new mb-0">
-                                            <input class="input-tags form-control" id="inputBox3" type="text" data-role="tagsinput" placeholder="Type New" name="known_languages" value="{{ old('known_languages', $auth->known_languages) }}">
+                                            <input class="input-tags form-control" id="inputBox3" type="text" data-role="tagsinput" placeholder="Type New" name="known_languages" value="{{ old('known_languages', $auth->known_languages) }}" readonly>
                                             @error('known_languages')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
@@ -190,73 +190,59 @@
                             <button type="submit" class="btn btn-primary prime-btn">Save Changes</button>
                         </div>
                         
-                        <div class="setting-title">
-                            <h5>Start Meeting</h5>
-                        </div>
+                     
                     </form>
                     
                     
-                    {{-- <form action="{{route('create-meeting')}}" method="post">
-                        @csrf --}}
-                    <form action="{{ route('google.meet.create') }}" method="POST">
+                    <div class="dashboard-header">
+                        <h3>Change Password</h3>
+                    </div>
+                    <form action="{{ route('doctor.update-password') }}" method="POST">
                         @csrf
-                        <div class="setting-card">
-                            <div class="add-info membership-infos">
-                                <div class="row membership-content">
-                                    <div class="col-lg-3 col-md-6">
-                                        <div class="form-wrap">
-                                            <label class="col-form-label">Title <span class="text-danger">*</span></label>
-                                            <input  id="title" name="title" type="text" class="form-control"
-                                                placeholder="Add Title">
+                        <div class="card pass-card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="input-block input-block-new">
+                                            <label class="form-label">Old Password</label>
+                                            <input type="password" id="old_password" name="old_password"
+                                                class="form-control" placeholder="Enter your old password" required>
+                                            @error('old_password')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
-                                    </div>
-                                    <div class="col-lg-9 col-md-6">
-                                        <div class="d-flex align-items-center">
-                                            <div class="form-wrap w-100">
-                                                <label class="col-form-label">description</label>
-                                                <input name="description" type="text" class="form-control">
+                                        <div class="input-block input-block-new">
+                                            <label class="form-label">New Password</label>
+                                            <div class="pass-group">
+                                                <input type="password" id="new_password" name="password" class="form-control pass-input">
+                                                <span class="feather-eye-off toggle-password"></span>
                                             </div>
-
-                                            {{--                                            <div class="form-wrap ms-2"> --}}
-                                            {{--                                                <label class="col-form-label d-block">&nbsp;</label> --}}
-                                            {{--                                                <a href="javascript:void(0);" class="trash-icon trash">Delete</a> --}}
-                                            {{--                                            </div> --}}
+                                            @error('password')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                        </div>
+                                        <div class="input-block input-block-new mb-0">
+                                            <label class="form-label">Confirm Password</label>
+                                            <div class="pass-group">
+                                                <input type="password" id="password_confirmation" name="password_confirmation" class="form-control pass-input-sub">
+                                                <span class="feather-eye-off toggle-password-sub"></span>
+                                            </div>
+                                            @error('password_confirmation')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                         </div>
                                     </div>
-                                    <div class="col-lg-9 col-md-6">
-                                        <div class="form-wrap w-100">
-                                            <label class="col-form-label">Start Time</label>
-                                            <input type="datetime-local" name="start_date" class="form-control">
-                                        </div>
-                                        <div class="form-wrap w-100">
-                                            <label class="col-form-label">End Time</label>
-                                            <input type="datetime-local" name="end_date" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-9 col-md-6">
-                                        <div class="form-wrap w-100">
-                                            <label class="col-form-label">Email/add attendee</label>
-                                            <input type="email" name="email" class="form-control">
-                                        </div>
-                                       
-                                    </div>
-
                                 </div>
                             </div>
-                            <div class="text-end">
-                                <a href="#" class="add-membership-info more-item">Add New</a>
-                            </div>
                         </div>
-
-                        <div class="modal-btn text-end">
-                            <a href="#" class="btn btn-gray">Cancel</a>
-                            <button type="submit" class="btn btn-primary prime-btn">Save Changes</button>
+                        <div class="form-set-button">
+                            <button class="btn btn-light" type="button">Cancel</button>
+                            <button class="btn btn-primary" type="submit">Save Changes</button>
                         </div>
-
                     </form>
-                    <!-- /Profile Settings -->
 
                 </div>
+               
             </div>
 
         </div>

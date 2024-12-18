@@ -766,6 +766,8 @@ Route::get('/doctor-profile-2/{id?}', [DoctorProfileController::class, 'show'])-
 
 
 Route::get('/google-auth', function () {
+
+    session(['previous_url' => url()->previous()]);
     $client = GoogleClientService::getClient();
     $authUrl = $client->createAuthUrl();
 
@@ -781,7 +783,9 @@ Route::get('/callback', function (Request $request) {
         session(['google_access_token' => $client->getAccessToken()]);
     }
 
-    return redirect()->route('doctor-profile-settings.index');
+    $previousUrl = session()->pull('previous_url', route('doctor-profile-settings.index'));
+
+    return redirect($previousUrl);
 })->name('google.callback');
 
 Route::get('/check-google-token', [GoogleMeetController::class, 'checkGoogleToken'])->name('check.google.token');

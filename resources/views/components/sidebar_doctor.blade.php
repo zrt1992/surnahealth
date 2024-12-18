@@ -121,12 +121,7 @@
                             <span>Social Media</span>
                         </a>
                     </li> --}}
-                    <li class="{{ Request::is('doctor/doctor-change-password') ? 'active' : '' }}">
-                        <a href="{{route('doctor.doctor-change-password')}}">
-                            <i class="fa-solid fa-key"></i>
-                            <span>Setting</span>
-                        </a>
-                    </li>
+                    
                     <li class="">
                         <a href="#">
                             <i class="fa-solid fa-key"></i>

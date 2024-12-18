@@ -53,13 +53,16 @@
                         <div class="appointment-tabs">
                             <ul class="nav nav-pills inner-tab " id="pills-tab" role="tablist">
                                 <li class="nav-item" role="presentation">
-                                    <button class="nav-link active" id="pills-upcoming-tab" data-bs-toggle="pill" data-bs-target="#pills-upcoming" type="button" role="tab" aria-controls="pills-upcoming" aria-selected="false">Upcoming<span>21</span></button>
+                                    <button class="nav-link active" id="pills-upcoming-tab" data-bs-toggle="pill" data-bs-target="#pills-upcoming" type="button" role="tab" aria-controls="pills-upcoming" aria-selected="false">Upcoming<span>{{ $upcommingCount ?? '0' }}</span></button>
                                 </li>	
                                 <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="pills-cancel-tab" data-bs-toggle="pill" data-bs-target="#pills-cancel" type="button" role="tab" aria-controls="pills-cancel" aria-selected="true">Cancelled<span>16</span></button>
+                                    <button class="nav-link" id="pills-cancel-tab" data-bs-toggle="pill" data-bs-target="#pills-cancel" type="button" role="tab" aria-controls="pills-cancel" aria-selected="true">Cancelled<span>{{ $rejectedCount ?? '0' }}</span></button>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="pills-complete-tab" data-bs-toggle="pill" data-bs-target="#pills-complete" type="button" role="tab" aria-controls="pills-complete" aria-selected="true">Completed<span>214</span></button>
+                                    <button class="nav-link" id="pills-complete-tab" data-bs-toggle="pill" data-bs-target="#pills-complete" type="button" role="tab" aria-controls="pills-complete" aria-selected="true">Completed<span>{{ $completedCount ?? '0' }}</span></button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="pills-create-meeting-tab" data-bs-toggle="pill" data-bs-target="#pills-create-meeting" type="button" role="tab" aria-controls="pills-create-meeting" aria-selected="true">Create Meeting<span></span></button>
                                 </li>
                             </ul>
                         </div>
@@ -411,20 +414,21 @@
                         <div class="tab-pane fade" id="pills-cancel" role="tabpanel" aria-labelledby="pills-cancel-tab">
                             <!-- Appointment List -->
                             <div class="appointment-wrap">
+                                @foreach ($appointmentRejectedRequests as $rejected)
                                 <ul>
                                     <li>
                                         <div class="patinet-information">
-                                            <a href="{{url('doctor-cancelled-appointment')}}">
-                                                <img src="{{URL::asset('/assets/img/doctors-dashboard/profile-01.jpg')}}" alt="User Image">
+                                            <a href="{{url('doctor-completed-appointment')}}">
+                                                <img src="{{$rejected->user->profile_image ?? URL::asset('/assets/img/doctors-dashboard/profile-01.jpg')}}" alt="User Image">
                                             </a>
                                             <div class="patient-info">
-                                                <p>#Apt0001</p>
-                                                <h6><a href="{{url('doctor-cancelled-appointment')}}">Adrian</a></h6>
+                                                <p>#{{ $rejected->id ?? "--"  }}</p>
+                                                <h6><a href="{{url('doctor-completed-appointment')}}">{{ $rejected->user->name ?? "--"  }}</a></h6>
                                             </div>
                                         </div>
                                     </li>
                                     <li class="appointment-info">
-                                        <p><i class="fa-solid fa-clock"></i>11 Nov 2024 10.45 AM</p>
+                                        <p><i class="fa-solid fa-clock"></i>{{ $rejected->booking_date ?? '--' }}</p>
                                         <ul class="d-flex apponitment-types">
                                             <li>General Visit</li>
                                             <li>Video Call</li>
@@ -432,214 +436,11 @@
                                         
                                     </li>
                                     <li class="appointment-detail-btn">
-                                        <a href="{{url('doctor-cancelled-appointment')}}" class="start-link">View Details</a>
+                                        <a href="{{url('doctor-completed-appointment')}}" class="start-link">View Details</a>
                                     </li>
                                 </ul>
+                                @endforeach
                             </div>
-                            <!-- /Appointment List -->
-
-                            <!-- Appointment List -->
-                            <div class="appointment-wrap">
-                                <ul>
-                                    <li>
-                                        <div class="patinet-information">
-                                            <a href="{{url('doctor-cancelled-appointment')}}">
-                                                <img src="{{URL::asset('/assets/img/doctors-dashboard/profile-02.jpg')}}" alt="User Image">
-                                            </a>
-                                            <div class="patient-info">
-                                                <p>#Apt0002</p>
-                                                <h6><a href="{{url('doctor-cancelled-appointment')}}">Kelly</a><span class="badge new-tag">New</span></h6>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="appointment-info">
-                                        <p><i class="fa-solid fa-clock"></i>05 Nov 2024 11.50 AM</p>
-                                        <ul class="d-flex apponitment-types">
-                                            <li>General Visit</li>
-                                            <li>Audio Call</li>
-                                        </ul>
-                                        
-                                    </li>
-                                    <li class="appointment-detail-btn">
-                                        <a href="{{url('doctor-cancelled-appointment')}}" class="start-link">View Details</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- /Appointment List -->
-
-                            <!-- Appointment List -->
-                            <div class="appointment-wrap">
-                                <ul>
-                                    <li>
-                                        <div class="patinet-information">
-                                            <a href="{{url('doctor-cancelled-appointment')}}">
-                                                <img src="{{URL::asset('/assets/img/doctors-dashboard/profile-03.jpg')}}" alt="User Image">
-                                            </a>
-                                            <div class="patient-info">
-                                                <p>#Apt0003</p>
-                                                <h6><a href="{{url('doctor-cancelled-appointment')}}">Samuel</a></h6>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="appointment-info">
-                                        <p><i class="fa-solid fa-clock"></i>27 Oct 2024 09.30 AM</p>
-                                        <ul class="d-flex apponitment-types">
-                                            <li>General Visit</li>
-                                            <li>Video Call</li>
-                                        </ul>
-                                        
-                                    </li>
-                                    <li class="appointment-detail-btn">
-                                        <a href="{{url('doctor-cancelled-appointment')}}" class="start-link">View Details</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- /Appointment List -->
-
-                            <!-- Appointment List -->
-                            <div class="appointment-wrap">
-                                <ul>
-                                    <li>
-                                        <div class="patinet-information">
-                                            <a href="{{url('doctor-cancelled-appointment')}}">
-                                                <img src="{{URL::asset('/assets/img/doctors-dashboard/profile-04.jpg')}}" alt="User Image">
-                                            </a>
-                                            <div class="patient-info">
-                                                <p>#Apt0004</p>
-                                                <h6><a href="{{url('doctor-cancelled-appointment')}}">Catherine</a></h6>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="appointment-info">
-                                        <p><i class="fa-solid fa-clock"></i>18 Oct 2024 12.20 PM</p>
-                                        <ul class="d-flex apponitment-types">
-                                            <li>General Visit</li>
-                                            <li>Direct Visit</li>
-                                        </ul>
-                                        
-                                    </li>
-                                    <li class="appointment-detail-btn">
-                                        <a href="{{url('doctor-cancelled-appointment')}}" class="start-link">View Details</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- /Appointment List -->
-
-                            <!-- Appointment List -->
-                            <div class="appointment-wrap">
-                                <ul>
-                                    <li>
-                                        <div class="patinet-information">
-                                            <a href="{{url('doctor-cancelled-appointment')}}">
-                                                <img src="{{URL::asset('/assets/img/doctors-dashboard/profile-05.jpg')}}" alt="User Image">
-                                            </a>
-                                            <div class="patient-info">
-                                                <p>#Apt0005</p>
-                                                <h6><a href="{{url('doctor-cancelled-appointment')}}">Robert</a></h6>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="appointment-info">
-                                        <p><i class="fa-solid fa-clock"></i>10 Oct 2024 11.30 AM</p>
-                                        <ul class="d-flex apponitment-types">
-                                            <li>General Visit</li>
-                                            <li>Chat</li>
-                                        </ul>
-                                        
-                                    </li>
-                                    <li class="appointment-detail-btn">
-                                        <a href="{{url('doctor-cancelled-appointment')}}" class="start-link">View Details</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- /Appointment List -->
-
-                            <!-- Appointment List -->
-                            <div class="appointment-wrap">
-                                <ul>
-                                    <li>
-                                        <div class="patinet-information">
-                                            <a href="{{url('doctor-cancelled-appointment')}}">
-                                                <img src="{{URL::asset('/assets/img/doctors-dashboard/profile-06.jpg')}}" alt="User Image">
-                                            </a>
-                                            <div class="patient-info">
-                                                <p>#Apt0006</p>
-                                                <h6><a href="{{url('doctor-cancelled-appointment')}}">Anderea</a></h6>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="appointment-info">
-                                        <p><i class="fa-solid fa-clock"></i>26 Sep 2024 10.20 AM</p>
-                                        <ul class="d-flex apponitment-types">
-                                            <li>General Visit</li>
-                                            <li>Chat</li>
-                                        </ul>
-                                        
-                                    </li>
-                                    <li class="appointment-detail-btn">
-                                        <a href="{{url('doctor-cancelled-appointment')}}" class="start-link">View Details</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- /Appointment List -->
-
-                            <!-- Appointment List -->
-                            <div class="appointment-wrap">
-                                <ul>
-                                    <li>
-                                        <div class="patinet-information">
-                                            <a href="{{url('doctor-cancelled-appointment')}}">
-                                                <img src="{{URL::asset('/assets/img/doctors-dashboard/profile-07.jpg')}}" alt="User Image">
-                                            </a>
-                                            <div class="patient-info">
-                                                <p>#Apt0007</p>
-                                                <h6><a href="{{url('doctor-cancelled-appointment')}}">Peter</a></h6>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="appointment-info">
-                                        <p><i class="fa-solid fa-clock"></i>14 Sep 2024 08.10 AM</p>
-                                        <ul class="d-flex apponitment-types">
-                                            <li>General Visit</li>
-                                            <li>Chat</li>
-                                        </ul>
-                                        
-                                    </li>
-                                    <li class="appointment-detail-btn">
-                                        <a href="{{url('doctor-cancelled-appointment')}}" class="start-link">View Details</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- /Appointment List -->
-
-                            <!-- Appointment List -->
-                            <div class="appointment-wrap">
-                                <ul>
-                                    <li>
-                                        <div class="patinet-information">
-                                            <a href="{{url('doctor-cancelled-appointment')}}">
-                                                <img src="{{URL::asset('/assets/img/doctors-dashboard/profile-08.jpg')}}" alt="User Image">
-                                            </a>
-                                            <div class="patient-info">
-                                                <p>#Apt0008</p>
-                                                <h6><a href="{{url('doctor-cancelled-appointment')}}">Emily</a></h6>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="appointment-info">
-                                        <p><i class="fa-solid fa-clock"></i>03 Sep 2024 06.00 PM</p>
-                                        <ul class="d-flex apponitment-types">
-                                            <li>General Visit</li>
-                                            <li>Video Call</li>
-                                        </ul>
-                                        
-                                    </li>
-                                    <li class="appointment-detail-btn">
-                                        <a href="{{url('doctor-cancelled-appointment')}}" class="start-link">View Details</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- /Appointment List -->
 
                             <!-- Pagination -->
                             <div class="pagination dashboard-pagination">
@@ -672,20 +473,21 @@
                         <div class="tab-pane fade" id="pills-complete" role="tabpanel" aria-labelledby="pills-complete-tab">
                             <!-- Appointment List -->
                             <div class="appointment-wrap">
+                                @foreach ($appointmentCompleted as $completed)
                                 <ul>
                                     <li>
                                         <div class="patinet-information">
                                             <a href="{{url('doctor-completed-appointment')}}">
-                                                <img src="{{URL::asset('/assets/img/doctors-dashboard/profile-01.jpg')}}" alt="User Image">
+                                                <img src="{{$completed->user->profile_image ?? URL::asset('/assets/img/doctors-dashboard/profile-01.jpg')}}" alt="User Image">
                                             </a>
                                             <div class="patient-info">
-                                                <p>#Apt0001</p>
-                                                <h6><a href="{{url('doctor-completed-appointment')}}">Adrian</a></h6>
+                                                <p>#{{ $completed->id ?? "--"  }}</p>
+                                                <h6><a href="{{url('doctor-completed-appointment')}}">{{ $completed->user->name ?? "--"  }}</a></h6>
                                             </div>
                                         </div>
                                     </li>
                                     <li class="appointment-info">
-                                        <p><i class="fa-solid fa-clock"></i>11 Nov 2024 10.45 AM</p>
+                                        <p><i class="fa-solid fa-clock"></i>{{ \Carbon\Carbon::parse($completed->start_date)->format('d M Y h:i A') }}</p>
                                         <ul class="d-flex apponitment-types">
                                             <li>General Visit</li>
                                             <li>Video Call</li>
@@ -696,212 +498,10 @@
                                         <a href="{{url('doctor-completed-appointment')}}" class="start-link">View Details</a>
                                     </li>
                                 </ul>
+                                @endforeach
+                               
                             </div>
-                            <!-- /Appointment List -->
-
-                            <!-- Appointment List -->
-                            <div class="appointment-wrap">
-                                <ul>
-                                    <li>
-                                        <div class="patinet-information">
-                                            <a href="{{url('doctor-completed-appointment')}}">
-                                                <img src="{{URL::asset('/assets/img/doctors-dashboard/profile-02.jpg')}}" alt="User Image">
-                                            </a>
-                                            <div class="patient-info">
-                                                <p>#Apt0002</p>
-                                                <h6><a href="{{url('doctor-completed-appointment')}}">Kelly</a><span class="badge new-tag">New</span></h6>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="appointment-info">
-                                        <p><i class="fa-solid fa-clock"></i>05 Nov 2024 11.50 AM</p>
-                                        <ul class="d-flex apponitment-types">
-                                            <li>General Visit</li>
-                                            <li>Audio Call</li>
-                                        </ul>
-                                        
-                                    </li>
-                                    <li class="appointment-detail-btn">
-                                        <a href="{{url('doctor-completed-appointment')}}" class="start-link">View Details</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- /Appointment List -->
-
-                            <!-- Appointment List -->
-                            <div class="appointment-wrap">
-                                <ul>
-                                    <li>
-                                        <div class="patinet-information">
-                                            <a href="{{url('doctor-completed-appointment')}}">
-                                                <img src="{{URL::asset('/assets/img/doctors-dashboard/profile-03.jpg')}}" alt="User Image">
-                                            </a>
-                                            <div class="patient-info">
-                                                <p>#Apt0003</p>
-                                                <h6><a href="{{url('doctor-completed-appointment')}}">Samuel</a></h6>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="appointment-info">
-                                        <p><i class="fa-solid fa-clock"></i>27 Oct 2024 09.30 AM</p>
-                                        <ul class="d-flex apponitment-types">
-                                            <li>General Visit</li>
-                                            <li>Video Call</li>
-                                        </ul>
-                                        
-                                    </li>
-                                    <li class="appointment-detail-btn">
-                                        <a href="{{url('doctor-completed-appointment')}}" class="start-link">View Details</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- /Appointment List -->
-
-                            <!-- Appointment List -->
-                            <div class="appointment-wrap">
-                                <ul>
-                                    <li>
-                                        <div class="patinet-information">
-                                            <a href="{{url('doctor-completed-appointment')}}">
-                                                <img src="{{URL::asset('/assets/img/doctors-dashboard/profile-04.jpg')}}" alt="User Image">
-                                            </a>
-                                            <div class="patient-info">
-                                                <p>#Apt0004</p>
-                                                <h6><a href="{{url('doctor-completed-appointment')}}">Catherine</a></h6>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="appointment-info">
-                                        <p><i class="fa-solid fa-clock"></i>18 Oct 2024 12.20 PM</p>
-                                        <ul class="d-flex apponitment-types">
-                                            <li>General Visit</li>
-                                            <li>Direct Visit</li>
-                                        </ul>
-                                        
-                                    </li>
-                                    <li class="appointment-detail-btn">
-                                        <a href="{{url('doctor-completed-appointment')}}" class="start-link">View Details</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- /Appointment List -->
-
-                            <!-- Appointment List -->
-                            <div class="appointment-wrap">
-                                <ul>
-                                    <li>
-                                        <div class="patinet-information">
-                                            <a href="{{url('doctor-completed-appointment')}}">
-                                                <img src="{{URL::asset('/assets/img/doctors-dashboard/profile-05.jpg')}}" alt="User Image">
-                                            </a>
-                                            <div class="patient-info">
-                                                <p>#Apt0005</p>
-                                                <h6><a href="{{url('doctor-completed-appointment')}}">Robert</a></h6>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="appointment-info">
-                                        <p><i class="fa-solid fa-clock"></i>10 Oct 2024 11.30 AM</p>
-                                        <ul class="d-flex apponitment-types">
-                                            <li>General Visit</li>
-                                            <li>Chat</li>
-                                        </ul>
-                                        
-                                    </li>
-                                    <li class="appointment-detail-btn">
-                                        <a href="{{url('doctor-completed-appointment')}}" class="start-link">View Details</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- /Appointment List -->
-
-                            <!-- Appointment List -->
-                            <div class="appointment-wrap">
-                                <ul>
-                                    <li>
-                                        <div class="patinet-information">
-                                            <a href="{{url('doctor-completed-appointment')}}">
-                                                <img src="{{URL::asset('/assets/img/doctors-dashboard/profile-06.jpg')}}" alt="User Image">
-                                            </a>
-                                            <div class="patient-info">
-                                                <p>#Apt0006</p>
-                                                <h6><a href="{{url('doctor-completed-appointment')}}">Anderea</a></h6>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="appointment-info">
-                                        <p><i class="fa-solid fa-clock"></i>26 Sep 2024 10.20 AM</p>
-                                        <ul class="d-flex apponitment-types">
-                                            <li>General Visit</li>
-                                            <li>Chat</li>
-                                        </ul>
-                                        
-                                    </li>
-                                    <li class="appointment-detail-btn">
-                                        <a href="{{url('doctor-completed-appointment')}}" class="start-link">View Details</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- /Appointment List -->
-
-                            <!-- Appointment List -->
-                            <div class="appointment-wrap">
-                                <ul>
-                                    <li>
-                                        <div class="patinet-information">
-                                            <a href="{{url('doctor-completed-appointment')}}">
-                                                <img src="{{URL::asset('/assets/img/doctors-dashboard/profile-07.jpg')}}" alt="User Image">
-                                            </a>
-                                            <div class="patient-info">
-                                                <p>#Apt0007</p>
-                                                <h6><a href="{{url('doctor-completed-appointment')}}">Peter</a></h6>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="appointment-info">
-                                        <p><i class="fa-solid fa-clock"></i>14 Sep 2024 08.10 AM</p>
-                                        <ul class="d-flex apponitment-types">
-                                            <li>General Visit</li>
-                                            <li>Chat</li>
-                                        </ul>
-                                        
-                                    </li>
-                                    <li class="appointment-detail-btn">
-                                        <a href="{{url('doctor-completed-appointment')}}" class="start-link">View Details</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- /Appointment List -->
-
-                            <!-- Appointment List -->
-                            <div class="appointment-wrap">
-                                <ul>
-                                    <li>
-                                        <div class="patinet-information">
-                                            <a href="{{url('doctor-completed-appointment')}}">
-                                                <img src="{{URL::asset('/assets/img/doctors-dashboard/profile-08.jpg')}}" alt="User Image">
-                                            </a>
-                                            <div class="patient-info">
-                                                <p>#Apt0008</p>
-                                                <h6><a href="{{url('doctor-completed-appointment')}}">Emily</a></h6>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="appointment-info">
-                                        <p><i class="fa-solid fa-clock"></i>03 Sep 2024 06.00 PM</p>
-                                        <ul class="d-flex apponitment-types">
-                                            <li>General Visit</li>
-                                            <li>Video Call</li>
-                                        </ul>
-                                        
-                                    </li>
-                                    <li class="appointment-detail-btn">
-                                        <a href="{{url('doctor-completed-appointment')}}" class="start-link">View Details</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- /Appointment List -->
-
+                            
                             <!-- Pagination -->
                             <div class="pagination dashboard-pagination">
                                 <ul>
@@ -930,6 +530,62 @@
                             </div>
                             <!-- /Pagination -->
                         </div>
+                        <div class="tab-pane fade" id="pills-create-meeting" role="tabpanel" aria-labelledby="pills-create-meeting-tab">
+                            <div class="setting-title">
+                                <h5>Start Meeting</h5>
+                            </div>
+                            <form action="{{ route('google.meet.create') }}" method="POST">
+                                @csrf
+                                <div class="setting-card">
+                                    <div class="add-info membership-infos">
+                                        <div class="row membership-content">
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="form-wrap">
+                                                    <label class="col-form-label">Title <span class="text-danger">*</span></label>
+                                                    <input  id="title" name="title" type="text" class="form-control"
+                                                        placeholder="Add Title">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-9 col-md-6">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="form-wrap w-100">
+                                                        <label class="col-form-label">description</label>
+                                                        <input name="description" type="text" class="form-control">
+                                                    </div>   
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-9 col-md-6">
+                                                <div class="form-wrap w-100">
+                                                    <label class="col-form-label">Start Time</label>
+                                                    <input type="datetime-local" name="start_date" class="form-control" id="start_date">
+                                                </div>
+                                                <div class="form-wrap w-100">
+                                                    <label class="col-form-label">End Time</label>
+                                                    <input type="datetime-local" name="end_date" class="form-control" id="end_date">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-9 col-md-6">
+                                                <div class="form-wrap w-100">
+                                                    <label class="col-form-label">Email/add attendee</label>
+                                                    <input type="email" name="email" class="form-control">
+                                                </div>
+                                               
+                                            </div>
+        
+                                        </div>
+                                    </div>
+                                    <div class="text-end">
+                                        <a href="#" class="add-membership-info more-item">Add New</a>
+                                    </div>
+                                </div>
+        
+                                <div class="modal-btn text-end">
+                                    <a href="#" class="btn btn-gray">Cancel</a>
+                                    <button type="submit" class="btn btn-primary prime-btn">Save Changes</button>
+                                </div>
+        
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -937,5 +593,31 @@
         </div>
 
     </div>		
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            function getDateTimeString(daysToAdd) {
+                const date = new Date();
+                date.setDate(date.getDate() + daysToAdd);
+                const year = date.getFullYear();
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const day = String(date.getDate()).padStart(2, '0');
+                const hours = String(date.getHours()).padStart(2, '0');
+                const minutes = String(date.getMinutes()).padStart(2, '0');
+                return `${year}-${month}-${day}T${hours}:${minutes}`;
+            }
+    
+            const startDateInput = document.getElementById("start_date");
+            const endDateInput = document.getElementById("end_date");
+    
+            const startTime = getDateTimeString(7); // +7 days
+            startDateInput.min = startTime;
+            startDateInput.value = startTime;
+    
+            const endTime = getDateTimeString(8); // +8 days (you can adjust this)
+            endDateInput.min = startTime;
+            endDateInput.value = endTime;
+        });
+    </script>
     <!-- /Page Content -->
 @endsection

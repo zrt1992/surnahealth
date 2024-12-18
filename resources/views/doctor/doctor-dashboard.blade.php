@@ -104,11 +104,9 @@
                                                     <td>
                                                         <div class="appointment-date-created">
                                                             <h6>{{ $appointment->start_date ?? '' }}</h6>
-                                                            @if($appointment->slot->availability_type == 'global')
+                                                          
                                                             <span class="badge table-badge">General</span>
-                                                            @else
-                                                            <span class="badge table-badge">Clinic Consulting</span>
-                                                            @endif
+                                                           
                                                            
                                                         </div>
                                                     </td>
