@@ -56,10 +56,12 @@ class MessageController extends Controller
         ]);
     
         // Broadcast the event with the new message
+        $receiverData=User::find($request->receiver_id);
         event(new MyEvent([
             'sender_id' => auth()->user()->id,
             'receiver_id' =>  $request->receiver_id,
             'from_name' => auth()->user()->name,
+            'to_name' => $receiverData->name,
             'from_profile_image' => auth()->user()->profile_image,
             'message' => $message->content,
         ]));

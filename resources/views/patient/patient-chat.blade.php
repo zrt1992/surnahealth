@@ -128,10 +128,7 @@
                             });
                         })
                         .catch(error => console.error('Error fetching recent chats:', error));
-
-
-
-                }
+                } 
             }
 
             if (data.message.receiver_id == receiverId && data.message.sender_id == senderId) {

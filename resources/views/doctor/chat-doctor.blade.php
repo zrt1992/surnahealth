@@ -31,6 +31,10 @@
                 }));
 
             console.log(chatPartnerIds, 'chtprt');
+            console.log(chatPartnerIds.includes(data.message.sender_id), 'chtprt22222');
+            console.log(chatPartnerIds.includes(data.message
+                .receiver_id), 'chtprt333333');
+
 
             if (data.message.receiver_id == receiverId && data.message.sender_id == senderId) {
                 var timestamp = new Date().toLocaleTimeString([], {
@@ -137,8 +141,8 @@
                                         </div>
                                         <div class="last-chat-time">
                                             <small class="text-muted">${chatRoom.last_chat_time}</small>
-                                            ${
-                                                    chatRoom.unseen_count > 0 
+                                           ${
+                                                    chatRoom.unseen_count > 0 && receiverId == chatRoom.partner_id
                                                         ? `<div class="new-message-count">${chatRoom.unseen_count}</div>`
                                                         : ''
                                                 }
@@ -152,9 +156,7 @@
                         })
                         .catch(error => console.error('Error fetching recent chats:', error));
 
-                }else{
-
-                }
+                } 
             }
         });
     </script>
