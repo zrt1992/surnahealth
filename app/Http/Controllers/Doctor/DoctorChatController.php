@@ -46,4 +46,40 @@ class DoctorChatController extends Controller
         $onlineUsers = User::where('id', '!=', auth()->user()->id)->get();
         return view('doctor.chat-doctor', get_defined_vars());
     }
+
+    public function getRecentChats($id)
+    {
+        $chatRoom = ChatRoom::where('user1_id', auth()->id())->orWhere('user2_id', auth()->id())
+            ->where('user2_id', $id)->orWhere('user1_id', $id)
+            ->with(['messages' => function ($query) {
+                $query->latest();
+            }])
+            ->orderBy('updated_at', 'desc')
+            ->first();
+    
+        if (!$chatRoom) {
+            return response()->json(['error' => 'No chat found'], 404);
+        }
+    
+        $chatPartnerId = $chatRoom->user1_id == auth()->id() ? $chatRoom->user2_id : $chatRoom->user1_id;
+        $chatPartnerUser = \App\Models\User::find($chatPartnerId);
+        $latestMessage = $chatRoom->messages->first();
+        $unseenCount = \App\Models\Message::where('chat_room_id', $chatRoom->id)
+            ->where('receiver_id', auth()->id())
+            ->whereNull('seen')
+            ->count();
+    
+        return response()->json([
+            'chatRooms' => [
+                [
+                    'partner_id' => $chatPartnerUser->id,
+                    'partner_name' => $chatPartnerUser->name,
+                    'profile_image' => $chatPartnerUser->profile_image ?? asset('assets/img/default-avatar.png'),
+                    'latest_message' => \Illuminate\Support\Str::limit($latestMessage->content ?? 'No messages yet', 30),
+                    'last_chat_time' => $latestMessage ? $latestMessage->created_at->diffForHumans() : '',
+                    'unseen_count' => $unseenCount,
+                ]
+            ]
+        ]);
+    }
 }

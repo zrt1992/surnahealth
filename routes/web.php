@@ -83,6 +83,7 @@ Route::middleware(['auth', 'role:doctor',CheckRegistrationStep::class])->prefix(
     Route::get('/my-patients', [PatientsController::class, 'index'])->name('doctor.my-patients');
     Route::get('/patient-profile/{id?}', [PatientsController::class, 'patientProfile'])->name('doctor.patient-profile');
     Route::get('/chat-doctor/{id?}', [DoctorChatController::class, 'index'])->name('chat-doctor');
+    Route::get('/doctor-recent-chats/{id?}', [DoctorChatController::class, 'getRecentChats']);
 
     Route::get('/add-prescription/{id?}', [DoctorPresciptionController::class, 'index'])->name('add-prescription');
     Route::get('/store-prescription', [DoctorPresciptionController::class, 'store'])->name('store-prescription');
@@ -154,7 +155,7 @@ Route::middleware(['auth', 'role:patient',CheckRegistrationStep::class])->prefix
     Route::resource('patient-profile-setting', PatientProfileSettingController::class);
 
     Route::get('/chat/{id?}', [PatientChatController::class, 'index'])->name('patient-chat');
-    Route::get('/patient-recent-chats', [PatientChatController::class, 'getRecentChats']);
+    Route::get('/patient-recent-chats/{id?}', [PatientChatController::class, 'getRecentChats']);
 
     
     Route::get('/patient-prescription', [PatientPresciptionController::class, 'index'])->name('patient-prescription');

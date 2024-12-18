@@ -39,6 +39,8 @@
                     return $chatRoom->user1_id == auth()->id() ? $chatRoom->user2_id : $chatRoom->user1_id;
                 }));
 
+            console.log(chatPartnerIds, 'chtprt');
+
             if (chatPartnerIds.includes(data.message.sender_id) || chatPartnerIds.includes(data.message
                     .receiver_id)) {
                 // Append to recent chat list if not already present
@@ -79,46 +81,57 @@
 
                     // // Optional: Increment the unread message count
                     var newMessageCount = existingChat.querySelector('.new-message-count');
-                    if (newMessageCount) {
+                    if (newMessageCount && senderId != data.message.sender_id) {
                         newMessageCount.textContent = parseInt(newMessageCount.textContent) + 1;
                     }
                 }
             } else {
 
-                fetch('/patient/patient-recent-chats')
-                    .then(response => response.json())
-                    .then(data => {
-                        var chatContainer = document.getElementById('chatList');
-                            var listItem = document.createElement('li');
-                            listItem.classList.add('user-list-item');
-                            listItem.innerHTML = ''; // Clear existing list
-                        data.chatRooms.forEach(chatRoom => {
-                           
+                if (data.message.receiver_id == receiverId) {
+                    fetch(`/patient/patient-recent-chats/${data.message.sender_id}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.error) {
+                                console.error(data.error);
+                                return;
+                            }
 
-                            listItem.innerHTML = `
-                        <a href="/chat-doctor/${chatRoom.partner_id}">
-                            <div class="avatar">
-                                <img src="${chatRoom.profile_image}" alt="image">
-                            </div>
-                            <div class="users-list-body">
-                                <div>
-                                    <h5>${chatRoom.partner_name}</h5>
-                                    <p>${chatRoom.latest_message}</p>
-                                </div>
-                                <div class="last-chat-time">
-                                    <small class="text-muted">${chatRoom.last_chat_time}</small>
-                                    <div class="new-message-count">${chatRoom.unseen_count}</div>
-                                </div>
-                            </div>
-                        </a>
-                    `;
-                            userList.prepend(listItem);
-                        });
-                    })
-                    .catch(error => console.error('Error fetching recent chats:', error));
+                            var userList = document.querySelector('.chat-list');
+                            userList.innerHTML = '';
+                            data.chatRooms.forEach(chatRoom => {
+                                var listItem = document.createElement('li');
+                                listItem.classList.add('user-list-item');
+
+                                listItem.innerHTML = `
+                                <a href="/patient/chat/${chatRoom.partner_id}">
+                                    <div class="avatar">
+                                        <img src="${chatRoom.profile_image}" alt="image">
+                                    </div>
+                                    <div class="users-list-body">
+                                        <div>
+                                            <h5>${chatRoom.partner_name}</h5>
+                                            <p>${chatRoom.latest_message}</p>
+                                        </div>
+                                        <div class="last-chat-time">
+                                            <small class="text-muted">${chatRoom.last_chat_time}</small>
+                                           ${
+                                                    chatRoom.unseen_count > 0 && receiverId == chatRoom.partner_id
+                                                        ? `<div class="new-message-count">${chatRoom.unseen_count}</div>`
+                                                        : ''
+                                                }
+                                        </div>
+                                    </div>
+                                </a>
+                            `;
+
+                                userList.prepend(listItem);
+                            });
+                        })
+                        .catch(error => console.error('Error fetching recent chats:', error));
 
 
 
+                }
             }
 
             if (data.message.receiver_id == receiverId && data.message.sender_id == senderId) {
@@ -268,7 +281,10 @@
                                         </div>
                                     </div>
                                     <!-- /Left Chat Title -->
-                                    <ul class="user-list" id="chatList">
+                                    <ul class="user-list chat-list" id="chatList">
+
+                                    </ul>
+                                    <ul class="user-list">
                                         @forelse ($chatRooms as $chatRoom)
                                             @php
 
