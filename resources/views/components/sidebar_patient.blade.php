@@ -6,14 +6,17 @@
         <div class="widget-profile pro-widget-content">
             <div class="profile-info-widget">
                 <a href="{{ route('profile-settings') }}" class="booking-doc-img">
-                    <img src="{{\Illuminate\Support\Facades\Auth::user()->profile_image ?? URL::asset('/assets/img/doctors/doc-profile-img.jpg')}}" alt="User Image">
+                    <img src="{{ \Illuminate\Support\Facades\Auth::user()->profile_image ?? URL::asset('/assets/img/doctors/doc-profile-img.jpg') }}"
+                        alt="User Image">
                 </a>
                 <div class="profile-det-info">
-                    <h3><a href="{{ route('profile-settings') }}"> {{\Illuminate\Support\Facades\Auth::user()->name}}</a></h3>
+                    <h3><a href="{{ route('profile-settings') }}">
+                            {{ \Illuminate\Support\Facades\Auth::user()->name }}</a></h3>
                     <div class="patient-details">
                         <h5 class="mb-0">Patient ID : PT254654</h5>
                     </div>
-                    <span>{{\Illuminate\Support\Facades\Auth::user()->gender ?? '--'}} <i class="fa-solid fa-circle"></i>{{ calculateAge(\Illuminate\Support\Facades\Auth::user()->dob) }}</span>
+                    <span>{{ \Illuminate\Support\Facades\Auth::user()->gender ?? '--' }} <i
+                            class="fa-solid fa-circle"></i>{{ calculateAge(\Illuminate\Support\Facades\Auth::user()->dob) }}</span>
                 </div>
             </div>
         </div>
@@ -32,13 +35,14 @@
                             <span>Doctors</span>
                         </a>
                     </li>
-                    <li class="{{ Request::is('patient-appointments','patient-upcoming-appointments','patient-completed-appointments','patient-cancelled-appointments','patient-appointments-grid','patient-appointment-details','patient-upcoming-appointment','patient-completed-appointment','patient-cancelled-appointment') ? 'active' : '' }}">
+                    <li
+                        class="{{ Request::is('patient-appointments', 'patient-upcoming-appointments', 'patient-completed-appointments', 'patient-cancelled-appointments', 'patient-appointments-grid', 'patient-appointment-details', 'patient-upcoming-appointment', 'patient-completed-appointment', 'patient-cancelled-appointment') ? 'active' : '' }}">
                         <a href="{{ route('patient-appointments') }}">
                             <i class="fa-solid fa-calendar-days"></i>
                             <span>My Appointments</span>
                         </a>
                     </li>
-                   
+
                     {{-- <li class="{{ Request::is('patient/dependent') ? 'active' : '' }}">
                         <a href="{{ route('dependent') }}">
                             <i class="fa-solid fa-user-plus"></i>
@@ -73,7 +77,9 @@
                         <a href="{{ route('patient-chat') }}">
                             <i class="fa-solid fa-comments"></i>
                             <span>Message</span>
-                            <small class="unread-msg">0</small>
+                            @if ($unseenMessagesCount > 0)
+                                <small class="unread-msg">{{ $unseenMessagesCount }}</small>
+                            @endif
                         </a>
                     </li>
                     <li class="{{ Request::is('patient/profile-settings') ? 'active' : '' }}">
@@ -82,7 +88,7 @@
                             <span>Profile Settings</span>
                         </a>
                     </li>
-                  
+
                     {{-- <li class="{{ Request::is('patient/change-password') ? 'active' : '' }}">
                         <a href="{{ route('patient.change-password') }}">
                             <i class="fa-solid fa-key"></i>
@@ -95,16 +101,17 @@
                             <span>Help & Support</span>
                         </a>
                     </li>
-                    
+
                     <li class="{{ Request::is('logout-user') ? 'active' : '' }}">
-                        <a href="{{route('logout-user')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <a href="{{ route('logout-user') }}"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <i class="fa-solid fa-calendar-check"></i>
                             <span>Logout</span>
                         </a>
                     </li>
                     <form id="logout-form" action="{{ route('logout-user') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
+                        @csrf
+                    </form>
                 </ul>
             </nav>
         </div>

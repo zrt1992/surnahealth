@@ -97,7 +97,9 @@
                          <a href="{{ route('chat-doctor') }}">
                              <i class="fa-solid fa-comments"></i>
                              <span>Message</span>
-                             <small class="unread-msg">7</small>
+                             @if ($unseenMessagesCount > 0)
+                                 <small class="unread-msg">{{ $unseenMessagesCount }}</small>
+                             @endif
                          </a>
                      </li>
                      <li class="">

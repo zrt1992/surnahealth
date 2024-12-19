@@ -23,6 +23,7 @@ use App\Models\DoctorEducation;
 use App\Models\DoctorExperience;
 use App\Models\DoctorInsurances;
 use App\Models\MedicalRecord;
+use App\Models\Message;
 use App\Models\User;
 use App\Observers\DependantObserver;
 use App\Observers\DoctorClinicObserver;
@@ -77,7 +78,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(DoctorInsurancesRepositoryInterface::class, DoctorInsurancesRepository::class);
         $this->app->bind(DoctorClinicsRepositoryInterface::class, DoctorClinicsRepository::class);
         $this->app->bind(DoctorBusinessHourRepositoryInterface::class, DoctorBusinessHourRepository::class);
-
     }
 
     /**
@@ -96,18 +96,38 @@ class AppServiceProvider extends ServiceProvider
 
 
         RedirectIfAuthenticated::redirectUsing(function () {
-//            dd(Auth::check());
-//            Auth::logout();
+            //            dd(Auth::check());
+            //            Auth::logout();
             return route('home-page');
         });
 
         view()->composer('*', function ($view) {
             $doctorRequestCount = 0;
-    
+            $unseenMessagesCount = 0;
+
             if (Auth::check()) {
-                $doctorRequestCount = AppointmentRequests::where('doctor_id', Auth::id())->count();
+                $user = Auth::user();
+
+                // If the user is a doctor
+                if ($user->hasRole('doctor')) {
+                    $doctorRequestCount = AppointmentRequests::where('doctor_id', $user->id)->count();
+                    $unseenMessagesCount = Message::where('receiver_id', $user->id)
+                        ->where('seen', null)
+                        ->count();
+                }
+
+                // If the user is a patient
+                if ($user->hasRole('patient')) {
+                    $unseenMessagesCount = Message::where('receiver_id', $user->id)
+                        ->where('seen', null)
+                        ->count();
+                }
             }
-            $view->with('doctorRequestCount', $doctorRequestCount);
+
+            $view->with([
+                'doctorRequestCount' => $doctorRequestCount,
+                'unseenMessagesCount' => $unseenMessagesCount,
+            ]);
         });
     }
 }
