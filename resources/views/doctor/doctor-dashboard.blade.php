@@ -104,10 +104,14 @@
                                                     <td>
                                                         <div class="appointment-date-created">
                                                             <h6>{{ $appointment->start_date ?? '' }}</h6>
+<<<<<<< HEAD
                                                           
                                                             <span class="badge table-badge">General</span>
                                                            
                                                            
+=======
+                                                            <span class="badge table-badge">General</span> 
+>>>>>>> origin/chat-module-integration
                                                         </div>
                                                     </td>
                                                     {{-- <td>
