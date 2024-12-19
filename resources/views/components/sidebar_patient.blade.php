@@ -89,8 +89,8 @@
                             <span>Setting</span>
                         </a>
                     </li> --}}
-                    <li class="">
-                        <a href="#">
+                    <li class="{{ Request::is('patient/patient-help-and-support') ? 'active' : '' }}">
+                        <a href="{{ url('patient/patient-help-and-support') }}">
                             <i class="fa-solid fa-key"></i>
                             <span>Help & Support</span>
                         </a>

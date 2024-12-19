@@ -14,6 +14,7 @@ use App\Http\Controllers\Doctor\DoctorClinicsController;
 use App\Http\Controllers\Doctor\DoctorController;
 use App\Http\Controllers\Doctor\DoctorEducationController;
 use App\Http\Controllers\Doctor\DoctorExperienceController;
+use App\Http\Controllers\Doctor\DoctorHelpAndSupportController;
 use App\Http\Controllers\Doctor\DoctorInsurancesController;
 use App\Http\Controllers\Doctor\DoctorPresciptionController;
 use App\Http\Controllers\Doctor\PatientsController;
@@ -27,6 +28,7 @@ use App\Http\Controllers\Patient\FavouritesController;
 use App\Http\Controllers\Patient\MedicalDetailController;
 use App\Http\Controllers\Patient\MedicalRecordController;
 use App\Http\Controllers\Patient\PatientChatController;
+use App\Http\Controllers\Patient\PatientHelpAndSupportController;
 use App\Http\Controllers\Patient\PatientPresciptionController;
 use App\Http\Controllers\Patient\PatientProfileSettingController;
 use App\Http\Controllers\ProfileController;
@@ -81,6 +83,12 @@ Route::middleware(['auth', 'role:doctor', CheckRegistrationStep::class])->prefix
 
     Route::get('/add-prescription/{id?}', [DoctorPresciptionController::class, 'index'])->name('add-prescription');
     Route::get('/store-prescription', [DoctorPresciptionController::class, 'store'])->name('store-prescription');
+
+    Route::get('/doctor-help-and-support', [DoctorHelpAndSupportController::class, 'index'])->name('doctor-help-and-support');
+    Route::post('/doctor-create-ticket', [DoctorHelpAndSupportController::class, 'createTicket'])->name('doctor-create-ticket');
+    Route::get('/doctor-ticket-remove/{id}', [DoctorHelpAndSupportController::class, 'destroy'])->name('doctor-ticket-remove');
+
+
 });
 
 
@@ -156,6 +164,11 @@ Route::middleware(['auth', 'role:patient', CheckRegistrationStep::class])->prefi
     Route::get('/patient-cancelled-appointments/{id?}', [BookingController::class, 'getPatientCancelledAppointments'])->name('patient-cancelled-appointment');
     Route::get('/patient-reschedule-appointment/{doctorId?}/{appointmentReqId?}', [BookingController::class, 'showBookingForm'])->name('patient-reschedule-appointment');
     Route::post('/patient-preferences-update/{id?}', [BookingController::class, 'updatePreferences'])->name('patient-preferences-update');
+
+    Route::get('/patient-help-and-support', [PatientHelpAndSupportController::class, 'index'])->name('patient-help-and-support');
+    Route::post('/patient-create-ticket', [PatientHelpAndSupportController::class, 'createTicket'])->name('patient-create-ticket');
+    Route::get('/patient-ticket-remove/{id}', [PatientHelpAndSupportController::class, 'destroy'])->name('patient-ticket-remove');
+
 });
 
 

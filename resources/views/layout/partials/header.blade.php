@@ -666,12 +666,14 @@
                             'doctor-profile',
                             'doctor-profile-2',
                             'favourites',
+                            'patient-help-and-support',
                             'invoice-view',
                             'invoices',
                             'medical-details',
                             'medical-records',
                             'patient-prescription',
                             'doctor.my-patients',
+                            'doctor-help-and-support',
                             'orders-list',
                             'patient-accounts',
                             'patient-dashboard',
@@ -773,12 +775,14 @@
                             'doctor-profile',
                             'doctor-profile-2',
                             'favourites',
+                            'patient-help-and-support',
                             'invoice-view',
                             'invoices',
                             'medical-details',
                             'medical-records',
                             'patient-prescription',
                             'doctor.my-patients',
+                            'doctor-help-and-support',
                             'orders-list',
                             'patient-accounts',
                             'patient-dashboard',
@@ -1144,7 +1148,8 @@
 {{--                        </ul>--}}
                     </li>
 {{--                    <li--}}
-{{--                        class="has-submenu {{ Request::is('map-grid', 'map-list', 'search', 'search-2', 'doctor-profile', 'doctor-profile-2','booking', 'booking-2', 'checkout', 'booking-success', 'patient-dashboard', 'favourites', 'patient-chat', 'profile-settings', 'patient.change-password', 'add-dependent', 'dependent', 'edit-dependent', 'patient-upcoming-appointment') ? 'active' : '' }}">--}}
+{{--                        class="has-submenu {{ Request::is('map-grid', 'map-list', 'search', 'search-2', 'doctor-profile', 'doctor-profile-2','booking', 'booking-2', 'checkout', 'booking-success', 'patient-dashboard', 'favourites',
+'patient-help-and-support', 'patient-chat', 'profile-settings', 'patient.change-password', 'add-dependent', 'dependent', 'edit-dependent', 'patient-upcoming-appointment') ? 'active' : '' }}">--}}
 {{--                        <a href="javascript:void(0);">Patients <i class="fas fa-chevron-down"></i></a>--}}
 {{--                        <ul class="submenu">--}}
 {{--                            <li class="{{ Request::is('patient-dashboard') ? 'active' : '' }}"><a--}}
@@ -1359,12 +1364,14 @@
                             'doctor-profile',
                             'doctor-profile-2',
                             'favourites',
+                            'patient-help-and-support',
                             'invoice-view',
                             'invoices',
                             'medical-details',
                             'medical-records',
                             'patient-prescription',
                             'doctor.my-patients',
+                            'doctor-help-and-support',
                             'orders-list',
                             'patient-accounts',
                             'patient-dashboard',
@@ -1480,12 +1487,14 @@
                             'doctor-profile',
                             'doctor-profile-2',
                             'favourites',
+                            'patient-help-and-support',
                             'invoice-view',
                             'invoices',
                             'medical-details',
                             'medical-records',
                             'patient-prescription',
                             'doctor.my-patients',
+                            'doctor-help-and-support',
                             'orders-list',
                             'patient-accounts',
                             'patient-dashboard',
@@ -1599,12 +1608,14 @@
                         'doctor-profile',
                         'doctor-profile-2',
                         'favourites',
+                        'patient-help-and-support',
                         'invoice-view',
                         'invoices',
                         'medical-details',
                         'medical-records',
                         'patient-prescription',
                         'doctor.my-patients',
+                        'doctor-help-and-support',
                         'orders-list',
                         'patient-accounts',
                         'patient-dashboard',
@@ -1858,12 +1869,14 @@
                         'doctor-profile',
                         'doctor-profile-2',
                         'favourites',
+                        'patient-help-and-support',
                         'invoice-view',
                         'invoices',
                         'medical-details',
                         'medical-records',
                         'patient-prescription',
                         'doctor.my-patients',
+                        'doctor-help-and-support',
                         'orders-list',
                         'patient-accounts',
                         'patient-dashboard',
@@ -2119,6 +2132,7 @@
                                     @if (
                                         !Route::is([
                                             'favourites',
+                                            'patient-help-and-support',
                                             'patient-accounts',
                                             'patient-dashboard',
                                             'patient-upcoming-appointment',
@@ -2135,6 +2149,7 @@
                                     @endif
                                     @if (Route::is([
                                             'favourites',
+                                            'patient-help-and-support',
                                             'patient-accounts',
                                             'patient-dashboard',
                                             'patient-upcoming-appointment',
@@ -2155,6 +2170,7 @@
                                 @if (
                                     !Route::is([
                                         'favourites',
+                                        'patient-help-and-support',
                                         'patient-accounts',
                                         'patient-dashboard',
                                         'patient-upcoming-appointment',
@@ -2180,6 +2196,7 @@
 
                                 @if (Route::is([
                                         'favourites',
+                                        'patient-help-and-support',
                                         'patient-accounts',
                                         'patient-dashboard',
                                         'patient-upcoming-appointment',
@@ -2206,6 +2223,7 @@
                                 @if (
                                     !Route::is([
                                         'favourites',
+                                        'patient-help-and-support',
                                         'patient-accounts',
                                         'patient-dashboard',
                                         'patient-upcoming-appointment',
@@ -2221,6 +2239,7 @@
                                 @endif
                                 @if (Route::is([
                                         'favourites',
+                                        'patient-help-and-support',
                                         'patient-accounts',
                                         'patient-dashboard',
                                         'patient-upcoming-appointment',

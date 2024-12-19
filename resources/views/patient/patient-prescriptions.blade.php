@@ -61,43 +61,47 @@
                                         </thead>
                                         <tbody>
                                             @if (!empty($prescriptions) && $prescriptions->isNotEmpty())
-                                            @foreach ($prescriptions as $prescription)
-                                            <tr>
-                                                <td><a class="text-blue-600" href="javascript:void(0);"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#view_prescription">#{{ $prescription->id ?? '' }}</a></td>
-                                                <td>
-                                                    <a href="javascript:void(0);" class="lab-icon prescription">
-                                                        <span><i class="fa-solid fa-prescription"></i></span>Prescription
-                                                    </a>
-                                                </td>
-                                                <td>{{ $prescription->date ?? '' }}</td>
-                                                <td>
-                                                    <h2 class="table-avatar">
-                                                        <a href="{{ url('doctor-profile-2',$prescription->doctor->id) }}" class="avatar avatar-sm me-2">
-                                                            <img class="avatar-img rounded-3"
-                                                                src="{{ $prescription->doctor->profile_image ??   URL::asset('/assets/img/doctors/doctor-thumb-02.jpg') }}"
-                                                                alt="User Image">
-                                                        </a>
-                                                        <a href="{{ url('doctor-profile-2',$prescription->doctor->id) }}">{{ $prescription->doctor->name ?? '' }}</a>
-                                                    </h2>
-                                                </td>
-                                                <td>
-                                                    <div class="action-item">
-                                                        <a href="javascript:void(0);" data-bs-toggle="modal"
-                                                            data-bs-target="#view_prescription">
-                                                            <i class="fa-solid fa-link"></i>
-                                                        </a>
-                                                        <a href="javascript:void(0);">
-                                                            <i class="fa-solid fa-download"></i>
-                                                        </a>
-                                                        <a href="javascript:void(0);">
-                                                            <i class="fa-solid fa-trash-can"></i>
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            @endforeach
+                                                @foreach ($prescriptions as $prescription)
+                                                    <tr>
+                                                        <td><a class="text-blue-600" href="javascript:void(0);"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#view_prescription">#{{ $prescription->id ?? '' }}</a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="javascript:void(0);" class="lab-icon prescription">
+                                                                <span><i
+                                                                        class="fa-solid fa-prescription"></i></span>Prescription
+                                                            </a>
+                                                        </td>
+                                                        <td>{{ $prescription->date ?? '' }}</td>
+                                                        <td>
+                                                            <h2 class="table-avatar">
+                                                                <a href="{{ url('doctor-profile-2', $prescription->doctor->id) }}"
+                                                                    class="avatar avatar-sm me-2">
+                                                                    <img class="avatar-img rounded-3"
+                                                                        src="{{ $prescription->doctor->profile_image ?? URL::asset('/assets/img/doctors/doctor-thumb-02.jpg') }}"
+                                                                        alt="User Image">
+                                                                </a>
+                                                                <a
+                                                                    href="{{ url('doctor-profile-2', $prescription->doctor->id) }}">{{ $prescription->doctor->name ?? '' }}</a>
+                                                            </h2>
+                                                        </td>
+                                                        <td>
+                                                            <div class="action-item">
+                                                                <a href="javascript:void(0);" data-bs-toggle="modal"
+                                                                    data-bs-target="#view_prescription">
+                                                                    <i class="fa-solid fa-link"></i>
+                                                                </a>
+                                                                <a href="javascript:void(0);">
+                                                                    <i class="fa-solid fa-download"></i>
+                                                                </a>
+                                                                <a href="javascript:void(0);">
+                                                                    <i class="fa-solid fa-trash-can"></i>
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
                                             @endif
                                         </tbody>
                                     </table>
@@ -132,7 +136,7 @@
                             </div>
                             <!-- /Pagination -->
                         </div>
-                        </div>
+                    </div>
 
                 </div>
             </div>

@@ -16,6 +16,7 @@ use App\Interfaces\DoctorRepositoryInterface;
 use App\Interfaces\MedicalDetailRepositoryInterface;
 use App\Interfaces\MedicalRecordRepositoryInterface;
 use App\Interfaces\PatientProfileSettingRepositoryInterface;
+use App\Models\AppointmentRequests;
 use App\Models\Dependant;
 use App\Models\DoctorClinic;
 use App\Models\DoctorEducation;
@@ -98,6 +99,15 @@ class AppServiceProvider extends ServiceProvider
 //            dd(Auth::check());
 //            Auth::logout();
             return route('home-page');
+        });
+
+        view()->composer('*', function ($view) {
+            $doctorRequestCount = 0;
+    
+            if (Auth::check()) {
+                $doctorRequestCount = AppointmentRequests::where('doctor_id', Auth::id())->count();
+            }
+            $view->with('doctorRequestCount', $doctorRequestCount);
         });
     }
 }
