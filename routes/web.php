@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\MyEvent;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\Auth\DoctorRegistrationController;
 use App\Http\Controllers\Auth\NewPasswordController;
@@ -19,6 +20,7 @@ use App\Http\Controllers\Doctor\DoctorPresciptionController;
 use App\Http\Controllers\Doctor\PatientsController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\GoogleMeetController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\Patient\BookingController;
 use App\Http\Controllers\Patient\DashboardController as PatientDashboard;
 use App\Http\Controllers\Patient\DependantController;
@@ -36,6 +38,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CheckRegistrationStep;
 use Illuminate\Support\Facades\Mail;
+use Pusher\Pusher;
 
 Route::get('/', function () {
     //  dd(\Illuminate\Support\Facades\Auth::user()->getRoleNames()->first());
@@ -77,7 +80,8 @@ Route::middleware(['auth', 'role:doctor', CheckRegistrationStep::class])->prefix
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('doctor-dashboard');
     Route::get('/my-patients', [PatientsController::class, 'index'])->name('doctor.my-patients');
     Route::get('/patient-profile/{id?}', [PatientsController::class, 'patientProfile'])->name('doctor.patient-profile');
-    Route::get('/chat-doctor', [DoctorChatController::class, 'index'])->name('chat-doctor');
+    Route::get('/chat-doctor/{id?}', [DoctorChatController::class, 'index'])->name('chat-doctor');
+    Route::get('/doctor-recent-chats/{id?}', [DoctorChatController::class, 'getRecentChats']);
 
     Route::get('/add-prescription/{id?}', [DoctorPresciptionController::class, 'index'])->name('add-prescription');
     Route::get('/store-prescription', [DoctorPresciptionController::class, 'store'])->name('store-prescription');
@@ -147,8 +151,10 @@ Route::middleware(['auth', 'role:patient', CheckRegistrationStep::class])->prefi
     Route::get('/profile-settings', [PatientProfileSettingController::class, 'index'])->name('profile-settings');
     Route::resource('patient-profile-setting', PatientProfileSettingController::class);
 
-    Route::get('/chat', [PatientChatController::class, 'index'])->name('patient-chat');
+    Route::get('/chat/{id?}', [PatientChatController::class, 'index'])->name('patient-chat');
+    Route::get('/patient-recent-chats/{id?}', [PatientChatController::class, 'getRecentChats']);
 
+    
     Route::get('/patient-prescription', [PatientPresciptionController::class, 'index'])->name('patient-prescription');
 
     Route::get('/patient-appointments', [BookingController::class, 'getPatientAppointments'])->name('patient-appointments');
@@ -914,6 +920,33 @@ Route::get('/env-check', function () {
         'MAIL_PASSWORD' => env('MAIL_PASSWORD'),
         'MAIL_ENCRYPTION' => env('MAIL_ENCRYPTION'),
     ];
+});
+
+
+Route::get('/chat-testing', function () {
+    return view('chat.chat');
+
+})->name('chat-testing');
+Route::get('/send-test-event', function () {
+    $message = [
+        'from' => 'User A',
+        'to' => 'User B',
+        'message' => 'Test message!',
+    ];
+
+    // Trigger the event using MyEvent
+    event(new App\Events\MyEvent(['from' => 'User Aa', 'to' => 'User Ba', 'message' => 'Hello from Tinkerab!']));
+
+    // event(new MyEvent('hello world'));
+
+    return 'Test event sent!';
+});
+
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/chat/{doctor_id?}', [MessageController::class, 'index'])->name('chat');
+    Route::post('/messages/send', [MessageController::class, 'send'])->name('messages.send');
 });
 
 
