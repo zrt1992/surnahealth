@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\Patient\RegistrationEmail;
 use App\Models\Account;
 use App\Models\InsuranceInformation;
 use App\Models\MedicalDetail;
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use App\Traits\FileUpload;
+use Illuminate\Support\Facades\Mail;
 
 class RegisteredUserController extends Controller
 {
@@ -136,14 +138,14 @@ class RegisteredUserController extends Controller
 
 public function storeStep3(Request $request)
 {
-    $request->validate([
-        'insurance_provider_name' => 'required',
-        'insurance_id' => 'required',
-        'emergency_contact' => 'required',
-        'name' => 'required',
-        'relationship' => 'required',
-        'phone_number' => 'required',
-    ]);
+    // $request->validate([
+    //     'insurance_provider_name' => 'required',
+    //     'insurance_id' => 'required',
+    //     'emergency_contact' => 'required',
+    //     'name' => 'required',
+    //     'relationship' => 'required',
+    //     'phone_number' => 'required',
+    // ]);
    
     $userData = [
         'registration_step' => '+4',
@@ -186,7 +188,21 @@ public function storeStep4(Request $request)
         'default' => '1',
     ];
     Account::create($bankDetails);
-
+   
+    if ($userdata) {
+     
+        $emailData = [
+            'subject' => 'Welcome to Our Platform',
+            'greeting' => 'Hello ' . $authUser->name,
+            'body' => 'Thank you for signing up. We are excited to have you onboard!',
+            'actionText' => 'Get Started',
+            'actionURL' => url('/doctor-dashboard'),
+            'thanks' => 'Thank you for choosing us!',
+        ];
+      
+        Mail::to($authUser->email)->send(new RegistrationEmail($emailData));
+    }
+    
     return redirect()->route('patient-dashboard')->with('success', 'Registration completed!');
 }
 

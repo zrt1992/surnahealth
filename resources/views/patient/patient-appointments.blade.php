@@ -54,13 +54,20 @@
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="pills-cancel-tab" data-bs-toggle="pill"
                                         data-bs-target="#pills-cancel" type="button" role="tab"
-                                        aria-controls="pills-cancel" aria-selected="true">Cancelled<span>{{ $rejectedCount ?? '0' }}</span></button>
+                                        aria-controls="pills-cancel"
+                                        aria-selected="true">Cancelled<span>{{ $rejectedCount ?? '0' }}</span></button>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="pills-complete-tab" data-bs-toggle="pill"
                                         data-bs-target="#pills-complete" type="button" role="tab"
                                         aria-controls="pills-complete"
                                         aria-selected="true">Completed<span>{{ $completedCount ?? '0' }}</span></button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="pills-preferences-tab" data-bs-toggle="pill"
+                                        data-bs-target="#pills-preferences" type="button" role="tab"
+                                        aria-controls="pills-preferences"
+                                        aria-selected="true">Preferences<span></span></button>
                                 </li>
                             </ul>
                         </div>
@@ -257,9 +264,9 @@
                                             <p><i
                                                     class="fa-solid fa-clock"></i>{{ $appointmentRequest->booking_date ?? '--' }}
                                                 {{ $appointmentRequest->slot->start_time ?? '--' }}</p>
-                                           <ul class="d-flex apponitment-types">
+                                            <ul class="d-flex apponitment-types">
                                                 <li>General Visit</li>
-                                                 <li>Video Call</li>
+                                                <li>Video Call</li>
                                             </ul>
                                         </li>
                                         <li class="mail-info-patient">
@@ -387,44 +394,47 @@
 
                         </div>
                         <div class="tab-pane fade" id="pills-cancel" role="tabpanel" aria-labelledby="pills-cancel-tab">
-                        
+
 
                             <!-- Appointment List -->
                             <div class="appointment-wrap">
                                 @foreach ($appointmentRejectedRequests as $rejectedRequest)
-                                <ul>
-                                    <li>
-                                        <div class="patinet-information">
-                                            <a href="{{ url('patient-cancelled-appointment') }}">
-                                                <img src="{{$rejectedRequest->doctor->profile_image ?? URL::asset('/assets/img/doctors/doctor-thumb-13.jpg') }}"
-                                                    alt="User Image">
-                                            </a>
-                                            <div class="patient-info">
-                                                <p>#Apt0002</p>
-                                                <h6><a
-                                                        href="{{ url('patient-cancelled-appointment') }}">Dr.{{ $rejectedRequest->doctor->name ?? '--' }}</a><span
-                                                        class="badge new-tag">New</span></h6>
+                                    <ul>
+                                        <li>
+                                            <div class="patinet-information">
+                                                <a href="{{ url('patient-cancelled-appointment') }}">
+                                                    <img src="{{ $rejectedRequest->doctor->profile_image ?? URL::asset('/assets/img/doctors/doctor-thumb-13.jpg') }}"
+                                                        alt="User Image">
+                                                </a>
+                                                <div class="patient-info">
+                                                    <p>#Apt0002</p>
+                                                    <h6><a
+                                                            href="{{ url('patient-cancelled-appointment') }}">Dr.{{ $rejectedRequest->doctor->name ?? '--' }}</a><span
+                                                            class="badge new-tag">New</span></h6>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </li>
-                                    <li class="appointment-info">
-                                        <p><i class="fa-solid fa-clock"></i>{{ $rejectedRequest->booking_date ?? '--' }}</p>
-                                        <ul class="d-flex apponitment-types">
-                                            <li>General Visit</li>
-                                            <li>Audio Call</li>
-                                        </ul>
+                                        </li>
+                                        <li class="appointment-info">
+                                            <p><i
+                                                    class="fa-solid fa-clock"></i>{{ $rejectedRequest->booking_date ?? '--' }}
+                                            </p>
+                                            <ul class="d-flex apponitment-types">
+                                                <li>General Visit</li>
+                                                <li>Audio Call</li>
+                                            </ul>
 
-                                    </li>
-                                    <li class="appointment-detail-btn">
-                                        <a href="{{ route('patient-cancelled-appointment',$rejectedRequest->id) }}" class="start-link">View
-                                            Details<i class="fa-regular fa-circle-right ms-1"></i></a>
-                                    </li>
-                                </ul>
+                                        </li>
+                                        <li class="appointment-detail-btn">
+                                            <a href="{{ route('patient-cancelled-appointment', $rejectedRequest->id) }}"
+                                                class="start-link">View
+                                                Details<i class="fa-regular fa-circle-right ms-1"></i></a>
+                                        </li>
+                                    </ul>
                                 @endforeach
                             </div>
                             <!-- /Appointment List -->
 
-                         
+
 
                             <!-- Pagination -->
                             <div class="pagination dashboard-pagination">
@@ -456,46 +466,48 @@
                         </div>
                         <div class="tab-pane fade" id="pills-complete" role="tabpanel"
                             aria-labelledby="pills-complete-tab">
-                         
-                      
+
+
 
                             <!-- Appointment List -->
                             <div class="appointment-wrap">
                                 @foreach ($appointmentCompleted as $completedRequests)
-                                <ul>
-                                    <li>
-                                        <div class="patinet-information">
-                                            <a href="{{ url('patient-completed-appointment') }}">
-                                                <img src="{{$completedRequests->doctor->profile_image ?? URL::asset('/assets/img/doctors/doctor-thumb-13.jpg') }}"
-                                                    alt="User Image">
-                                            </a>
-                                            <div class="patient-info">
-                                                <p>#Apt0002</p>
-                                                <h6><a
-                                                        href="{{ url('patient-completed-appointment') }}">Dr.{{ $completedRequests->doctor->name ?? '--' }}</a><span
-                                                        class="badge new-tag">New</span></h6>
+                                    <ul>
+                                        <li>
+                                            <div class="patinet-information">
+                                                <a href="{{ url('patient-completed-appointment') }}">
+                                                    <img src="{{ $completedRequests->doctor->profile_image ?? URL::asset('/assets/img/doctors/doctor-thumb-13.jpg') }}"
+                                                        alt="User Image">
+                                                </a>
+                                                <div class="patient-info">
+                                                    <p>#Apt0002</p>
+                                                    <h6><a
+                                                            href="{{ url('patient-completed-appointment') }}">Dr.{{ $completedRequests->doctor->name ?? '--' }}</a><span
+                                                            class="badge new-tag">New</span></h6>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </li>
-                                    <li class="appointment-info">
-                                        <p><i class="fa-solid fa-clock"></i>{{ $completedRequests->start_date ?? '--' }}</p>
-                                        <ul class="d-flex apponitment-types">
-                                            <li>General Visit</li>
-                                            <li>Audio Call</li>
-                                        </ul>
+                                        </li>
+                                        <li class="appointment-info">
+                                            <p><i
+                                                    class="fa-solid fa-clock"></i>{{ $completedRequests->start_date ?? '--' }}
+                                            </p>
+                                            <ul class="d-flex apponitment-types">
+                                                <li>General Visit</li>
+                                                <li>Audio Call</li>
+                                            </ul>
 
-                                    </li>
-                                    <li class="appointment-detail-btn">
-                                        <a href="{{ url('patient-completed-appointment') }}" class="start-link">View
-                                            Details<i class="fa-regular fa-circle-right ms-1"></i></a>
-                                    </li>
-                                </ul>
+                                        </li>
+                                        <li class="appointment-detail-btn">
+                                            <a href="{{ url('patient-completed-appointment') }}" class="start-link">View
+                                                Details<i class="fa-regular fa-circle-right ms-1"></i></a>
+                                        </li>
+                                    </ul>
                                 @endforeach
-                                
+
                             </div>
                             <!-- /Appointment List -->
 
-                           
+
 
                             <!-- Pagination -->
                             <div class="pagination dashboard-pagination">
@@ -524,6 +536,90 @@
                                 </ul>
                             </div>
                             <!-- /Pagination -->
+                        </div>
+                        <div class="tab-pane fade" id="pills-preferences" role="tabpanel"
+                            aria-labelledby="pills-preferences-tab">
+                            <form action="{{ route('patient-preferences-update', $appointmentPreferences->id ?? auth()->id()) }}" method="POST">
+                                @csrf
+                               
+                                <div class="setting-card">
+                                   
+                                    <div class="setting-title">
+                                        <h5>Appointment preferences</h5>
+                                    </div>
+                                    <div class="setting-card">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="form-wrap">
+                                                    <label class="col-form-label">Preferred doctor <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control" name="preferred_doctor" class="form-control"
+                                                        value="{{ old('preferred_doctor', $appointmentPreferences->preferred_doctor) }}">
+                                                    @error('preferred_doctor')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-wrap">
+                                                    <label class="col-form-label">Preferred time <span class="text-danger">*</span></label>
+                                                    <input type="time" class="form-control" name="preferred_time" class="form-control"
+                                                        value="{{ old('preferred_time', $appointmentPreferences->preferred_time) }}">
+                                                    @error('preferred_time')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-wrap">
+                                                    <label class="col-form-label">Preferred consultation mode <span class="text-danger">*</span></label>
+                                                    
+                                                    <div class="remember-me-col d-flex justify-content-between">
+                                                        <label class="custom_check">Video call
+                                                            <input type="checkbox" 
+                                                                id="video_call" 
+                                                                name="video_call" 
+                                                                value="1"
+                                                                {{ old('video_call', $appointmentPreferences->video_call) == 1 ? 'checked' : '' }}>
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                            
+                                                    <div class="remember-me-col d-flex justify-content-between">
+                                                        <label class="custom_check">Audio call
+                                                            <input type="checkbox" 
+                                                                id="audio_call" 
+                                                                name="audio_call" 
+                                                                value="1"
+                                                                {{ old('audio_call', $appointmentPreferences->audio_call) == 1 ? 'checked' : '' }}>
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                            
+                                                    <div class="remember-me-col d-flex justify-content-between">
+                                                        <label class="custom_check">Chat
+                                                            <input type="checkbox" 
+                                                                id="chat" 
+                                                                name="chat" 
+                                                                value="1"
+                                                                {{ old('chat', $appointmentPreferences->chat) == 1 ? 'checked' : '' }}>
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                            
+                                                </div>
+                                            </div>
+                                            
+                                          
+                                        </div>
+                                    </div>
+                                    <div class="modal-btn text-end">
+                                        <a href="#" class="btn btn-gray">Cancel</a>
+                                        <button type="submit" class="btn btn-primary prime-btn">Save Changes</button>
+                                    </div>
+        
+                            </form>
+
                         </div>
                     </div>
 

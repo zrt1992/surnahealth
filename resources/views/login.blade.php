@@ -19,10 +19,13 @@
                                 </div>
                                 <form action="{{ route('login-admin') }}" method="post">
                                     @csrf
-                                    <div class="mb-3 form-focus">
+                                    <div class="mb-4 form-focus">
                                         <input type="email" class="form-control floating"
                                             name="email" id="email">
                                         <label class="focus-label">Email</label>
+                                        @error('email')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                     </div>
                                     <div class="mb-3 form-focus">
                                         <label class="focus-label">Password</label>
@@ -30,6 +33,9 @@
                                             <input class="form-control pass-input floating" type="password"
                                                 name="password" id="password">
                                         </div>
+                                        @error('password')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                     </div>
                                     <div class="text-end">
                                         <a class="forgot-link" href="{{ url('forgot-password') }}">Forgot Password ?</a>

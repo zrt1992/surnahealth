@@ -1132,7 +1132,7 @@
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
-            <form action="{{ route('medical-detail.store') }}" method="POST">
+            <form action="{{ route('patient-medical-detail.store') }}" method="POST">
                 @csrf
                 <div class="modal-body">
                     <div class="timing-modal">

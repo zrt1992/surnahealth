@@ -22,9 +22,7 @@ class PatientProfileSettingController extends Controller
     public function index()
     {
         $patientProfileSettings = $this->PatientProfileSettingRepo->myProfileSetting();
-        $medicalDetails = MedicalDetail::where('user_id',auth()->user()->id)->first();
-        $appointmentPreferences = PatientAppoitmentPreferences::where('user_id',auth()->user()->id)->first();
-
+      
         return view('profile-settings', get_defined_vars());
     }
 
@@ -64,7 +62,6 @@ class PatientProfileSettingController extends Controller
    
         $request->validate([
             'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
             'dob' => 'required|string|max:255',
             'phone' => 'required|string|max:15',
             'email' => 'required|email|max:255',

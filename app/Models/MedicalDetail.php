@@ -19,6 +19,8 @@ class MedicalDetail extends Model
         'height_unit',
         'fbc',
         'bp',
+        'body_temperature',
+        'spo2',
         'end_date',
         'glucose',
         'pregnant',
@@ -26,6 +28,8 @@ class MedicalDetail extends Model
         'existing_medical_conditions',
         'medications_currently_using',
         'primarly_health_concern',
+        'allergies',
+        'cardiac_history'
        
     ];
 

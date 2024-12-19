@@ -57,8 +57,8 @@
                                 <div class="col-lg-4 col-md-6">
                                     <div class="form-wrap">
                                         <label class="col-form-label">First Name <span class="text-danger">*</span></label>
-                                        <input type="text" name="first_name" class="form-control"
-                                            value="{{ old('first_name', $patientProfileSettings->first_name) }}">
+                                        <input type="text" name="first_name" class="form-control text-gray-700"
+                                            value="{{ old('first_name', $patientProfileSettings->first_name) }}" readonly style="background-color: #f8f9fa; color: #6c757d;">
                                         @error('first_name')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -69,7 +69,7 @@
                                     <div class="form-wrap">
                                         <label class="col-form-label">Last Name <span class="text-danger">*</span></label>
                                         <input type="text" name="last_name" class="form-control"
-                                            value="{{ old('last_name', $patientProfileSettings->last_name) }}">
+                                            value="{{ old('last_name', $patientProfileSettings->last_name) }}" readonly style="background-color: #f8f9fa; color: #6c757d;">
                                         @error('last_name')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -80,7 +80,7 @@
                                         <label class="col-form-label">Date of Birth <span
                                                 class="text-danger">*</span></label>
                                                 <input type="text" name="dob" class="form-control"
-                                                value="{{ old('dob', $patientProfileSettings->dob) }}">
+                                                value="{{ old('dob', $patientProfileSettings->dob) }}" readonly style="background-color: #f8f9fa; color: #6c757d;">
                                             @error('dob')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
@@ -115,7 +115,7 @@
                                         <label class="col-form-label">Blood Group <span
                                                 class="text-danger">*</span></label>
                                         <input type="text" name="blood_group" class="form-control"
-                                            value="{{ old('blood_group', $patientProfileSettings->blood_group) }}">
+                                            value="{{ old('blood_group', $patientProfileSettings->blood_group) }}" readonly style="background-color: #f8f9fa; color: #6c757d;">
                                         @error('blood_group')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -131,7 +131,7 @@
                                         <div class="form-wrap">
                                             <label class="col-form-label">Address <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="address" class="form-control"
-                                                value="{{ old('address', $patientProfileSettings->address) }}">
+                                                value="{{ old('address', $patientProfileSettings->address) }}" readonly style="background-color: #f8f9fa; color: #6c757d;">
                                             @error('address')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
@@ -142,7 +142,7 @@
                                         <div class="form-wrap">
                                             <label class="col-form-label">City <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="city" class="form-control"
-                                                value="{{ old('city', $patientProfileSettings->city) }}">
+                                                value="{{ old('city', $patientProfileSettings->city) }}" readonly style="background-color: #f8f9fa; color: #6c757d;">
                                             @error('city')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
@@ -152,7 +152,7 @@
                                         <div class="form-wrap">
                                             <label class="col-form-label">State <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="city" class="form-control"
-                                                value="{{ old('city', $patientProfileSettings->city) }}">
+                                                value="{{ old('city', $patientProfileSettings->city) }}" readonly style="background-color: #f8f9fa; color: #6c757d;">
                                             @error('city')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
@@ -164,7 +164,7 @@
                                                     class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="country"
                                                 class="form-control"
-                                                value="{{ old('country', $patientProfileSettings->country) }}">
+                                                value="{{ old('country', $patientProfileSettings->country) }}" readonly style="background-color: #f8f9fa; color: #6c757d;">
                                             @error('country')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
@@ -176,7 +176,7 @@
                                                     class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="pincode"
                                                 class="form-control"
-                                                value="{{ old('pincode', $patientProfileSettings->pincode) }}">
+                                                value="{{ old('pincode', $patientProfileSettings->pincode) }}" readonly style="background-color: #f8f9fa; color: #6c757d;">
                                             @error('pincode')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
@@ -184,120 +184,53 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="setting-title">
-                                <h5>Medical Detail</h5>
-                            </div>
-                            <div class="setting-card">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="form-wrap">
-                                            <label class="col-form-label">Existing medical conditions <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="existing_medical_conditions" class="form-control"
-                                                value="{{ old('existing_medical_conditions', $medicalDetails->existing_medical_conditions) }}">
-                                            @error('existing_medical_conditions')
-                                                <div class="text-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
+                    </form>
 
-                                    </div>
+                    <div class="dashboard-header">
+                        <h3>Change Password</h3>
+                    </div>
+                    <form action="{{ route('patient.update-password') }}" method="POST">
+                        @csrf
+                        <div class="card pass-card">
+                            <div class="card-body">
+                                <div class="row">
                                     <div class="col-md-6">
-                                        <div class="form-wrap">
-                                            <label class="col-form-label">Medications_currently_using <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="medications_currently_using" class="form-control"
-                                                value="{{ old('medications_currently_using', $medicalDetails->medications_currently_using) }}">
-                                            @error('medications_currently_using')
-                                                <div class="text-danger">{{ $message }}</div>
+                                        <div class="input-block input-block-new">
+                                            <label class="form-label">Old Password</label>
+                                            <input type="password" id="old_password" name="old_password"
+                                                class="form-control" placeholder="Enter your old password" required>
+                                            @error('old_password')
+                                                <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-wrap">
-                                            <label class="col-form-label">Primarly health concern <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="primarly_health_concern" class="form-control"
-                                                value="{{ old('primarly_health_concern', $medicalDetails->primarly_health_concern) }}">
-                                            @error('primarly_health_concern')
-                                                <div class="text-danger">{{ $message }}</div>
-                                            @enderror
+                                        <div class="input-block input-block-new">
+                                            <label class="form-label">New Password</label>
+                                            <div class="pass-group">
+                                                <input type="password" id="new_password" name="password" class="form-control pass-input">
+                                                <span class="feather-eye-off toggle-password"></span>
+                                            </div>
+                                            @error('password')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                        </div>
+                                        <div class="input-block input-block-new mb-0">
+                                            <label class="form-label">Confirm Password</label>
+                                            <div class="pass-group">
+                                                <input type="password" id="password_confirmation" name="password_confirmation" class="form-control pass-input-sub">
+                                                <span class="feather-eye-off toggle-password-sub"></span>
+                                            </div>
+                                            @error('password_confirmation')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                         </div>
                                     </div>
-                                  
                                 </div>
                             </div>
-
-                            <div class="setting-title">
-                                <h5>Appointment preferences</h5>
-                            </div>
-                            <div class="setting-card">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="form-wrap">
-                                            <label class="col-form-label">Preferred doctor <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="preferred_doctor" class="form-control"
-                                                value="{{ old('preferred_doctor', $appointmentPreferences->preferred_doctor) }}">
-                                            @error('preferred_doctor')
-                                                <div class="text-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                        
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-wrap">
-                                            <label class="col-form-label">Preferred time <span class="text-danger">*</span></label>
-                                            <input type="time" class="form-control" name="preferred_time" class="form-control"
-                                                value="{{ old('preferred_time', $appointmentPreferences->preferred_time) }}">
-                                            @error('preferred_time')
-                                                <div class="text-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-wrap">
-                                            <label class="col-form-label">Preferred consultation mode <span class="text-danger">*</span></label>
-                                            
-                                            <div class="remember-me-col d-flex justify-content-between">
-                                                <label class="custom_check">Video call
-                                                    <input type="checkbox" 
-                                                        id="video_call" 
-                                                        name="video_call" 
-                                                        value="1"
-                                                        {{ old('video_call', $appointmentPreferences->video_call) == 1 ? 'checked' : '' }}>
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </div>
-                                    
-                                            <div class="remember-me-col d-flex justify-content-between">
-                                                <label class="custom_check">Audio call
-                                                    <input type="checkbox" 
-                                                        id="audio_call" 
-                                                        name="audio_call" 
-                                                        value="1"
-                                                        {{ old('audio_call', $appointmentPreferences->audio_call) == 1 ? 'checked' : '' }}>
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </div>
-                                    
-                                            <div class="remember-me-col d-flex justify-content-between">
-                                                <label class="custom_check">Chat
-                                                    <input type="checkbox" 
-                                                        id="chat" 
-                                                        name="chat" 
-                                                        value="1"
-                                                        {{ old('chat', $appointmentPreferences->chat) == 1 ? 'checked' : '' }}>
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </div>
-                                    
-                                        </div>
-                                    </div>
-                                    
-                                  
-                                </div>
-                            </div>
-                            <div class="modal-btn text-end">
-                                <a href="#" class="btn btn-gray">Cancel</a>
-                                <button type="submit" class="btn btn-primary prime-btn">Save Changes</button>
-                            </div>
-
+                        </div>
+                        <div class="form-set-button">
+                            <button class="btn btn-light" type="button">Cancel</button>
+                            <button class="btn btn-primary" type="submit">Save Changes</button>
+                        </div>
                     </form>
                 </div>
 

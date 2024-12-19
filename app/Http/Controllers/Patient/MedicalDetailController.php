@@ -18,8 +18,9 @@ class MedicalDetailController extends Controller
 
     public function index()
     {
-        $medicalDetails = $this->medicalDetailRepo->myMedicalDetail();
-        return view('medical-details', compact('medicalDetails'));
+        $medicalDetail = $this->medicalDetailRepo->myMedicalDetail();
+
+        return view('medical-details', get_defined_vars());
     }
 
     public function create()
@@ -29,7 +30,7 @@ class MedicalDetailController extends Controller
 
     public function store(Request $request)
     {
-     
+
         $data = $request->validate([
             'bmi' => 'required',
             'heart_rate' => 'required',
@@ -37,7 +38,7 @@ class MedicalDetailController extends Controller
             'fbc' => 'required',
             'end_date' => 'required',
         ]);
-    
+
         $this->medicalDetailRepo->create($data);
         return redirect()->route('medical-details')->with('success', 'Medical detail created successfully.');
     }
@@ -53,20 +54,33 @@ class MedicalDetailController extends Controller
         return view('medical_details.edit', compact('medicalDetail'));
     }
 
-    public function update(Request $request, MedicalDetail $medicalDetail)
+    public function update(Request $request,  $medicalDetailId = null)
     {
         $data = $request->validate([
-            'patient_id' => 'exists:patients,id',
-            'bmi' => 'numeric|nullable',
+            'bp' => 'string|nullable',
             'heart_rate' => 'integer|nullable',
-            'weight' => 'numeric|nullable',
-            'fbc' => 'string|nullable',
-            'end_date' => 'date',
+            'glucose' => 'string|nullable',
+            'body_temperature' => 'numeric|nullable',
+            'spo2' => 'string|nullable',
+            'bmi' => 'string|nullable',
+            'existing_medical_conditions' => 'string|nullable',
+            'medications_currently_using' => 'string|nullable',
+            'primarly_health_concern' => 'string|nullable',
+            'allergies' => 'string|nullable',
+            'cardiac_history' => 'string|nullable',
         ]);
 
-        $this->medicalDetailRepo->update($data, $medicalDetail);
-        return redirect()->route('medical-details')->with('success', 'Medical detail updated successfully.');
+        $medicalDetail =  MedicalDetail::find($medicalDetailId);
+        if ($medicalDetail) {
+            $medicalDetail->update($data);
+        } else {
+            $data['user_id'] = auth()->id();
+            MedicalDetail::create($data);
+        }
+
+        return redirect()->route('medical-details')->with('success', 'Medical detail saved successfully.');
     }
+
 
     public function destroy($id)
     {

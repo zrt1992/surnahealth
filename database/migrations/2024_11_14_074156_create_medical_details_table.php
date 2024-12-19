@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('glucose')->nullable(); // Add column
             $table->string('bp')->nullable(); // Add column
             $table->string('fbc')->nullable(); // Full blood count or similar metric
+            $table->string('body_temperature')->nullable();
+            $table->string('spo2')->nullable();
             $table->float('weight')->nullable();
             $table->string('weight_unit')->nullable(); // Add column
             $table->string('height')->nullable(); // Add column
@@ -28,6 +30,8 @@ return new class extends Migration
             $table->string('existing_medical_conditions')->nullable();
             $table->string('medications_currently_using')->nullable();
             $table->string('primarly_health_concern')->nullable();
+            $table->string('allergies')->nullable();
+            $table->string('cardiac_history')->nullable();
             $table->string('end_date')->nullable();
           
            

@@ -22,7 +22,7 @@ class RegistrationEmail extends Mailable
 
     public function build()
     {
-        return $this->view('emails.doctor.registration-email')
+        return $this->view('emails.patient.registration-email')
                     ->subject($this->data['subject'])
                     ->with('data', $this->data);
     }

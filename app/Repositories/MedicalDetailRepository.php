@@ -15,7 +15,9 @@ class MedicalDetailRepository implements MedicalDetailRepositoryInterface
 
     public function myMedicalDetail()
     {
-        return MedicalDetail::where('user_id',getAuthUser()->id)->with('user')->get();
+        // MedicalDetail::where('user_id',getAuthUser()->id)->with('user')->get();
+        $medicalDetail = MedicalDetail::where('user_id',auth()->user()->id)->first();
+        return $medicalDetail;
     }
 
     public function find($id)

@@ -28,7 +28,15 @@
                                 <h6>Latest updated medical details</h6>
                             </div>
                             <div class="latest-update">
-                                <p><i class="fa-solid fa-calendar-check me-2"></i>Last update on : 24Mar 2023</p>
+                                <p>
+                                    <i class="fa-solid fa-calendar-check me-2"></i>
+                                    Last update on:
+                                    @if ($medicalDetail && $medicalDetail->updated_at)
+                                        {{ $medicalDetail->updated_at->format('dM Y') }}
+                                    @else
+                                        N/A
+                                    @endif
+                                </p>
                             </div>
 
                         </div>
@@ -37,37 +45,37 @@
                                 <div class="col-xl-2 col-lg-4 col-md-6">
                                     <div class="health-records icon-red">
                                         <span><i class="fa-solid fa-syringe"></i>Blood Pressure</span>
-                                        <h3>100 mg/dl</h3>
+                                        <h3>{{ $medicalDetail->blood_pressure ?? '--' }} mg/dl</h3>
                                     </div>
                                 </div>
                                 <div class="col-xl-2 col-lg-4 col-md-6">
                                     <div class="health-records icon-orange">
                                         <span><i class="fa-solid fa-heart"></i>Heart Rate</span>
-                                        <h3>140 Bpm</h3>
+                                        <h3>{{ $medicalDetail->heart_rate ?? '--' }} Bpm</h3>
                                     </div>
                                 </div>
                                 <div class="col-xl-2 col-lg-4 col-md-6">
                                     <div class="health-records icon-dark-blue">
                                         <span><i class="fa-solid fa-notes-medical"></i>Glucose Level</span>
-                                        <h3>70 - 90</h3>
+                                        <h3>{{ $medicalDetail->glucose ?? '0 - 0' }}</h3>
                                     </div>
                                 </div>
                                 <div class="col-xl-2 col-lg-4 col-md-6">
                                     <div class="health-records icon-amber">
                                         <span><i class="fa-solid fa-temperature-high"></i>Body Temprature</span>
-                                        <h3>37.5 C</h3>
+                                        <h3>{{ $medicalDetail->body_temperature ?? '--' }} C</h3>
                                     </div>
                                 </div>
                                 <div class="col-xl-2 col-lg-4 col-md-6">
                                     <div class="health-records icon-purple">
                                         <span><i class="fa-solid fa-user-pen"></i>BMI </span>
-                                        <h3>20.1 kg/m2</h3>
+                                        <h3>{{ $medicalDetail->bmi ?? '--' }} kg/m2</h3>
                                     </div>
                                 </div>
                                 <div class="col-xl-2 col-lg-4 col-md-6">
                                     <div class="health-records icon-blue">
                                         <span><i class="fa-solid fa-highlighter"></i>SPo2</span>
-                                        <h3>96%</h3>
+                                        <h3>{{ $medicalDetail->spo2 ?? '--' }}%</h3>
                                     </div>
                                 </div>
                             </div>
@@ -75,7 +83,7 @@
 
                     </div>
                     <div class="row">
-                        <div class="col-sm-6">
+                        {{-- <div class="col-sm-6">
                             <div class="search-header">
                                 <div class="search-field">
                                     <input type="text" class="form-control" placeholder="Search">
@@ -88,9 +96,160 @@
                                 <a href="#add-med-record" class="btn btn-primary prime-btn" data-bs-toggle="modal">Add
                                     Medical Details</a>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="col-md-12">
-                            <div class="custom-table">
+                            <div class="setting-title">
+                                <h5>Medical Detail</h5>
+                            </div>
+                         
+                            <form action="{{ route('patient-medical-detail.update', $medicalDetail->id ?? auth()->id()) }}" method="POST"
+                                enctype="multipart/form-data">
+                                @csrf
+                                @method('PUT')
+                                <div class="setting-card">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-wrap">
+                                                <label class="col-form-label">Blood Pressure <span
+                                                        class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" name="bp"
+                                                    class="form-control"
+                                                    value="{{ old('bp', optional($medicalDetail)->bp) }}">
+                                                @error('bp')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-wrap">
+                                                <label class="col-form-label">Heart Rate <span
+                                                        class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" name="heart_rate"
+                                                    class="form-control"
+                                                    value="{{ old('heart_rate', optional($medicalDetail)->heart_rate) }}">
+                                                @error('heart_rate')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-wrap">
+                                                <label class="col-form-label">Glucose Level <span
+                                                        class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" name="glucose"
+                                                    class="form-control"
+                                                    value="{{ old('glucose', optional($medicalDetail)->glucose) }}">
+                                                @error('glucose')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-wrap">
+                                                <label class="col-form-label">Body Temperature <span
+                                                        class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" name="body_temperature"
+                                                    class="form-control"
+                                                    value="{{ old('body_temperature', optional($medicalDetail)->body_temperature) }}">
+                                                @error('body_temperature')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-wrap">
+                                                <label class="col-form-label">SPo2 <span
+                                                        class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" name="spo2"
+                                                    class="form-control"
+                                                    value="{{ old('spo2', optional($medicalDetail)->spo2) }}">
+                                                @error('spo2')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-wrap">
+                                                <label class="col-form-label">BMI <span
+                                                        class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" name="bmi"
+                                                    class="form-control"
+                                                    value="{{ old('bmi', optional($medicalDetail)->bmi) }}">
+                                                @error('bmi')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-wrap">
+                                                <label class="col-form-label">Existing medical conditions <span
+                                                        class="text-danger">*</span></label>
+                                                <input type="text" class="form-control"
+                                                    name="existing_medical_conditions" class="form-control"
+                                                    value="{{ old('existing_medical_conditions', optional($medicalDetail)->existing_medical_conditions) }}">
+                                                @error('existing_medical_conditions')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-wrap">
+                                                <label class="col-form-label">Medications currently using <span
+                                                        class="text-danger">*</span></label>
+                                                <input type="text" class="form-control"
+                                                    name="medications_currently_using" class="form-control"
+                                                    value="{{ old('medications_currently_using', optional($medicalDetail)->medications_currently_using) }}">
+                                                @error('medications_currently_using')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-wrap">
+                                                <label class="col-form-label">Primarly health concern <span
+                                                        class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" name="primarly_health_concern"
+                                                    class="form-control"
+                                                    value="{{ old('primarly_health_concern', optional($medicalDetail)->primarly_health_concern) }}">
+                                                @error('primarly_health_concern')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-wrap">
+                                                <label class="col-form-label">Allergies <span
+                                                        class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" name="allergies"
+                                                    class="form-control"
+                                                    value="{{ old('allergies', optional($medicalDetail)->allergies) }}">
+                                                @error('allergies')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-wrap">
+                                                <label class="col-form-label">Cardiac History <span
+                                                        class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" name="cardiac_history"
+                                                    class="form-control"
+                                                    value="{{ old('cardiac_history', optional($medicalDetail)->cardiac_history) }}">
+                                                @error('cardiac_history')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-btn text-end">
+                                        <a href="#" class="btn btn-gray">Cancel</a>
+                                        <button type="submit" class="btn btn-primary prime-btn">Save Changes</button>
+                                    </div>
+                                </div>
+                            </form>
+                            {{-- <div class="custom-table">
                                 <div class="table-responsive">
                                     <table class="table table-center mb-0">
                                         <thead>
@@ -147,7 +306,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

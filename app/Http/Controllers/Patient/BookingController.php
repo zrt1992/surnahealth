@@ -8,6 +8,7 @@ use App\Mail\Doctor\BookingAppointmentEmail;
 use App\Mail\Doctor\RegistrationEmail;
 use App\Models\Appointment;
 use App\Models\AppointmentRequests;
+use App\Models\PatientAppoitmentPreferences;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -92,7 +93,9 @@ class BookingController extends Controller
         $upcommingCount=$data->count() + $appointmentRequests->count();
         $rejectedCount=$appointmentRejectedRequests->count();
         $completedCount=$appointmentCompleted->count();
-    //    dd($appointmentRequests);
+
+        $appointmentPreferences = PatientAppoitmentPreferences::where('user_id',auth()->user()->id)->first();
+        
         return view('patient.patient-appointments', get_defined_vars());
     }
 
@@ -109,5 +112,25 @@ class BookingController extends Controller
         $appointmentCancelledRequest = AppointmentRequests::with('doctor','slot')->find($id);
 
         return view('patient.patient-cancelled-appointment',get_defined_vars());
+    }
+
+    public function updatePreferences(Request $request,  $preferencesId = null)
+    {
+        $appointmentPreferences = [
+            'user_id' => auth()->user()->id,
+            'preferred_doctor' => $request->preferred_doctor,
+            'video_call' => $request->video_call,
+            'audio_call' => $request->audio_call,
+            'chat' => $request->chat,
+            'preferred_time' => $request->preferred_time,
+        ];
+       
+        if ($preferencesId) {
+            PatientAppoitmentPreferences::find($preferencesId)->update($appointmentPreferences);
+        } else {
+            PatientAppoitmentPreferences::create($appointmentPreferences);
+        }
+
+        return redirect()->route('patient-appointments')->with('success', 'Appointment preferences saved successfully.');
     }
 }

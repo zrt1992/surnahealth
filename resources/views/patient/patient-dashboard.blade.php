@@ -63,38 +63,38 @@
                                                 <div class="col-lg-6">
                                                     <div class="health-records icon-orange">
                                                         <span><i class="fa-solid fa-heart"></i>Heart Rate</span>
-                                                        <h3>140 Bpm <sup> 2%</sup></h3>
+                                                        <h3>{{ $medicalDetail->heart_rate ?? '--' }} Bpm <sup> 2%</sup></h3>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="health-records icon-amber">
                                                         <span><i class="fa-solid fa-temperature-high"></i>Body
                                                             Temprature</span>
-                                                        <h3>37.5 C</h3>
+                                                        <h3>{{ $medicalDetail->body_temperature ?? '--' }} C</h3>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="health-records icon-dark-blue">
                                                         <span><i class="fa-solid fa-notes-medical"></i>Glucose Level</span>
-                                                        <h3>70 - 90<sup> 6%</sup></h3>
+                                                        <h3>{{ $medicalDetail->glucose ?? '0 - 0' }}<sup> 0%</sup></h3>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="health-records icon-blue">
                                                         <span><i class="fa-solid fa-highlighter"></i>SPo2</span>
-                                                        <h3>96%</h3>
+                                                        <h3>{{ $medicalDetail->spo2 ?? '--' }}%</h3>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="health-records icon-red">
                                                         <span><i class="fa-solid fa-syringe"></i>Blood Pressure</span>
-                                                        <h3>100 mg/dl<sup> 2%</sup></h3>
+                                                        <h3>{{ $medicalDetail->bp ?? '--' }} mg/dl<sup> 2%</sup></h3>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="health-records icon-purple">
                                                         <span><i class="fa-solid fa-user-pen"></i>BMI </span>
-                                                        <h3>20.1 kg/m2</h3>
+                                                        <h3>{{ $medicalDetail->bmi ?? '--' }} kg/m2</h3>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">

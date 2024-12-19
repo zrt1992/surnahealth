@@ -28,6 +28,8 @@ class CheckRegistrationStep
                         return redirect()->route('doctor-register-step2');
                     case 3:
                         return redirect()->route('doctor-register-step3');
+                    case 4:
+                        return redirect()->route('doctor-register-step4');
                     case "completed":
                         return $next($request);
                 }
@@ -39,12 +41,14 @@ class CheckRegistrationStep
                         return redirect()->route('patient-register-step2');
                     case 3:
                         return redirect()->route('patient-register-step3');
+                    case 4:
+                        return redirect()->route('patient-register-step4');
                     case "completed":
                         return $next($request);
                 }
             }
         }
 
-         return redirect()->route('index')->with('error', 'You have no access!');
+        return redirect()->route('index')->with('error', 'You have no access!');
     }
 }

@@ -51,9 +51,9 @@
                             <span>Presciptions</span>
                         </a>
                     </li>
-                    <li class="">
-                        <a href="#">
-                            <i class="fa-solid fa-money-bill-1"></i>
+                    <li class="{{ Request::is('patient/medical-details') ? 'active' : '' }}">
+                        <a href="{{ route('medical-details') }}">
+                            <i class="fa-solid fa-shield-halved"></i>
                             <span>Health Tracker</span>
                         </a>
                     </li>
@@ -82,18 +82,13 @@
                             <span>Profile Settings</span>
                         </a>
                     </li>
-                    {{-- <li class="{{ Request::is('patient/medical-details') ? 'active' : '' }}">
-                        <a href="{{ route('medical-details') }}">
-                            <i class="fa-solid fa-shield-halved"></i>
-                            <span>Medical Details</span>
-                        </a>
-                    </li> --}}
-                    <li class="{{ Request::is('patient/change-password') ? 'active' : '' }}">
+                  
+                    {{-- <li class="{{ Request::is('patient/change-password') ? 'active' : '' }}">
                         <a href="{{ route('patient.change-password') }}">
                             <i class="fa-solid fa-key"></i>
                             <span>Setting</span>
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="">
                         <a href="#">
                             <i class="fa-solid fa-key"></i>

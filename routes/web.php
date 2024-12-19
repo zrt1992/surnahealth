@@ -44,8 +44,6 @@ Route::get('/', function () {
     //    \Illuminate\Support\Facades\Session::flush();
 
     return view('index');
-
-  
 })->name('home-page');
 
 // Front end pages
@@ -71,7 +69,7 @@ Route::middleware('auth')->group(function () {
  * doctors dashboard authenticated routes
  */
 
-Route::middleware(['auth', 'role:doctor',CheckRegistrationStep::class])->prefix('doctor')->group(function () {
+Route::middleware(['auth', 'role:doctor', CheckRegistrationStep::class])->prefix('doctor')->group(function () {
 
     Route::get('/doctor-change-password', [NewPasswordController::class, 'doctorChangePassword'])->name('doctor.doctor-change-password');
     Route::post('/update-password', [NewPasswordController::class, 'UpdatePassword'])->name('doctor.update-password');
@@ -83,7 +81,6 @@ Route::middleware(['auth', 'role:doctor',CheckRegistrationStep::class])->prefix(
 
     Route::get('/add-prescription/{id?}', [DoctorPresciptionController::class, 'index'])->name('add-prescription');
     Route::get('/store-prescription', [DoctorPresciptionController::class, 'store'])->name('store-prescription');
-
 });
 
 
@@ -92,15 +89,15 @@ Route::middleware(['auth', 'role:doctor',CheckRegistrationStep::class])->prefix(
  * Patient dashboard authenticated routes
  */
 
-Route::middleware(['auth', 'role:patient',CheckRegistrationStep::class])->prefix('patient')->group(function () {
+Route::middleware(['auth', 'role:patient', CheckRegistrationStep::class])->prefix('patient')->group(function () {
 
     Route::get('/change-password', [NewPasswordController::class, 'patientChangePassword'])->name('patient.change-password');
     Route::post('/update-password', [NewPasswordController::class, 'UpdatePassword'])->name('patient.update-password');
 
     Route::get('/dashboard', [PatientDashboard::class, 'index'])->name('patient-dashboard');
 
-    Route::get('/patient-accounts', [AccountController::class, 'index'])->name('patient-accounts');
     Route::resource('/patient-account', AccountController::class);
+    Route::get('/patient-accounts', [AccountController::class, 'index'])->name('patient-accounts');
     Route::get('/patient-account-default/{id}', [AccountController::class, 'setDefault'])->name('patient-account-default');
 
     Route::get('/patient-details', function () {
@@ -134,7 +131,7 @@ Route::middleware(['auth', 'role:patient',CheckRegistrationStep::class])->prefix
         return view('add-dependent');
     })->name('add-dependent');
 
-    Route::resource('medical-detail', MedicalDetailController::class);
+    Route::resource('patient-medical-detail', MedicalDetailController::class);
     Route::get('/medical-details', [MedicalDetailController::class, 'index'])->name('medical-details');
     Route::get('/medical-details-remove/{id}', [MedicalDetailController::class, 'destroy'])->name('medical-details-remove');
 
@@ -151,9 +148,14 @@ Route::middleware(['auth', 'role:patient',CheckRegistrationStep::class])->prefix
     Route::resource('patient-profile-setting', PatientProfileSettingController::class);
 
     Route::get('/chat', [PatientChatController::class, 'index'])->name('patient-chat');
-    
+
     Route::get('/patient-prescription', [PatientPresciptionController::class, 'index'])->name('patient-prescription');
 
+    Route::get('/patient-appointments', [BookingController::class, 'getPatientAppointments'])->name('patient-appointments');
+    Route::get('/patient-appointments-grid', [BookingController::class, 'getPatientAppointmentsGrid'])->name('patient-appointments-grid');
+    Route::get('/patient-cancelled-appointments/{id?}', [BookingController::class, 'getPatientCancelledAppointments'])->name('patient-cancelled-appointment');
+    Route::get('/patient-reschedule-appointment/{doctorId?}/{appointmentReqId?}', [BookingController::class, 'showBookingForm'])->name('patient-reschedule-appointment');
+    Route::post('/patient-preferences-update/{id?}', [BookingController::class, 'updatePreferences'])->name('patient-preferences-update');
 });
 
 
@@ -247,7 +249,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/blog', function () {
         return view('admin.blog');
     })->name('blog');
-   
+
     Route::get('/add-blog', function () {
         return view('admin.add-blog');
     })->name('add-blog');
@@ -735,10 +737,10 @@ Route::resource('/doctor-experience-setting', DoctorExperienceController::class)
 Route::get('/doctor-cancelled-appointment', function () {
     return view('doctor-cancelled-appointment');
 })->name('doctor-cancelled-appointment');
-Route::get('/patient-appointments', [BookingController::class, 'getPatientAppointments'])->name('patient-appointments');
-Route::get('/patient-appointments-grid', [BookingController::class, 'getPatientAppointmentsGrid'])->name('patient-appointments-grid');
-Route::get('/patient-cancelled-appointments/{id?}', [BookingController::class, 'getPatientCancelledAppointments'])->name('patient-cancelled-appointment');
-Route::get('/patient-reschedule-appointment/{doctorId?}/{appointmentReqId?}', [BookingController::class, 'showBookingForm'])->name('patient-reschedule-appointment');
+
+
+
+
 
 Route::get('/patient-appointment-details', function () {
     return view('patient-appointment-details');
@@ -894,7 +896,7 @@ Route::get('/test-email', function () {
     try {
         Mail::raw('This is a test email.', function ($message) {
             $message->to('recipient@example.com')
-                    ->subject('Simple Email Test');
+                ->subject('Simple Email Test');
         });
         return 'Simple email sent!';
     } catch (\Exception $e) {
