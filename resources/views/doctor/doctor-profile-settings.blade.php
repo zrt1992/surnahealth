@@ -29,13 +29,13 @@
                         <div class="appointment-tabs">
                             <ul class="nav">
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="{{ url('doctor-profile-settings') }}">Basic Details</a>
+                                    <a class="nav-link active" href="{{ url('doctor/doctor-profile-settings') }}">Basic Details</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('doctor-experience-settings') }}">Experience</a>
+                                    <a class="nav-link" href="{{ route('doctor-experience-settings') }}">Experience</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('doctor-education-settings') }}">Education</a>
+                                    <a class="nav-link" href="{{ route('doctor-education-settings') }}">Education</a>
                                 </li>
                                 {{-- <li class="nav-item">
                                     <a class="nav-link" href="{{ url('doctor-awards-settings') }}">Awards</a>
@@ -47,7 +47,7 @@
                                     <a class="nav-link" href="{{ url('doctor-clinics-settings') }}">Clinics</a>
                                 </li> --}}
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('doctor-business-settings') }}">Business Hours</a>
+                                    <a class="nav-link" href="{{ route('doctor-business-settings') }}">Business Hours</a>
                                 </li>
                             </ul>
                         </div>
@@ -96,7 +96,7 @@
                                 <div class="col-lg-4 col-md-6">
                                     <div class="form-wrap">
                                         <label class="col-form-label">First Name <span class="text-danger">*</span></label>
-                                        <input type="text" name="first_name" class="form-control" value="{{ old('first_name', $auth->first_name) }}"  readonly>
+                                        <input type="text" name="first_name" class="form-control" value="{{ old('first_name', $auth->first_name) }}"  readonly style="background-color: #f8f9fa; color: #6c757d;">
                                         @error('first_name')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -106,7 +106,7 @@
                                 <div class="col-lg-4 col-md-6">
                                     <div class="form-wrap">
                                         <label class="col-form-label">Last Name <span class="text-danger">*</span></label>
-                                        <input type="text" name="last_name" class="form-control" value="{{ old('last_name', $auth->last_name) }}" readonly>
+                                        <input type="text" name="last_name" class="form-control" value="{{ old('last_name', $auth->last_name) }}" readonly style="background-color: #f8f9fa; color: #6c757d;">
                                         @error('last_name')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -116,7 +116,7 @@
                                 <div class="col-lg-4 col-md-6">
                                     <div class="form-wrap">
                                         <label class="col-form-label">Display Name <span class="text-danger">*</span></label>
-                                        <input type="text" name="display_name" class="form-control" value="{{ old('display_name', $auth->display_name) }}" readonly>
+                                        <input type="text" name="display_name" class="form-control" value="{{ old('display_name', $auth->display_name) }}" readonly style="background-color: #f8f9fa; color: #6c757d;">
                                         @error('display_name')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -126,7 +126,7 @@
                                 <div class="col-lg-4 col-md-6">
                                     <div class="form-wrap">
                                         <label class="col-form-label">Designation <span class="text-danger">*</span></label>
-                                        <select class="select form-control" name="designation" readonly>
+                                        <select class="select form-control" name="designation" readonly style="background-color: #f8f9fa; color: #6c757d;">
                                             <option value="">Select Designation</option>
                                             @foreach($specializations as $specialization)
                                                 <option value="{{ $specialization->id }}" 
@@ -163,7 +163,7 @@
                                 <div class="col-lg-4 col-md-6">
                                     <div class="form-wrap">
                                         <label class="col-form-label">Consultation fees <span class="text-danger">*</span></label>
-                                        <input type="text" name="consultation_fees" class="form-control" value="{{ old('consultation_fees', $auth->consultation_fees) }}" readonly>
+                                        <input type="text" name="consultation_fees" class="form-control" value="{{ old('consultation_fees', $auth->consultation_fees) }}" readonly style="background-color: #f8f9fa; color: #6c757d;">
                                         @error('consultation_fees')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -173,7 +173,7 @@
                                     <div class="form-wrap">
                                         <label class="col-form-label">Known Languages <span class="text-danger">*</span></label>
                                         <div class="input-block input-block-new mb-0">
-                                            <input class="input-tags form-control" id="inputBox3" type="text" data-role="tagsinput" placeholder="Type New" name="known_languages" value="{{ old('known_languages', $auth->known_languages) }}" readonly>
+                                            <input class="input-tags form-control" id="inputBox3" type="text" data-role="tagsinput" placeholder="Type New" name="known_languages" value="{{ old('known_languages', $auth->known_languages) }}" readonly style="background-color: #f8f9fa; color: #6c757d;">
                                             @error('known_languages')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror

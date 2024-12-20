@@ -118,7 +118,7 @@
                             <div class="booking-doctor-right">
                                 <p>
                                     <i class="fas fa-circle-check"></i>
-                                    <a href="{{url('doctor-profile-settings')}}">Edit</a>
+                                    <a href="{{url('doctor/doctor-profile-settings')}}">Edit</a>
                                 </p>
                             </div>
                         </div>

@@ -29,7 +29,7 @@ class DoctorController extends Controller
         $doctors = $this->doctorRepository->all();
         $specializations = Specialization::all(); 
         $auth=getAuthUser();
-        return view('doctor-profile-settings',get_defined_vars());
+        return view('doctor.doctor-profile-settings',get_defined_vars());
     }
 
     /**

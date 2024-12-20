@@ -24,7 +24,7 @@ class DoctorEducationController extends Controller
         $DoctorEducations = $this->DoctorEducationRepository->all();
         $specializations = Specialization::all();
         $auth = getAuthUser();
-        return  view('doctor-education-settings', get_defined_vars());
+        return  view('doctor.doctor-education-settings', get_defined_vars());
     }
 
     public function create()

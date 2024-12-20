@@ -42,6 +42,7 @@ class User extends Authenticatable
         'medical_licence_number',
         'medical_licence',
         'referral_code',
+        'term_and_condition',
     ];
 
     /**

@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class DoctorPresciptionController extends Controller
 {
-    public function index($id)
+    public function index($id = null)
     {
         $doctor = User::where('id',auth()->user()->id)->with('specializations')->first();
        

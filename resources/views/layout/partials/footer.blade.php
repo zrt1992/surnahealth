@@ -68,7 +68,7 @@
                         <div class="footer-widget footer-menu">
                             <h2 class="footer-title">For Doctors</h2>
                             <ul>
-                                <li><a href="{{ url('appointments') }}">Appointments</a></li>
+                                <li><a href="{{ url('doctor/doctor-appointments') }}">Appointments</a></li>
                                 <li><a href="{{ url('chat') }}">Chat</a></li>
                                 <li><a href="{{ url('login') }}">Login</a></li>
                                 <li><a href="{{ url('doctor-register') }}">Register</a></li>
@@ -205,7 +205,7 @@
                         <div class="footer-widget footer-menu">
                             <h2 class="footer-title">For Doctors</h2>
                             <ul>
-                                <li><a href="{{ url('appointments') }}">Appointments</a>
+                                <li><a href="{{ url('doctor/doctor-appointments') }}">Appointments</a>
                                 </li>
                                 <li><a href="{{ url('chat') }}">Chat</a>
                                 </li>
@@ -1668,7 +1668,7 @@
 
 @if (Route::is([
         'accounts',
-        'appointments',
+        'doctor-appointments',
         'available-timings',
         'change-password',
         'chat-doctor',
@@ -1871,7 +1871,7 @@
         'index-13',
         'index-14',
         'accounts',
-        'appointments',
+        'doctor-appointments',
         'available-timings',
         'change-password',
         'chat-doctor',
@@ -1947,7 +1947,7 @@
                                 <div class="footer-widget footer-menu">
                                     <h2 class="footer-title">For Doctors</h2>
                                     <ul>
-                                        <li><a href="{{ url('appointments') }}">Appointments</a></li>
+                                        <li><a href="{{ url('doctor/doctor-appointments') }}">Appointments</a></li>
                                         <li><a href="{{ url('chat') }}">Chat</a></li>
                                         <li><a href="{{ url('login') }}">Login</a></li>
                                     </ul>

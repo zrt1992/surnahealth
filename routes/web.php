@@ -4,6 +4,7 @@ use App\Events\MyEvent;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\Auth\DoctorRegistrationController;
 use App\Http\Controllers\Auth\NewPasswordController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Doctor\AppointmentController;
 use App\Http\Controllers\Doctor\AvailableTimmingController;
 use App\Http\Controllers\Doctor\DashboardController;
@@ -76,10 +77,27 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'role:doctor', CheckRegistrationStep::class])->prefix('doctor')->group(function () {
 
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('doctor-dashboard');
+
     Route::get('/doctor-change-password', [NewPasswordController::class, 'doctorChangePassword'])->name('doctor.doctor-change-password');
     Route::post('/update-password', [NewPasswordController::class, 'UpdatePassword'])->name('doctor.update-password');
+    Route::resource('/doctor-profile-settings', DoctorController::class);
 
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('doctor-dashboard');
+    Route::get('/doctor-business-settings', [DoctorBusinessHourController::class, 'index'])->name('doctor-business-settings');
+    Route::get('/doctor-business-settings-delete/{id}', [DoctorBusinessHourController::class, 'destroy'])->name('doctor-business-settings-delete');
+    Route::resource('/doctor-business-setting', DoctorBusinessHourController::class);
+
+    Route::get('/doctor-education-settings', [DoctorEducationController::class, 'index'])->name('doctor-education-settings');
+    Route::get('/doctor-education-settings-delete/{id}', [DoctorEducationController::class, 'destroy'])->name('doctor-education-settings-delete');
+    Route::resource('/doctor-education-setting', DoctorEducationController::class);
+
+    Route::get('/doctor-experience-settings', [DoctorExperienceController::class, 'index'])->name('doctor-experience-settings');
+    Route::get('/doctor-experience-settings-delete/{id}', [DoctorExperienceController::class, 'destroy'])->name('doctor-experience-settings-delete');
+    Route::resource('/doctor-experience-setting', DoctorExperienceController::class);
+
+    Route::get('/doctor-appointments', [AppointmentController::class, 'index'])->name('doctor-appointments');
+    Route::get('/appointments-remove/{id}', [AppointmentController::class, 'destroy'])->name('appointments-remove');
+
     Route::get('/my-patients', [PatientsController::class, 'index'])->name('doctor.my-patients');
     Route::get('/patient-profile/{id?}', [PatientsController::class, 'patientProfile'])->name('doctor.patient-profile');
     Route::get('/chat-doctor/{id?}', [DoctorChatController::class, 'index'])->name('chat-doctor');
@@ -91,8 +109,6 @@ Route::middleware(['auth', 'role:doctor', CheckRegistrationStep::class])->prefix
     Route::get('/doctor-help-and-support', [DoctorHelpAndSupportController::class, 'index'])->name('doctor-help-and-support');
     Route::post('/doctor-create-ticket', [DoctorHelpAndSupportController::class, 'createTicket'])->name('doctor-create-ticket');
     Route::get('/doctor-ticket-remove/{id}', [DoctorHelpAndSupportController::class, 'destroy'])->name('doctor-ticket-remove');
-
-
 });
 
 
@@ -162,7 +178,7 @@ Route::middleware(['auth', 'role:patient', CheckRegistrationStep::class])->prefi
     Route::get('/chat/{id?}', [PatientChatController::class, 'index'])->name('patient-chat');
     Route::get('/patient-recent-chats/{id?}', [PatientChatController::class, 'getRecentChats']);
 
-    
+
     Route::get('/patient-prescription', [PatientPresciptionController::class, 'index'])->name('patient-prescription');
 
     Route::get('/patient-appointments', [BookingController::class, 'getPatientAppointments'])->name('patient-appointments');
@@ -174,7 +190,6 @@ Route::middleware(['auth', 'role:patient', CheckRegistrationStep::class])->prefi
     Route::get('/patient-help-and-support', [PatientHelpAndSupportController::class, 'index'])->name('patient-help-and-support');
     Route::post('/patient-create-ticket', [PatientHelpAndSupportController::class, 'createTicket'])->name('patient-create-ticket');
     Route::get('/patient-ticket-remove/{id}', [PatientHelpAndSupportController::class, 'destroy'])->name('patient-ticket-remove');
-
 });
 
 
@@ -367,8 +382,7 @@ Route::get('/add-billing', function () {
 
 
 
-Route::get('/appointments', [AppointmentController::class, 'index'])->name('appointments');
-Route::get('/appointments-remove/{id}', [AppointmentController::class, 'destroy'])->name('appointments-remove');
+
 
 
 Route::get('/available-timings', [AvailableTimmingController::class, 'index'])->name('available-timings');
@@ -440,22 +454,11 @@ Route::get('/doctor-blog', function () {
 /********************ADMIN ROUTES END******************************/
 
 
+Route::get('/patient-register-step1', [RegisteredUserController::class, 'step1'])->name('patient-register-step1');
+Route::get('/patient-register-step2', [RegisteredUserController::class, 'step2'])->name('patient-register-step2');
+Route::get('/patient-register-step3', [RegisteredUserController::class, 'step3'])->name('patient-register-step3');
+Route::get('/patient-register-step4', [RegisteredUserController::class, 'step4'])->name('patient-register-step4');
 
-Route::get('/patient-register-step1', function () {
-    return view('auth.patient.patient-register-step1');
-})->name('patient-register-step1');
-Route::get('/patient-register-step2', function () {
-    return view('auth.patient.patient-register-step2');
-})->name('patient-register-step2');
-Route::get('/patient-register-step3', function () {
-    return view('auth.patient.patient-register-step3');
-})->name('patient-register-step3');
-Route::get('/patient-register-step4', function () {
-    return view('auth.patient.patient-register-step4');
-})->name('patient-register-step4');
-Route::get('/patient-register-step5', function () {
-    return view('auth.patient.patient-register-step5');
-})->name('patient-register-step5');
 Route::get('/patient-signup', function () {
     return view('patient.patient-signup');
 })->name('patient-signup');
@@ -463,27 +466,15 @@ Route::get('/patient-signup', function () {
 Route::get('/doctor-pending-blog', function () {
     return view('doctor-pending-blog');
 })->name('doctor-pending-blog');
-Route::resource('/doctor-profile-settings', DoctorController::class);
 Route::get('/doctor-profile', function () {
     return view('doctor-profile');
 })->name('doctor-profile');
-// Route::get('/doctor-register-step1', function () {
-//     return view('auth.doctor.doctor-register-step1');
-// })->name('doctor-register-step1');
+
 Route::get('/doctor-register-step1', [DoctorRegistrationController::class, 'step1'])->name('doctor-register-step1');
 Route::get('/doctor-register-step2', [DoctorRegistrationController::class, 'step2'])->name('doctor-register-step2');
 Route::get('/doctor-register-step3', [DoctorRegistrationController::class, 'step3'])->name('doctor-register-step3');
 Route::get('/doctor-register-step4', [DoctorRegistrationController::class, 'step4'])->name('doctor-register-step4');
 
-// Route::get('/doctor-register-step2', function () {
-//     return view('auth.doctor.doctor-register-step2');
-// })->name('doctor-register-step2');
-// Route::get('/doctor-register-step3', function () {
-//     return view('auth.doctor.doctor-register-step3');
-// })->name('doctor-register-step3');
-// Route::get('/doctor-register-step4', function () {
-//     return view('auth.doctor.doctor-register-step4');
-// })->name('doctor-register-step4');
 Route::get('/doctor-register', function () {
     return view('doctor-register');
 })->name('doctor-register');
@@ -732,22 +723,11 @@ Route::get('/doctor-appointment-details', function () {
 // Route::get('/doctor-awards-settings-delete/{id}', [DoctorAwardController::class, 'destroy'])->name('doctor-awards-settings-delete');
 // Route::resource('/doctor-awards-setting', DoctorAwardController::class);
 
-Route::get('/doctor-business-settings', [DoctorBusinessHourController::class, 'index'])->name('doctor-business-settings');
-Route::get('/doctor-business-settings-delete/{id}', [DoctorBusinessHourController::class, 'destroy'])->name('doctor-business-settings-delete');
-Route::resource('/doctor-business-setting', DoctorBusinessHourController::class);
 
 // Route::get('/doctor-clinics-settings', [DoctorClinicsController::class, 'index'])->name('doctor-clinics-settings');
 // Route::get('/doctor-clinics-settings-delete/{id}', [DoctorClinicsController::class, 'destroy'])->name('doctor-clinics-settings-delete');
 // Route::get('/doctor-clinics-setting-gallery-remove/{id}', [DoctorClinicsController::class, 'removeGallery'])->name('doctor-clinics-setting-gallery-remove');
 // Route::resource('/doctor-clinics-setting', DoctorClinicsController::class);
-
-Route::get('/doctor-education-settings', [DoctorEducationController::class, 'index'])->name('doctor-education-settings');
-Route::get('/doctor-education-settings-delete/{id}', [DoctorEducationController::class, 'destroy'])->name('doctor-education-settings-delete');
-Route::resource('/doctor-education-setting', DoctorEducationController::class);
-
-Route::get('/doctor-experience-settings', [DoctorExperienceController::class, 'index'])->name('doctor-experience-settings');
-Route::get('/doctor-experience-settings-delete/{id}', [DoctorExperienceController::class, 'destroy'])->name('doctor-experience-settings-delete');
-Route::resource('/doctor-experience-setting', DoctorExperienceController::class);
 
 // Route::get('/doctor-insurance-settings', [DoctorInsurancesController::class, 'index'])->name('doctor-insurance-settings');
 // Route::get('/doctor-insurance-settings-delete/{id}', [DoctorInsurancesController::class, 'destroy'])->name('doctor-insurance-settings-delete');
@@ -938,7 +918,6 @@ Route::get('/env-check', function () {
 
 Route::get('/chat-testing', function () {
     return view('chat.chat');
-
 })->name('chat-testing');
 Route::get('/send-test-event', function () {
     $message = [

@@ -797,7 +797,7 @@
                             <h3>Focus On Your Own Body Shape</h3>
                             <p>It's easy to list, simple to manage and, best of all, free to list!</p>
                             <div class="feedback-btns justify-content-center">
-                                <a href="{{url('appointments')}}" class="btn btn-primary">Make An Appointment</a>
+                                <a href="{{url('doctor/doctor-appointments')}}" class="btn btn-primary">Make An Appointment</a>
                                 <a href="{{url('booking-2')}}" class="btn btn-primarytwo"><i class="feather-plus me-2"></i>Get Free Check-up</a>
                             </div>
                         </div>

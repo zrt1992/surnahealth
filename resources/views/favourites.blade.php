@@ -227,9 +227,9 @@
                                             </div>
 
                                             <div class="filter-reset-btns">
-                                                <a href="{{ url('appointments') }}" class="btn btn-light">Reset</a>
+                                                <a href="{{ url('doctor/doctor-appointments') }}" class="btn btn-light">Reset</a>
                                                 <button type="submit" class="btn btn-primary">Filter Now</button>
-                                                {{-- <a href="{{ url('appointments') }}" class="btn btn-primary">Filter Now</a> --}}
+                                                {{-- <a href="{{ url('doctor/doctor-appointments') }}" class="btn btn-primary">Filter Now</a> --}}
                                             </div>
                                         </form>
                                     </div>

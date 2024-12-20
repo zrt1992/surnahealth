@@ -5677,7 +5677,7 @@
                         <span class="icon-success"><i class="fa-solid fa-calendar-check"></i></span>
                         <h3>Appointment Accepted</h3>
                         <p>Your Appointment has been scheduled on 23 Mar 2023</p>
-                        <a href="{{ url('appointments') }}" class="btn btn-primary prime-btn">Go to
+                        <a href="{{ url('doctor/doctor-appointments') }}" class="btn btn-primary prime-btn">Go to
                             Appointments</a>
                     </div>
                 </div>
@@ -5731,7 +5731,7 @@
                                     {{-- <a href="#" class="btn btn-gray w-100">No, I change my mind</a> --}}
                                 </div>
                                 <div class="col-sm-6">
-                                    <a href="{{ url('appointments') }}" class="btn btn-primary prime-btn w-100">Go
+                                    <a href="{{ url('doctor/doctor-appointments') }}" class="btn btn-primary prime-btn w-100">Go
                                         to
                                         Appointments</a>
                                 </div>

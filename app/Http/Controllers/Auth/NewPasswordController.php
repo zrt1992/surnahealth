@@ -61,7 +61,7 @@ class NewPasswordController extends Controller
 
     public function doctorChangePassword()
     {
-        return view('doctor-change-password');
+        return view('doctor.doctor-change-password');
     }
 
     public function patientChangePassword()

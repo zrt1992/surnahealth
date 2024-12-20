@@ -24,7 +24,7 @@ class DoctorBusinessHourController extends Controller
         $DoctorBusinessHours = $this->DoctorBusinessHourRepository->all();
         $businessSettings = $DoctorBusinessHours->keyBy('select_business_days')->toArray();
         $auth = getAuthUser();
-        return  view('doctor-business-settings', get_defined_vars());
+        return  view('doctor.doctor-business-settings', get_defined_vars());
     }
 
     public function create()

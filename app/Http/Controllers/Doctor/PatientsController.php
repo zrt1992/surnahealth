@@ -55,7 +55,7 @@ class PatientsController extends Controller
         $appointments = $query->get();
         $totalPatients = $appointments->count();
         
-        return view('my-patients',get_defined_vars());
+        return view('doctor.my-patients',get_defined_vars());
     }
 
 

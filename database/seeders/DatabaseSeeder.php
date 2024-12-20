@@ -55,5 +55,6 @@ class DatabaseSeeder extends Seeder
         //        ]);
 
         $this->call(SpecializationSeeder::class);
+        $this->call(ClientTestSeeder::class);
     }
 }

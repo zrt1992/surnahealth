@@ -358,13 +358,13 @@
                             <a href="javascript:void(0);">Doctors <i class="fas fa-chevron-down"></i></a>
                             <ul class="submenu">
                                 <li><a href="{{ url('doctor-dashboard') }}">Doctor Dashboard</a></li>
-                                <li><a href="{{ url('appointments') }}">Appointments</a></li>
+                                <li><a href="{{ url('doctor/doctor-appointments') }}">Appointments</a></li>
                                 <li><a href="{{ url('schedule-timings') }}">Schedule Timing</a></li>
                                 <li><a href="{{ url('doctor/my-patients') }}">Patients List</a></li>
                                 <li><a href="{{ url('patient-profile') }}">Patients Profile</a></li>
                                 <li><a href="{{ url('chat-doctor') }}">Chat</a></li>
                                 <li><a href="{{ url('invoices') }}">Invoices</a></li>
-                                <li><a href="{{ url('doctor-profile-settings') }}">Profile Settings</a></li>
+                                <li><a href="{{ url('doctor/doctor-profile-settings') }}">Profile Settings</a></li>
                                 <li><a href="{{ url('reviews') }}">Reviews</a></li>
                                 <li><a href="{{ url('doctor-register') }}">Doctor Register</a></li>
                                 <li class="has-submenu">
@@ -646,7 +646,7 @@
                             'index-11',
                             'index-12',
                             'accounts',
-                            'appointments',
+                            'doctor-appointments',
                             'available-timings',
                             'booking-2',
                             'booking-success',
@@ -755,7 +755,7 @@
                             'index-2',
                             'index-3',
                             'accounts',
-                            'appointments',
+                            'doctor-appointments',
                             'available-timings',
                             'booking-2',
                             'booking-success',
@@ -1089,7 +1089,7 @@
 {{--                        </ul>--}}
                     </li>
                     <li
-                        class="has-submenu {{ Request::is('doctor-request', 'available-timings', 'doctor-dashboard', 'appointments', 'schedule-timings', 'doctor/my-patients', 'patient-profile', 'chat-doctor', 'doctor-profile-settings.index', 'reviews', 'doctor-register', 'doctor-blog', 'doctor-add-blog', 'add-billing', 'add-prescription', 'doctor-pending-blog', 'edit-billing', 'edit-blog', 'edit-prescription', 'doctor-clinics-settings', 'doctor-cancelled-appointment', 'doctor-business-settings', 'doctor-awards-settings', 'doctor-appointment-start', 'doctor-appointments-grid', 'doctor-cancelled-appointment-2', 'doctor-completed-appointment', 'doctor-education-settings', 'doctor-experience-settings', 'doctor-insurance-settings', 'doctor-specialities', 'doctor-upcoming-appointment', 'social-media') ? 'active' : '' }}">
+                        class="has-submenu {{ Request::is('doctor-request', 'available-timings', 'doctor-dashboard', 'doctor-appointments', 'schedule-timings', 'doctor/my-patients', 'patient-profile', 'chat-doctor', 'doctor-profile-settings.index', 'reviews', 'doctor-register', 'doctor-blog', 'doctor-add-blog', 'add-billing', 'add-prescription', 'doctor-pending-blog', 'edit-billing', 'edit-blog', 'edit-prescription', 'doctor-clinics-settings', 'doctor-cancelled-appointment', 'doctor-business-settings', 'doctor-awards-settings', 'doctor-appointment-start', 'doctor-appointments-grid', 'doctor-cancelled-appointment-2', 'doctor-completed-appointment', 'doctor-education-settings', 'doctor-experience-settings', 'doctor-insurance-settings', 'doctor-specialities', 'doctor-upcoming-appointment', 'social-media') ? 'active' : '' }}">
                         @if(\Illuminate\Support\Facades\Auth::check())
                         @if(\Illuminate\Support\Facades\Auth::user()->hasRole('admin'))
                         <a href="{{ route('admin-dashboard') }}"> Dashboard
@@ -1110,8 +1110,8 @@
 {{--                                <a href="{{ url('doctor-dashboard') }}">Doctor Dashboards</a>--}}
 {{--                            </li>--}}
 {{--                            <li--}}
-{{--                                class="{{ Request::is('appointments', 'doctor-request', 'doctor-appointments-grid', 'doctor-appointment-start', 'doctor-cancelled-appointment', 'doctor-cancelled-appointment-2', 'doctor-completed-appointment', 'doctor-upcoming-appointment') ? 'active' : '' }}">--}}
-{{--                                <a href="{{ url('appointments') }}">Appointments</a>--}}
+{{--                                class="{{ Request::is('doctor-appointments', 'doctor-request', 'doctor-appointments-grid', 'doctor-appointment-start', 'doctor-cancelled-appointment', 'doctor-cancelled-appointment-2', 'doctor-completed-appointment', 'doctor-upcoming-appointment') ? 'active' : '' }}">--}}
+{{--                                <a href="{{ url('doctor/doctor-appointments') }}">Appointments</a>--}}
 {{--                            </li>--}}
 {{--                            <li class="{{ Request::is('available-timings') ? 'active' : '' }}"><a--}}
 {{--                                    href="{{ url('available-timings') }}">Available Timing</a></li>--}}
@@ -1125,7 +1125,7 @@
 {{--                                    href="{{ url('invoices') }}">Invoices</a></li>--}}
 {{--                            <li--}}
 {{--                                class="{{ Request::is('doctor-profile-settings.index', 'doctor-awards-settings', 'doctor-business-settings', 'doctor-clinics-settings', 'doctor-education-settings', 'doctor-experience-settings', 'doctor-insurance-settings') ? 'active' : '' }}">--}}
-{{--                                <a href="{{ url('doctor-profile-settings') }}">Profile Settingsssss</a>--}}
+{{--                                <a href="{{ url('doctor/doctor-profile-settings') }}">Profile Settingsssss</a>--}}
 {{--                            </li>--}}
 {{--                            <li class="{{ Request::is('reviews') ? 'active' : '' }}"><a--}}
 {{--                                    href="{{ url('reviews') }}">Reviews</a></li>--}}
@@ -1344,7 +1344,7 @@
                             'index-13',
                             'index-14',
                             'accounts',
-                            'appointments',
+                            'doctor-appointments',
                             'available-timings',
                             'booking-2',
                             'booking-success',
@@ -1467,7 +1467,7 @@
                             'index-11',
                             'doctor-dashboard',
                             'accounts',
-                            'appointments',
+                            'doctor-appointments',
                             'available-timings',
                             'booking-2',
                             'booking-success',
@@ -1588,7 +1588,7 @@
                         'index-13',
                         'index-14',
                         'accounts',
-                        'appointments',
+                        'doctor-appointments',
                         'available-timings',
                         'booking-2',
                         'booking-success',
@@ -1849,7 +1849,7 @@
                 @endif
                 @if (Route::is([
                         'accounts',
-                        'appointments',
+                        'doctor-appointments',
                         'available-timings',
                         'booking-2',
                         'booking-success',
@@ -2234,7 +2234,7 @@
                                         'patient-appointment-details',
                                         'patient-cancelled-appointment',
                                     ]))
-                                    <a class="dropdown-item" href="{{ url('doctor-profile-settings') }}">Profile
+                                    <a class="dropdown-item" href="{{ url('doctor/doctor-profile-settings') }}">Profile
                                         Settings</a>
                                 @endif
                                 @if (Route::is([

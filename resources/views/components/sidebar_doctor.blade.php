@@ -2,12 +2,12 @@
      <div class="profile-sidebar doctor-sidebar profile-sidebar-new">
          <div class="widget-profile pro-widget-content">
              <div class="profile-info-widget">
-                 <a href="{{ route('doctor-profile') }}" class="booking-doc-img">
+                 <a href="{{ url('doctor/doctor-profile-settings') }}" class="booking-doc-img">
                      <img src="{{ \Illuminate\Support\Facades\Auth::user()->profile_image ?? URL::asset('/assets/img/doctors/doc-profile-img.jpg') }}"
                          alt="User Image">
                  </a>
                  <div class="profile-det-info">
-                     <h3><a href="{{ route('doctor-profile') }}">{{ \Illuminate\Support\Facades\Auth::user()->name }}</a>
+                     <h3><a href="{{ url('doctor/doctor-profile-settings') }}">{{ \Illuminate\Support\Facades\Auth::user()->name }}</a>
                      </h3>
                      <div class="patient-details">
                          <h5 class="mb-0">BDS, MDS - Oral & Maxillofacial Surgery</h5>
@@ -45,8 +45,8 @@
                          </a>
                      </li>
                      <li
-                         class="{{ Request::is('appointments', 'doctor-appointments-grid', 'doctor-appointment-details', 'doctor-cancelled-appointment', 'doctor-cancelled-appointment-2', 'doctor-upcoming-appointment', 'doctor-appointment-start', 'doctor-completed-appointment') ? 'active' : '' }}">
-                         <a href="{{ route('appointments') }}">
+                         class="{{ Request::is('doctor/doctor-appointments', 'doctor-appointments-grid', 'doctor-appointment-details', 'doctor-cancelled-appointment', 'doctor-cancelled-appointment-2', 'doctor-upcoming-appointment', 'doctor-appointment-start', 'doctor-completed-appointment') ? 'active' : '' }}">
+                         <a href="{{ route('doctor-appointments') }}">
                              <i class="fa-solid fa-calendar-days"></i>
                              <span>Appointments</span>
                          </a>
@@ -102,12 +102,12 @@
                              @endif
                          </a>
                      </li>
-                     <li class="">
+                     {{-- <li class="">
                          <a href="#">
                              <i class="fa-solid fa-money-bill-1"></i>
                              <span>Presciptions</span>
                          </a>
-                     </li>
+                     </li> --}}
                      {{-- <li class="{{ Request::is('doctor-profile-settings','doctor-awards-settings','doctor-business-settings','doctor-clinics-settings') ? 'active' : '' }}">
                         <a href="{{route('doctor-profile-settings')}}">
                             <i class="fa-solid fa-user-pen"></i>
@@ -117,7 +117,7 @@
                      <li
                          class="{{ Request::is('doctor-profile-settings', 'doctor-awards-settings', 'doctor-business-settings', 'doctor-clinics-settings') ? 'active' : '' }}">
                          {{-- <a href="{{route('google.auth')}}"> --}}
-                         <a href="{{ url('doctor-profile-settings') }}">
+                         <a href="{{ url('doctor/doctor-profile-settings') }}">
 
                              <i class="fa-solid fa-user-pen"></i>
                              <span>Profile setting</span>

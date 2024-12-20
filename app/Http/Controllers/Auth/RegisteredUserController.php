@@ -30,6 +30,26 @@ class RegisteredUserController extends Controller
         return view('register');
     }
 
+    public function step1()
+    {
+        return view('auth.patient.patient-register-step1');
+    }
+
+    public function step2()
+    {
+        return view('auth.patient.patient-register-step2');
+    }
+
+    public function step3()
+    {
+        return view('auth.patient.patient-register-step3');
+    }
+
+    public function step4()
+    {
+        return view('auth.patient.patient-register-step4');
+    }
+
     /**
      * Handle an incoming registration request.
      *
@@ -167,10 +187,13 @@ public function storeStep4(Request $request)
         'branch_name' => 'required|string|max:255',
         'account_name' => 'required',
         'account_number' => 'required',
+        'term_and_condition' => 'required',
+        'g-recaptcha-response' => 'required|recaptchav3:register,0.5',
     ]);
    
     $userData = [
         'registration_step' => 'completed',
+        'term_and_condition' => $request->term_and_condition,
     ];
 
     $authUser = auth()->user();

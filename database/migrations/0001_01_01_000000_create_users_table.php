@@ -38,6 +38,7 @@ return new class extends Migration
             $table->string('medical_licence')->nullable();
             $table->string('registration_step')->default("+1");
             $table->string('referral_code')->nullable();
+            $table->string('term_and_condition')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

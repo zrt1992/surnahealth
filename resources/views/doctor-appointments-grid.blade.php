@@ -34,7 +34,7 @@
                                     </li>
                                     <li>
                                         <div class="view-icons">
-                                            <a href="{{url('appointments')}}"><i class="fa-solid fa-list"></i></a>
+                                            <a href="{{url('doctor/doctor-appointments')}}"><i class="fa-solid fa-list"></i></a>
                                         </div>
                                     </li>
                                     <li>

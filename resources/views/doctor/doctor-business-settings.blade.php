@@ -32,13 +32,13 @@
                         <div class="appointment-tabs">
                             <ul class="nav">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('doctor-profile-settings') }}">Basic Details</a>
+                                    <a class="nav-link" href="{{ url('doctor/doctor-profile-settings') }}">Basic Details</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('doctor-experience-settings') }}">Experience</a>
+                                    <a class="nav-link" href="{{ route('doctor-experience-settings') }}">Experience</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('doctor-education-settings') }}">Education</a>
+                                    <a class="nav-link" href="{{ route('doctor-education-settings') }}">Education</a>
                                 </li>
                                 {{-- <li class="nav-item">
                                     <a class="nav-link" href="{{ url('doctor-awards-settings') }}">Awards</a>
@@ -50,7 +50,7 @@
                                     <a class="nav-link" href="{{ url('doctor-clinics-settings') }}">Clinics</a>
                                 </li> --}}
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="{{ url('doctor-business-settings') }}">Business
+                                    <a class="nav-link active" href="{{ route('doctor-business-settings') }}">Business
                                         Hours</a>
                                 </li>
                             </ul>

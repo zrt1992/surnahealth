@@ -22,7 +22,7 @@
 						<div class="col-lg-8 col-xl-9">
 							<div class="dashboard-header">
 								<div class="header-back">
-									<a href="{{url('appointments')}}" class="back-arrow"><i class="fa-solid fa-arrow-left"></i></a>
+									<a href="{{url('doctor/doctor-appointments')}}" class="back-arrow"><i class="fa-solid fa-arrow-left"></i></a>
 									<h3>Appointment Details</h3>
 								</div>
 							</div>

@@ -89,13 +89,13 @@
                                                 <tr>
                                                     <td>
                                                         <div class="patient-info-profile">
-                                                            <a href="{{ url('appointments') }}" class="table-avatar">
+                                                            <a href="{{ url('doctor/doctor-appointments') }}" class="table-avatar">
                                                                 <img src="{{ URL::asset('assets/img/services-six-1.png') }}"
                                                                     alt="Img">
                                                             </a>
                                                             <div class="patient-name-info">
                                                                 <span>#Apt0001</span>
-                                                                <h5><a href="{{ url('appointments') }}">{{ $appointment->user->name ?? '' }}</a>
+                                                                <h5><a href="{{ url('doctor/doctor-appointments') }}">{{ $appointment->user->name ?? '' }}</a>
                                                                 </h5>
                                                             </div>
                                                         </div>

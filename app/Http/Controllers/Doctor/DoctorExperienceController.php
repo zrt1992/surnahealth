@@ -24,7 +24,7 @@ class DoctorExperienceController extends Controller
         $DoctorExperiences = $this->DoctorExperienceRepository->all();
         $specializations = Specialization::all();
         $auth = getAuthUser();
-        return  view('doctor-experience-settings', get_defined_vars());
+        return  view('doctor.doctor-experience-settings', get_defined_vars());
     }
 
     public function create()

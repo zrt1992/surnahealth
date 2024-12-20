@@ -34,7 +34,7 @@
                             </li>
                             <li>
                                 <div class="view-icons">
-                                    <a href="{{url('appointments')}}" class="active"><i class="fa-solid fa-list"></i></a>
+                                    <a href="{{url('doctor/doctor-appointments')}}" class="active"><i class="fa-solid fa-list"></i></a>
                                 </div>
                             </li>
                             <li>
@@ -209,8 +209,8 @@
                                         </div>
                                         
                                         <div class="filter-reset-btns">
-                                            <a href="{{url('appointments')}}" class="btn btn-light">Reset</a>
-                                            <a href="{{url('appointments')}}" class="btn btn-primary">Filter Now</a>
+                                            <a href="{{url('doctor/doctor-appointments')}}" class="btn btn-light">Reset</a>
+                                            <a href="{{url('doctor/doctor-appointments')}}" class="btn btn-primary">Filter Now</a>
                                         </div>
                                     </div>
                                 </div>

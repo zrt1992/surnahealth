@@ -13,7 +13,7 @@
 							<h2>Painless, Safe Treatment</h2>
 							<h1>Hear what you have been Missing</h1>
 							<div class="banner-btns-fifteen">
-								<a href="{{url('appointments')}}" class="btn btn-primary me-2">Make an Appointment</a>
+								<a href="{{url('doctor/doctor-appointments')}}" class="btn btn-primary me-2">Make an Appointment</a>
 								<a href="{{url('booking')}}" class="btn btn-primary btns-primarytwo">Quick Consultation</a>
 							</div>
 							<div class="d-sm-flex align-items-center">

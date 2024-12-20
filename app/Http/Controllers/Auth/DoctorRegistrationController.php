@@ -9,16 +9,15 @@ use App\Models\ConsultationMode;
 use App\Models\DoctorBusinessHour;
 use App\Models\DoctorClinic;
 use App\Models\DoctorEducation;
-use App\Models\DoctorExperience;
 use App\Models\Specialization;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
-use Illuminate\Support\Facades\Storage;
 use App\Traits\FileUpload;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Http;
 
 class DoctorRegistrationController extends Controller
 {
@@ -31,7 +30,7 @@ class DoctorRegistrationController extends Controller
 
     public function step2()
     {
-        $specializations = Specialization::all(); 
+        $specializations = Specialization::all();
         return view('auth.doctor.doctor-register-step2', get_defined_vars());
     }
 
@@ -50,7 +49,7 @@ class DoctorRegistrationController extends Controller
         $result = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
-            'name' => ['required', 'string', 'max:255','unique:' . User::class],
+            'name' => ['required', 'string', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
             // 'password' => ['required'],
 
@@ -74,22 +73,22 @@ class DoctorRegistrationController extends Controller
         $request->validate([
             'profile_image' => 'nullable|image|max:2048', // Make it optional
         ]);
-    
+
         $data = $request->except('_token');
-    
+
         // Check if a profile image is provided
         if ($request->hasFile('profile_image')) {
             $file = $request->file('profile_image');
             $meta = $this->uploadImage($file, 'profile_images');
-    
+
             if (isset($meta['dirname'], $meta['basename'])) {
                 $full_path = $meta['dirname'] . '/' . $meta['basename'];
                 $data['profile_image'] = $full_path; // Only add profile_image if it exists
             }
         }
-    
+
         $data['registration_step'] = '+2';
-    
+
         $authUser = auth()->user();
         $authUser->update($data);
 
@@ -183,7 +182,6 @@ class DoctorRegistrationController extends Controller
 
     public function storeStep4(Request $request)
     {
-        
         $request->validate([
             'photo_id' => 'required|image|max:2048',
             'medical_licence' => 'required|image|max:2048',
@@ -191,6 +189,8 @@ class DoctorRegistrationController extends Controller
             'branch_name' => 'required|string|max:255',
             'account_name' => 'required',
             'account_number' => 'required',
+            'term_and_condition' => 'required',
+            'g-recaptcha-response' => 'required|recaptchav3:register,0.5',
         ]);
 
         if ($request->file('photo_id')) {
@@ -216,7 +216,7 @@ class DoctorRegistrationController extends Controller
         $data['medical_licence'] = $medicalLicence_full_path;
         $data['registration_step'] = "completed";
         $authUser = auth()->user();
-        $registration= $authUser->update($data);
+        $registration = $authUser->update($data);
 
         $bankDetails = [
             'user_id' => $authUser->id,
@@ -229,7 +229,7 @@ class DoctorRegistrationController extends Controller
             'default' => '1',
         ];
         Account::create($bankDetails);
-    
+
         if ($registration) {
             $emailData = [
                 'subject' => 'Welcome to Our Platform',
@@ -242,6 +242,5 @@ class DoctorRegistrationController extends Controller
             Mail::to($authUser->email)->send(new RegistrationEmail($emailData));
         }
         return redirect()->route('doctor-dashboard')->with('success', 'Registration completed!');
-
     }
 }
