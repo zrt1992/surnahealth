@@ -190,6 +190,17 @@ Route::middleware(['auth', 'role:patient', CheckRegistrationStep::class])->prefi
     Route::get('/patient-help-and-support', [PatientHelpAndSupportController::class, 'index'])->name('patient-help-and-support');
     Route::post('/patient-create-ticket', [PatientHelpAndSupportController::class, 'createTicket'])->name('patient-create-ticket');
     Route::get('/patient-ticket-remove/{id}', [PatientHelpAndSupportController::class, 'destroy'])->name('patient-ticket-remove');
+
+    Route::get('/patient-checkout', [BookingController::class, 'checkout'])->name('patient-checkout');
+    Route::post('/patient-proceed-checkout', [BookingController::class, 'proceedCheckout'])->name('patient-proceed-checkout');
+    Route::get('/checkout', function () {
+        return view('checkout');
+    })->name('checkout');
+
+    Route::post('/create-checkout-session', [BookingController::class, 'createCheckoutSession']);
+Route::post('/booking-success', [BookingController::class, 'bookingSuccess']);
+Route::get('/booking-success', [BookingController::class, 'bookingSuccessModal'])->name('booking-success');
+
 });
 
 
@@ -410,9 +421,7 @@ Route::get('/booking-2', function () {
 Route::get('/booking-success-one', function () {
     return view('booking-success-one');
 })->name('booking-success-one');
-Route::get('/booking-success', function () {
-    return view('booking-success');
-})->name('booking-success');
+
 // Route::get('/booking/{doctor_id}', function () {
 //     return view('booking');
 // })->name('booking');
@@ -426,9 +435,7 @@ Route::get('/calendar', function () {
 Route::get('/cart', function () {
     return view('cart');
 })->name('cart');
-Route::get('/checkout', function () {
-    return view('checkout');
-})->name('checkout');
+
 Route::get('/coming-soon', function () {
     return view('coming-soon');
 })->name('coming-soon');

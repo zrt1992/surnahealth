@@ -48,9 +48,11 @@
                     </div>
 
                     <!-- Request List -->
+                    @foreach ($data as $request)
                     <div class="appointment-wrap">
+                      
                         <ul>
-                            @foreach ($data as $request)
+                          
                             <li>
                                 <div class="patinet-information">
                                     <a href="{{ url('patient-profile') }}">
@@ -94,10 +96,12 @@
                                     </li>
                                 </ul>
                             </li>
-                            @endforeach
+                          
                            
                         </ul>
+                       
                     </div>
+                    @endforeach
                     
                     <div class="row">
                         <div class="col-md-12">

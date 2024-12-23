@@ -4316,7 +4316,7 @@
     </div>
     <!-- /View Prescription -->
 
-    <!-- Appointment Cancel Reason Modal -->
+    <!-- Appointment Cancel Reason Modal Patient side -->
     <div class="modal fade custom-modal custom-modal-two" id="reject_reason">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -4328,9 +4328,8 @@
                 </div>
                 <div class="modal-body">
                     <div class="reason-of-rejection">
-                        <p>I have an urgent surgery, while our Appointment so i am rejecting appointment, you can book
-                            an reschedule by next week.</p>
-                        <span class="text-danger">Cancelled By You on 23 March 2023</span>
+                        <p id="reason-text">Loading reason...</p>
+                    <span id="reason-details" class="text-danger">Loading details...</span>
                     </div>
 
                 </div>
@@ -5710,15 +5709,15 @@
                             </div>
                             <div class="form-wrap">
                                 <div class="custom-control form-check custom-control-inline">
-                                    <input type="radio" id="reshedule" name="rating_with"
-                                        class="form-check-input" value="Cancel with Reschedule" checked="">
+                                    <input type="radio" id="reshedule" name="cancel_with"
+                                        class="form-check-input" value="reschedule" checked="">
                                     <label class="form-check-label" for="reshedule">Cancel with Reschedule</label>
                                 </div>
                             </div>
                             <div class="form-wrap">
                                 <div class="custom-control form-check custom-control-inline">
-                                    <input type="radio" id="refund" name="rating_with"
-                                        class="form-check-input" value="Cancel with Request Refund Description text" checked="">
+                                    <input type="radio" id="refund" name="cancel_with"
+                                        class="form-check-input" value="refund" checked="">
                                     <label class="form-check-label" for="refund">Cancel with Request Refund
                                         Description text</label>
                                 </div>

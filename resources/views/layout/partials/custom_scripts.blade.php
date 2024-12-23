@@ -15,6 +15,10 @@
         });
     });
 </script>
+
+
+
+
 <script>
     $(document).ready(function() {
         // Accept appointment with Google token check
@@ -714,7 +718,21 @@
         }
     });
 </script>
-
+<script>
+    $(document).ready(function () {
+     $(document).on('click', '.reject-popup', function () {
+         console.log('Reject popup clicked!');
+ 
+         // Fetch data from the clicked button
+         var reason = $(this).data('reason') || 'No reason provided';
+         var cancelledBy = $(this).data('cancelled-by') || 'Unknown';
+         // Inject data into the modal
+         $('#reason-text').text(reason);
+         $('#reason-details').text('Cancelled By ' + cancelledBy);
+     });
+ });
+ 
+ </script>
 {{-- Toaster --}}
 <script>
     @if (session('success'))

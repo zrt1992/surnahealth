@@ -21,7 +21,8 @@
                 <div class="col-lg-8 col-xl-9">
                     <div class="dashboard-header">
                         <div class="header-back">
-                            <a href="{{ url('doctor/doctor-appointments') }}" class="back-arrow"><i class="fa-solid fa-arrow-left"></i></a>
+                            <a href="{{ url('doctor/doctor-appointments') }}" class="back-arrow"><i
+                                    class="fa-solid fa-arrow-left"></i></a>
                             <h3>Appointment Details</h3>
                         </div>
                     </div>
@@ -33,16 +34,21 @@
                                 <li>
                                     <div class="patinet-information">
                                         <a href="#">
-                                            <img src="{{$appointmentCancelledRequest->doctor->profile_image ??  URL::asset('/assets/img/doctors-dashboard/doctor-profile-img.jpg') }}"
+                                            <img src="{{ $appointmentCancelledRequest->doctor->profile_image ?? URL::asset('/assets/img/doctors-dashboard/doctor-profile-img.jpg') }}"
                                                 alt="User Image">
                                         </a>
                                         <div class="patient-info">
                                             <p>#Apt0001</p>
-                                            <h6><a href="#">Dr {{ $appointmentCancelledRequest->doctor->name ?? '' }} </a></h6>
+                                            <h6><a href="#">Dr {{ $appointmentCancelledRequest->doctor->name ?? '' }}
+                                                </a></h6>
                                             <div class="mail-info-patient">
                                                 <ul>
-                                                    <li><i class="fa-solid fa-envelope"></i>{{ $appointmentCancelledRequest->doctor->email ?? '' }}</li>
-                                                    <li><i class="fa-solid fa-phone"></i> {{ $appointmentCancelledRequest->doctor->phone ?? '' }}</li>
+                                                    <li><i
+                                                            class="fa-solid fa-envelope"></i>{{ $appointmentCancelledRequest->doctor->email ?? '' }}
+                                                    </li>
+                                                    <li><i
+                                                            class="fa-solid fa-phone"></i> {{ $appointmentCancelledRequest->doctor->phone ?? '' }}
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -66,10 +72,16 @@
                                 <li class="appointment-action">
                                     <div class="detail-badge-info">
                                         <span class="badge bg-red me-2">Cancelled</span>
-                                        <a href="#reject_reason" class="reject-popup" data-bs-toggle="modal">Reason</a>
+                                        <a href="#" class="reject-popup" data-bs-toggle="modal" data-bs-target="#reject_reason"
+                                            data-reason="{{ $appointmentCancelledRequest->cancel_reason ?? 'No reason provided' }}"
+                                            data-cancelled-by="{{ $appointmentCancelledRequest->doctor->name ?? 'Unknown' }}">
+                                            Reason
+                                        </a>
+                                       
                                     </div>
                                     <div class="consult-fees">
-                                        <h6>Consultation Fees : ${{ $appointmentCancelledRequest->doctor->consultation_fees ?? '' }}</h6>
+                                        <h6>Consultation Fees :
+                                            ${{ $appointmentCancelledRequest->doctor->consultation_fees ?? '' }}</h6>
                                     </div>
                                     <ul>
                                         <li>
@@ -82,7 +94,8 @@
                                 <li>
                                     <h6>Appointment Date & Time</h6>
                                     {{-- <span>22 Jul 2023 - 12:00 pm</span> --}}
-                                    <span>{{ $appointmentCancelledRequest->booking_date?? '' }} - {{ $appointmentCancelledRequest->slot->start_time?? '' }}</span>
+                                    <span>{{ $appointmentCancelledRequest->booking_date ?? '' }} -
+                                        {{ $appointmentCancelledRequest->slot->start_time ?? '' }}</span>
 
                                 </li>
                                 <li>
@@ -91,9 +104,16 @@
                                 </li>
                                 <li>
                                     <div class="detail-badge-info">
-                                        <span class="badge bg-soft-red me-2">Status : Reschedule</span>
-                                        <a href="{{ route('patient-reschedule-appointment',['doctorId' => $appointmentCancelledRequest->doctor->id,'appointmentReqId' => $appointmentCancelledRequest->id]) }}"
-                                            class="reschedule-btn btn-primary-border">Reschedule Appointment</a>
+                                        <span class="badge bg-soft-red me-2">Status : {{ $appointmentCancelledRequest->cancel_with ?? 'No reason provided' }}</span>
+                                        @if($appointmentCancelledRequest->cancel_with == 'reschedule')
+                                            <a href="{{ route('patient-reschedule-appointment', ['doctorId' => $appointmentCancelledRequest->doctor->id, 'appointmentReqId' => $appointmentCancelledRequest->id]) }}"
+                                                class="reschedule-btn btn-primary-border">Reschedule Appointment</a>
+                                        @else
+                                            <a href="{{ route('patient-reschedule-appointment', ['doctorId' => $appointmentCancelledRequest->doctor->id, 'appointmentReqId' => $appointmentCancelledRequest->id]) }}"
+                                                class="reschedule-btn btn-primary-border">Refund</a>
+                                        
+                                        @endif
+                                       
                                     </div>
                                 </li>
                             </ul>
@@ -189,6 +209,6 @@
 
     </div>
     <!-- /Page Content -->
-
+    @include('layout.partials.custom_scripts')
 
 @endsection
