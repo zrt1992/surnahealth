@@ -26,8 +26,15 @@
                         <ul class="header-list-btns">
                             <li>
                                 <div class="input-block dash-search-input">
-                                    <input type="text" class="form-control" placeholder="Search">
-                                    <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                                    <form method="GET" action="{{ route('patient-appointments-grid') }}" id="searchForm">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Search" name="search"
+                                                id="searchInput" value="{{ request('search') }}">
+                                            <span class="search-icon" id="searchIcon" style="cursor: pointer;">
+                                                <i class="fa-solid fa-magnifying-glass"></i>
+                                            </span>
+                                        </div>
+                                    </form>
                                 </div>
                             </li>
                             <li>

@@ -14,6 +14,6 @@ interface BookingRepositoryInterface
     public function accept($id);
     public function reject(array $data);
 
-    public function getPatientAppointments();
+    public function getPatientAppointments($request);
     
 }

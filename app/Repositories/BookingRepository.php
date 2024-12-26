@@ -88,8 +88,34 @@ class BookingRepository implements BookingRepositoryInterface
         return  $error = 'Not Found';
     }
 
-    public function getPatientAppointments()
+    public function getPatientAppointments($request)
     {
+        $query = Appointment::where('user_id', getAuthUser()->id)
+        ->with('doctor', 'user');
+
+    // Apply search and filters dynamically
+    if ($request->filled('search')) {
+        $search = $request->input('search');
+        $query->where(function ($q) use ($search) {
+            $q->whereHas('doctor', function ($subQuery) use ($search) {
+                $subQuery->where('name', 'LIKE', '%' . $search . '%');
+            })->orWhereHas('user', function ($subQuery) use ($search) {
+                $subQuery->where('name', 'LIKE', '%' . $search . '%');
+            });
+        });
+    }
+
+    if ($request->filled('status')) {
+        $query->whereIn('status', $request->input('status'));
+    }
+
+    if ($request->filled('date_range')) {
+        $dates = explode(' - ', $request->input('date_range'));
+        $query->whereBetween('appointment_date', [$dates[0], $dates[1]]);
+    }
+
+    // Execute the query to get filtered appointments
+    $data = $query->get();
         return Appointment::where('user_id',getAuthUser()->id)->with('doctor','user')->get();
     }
 

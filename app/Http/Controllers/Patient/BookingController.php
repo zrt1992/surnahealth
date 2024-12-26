@@ -77,9 +77,9 @@ class BookingController extends Controller
         return back()->with('success', 'Your booking was successful!');
     }
 
-    public function getPatientAppointments()
+    public function getPatientAppointments(Request $request)
     {
-        $data = $this->bookingRepository->getPatientAppointments();
+        $data = $this->bookingRepository->getPatientAppointments($request);
        
         $appointmentRequests = AppointmentRequests::where(function ($query) {
             $query->where('status', '!=', 'rejected')->orWhereNull('status');
@@ -99,9 +99,9 @@ class BookingController extends Controller
         return view('patient.patient-appointments', get_defined_vars());
     }
 
-    public function getPatientAppointmentsGrid()
+    public function getPatientAppointmentsGrid(Request $request)
     {
-        $data = $this->bookingRepository->getPatientAppointments();
+        $data = $this->bookingRepository->getPatientAppointments($request);
         $appointmentRequests = AppointmentRequests::where('user_id', auth()->user()->id)->get();
 
         return view('patient.patient-appointments-grid', get_defined_vars());

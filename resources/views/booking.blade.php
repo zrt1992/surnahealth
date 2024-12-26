@@ -97,8 +97,9 @@
                                     <div class="col-md-12">
 
                                         <!-- Time Slot -->
+                                        @if ($doctor && $doctor->availableTimings->count())
                                         <div class="time-slot d-flex">
-                                            @if ($doctor && $doctor->availableTimings->count())
+                                          
                                                 <ul class=" clearfix list-group w-100">
                                                     @foreach ($doctor->availableTimings as $slot)
                                                         @if ($slot->availability_day == 'Monday')
@@ -190,15 +191,12 @@
                                                         @endif
                                                     @endforeach
                                                 </ul>
-                                            @else
-                                                <ul>
-                                                    <li>No available timings for this doctor.</li>
-
-                                                </ul>
-                                            @endif
+                                          
                                         </div>
 
-
+                                        @else
+                                      <p>No available timings for this doctor.</p>
+                                    @endif
                                     </div>
                                 </div>
                             </div>
