@@ -157,4 +157,9 @@ public function prescriptions()
 {
     return $this->hasMany(Prescription::class,'user_id','id');
 }
+
+public function patientAppointmentPreferences()
+{
+    return $this->hasOne(PatientAppoitmentPreferences::class,'user_id','id');
+}
 }

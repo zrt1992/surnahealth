@@ -39,12 +39,12 @@
                             </li>
                             <li>
                                 <div class="view-icons">
-                                    <a href="{{ url('patient-appointments') }}"><i class="fa-solid fa-list"></i></a>
+                                    <a href="{{ route('patient-appointments') }}"><i class="fa-solid fa-list"></i></a>
                                 </div>
                             </li>
                             <li>
                                 <div class="view-icons">
-                                    <a href="{{ url('patient-appointments-grid') }}" class="active"><i
+                                    <a href="{{ route('patient-appointments-grid') }}" class="active"><i
                                             class="fa-solid fa-th"></i></a>
                                 </div>
                             </li>

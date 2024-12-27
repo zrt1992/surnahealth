@@ -11,14 +11,31 @@ class PatientsController extends Controller
 {
     public function index(Request $request)
     {
-        $doctorId = auth()->id(); // Get the logged-in doctor's ID
+        $doctorId = auth()->id(); 
+        $appointmentType = $request->input('appointment_type', []);
 
-        // Base query for users who have appointments with the logged-in doctor
-        $query = User::query()->whereHas('appointments', function ($q) use ($doctorId) {
+        $query = User::query()
+        ->whereHas('appointments', function ($q) use ($doctorId, $appointmentType) {
             $q->where('doctor_id', $doctorId);
-        })->with(['appointments' => function ($q) use ($doctorId) {
-            $q->where('doctor_id', $doctorId); // Fetch only relevant appointments
-        }]);
+    
+            if (!empty($appointmentType) && !in_array('All Type', $appointmentType)) {
+                $q->whereHas('user.patientAppointmentPreferences', function ($preferencesQuery) use ($appointmentType) {
+                    $preferencesQuery->where(function ($subQuery) use ($appointmentType) {
+                        foreach ($appointmentType as $type) {
+                            $typeColumn = str_replace(' ', '_', strtolower($type));
+                            $subQuery->orWhere($typeColumn, 1);
+                        }
+                    });
+                });
+            }
+        })
+        ->with([
+            'appointments' => function ($q) use ($doctorId) {
+                $q->where('doctor_id', $doctorId); 
+            },
+            'patientAppointmentPreferences' 
+        ]);
+    
 
         // Search block
         if ($request->filled('search')) {
@@ -31,24 +48,6 @@ class PatientsController extends Controller
                 // ->orWhereHas('specializations', function ($subQuery) use ($search) {
                 //     $subQuery->where('name', 'LIKE', '%' . $search . '%');
                 // });
-            });
-        }
-
-        // Filter by multiple locations
-        if ($request->filled('location')) {
-            $query->whereIn('city', $request->input('location'));
-        }
-
-        // Filter by languages
-        if ($request->filled('language')) {
-            $query->whereIn('known_languages', $request->input('language'));
-        }
-
-        // Filter by specializations
-        if ($request->filled('specialization')) {
-            $specializations = $request->input('specialization');
-            $query->whereHas('specializations', function ($subQuery) use ($specializations) {
-                $subQuery->whereIn('name', $specializations);
             });
         }
 

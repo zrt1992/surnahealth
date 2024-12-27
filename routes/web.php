@@ -96,6 +96,7 @@ Route::middleware(['auth', 'role:doctor', CheckRegistrationStep::class])->prefix
     Route::resource('/doctor-experience-setting', DoctorExperienceController::class);
 
     Route::get('/doctor-appointments', [AppointmentController::class, 'index'])->name('doctor-appointments');
+    Route::get('/doctor-appointments-grid', [AppointmentController::class, 'appointmentsGrid'])->name('doctor-appointments-grid');
     Route::get('/appointments-remove/{id}', [AppointmentController::class, 'destroy'])->name('appointments-remove');
 
     Route::get('/my-patients', [PatientsController::class, 'index'])->name('doctor.my-patients');
@@ -703,9 +704,7 @@ Route::get('/doctor-appointment-start', function () {
 Route::get('/doctor-upcoming-appointment', function () {
     return view('doctor-upcoming-appointment');
 })->name('doctor-upcoming-appointment');
-Route::get('/doctor-appointments-grid', function () {
-    return view('doctor-appointments-grid');
-})->name('doctor-appointments-grid');
+
 Route::get('/doctor-completed-appointment', function () {
     return view('doctor-completed-appointment');
 })->name('doctor-completed-appointment');

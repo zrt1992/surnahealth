@@ -56,7 +56,101 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="filter-head">
+                        <form action="{{ route('doctor-appointments-grid') }}" method="GET">
+                        
+                            <div class="filter-head">
+                                <div class="position-relative daterange-wraper me-2">
+                                    <div class="input-groupicon calender-input">
+                                        <input type="text" name="date_range" class="form-control date-range bookingrange" placeholder="From Date - To Date">
+                                    </div>
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                </div>
+                                <div class="form-sorts dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" id="table-filter">
+                                        <i class="fa-solid fa-filter me-2"></i>Filter By
+                                    </a>
+                                    <div class="filter-dropdown-menu">
+                                        <div class="filter-set-view">
+                                            <div class="accordion" id="accordionExample">
+                                                <!-- Filter by Name -->
+                                                <div class="filter-set-content">
+                                                    <div class="filter-set-content-head">
+                                                        <a href="#" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                            Name <i class="fa-solid fa-chevron-right"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div class="filter-set-contents accordion-collapse collapse show" id="collapseTwo" data-bs-parent="#accordionExample">
+                                                        <ul>
+                                                            <li>
+                                                                <div class="input-block dash-search-input w-100">
+                                                                    <input type="text" name="search_name" class="form-control" placeholder="Search">
+                                                                    <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <!-- Filter by Appointment Type -->
+                                                <div class="filter-set-content">
+                                                    <div class="filter-set-content-head">
+                                                        <a href="#" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                            Appointment Type <i class="fa-solid fa-chevron-right"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div class="filter-set-contents accordion-collapse collapse show" id="collapseOne" data-bs-parent="#accordionExample">
+                                                        <ul>
+                                                            <li>
+                                                                <div class="filter-checks">
+                                                                    <label class="checkboxs">
+                                                                        <input type="checkbox" name="appointment_type[]" value="All Type" checked>
+                                                                        <span class="checkmarks"></span>
+                                                                        <span class="check-title">All Type</span>
+                                                                    </label>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="filter-checks">
+                                                                    <label class="checkboxs">
+                                                                        <input type="checkbox" name="appointment_type[]" value="video_call">
+                                                                        <span class="checkmarks"></span>
+                                                                        <span class="check-title">Video Call</span>
+                                                                    </label>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="filter-checks">
+                                                                    <label class="checkboxs">
+                                                                        <input type="checkbox" name="appointment_type[]" value="audio_call">
+                                                                        <span class="checkmarks"></span>
+                                                                        <span class="check-title">Audio Call</span>
+                                                                    </label>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="filter-checks">
+                                                                    <label class="checkboxs">
+                                                                        <input type="checkbox" name="appointment_type[]" value="chat">
+                                                                        <span class="checkmarks"></span>
+                                                                        <span class="check-title">Chat</span>
+                                                                    </label>
+                                                                </div>
+                                                            </li>
+                                                            <!-- Add more options as needed -->
+                                                        </ul>
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                            <!-- Filter Buttons -->
+                                            <div class="filter-reset-btns">
+                                                <button type="reset" class="btn btn-light">Reset</button>
+                                                <button type="submit" class="btn btn-primary">Filter Now</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        {{-- <div class="filter-head">
                             <div class="position-relative daterange-wraper me-2">
                                 <div class="input-groupicon calender-input">
                                     <input type="text" class="form-control  date-range bookingrange"
@@ -221,7 +315,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
 
                     <div class="tab-content appointment-tab-content grid-patient">
