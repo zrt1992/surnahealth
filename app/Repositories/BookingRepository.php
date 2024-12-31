@@ -115,8 +115,8 @@ class BookingRepository implements BookingRepositoryInterface
     }
 
     // Execute the query to get filtered appointments
-    $data = $query->get();
-        return Appointment::where('user_id',getAuthUser()->id)->with('doctor','user')->get();
+    return $data = $query->paginate(10);
+         
     }
 
 

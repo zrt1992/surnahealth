@@ -173,8 +173,9 @@
                     <div class="tab-content appointment-tab-content">
                         <div class="tab-pane fade show active" id="pills-upcoming" role="tabpanel" aria-labelledby="pills-upcoming-tab">
                             <!-- Appointment List -->
+                            @foreach($appointments as $appointment)
                             <div class="appointment-wrap">
-                                @foreach($appointments as $appointment)
+                              
                                 <ul>
                                     <li>
                                         <div class="patinet-information">
@@ -230,142 +231,23 @@
                                         @endif
                                     </li>
                                 </ul>
-                                @endforeach
+                              
                             </div>
-                            
-                            <!-- /Appointment List -->
-
-                            <!-- Appointment List -->
-                            {{-- <div class="appointment-wrap">
-                                <ul>
-                                    <li>
-                                        <div class="patinet-information">
-                                            <a href="{{url('doctor-upcoming-appointment')}}">
-                                                <img src="{{URL::asset('/assets/img/doctors-dashboard/profile-02.jpg')}}" alt="User Image">
-                                            </a>
-                                            <div class="patient-info">
-                                                <p>#Apt0002</p>
-                                                <h6><a href="{{url('doctor-upcoming-appointment')}}">Kelly</a><span class="badge new-tag">New</span></h6>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="appointment-info">
-                                        <p><i class="fa-solid fa-clock"></i>05 Nov 2024 11.50 AM</p>
-                                        <ul class="d-flex apponitment-types">
-                                            <li>General Visit</li>
-                                            <li>Audio Call</li>
-                                        </ul>
-                                        
-                                    </li>
-                                    <li class="mail-info-patient">
-                                        <ul>
-                                            <li><i class="fa-solid fa-envelope"></i>kelly@example.com</li>
-                                            <li><i class="fa-solid fa-phone"></i> +1 832 891 8403</li>
-                                        </ul>
-                                    </li>
-                                    <li class="appointment-action">
-                                        <ul>
-                                            <li>
-                                                <a href="{{url('doctor-upcoming-appointment')}}"><i class="fa-solid fa-eye"></i></a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><i class="fa-solid fa-comments"></i></a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><i class="fa-solid fa-xmark"></i></a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="appointment-start">
-                                        <a href="{{url('doctor-appointment-start')}}" class="start-link">Start Now</a>
-                                    </li>
-                                </ul>
-                            </div> --}}
-                            <!-- /Appointment List -->
-
-                            <!-- Appointment List -->
-                            {{-- <div class="appointment-wrap">
-                                <ul>
-                                    <li>
-                                        <div class="patinet-information">
-                                            <a href="{{url('doctor-upcoming-appointment')}}">
-                                                <img src="{{URL::asset('/assets/img/doctors-dashboard/profile-03.jpg')}}" alt="User Image">
-                                            </a>
-                                            <div class="patient-info">
-                                                <p>#Apt0003</p>
-                                                <h6><a href="{{url('doctor-upcoming-appointment')}}">Samuel</a></h6>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="appointment-info">
-                                        <p><i class="fa-solid fa-clock"></i>27 Oct 2024 09.30 AM</p>
-                                        <ul class="d-flex apponitment-types">
-                                            <li>General Visit</li>
-                                            <li>Video Call</li>
-                                        </ul>
-                                        
-                                    </li>
-                                    <li class="mail-info-patient">
-                                        <ul>
-                                            <li><i class="fa-solid fa-envelope"></i>samuel@example.com</li>
-                                            <li><i class="fa-solid fa-phone"></i>  +1 749 104 6291</li>
-                                        </ul>
-                                    </li>
-                                    <li class="appointment-action">
-                                        <ul>
-                                            <li>
-                                                <a href="{{url('doctor-upcoming-appointment')}}"><i class="fa-solid fa-eye"></i></a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><i class="fa-solid fa-comments"></i></a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><i class="fa-solid fa-xmark"></i></a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="appointment-start">
-                                        <a href="{{url('doctor-appointment-start')}}" class="start-link">Start Now</a>
-                                    </li>
-                                </ul>
-                            </div> --}}
-                            <!-- /Appointment List -->
-
-                            <!-- /Appointment List -->
+                            @endforeach
 
                             <!-- Pagination -->
                             <div class="pagination dashboard-pagination">
-                                <ul>
-                                    <li>
-                                        <a href="#" class="page-link"><i class="fa-solid fa-chevron-left"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link">1</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link active">2</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link">3</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link">4</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link">...</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link"><i class="fa-solid fa-chevron-right"></i></a>
-                                    </li>
-                                </ul>
+                                {{ $appointments->links('vendor.pagination.custom') }}
                             </div>
+                            
                             <!-- /Pagination -->
 
                         </div>
                         <div class="tab-pane fade" id="pills-cancel" role="tabpanel" aria-labelledby="pills-cancel-tab">
                             <!-- Appointment List -->
+                            @foreach ($appointmentRejectedRequests as $rejected)
                             <div class="appointment-wrap">
-                                @foreach ($appointmentRejectedRequests as $rejected)
+                             
                                 <ul>
                                     <li>
                                         <div class="patinet-information">
@@ -390,41 +272,20 @@
                                         <a href="{{url('doctor-completed-appointment')}}" class="start-link">View Details</a>
                                     </li>
                                 </ul>
-                                @endforeach
+                              
                             </div>
-
+                            @endforeach
                             <!-- Pagination -->
                             <div class="pagination dashboard-pagination">
-                                <ul>
-                                    <li>
-                                        <a href="#" class="page-link"><i class="fa-solid fa-chevron-left"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link">1</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link active">2</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link">3</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link">4</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link">...</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link"><i class="fa-solid fa-chevron-right"></i></a>
-                                    </li>
-                                </ul>
+                                {{ $appointments->links('vendor.pagination.custom') }}
                             </div>
                             <!-- /Pagination -->
                         </div>
                         <div class="tab-pane fade" id="pills-complete" role="tabpanel" aria-labelledby="pills-complete-tab">
                             <!-- Appointment List -->
+                            @foreach ($appointmentCompleted as $completed)
                             <div class="appointment-wrap">
-                                @foreach ($appointmentCompleted as $completed)
+                              
                                 <ul>
                                     <li>
                                         <div class="patinet-information">
@@ -449,35 +310,13 @@
                                         <a href="{{url('doctor-completed-appointment')}}" class="start-link">View Details</a>
                                     </li>
                                 </ul>
-                                @endforeach
+                             
                                
                             </div>
-                            
+                            @endforeach
                             <!-- Pagination -->
                             <div class="pagination dashboard-pagination">
-                                <ul>
-                                    <li>
-                                        <a href="#" class="page-link"><i class="fa-solid fa-chevron-left"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link">1</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link active">2</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link">3</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link">4</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link">...</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link"><i class="fa-solid fa-chevron-right"></i></a>
-                                    </li>
-                                </ul>
+                                {{ $appointments->links('vendor.pagination.custom') }}
                             </div>
                             <!-- /Pagination -->
                         </div>

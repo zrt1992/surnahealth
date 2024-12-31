@@ -354,6 +354,7 @@
                                                     <a href="#"><i class="fa-solid fa-comments"></i></a>
                                                 </li>
                                                 <li>
+                                                    
                                                     <a href="javascript:void(0)" data-bs-toggle="modal"
                                                         data-bs-target="#delete_record" data-id="{{ $appointment->id }}"
                                                         data-route="{{ route('appointments-remove', ':id') }}"><i
@@ -373,29 +374,7 @@
 
                             <!-- Pagination -->
                             <div class="pagination dashboard-pagination">
-                                <ul>
-                                    <li>
-                                        <a href="#" class="page-link"><i class="fa-solid fa-chevron-left"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link">1</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link active">2</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link">3</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link">4</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link">...</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link"><i class="fa-solid fa-chevron-right"></i></a>
-                                    </li>
-                                </ul>
+                                {{ $data->links('vendor.pagination.custom') }}
                             </div>
                             <!-- /Pagination -->
 
@@ -439,38 +418,12 @@
                                     </ul>
                                 @endforeach
                             </div>
-                            <!-- /Appointment List -->
 
-
-
-                            <!-- Pagination -->
                             <div class="pagination dashboard-pagination">
-                                <ul>
-                                    <li>
-                                        <a href="#" class="page-link"><i class="fa-solid fa-chevron-left"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link">1</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link active">2</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link">3</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link">4</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link">...</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link"><i class="fa-solid fa-chevron-right"></i></a>
-                                    </li>
-                                </ul>
+                                {{ $data->links('vendor.pagination.custom') }}
                             </div>
-                            <!-- /Pagination -->
                         </div>
+
                         <div class="tab-pane fade" id="pills-complete" role="tabpanel"
                             aria-labelledby="pills-complete-tab">
 
@@ -512,38 +465,12 @@
                                 @endforeach
 
                             </div>
-                            <!-- /Appointment List -->
-
-
-
-                            <!-- Pagination -->
-                            <div class="pagination dashboard-pagination">
-                                <ul>
-                                    <li>
-                                        <a href="#" class="page-link"><i class="fa-solid fa-chevron-left"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link">1</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link active">2</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link">3</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link">4</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link">...</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link"><i class="fa-solid fa-chevron-right"></i></a>
-                                    </li>
-                                </ul>
+                          
+                          <div class="pagination dashboard-pagination">
+                                {{ $data->links('vendor.pagination.custom') }}
                             </div>
-                            <!-- /Pagination -->
                         </div>
+                        
                         <div class="tab-pane fade" id="pills-preferences" role="tabpanel"
                             aria-labelledby="pills-preferences-tab">
                             <form action="{{ route('patient-preferences-update', $appointmentPreferences->id ?? auth()->id()) }}" method="POST">

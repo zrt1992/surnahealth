@@ -108,33 +108,9 @@
                                 </div>
                             </div>
 
-                            <!-- Pagination -->
                             <div class="pagination dashboard-pagination">
-                                <ul>
-                                    <li>
-                                        <a href="#" class="page-link"><i class="fa-solid fa-chevron-left"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link">1</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link active">2</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link">3</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link">4</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link">...</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="page-link"><i class="fa-solid fa-chevron-right"></i></a>
-                                    </li>
-                                </ul>
+                                {{ $prescriptions->links('vendor.pagination.custom') }}
                             </div>
-                            <!-- /Pagination -->
                         </div>
                     </div>
 

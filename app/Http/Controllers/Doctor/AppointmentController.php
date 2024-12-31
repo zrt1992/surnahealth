@@ -49,7 +49,8 @@ class AppointmentController extends Controller
             });
         }
 
-        $appointments = $appointmentsQuery->get();
+        // $appointments = $appointmentsQuery->get();
+        $appointments = $appointmentsQuery->paginate(10); 
         $appointmentRejectedRequests = AppointmentRequests::where('status', 'rejected')
             ->where('doctor_id', $doctorId)
             ->get();

@@ -36,7 +36,7 @@
                         </a>
                     </li>
                     <li
-                        class="{{ Request::is('patient-appointments', 'patient-upcoming-appointments', 'patient-completed-appointments', 'patient-cancelled-appointments', 'patient-appointments-grid', 'patient-appointment-details', 'patient-upcoming-appointment', 'patient-completed-appointment', 'patient-cancelled-appointment') ? 'active' : '' }}">
+                        class="{{ Request::is('patient/patient-appointments', 'patient-upcoming-appointments', 'patient-completed-appointments', 'patient-cancelled-appointments', 'patient-appointments-grid', 'patient-appointment-details', 'patient-upcoming-appointment', 'patient-completed-appointment', 'patient-cancelled-appointment') ? 'active' : '' }}">
                         <a href="{{ route('patient-appointments') }}">
                             <i class="fa-solid fa-calendar-days"></i>
                             <span>My Appointments</span>
