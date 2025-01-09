@@ -3,10 +3,10 @@
 @section('content')
     @component('components.breadcrumb')
         @slot('title')
-            Doctor Profile
+            {{ __('messages.doctor_profile')}}
         @endslot
         @slot('li_1')
-            Doctor Profile
+            {{ __('messages.doctor_profile')}}
         @endslot
     @endcomponent
 
@@ -31,7 +31,7 @@
                                         {{ $education->course ?? 'doctor education' }}
                                     @endforeach
                                 @else
-                                    No education details available.
+                                {{ __('messages.no_education')}}
                                 @endif
                                 </p>
                                 <p class="doc-department">
@@ -41,7 +41,8 @@
                                          @if (!empty($doctor->doctorSpecialization) && $doctor->doctorSpecialization->count() > 0)
                                          {{ $doctor->doctorSpecialization->first()->name }}
                                      @else
-                                         No specialization available
+                                     {{ __('messages.no_specialization')}}
+
                                      @endif
                                 </p>
                                 
@@ -56,7 +57,8 @@
                                 <div class="clinic-details">
                                     <p class="doc-location"><i class="fas fa-map-marker-alt"></i>
                                         {{ $doctor->city ?? '--' }},{{ $doctor->state ?? '--' }} - <a
-                                            href="javascript:void(0);">Get Directions</a></p>
+                                            href="javascript:void(0);">{{ __('messages.get_directions')}}
+                                        </a></p>
                                     <ul class="clinic-gallery">
                                         @if (!empty($doctor->doctorClinic) && $doctor->doctorClinic->isNotEmpty())
                                         @foreach ($doctor->doctorClinic->first()->gallery as $gallery)
@@ -69,7 +71,8 @@
                                         </li>
                                     @endforeach
                                             @else
-                                                No doctor clinic available.
+                                            {{ __('messages.no_clinic')}}
+
                                             @endif
                                      
                                     </ul>
@@ -84,7 +87,8 @@
                             <div class="clini-infos">
                                 <ul>
                                     <li><i class="far fa-thumbs-up"></i> 0%</li>
-                                    <li><i class="far fa-comment"></i> 0 Feedback</li>
+                                    <li><i class="far fa-comment"></i> 0 {{ __('messages.feedback')}}
+                                    </li>
                                     <li><i class="fas fa-map-marker-alt"></i> {{ $doctor->state ?? '--' }},
                                         {{ $doctor->country ?? '--' }}</li>
                                     <li>
@@ -115,7 +119,7 @@
                                 </a>
                             </div>
                             <div class="clinic-booking">
-                                <a class="apt-btn" href="{{ url('frontend/booking/' . optional($doctor)->id) }}">Book Appointment</a>
+                                <a class="apt-btn" href="{{ url('frontend/booking/' . optional($doctor)->id) }}">{{ __('messages.book_appointment')}}</a>
                             </div>
                         </div>
                     </div>
@@ -131,16 +135,16 @@
                     <nav class="user-tabs mb-4">
                         <ul class="nav nav-tabs nav-tabs-bottom nav-justified">
                             <li class="nav-item">
-                                <a class="nav-link active" href="#doc_overview" data-bs-toggle="tab">Overview</a>
+                                <a class="nav-link active" href="#doc_overview" data-bs-toggle="tab">{{ __('messages.overview')}}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#doc_locations" data-bs-toggle="tab">Locations</a>
+                                <a class="nav-link" href="#doc_locations" data-bs-toggle="tab">{{ __('messages.locations')}}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#doc_reviews" data-bs-toggle="tab">Reviews</a>
+                                <a class="nav-link" href="#doc_reviews" data-bs-toggle="tab">{{ __('messages.reviews')}}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#doc_business_hours" data-bs-toggle="tab">Business Hours</a>
+                                <a class="nav-link" href="#doc_business_hours" data-bs-toggle="tab">{{ __('messages.business_hours')}}</a>
                             </li>
                         </ul>
                     </nav>
@@ -156,7 +160,7 @@
 
                                     <!-- About Details -->
                                     <div class="widget about-widget">
-                                        <h4 class="widget-title">About Me</h4>
+                                        <h4 class="widget-title">{{ __('messages.about_me')}}</h4>
                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                             incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
                                             nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -168,7 +172,7 @@
 
                                     <!-- Education Details -->
                                     <div class="widget education-widget">
-                                        <h4 class="widget-title">Education</h4>
+                                        <h4 class="widget-title">{{ __('messages.education')}}</h4>
                                         <div class="experience-box">
                                             <ul class="experience-list">
                                                 @if (!empty($doctor->doctorEducation) && $doctor->doctorEducation->isNotEmpty())
@@ -203,7 +207,7 @@
 
                                     <!-- Experience Details -->
                                     <div class="widget experience-widget">
-                                        <h4 class="widget-title">Work & Experience</h4>
+                                        <h4 class="widget-title">{{ __('messages.work_experience')}}</h4>
                                         <div class="experience-box">
                                             <ul class="experience-list">
                                                 @if (!empty($doctor->availableTimings) && $doctor->availableTimings->isNotEmpty())
@@ -239,7 +243,7 @@
 
                                     <!-- Awards Details -->
                                     <div class="widget awards-widget">
-                                        <h4 class="widget-title">Awards</h4>
+                                        <h4 class="widget-title">{{ __('messages.awards')}}</h4>
                                         <div class="experience-box">
                                             <ul class="experience-list">
                                                 @if (!empty($doctor->doctorAwards) && $doctor->doctorAwards->isNotEmpty())
@@ -271,7 +275,7 @@
 
                                     <!-- Services List -->
                                     <div class="service-list">
-                                        <h4>Services</h4>
+                                        <h4>{{ __('messages.services')}}</h4>
                                         <ul class="clearfix">
                                             <li>Tooth cleaning </li>
                                             <li>Root Canal Therapy</li>
@@ -285,7 +289,7 @@
 
                                     <!-- Specializations List -->
                                     <div class="service-list">
-                                        <h4>Specializations</h4>
+                                        <h4>{{ __('messages.specializations')}}</h4>
                                         <ul class="clearfix">
                                             @if (!empty($doctor->doctorSpecialization) && $doctor->doctorSpecialization->isNotEmpty())
                                             @foreach ($doctor->doctorSpecialization as $specialization)
@@ -324,7 +328,7 @@
                                                             {{ $education->course ?? 'doctor education' }}
                                                         @endforeach
                                                     @else
-                                                        No education details available.
+                                                    {{ __('messages.no_education')}}
                                                     @endif
                                                 </p>
                                                 <div class="rating">
@@ -341,7 +345,7 @@
                                                         {{ $clinic->address ?? 'Address not provided' }},
                                                         {{ $clinic->location ?? 'Address not provided' }}
                                                         <br>
-                                                        <a href="javascript:void(0);">Get Directions</a>
+                                                        <a href="javascript:void(0);">{{ __('messages.get_directions')}}</a>
                                                     </h5>
                                                     <ul>
                                                         @foreach ($clinic->gallery as $image)

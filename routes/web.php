@@ -40,6 +40,7 @@ use App\Services\GoogleClientService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CheckRegistrationStep;
+use App\Http\Middleware\LocalizationMiddleware;
 use Illuminate\Support\Facades\Mail;
 use Pusher\Pusher;
 
@@ -50,10 +51,10 @@ Route::get('/', function () {
     //    \Illuminate\Support\Facades\Session::flush();
 
     return view('index');
-})->name('home-page');
+})->name('home-page')->middleware([ LocalizationMiddleware::class]);
 
 // Front end pages
-Route::prefix('frontend')->group(function () {
+Route::middleware([LocalizationMiddleware::class])->prefix('frontend')->group(function () {
     Route::get('/doctor-profile/{id?}', [FrontendController::class, 'doctorProfile'])->name('frontend.doctor-profile');
     Route::get('/booking/{doctor_id?}', [FrontendController::class, 'showBookingForm'])->name('frontend.booking');
     Route::get('/search', [FrontendController::class, 'search'])->name('frontend.search');
@@ -331,7 +332,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
 
 Route::get('/index', function () {
     return view('index');
-})->name('index');
+})->name('index')->middleware([ LocalizationMiddleware::class]);
 Route::get('/index-2', function () {
     return view('index-2');
 })->name('index-2');

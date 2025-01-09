@@ -12,7 +12,7 @@
                                 <span>
                                     <img src="{{ URL::asset('/assets/img/icons/service-01.svg') }}" alt="heart-image">
                                 </span>
-                                <h4>Book Appointment</h4>
+                                <h4>{{ __('messages.book_appointment') }}</h4>
                             </a>
                         </div>
                        
@@ -21,7 +21,7 @@
                                 <span>
                                     <img src="{{ URL::asset('/assets/img/icons/service-03.svg') }}" alt="heart-image">
                                 </span>
-                                <h4>Pharmacy</h4>
+                                <h4>{{ __('messages.pharmacy') }}</h4>
                             </a>
                         </div>
                         <div class="col-12 d-flex col-xxl-12 col-lg-12 col-sm-6">
@@ -29,7 +29,7 @@
                                 <span>
                                     <img src="{{ URL::asset('/assets/img/icons/service-06.svg') }}" alt="heart-image">
                                 </span>
-                                <h4>Talk to Doctor’s</h4>
+                                <h4>{{ __('messages.talk_to_doctors') }}</h4>
                             </a>
                         </div>
 
@@ -45,11 +45,11 @@
                 <div class="col-lg-3">
                     <div class="row justify-content-center">
                         <div class="col-12 d-flex col-xxl-12 col-lg-12 col-sm-6">
-                            <a href="javascript:void(0);" class="serv-wrap red-bg flex-fill">
+                            <a href="https://huggingface.co/spaces/surna/Surna_TeleHealth_-_Breast_Cancer_Risk_Assessment" class="serv-wrap red-bg flex-fill">
                                 <span>
                                     <img src="{{ URL::asset('/assets/img/icons/breast-cancer.png') }}" alt="heart-image">
                                 </span>
-                                <h4>Breast Cancer</h4>
+                                <h4>{{ __('messages.breast_cancer') }}</h4>
                             </a>
                         </div>
                         <div class="col-12 d-flex col-xxl-12 col-lg-12 col-sm-6">
@@ -57,7 +57,7 @@
                                 <span>
                                     <img src="{{ URL::asset('/assets/img/icons/service-05.svg') }}" alt="heart-image">
                                 </span>
-                                <h4>Prostate Cancer</h4>
+                                <h4>{{ __('messages.prostate_cancer') }}</h4>
                             </a>
                         </div>
                         <div class="col-12 d-flex col-xxl-12 col-lg-12 col-sm-6">
@@ -65,7 +65,7 @@
                                 <span>
                                     <img src="{{ URL::asset('/assets/img/icons/health-care-love.svg') }}" alt="heart-image">
                                 </span>
-                                <h4>Cardiac Issues</h4>
+                                <h4>{{ __('messages.cardiac_issues') }}</h4>
                             </a>
                         </div>
                        
@@ -145,7 +145,7 @@
             <div class="row">
                 <div class="col-md-6 col-7 aos" data-aos="fade-up">
                     <div class="section-header-one section-header-slider">
-                        <h2 class="section-title">Specialities</h2>
+                        <h2 class="section-title">{{ __('messages.specialities') }}</h2>
                     </div>
                 </div>
                 <div class="col-md-6 col-5  aos" data-aos="fade-up">
@@ -159,7 +159,7 @@
                             <span><img src="{{ URL::asset('/assets/img/specialities/specialities-01.svg') }}"
                                     alt="heart-image"></span>
                         </div>
-                        <p>Cardiology</p>
+                        <p>{{ __('messages.cardiology') }}</p>
                     </div>
                 </div>
                 <div class="item">
@@ -168,7 +168,7 @@
                             <span><img src="{{ URL::asset('/assets/img/specialities/specialities-02.svg') }}"
                                     alt="brain-image"></span>
                         </div>
-                        <p>Neurology</p>
+                        <p>{{ __('messages.neurology') }}</p>
                     </div>
                 </div>
                 <div class="item">
@@ -177,7 +177,7 @@
                             <span><img src="{{ URL::asset('/assets/img/specialities/specialities-03.svg') }}"
                                     alt="kidney-image"></span>
                         </div>
-                        <p>Urology</p>
+                        <p>{{ __('messages.urology') }}</p>
                     </div>
                 </div>
                 <div class="item">
@@ -186,7 +186,7 @@
                             <span><img src="{{ URL::asset('/assets/img/specialities/specialities-04.svg') }}"
                                     alt="bone-image"></span>
                         </div>
-                        <p>Orthopedic</p>
+                        <p>{{ __('messages.orthopedic') }}</p>
                     </div>
                 </div>
                 <div class="item">
@@ -195,7 +195,7 @@
                             <span><img src="{{ URL::asset('/assets/img/specialities/specialities-05.svg') }}"
                                     alt="dentist"></span>
                         </div>
-                        <p>Dentist</p>
+                        <p>{{ __('messages.dentist') }}</p>
                     </div>
                 </div>
                 <div class="item">
@@ -204,7 +204,7 @@
                             <span><img src="{{ URL::asset('/assets/img/specialities/specialities-06.svg') }}"
                                     alt="eye-image"></span>
                         </div>
-                        <p>Ophthalmology</p>
+                        <p>{{ __('messages.ophthalmology') }}</p>
                     </div>
                 </div>
                 <div class="item">
@@ -213,13 +213,13 @@
                             <span><img src="{{ URL::asset('/assets/img/specialities/specialities-02.svg') }}"
                                     alt="brain-image"></span>
                         </div>
-                        <p>Neurology</p>
+                        <p>{{ __('messages.neurology') }}</p>
                     </div>
                 </div>
             </div>
             <div class="specialities-btn aos" data-aos="fade-up">
                 <a href="{{ url('search') }}" class="btn">
-                    See All Specialities
+                    {{ __('messages.see_all_specialities') }}
                 </a>
             </div>
         </div>
@@ -232,7 +232,7 @@
             <div class="row">
                 <div class="col-md-12 aos" data-aos="fade-up">
                     <div class="section-header-one section-header-slider text-center">
-                        <h2 class="section-title">Best Doctors</h2>
+                        <h2 class="section-title">{{ __('messages.best_doctors') }}</h2>
                     </div>
                 </div>
             </div>
@@ -564,58 +564,51 @@
                 </div>
                 <div class="col-lg-8 col-md-12 work-details">
                     <div class="section-header-one aos" data-aos="fade-up">
-                        <h5>How it Works</h5>
-                        <h2 class="section-title">4 easy steps to get your solution</h2>
+                        <h5>{{ __('messages.how_it_works') }}</h5>
+                        <h2 class="section-title">{{ __('messages.steps_title') }}</h2>
                     </div>
                     <div class="row">
                         <div class="col-lg-6 col-md-6 aos" data-aos="fade-up">
                             <div class="work-info">
                                 <div class="work-icon">
-                                    <span><img src="{{ URL::asset('/assets/img/icons/work-01.svg') }}"
-                                            alt="search-doctor-icon"></span>
+                                    <span><img src="{{ URL::asset('/assets/img/icons/work-01.svg') }}" alt="search-doctor-icon"></span>
                                 </div>
                                 <div class="work-content">
-                                    <h5>Search Doctor</h5>
-                                    <p>Search for a doctor based on specialization, location, or availability. </p>
+                                    <h5>{{ __('messages.search_doctor') }}</h5>
+                                    <p>{{ __('messages.search_doctor_description') }}</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 aos" data-aos="fade-up">
                             <div class="work-info">
                                 <div class="work-icon">
-                                    <span><img src="{{ URL::asset('/assets/img/icons/work-02.svg') }}"
-                                            alt="doctor-profile-icon"></span>
+                                    <span><img src="{{ URL::asset('/assets/img/icons/work-02.svg') }}" alt="doctor-profile-icon"></span>
                                 </div>
                                 <div class="work-content">
-                                    <h5>Check Doctor Profile</h5>
-                                    <p>Explore detailed doctor profiles on our platform to make informed healthcare
-                                        decisions.</p>
+                                    <h5>{{ __('messages.check_doctor_profile') }}</h5>
+                                    <p>{{ __('messages.check_doctor_profile_description') }}</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 aos" data-aos="fade-up">
                             <div class="work-info">
                                 <div class="work-icon">
-                                    <span><img src="{{ URL::asset('/assets/img/icons/work-03.svg') }}"
-                                            alt="calendar-icon"></span>
+                                    <span><img src="{{ URL::asset('/assets/img/icons/work-03.svg') }}" alt="calendar-icon"></span>
                                 </div>
                                 <div class="work-content">
-                                    <h5>Schedule Appointment</h5>
-                                    <p>After choose your preferred doctor, select a convenient time slot, & confirm your
-                                        appointment.</p>
+                                    <h5>{{ __('messages.schedule_appointment') }}</h5>
+                                    <p>{{ __('messages.schedule_appointment_description') }}</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 aos" data-aos="fade-up">
                             <div class="work-info">
                                 <div class="work-icon">
-                                    <span><img src="{{ URL::asset('/assets/img/icons/work-04.svg') }}"
-                                            alt="solution-icon"></span>
+                                    <span><img src="{{ URL::asset('/assets/img/icons/work-04.svg') }}" alt="solution-icon"></span>
                                 </div>
                                 <div class="work-content">
-                                    <h5>Get Your Solution</h5>
-                                    <p>Discuss your health concerns with the doctor and receive personalized advice &
-                                        solution.</p>
+                                    <h5>{{ __('messages.get_solution') }}</h5>
+                                    <p>{{ __('messages.get_solution_description') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -624,6 +617,7 @@
             </div>
         </div>
     </section>
+    
     <!-- /Work Section -->
 
     <!-- Articles Section -->
@@ -664,7 +658,7 @@
                                     </h4>
                                     <p>Explore the benefits & challenges of virtual healthcare appointments, along with tips
                                         for making good health.</p>
-                                    <a href="{{ url('frontend/blog-details') }}" class="btn">Read More</a>
+                                    <a href="{{ url('frontend/blog-details') }}" class="btn">{{ __('messages.read_more') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -697,7 +691,7 @@
                                     </h4>
                                     <p>Uncover strategies to achieve a harmonious balance between professional commitments
                                         and personal well-being.</p>
-                                    <a href="{{ url('frontend/blog-details') }}" class="btn">Read More</a>
+                                    <a href="{{ url('frontend/blog-details') }}" class="btn">{{ __('messages.read_more') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -730,7 +724,7 @@
                                     </h4>
                                     <p>Explore importance of quality sleep & learn tips to improve your sleep, ensuring you
                                         wake up refreshed & ready to face the day.</p>
-                                    <a href="{{ url('frontend/blog-details') }}" class="btn">Read More</a>
+                                    <a href="{{ url('frontend/blog-details') }}" class="btn">{{ __('messages.read_more') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -763,7 +757,7 @@
                                     </h4>
                                     <p>Delve into the impact of digital life on mental health & discover practical
                                         strategies to maintain mental well-being.</p>
-                                    <a href="{{ url('frontend/blog-details') }}" class="btn">Read More</a>
+                                    <a href="{{ url('frontend/blog-details') }}" class="btn">{{ __('messages.read_more') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -782,11 +776,11 @@
                     <div class="col-lg-6 col-md-12">
                         <div class="app-content">
                             <div class="app-header aos" data-aos="fade-up">
-                                <h5>Working for Your Better Health.</h5>
-                                <h2>Download the Surna App today!</h2>
+                                <h5>{{ __('messages.working_for_better_health') }}</h5>
+                                <h2>{{ __('messages.download_the_app') }}</h2>
                             </div>
                             <div class="app-scan aos" data-aos="fade-up">
-                                <p>Scan the QR code to get the app now</p>
+                                <p>{{ __('messages.scan_qr_to_get_app') }}</p>
                                 <img src="{{ URL::asset('/assets/img/scan-img.png') }}" alt="scan-image">
                             </div>
                             <div class="google-imgs aos" data-aos="fade-up">
@@ -808,16 +802,18 @@
             </div>
         </div>
     </section>
+    
     <!-- /App Section -->
 
     <!-- FAQ Section -->
+  
     <section class="faq-section">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="section-header-one aos" data-aos="fade-up">
-                        <h5>Get Your Answer</h5>
-                        <h2 class="section-title">Frequently Asked Questions</h2>
+                        <h5>{{ __('messages.get_your_answer')}}</h5>
+                        <h2 class="section-title">{{ __('messages.frequently_asked_questions')}}</h2>
                     </div>
                 </div>
             </div>
@@ -831,7 +827,7 @@
                             </div>
                             <div class="faq-patients-content">
                                 <h4><span class="count-digit">95</span>k+</h4>
-                                <p>Happy Patients</p>
+                                <p>{{ __('messages.happy_patients')}}</p>
                             </div>
                         </div>
                     </div>
@@ -839,87 +835,67 @@
                 <div class="col-lg-6 col-md-12">
                     <div class="faq-info aos" data-aos="fade-up">
                         <div class="accordion" id="faq-details">
-
-                            <!-- FAQ Item -->
+                            <!-- FAQ Item 1 -->
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingOne">
                                     <a href="javascript:void(0);" class="accordion-button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        How do I book an appointment with a doctor?
+                                        {{ __('messages.how_to_book_appointment')}}
                                     </a>
                                 </h2>
                                 <div id="collapseOne" class="accordion-collapse collapse show"
                                     aria-labelledby="headingOne" data-bs-parent="#faq-details">
                                     <div class="accordion-body">
-                                        <div class="accordion-content">
-                                            <p>Yes, simply visit our website and log in or create an account. Search for a
-                                                doctor based on specialization, location, or availability & confirm your
-                                                booking.</p>
-                                        </div>
+                                        <p>{{ __('messages.how_to_book_answer')}}</p>
                                     </div>
                                 </div>
                             </div>
-                            <!-- /FAQ Item -->
-
-                            <!-- FAQ Item -->
+                            <!-- FAQ Item 2 -->
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingTwo">
                                     <a href="javascript:void(0);" class="accordion-button collapsed"
                                         data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false"
                                         aria-controls="collapseTwo">
-                                        Can I request a specific doctor when booking my appointment?
+                                        {{ __('messages.can_request_specific_doctor')}}
                                     </a>
                                 </h2>
                                 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                                     data-bs-parent="#faq-details">
                                     <div class="accordion-body">
-                                        <div class="accordion-content">
-                                            <p>Yes, you can usually request a specific doctor when booking your appointment,
-                                                though availability may vary based on their schedule.</p>
-                                        </div>
+                                        <p>{{ __('messages.can_request_answer')}}</p>
                                     </div>
                                 </div>
                             </div>
-                            <!-- /FAQ Item -->
-
-                            <!-- FAQ Item -->
+                            <!-- FAQ Item 3 -->
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingThree">
                                     <a href="javascript:void(0);" class="accordion-button collapsed"
                                         data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false"
                                         aria-controls="collapseThree">
-                                        What should I do if I need to cancel or reschedule my appointment?
+                                        {{ __('messages.cancel_or_reschedule')}}
                                     </a>
                                 </h2>
-                                <div id="collapseThree" class="accordion-collapse collapse"
-                                    aria-labelledby="headingThree" data-bs-parent="#faq-details">
+                                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                                    data-bs-parent="#faq-details">
                                     <div class="accordion-body">
-                                        <div class="accordion-content">
-                                            <p>If you need to cancel or reschedule your appointment, contact the doctor as
-                                                soon as possible to inform them and to reschedule for another available time
-                                                slot.</p>
-                                        </div>
+                                        <p>{{ __('messages.cancel_or_reschedule_answer')}}</p>
                                     </div>
                                 </div>
                             </div>
-                            <!-- /FAQ Item -->
-
                             <!-- FAQ Item -->
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingFour">
                                     <a href="javascript:void(0);" class="accordion-button collapsed"
                                         data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false"
                                         aria-controls="collapseFour">
-                                        What if I'm running late for my appointment?
+                                        {{ __('messages.running_late')}}
                                     </a>
                                 </h2>
                                 <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
                                     data-bs-parent="#faq-details">
                                     <div class="accordion-body">
                                         <div class="accordion-content">
-                                            <p>If you know you will be late, it's courteous to call the doctor's office and
-                                                inform them. Depending on their policy and schedule, they may be able to
-                                                accommodate you or reschedule your appointment.</p>
+                                            <p> {{ __('messages.running_late_answer')}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -932,22 +908,19 @@
                                     <a href="javascript:void(0);" class="accordion-button collapsed"
                                         data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false"
                                         aria-controls="collapseFive">
-                                        Can I book appointments for family members or dependents?
+                                        {{ __('messages.book_for_family')}}
                                     </a>
                                 </h2>
                                 <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
                                     data-bs-parent="#faq-details">
                                     <div class="accordion-body">
                                         <div class="accordion-content">
-                                            <p>Yes, in many cases, you can book appointments for family members or
-                                                dependents. However, you may need to provide their personal information and
-                                                consent to do so.</p>
+                                            <p> {{ __('messages.book_for_family_answer')}}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <!-- /FAQ Item -->
-
                         </div>
                     </div>
                 </div>
@@ -970,8 +943,8 @@
                                 </div>
                                 <div class="testimonial-content">
                                     <div class="section-header-one section-header section-inner-header testimonial-header">
-                                        <h5>Testimonials</h5>
-                                        <h2 class="section-title">What Our Client Says</h2>
+                                        <h5> {{ __('messages.testimonials')}}</h5>
+                                        <h2 class="section-title"> {{ __('messages.what_our_clients_say')}}</h2>
                                     </div>
                                     <div class="testimonial-details">
                                         <p>Surna exceeded my expectations in healthcare. The seamless booking process,

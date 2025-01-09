@@ -3,10 +3,10 @@
 @section('content')
     @component('components.breadcrumb')
         @slot('title')
-            Booking
+            {{ __('messages.booking')}}
         @endslot
         @slot('li_1')
-            Booking
+            {{ __('messages.booking')}}
         @endslot
     @endcomponent
     <!-- Page Content -->
@@ -189,10 +189,9 @@
                                                     @endforeach
                                                 </ul>
                                             @else
-                                                <ul>
-                                                    <li>No available timings for this doctor.</li>
-
-                                                </ul>
+                                            <div>
+                                                {{ __('messages.no_available_timings')}}
+                                            </div>
                                             @endif
                                         </div>
 
@@ -204,7 +203,7 @@
 
                         </div>
                         <div class="submit-section proceed-btn text-end">
-                            <button type="submit" class="btn btn-primary">Proceed to Book</button>
+                            <button type="submit" class="btn btn-primary">{{ __('messages.proceed_to_book')}}</button>
                         </div>
                     </form>
                     <!-- /Schedule Widget -->
