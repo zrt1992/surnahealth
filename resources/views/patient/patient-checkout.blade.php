@@ -13,44 +13,12 @@
     <div class="content">
         <div class="container">
             <div class="row">
-                <div class="col-md-7 col-lg-8">
+                {{-- <div class="col-md-7 col-lg-8">
                     <div class="card">
                         <div class="card-body">
-                            <!-- Checkout Form -->
-                            <form action="{{ url('booking-success') }}">
-                                <!-- Personal Information -->
-                                <div class="info-widget">
-                                    <h4 class="card-title">Personal Information</h4>
-                                    <div class="row">
-                                        <div class="col-md-6 col-sm-12">
-                                            <div class="mb-3 card-label">
-                                                <label class="mb-2">First Name</label>
-                                                <input class="form-control" type="text">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-sm-12">
-                                            <div class="mb-3 card-label">
-                                                <label class="mb-2">Last Name</label>
-                                                <input class="form-control" type="text">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-sm-12">
-                                            <div class="mb-3 card-label">
-                                                <label class="mb-2">Email</label>
-                                                <input class="form-control" type="email">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-sm-12">
-                                            <div class="mb-3 card-label">
-                                                <label class="mb-2">Phone</label>
-                                                <input class="form-control" type="text">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="exist-customer">Existing Customer? <a href="{{url('login')}}">Click here to login</a>
-                                    </div>
-                                </div>
-                                <!-- /Personal Information -->
+                           
+                            <form action="{{ url('booking-success') }}" method="POST">
+                              
 
                                 <div class="payment-widget">
                                     <h4 class="card-title">Payment Method</h4>
@@ -66,34 +34,34 @@
                                             <div class="col-md-6">
                                                 <div class="mb-3 card-label">
                                                     <label for="card_name">Name on Card</label>
-                                                    <input class="form-control" id="card_name" type="text">
+                                                    <input class="form-control" id="card_name" type="text" name="card_name">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="mb-3 card-label">
                                                     <label for="card_number">Card Number</label>
                                                     <input class="form-control" id="card_number"
-                                                        placeholder="1234  5678  9876  5432" type="text">
+                                                       type="text" name="card_number">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="mb-3 card-label">
                                                     <label for="expiry_month">Expiry Month</label>
                                                     <input class="form-control" id="expiry_month" placeholder="MM"
-                                                        type="text">
+                                                        type="text" name="expiry_month">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="mb-3 card-label">
                                                     <label for="expiry_year">Expiry Year</label>
                                                     <input class="form-control" id="expiry_year" placeholder="YY"
-                                                        type="text">
+                                                        type="text" name="expiry_year">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="mb-3 card-label">
                                                     <label for="cvv">CVV</label>
-                                                    <input class="form-control" id="cvv" type="text">
+                                                    <input class="form-control" id="cvv" type="text" name="cvv">
                                                 </div>
                                             </div>
                                         </div>
@@ -128,14 +96,15 @@
 
                                 </div>
                             </form>
-                            <!-- /Checkout Form -->
+                           
+                           
 
                         </div>
                     </div>
 
-                </div>
+                </div> --}}
 
-                <div class="col-md-5 col-lg-4 theiaStickySidebar">
+                <div class="col-md-9 col-lg-8 theiaStickySidebar">
 
                     <!-- Booking Summary -->
                     <div class="card booking-card">
@@ -147,10 +116,10 @@
                             <!-- Booking Doctor Info -->
                             <div class="booking-doc-info">
                                 <a href="{{ url('doctor-profile') }}" class="booking-doc-img">
-                                    <img src="{{ URL::asset('/assets/img/doctors/doctor-thumb-02.jpg') }}" alt="User Image">
+                                    <img src="{{$doctor->profile_image ??  URL::asset('/assets/img/doctors/doctor-thumb-02.jpg') }}" alt="User Image">
                                 </a>
                                 <div class="booking-info">
-                                    <h4><a href="{{ url('doctor-profile') }}">Dr. Darren Elder</a></h4>
+                                    <h4><a href="{{ url('doctor-profile') }}">Dr. {{ $doctor->name ?? '--' }}</a></h4>
                                     <div class="rating">
                                         <i class="fas fa-star filled"></i>
                                         <i class="fas fa-star filled"></i>
@@ -160,7 +129,7 @@
                                         <span class="d-inline-block average-rating">35</span>
                                     </div>
                                     <div class="clinic-details">
-                                        <p class="doc-location"><i class="fas fa-map-marker-alt"></i> Newyork, USA</p>
+                                        <p class="doc-location"><i class="fas fa-map-marker-alt"></i> {{ $doctor->city ?? '--'}},{{ $doctor->state ?? '--'}}, {{ $doctor->country ?? '--'}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -169,22 +138,38 @@
                             <div class="booking-summary">
                                 <div class="booking-item-wrap">
                                     <ul class="booking-date">
-                                        <li>Date :<span>14 Nov 2023</span></li>
-                                        <li>Time :<span>10:00 AM</span></li>
+                                        <li>Date :<span>{{ $storedBookingData['booking_date'] ?? '--' }}</span></li>
+                                        <li>Time :<span>{{ $slot->start_time ?? '--' }}</span></li>
                                     </ul>
                                     <ul class="booking-fee">
-                                        <li>Consulting Fee <span>$100</span></li>
-                                        <li>Booking Fee <span>$10</span></li>
-                                        <li>Video Call <span>$50</span></li>
+                                        <li>Consulting Fee <span>${{ $doctor->consultation_fees ?? '--' }}</span></li>
+                                        {{-- <li>Booking Fee <span>$10</span></li>
+                                        <li>Video Call <span>$50</span></li> --}}
                                     </ul>
                                     <div class="booking-total">
                                         <ul class="booking-total-list">
                                             <li>
                                                 <span>Total</span>
-                                                <span class="total-cost">$160</span>
+                                                <span class="total-cost">${{ $doctor->consultation_fees ?? '--' }}</span>
                                             </li>
                                         </ul>
                                     </div>
+                                    <form action="{{ url('booking-success') }}" method="POST" id="payment-form">
+                                        @csrf
+                                        <input type="hidden" name="payment_amount" value="{{ $doctor->consultation_fees ?? '0' }}"> <!-- Example amount in cents -->
+                                       
+                                        <div style="display: flex; align-items: center; gap: 10px;">
+                                            <!-- Payment Button -->
+                                            <button type="button" id="checkout-button" class="btn btn-primary submit-btn">Confirm and Pay</button>
+                                            
+                                            <!-- Loader -->
+                                            <div id="payment-loader" style="display: none;">
+                                                <div class="spinner-border text-primary" role="status">
+                                                    <span class="visually-hidden">Loading...</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -197,5 +182,49 @@
         </div>
 
     </div>
+
+    <script src="https://js.stripe.com/v3/"></script>
+<script>
+   const stripe = Stripe('{{ config('services.stripe.key') }}');
+const checkoutButton = document.getElementById('checkout-button');
+const loader = document.getElementById('payment-loader');
+
+checkoutButton.addEventListener('click', async () => {
+    // Show the loader and disable the button
+    loader.style.display = 'block';
+    checkoutButton.disabled = true;
+    checkoutButton.innerHTML = 'Processing...';
+
+    try {
+        const response = await fetch("{{ url('patient/create-checkout-session') }}", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({
+                payment_amount: document.querySelector('input[name="payment_amount"]').value
+            })
+        });
+
+        const session = await response.json();
+        if (session.id) {
+            // Redirect to Stripe Checkout
+            await stripe.redirectToCheckout({ sessionId: session.id });
+        } else {
+            throw new Error('Session creation failed');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again.');
+    } finally {
+        // Hide the loader and enable the button
+        loader.style.display = 'none';
+        checkoutButton.disabled = false;
+        checkoutButton.innerHTML = 'Confirm and Pay';
+    }
+});
+
+</script>
     <!-- /Page Content -->
 @endsection

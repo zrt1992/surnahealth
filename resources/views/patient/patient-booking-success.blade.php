@@ -20,9 +20,11 @@
                             <div class="success-cont">
                                 <i class="fas fa-check"></i>
                                 <h3>Appointment booked Successfully!</h3>
-                                <p>Appointment booked with <strong>Dr. Darren Elder</strong><br> on <strong>12 Nov 2023
-                                        5:00PM to 6:00PM</strong></p>
-                                <a href="{{ url('invoice-view') }}" class="btn btn-primary view-inv-btn">View Invoice</a>
+                                {{-- <p>Appointment booked with <strong>Dr. Darren Elder</strong><br> on <strong>12 Nov 2023
+                                        5:00PM to 6:00PM</strong></p> --}}
+                                {{-- <a href="{{ url('invoice-view') }}" class="btn btn-primary view-inv-btn">View Invoice</a> --}}
+                                <a href="{{ route('patient-appointments') }}" class="btn btn-primary view-inv-btn">View Appointments</a>
+
                             </div>
                         </div>
                     </div>

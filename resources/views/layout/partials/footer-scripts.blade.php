@@ -642,11 +642,13 @@
 
 {{-- search script --}}
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const searchForm = document.getElementById('searchForm');
-        const searchInput = document.getElementById('searchInput');
-        const searchIcon = document.getElementById('searchIcon');
+   document.addEventListener('DOMContentLoaded', function () {
+    const searchForm = document.getElementById('searchForm');
+    const searchInput = document.getElementById('searchInput');
+    const searchIcon = document.getElementById('searchIcon');
 
+    // Check if the elements exist before adding event listeners
+    if (searchForm && searchInput) {
         // Submit form on Enter key press
         searchInput.addEventListener('keypress', function (event) {
             if (event.key === 'Enter') {
@@ -654,10 +656,14 @@
                 searchForm.submit();
             }
         });
+    }
 
+    if (searchForm && searchIcon) {
         // Submit form on search icon click
         searchIcon.addEventListener('click', function () {
             searchForm.submit();
         });
-    });
+    }
+});
+
 </script>
