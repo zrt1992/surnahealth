@@ -21,7 +21,7 @@ class StripeService
      * @param string $cancelUrl
      * @return string
      */
-    public function createCheckoutSession(string $productName, int $amount, string $successUrl, string $cancelUrl, $customerEmail): string
+    public function createCheckoutSession(string $productName, int $amount, string $successUrl, string $cancelUrl, $customerEmail,  array $metadata): string
     {
         $session = Session::create([
             'payment_method_types' => ['card'],
@@ -35,6 +35,7 @@ class StripeService
                 ],
                 'quantity' => 1,
             ]],
+           'metadata' => $metadata, 
             'mode' => 'payment',
             'success_url' => $successUrl,
             'cancel_url' => $cancelUrl,

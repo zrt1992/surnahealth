@@ -24,7 +24,7 @@ class BookingController extends Controller
     protected $stripeService;
 
     // Inject the bookingRepository
-    public function __construct(BookingRepositoryInterface $bookingRepository,StripeService $stripeService)
+    public function __construct(BookingRepositoryInterface $bookingRepository, StripeService $stripeService)
     {
         $this->bookingRepository = $bookingRepository;
         $this->stripeService = $stripeService;
@@ -45,11 +45,11 @@ class BookingController extends Controller
         return view('doctor-profile-settings', get_defined_vars());
     }
 
-   
 
-    public function getPatientAppointments()
+
+    public function getPatientAppointments(Request $request)
     {
-        $data = $this->bookingRepository->getPatientAppointments();
+        $data = $this->bookingRepository->getPatientAppointments($request);
 
         $appointmentRequests = AppointmentRequests::where(function ($query) {
             $query->where('status', '!=', 'rejected')->orWhereNull('status');
@@ -69,9 +69,9 @@ class BookingController extends Controller
         return view('patient.patient-appointments', get_defined_vars());
     }
 
-    public function getPatientAppointmentsGrid()
+    public function getPatientAppointmentsGrid(Request $request)
     {
-        $data = $this->bookingRepository->getPatientAppointments();
+        $data = $this->bookingRepository->getPatientAppointments($request);
         $appointmentRequests = AppointmentRequests::where('user_id', auth()->user()->id)->get();
 
         return view('patient.patient-appointments-grid', get_defined_vars());
@@ -124,10 +124,10 @@ class BookingController extends Controller
             if ($reshedule) {
                 return back()->with('success', 'Your appointment is resheduled.');
             }
-        } 
+        }
 
-        $checkAppointmentRequest = AppointmentRequests::where('user_id',auth()->user()->id)->where('doctor_id',$request->doctor_id)->where('status','!=','rejected')->first();
-        $checkAppointment = Appointment::where('user_id',auth()->user()->id)->where('doctor_id',$request->doctor_id)->first();
+        $checkAppointmentRequest = AppointmentRequests::where('user_id', auth()->user()->id)->where('doctor_id', $request->doctor_id)->where('status', '!=', 'rejected')->first();
+        $checkAppointment = Appointment::where('user_id', auth()->user()->id)->where('doctor_id', $request->doctor_id)->first();
 
         if ($checkAppointmentRequest || $checkAppointment) {
             return back()->with('error', 'You already have booked appointments with this doctor.');
@@ -141,14 +141,13 @@ class BookingController extends Controller
     public function checkout()
     {
         $storedBookingData = session('booking_data');
-      
-        $doctor=User::find($storedBookingData['doctor_id']);
-        // dd($storedBookingData);
-        $slot=AvailableTimming::find($storedBookingData['slot_id']);
 
-      
-        return view('patient.patient-checkout',get_defined_vars());
-      
+        $doctor = User::find($storedBookingData['doctor_id']);
+        // dd($storedBookingData);
+        $slot = AvailableTimming::find($storedBookingData['slot_id']);
+
+
+        return view('patient.patient-checkout', get_defined_vars());
     }
 
     public function createCheckoutSession(Request $request)
@@ -157,16 +156,23 @@ class BookingController extends Controller
         if (!$storedBookingData) {
             return response()->json(['error' => 'Booking data not found.'], 400);
         }
-    
+
         $validated = $request->validate([
             'payment_amount' => 'required|numeric|min:1',
             'appointment_req_id' => 'nullable|exists:appointments,id',
         ]);
-    
+
         $amount = $validated['payment_amount']; // Amount in cents
         $successUrl = url('patient/booking-success') . '?session_id={CHECKOUT_SESSION_ID}';
         $cancelUrl = url('patient/patient-checkout');
-    
+
+        $metaData = [
+            'user_id' => auth()->id(),
+            'doctor_id' => $storedBookingData['doctor_id'],
+            'slot_id' => $storedBookingData['slot_id'],
+            'booking_date' => $storedBookingData['booking_date'],
+            'status' => 'pending',
+        ];
         try {
             // Create Stripe session
             $sessionId = $this->stripeService->createCheckoutSession(
@@ -175,23 +181,47 @@ class BookingController extends Controller
                 $successUrl,
                 $cancelUrl,
                 auth()->user()->email,
+                $metaData
             );
-    
-            // Save booking details to the database
-            $validated['user_id'] = auth()->id();
-            $validated['doctor_id'] = $storedBookingData['doctor_id'];
-            $validated['slot_id'] = $storedBookingData['slot_id'];
-            $validated['booking_date'] = $storedBookingData['booking_date'];
-            $validated['status'] = 'pending';
-    
-            if ($request->appointment_req_id === null) {
+            return response()->json(['id' => $sessionId]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+
+    public function bookingSuccess(Request $request)
+    {
+        $sessionId = $request->query('session_id');
+        // if (!$sessionId) {
+        //     return redirect('/')->with('error', 'Payment failed or canceled.');
+        // }
+
+        try {
+
+            $session = Session::retrieve($sessionId);
+            if ($session->payment_status !== 'paid') {
+                return redirect('/')->with('error', 'Payment not completed. Please try again.');
+            }
+
+            $metadata = $session->metadata;
+            $validated = [
+                'user_id' => $metadata->user_id,
+                'doctor_id' => $metadata->doctor_id,
+                'slot_id' => $metadata->slot_id,
+                'booking_date' => $metadata->booking_date,
+                'status' => 'confirmed',
+            ];
+
+            if (!$request->appointment_req_id) {
                 $data = $this->bookingRepository->create($validated);
             } else {
                 $data = $this->bookingRepository->update($request->appointment_req_id, $validated);
             }
-    
+
             if ($data) {
-                $doctor = User::findOrFail($storedBookingData['doctor_id']);
+                $doctor = User::findOrFail($metadata->doctor_id);
+
                 $emailData = [
                     'subject' => 'New Booking Request',
                     'greeting' => 'Hello ' . $doctor->name,
@@ -200,29 +230,66 @@ class BookingController extends Controller
                     'actionURL' => url('/doctor-request'),
                     'thanks' => 'Thank you for using our platform!',
                 ];
+
                 Mail::to($doctor->email)->send(new BookingAppointmentEmail($emailData));
             }
-    
-            return response()->json(['id' => $sessionId]);
+
+            return redirect('/patient/booking-success')->with('success', 'Payment successful! Your appointment is confirmed.');
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
+            return redirect('/')->with('error', 'Failed to confirm booking. ' . $e->getMessage());
         }
     }
-    
 
-    public function bookingSuccess(Request $request)
+
+    public function bookingSuccessModal(Request $request)
     {
         $sessionId = $request->query('session_id');
-        if (!$sessionId) {
+        
+ if (!$sessionId) {
             return redirect('/')->with('error', 'Payment failed or canceled.');
         }
+        try {
 
-        // Here, you can fetch the session details and save the booking to your database
-        return redirect('/patient/booking-success')->with('success', 'Payment successful! Your appointment is confirmed.');
-    }
+            $session = Session::retrieve($sessionId);
 
-    public function bookingSuccessModal()
-    {
-        return view('patient.patient-booking-success',get_defined_vars());
+            if ($session->payment_status !== 'paid') {
+                return redirect('/')->with('error', 'Payment not completed. Please try again.');
+            }
+
+            $metadata = $session->metadata;
+            $validated = [
+                'user_id' => $metadata->user_id,
+                'doctor_id' => $metadata->doctor_id,
+                'slot_id' => $metadata->slot_id,
+                'booking_date' => $metadata->booking_date,
+                'status' => 'confirmed',
+            ];
+
+            if (!$request->appointment_req_id) {
+                $data = $this->bookingRepository->create($validated);
+            } else {
+                $data = $this->bookingRepository->update($request->appointment_req_id, $validated);
+            }
+
+            if ($data) {
+                $doctor = User::findOrFail($metadata->doctor_id);
+
+                $emailData = [
+                    'subject' => 'New Booking Request',
+                    'greeting' => 'Hello ' . $doctor->name,
+                    'body' => 'You have received a new booking request!',
+                    'actionText' => 'View Request',
+                    'actionURL' => url('/doctor-request'),
+                    'thanks' => 'Thank you for using our platform!',
+                ];
+
+                Mail::to($doctor->email)->send(new BookingAppointmentEmail($emailData));
+            }
+
+            return view('patient.patient-booking-success', get_defined_vars())->with('success', 'Payment successful! Your appointment is confirmed.');
+        } catch (\Exception $e) {
+            return redirect('/')->with('error', 'Failed to confirm booking. ' . $e->getMessage());
+        }
+       
     }
 }

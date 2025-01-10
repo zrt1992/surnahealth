@@ -487,7 +487,7 @@
                                                 <div class="form-wrap">
                                                     <label class="col-form-label">Preferred doctor <span class="text-danger">*</span></label>
                                                     <input type="text" class="form-control" name="preferred_doctor" class="form-control"
-                                                        value="{{ old('preferred_doctor', $appointmentPreferences->preferred_doctor) }}">
+                                                        value="{{ old('preferred_doctor', $appointmentPreferences->preferred_doctor ?? '')  }}">
                                                     @error('preferred_doctor')
                                                         <div class="text-danger">{{ $message }}</div>
                                                     @enderror
@@ -498,7 +498,7 @@
                                                 <div class="form-wrap">
                                                     <label class="col-form-label">Preferred time <span class="text-danger">*</span></label>
                                                     <input type="time" class="form-control" name="preferred_time" class="form-control"
-                                                        value="{{ old('preferred_time', $appointmentPreferences->preferred_time) }}">
+                                                        value="{{ old('preferred_time', $appointmentPreferences->preferred_time ?? '') }}">
                                                     @error('preferred_time')
                                                         <div class="text-danger">{{ $message }}</div>
                                                     @enderror
@@ -514,7 +514,7 @@
                                                                 id="video_call" 
                                                                 name="video_call" 
                                                                 value="1"
-                                                                {{ old('video_call', $appointmentPreferences->video_call) == 1 ? 'checked' : '' }}>
+                                                                {{ old('video_call', $appointmentPreferences->video_call ?? '') == 1 ? 'checked' : '' }}>
                                                             <span class="checkmark"></span>
                                                         </label>
                                                     </div>
@@ -525,7 +525,7 @@
                                                                 id="audio_call" 
                                                                 name="audio_call" 
                                                                 value="1"
-                                                                {{ old('audio_call', $appointmentPreferences->audio_call) == 1 ? 'checked' : '' }}>
+                                                                {{ old('audio_call', $appointmentPreferences->audio_call ?? '') == 1 ? 'checked' : '' }}>
                                                             <span class="checkmark"></span>
                                                         </label>
                                                     </div>
@@ -536,7 +536,7 @@
                                                                 id="chat" 
                                                                 name="chat" 
                                                                 value="1"
-                                                                {{ old('chat', $appointmentPreferences->chat) == 1 ? 'checked' : '' }}>
+                                                                {{ old('chat', $appointmentPreferences->chat ?? '') == 1 ? 'checked' : '' }}>
                                                             <span class="checkmark"></span>
                                                         </label>
                                                     </div>

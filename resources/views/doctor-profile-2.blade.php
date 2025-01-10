@@ -104,15 +104,15 @@
                                 <a href="javascript:void(0)" class="btn btn-white fav-btn">
                                     <i class="far fa-bookmark"></i>
                                 </a>
-                                <a href="{{ url('chat') }}" class="btn btn-white msg-btn">
+                                <a href="{{ url('patient/chat/'. optional($doctor)->id) }}" class="btn btn-white msg-btn">
                                     <i class="far fa-comment-alt"></i>
                                 </a>
-                                <a href="{{ url('voice-call') }}" class="btn btn-white call-btn">
+                                {{-- <a href="{{ url('voice-call') }}" class="btn btn-white call-btn">
                                     <i class="fas fa-phone"></i>
                                 </a>
                                 <a href="{{ url('video-call') }}" class="btn btn-white call-btn">
                                     <i class="fas fa-video"></i>
-                                </a>
+                                </a> --}}
                             </div>
                             <div class="clinic-booking">
                                 <a class="apt-btn" href="{{ url('booking/' . optional($doctor)->id) }}">Book Appointment</a>
