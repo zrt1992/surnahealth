@@ -189,58 +189,6 @@ class BookingController extends Controller
         }
     }
 
-
-    public function bookingSuccess(Request $request)
-    {
-        $sessionId = $request->query('session_id');
-        // if (!$sessionId) {
-        //     return redirect('/')->with('error', 'Payment failed or canceled.');
-        // }
-
-        try {
-
-            $session = Session::retrieve($sessionId);
-            if ($session->payment_status !== 'paid') {
-                return redirect('/')->with('error', 'Payment not completed. Please try again.');
-            }
-
-            $metadata = $session->metadata;
-            $validated = [
-                'user_id' => $metadata->user_id,
-                'doctor_id' => $metadata->doctor_id,
-                'slot_id' => $metadata->slot_id,
-                'booking_date' => $metadata->booking_date,
-                'status' => 'confirmed',
-            ];
-
-            if (!$request->appointment_req_id) {
-                $data = $this->bookingRepository->create($validated);
-            } else {
-                $data = $this->bookingRepository->update($request->appointment_req_id, $validated);
-            }
-
-            if ($data) {
-                $doctor = User::findOrFail($metadata->doctor_id);
-
-                $emailData = [
-                    'subject' => 'New Booking Request',
-                    'greeting' => 'Hello ' . $doctor->name,
-                    'body' => 'You have received a new booking request!',
-                    'actionText' => 'View Request',
-                    'actionURL' => url('/doctor-request'),
-                    'thanks' => 'Thank you for using our platform!',
-                ];
-
-                Mail::to($doctor->email)->send(new BookingAppointmentEmail($emailData));
-            }
-
-            return redirect('/patient/booking-success')->with('success', 'Payment successful! Your appointment is confirmed.');
-        } catch (\Exception $e) {
-            return redirect('/')->with('error', 'Failed to confirm booking. ' . $e->getMessage());
-        }
-    }
-
-
     public function bookingSuccessModal(Request $request)
     {
         $sessionId = $request->query('session_id');
