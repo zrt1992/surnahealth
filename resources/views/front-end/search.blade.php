@@ -3,10 +3,10 @@
 @section('content')
     @component('components.breadcrumb')
         @slot('title')
-            Search
+           {{ __('messages.search')}}
         @endslot
         @slot('li_1')
-            Search
+           {{ __('messages.search')}}
         @endslot
     @endcomponent
     <!-- Page Content -->
@@ -17,7 +17,7 @@
                     <!-- Search Filter -->
                     <div class="card search-filter">
                         <div class="card-header">
-                            <h4 class="card-title mb-0">Search Filter</h4>
+                            <h4 class="card-title mb-0">{{ __('messages.search_filter')}}</h4>
                         </div>
                         <div class="card-body">
                             <div class="filter-widget">
@@ -26,7 +26,7 @@
                                 </div>
                             </div>
                             <div class="filter-widget">
-                                <h4>Gender</h4>
+                                <h4>{{ __('messages.gender')}}</h4>
                                 <div>
                                     <label class="custom_check">
                                         <input type="checkbox" name="gender_type" checked>
@@ -41,7 +41,7 @@
                                 </div>
                             </div>
                             <div class="filter-widget">
-                                <h4>Select Specialist</h4>
+                                <h4>{{ __('messages.select_specialist')}}</h4>
                                 <div>
                                     <label class="custom_check">
                                         <input type="checkbox" name="select_specialist" checked>
@@ -80,7 +80,7 @@
                                 </div>
                             </div>
                             <div class="btn-search">
-                                <button type="button" class="btn w-100">Search</button>
+                                <button type="button" class="btn w-100">{{ __('messages.search')}}</button>
                             </div>
                         </div>
                     </div>
@@ -167,8 +167,8 @@
                                         </ul>
                                     </div>
                                     <div class="clinic-booking">
-                                        <a class="view-pro-btn" href="{{ url('frontend/doctor-profile/'. $doctor->id) }}">View Profile</a>
-                                        <a class="apt-btn" href="{{ url('frontend/booking/'. $doctor->id) }}">Book Appointment</a>
+                                        <a class="view-pro-btn" href="{{ url('frontend/doctor-profile/'. $doctor->id) }}">{{ __('messages.view_profile')}}</a>
+                                        <a class="apt-btn" href="{{ url('frontend/booking/'. $doctor->id) }}">{{ __('messages.book_appointment')}}</a>
                                     </div>
                                 </div>
                             </div>
@@ -176,7 +176,7 @@
                     </div>
                     @endforeach
                     <div class="load-more text-center">
-                        <a class="btn btn-primary btn-sm prime-btn" href="javascript:void(0);">Load More</a>
+                        <a class="btn btn-primary btn-sm prime-btn" href="javascript:void(0);">{{ __('messages.load_more')}}</a>
                     </div>
                 </div>
             </div>
