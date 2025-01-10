@@ -15,7 +15,7 @@
                             </div>
                             <div class="col-md-12 col-lg-6 login-right">
                                 <div class="login-header">
-                                    <h3>Patient Register <a href="{{ url('doctor-register') }}">Are you a Doctor?</a></h3>
+                                    <h3>{{ GoogleTranslate::trans('Patient Register', app()->getLocale()) }} <a href="{{ url('doctor-register') }}">Are you a Doctor?</a></h3>
                                 </div>
 
                                 <!-- Register Form -->

@@ -52,7 +52,7 @@ Route::get('/', function () {
 
     return view('index');
 })->name('home-page')->middleware([ LocalizationMiddleware::class]);
-
+// Route::get('lang/change', [FrontendController::class, 'change'])->name('changeLang');
 // Front end pages
 Route::middleware([LocalizationMiddleware::class])->prefix('frontend')->group(function () {
     Route::get('/doctor-profile/{id?}', [FrontendController::class, 'doctorProfile'])->name('frontend.doctor-profile');
@@ -76,7 +76,7 @@ Route::middleware('auth')->group(function () {
  * doctors dashboard authenticated routes
  */
 
-Route::middleware(['auth', 'role:doctor', CheckRegistrationStep::class])->prefix('doctor')->group(function () {
+Route::middleware(['auth', 'role:doctor', CheckRegistrationStep::class,LocalizationMiddleware::class])->prefix('doctor')->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('doctor-dashboard');
 
@@ -657,7 +657,7 @@ Route::get('/product-healthcare', function () {
 
 Route::get('/register', function () {
     return view('register');
-})->name('register');
+})->name('register')->middleware([ LocalizationMiddleware::class]);
 Route::get('/reset-password', function () {
     return view('reset-password');
 })->name('reset-password');

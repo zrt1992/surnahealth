@@ -15,6 +15,12 @@ class LocalizationMiddleware
         if (in_array($locale, ['en', 'es', 'fr', 'pt'])) {
             App::setLocale($locale);
         }
+        if (session()->has('locale')) {
+
+            App::setLocale(session()->get('locale'));
+
+        }
+        // dd($locale);
         return $next($request);
     }
 }

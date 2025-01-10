@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class FrontendController extends Controller
 {
@@ -36,5 +37,19 @@ class FrontendController extends Controller
     public function blogDetails()
     {
         return view('front-end.blog-details', get_defined_vars());
+    }
+
+    public function change(Request $request)
+
+    {
+
+        App::setLocale($request->lang);
+
+        session()->put('locale', $request->lang);
+
+  
+
+        return redirect()->back();
+
     }
 }

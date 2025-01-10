@@ -1608,12 +1608,12 @@
                         ]))
                         <li class="register-btn">
                             <a href="{{ url('register') }}" class="btn reg-btn"><i
-                                    class="feather-user"></i>Registers</a>
+                                    class="feather-user"></i>{{ GoogleTranslate::trans('Register', app()->getLocale()) }}</a>
                         </li>
                         @if (\Illuminate\Support\Facades\Auth::check())
                             <li class="register-btn">
                                 <a href="{{ route('profile.destroy') }}" class="btn btn-primary log-btn"><i
-                                        class="feather-lock"></i>Logout</a>
+                                        class="feather-lock"></i>{{ GoogleTranslate::trans('Logout', app()->getLocale()) }}</a>
                             </li>
                         @else
                             <form id="logout-form" action="{{ route('profile.destroy') }}" method="POST"
@@ -1622,10 +1622,25 @@
                                 @method('delete')
                                 <li class="register-btn">
                                     <a href="{{ url('login') }}" class="btn btn-primary log-btn"><i
-                                            class="feather-lock"></i>Login</a>
+                                            class="feather-lock"></i>{{ GoogleTranslate::trans('Login', app()->getLocale()) }}</a>
                                 </li>
                             </form>
                         @endif
+                        <li class="register-btn">
+                            <div class="dropdown lang-dropdown">
+                                <a href="javascript:void(0);" class="dropdown-toggle nav-link"
+                                    data-bs-toggle="dropdown">
+                                    {{ strtoupper(app()->getLocale()) }}
+                                </a>
+                                <div class="dropdown-menu">
+                                   
+                                    <a class="dropdown-item" href="?lang=en" >English</a>
+                                    <a class="dropdown-item" href="?lang=fr" >Français</a>
+                                    <a class="dropdown-item" href="?lang=es" >Español</a>
+                                    <a class="dropdown-item" href="?lang=pt" >Português</a>
+                                </div>
+                            </div>
+                        </li>
                     @endif
                 </ul>
             </div>
@@ -1760,11 +1775,13 @@
                             'patient-appointment-details',
                             'patient-cancelled-appointment',
                             'doctor-cancelled-appointment-2',
+                            'register',
                         ]))
                         <li class="register-btn">
                             <a href="{{ url('register') }}" class="btn reg-btn"><i
                                     class="feather-user"></i>{{ __('messages.register') }}</a>
                         </li>
+                        
                         @if (\Illuminate\Support\Facades\Auth::check())
                             @csrf
                             @method('delete')
@@ -1789,15 +1806,17 @@
                                         data-bs-toggle="dropdown">
                                         {{ strtoupper(app()->getLocale()) }}
                                     </a>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="?lang=en">English</a>
-                                        <a class="dropdown-item" href="?lang=fr">Français</a>
-                                        <a class="dropdown-item" href="?lang=es">Español</a>
-                                        <a class="dropdown-item" href="?lang=pt">Português</a>
+                                    
+                                    <div class="dropdown-menu changeLang">
+                                       
+                                        <a class="dropdown-item" href="?lang=en" >English</a>
+                                        <a class="dropdown-item" href="?lang=fr" >Français</a>
+                                        <a class="dropdown-item" href="?lang=es" >Español</a>
+                                        <a class="dropdown-item" href="?lang=pt" >Português</a>
                                     </div>
                                 </div>
                             </li>
-                          
+                           
                            
                         @endif
                     @endif
@@ -2381,6 +2400,21 @@
                                         style="display: none;">
                                         @csrf
                                     </form>
+                                </div>
+                            </li>
+                            <li class="register-btn">
+                                <div class="dropdown lang-dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle nav-link"
+                                        data-bs-toggle="dropdown">
+                                        {{ strtoupper(app()->getLocale()) }}
+                                    </a>
+                                    <div class="dropdown-menu">
+                                       
+                                        <a class="dropdown-item" href="?lang=en" >English</a>
+                                        <a class="dropdown-item" href="?lang=fr" >Français</a>
+                                        <a class="dropdown-item" href="?lang=es" >Español</a>
+                                        <a class="dropdown-item" href="?lang=pt" >Português</a>
+                                    </div>
                                 </div>
                             </li>
                             <!-- /User Menu -->

@@ -60,16 +60,16 @@
                         <div class="appointment-tabs">
                             <ul class="nav nav-pills inner-tab " id="pills-tab" role="tablist">
                                 <li class="nav-item" role="presentation">
-                                    <button class="nav-link active" id="pills-upcoming-tab" data-bs-toggle="pill" data-bs-target="#pills-upcoming" type="button" role="tab" aria-controls="pills-upcoming" aria-selected="false">Upcoming<span>{{ $upcomingCount ?? '0' }}</span></button>
+                                    <button class="nav-link active" id="pills-upcoming-tab" data-bs-toggle="pill" data-bs-target="#pills-upcoming" type="button" role="tab" aria-controls="pills-upcoming" aria-selected="false">{{ GoogleTranslate::trans('Upcoming', app()->getLocale()) }}<span>{{ $upcomingCount ?? '0' }}</span></button>
                                 </li>	
                                 <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="pills-cancel-tab" data-bs-toggle="pill" data-bs-target="#pills-cancel" type="button" role="tab" aria-controls="pills-cancel" aria-selected="true">Cancelled<span>{{ $rejectedCount ?? '0' }}</span></button>
+                                    <button class="nav-link" id="pills-cancel-tab" data-bs-toggle="pill" data-bs-target="#pills-cancel" type="button" role="tab" aria-controls="pills-cancel" aria-selected="true">{{ GoogleTranslate::trans('Cancelled', app()->getLocale()) }}<span>{{ $rejectedCount ?? '0' }}</span></button>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="pills-complete-tab" data-bs-toggle="pill" data-bs-target="#pills-complete" type="button" role="tab" aria-controls="pills-complete" aria-selected="true">Completed<span>{{ $completedCount ?? '0' }}</span></button>
+                                    <button class="nav-link" id="pills-complete-tab" data-bs-toggle="pill" data-bs-target="#pills-complete" type="button" role="tab" aria-controls="pills-complete" aria-selected="true">{{ GoogleTranslate::trans('Completed', app()->getLocale()) }}<span>{{ $completedCount ?? '0' }}</span></button>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="pills-create-meeting-tab" data-bs-toggle="pill" data-bs-target="#pills-create-meeting" type="button" role="tab" aria-controls="pills-create-meeting" aria-selected="true">Create Meeting<span></span></button>
+                                    <button class="nav-link" id="pills-create-meeting-tab" data-bs-toggle="pill" data-bs-target="#pills-create-meeting" type="button" role="tab" aria-controls="pills-create-meeting" aria-selected="true">{{ GoogleTranslate::trans('Create Meeting', app()->getLocale()) }}<span></span></button>
                                 </li>
                             </ul>
                         </div>
@@ -84,7 +84,7 @@
                                 </div>
                                 <div class="form-sorts dropdown">
                                     <a href="javascript:void(0);" class="dropdown-toggle" id="table-filter">
-                                        <i class="fa-solid fa-filter me-2"></i>Filter By
+                                        <i class="fa-solid fa-filter me-2"></i>{{ GoogleTranslate::trans('Filter By', app()->getLocale()) }}
                                     </a>
                                     <div class="filter-dropdown-menu">
                                         <div class="filter-set-view">
@@ -93,7 +93,7 @@
                                                 <div class="filter-set-content">
                                                     <div class="filter-set-content-head">
                                                         <a href="#" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                            Name <i class="fa-solid fa-chevron-right"></i>
+                                                            {{ GoogleTranslate::trans('Name', app()->getLocale()) }} <i class="fa-solid fa-chevron-right"></i>
                                                         </a>
                                                     </div>
                                                     <div class="filter-set-contents accordion-collapse collapse show" id="collapseTwo" data-bs-parent="#accordionExample">
@@ -111,7 +111,7 @@
                                                 <div class="filter-set-content">
                                                     <div class="filter-set-content-head">
                                                         <a href="#" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                            Appointment Type <i class="fa-solid fa-chevron-right"></i>
+                                                            {{ GoogleTranslate::trans('Appointment Type', app()->getLocale()) }} <i class="fa-solid fa-chevron-right"></i>
                                                         </a>
                                                     </div>
                                                     <div class="filter-set-contents accordion-collapse collapse show" id="collapseOne" data-bs-parent="#accordionExample">
@@ -121,7 +121,7 @@
                                                                     <label class="checkboxs">
                                                                         <input type="checkbox" name="appointment_type[]" value="All Type" checked>
                                                                         <span class="checkmarks"></span>
-                                                                        <span class="check-title">All Type</span>
+                                                                        <span class="check-title">{{ GoogleTranslate::trans('All Type', app()->getLocale()) }}</span>
                                                                     </label>
                                                                 </div>
                                                             </li>
@@ -130,7 +130,7 @@
                                                                     <label class="checkboxs">
                                                                         <input type="checkbox" name="appointment_type[]" value="video_call">
                                                                         <span class="checkmarks"></span>
-                                                                        <span class="check-title">Video Call</span>
+                                                                        <span class="check-title">{{ GoogleTranslate::trans('Video Call', app()->getLocale()) }}</span>
                                                                     </label>
                                                                 </div>
                                                             </li>
@@ -139,7 +139,7 @@
                                                                     <label class="checkboxs">
                                                                         <input type="checkbox" name="appointment_type[]" value="audio_call">
                                                                         <span class="checkmarks"></span>
-                                                                        <span class="check-title">Audio Call</span>
+                                                                        <span class="check-title">{{ GoogleTranslate::trans('Audio Call', app()->getLocale()) }}</span>
                                                                     </label>
                                                                 </div>
                                                             </li>
@@ -148,7 +148,7 @@
                                                                     <label class="checkboxs">
                                                                         <input type="checkbox" name="appointment_type[]" value="chat">
                                                                         <span class="checkmarks"></span>
-                                                                        <span class="check-title">Chat</span>
+                                                                        <span class="check-title">{{ GoogleTranslate::trans('Chat', app()->getLocale()) }}</span>
                                                                     </label>
                                                                 </div>
                                                             </li>
@@ -159,8 +159,8 @@
                                             </div>
                                             <!-- Filter Buttons -->
                                             <div class="filter-reset-btns">
-                                                <button type="reset" class="btn btn-light">Reset</button>
-                                                <button type="submit" class="btn btn-primary">Filter Now</button>
+                                                <button type="reset" class="btn btn-light">{{ GoogleTranslate::trans('Reset', app()->getLocale()) }}</button>
+                                                <button type="submit" class="btn btn-primary">{{ GoogleTranslate::trans('Filter Now', app()->getLocale()) }}</button>
                                             </div>
                                         </div>
                                     </div>
@@ -184,22 +184,22 @@
                                             </a>
                                             <div class="patient-info">
                                                 <p>#Apt{{ str_pad($appointment->id, 4, '0', STR_PAD_LEFT) }}</p>
-                                                <h6><a href="{{ url('doctor-upcoming-appointment') }}">{{ $appointment->user->name }}</a></h6> 
+                                                <h6><a href="{{ url('doctor-upcoming-appointment') }}">{{ GoogleTranslate::trans( $appointment->user->name , app()->getLocale()) }}</a></h6> 
                                             </div>
                                         </div>
                                     </li>
                             
                                     <li class="appointment-info">
-                                        <p><i class="fa-solid fa-clock"></i>{{ \Carbon\Carbon::parse($appointment->start_date)->format('d M Y h:i A') }}</p>
+                                        <p><i class="fa-solid fa-clock"></i>{{ GoogleTranslate::trans( \Carbon\Carbon::parse($appointment->start_date)->format('d M Y h:i A') , app()->getLocale()) }}</p>
                                         <ul class="d-flex apponitment-types">
-                                            <li>Video Call</li> 
+                                            <li>{{ GoogleTranslate::trans('Video Call', app()->getLocale()) }}</li> 
                                         </ul>
                                     </li>
                             
                                     <li class="mail-info-patient">
                                         <ul>
-                                            <li><i class="fa-solid fa-envelope"></i>{{ $appointment->user->email }}</li>
-                                            <li><i class="fa-solid fa-phone"></i>{{ $appointment->user->phone }}</li> 
+                                            <li><i class="fa-solid fa-envelope"></i>{{ GoogleTranslate::trans( $appointment->user->email , app()->getLocale()) }}</li>
+                                            <li><i class="fa-solid fa-phone"></i>{{ GoogleTranslate::trans( $appointment->user->phone , app()->getLocale()) }}</li> 
                                         </ul>
                                     </li>
                             
@@ -225,9 +225,9 @@
                                     </li> --}}
                                     <li class="appointment-start">
                                         @if($appointment->google_meet_link)
-                                            <a href="{{ $appointment->google_meet_link }}" class="start-link" target="_blank">Start Now</a>
+                                            <a href="{{ $appointment->google_meet_link }}" class="start-link" target="_blank">{{ GoogleTranslate::trans('Start Now', app()->getLocale()) }}</a>
                                         @else
-                                            <span class="start-link disabled">No link available</span>
+                                            <span class="start-link disabled">{{ GoogleTranslate::trans('No link available', app()->getLocale()) }}</span>
                                         @endif
                                     </li>
                                 </ul>
@@ -256,20 +256,20 @@
                                             </a>
                                             <div class="patient-info">
                                                 <p>#{{ $rejected->id ?? "--"  }}</p>
-                                                <h6><a href="{{url('doctor-completed-appointment')}}">{{ $rejected->user->name ?? "--"  }}</a></h6>
+                                                <h6><a href="{{url('doctor-completed-appointment')}}">{{ GoogleTranslate::trans( $rejected->user->name ?? "--"  , app()->getLocale()) }}</a></h6>
                                             </div>
                                         </div>
                                     </li>
                                     <li class="appointment-info">
-                                        <p><i class="fa-solid fa-clock"></i>{{ $rejected->booking_date ?? '--' }}</p>
+                                        <p><i class="fa-solid fa-clock"></i>{{ GoogleTranslate::trans( $rejected->booking_date ?? '--' , app()->getLocale()) }}</p>
                                         <ul class="d-flex apponitment-types">
-                                            <li>General Visit</li>
-                                            <li>Video Call</li>
+                                           
+                                            <li>{{ GoogleTranslate::trans('Video Call', app()->getLocale()) }}</li>
                                         </ul>
                                         
                                     </li>
                                     <li class="appointment-detail-btn">
-                                        <a href="{{url('doctor-completed-appointment')}}" class="start-link">View Details</a>
+                                        <a href="{{url('doctor-completed-appointment')}}" class="start-link">{{ GoogleTranslate::trans('View Details', app()->getLocale()) }}</a>
                                     </li>
                                 </ul>
                               
@@ -294,20 +294,19 @@
                                             </a>
                                             <div class="patient-info">
                                                 <p>#{{ $completed->id ?? "--"  }}</p>
-                                                <h6><a href="{{url('doctor-completed-appointment')}}">{{ $completed->user->name ?? "--"  }}</a></h6>
+                                                <h6><a href="{{url('doctor-completed-appointment')}}">{{ GoogleTranslate::trans( $completed->user->name ?? "--"  , app()->getLocale()) }}</a></h6>
                                             </div>
                                         </div>
                                     </li>
                                     <li class="appointment-info">
-                                        <p><i class="fa-solid fa-clock"></i>{{ \Carbon\Carbon::parse($completed->start_date)->format('d M Y h:i A') }}</p>
+                                        <p><i class="fa-solid fa-clock"></i>{{ GoogleTranslate::trans( \Carbon\Carbon::parse($completed->start_date)->format('d M Y h:i A') , app()->getLocale()) }}</p>
                                         <ul class="d-flex apponitment-types">
-                                            <li>General Visit</li>
-                                            <li>Video Call</li>
+                                            <li>{{ GoogleTranslate::trans('Video Call', app()->getLocale()) }}</li>
                                         </ul>
                                         
                                     </li>
                                     <li class="appointment-detail-btn">
-                                        <a href="{{url('doctor-completed-appointment')}}" class="start-link">View Details</a>
+                                        <a href="{{url('doctor-completed-appointment')}}" class="start-link">{{ GoogleTranslate::trans('View Details', app()->getLocale()) }}</a>
                                     </li>
                                 </ul>
                              
@@ -322,7 +321,7 @@
                         </div>
                         <div class="tab-pane fade" id="pills-create-meeting" role="tabpanel" aria-labelledby="pills-create-meeting-tab">
                             <div class="setting-title">
-                                <h5>Start Meeting</h5>
+                                <h5>{{ GoogleTranslate::trans('Start Meeting', app()->getLocale()) }}</h5>
                             </div>
                             <form action="{{ route('google.meet.create') }}" method="POST">
                                 @csrf
@@ -331,7 +330,7 @@
                                         <div class="row membership-content">
                                             <div class="col-lg-3 col-md-6">
                                                 <div class="form-wrap">
-                                                    <label class="col-form-label">Title <span class="text-danger">*</span></label>
+                                                    <label class="col-form-label"> {{ GoogleTranslate::trans('Title', app()->getLocale()) }}<span class="text-danger">*</span></label>
                                                     <input  id="title" name="title" type="text" class="form-control"
                                                         placeholder="Add Title">
                                                 </div>
@@ -339,24 +338,24 @@
                                             <div class="col-lg-9 col-md-6">
                                                 <div class="d-flex align-items-center">
                                                     <div class="form-wrap w-100">
-                                                        <label class="col-form-label">description</label>
+                                                        <label class="col-form-label">{{ GoogleTranslate::trans('description', app()->getLocale()) }}</label>
                                                         <input name="description" type="text" class="form-control">
                                                     </div>   
                                                 </div>
                                             </div>
                                             <div class="col-lg-9 col-md-6">
                                                 <div class="form-wrap w-100">
-                                                    <label class="col-form-label">Start Time</label>
+                                                    <label class="col-form-label">{{ GoogleTranslate::trans('Start Time', app()->getLocale()) }}</label>
                                                     <input type="datetime-local" name="start_date" class="form-control" id="start_date">
                                                 </div>
                                                 <div class="form-wrap w-100">
-                                                    <label class="col-form-label">End Time</label>
+                                                    <label class="col-form-label">{{ GoogleTranslate::trans('End Time', app()->getLocale()) }}</label>
                                                     <input type="datetime-local" name="end_date" class="form-control" id="end_date">
                                                 </div>
                                             </div>
                                             <div class="col-lg-9 col-md-6">
                                                 <div class="form-wrap w-100">
-                                                    <label class="col-form-label">Email/add attendee</label>
+                                                    <label class="col-form-label">{{ GoogleTranslate::trans('Email/add attendee', app()->getLocale()) }}</label>
                                                     <input type="email" name="email" class="form-control">
                                                 </div>
                                                
@@ -365,13 +364,13 @@
                                         </div>
                                     </div>
                                     <div class="text-end">
-                                        <a href="#" class="add-membership-info more-item">Add New</a>
+                                        <a href="#" class="add-membership-info more-item">{{ GoogleTranslate::trans('Add New', app()->getLocale()) }}</a>
                                     </div>
                                 </div>
         
                                 <div class="modal-btn text-end">
-                                    <a href="#" class="btn btn-gray">Cancel</a>
-                                    <button type="submit" class="btn btn-primary prime-btn">Save Changes</button>
+                                    <a href="#" class="btn btn-gray">{{ GoogleTranslate::trans('Cancel', app()->getLocale()) }}</a>
+                                    <button type="submit" class="btn btn-primary prime-btn">{{ GoogleTranslate::trans('Save Changes', app()->getLocale()) }}</button>
                                 </div>
         
                             </form>
