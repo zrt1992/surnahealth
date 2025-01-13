@@ -210,7 +210,7 @@ class BookingController extends Controller
                 'doctor_id' => $metadata->doctor_id,
                 'slot_id' => $metadata->slot_id,
                 'booking_date' => $metadata->booking_date,
-                'status' => 'confirmed',
+                'status' => 'pending',
             ];
 
             if (!$request->appointment_req_id) {

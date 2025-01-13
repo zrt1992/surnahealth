@@ -232,11 +232,11 @@ class DoctorRegistrationController extends Controller
 
         if ($registration) {
             $emailData = [
-                'subject' => 'Welcome to Our Platform',
-                'greeting' => 'Hello ' . $authUser->name,
+                'subject' => 'Welcome to Surna TeleHealth-The Future of Telemedicine',
+                'greeting' => 'Dear ' . $authUser->name,
                 'body' => 'Thank you for signing up. We are excited to have you onboard!',
                 'actionText' => 'Get Started',
-                'actionURL' => url('/doctor-dashboard'),
+                'actionURL' => url('/doctor/dashboard'),
                 'thanks' => 'Thank you for choosing us!',
             ];
             Mail::to($authUser->email)->send(new RegistrationEmail($emailData));

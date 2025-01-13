@@ -215,11 +215,11 @@ public function storeStep4(Request $request)
     if ($userdata) {
      
         $emailData = [
-            'subject' => 'Welcome to Our Platform',
-            'greeting' => 'Hello ' . $authUser->name,
+            'subject' => 'Welcome to Surna TeleHealth-The Future of Telemedicine',
+            'greeting' => 'Dear ' . $authUser->name,
             'body' => 'Thank you for signing up. We are excited to have you onboard!',
             'actionText' => 'Get Started',
-            'actionURL' => url('/doctor-dashboard'),
+            'actionURL' => url('/patient/dashboard'),
             'thanks' => 'Thank you for choosing us!',
         ];
       
