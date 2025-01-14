@@ -82,7 +82,17 @@
                                 @endif
                                 
                             </li>
+                            <li class="appointment-type">
+                                <p class="md-text">Status</p>
+                                @if($request->status == "rejected")
+                                <p style="color: rgb(192, 42, 42)">Rejected</p>
+                                @else
+                                <p>Pending</p>
+                                @endif
+                                
+                            </li>
                             <li>
+                                @if($request->status != "rejected")
                                 <ul class="request-action">
                                     <li>
                                         <a href="#" class="accept-link" data-appointment-id="{{ $request->id }}" data-bs-toggle="modal" data-bs-target="#accept_appointment">
@@ -94,7 +104,9 @@
                                             <i class="fa-solid fa-xmark"></i>Reject
                                         </a>
                                     </li>
-                                </ul>
+                                </ul> 
+                                @endif
+                              
                             </li>
                           
                            

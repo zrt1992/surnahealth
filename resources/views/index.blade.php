@@ -45,7 +45,7 @@
                 <div class="col-lg-3">
                     <div class="row justify-content-center">
                         <div class="col-12 d-flex col-xxl-12 col-lg-12 col-sm-6">
-                            <a href="https://huggingface.co/spaces/surna/Surna_TeleHealth_-_Breast_Cancer_Risk_Assessment" class="serv-wrap red-bg flex-fill">
+                            <a href="https://huggingface.co/spaces/Surna2/Surna_TeleHealth_-_Breast_Cancer_Risk_Assessment" class="serv-wrap red-bg flex-fill">
                                 <span>
                                     <img src="{{ URL::asset('/assets/img/icons/breast-cancer.png') }}" alt="heart-image">
                                 </span>
@@ -53,7 +53,7 @@
                             </a>
                         </div>
                         <div class="col-12 d-flex col-xxl-12 col-lg-12 col-sm-6">
-                            <a href="javascript:void(0);" class="serv-wrap success-bg flex-fill">
+                            <a href="https://huggingface.co/spaces/surna/surna-prostate" class="serv-wrap success-bg flex-fill">
                                 <span>
                                     <img src="{{ URL::asset('/assets/img/icons/service-05.svg') }}" alt="heart-image">
                                 </span>
@@ -61,7 +61,7 @@
                             </a>
                         </div>
                         <div class="col-12 d-flex col-xxl-12 col-lg-12 col-sm-6">
-                            <a href="javascript:void(0);" class="serv-wrap info-bg flex-fill">
+                            <a href="https://huggingface.co/spaces/surna/surna-heart" class="serv-wrap info-bg flex-fill">
                                 <span>
                                     <img src="{{ URL::asset('/assets/img/icons/health-care-love.svg') }}" alt="heart-image">
                                 </span>
