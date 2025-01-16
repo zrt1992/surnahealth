@@ -116,7 +116,8 @@
                             <!-- Booking Doctor Info -->
                             <div class="booking-doc-info">
                                 <a href="{{ url('doctor-profile') }}" class="booking-doc-img">
-                                    <img src="{{$doctor->profile_image ??  URL::asset('/assets/img/doctors/doctor-thumb-02.jpg') }}" alt="User Image">
+                                    <img src="{{ $doctor->profile_image ?? URL::asset('/assets/img/doctors/doctor-thumb-02.jpg') }}"
+                                        alt="User Image">
                                 </a>
                                 <div class="booking-info">
                                     <h4><a href="{{ url('doctor-profile') }}">Dr. {{ $doctor->name ?? '--' }}</a></h4>
@@ -129,7 +130,9 @@
                                         <span class="d-inline-block average-rating">35</span>
                                     </div>
                                     <div class="clinic-details">
-                                        <p class="doc-location"><i class="fas fa-map-marker-alt"></i> {{ $doctor->city ?? '--'}},{{ $doctor->state ?? '--'}}, {{ $doctor->country ?? '--'}}</p>
+                                        <p class="doc-location"><i class="fas fa-map-marker-alt"></i>
+                                            {{ $doctor->city ?? '--' }},{{ $doctor->state ?? '--' }},
+                                            {{ $doctor->country ?? '--' }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -156,12 +159,15 @@
                                     </div>
                                     <form action="{{ url('booking-success') }}" method="POST" id="payment-form">
                                         @csrf
-                                        <input type="hidden" name="payment_amount" value="{{ $doctor->consultation_fees ?? '0' }}"> <!-- Example amount in cents -->
-                                       
+                                        <input type="hidden" name="payment_amount"
+                                            value="{{ $doctor->consultation_fees ?? '0' }}">
+                                        <!-- Example amount in cents -->
+
                                         <div style="display: flex; align-items: center; gap: 10px;">
                                             <!-- Payment Button -->
-                                            <button type="button" id="checkout-button" class="btn btn-primary submit-btn">Confirm and Pay</button>
-                                            
+                                            <button type="button" id="checkout-button"
+                                                class="btn btn-primary submit-btn">Confirm and Pay</button>
+
                                             <!-- Loader -->
                                             <div id="payment-loader" style="display: none;">
                                                 <div class="spinner-border text-primary" role="status">
@@ -184,47 +190,49 @@
     </div>
 
     <script src="https://js.stripe.com/v3/"></script>
-<script>
-   const stripe = Stripe('{{ config('services.stripe.key') }}');
-const checkoutButton = document.getElementById('checkout-button');
-const loader = document.getElementById('payment-loader');
+    <script>
+        const stripe = Stripe('{{ config('services.stripe.key') }}');
+        const checkoutButton = document.getElementById('checkout-button');
+        const loader = document.getElementById('payment-loader');
 
-checkoutButton.addEventListener('click', async () => {
-    // Show the loader and disable the button
-    loader.style.display = 'block';
-    checkoutButton.disabled = true;
-    checkoutButton.innerHTML = 'Processing...';
+        checkoutButton.addEventListener('click', async () => {
+            // Show the loader and disable the button
+            loader.style.display = 'block';
+            checkoutButton.disabled = true;
+            checkoutButton.innerHTML = 'Processing...';
 
-    try {
-        const response = await fetch("{{ url('patient/create-checkout-session') }}", {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            },
-            body: JSON.stringify({
-                payment_amount: document.querySelector('input[name="payment_amount"]').value
-            })
+            try {
+                const response = await fetch("{{ url('patient/create-checkout-session') }}", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({
+                        payment_amount: document.querySelector('input[name="payment_amount"]')
+                            .value
+                    })
+                });
+
+                const session = await response.json();
+                if (session.id) {
+                    // Redirect to Stripe Checkout
+                    await stripe.redirectToCheckout({
+                        sessionId: session.id
+                    });
+                } else {
+                    throw new Error('Session creation failed');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            } finally {
+                // Hide the loader and enable the button
+                loader.style.display = 'none';
+                checkoutButton.disabled = false;
+                checkoutButton.innerHTML = 'Confirm and Pay';
+            }
         });
-
-        const session = await response.json();
-        if (session.id) {
-            // Redirect to Stripe Checkout
-            await stripe.redirectToCheckout({ sessionId: session.id });
-        } else {
-            throw new Error('Session creation failed');
-        }
-    } catch (error) {
-        console.error('Error:', error);
-        alert('An error occurred. Please try again.');
-    } finally {
-        // Hide the loader and enable the button
-        loader.style.display = 'none';
-        checkoutButton.disabled = false;
-        checkoutButton.innerHTML = 'Confirm and Pay';
-    }
-});
-
-</script>
+    </script>
     <!-- /Page Content -->
 @endsection

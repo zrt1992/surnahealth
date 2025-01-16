@@ -51,14 +51,16 @@ Route::get('/', function () {
     //    \Illuminate\Support\Facades\Session::flush();
 
     return view('index');
-})->name('home-page')->middleware([ LocalizationMiddleware::class]);
+})->name('home-page')->middleware([LocalizationMiddleware::class]);
 
-// Front end pages
 Route::middleware([LocalizationMiddleware::class])->prefix('frontend')->group(function () {
     Route::get('/doctor-profile/{id?}', [FrontendController::class, 'doctorProfile'])->name('frontend.doctor-profile');
     Route::get('/booking/{doctor_id?}', [FrontendController::class, 'showBookingForm'])->name('frontend.booking');
     Route::get('/search', [FrontendController::class, 'search'])->name('frontend.search');
     Route::get('/blog-details', [FrontendController::class, 'blogDetails'])->name('frontend.blog-details');
+
+    Route::get('/breast-cancer', [FrontendController::class, 'breastCancer'])->name('frontend.breast-cancer');
+    Route::post('/assesment-stripe-checkout', [FrontendController::class, 'createCheckoutSession']);
 });
 
 
@@ -200,9 +202,8 @@ Route::middleware(['auth', 'role:patient', CheckRegistrationStep::class])->prefi
     })->name('checkout');
 
     Route::post('/create-checkout-session', [BookingController::class, 'createCheckoutSession']);
-Route::post('/booking-success', [BookingController::class, 'bookingSuccess']);
-Route::get('/booking-success', [BookingController::class, 'bookingSuccessModal'])->name('booking-success');
-
+    Route::post('/booking-success', [BookingController::class, 'bookingSuccess']);
+    Route::get('/booking-success', [BookingController::class, 'bookingSuccessModal'])->name('booking-success');
 });
 
 
@@ -224,9 +225,9 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/patient-list', function () {
         return view('admin.patient-list');
     })->name('patient-list');
-    Route::get('/reviews', function () {
+    Route::get('/admin-reviews', function () {
         return view('admin.reviews');
-    })->name('reviews');
+    })->name('admin-reviews');
     Route::get('/transactions-list', function () {
         return view('admin.transactions-list');
     })->name('transactions-list');
@@ -239,30 +240,30 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/profile', function () {
         return view('admin.profile');
     })->name('profile');
-    Route::get('/login', function () {
+    Route::get('/admin-login', function () {
         return view('admin.login');
-    })->name('login');
-    Route::get('/register', function () {
+    })->name('admin-login');
+    Route::get('/admin-register', function () {
         return view('admin.register');
-    })->name('register');
+    })->name('admin-register');
     Route::get('/forgot-password', function () {
         return view('admin.forgot-password');
     })->name('forgot-password');
     Route::get('/lock-screen', function () {
         return view('admin.lock-screen');
     })->name('lock-screen');
-    Route::get('/error-404', function () {
+    Route::get('/admin-error-404', function () {
         return view('admin.error-404');
-    })->name('error-404');
-    Route::get('/error-500', function () {
+    })->name('admin-error-404');
+    Route::get('/admin-error-500', function () {
         return view('admin.error-500');
-    })->name('error-500');
+    })->name('admin-error-500');
     Route::get('/blank-page', function () {
         return view('admin.blank-page');
     })->name('blank-page');
-    Route::get('/components', function () {
+    Route::get('/admin-components', function () {
         return view('admin.components');
-    })->name('components');
+    })->name('admin-components');
     Route::get('/form-basic-inputs', function () {
         return view('admin.form-basic-inputs');
     })->name('form-basic');
@@ -290,9 +291,9 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/invoice', function () {
         return view('admin.invoice');
     })->name('invoice');
-    Route::get('/calendar', function () {
+    Route::get('/admin-calendar', function () {
         return view('admin.calendar');
-    })->name('calendar');
+    })->name('admin-calendar');
     Route::get('/blog', function () {
         return view('admin.blog');
     })->name('blog');
@@ -300,9 +301,9 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/add-blog', function () {
         return view('admin.add-blog');
     })->name('add-blog');
-    Route::get('/edit-blog', function () {
+    Route::get('/admin-edit-blog', function () {
         return view('admin.edit-blog');
-    })->name('edit-blog');
+    })->name('admin-edit-blog');
     Route::get('/product-list', function () {
         return view('admin.product-list');
     })->name('product-list');
@@ -343,7 +344,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
 
 Route::get('/index', function () {
     return view('index');
-})->name('index')->middleware([ LocalizationMiddleware::class]);
+})->name('index')->middleware([LocalizationMiddleware::class]);
 Route::get('/index-2', function () {
     return view('index-2');
 })->name('index-2');
@@ -405,9 +406,9 @@ Route::post('/available-timings-update', [AvailableTimmingController::class, 'up
 
 // Route::resource('/available-timings', AvailableTimmingController::class);
 
-Route::get('/blank-page', function () {
-    return view('blank-page');
-})->name('blank-page');
+// Route::get('/blank-page', function () {
+//     return view('blank-page');
+// })->name('blank-page');
 // Route::get('/blog-details', function () {
 //     return view('blog-details');
 // })->name('blog-details');

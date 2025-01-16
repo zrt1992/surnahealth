@@ -192,8 +192,8 @@ class BookingController extends Controller
     public function bookingSuccessModal(Request $request)
     {
         $sessionId = $request->query('session_id');
-        
- if (!$sessionId) {
+
+        if (!$sessionId) {
             return redirect('/')->with('error', 'Payment failed or canceled.');
         }
         try {
@@ -238,6 +238,5 @@ class BookingController extends Controller
         } catch (\Exception $e) {
             return redirect('/')->with('error', 'Failed to confirm booking. ' . $e->getMessage());
         }
-       
     }
 }

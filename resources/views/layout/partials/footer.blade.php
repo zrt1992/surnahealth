@@ -1546,6 +1546,7 @@
     'frontend.doctor-profile',
     'frontend.booking',
     'frontend.search',
+    'frontend.breast-cancer',
     'frontend.blog-details',
     ]))
     <!-- Footer -->
@@ -1856,6 +1857,7 @@
         'frontend.doctor-profile',
         'frontend.booking',
         'frontend.search',
+        'frontend.breast-cancer',
         'frontend.blog-details',
         'index-2',
         'index-3',

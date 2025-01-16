@@ -667,3 +667,63 @@
 });
 
 </script>
+
+{{-- stripe assesment checkout --}}
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    const stripe = Stripe('{{ config('services.stripe.key') }}');
+
+    // Function to handle checkout for both buttons
+    const handleCheckout = async (buttonId, formId, loaderId, amountId, successUrlId) => {
+        const checkoutButton = document.getElementById(buttonId);
+        const loader = document.getElementById(loaderId);
+
+        checkoutButton.addEventListener('click', async () => {
+            // Show the loader and disable the button
+            loader.style.display = 'block';
+            checkoutButton.disabled = true;
+            checkoutButton.innerHTML = 'Processing...';
+
+            const paymentAmount = document.getElementById(amountId).value;
+            const successUrl = document.getElementById(successUrlId).value;
+
+            try {
+                const response = await fetch("{{ url('frontend/assesment-stripe-checkout') }}", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({
+                        payment_amount: paymentAmount,
+                        success_url: successUrl
+                    }),
+                });
+
+                const session = await response.json();
+                if (session.id) {
+                    // Redirect to Stripe Checkout
+                    await stripe.redirectToCheckout({
+                        sessionId: session.id
+                    });
+                } else {
+                    throw new Error('Session creation failed');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            } finally {
+                // Hide the loader and enable the button
+                loader.style.display = 'none';
+                checkoutButton.disabled = false;
+                checkoutButton.innerHTML = 'Learn your risk';
+            }
+        });
+    };
+
+    // Initialize checkout handlers for both forms
+    handleCheckout('assesment-checkout-button-1', 'payment-form-1', 'payment-loader-1', 'payment-amount-1', 'success-url-1');
+    handleCheckout('assesment-checkout-button-2', 'payment-form-2', 'payment-loader-2', 'payment-amount-2', 'success-url-2');
+    handleCheckout('assesment-checkout-button-3', 'payment-form-3', 'payment-loader-3', 'payment-amount-3', 'success-url-3');
+</script>
+

@@ -8,14 +8,15 @@
                 <div class="col-lg-3">
                     <div class="row justify-content-center">
                         <div class="col-12 d-flex col-xxl-12 col-lg-12 col-sm-6">
-                            <a href="{{ route('frontend.search', ['doctor_id' => null]) }}" class="serv-wrap blue-bg flex-fill">
+                            <a href="{{ route('frontend.search', ['doctor_id' => null]) }}"
+                                class="serv-wrap blue-bg flex-fill">
                                 <span>
                                     <img src="{{ URL::asset('/assets/img/icons/service-01.svg') }}" alt="heart-image">
                                 </span>
                                 <h4>{{ __('messages.book_appointment') }}</h4>
                             </a>
                         </div>
-                       
+
                         <div class="col-12 d-flex col-xxl col-lg-12 col-sm-6">
                             <a href="javascript:void(0);" class="serv-wrap info-bg flex-fill">
                                 <span>
@@ -38,41 +39,66 @@
                 <div class="col-lg-6">
                     <div class="banner-img aos" data-aos="fade-up">
                         <img src="{{ URL::asset('/assets/img/banner-img.png') }}" class="img-fluid" alt="patient-image">
-                        
+
                     </div>
-                  
+
                 </div>
                 <div class="col-lg-3">
                     <div class="row justify-content-center">
                         <div class="col-12 d-flex col-xxl-12 col-lg-12 col-sm-6">
-                            <a href="https://huggingface.co/spaces/Surna2/Surna_TeleHealth_-_Breast_Cancer_Risk_Assessment" class="serv-wrap red-bg flex-fill">
+
+                            <a href="{{ route('frontend.breast-cancer') }}" class="serv-wrap red-bg flex-fill">
                                 <span>
                                     <img src="{{ URL::asset('/assets/img/icons/breast-cancer.png') }}" alt="heart-image">
                                 </span>
                                 <h4>{{ __('messages.breast_cancer') }}</h4>
                             </a>
                         </div>
-                        <div class="col-12 d-flex col-xxl-12 col-lg-12 col-sm-6">
-                            <a href="https://huggingface.co/spaces/surna/surna-prostate" class="serv-wrap success-bg flex-fill">
-                                <span>
-                                    <img src="{{ URL::asset('/assets/img/icons/service-05.svg') }}" alt="heart-image">
-                                </span>
-                                <h4>{{ __('messages.prostate_cancer') }}</h4>
-                            </a>
-                        </div>
-                        <div class="col-12 d-flex col-xxl-12 col-lg-12 col-sm-6">
-                            <a href="https://huggingface.co/spaces/surna/surna-heart" class="serv-wrap info-bg flex-fill">
-                                <span>
-                                    <img src="{{ URL::asset('/assets/img/icons/health-care-love.svg') }}" alt="heart-image">
-                                </span>
-                                <h4>{{ __('messages.cardiac_issues') }}</h4>
-                            </a>
-                        </div>
-                       
-                       
+
+                        <form method="POST" id="payment-form-2">
+                            @csrf
+                            <div class="col-12 d-flex col-xxl-12 col-lg-12 col-sm-6">
+                                <input type="hidden" id="success-url-2" class="form-control mb-3" name="success_url"
+                                    value="https://huggingface.co/spaces/surna/surna-prostate" />
+                                <input type="hidden" id="payment-amount-2" name="payment_amount" value="45" />
+                                <a class="serv-wrap success-bg flex-fill" id="assesment-checkout-button-2">
+                                    <span>
+                                        <img src="{{ URL::asset('/assets/img/icons/service-05.svg') }}" alt="heart-image">
+                                    </span>
+                                    <h4>{{ __('messages.prostate_cancer') }}</h4>
+                                    <div id="payment-loader-2" style="display: none;">
+                                        <div class="spinner-border text-primary" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </form>
+                        
+                        <form method="POST" id="payment-form-3">
+                            @csrf
+                            <div class="col-12 d-flex col-xxl-12 col-lg-12 col-sm-6">
+                                <input type="hidden" id="success-url-3" class="form-control mb-3" name="success_url"
+                                    value="https://huggingface.co/spaces/surna/surna-heart" />
+                                <input type="hidden" id="payment-amount-3" name="payment_amount" value="35" />
+                                <a class="serv-wrap info-bg flex-fill" id="assesment-checkout-button-3">
+                                    <span>
+                                        <img src="{{ URL::asset('/assets/img/icons/health-care-love.svg') }}" alt="heart-image">
+                                    </span>
+                                    <h4>{{ __('messages.cardiac_issues') }}</h4>
+                                    <div id="payment-loader-3" style="display: none;">
+                                        <div class="spinner-border text-primary" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </form>
+                        
+
                     </div>
                 </div>
-               
+
             </div>
         </div>
     </section>
@@ -571,7 +597,8 @@
                         <div class="col-lg-6 col-md-6 aos" data-aos="fade-up">
                             <div class="work-info">
                                 <div class="work-icon">
-                                    <span><img src="{{ URL::asset('/assets/img/icons/work-01.svg') }}" alt="search-doctor-icon"></span>
+                                    <span><img src="{{ URL::asset('/assets/img/icons/work-01.svg') }}"
+                                            alt="search-doctor-icon"></span>
                                 </div>
                                 <div class="work-content">
                                     <h5>{{ __('messages.search_doctor') }}</h5>
@@ -582,7 +609,8 @@
                         <div class="col-lg-6 col-md-6 aos" data-aos="fade-up">
                             <div class="work-info">
                                 <div class="work-icon">
-                                    <span><img src="{{ URL::asset('/assets/img/icons/work-02.svg') }}" alt="doctor-profile-icon"></span>
+                                    <span><img src="{{ URL::asset('/assets/img/icons/work-02.svg') }}"
+                                            alt="doctor-profile-icon"></span>
                                 </div>
                                 <div class="work-content">
                                     <h5>{{ __('messages.check_doctor_profile') }}</h5>
@@ -593,7 +621,8 @@
                         <div class="col-lg-6 col-md-6 aos" data-aos="fade-up">
                             <div class="work-info">
                                 <div class="work-icon">
-                                    <span><img src="{{ URL::asset('/assets/img/icons/work-03.svg') }}" alt="calendar-icon"></span>
+                                    <span><img src="{{ URL::asset('/assets/img/icons/work-03.svg') }}"
+                                            alt="calendar-icon"></span>
                                 </div>
                                 <div class="work-content">
                                     <h5>{{ __('messages.schedule_appointment') }}</h5>
@@ -604,7 +633,8 @@
                         <div class="col-lg-6 col-md-6 aos" data-aos="fade-up">
                             <div class="work-info">
                                 <div class="work-icon">
-                                    <span><img src="{{ URL::asset('/assets/img/icons/work-04.svg') }}" alt="solution-icon"></span>
+                                    <span><img src="{{ URL::asset('/assets/img/icons/work-04.svg') }}"
+                                            alt="solution-icon"></span>
                                 </div>
                                 <div class="work-content">
                                     <h5>{{ __('messages.get_solution') }}</h5>
@@ -617,7 +647,7 @@
             </div>
         </div>
     </section>
-    
+
     <!-- /Work Section -->
 
     <!-- Articles Section -->
@@ -653,12 +683,14 @@
                                         </li>
                                     </ul>
                                     <h4>
-                                        <a href="{{ url('frontend/blog-details') }}">Navigating Telehealth: A Guide to Virtual
+                                        <a href="{{ url('frontend/blog-details') }}">Navigating Telehealth: A Guide to
+                                            Virtual
                                             Healthcare Visits</a>
                                     </h4>
                                     <p>Explore the benefits & challenges of virtual healthcare appointments, along with tips
                                         for making good health.</p>
-                                    <a href="{{ url('frontend/blog-details') }}" class="btn">{{ __('messages.read_more') }}</a>
+                                    <a href="{{ url('frontend/blog-details') }}"
+                                        class="btn">{{ __('messages.read_more') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -686,12 +718,14 @@
                                         </li>
                                     </ul>
                                     <h4>
-                                        <a href="{{ url('frontend/blog-details') }}">Work-Life Harmony: Balancing Career and
+                                        <a href="{{ url('frontend/blog-details') }}">Work-Life Harmony: Balancing Career
+                                            and
                                             Personal Wellness</a>
                                     </h4>
                                     <p>Uncover strategies to achieve a harmonious balance between professional commitments
                                         and personal well-being.</p>
-                                    <a href="{{ url('frontend/blog-details') }}" class="btn">{{ __('messages.read_more') }}</a>
+                                    <a href="{{ url('frontend/blog-details') }}"
+                                        class="btn">{{ __('messages.read_more') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -719,12 +753,14 @@
                                         </li>
                                     </ul>
                                     <h4>
-                                        <a href="{{ url('frontend/blog-details') }}">Sleep Solutions: Unveiling the Secrets to a
+                                        <a href="{{ url('frontend/blog-details') }}">Sleep Solutions: Unveiling the
+                                            Secrets to a
                                             Restful Night</a>
                                     </h4>
                                     <p>Explore importance of quality sleep & learn tips to improve your sleep, ensuring you
                                         wake up refreshed & ready to face the day.</p>
-                                    <a href="{{ url('frontend/blog-details') }}" class="btn">{{ __('messages.read_more') }}</a>
+                                    <a href="{{ url('frontend/blog-details') }}"
+                                        class="btn">{{ __('messages.read_more') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -752,12 +788,14 @@
                                         </li>
                                     </ul>
                                     <h4>
-                                        <a href="{{ url('frontend/blog-details') }}">Mental Wellness in a Digital Age: Strategies
+                                        <a href="{{ url('frontend/blog-details') }}">Mental Wellness in a Digital Age:
+                                            Strategies
                                             for a Healthy Mind Online</a>
                                     </h4>
                                     <p>Delve into the impact of digital life on mental health & discover practical
                                         strategies to maintain mental well-being.</p>
-                                    <a href="{{ url('frontend/blog-details') }}" class="btn">{{ __('messages.read_more') }}</a>
+                                    <a href="{{ url('frontend/blog-details') }}"
+                                        class="btn">{{ __('messages.read_more') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -802,18 +840,18 @@
             </div>
         </div>
     </section>
-    
+
     <!-- /App Section -->
 
     <!-- FAQ Section -->
-  
+
     <section class="faq-section">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="section-header-one aos" data-aos="fade-up">
-                        <h5>{{ __('messages.get_your_answer')}}</h5>
-                        <h2 class="section-title">{{ __('messages.frequently_asked_questions')}}</h2>
+                        <h5>{{ __('messages.get_your_answer') }}</h5>
+                        <h2 class="section-title">{{ __('messages.frequently_asked_questions') }}</h2>
                     </div>
                 </div>
             </div>
@@ -827,7 +865,7 @@
                             </div>
                             <div class="faq-patients-content">
                                 <h4><span class="count-digit">95</span>k+</h4>
-                                <p>{{ __('messages.happy_patients')}}</p>
+                                <p>{{ __('messages.happy_patients') }}</p>
                             </div>
                         </div>
                     </div>
@@ -840,13 +878,13 @@
                                 <h2 class="accordion-header" id="headingOne">
                                     <a href="javascript:void(0);" class="accordion-button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        {{ __('messages.how_to_book_appointment')}}
+                                        {{ __('messages.how_to_book_appointment') }}
                                     </a>
                                 </h2>
                                 <div id="collapseOne" class="accordion-collapse collapse show"
                                     aria-labelledby="headingOne" data-bs-parent="#faq-details">
                                     <div class="accordion-body">
-                                        <p>{{ __('messages.how_to_book_answer')}}</p>
+                                        <p>{{ __('messages.how_to_book_answer') }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -856,13 +894,13 @@
                                     <a href="javascript:void(0);" class="accordion-button collapsed"
                                         data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false"
                                         aria-controls="collapseTwo">
-                                        {{ __('messages.can_request_specific_doctor')}}
+                                        {{ __('messages.can_request_specific_doctor') }}
                                     </a>
                                 </h2>
                                 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                                     data-bs-parent="#faq-details">
                                     <div class="accordion-body">
-                                        <p>{{ __('messages.can_request_answer')}}</p>
+                                        <p>{{ __('messages.can_request_answer') }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -872,13 +910,13 @@
                                     <a href="javascript:void(0);" class="accordion-button collapsed"
                                         data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false"
                                         aria-controls="collapseThree">
-                                        {{ __('messages.cancel_or_reschedule')}}
+                                        {{ __('messages.cancel_or_reschedule') }}
                                     </a>
                                 </h2>
-                                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                                    data-bs-parent="#faq-details">
+                                <div id="collapseThree" class="accordion-collapse collapse"
+                                    aria-labelledby="headingThree" data-bs-parent="#faq-details">
                                     <div class="accordion-body">
-                                        <p>{{ __('messages.cancel_or_reschedule_answer')}}</p>
+                                        <p>{{ __('messages.cancel_or_reschedule_answer') }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -888,14 +926,14 @@
                                     <a href="javascript:void(0);" class="accordion-button collapsed"
                                         data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false"
                                         aria-controls="collapseFour">
-                                        {{ __('messages.running_late')}}
+                                        {{ __('messages.running_late') }}
                                     </a>
                                 </h2>
                                 <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
                                     data-bs-parent="#faq-details">
                                     <div class="accordion-body">
                                         <div class="accordion-content">
-                                            <p> {{ __('messages.running_late_answer')}}</p>
+                                            <p> {{ __('messages.running_late_answer') }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -908,14 +946,14 @@
                                     <a href="javascript:void(0);" class="accordion-button collapsed"
                                         data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false"
                                         aria-controls="collapseFive">
-                                        {{ __('messages.book_for_family')}}
+                                        {{ __('messages.book_for_family') }}
                                     </a>
                                 </h2>
                                 <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
                                     data-bs-parent="#faq-details">
                                     <div class="accordion-body">
                                         <div class="accordion-content">
-                                            <p> {{ __('messages.book_for_family_answer')}}</p>
+                                            <p> {{ __('messages.book_for_family_answer') }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -943,8 +981,8 @@
                                 </div>
                                 <div class="testimonial-content">
                                     <div class="section-header-one section-header section-inner-header testimonial-header">
-                                        <h5> {{ __('messages.testimonials')}}</h5>
-                                        <h2 class="section-title"> {{ __('messages.what_our_clients_say')}}</h2>
+                                        <h5> {{ __('messages.testimonials') }}</h5>
+                                        <h2 class="section-title"> {{ __('messages.what_our_clients_say') }}</h2>
                                     </div>
                                     <div class="testimonial-details">
                                         <p>Surna exceeded my expectations in healthcare. The seamless booking process,
@@ -1011,7 +1049,7 @@
     <!-- /Testimonial Section -->
 
     <!-- Partners Section -->
-    
+
     <!-- /Partners Section -->
 
     @component('components.scrolltotop')

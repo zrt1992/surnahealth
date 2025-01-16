@@ -729,6 +729,7 @@
                             'map-grid',
                             'map-list',
                             'search',
+                            'breast-cancer',
                             'search-2',
                             'pharmacy-register',
                             'about-us',
@@ -849,6 +850,7 @@
                             'map-grid',
                             'map-list',
                             'search',
+                            'breast-cancer',
                             'search-2',
                             'pharmacy-register',
                             'about-us',
@@ -1142,6 +1144,7 @@
                     @endif
                     @if (Route::is([
                             'search',
+                            'breast-cancer',
                             'about-us',
                             'blank-page',
                             'blog-details',
@@ -1204,6 +1207,7 @@
             @if (
                 !Route::is([
                     'search',
+                    'breast-cancer',
                     'about-us',
                     'blank-page',
                     'blog-details',
