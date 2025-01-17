@@ -112,7 +112,7 @@
             </div>
         </div>
     </section>
-    <!-- /Home Banner -->
+    <!-- /Home Banner 1 -->
 
     <!-- Specialities Section -->
     <section class="specialities-section-one" >
