@@ -2,7 +2,16 @@
 @extends('layout.mainlayout')
 @section('content')
     <!-- Home Banner -->
-    <section class="banner-section">
+    <style>
+        .bg-gradient-teal {
+            background: linear-gradient(to right,#fcfffe, #14B8A6) !important;
+            /* Tailwind teal-200 (#A7F3D0) to teal-500 (#14B8A6) */
+        }
+        .banner-section-2{
+            padding: 100px 0 30px;
+        }
+    </style>
+    <section class="banner-section-2 bg-gradient-teal">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-3">
@@ -74,7 +83,7 @@
                                 </a>
                             </div>
                         </form>
-                        
+
                         <form method="POST" id="payment-form-3">
                             @csrf
                             <div class="col-12 d-flex col-xxl-12 col-lg-12 col-sm-6">
@@ -83,7 +92,8 @@
                                 <input type="hidden" id="payment-amount-3" name="payment_amount" value="35" />
                                 <a class="serv-wrap info-bg flex-fill" id="assesment-checkout-button-3">
                                     <span>
-                                        <img src="{{ URL::asset('/assets/img/icons/health-care-love.svg') }}" alt="heart-image">
+                                        <img src="{{ URL::asset('/assets/img/icons/health-care-love.svg') }}"
+                                            alt="heart-image">
                                     </span>
                                     <h4>{{ __('messages.cardiac_issues') }}</h4>
                                     <div id="payment-loader-3" style="display: none;">
@@ -94,7 +104,7 @@
                                 </a>
                             </div>
                         </form>
-                        
+
 
                     </div>
                 </div>
@@ -105,7 +115,7 @@
     <!-- /Home Banner -->
 
     <!-- Specialities Section -->
-    <section class="specialities-section-one">
+    <section class="specialities-section-one" >
         <div class="container">
             {{-- <div class="service-sec-one">
                 <div
@@ -460,7 +470,7 @@
                 </div>
             </div>
             <div class="row justify-content-center align-items-center">
-                <div class="col-lg-4 col-sm-12 aos" data-aos="fade-up">
+                <div class="col-lg-3 col-sm-12 aos" data-aos="fade-up">
                     <div class="card pricing-card">
                         <div class="card-body">
                             <div class="pricing-header">
@@ -472,21 +482,23 @@
                                         </span>
                                     </div>
                                     <div class="pricing-title">
-                                        <h4>Basic</h4>
+                                        <h4>Regular</h4>
                                     </div>
                                 </div>
                             </div>
                             <div class="pricing-info">
                                 <div class="pricing-amount">
-                                    <h2>$99 <span>/monthly</span></h2>
+                                    <h2>$15 <span>/monthly</span></h2>
                                     <h6>What’s included</h6>
                                 </div>
                                 <div class="pricing-list">
                                     <ul>
-                                        <li>Profile Creation</li>
-                                        <li>Appointment Booking</li>
-                                        <li>Notification Alerts</li>
-                                        <li>Limited Telemedicine Access</li>
+                                        <li>Platform access with personalized treatment plans.</li>
+                                        <li>E-prescription services</li>
+                                        <li>Basic health analytics. </li>
+                                        <li>Access to general health blogs and articles.</li>
+                                        <li>Family plan option ($30/month for up to 4 members). </li>
+
                                     </ul>
                                 </div>
                                 <div class="pricing-btn">
@@ -496,7 +508,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-12 aos" data-aos="fade-up">
+                <div class="col-lg-3 col-sm-12 aos" data-aos="fade-up">
                     <div class="card pricing-card pricing-card-active">
                         <div class="card-body">
                             <div class="pricing-header">
@@ -508,7 +520,7 @@
                                         </span>
                                     </div>
                                     <div class="pricing-title">
-                                        <h4>Pro</h4>
+                                        <h4>Premium</h4>
                                     </div>
                                     <div class="pricing-tag">
                                         <span>Popular</span>
@@ -517,18 +529,16 @@
                             </div>
                             <div class="pricing-info">
                                 <div class="pricing-amount">
-                                    <h2>$199 <span>/monthly</span></h2>
+                                    <h2>$35 <span>/monthly</span></h2>
                                     <h6>What’s included</h6>
                                 </div>
                                 <div class="pricing-list">
                                     <ul>
-                                        <li>Profile Creation</li>
-                                        <li>Appointment Booking</li>
-                                        <li>Notification Alerts</li>
-                                        <li>Extended Telemedicine Access</li>
-                                        <li>Exclusive Discounts</li>
-                                        <li>Appointment History</li>
-                                        <li>Priority Customer Support</li>
+                                        <li>Everything in Regular Subscription.</li>
+                                        <li>Priority scheduling for consultations.</li>
+                                        <li>One free doctor consultation per year </li>
+                                        <li>In-depth health analytics: AI-generated health insights, monthly reports. </li>
+                                        <li>Exclusive health content: Premium blogs, webinars, workshops. </li>
                                     </ul>
                                 </div>
                                 <div class="pricing-btn">
@@ -538,8 +548,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-12 aos" data-aos="fade-up">
-                    <div class="card pricing-card">
+
+                <div class="col-lg-3 col-sm-12 aos" data-aos="fade-up">
+                    <div class="card pricing-card h-96 pricing-card-active" style="height: 670px">
                         <div class="card-body">
                             <div class="pricing-header">
                                 <div class="pricing-header-info">
@@ -550,23 +561,63 @@
                                         </span>
                                     </div>
                                     <div class="pricing-title">
-                                        <h4>Enterprise</h4>
+                                        <h4>Flexible Regular</h4>
                                     </div>
                                 </div>
                             </div>
                             <div class="pricing-info">
                                 <div class="pricing-amount">
-                                    <h2>$399 <span>/monthly</span></h2>
-                                    <h6>What’s included</h6>
+                                    <h2>$40 <span>/quarter</span></h2>
                                 </div>
-                                <div class="pricing-list">
-                                    <ul>
-                                        <li>All Basic Plan Features</li>
-                                        <li>All Premium Plan Features</li>
-                                        <li>Personalized Health Insights</li>
-                                        <li>Family Account Management</li>
-                                    </ul>
+
+                                <div class="pricing-btn">
+                                    <a href="{{ url('login-email') }}" class="btn">Choose Plan</a>
                                 </div>
+                            </div>
+                            <div class="pricing-info">
+                                <div class="pricing-amount">
+                                    <h2>$150 <span>/year</span></h2>
+                                </div>
+
+                                <div class="pricing-btn">
+                                    <a href="{{ url('login-email') }}" class="btn">Choose Plan</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-12 aos" data-aos="fade-up">
+                    <div class="card pricing-card" style="height: 670px;">
+                        <div class="card-body">
+
+
+                            <div class="pricing-header">
+                                <div class="pricing-header-info">
+                                    <div class="pricing-icon">
+                                        <span>
+                                            <img src="{{ URL::asset('/assets/img/icons/price-icon3.svg') }}"
+                                                alt="icon">
+                                        </span>
+                                    </div>
+                                    <div class="pricing-title">
+                                        <h4>Flexible Premium</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pricing-info">
+                                <div class="pricing-amount">
+                                    <h2>$100 <span>/quarter</span></h2>
+                                </div>
+
+                                <div class="pricing-btn">
+                                    <a href="{{ url('login-email') }}" class="btn">Choose Plan</a>
+                                </div>
+                            </div>
+                            <div class="pricing-info mt-8">
+                                <div class="pricing-amount">
+                                    <h2>$350 <span>/year</span></h2>
+                                </div>
+
                                 <div class="pricing-btn">
                                     <a href="{{ url('login-email') }}" class="btn">Choose Plan</a>
                                 </div>

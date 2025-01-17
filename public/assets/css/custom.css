@@ -10639,7 +10639,7 @@ html.menu-opened body {
 }
 
 .specialities-section-one {
-  background-color: #ffffff;
+  background-color: linear-gradient(to right, #fcfffe, #14B8A6) !important;
   margin: 0;
   padding: 80px 0;
 }
@@ -10853,7 +10853,7 @@ html.menu-opened body {
 }
 
 .doctors-section {
-  background: #F9FAFB;
+  background: linear-gradient(to right, #14B8A6, #fcfffe,to bottom,#14B8A6, #fcfffe) !important;
   margin: 0;
   padding: 80px 0;
   position: relative;
@@ -11120,7 +11120,7 @@ html.menu-opened body {
 }
 
 .work-section {
-  background: #F2F6F6;
+  background: linear-gradient(to right, #fcfffe, #14B8A6) !important;
   margin: 0;
   padding: 80px 0 0;
   position: relative;
@@ -11429,7 +11429,7 @@ html.menu-opened body {
 }
 
 .articles-section {
-  background-color: #ffffff;
+  background-color: linear-gradient(to right, #fcfffe, #14B8A6) !important;
   margin: 0;
   padding: 80px 0 56px;
 }
@@ -11596,7 +11596,7 @@ html.menu-opened body {
 }
 
 .app-section {
-  background-color: #ffffff;
+  background-color: linear-gradient(to right, #fcfffe, #14B8A6) !important;
   margin: 0;
   padding: 20px 0 80px;
 }
@@ -11769,7 +11769,7 @@ html.menu-opened body {
 }
 
 .faq-section {
-  background-color: #ffffff;
+  background-color: linear-gradient(to right, #fcfffe, #14B8A6) !important;
   position: relative;
   overflow: hidden;
   margin: 0;
@@ -41707,7 +41707,7 @@ ul.benifits-col li i {
 }
 
 .pricing-section {
-  background-color: #ffffff;
+  background-color: linear-gradient(to right, #fcfffe, #14B8A6) !important;
   margin: 0;
   padding: 80px 0 50px;
 }
@@ -42602,7 +42602,7 @@ ul.benifits-col li i {
 }
 
 .testimonial-section {
-  background: #F9FAFB;
+  background: linear-gradient(to right, #fcfffe, #14B8A6) !important;
   margin: 0;
   padding: 80px 0;
   position: relative;

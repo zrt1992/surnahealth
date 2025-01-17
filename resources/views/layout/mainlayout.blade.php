@@ -103,6 +103,11 @@
     <!-- Favicon -->
     <link rel="icon" href="{{ URL::asset('/assets/img/favicon.png') }}" type="image/x-icon">
     @include('layout.partials.head')
+    <style>
+        .bg-gradient-teal {
+  background: linear-gradient(to right, #A7F3D0, #14B8A6) !important; /* Tailwind teal-200 (#A7F3D0) to teal-500 (#14B8A6) */
+}
+    </style>
 </head>
 @if (
     !Route::is([
@@ -199,6 +204,10 @@
 
     <body class="pharmacy-body">
 @endif
+@if (Route::is(['/','index']))
+
+    <body class="bg-gradient-teal">
+@endif
 @if (Route::is(['map-list']))
 
     <body class="map-page">
@@ -276,6 +285,9 @@
     ]))
     <!-- Onboarding Availability -->
     <div class="onboard-wrapper">
+@endif
+@if (Route::is(['/','index']))
+    <div class="main-wrapper bg-gradient-teal">
 @endif
 @if (Route::is(['index-3']))
     <div class="main-wrapper home-three">
