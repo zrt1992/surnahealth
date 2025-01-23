@@ -239,4 +239,6 @@ class BookingController extends Controller
             return redirect('/')->with('error', 'Failed to confirm booking. ' . $e->getMessage());
         }
     }
+
+   
 }

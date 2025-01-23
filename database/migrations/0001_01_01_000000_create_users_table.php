@@ -39,6 +39,8 @@ return new class extends Migration
             $table->string('registration_step')->default("+1");
             $table->string('referral_code')->nullable();
             $table->string('term_and_condition')->nullable();
+            $table->string('stripe_customer_id')->nullable();
+            $table->string('subscription_active')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

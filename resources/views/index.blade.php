@@ -117,67 +117,6 @@
     <!-- Specialities Section -->
     <section class="specialities-section-one" >
         <div class="container">
-            {{-- <div class="service-sec-one">
-                <div
-                    class="row row-cols-7 row-cols-xxl-7 row-cols-xl-4 row-cols-lg-4 rows-cols-md-6 justify-content-center">
-                    <div class="col-12 d-flex col-xxl col-lg-3 col-sm-6">
-                        <a href="{{ route('frontend.search', ['doctor_id' => null]) }}" class="serv-wrap blue-bg flex-fill">
-                            <span>
-                                <img src="{{ URL::asset('/assets/img/icons/service-01.svg') }}" alt="heart-image">
-                            </span>
-                            <h4>Book Appointment</h4>
-                        </a>
-                    </div>
-                    <div class="col-12 d-flex col-xxl col-lg-3 col-sm-6">
-                        <a href="javascript:void(0);" class="serv-wrap green-bg flex-fill">
-                            <span>
-                                <img src="{{ URL::asset('/assets/img/icons/service-02.svg') }}" alt="heart-image">
-                            </span>
-                            <h4>Lab Testing Services</h4>
-                        </a>
-                    </div>
-                    <div class="col-12 d-flex col-xxl col-lg-3 col-sm-6">
-                        <a href="javascript:void(0);" class="serv-wrap info-bg flex-fill">
-                            <span>
-                                <img src="{{ URL::asset('/assets/img/icons/service-03.svg') }}" alt="heart-image">
-                            </span>
-                            <h4>Medicines & Supplies</h4>
-                        </a>
-                    </div>
-                    <div class="col-12 d-flex col-xxl col-lg-3 col-sm-6">
-                        <a href="javascript:void(0);" class="serv-wrap red-bg flex-fill">
-                            <span>
-                                <img src="{{ URL::asset('/assets/img/icons/service-04.svg') }}" alt="heart-image">
-                            </span>
-                            <h4>Hospitals / Clinics</h4>
-                        </a>
-                    </div>
-                    <div class="col-12 d-flex col-xxl col-lg-3 col-sm-6">
-                        <a href="javascript:void(0);" class="serv-wrap success-bg flex-fill">
-                            <span>
-                                <img src="{{ URL::asset('/assets/img/icons/service-05.svg') }}" alt="heart-image">
-                            </span>
-                            <h4>Health Care Services</h4>
-                        </a>
-                    </div>
-                    <div class="col-12 d-flex col-xxl col-lg-3 col-sm-6">
-                        <a href="{{ url('chat') }}" class="serv-wrap pink-bg flex-fill">
-                            <span>
-                                <img src="{{ URL::asset('/assets/img/icons/service-06.svg') }}" alt="heart-image">
-                            </span>
-                            <h4>Talk to Doctor’s</h4>
-                        </a>
-                    </div>
-                    <div class="col-12 d-flex col-xxl col-lg-3 col-sm-6">
-                        <a href="javascript:void(0);" class="serv-wrap danger-bg flex-fill">
-                            <span>
-                                <img src="{{ URL::asset('/assets/img/icons/service-07.svg') }}" alt="heart-image">
-                            </span>
-                            <h4>Home Care Services</h4>
-                        </a>
-                    </div>
-                </div>
-            </div> --}}
             <div class="row">
                 <div class="col-md-6 col-7 aos" data-aos="fade-up">
                     <div class="section-header-one section-header-slider">

@@ -69,6 +69,7 @@ Route::prefix('doctor-registration')->name('doctor-registration.')->group(functi
     Route::post('/step2', [DoctorRegistrationController::class, 'storeStep2'])->name('store.step2');
     Route::post('/step3', [DoctorRegistrationController::class, 'storeStep3'])->name('store.step3');
     Route::post('/step4', [DoctorRegistrationController::class, 'storeStep4'])->name('store.step4');
+    Route::post('/step5', [DoctorRegistrationController::class, 'storeStep5'])->name('store.step5');
 
 });
 

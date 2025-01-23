@@ -124,7 +124,7 @@
                                 <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
 
                                 <div class="mt-5">
-                                    {!! RecaptchaV3::field('register') !!}
+                                    {{-- {!! RecaptchaV3::field('register') !!} --}}
                                     <input class="btn btn-primary w-100 btn-lg login-btn" type="submit" value="Register">
                                 </div>
                             </form>
