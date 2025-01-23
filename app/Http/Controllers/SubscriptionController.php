@@ -41,7 +41,7 @@ class SubscriptionController extends Controller
         try {
 
             $user = auth()->user();
-            $successUrl = url('subscription-success') . '?session_id={CHECKOUT_SESSION_ID}';
+            $successUrl = url('patient-subscription-success') . '?session_id={CHECKOUT_SESSION_ID}';
             $session = $stripeService->subscribe($user, $validated['price_id'], $successUrl);
             $session = Session::retrieve($session->id);
 
