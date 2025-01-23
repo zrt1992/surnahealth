@@ -92,7 +92,7 @@
                 button.innerHTML = 'Processing...';
 
                 try {
-                    const response = await fetch("{{ url('patient-subscription-checkout-session') }}", {
+                    const response = await fetch("{{ url('doctor-subscription-checkout-session') }}", {
                         method: "POST",
                         headers: {
                             'Content-Type': 'application/json',
