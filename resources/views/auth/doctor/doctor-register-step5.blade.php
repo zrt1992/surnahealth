@@ -51,7 +51,7 @@
                                     </div> --}}
 
                                     <div class="mt-5">
-                                        <a href="{{ url('patient-subscription-plans-step') }}"
+                                        <a href="{{ url('doctor-subscription-plans-step') }}"
                                             class="btn btn-primary w-100 btn-lg login-btn step5_submit">Continue </a>
                                     </div>
                                 </form>
