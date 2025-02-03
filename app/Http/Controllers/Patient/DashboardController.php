@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Patient;
 
 use App\Http\Controllers\Controller;
+use App\Models\Appointment;
 use App\Models\MedicalDetail;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,7 @@ class DashboardController extends Controller
     public function index(Request $request)
     {
         $medicalDetail = MedicalDetail::where('user_id',auth()->user()->id)->first();
+        $appointments = Appointment::where('user_id',auth()->user()->id)->with('doctor')->get();
         return view('patient.patient-dashboard',get_defined_vars());
     }
 }

@@ -920,6 +920,17 @@
                         class="has-submenu megamenu {{ Request::is('/', 'index', 'index-2', 'index-3', 'index-4', 'index-5', 'index-6', 'index-7', 'index-8', 'index-9', 'index-10', 'index-11', 'index-12', 'index-13', 'index-14') ? 'active' : '' }}">
                         <a href="{{ url('/index') }}">{{ __('messages.home') }}
                         </a>
+
+                        @if (Auth::check() && Auth::user()->hasRole('patient'))
+                        <li><a class="dropdown-item" href="{{ url('/patient/dashboard') }}">Dashboard</a></li>
+                       
+                    @endif
+
+                    @if (Auth::check() && Auth::user()->hasRole('doctor'))
+                    <li><a class="dropdown-item" href="{{ url('/doctor/dashboard') }}">Dashboard</a></li>
+                  
+                @endif
+                    
                        
                     @if (Route::is(['index-11']))
                         <li class="login-link"><a href="{{ url('login-email') }}">Login / Signup</a></li>
@@ -1186,6 +1197,7 @@
                                     class="feather-user"></i>Registers</a>
                         </li>
                         @if (\Illuminate\Support\Facades\Auth::check())
+                        
                             <li class="register-btn">
                                 <a href="{{ route('profile.destroy') }}" class="btn btn-primary log-btn"><i
                                         class="feather-lock"></i>Logout</a>
@@ -1342,6 +1354,7 @@
                                     class="feather-user"></i>{{ __('messages.register') }}</a>
                         </li>
                         @if (\Illuminate\Support\Facades\Auth::check())
+                        
                             @csrf
                             @method('delete')
                             <li class="register-btn">

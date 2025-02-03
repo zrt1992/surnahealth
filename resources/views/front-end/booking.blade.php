@@ -24,14 +24,7 @@
                                 <div class="booking-info">
                                     <h4><a href="{{ route('frontend.doctor-profile', ['doctor_id' => null]) }}">Dr.
                                             {{ $doctor->name ?? '--' }}</a></h4>
-                                    <div class="rating">
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star"></i>
-                                        <span class="d-inline-block average-rating">{{ $doctor->rating ?? '--' }}</span>
-                                    </div>
+                                   
                                     <p class="text-muted mb-0"><i class="fas fa-map-marker-alt"></i>
                                         {{ $doctor->city ?? '--' }}, {{ $doctor->country ?? '--' }}</p>
                                 </div>

@@ -19,70 +19,52 @@
                         <div class="card-header">
                             <h4 class="card-title mb-0">{{ __('messages.search_filter')}}</h4>
                         </div>
-                        <div class="card-body">
-                            <div class="filter-widget">
-                                <div class="cal-icon">
-                                    <input type="text" class="form-control datetimepicker" placeholder="Select Date">
+                        <form action="{{ route('frontend.search') }}" method="GET">
+                            <div class="card-body">
+                                <div class="filter-widget">
+                                    <div class="">
+                                        <input type="date" name="date" class="form-control datetimepicker" placeholder="Select Date" value="{{ request('date') }}">
+                                    </div>
+                                </div>
+                        
+                                <div class="filter-widget">
+                                    <h4>{{ __('messages.gender') }}</h4>
+                                    <div>
+                                        <label class="custom_check">
+                                            <input type="radio" name="gender_type" value="male" {{ request('gender_type') == 'male' ? 'checked' : '' }}>
+                                            <span class="checkmark"></span> Male Doctor
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label class="custom_check">
+                                            <input type="radio" name="gender_type" value="female" {{ request('gender_type') == 'female' ? 'checked' : '' }}>
+                                            <span class="checkmark"></span> Female Doctor
+                                        </label>
+                                    </div>
+                                </div>
+                        
+                                <div class="filter-widget">
+                                    <h4>{{ __('messages.select_specialist') }}</h4>
+                                    @php
+                                        $specializations = ['Urology', 'Neurology', 'Dentist', 'Orthopedic', 'Cardiologist'];
+                                    @endphp
+                                    @foreach ($specializations as $specialization)
+                                        <div>
+                                            <label class="custom_check">
+                                                <input type="checkbox" name="select_specialist[]" value="{{ $specialization }}" 
+                                                    {{ in_array($specialization, (array) request('select_specialist', [])) ? 'checked' : '' }}>
+                                                <span class="checkmark"></span> {{ $specialization }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                </div>
+                        
+                                <div class="btn-search">
+                                    <button type="submit" class="btn w-100">{{ __('messages.search') }}</button>
                                 </div>
                             </div>
-                            <div class="filter-widget">
-                                <h4>{{ __('messages.gender')}}</h4>
-                                <div>
-                                    <label class="custom_check">
-                                        <input type="checkbox" name="gender_type" checked>
-                                        <span class="checkmark"></span> Male Doctor
-                                    </label>
-                                </div>
-                                <div>
-                                    <label class="custom_check">
-                                        <input type="checkbox" name="gender_type">
-                                        <span class="checkmark"></span> Female Doctor
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="filter-widget">
-                                <h4>{{ __('messages.select_specialist')}}</h4>
-                                <div>
-                                    <label class="custom_check">
-                                        <input type="checkbox" name="select_specialist" checked>
-                                        <span class="checkmark"></span> Urology
-                                    </label>
-                                </div>
-                                <div>
-                                    <label class="custom_check">
-                                        <input type="checkbox" name="select_specialist" checked>
-                                        <span class="checkmark"></span> Neurology
-                                    </label>
-                                </div>
-                                <div>
-                                    <label class="custom_check">
-                                        <input type="checkbox" name="select_specialist">
-                                        <span class="checkmark"></span> Dentist
-                                    </label>
-                                </div>
-                                <div>
-                                    <label class="custom_check">
-                                        <input type="checkbox" name="select_specialist">
-                                        <span class="checkmark"></span> Orthopedic
-                                    </label>
-                                </div>
-                                <div>
-                                    <label class="custom_check">
-                                        <input type="checkbox" name="select_specialist">
-                                        <span class="checkmark"></span> Cardiologist
-                                    </label>
-                                </div>
-                                <div>
-                                    <label class="custom_check">
-                                        <input type="checkbox" name="select_specialist">
-                                        <span class="checkmark"></span> Cardiologist
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="btn-search">
-                                <button type="button" class="btn w-100">{{ __('messages.search')}}</button>
-                            </div>
-                        </div>
+                        </form>
+                        
                     </div>
                     <!-- /Search Filter -->
 
@@ -117,14 +99,6 @@
                                         <h5 class="doc-department"><img
                                                 src="{{ URL::asset('/assets/img/specialities/specialities-05.png') }}"
                                                 class="img-fluid" alt="Speciality">{{ $doctor->doctorSpecialization->first()->name ?? '--' }}</h5>
-                                        <div class="rating">
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star"></i>
-                                            <span class="d-inline-block average-rating">(0)</span>
-                                        </div>
                                         <div class="clinic-details">
                                             <p class="doc-location"><i class="fas fa-map-marker-alt"></i>{{ $doctor->city ?? '--' }}, {{ $doctor->state ?? '--' }},
                                                 {{ $doctor->country ?? '--' }}</p>
@@ -146,26 +120,10 @@
                                             @endif
                                             </ul>
                                         </div>
-                                        <div class="clinic-services">
-                                            <span>clinic service 1</span>
-                                            <span>clinic service 2</span>
-                                        </div>
+                                      
                                     </div>
                                 </div>
                                 <div class="doc-info-right">
-                                    <div class="clini-infos">
-                                        <ul>
-                                            <li><i class="far fa-thumbs-up"></i> 0%</li>
-                                            <li><i class="far fa-comment"></i> 0 Feedback</li>
-                                            <li><i class="fas fa-map-marker-alt"></i> {{ $doctor->state ?? '--' }},  {{ $doctor->country ?? '--' }}</li>
-                                            <li>
-                                                <i class="far fa-money-bill-alt"></i>
-                                                ${{ $doctor->availableTimings->min('appointment_fees') ?? 'N/A' }} - ${{ $doctor->availableTimings->max('appointment_fees') ?? 'N/A' }}
-                                                <i class="fas fa-info-circle" data-bs-toggle="tooltip" title="Lorem Ipsum"></i>
-                                            </li>
-                                            
-                                        </ul>
-                                    </div>
                                     <div class="clinic-booking">
                                         <a class="view-pro-btn" href="{{ url('frontend/doctor-profile/'. $doctor->id) }}">{{ __('messages.view_profile')}}</a>
                                         <a class="apt-btn" href="{{ url('frontend/booking/'. $doctor->id) }}">{{ __('messages.book_appointment')}}</a>

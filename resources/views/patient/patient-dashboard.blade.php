@@ -116,8 +116,8 @@
                                                     </div>
                                                 </div>
                                                 <span class="health-percentage">Your health is 95% Normal</span>
-                                                <a href="{{ url('medical-details') }}" class="btn btn-dark w-100">View
-                                                    Details<i class="fa-solid fa-chevron-right ms-2"></i></a>
+                                                {{-- <a href="{{ url('medical-details') }}" class="btn btn-dark w-100">View
+                                                    Details<i class="fa-solid fa-chevron-right ms-2"></i></a> --}}
                                             </div>
 
                                         </div>
@@ -140,7 +140,7 @@
                                     </div>
                                     <div class="dashboard-card-body">
                                         <div class="apponiment-dates">
-                                            <ul class="appointment-calender-slider owl-carousel">
+                                            {{-- <ul class="appointment-calender-slider owl-carousel">
                                                 <li>
                                                     <a href="#">
                                                         <h5>19 <span>Mon</span></h5>
@@ -176,59 +176,39 @@
                                                         <h5>25 <span>Sat</span></h5>
                                                     </a>
                                                 </li>
-                                            </ul>
-                                            <div class="appointment-dash-card">
-                                                <div class="doctor-fav-list">
-                                                    <div class="doctor-info-profile">
-                                                        <a href="#" class="table-avatar">
-                                                            <img src="{{ URL::asset('/assets/img/doctors-dashboard/doctor-profile-img.jpg') }}"
-                                                                alt="Img">
-                                                        </a>
-                                                        <div class="doctor-name-info">
-                                                            <h5><a href="#">Dr.Edalin Hendry</a></h5>
-                                                            <span>Dentist</span>
+                                            </ul> --}}
+
+                                            @if (!empty($appointments) && count($appointments) > 0)
+                                            @foreach ($appointments as $appointment)
+                                                <div class="appointment-dash-card">
+                                                    <div class="doctor-fav-list">
+                                                        <div class="doctor-info-profile">
+                                                            <a href="#" class="table-avatar">
+                                                                <img src="{{ $appointment->doctor->image ?? URL::asset('/assets/img/doctors-dashboard/doctor-profile-img.jpg') }}" alt="Img">
+                                                            </a>
+                                                            <div class="doctor-name-info">
+                                                                <h5><a href="#">Dr. {{ $appointment->doctor->name ?? 'N/A' }}</a></h5>
+                                                                <span>Dentist</span>
+                                                            </div>
                                                         </div>
+                                                        <a href="#" class="cal-plus-icon"><i class="fa-solid fa-hospital"></i></a>
                                                     </div>
-                                                    <a href="#" class="cal-plus-icon"><i
-                                                            class="fa-solid fa-hospital"></i></a>
-                                                </div>
-                                                <div class="date-time">
-                                                    <p><i class="fa-solid fa-clock"></i>21 Mar 2024 - 10:30 PM </p>
-                                                </div>
-                                                <div class="card-btns">
-                                                    {{-- <a href="{{ url('chat') }}" class="btn btn-gray"><i
-                                                            class="fa-solid fa-comment-dots"></i>Chat Now</a> --}}
-                                                    <a href="{{ url('patient-appointments') }}"
-                                                        class="btn btn-outline-primary"><i
-                                                            class="fa-solid fa-calendar-check"></i>Attend</a>
-                                                </div>
-                                            </div>
-                                            <div class="appointment-dash-card">
-                                                <div class="doctor-fav-list">
-                                                    <div class="doctor-info-profile">
-                                                        <a href="#" class="table-avatar">
-                                                            <img src="{{ URL::asset('/assets/img/doctors/doctor-17.jpg') }}"
-                                                                alt="Img">
+                                                    <div class="date-time">
+                                                        <p><i class="fa-solid fa-clock"></i> {{ $appointment->doctor->start_date ?? 'Not Available' }}</p>
+                                                    </div>
+                                                    <div class="card-btns">
+                                                        {{-- <a href="{{ url('chat') }}" class="btn btn-gray"><i class="fa-solid fa-comment-dots"></i>Chat Now</a> --}}
+                                                        <a href="{{ $appointment->google_meet_link ?? '#' }}" class="btn btn-outline-primary" target="_blank">
+                                                            <i class="fa-solid fa-calendar-check"></i> Attend
                                                         </a>
-                                                        <div class="doctor-name-info">
-                                                            <h5><a href="#">Dr.Juliet Gabriel</a></h5>
-                                                            <span>Cardiologist</span>
-                                                        </div>
                                                     </div>
-                                                    <a href="#" class="cal-plus-icon"><i
-                                                            class="fa-solid fa-video"></i></a>
                                                 </div>
-                                                <div class="date-time">
-                                                    <p><i class="fa-solid fa-clock"></i>22 Mar 2024 - 10:30 PM </p>
-                                                </div>
-                                                <div class="card-btns">
-                                                    {{-- <a href="{{ url('chat') }}" class="btn btn-gray"><i
-                                                            class="fa-solid fa-comment-dots"></i>Chat Now</a> --}}
-                                                    <a href="{{ url('patient-appointments') }}"
-                                                        class="btn btn-outline-primary"><i
-                                                            class="fa-solid fa-calendar-check"></i>Attend</a>
-                                                </div>
-                                            </div>
+                                            @endforeach
+                                        @else
+                                            <p class="text-center text-muted">No Appointments Available</p>
+                                        @endif
+                                        
+                                           
                                         </div>
                                     </div>
 

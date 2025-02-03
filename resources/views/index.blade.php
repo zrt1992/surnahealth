@@ -441,7 +441,7 @@
                                     </ul>
                                 </div>
                                 <div class="pricing-btn">
-                                    <a href="{{ url('login-email') }}" class="btn">Choose Plan</a>
+                                    <a href="{{ url('register') }}" class="btn">Choose Plan</a>
                                 </div>
                             </div>
                         </div>
@@ -481,7 +481,7 @@
                                     </ul>
                                 </div>
                                 <div class="pricing-btn">
-                                    <a href="{{ url('login-email') }}" class="btn">Choose Plan</a>
+                                    <a href="{{ url('register') }}" class="btn">Choose Plan</a>
                                 </div>
                             </div>
                         </div>
@@ -510,7 +510,7 @@
                                 </div>
 
                                 <div class="pricing-btn">
-                                    <a href="{{ url('login-email') }}" class="btn">Choose Plan</a>
+                                    <a href="{{ url('register') }}" class="btn">Choose Plan</a>
                                 </div>
                             </div>
                             <div class="pricing-info">
@@ -519,7 +519,7 @@
                                 </div>
 
                                 <div class="pricing-btn">
-                                    <a href="{{ url('login-email') }}" class="btn">Choose Plan</a>
+                                    <a href="{{ url('register') }}" class="btn">Choose Plan</a>
                                 </div>
                             </div>
                         </div>
@@ -549,7 +549,7 @@
                                 </div>
 
                                 <div class="pricing-btn">
-                                    <a href="{{ url('login-email') }}" class="btn">Choose Plan</a>
+                                    <a href="{{ url('register') }}" class="btn">Choose Plan</a>
                                 </div>
                             </div>
                             <div class="pricing-info mt-8">
@@ -558,7 +558,7 @@
                                 </div>
 
                                 <div class="pricing-btn">
-                                    <a href="{{ url('login-email') }}" class="btn">Choose Plan</a>
+                                    <a href="{{ url('register') }}" class="btn">Choose Plan</a>
                                 </div>
                             </div>
                         </div>

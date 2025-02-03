@@ -18,12 +18,44 @@ class FrontendController extends Controller
         $this->stripeService = $stripeService;
     }
 
-    public function search()
+    public function search(Request $request)
     {
-        $allDoctors =  User::role('doctor')->with('doctorSpecialization','doctorEducation','doctorClinic.gallery','availableTimings','appointmentRequests')->get();
-      
-        return view('front-end.search', get_defined_vars());
+        $query = User::role('doctor')->with([
+            'doctorSpecialization',
+            'doctorEducation',
+            'doctorClinic.gallery',
+            'availableTimings',
+            'appointmentRequests'
+        ]);
+    
+        // Filter by Date (Assuming doctors have an 'availableTimings' relationship with a date field)
+        if ($request->filled('date')) {
+            $dayOfWeek = Carbon::parse($request->date)->format('l'); // e.g., "Monday"
+    
+            // Search doctors who have available timings on that day
+            $query->whereHas('availableTimings', function ($q) use ($dayOfWeek) {
+                $q->where('availability_day', $dayOfWeek); // Ensure 'day' column in `availableTimings` stores day names like "Monday"
+            });
+        }
+    
+        // Filter by Gender
+        if ($request->filled('gender_type')) {
+            $query->where('gender', $request->gender_type);
+        }
+    
+        // Filter by Specialization
+        if ($request->filled('select_specialist')) {
+            $specializations = $request->input('select_specialist');
+            $query->whereHas('specializations', function ($subQuery) use ($specializations) {
+                $subQuery->whereIn('name', $specializations);
+            });
+        }
+    
+        $allDoctors = $query->get();
+    
+        return view('front-end.search', compact('allDoctors'));
     }
+    
 
     public function doctorProfile($id = null)
     {
