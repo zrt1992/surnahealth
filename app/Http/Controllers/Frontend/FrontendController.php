@@ -83,6 +83,16 @@ class FrontendController extends Controller
         return view('front-end.breast-cancer', get_defined_vars());
     }
 
+    public function prostateCancer()
+    {
+        return view('front-end.prostate-cancer', get_defined_vars());
+    }
+
+    public function cardiacIssues()
+    {
+        return view('front-end.cardiac-issues', get_defined_vars());
+    }
+
     public function createCheckoutSession(Request $request)
     {
         $validated = $request->validate([

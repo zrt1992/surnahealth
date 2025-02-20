@@ -77,6 +77,8 @@ Route::middleware([LocalizationMiddleware::class])->prefix('frontend')->group(fu
     Route::get('/blog-details', [FrontendController::class, 'blogDetails'])->name('frontend.blog-details');
 
     Route::get('/breast-cancer', [FrontendController::class, 'breastCancer'])->name('frontend.breast-cancer');
+    Route::get('/prostate-cancer', [FrontendController::class, 'prostateCancer'])->name('frontend.prostate-cancer');
+    Route::get('/cardiac-issues', [FrontendController::class, 'cardiacIssues'])->name('frontend.cardiac-issues');
     Route::post('/assesment-stripe-checkout', [FrontendController::class, 'createCheckoutSession']);
 });
 

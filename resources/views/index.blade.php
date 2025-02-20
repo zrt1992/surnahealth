@@ -63,49 +63,27 @@
                                 <h4>{{ __('messages.breast_cancer') }}</h4>
                             </a>
                         </div>
+                        <div class="col-12 d-flex col-xxl-12 col-lg-12 col-sm-6">
 
-                        <form method="POST" id="payment-form-2">
-                            @csrf
-                            <div class="col-12 d-flex col-xxl-12 col-lg-12 col-sm-6">
-                                <input type="hidden" id="success-url-2" class="form-control mb-3" name="success_url"
-                                    value="https://huggingface.co/spaces/surna/surna-prostate" />
-                                <input type="hidden" id="payment-amount-2" name="payment_amount" value="45" />
-                                <a class="serv-wrap success-bg flex-fill" id="assesment-checkout-button-2">
-                                    <span>
-                                        <img src="{{ URL::asset('/assets/img/icons/service-05.svg') }}" alt="heart-image">
-                                    </span>
-                                    <h4>{{ __('messages.prostate_cancer') }}</h4>
-                                    <div id="payment-loader-2" style="display: none;">
-                                        <div class="spinner-border text-primary" role="status">
-                                            <span class="visually-hidden">Loading...</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </form>
+                            <a href="{{ route('frontend.prostate-cancer') }}" class="serv-wrap success-bg flex-fill">
+                                <span>
+                                    <img src="{{ URL::asset('/assets/img/icons/service-05.svg') }}" alt="heart-image">
+                                </span>
+                                <h4>{{ __('messages.prostate_cancer') }}</h4>
+                            </a>
+                        </div>
+                       
+                        <div class="col-12 d-flex col-xxl-12 col-lg-12 col-sm-6">
 
-                        <form method="POST" id="payment-form-3">
-                            @csrf
-                            <div class="col-12 d-flex col-xxl-12 col-lg-12 col-sm-6">
-                                <input type="hidden" id="success-url-3" class="form-control mb-3" name="success_url"
-                                    value="https://huggingface.co/spaces/surna/surna-heart" />
-                                <input type="hidden" id="payment-amount-3" name="payment_amount" value="35" />
-                                <a class="serv-wrap info-bg flex-fill" id="assesment-checkout-button-3">
-                                    <span>
-                                        <img src="{{ URL::asset('/assets/img/icons/health-care-love.svg') }}"
+                            <a href="{{ route('frontend.cardiac-issues') }}" class="serv-wrap info-bg flex-fill">
+                                <span>
+                                    <img src="{{ URL::asset('/assets/img/icons/health-care-love.svg') }}"
                                             alt="heart-image">
-                                    </span>
-                                    <h4>{{ __('messages.cardiac_issues') }}</h4>
-                                    <div id="payment-loader-3" style="display: none;">
-                                        <div class="spinner-border text-primary" role="status">
-                                            <span class="visually-hidden">Loading...</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </form>
-
-
+                                </span>
+                                <h4>{{ __('messages.cardiac_issues') }}</h4>
+                            </a>
+                        </div>
+                      
                     </div>
                 </div>
 
