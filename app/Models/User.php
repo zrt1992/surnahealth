@@ -29,6 +29,7 @@ class User extends Authenticatable
         'pincode',
         'city',
         'state',
+        'zipcode',
         'address',
         'years_of_experience',
         'profile_image',
@@ -45,6 +46,7 @@ class User extends Authenticatable
         'term_and_condition',
         'stripe_customer_id',
         'subscription_active',
+        'dose_spot_patient_id'
     ];
 
     /**

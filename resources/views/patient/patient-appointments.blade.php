@@ -3,10 +3,10 @@
 @section('content')
     @component('components.breadcrumb')
         @slot('title')
-            Patient Appointments
+            {{ __('messages.patient_appointments') }}
         @endslot
         @slot('li_1')
-            Patient Appointments
+            {{ __('messages.patient_appointments') }}
         @endslot
     @endcomponent
 
@@ -21,7 +21,7 @@
 
                 <div class="col-lg-8 col-xl-9">
                     <div class="dashboard-header">
-                        <h3>Appointments</h3>
+                        <h3>{{ __('messages.appointments') }}</h3>
                         <ul class="header-list-btns">
                             <li>
                                 <div class="input-block dash-search-input">
@@ -56,25 +56,25 @@
                                     <button class="nav-link active" id="pills-upcoming-tab" data-bs-toggle="pill"
                                         data-bs-target="#pills-upcoming" type="button" role="tab"
                                         aria-controls="pills-upcoming"
-                                        aria-selected="false">Upcoming<span>{{ $upcommingCount ?? '0' }}</span></button>
+                                        aria-selected="false">{{ __('messages.upcoming') }}<span>{{ $upcommingCount ?? '0' }}</span></button>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="pills-cancel-tab" data-bs-toggle="pill"
                                         data-bs-target="#pills-cancel" type="button" role="tab"
                                         aria-controls="pills-cancel"
-                                        aria-selected="true">Cancelled<span>{{ $rejectedCount ?? '0' }}</span></button>
+                                        aria-selected="true">{{ __('messages.cancelled') }}<span>{{ $rejectedCount ?? '0' }}</span></button>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="pills-complete-tab" data-bs-toggle="pill"
                                         data-bs-target="#pills-complete" type="button" role="tab"
                                         aria-controls="pills-complete"
-                                        aria-selected="true">Completed<span>{{ $completedCount ?? '0' }}</span></button>
+                                        aria-selected="true">{{ __('messages.completed') }}<span>{{ $completedCount ?? '0' }}</span></button>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="pills-preferences-tab" data-bs-toggle="pill"
                                         data-bs-target="#pills-preferences" type="button" role="tab"
                                         aria-controls="pills-preferences"
-                                        aria-selected="true">Preferences<span></span></button>
+                                        aria-selected="true">{{ __('messages.preferences') }}<span></span></button>
                                 </li>
                             </ul>
                         </div>
@@ -88,7 +88,7 @@
                             </div>
                             <div class="form-sorts dropdown">
                                 <a href="javascript:void(0);" class="dropdown-toggle" id="table-filter"><i
-                                        class="fa-solid fa-filter me-2"></i>Filter By</a>
+                                        class="fa-solid fa-filter me-2"></i>{{ __('messages.filter_by') }}</a>
                                 <div class="filter-dropdown-menu">
                                     <div class="filter-set-view">
                                         <div class="accordion" id="accordionExample">
@@ -96,7 +96,7 @@
                                                 <div class="filter-set-content-head">
                                                     <a href="#" data-bs-toggle="collapse"
                                                         data-bs-target="#collapseTwo" aria-expanded="false"
-                                                        aria-controls="collapseTwo">Name<i
+                                                        aria-controls="collapseTwo">{{ __('messages.name') }}<i
                                                             class="fa-solid fa-chevron-right"></i></a>
                                                 </div>
                                                 <div class="filter-set-contents accordion-collapse collapse show"
@@ -117,7 +117,7 @@
                                                 <div class="filter-set-content-head">
                                                     <a href="#" data-bs-toggle="collapse"
                                                         data-bs-target="#collapseOne" aria-expanded="true"
-                                                        aria-controls="collapseOne">Appointment Type<i
+                                                        aria-controls="collapseOne">{{ __('messages.appointment_type') }}<i
                                                             class="fa-solid fa-chevron-right"></i></a>
                                                 </div>
                                                 <div class="filter-set-contents accordion-collapse collapse show"
@@ -128,7 +128,7 @@
                                                                 <label class="checkboxs">
                                                                     <input type="checkbox" checked>
                                                                     <span class="checkmarks"></span>
-                                                                    <span class="check-title">All Type</span>
+                                                                    <span class="check-title">{{ __('messages.all_type') }}</span>
                                                                 </label>
                                                             </div>
                                                         </li>
@@ -137,7 +137,7 @@
                                                                 <label class="checkboxs">
                                                                     <input type="checkbox">
                                                                     <span class="checkmarks"></span>
-                                                                    <span class="check-title">Video Call</span>
+                                                                    <span class="check-title">{{ __('messages.video_call') }}</span>
                                                                 </label>
                                                             </div>
                                                         </li>
@@ -146,7 +146,7 @@
                                                                 <label class="checkboxs">
                                                                     <input type="checkbox">
                                                                     <span class="checkmarks"></span>
-                                                                    <span class="check-title">Audio Call</span>
+                                                                    <span class="check-title">{{ __('messages.audio_call') }}</span>
                                                                 </label>
                                                             </div>
                                                         </li>
@@ -155,16 +155,7 @@
                                                                 <label class="checkboxs">
                                                                     <input type="checkbox">
                                                                     <span class="checkmarks"></span>
-                                                                    <span class="check-title">Chat</span>
-                                                                </label>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="filter-checks">
-                                                                <label class="checkboxs">
-                                                                    <input type="checkbox">
-                                                                    <span class="checkmarks"></span>
-                                                                    <span class="check-title">Direct Visit</span>
+                                                                    <span class="check-title">{{ __('messages.chat') }}</span>
                                                                 </label>
                                                             </div>
                                                         </li>
@@ -175,7 +166,7 @@
                                                 <div class="filter-set-content-head">
                                                     <a href="#" data-bs-toggle="collapse"
                                                         data-bs-target="#collapseThree" aria-expanded="false"
-                                                        aria-controls="collapseThree">Visit Type<i
+                                                        aria-controls="collapseThree">{{ __('messages.visit_type') }}<i
                                                             class="fa-solid fa-chevron-right"></i></a>
                                                 </div>
                                                 <div class="filter-set-contents accordion-collapse collapse show"
@@ -186,7 +177,7 @@
                                                                 <label class="checkboxs">
                                                                     <input type="checkbox" checked>
                                                                     <span class="checkmarks"></span>
-                                                                    <span class="check-title">All Visit</span>
+                                                                    <span class="check-title">{{ __('messages.all_visit') }}</span>
                                                                 </label>
                                                             </div>
 
@@ -196,7 +187,7 @@
                                                                 <label class="checkboxs">
                                                                     <input type="checkbox">
                                                                     <span class="checkmarks"></span>
-                                                                    <span class="check-title">General</span>
+                                                                    <span class="check-title">{{ __('messages.general') }}</span>
                                                                 </label>
                                                             </div>
 
@@ -206,7 +197,7 @@
                                                                 <label class="checkboxs">
                                                                     <input type="checkbox">
                                                                     <span class="checkmarks"></span>
-                                                                    <span class="check-title">Consultation</span>
+                                                                    <span class="check-title">{{ __('messages.consultation') }}</span>
                                                                 </label>
                                                             </div>
 
@@ -216,7 +207,7 @@
                                                                 <label class="checkboxs">
                                                                     <input type="checkbox">
                                                                     <span class="checkmarks"></span>
-                                                                    <span class="check-title">Follow-up</span>
+                                                                    <span class="check-title">{{ __('messages.follow_up') }}</span>
                                                                 </label>
                                                             </div>
 
@@ -226,7 +217,7 @@
                                                                 <label class="checkboxs">
                                                                     <input type="checkbox">
                                                                     <span class="checkmarks"></span>
-                                                                    <span class="check-title">Direct Visit</span>
+                                                                    <span class="check-title">{{ __('messages.direct_visit') }}</span>
                                                                 </label>
                                                             </div>
 
@@ -237,8 +228,8 @@
                                         </div>
 
                                         <div class="filter-reset-btns">
-                                            <a href="{{ url('doctor/doctor-appointments') }}" class="btn btn-light">Reset</a>
-                                            <a href="{{ url('doctor/doctor-appointments') }}" class="btn btn-primary">Filter Now</a>
+                                            <a href="{{ url('doctor/doctor-appointments') }}" class="btn btn-light">{{ __('messages.reset') }}</a>
+                                            <a href="{{ url('doctor/doctor-appointments') }}" class="btn btn-primary">{{ __('messages.filter_now') }}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -263,7 +254,7 @@
                                                     <p>#Apt{{ str_pad($appointmentRequest->id, 4, '0', STR_PAD_LEFT) }}</p>
                                                     <h6><a href="{{ url('patient-upcoming-appointment') }}">Dr
                                                             {{ $appointmentRequest->doctor->name }}</a><span
-                                                            class="badge new-tag">New</span></h6>
+                                                            class="badge new-tag">{{ __('messages.new') }}</span></h6>
                                                 </div>
                                             </div>
                                         </li>
@@ -272,8 +263,7 @@
                                                     class="fa-solid fa-clock"></i>{{ $appointmentRequest->booking_date ?? '--' }}
                                                 {{ $appointmentRequest->slot->start_time ?? '--' }}</p>
                                             <ul class="d-flex apponitment-types">
-                                                <li>General Visit</li>
-                                                <li>Video Call</li>
+                                                <li>{{ __('messages.video_call') }}</li>
                                             </ul>
                                         </li>
                                         <li class="mail-info-patient">
@@ -322,7 +312,7 @@
                                                     <p>#Apt{{ str_pad($appointment->id, 4, '0', STR_PAD_LEFT) }}</p>
                                                     <h6><a href="{{ url('patient-upcoming-appointment') }}">Dr
                                                             {{ $appointment->doctor->name }}</a><span
-                                                            class="badge new-tag">New</span></h6>
+                                                            class="badge new-tag">{{ __('messages.new') }}</span></h6>
                                                 </div>
                                             </div>
                                         </li>
@@ -331,8 +321,7 @@
                                                     class="fa-solid fa-clock"></i>{{ \Carbon\Carbon::parse($appointment->start_date)->format('d M Y h:i A') }}
                                             </p>
                                             <ul class="d-flex apponitment-types">
-                                                <li>General Visit</li>
-                                                <li>Video Call</li>
+                                                <li>{{ __('messages.video_call') }}</li>
                                             </ul>
                                         </li>
                                         <li class="mail-info-patient">
@@ -365,7 +354,7 @@
                                         <li class="appointment-detail-btn">
 
                                             <a href="{{ $appointment->google_meet_link }}" class="start-link"
-                                                target="_blank"><i class="fa-solid fa-calendar-check me-1"></i>Attend</a>
+                                                target="_blank"><i class="fa-solid fa-calendar-check me-1"></i>{{ __('messages.attend') }}</a>
                                         </li>
                                     </ul>
                                 @endforeach
@@ -396,7 +385,7 @@
                                                     <p>#Apt0002</p>
                                                     <h6><a
                                                             href="{{ url('patient-cancelled-appointment') }}">Dr.{{ $rejectedRequest->doctor->name ?? '--' }}</a><span
-                                                            class="badge new-tag">New</span></h6>
+                                                            class="badge new-tag">{{ __('messages.new') }}</span></h6>
                                                 </div>
                                             </div>
                                         </li>
@@ -405,15 +394,13 @@
                                                     class="fa-solid fa-clock"></i>{{ $rejectedRequest->booking_date ?? '--' }}
                                             </p>
                                             <ul class="d-flex apponitment-types">
-                                                <li>General Visit</li>
-                                                <li>Audio Call</li>
+                                                <li>{{ __('messages.audio_call') }}</li>
                                             </ul>
 
                                         </li>
                                         <li class="appointment-detail-btn">
                                             <a href="{{ route('patient-cancelled-appointment', $rejectedRequest->id) }}"
-                                                class="start-link">View
-                                                Details<i class="fa-regular fa-circle-right ms-1"></i></a>
+                                                class="start-link">{{ __('messages.view_details') }}<i class="fa-regular fa-circle-right ms-1"></i></a>
                                         </li>
                                     </ul>
                                 @endforeach
@@ -443,7 +430,7 @@
                                                     <p>#Apt0002</p>
                                                     <h6><a
                                                             href="{{ url('patient-completed-appointment') }}">Dr.{{ $completedRequests->doctor->name ?? '--' }}</a><span
-                                                            class="badge new-tag">New</span></h6>
+                                                            class="badge new-tag">{{ __('messages.new') }}</span></h6>
                                                 </div>
                                             </div>
                                         </li>
@@ -452,14 +439,12 @@
                                                     class="fa-solid fa-clock"></i>{{ $completedRequests->start_date ?? '--' }}
                                             </p>
                                             <ul class="d-flex apponitment-types">
-                                                <li>General Visit</li>
-                                                <li>Audio Call</li>
+                                                <li>{{ __('messages.audio_call') }}</li>
                                             </ul>
 
                                         </li>
                                         <li class="appointment-detail-btn">
-                                            <a href="{{ url('patient-completed-appointment') }}" class="start-link">View
-                                                Details<i class="fa-regular fa-circle-right ms-1"></i></a>
+                                            <a href="{{ url('patient-completed-appointment') }}" class="start-link">{{ __('messages.view_details') }}<i class="fa-regular fa-circle-right ms-1"></i></a>
                                         </li>
                                     </ul>
                                 @endforeach
@@ -479,13 +464,13 @@
                                 <div class="setting-card">
                                    
                                     <div class="setting-title">
-                                        <h5>Appointment preferences</h5>
+                                        <h5>{{ __('messages.appointment_preferences') }}</h5>
                                     </div>
                                     <div class="setting-card">
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="form-wrap">
-                                                    <label class="col-form-label">Preferred doctor <span class="text-danger">*</span></label>
+                                                    <label class="col-form-label">{{ __('messages.preferred_doctor') }} <span class="text-danger">*</span></label>
                                                     <input type="text" class="form-control" name="preferred_doctor" class="form-control"
                                                         value="{{ old('preferred_doctor', $appointmentPreferences->preferred_doctor ?? '')  }}">
                                                     @error('preferred_doctor')
@@ -506,10 +491,10 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-wrap">
-                                                    <label class="col-form-label">Preferred consultation mode <span class="text-danger">*</span></label>
+                                                    <label class="col-form-label">{{ __('messages.preferred_consultation_mode') }} <span class="text-danger">*</span></label>
                                                     
                                                     <div class="remember-me-col d-flex justify-content-between">
-                                                        <label class="custom_check">Video call
+                                                        <label class="custom_check">{{ __('messages.video_call') }}
                                                             <input type="checkbox" 
                                                                 id="video_call" 
                                                                 name="video_call" 
@@ -520,7 +505,7 @@
                                                     </div>
                                             
                                                     <div class="remember-me-col d-flex justify-content-between">
-                                                        <label class="custom_check">Audio call
+                                                        <label class="custom_check">{{ __('messages.audio_call') }}
                                                             <input type="checkbox" 
                                                                 id="audio_call" 
                                                                 name="audio_call" 
@@ -531,7 +516,7 @@
                                                     </div>
                                             
                                                     <div class="remember-me-col d-flex justify-content-between">
-                                                        <label class="custom_check">Chat
+                                                        <label class="custom_check">{{ __('messages.chat') }}
                                                             <input type="checkbox" 
                                                                 id="chat" 
                                                                 name="chat" 
@@ -548,8 +533,8 @@
                                         </div>
                                     </div>
                                     <div class="modal-btn text-end">
-                                        <a href="#" class="btn btn-gray">Cancel</a>
-                                        <button type="submit" class="btn btn-primary prime-btn">Save Changes</button>
+                                        <a href="#" class="btn btn-gray">{{ __('messages.cancel') }}</a>
+                                        <button type="submit" class="btn btn-primary prime-btn">{{ __('messages.save_changes') }}</button>
                                     </div>
         
                             </form>

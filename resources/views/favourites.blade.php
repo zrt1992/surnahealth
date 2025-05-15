@@ -20,7 +20,7 @@
                 <div class="col-lg-8 col-xl-9">
 
                     <div class="dashboard-header">
-                        <h3>Doctors</h3>
+                        <h3>{{ __('messages.doctors') }}</h3>
 
                         <ul class="header-list-btns">
                             <li>
@@ -49,7 +49,7 @@
 
                             <div class="form-sorts dropdown">
                                 <a href="javascript:void(0);" class="dropdown-toggle" id="table-filter"><i
-                                        class="fa-solid fa-filter me-2"></i>Filter By</a>
+                                        class="fa-solid fa-filter me-2"></i>{{ __('messages.filter_by') }}</a>
                                 <div class="filter-dropdown-menu">
                                     <div class="filter-set-view">
                                         <form method="GET" action="{{ route('favourites') }}">
@@ -58,7 +58,7 @@
                                                     <div class="filter-set-content-head">
                                                         <a href="#" data-bs-toggle="collapse"
                                                             data-bs-target="#collapseTwo" aria-expanded="false"
-                                                            aria-controls="collapseTwo">Specialization<i
+                                                            aria-controls="collapseTwo">{{ __('messages.specialization') }}<i
                                                                 class="fa-solid fa-chevron-right"></i></a>
                                                     </div>
                                                     <div class="filter-set-contents accordion-collapse collapse show"
@@ -83,7 +83,7 @@
                                                                         <input type="checkbox" name="specialization[]"
                                                                             value="Cardiology">
                                                                         <span class="checkmarks"></span>
-                                                                        <span class="check-title">Cardiology</span>
+                                                                        <span class="check-title">{{ __('messages.cardiology') }}</span>
                                                                     </label>
                                                                 </div>
                                                             </li>
@@ -93,7 +93,7 @@
                                                                         <input type="checkbox" name="specialization[]"
                                                                             value="Dermatology">
                                                                         <span class="checkmarks"></span>
-                                                                        <span class="check-title">Dermatology</span>
+                                                                        <span class="check-title">{{ __('messages.dermatology') }}</span>
                                                                     </label>
                                                                 </div>
                                                             </li>
@@ -103,7 +103,7 @@
                                                                         <input type="checkbox" name="specialization[]"
                                                                             value="Neurology">
                                                                         <span class="checkmarks"></span>
-                                                                        <span class="check-title">Neurology</span>
+                                                                        <span class="check-title">{{ __('messages.neurology') }}</span>
                                                                     </label>
                                                                 </div>
                                                             </li>
@@ -113,7 +113,7 @@
                                                                         <input type="checkbox" name="specialization[]"
                                                                             value="Surgery">
                                                                         <span class="checkmarks"></span>
-                                                                        <span class="check-title">Surgery</span>
+                                                                        <span class="check-title">{{ __('messages.surgery') }}</span>
                                                                     </label>
                                                                 </div>
                                                             </li>
@@ -124,7 +124,7 @@
                                                     <div class="filter-set-content-head">
                                                         <a href="#" data-bs-toggle="collapse"
                                                             data-bs-target="#collapseOne" aria-expanded="true"
-                                                            aria-controls="collapseOne">Location<i
+                                                            aria-controls="collapseOne">{{ __('messages.location') }}<i
                                                                 class="fa-solid fa-chevron-right"></i></a>
                                                     </div>
                                                     <div class="filter-set-contents accordion-collapse collapse show"
@@ -139,7 +139,7 @@
                                                                         <input type="checkbox" name="location[]"
                                                                             value="new york">
                                                                         <span class="checkmarks"></span>
-                                                                        <span class="check-title">New York</span>
+                                                                        <span class="check-title">{{ __('messages.new_york') }}</span>
                                                                     </label>
                                                                 </div>
                                                             </li>
@@ -149,7 +149,7 @@
                                                                         <input type="checkbox" name="location[]"
                                                                             value="lisbon">
                                                                         <span class="checkmarks"></span>
-                                                                        <span class="check-title">Lisbon</span>
+                                                                        <span class="check-title">{{ __('messages.lisbon') }}</span>
                                                                     </label>
                                                                 </div>
                                                             </li>
@@ -159,7 +159,7 @@
                                                                         <input type="checkbox" name="location[]"
                                                                             value="dubai">
                                                                         <span class="checkmarks"></span>
-                                                                        <span class="check-title">Dubai</span>
+                                                                        <span class="check-title">{{ __('messages.dubai') }}</span>
                                                                     </label>
                                                                 </div>
                                                             </li>
@@ -169,7 +169,7 @@
                                                                         <input type="checkbox" name="location[]"
                                                                             value="london">
                                                                         <span class="checkmarks"></span>
-                                                                        <span class="check-title">London</span>
+                                                                        <span class="check-title">{{ __('messages.london') }}</span>
                                                                     </label>
                                                                 </div>
                                                             </li>
@@ -180,7 +180,7 @@
                                                     <div class="filter-set-content-head">
                                                         <a href="#" data-bs-toggle="collapse"
                                                             data-bs-target="#collapseThree" aria-expanded="false"
-                                                            aria-controls="collapseThree">Language<i
+                                                            aria-controls="collapseThree">{{ __('messages.language') }}<i
                                                                 class="fa-solid fa-chevron-right"></i></a>
                                                     </div>
                                                     <div class="filter-set-contents accordion-collapse collapse show"
@@ -192,7 +192,7 @@
                                                                         <input type="checkbox" name="language[]"
                                                                             value="english">
                                                                         <span class="checkmarks"></span>
-                                                                        <span class="check-title">English</span>
+                                                                        <span class="check-title">{{ __('messages.english') }}</span>
                                                                     </label>
                                                                 </div>
 
@@ -203,7 +203,7 @@
                                                                         <input type="checkbox" name="language[]"
                                                                             value="portugues">
                                                                         <span class="checkmarks"></span>
-                                                                        <span class="check-title">Portugues</span>
+                                                                        <span class="check-title">{{ __('messages.portugues') }}</span>
                                                                     </label>
                                                                 </div>
 
@@ -216,7 +216,7 @@
                                                                         <input type="checkbox" name="language[]"
                                                                             value="Arabic">
                                                                         <span class="checkmarks"></span>
-                                                                        <span class="check-title">Arabic</span>
+                                                                        <span class="check-title">{{ __('messages.arabic') }}</span>
                                                                     </label>
                                                                 </div>
 
@@ -227,8 +227,8 @@
                                             </div>
 
                                             <div class="filter-reset-btns">
-                                                <a href="{{ url('doctor/doctor-appointments') }}" class="btn btn-light">Reset</a>
-                                                <button type="submit" class="btn btn-primary">Filter Now</button>
+                                                <a href="{{ url('doctor/doctor-appointments') }}" class="btn btn-light">{{ __('messages.reset') }}</a>
+                                                <button type="submit" class="btn btn-primary">{{ __('messages.filter_now') }}</button>
                                                 {{-- <a href="{{ url('doctor/doctor-appointments') }}" class="btn btn-primary">Filter Now</a> --}}
                                             </div>
                                         </form>
@@ -268,17 +268,17 @@
                                             </div>
                                             <ul class="available-info">
                                                 <li>
-                                                    <span><i class="fa-solid fa-calendar-day"></i></span>Next Availability
+                                                    <span><i class="fa-solid fa-calendar-day"></i></span>{{ __('messages.next_availability') }}
                                                     :
                                                     {{ $doctor->next_availability }}
                                                 </li>
                                                 <li>
-                                                    <span><i class="fas fa-map-marker-alt"></i></span>Location :
+                                                    <span><i class="fas fa-map-marker-alt"></i></span>{{ __('messages.location_colon') }}
                                                     {{ $doctor->address ?? '--' }},{{ $doctor->city ?? '--' }},{{ $doctor->state ?? '--' }}
                                                 </li>
                                             </ul>
                                             <div class="last-book">
-                                                <p>Last Booked on {{ $doctor->last_booked }}</p>
+                                                <p>{{ __('messages.last_booked_on') }} {{ $doctor->last_booked }}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -286,11 +286,10 @@
                                         <div class="row row-sm">
                                             <div class="col-6">
                                                 <a href="{{ url('doctor-profile-2/' . optional($doctor)->id) }}"
-                                                    class="btn view-btn">View Profile</a>
+                                                    class="btn view-btn">{{ __('messages.view_profile') }}</a>
                                             </div>
                                             <div class="col-6">
-                                                <a href="{{ url('booking/' . $doctor->id) }}" class="btn book-btn">Book
-                                                    Now</a>
+                                                <a href="{{ url('booking/' . $doctor->id) }}" class="btn book-btn">{{ __('messages.book_now') }}</a>
                                             </div>
                                         </div>
                                     </div>
@@ -355,7 +354,7 @@
 
                     <div class="col-md-12">
                         <div class="loader-item text-center">
-                            <a href="javascript:void(0);" class="btn btn-load">Load More</a>
+                            <a href="javascript:void(0);" class="btn btn-load">{{ __('messages.load_more') }}</a>
                         </div>
                     </div>
 

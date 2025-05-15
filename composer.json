@@ -8,6 +8,7 @@
         "php": "^8.2",
         "anhskohbo/no-captcha": "^3.6",
         "google/apiclient": "^2.18",
+        "guzzlehttp/guzzle": "^7.8",
         "josiasmontag/laravel-recaptchav3": "^1.0",
         "laravel/framework": "^11.7.0",
         "laravel/tinker": "^2.9",

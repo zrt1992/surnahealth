@@ -21,7 +21,7 @@
                 <div class="col-lg-8 col-xl-9">
 
                     <div class="dashboard-header">
-                        <h3>Records</h3>
+                        <h3>{{ __('messages.records') }}</h3>
                         <div class="appointment-tabs">
                             <ul class="nav">
                                 {{-- <li>
@@ -30,7 +30,7 @@
                                 </li> --}}
                                 <li>
                                     <a href="#" class="nav-link active" data-bs-toggle="tab"
-                                        data-bs-target="#prescription">Prescriptions</a>
+                                        data-bs-target="#prescription">{{ __('messages.prescription') }}</a>
                                 </li>
                             </ul>
                         </div>
@@ -53,10 +53,10 @@
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
-                                                <th>Name</th>
-                                                <th>Created Date</th>
-                                                <th>Prescriped By</th>
-                                                <th>Action</th>
+                                                <th>{{ __('messages.name') }}</th>
+                                                <th>{{ __('messages.created_date') }}</th>
+                                                <th>{{ __('messages.prescribed_by') }}</th>
+                                                <th>{{ __('messages.action') }}</th>
                                             </tr>
                                         </thead>
                                         <tbody>

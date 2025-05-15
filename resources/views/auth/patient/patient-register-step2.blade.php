@@ -112,7 +112,7 @@
                                         </div> --}}
                                         <div class="mb-3">
                                             <label class="mb-2">Date of birth</label>
-                                            <input type="text" name="age" class="form-control" id="age" value="{{ old('age') }}">
+                                            <input type="text" name="age" class="form-control" id="age" value="{{ old('age') }}" required>
                                             @error('age')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -218,15 +218,36 @@
                                         </div>
                                         <div class="mb-3">
                                             <label class="mb-2">Country</label>
-                                            <input type="text" class="form-control" id="country" name="country" value="{{ old('country') }}">
+                                            <input type="text" class="form-control" id="country" name="country" value="{{ old('country') }}" required>
                                             @error('country')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                        </div>
+                                         <div class="mb-3">
+                                            <label class="mb-2">State</label>
+                                            <input type="text" class="form-control" id="state" name="state" value="{{ old('state') }}" required>
+                                            @error('state')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                         </div>
                                         <div class="mb-3">
                                             <label class="mb-2">city</label>
-                                            <input type="text" class="form-control" id="city" name="city" value="{{ old('city') }}">
+                                            <input type="text" class="form-control" id="city" name="city" value="{{ old('city') }}" required>
                                             @error('city')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                        </div>
+                                         <div class="mb-3">
+                                            <label class="mb-2">Zip Code</label>
+                                            <input type="text" class="form-control" id="zipcode" name="zipcode" value="{{ old('zipcode') }}" required>
+                                            @error('zipcode')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                        </div>
+                                         <div class="mb-3">
+                                            <label class="mb-2">Address</label>
+                                            <input type="text" class="form-control" id="address" name="address" value="{{ old('address') }}" required>
+                                            @error('address')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                         </div>

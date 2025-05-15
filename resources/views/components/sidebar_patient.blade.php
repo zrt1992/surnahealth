@@ -26,20 +26,20 @@
                     <li class="{{ Request::is('patient/dashboard') ? 'active' : '' }}">
                         <a href="{{ route('patient-dashboard') }}">
                             <i class="fa-solid fa-shapes"></i>
-                            <span>Dashboard</span>
+                            <span>{{ __('messages.dashboard') }}</span>
                         </a>
                     </li>
                     <li class="{{ Request::is('patient/favourites') ? 'active' : '' }}">
                         <a href="{{ route('favourites') }}">
                             <i class="fa-solid fa-user-doctor"></i>
-                            <span>Doctors</span>
+                            <span>{{ __('messages.doctors') }}</span>
                         </a>
                     </li>
                     <li
                         class="{{ Request::is('patient/patient-appointments', 'patient-upcoming-appointments', 'patient-completed-appointments', 'patient-cancelled-appointments', 'patient-appointments-grid', 'patient-appointment-details', 'patient-upcoming-appointment', 'patient-completed-appointment', 'patient-cancelled-appointment') ? 'active' : '' }}">
                         <a href="{{ route('patient-appointments') }}">
                             <i class="fa-solid fa-calendar-days"></i>
-                            <span>My Appointments</span>
+                            <span>{{ __('messages.my_appointments') }}</span>
                         </a>
                     </li>
 
@@ -52,13 +52,13 @@
                     <li class="{{ Request::is('patient-prescription') ? 'active' : '' }}">
                         <a href="{{ route('patient-prescription') }}">
                             <i class="fa-solid fa-money-bill-1"></i>
-                            <span>Presciptions</span>
+                            <span>{{ __('messages.prescriptions') }}</span>
                         </a>
                     </li>
                     <li class="{{ Request::is('patient/medical-details') ? 'active' : '' }}">
                         <a href="{{ route('medical-details') }}">
                             <i class="fa-solid fa-shield-halved"></i>
-                            <span>Health Tracker</span>
+                            <span>{{ __('messages.health_tracker') }}</span>
                         </a>
                     </li>
                     {{-- <li class="{{ Request::is('patient-accounts') ? 'active' : '' }}">
@@ -76,7 +76,7 @@
                     <li class="{{ Request::is('patient/chat') ? 'active' : '' }}">
                         <a href="{{ route('patient-chat') }}">
                             <i class="fa-solid fa-comments"></i>
-                            <span>Message</span>
+                            <span>{{ __('messages.message') }}</span>
                             @if ($unseenMessagesCount > 0)
                                 <small class="unread-msg">{{ $unseenMessagesCount }}</small>
                             @endif
@@ -85,7 +85,7 @@
                     <li class="{{ Request::is('patient/profile-settings') ? 'active' : '' }}">
                         <a href="{{ route('profile-settings') }}">
                             <i class="fa-solid fa-user-pen"></i>
-                            <span>Profile Settings</span>
+                            <span>{{ __('messages.profile_settings') }}</span>
                         </a>
                     </li>
 
@@ -98,7 +98,7 @@
                     <li class="{{ Request::is('patient/patient-help-and-support') ? 'active' : '' }}">
                         <a href="{{ url('patient/patient-help-and-support') }}">
                             <i class="fa-solid fa-key"></i>
-                            <span>Help & Support</span>
+                            <span>{{ __('messages.help_support') }}</span>
                         </a>
                     </li>
 
@@ -106,7 +106,7 @@
                         <a href="{{ route('logout-user') }}"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <i class="fa-solid fa-calendar-check"></i>
-                            <span>Logout</span>
+                            <span>{{ __('messages.logout') }}</span>
                         </a>
                     </li>
                     <form id="logout-form" action="{{ route('logout-user') }}" method="POST" style="display: none;">

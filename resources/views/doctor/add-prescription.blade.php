@@ -55,93 +55,105 @@
 
                             <!-- Prescription Item -->
                             <form action="{{ route('store-prescription') }}">
-                            <div class="card card-table">
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-hover table-center add-table-prescription" id="prescription-table">
-                                            <thead>
-                                                <tr>
-                                                    <th class="table-name">Name</th>
-                                                    <th>Quantity</th>
-                                                    <th class="table-days">Days</th>
-                                                    <th>Time</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                                    <tbody >
-                                                        <tr class="test">
-                                                            <input type="hidden" name="user_id[]"
-                                                                value="{{ $id }}">
-                                                            <td><input class="form-control" type="text" name="name[]">
-                                                            </td>
-                                                            <td><input class="form-control" type="number"
-                                                                    name="quantity[]"></td>
-                                                            <td><input class="form-control" type="number" name="days[]">
-                                                            </td>
-                                                            <td>
-                                                                <div class="form-check form-check-inline">
-                                                                    <label class="form-check-label">
-                                                                        <input class="form-check-input" type="checkbox"
-                                                                            name="morning[]" value="1"> Morning
-                                                                    </label>
-                                                                </div>
-                                                                <div class="form-check form-check-inline">
-                                                                    <label class="form-check-label">
-                                                                        <input class="form-check-input" type="checkbox"
-                                                                            name="afternoon[]" value="1"> Afternoon
-                                                                    </label>
-                                                                </div>
-                                                                <div class="form-check form-check-inline">
-                                                                    <label class="form-check-label">
-                                                                        <input class="form-check-input" type="checkbox"
-                                                                            name="evening[]" value="1"> Evening
-                                                                    </label>
-                                                                </div>
-                                                                <div class="form-check form-check-inline">
-                                                                    <label class="form-check-label">
-                                                                        <input class="form-check-input" type="checkbox"
-                                                                            name="night[]" value="1"> Night
-                                                                    </label>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <a href="#" class="btn bg-danger-light trash"><i
-                                                                        class="far fa-trash-alt"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                 </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /Prescription Item -->
+                                <div class="card card-table">
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover table-center add-table-prescription"
+                                                id="prescription-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="table-name">Name</th>
+                                                        <th>Quantity</th>
+                                                        <th class="table-days">Days</th>
+                                                        <th>Time</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="test">
+                                                        <input type="hidden" name="user_id[]" value="{{ $id }}">
+                                                       <td>
+    <div class="position-relative">
+        <input class="form-control medication-autocomplete pr-5" type="text" name="name[]">
+        <!-- Inline loader in input -->
+        <span class="input-loader position-absolute" style="right: 10px; top: 50%; transform: translateY(-50%); display: none;">
+            <i class="fa fa-spinner fa-spin text-muted"></i>
+        </span>
+    </div>
 
-                            <!-- Signature -->
-                            <div class="row">
-                                <div class="col-md-12 text-end">
-                                    <div class="signature-wrap">
-                                        <div class="signature">
-                                            Click here to sign
-                                        </div>
-                                        <div class="sign-name">
-                                            <p class="mb-0">( Dr. Darren Elder )</p>
-                                            <span class="text-muted">Signature</span>
+    <ul class="autocomplete-list position-absolute bg-white border mt-1 p-0 list-unstyled"
+        style="z-index: 9999; display: none;"></ul>
+</td>
+
+
+                                                        <td><input class="form-control" type="number" name="quantity[]">
+                                                        </td>
+                                                        <td><input class="form-control" type="number" name="days[]">
+                                                        </td>
+                                                        <td>
+                                                            <div class="form-check form-check-inline">
+                                                                <label class="form-check-label">
+                                                                    <input class="form-check-input" type="checkbox"
+                                                                        name="morning[]" value="1"> Morning
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <label class="form-check-label">
+                                                                    <input class="form-check-input" type="checkbox"
+                                                                        name="afternoon[]" value="1"> Afternoon
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <label class="form-check-label">
+                                                                    <input class="form-check-input" type="checkbox"
+                                                                        name="evening[]" value="1"> Evening
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <label class="form-check-label">
+                                                                    <input class="form-check-input" type="checkbox"
+                                                                        name="night[]" value="1"> Night
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#" class="btn bg-danger-light trash"><i
+                                                                    class="far fa-trash-alt"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- /Signature -->
+                                <!-- /Prescription Item -->
 
-                            <!-- Submit Section -->
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-set-button">
-                                        <button class="btn btn-light" type="button">Cancel</button>
-                                        <button class="btn btn-primary" type="submit">Save Changes</button>
+                                <!-- Signature -->
+                                <div class="row">
+                                    <div class="col-md-12 text-end">
+                                        <div class="signature-wrap">
+                                            <div class="signature">
+                                                Click here to sign
+                                            </div>
+                                            <div class="sign-name">
+                                                <p class="mb-0">( Dr. Darren Elder )</p>
+                                                <span class="text-muted">Signature</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </form>
+                                <!-- /Signature -->
+
+                                <!-- Submit Section -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-set-button">
+                                            <button class="btn btn-light" type="button">Cancel</button>
+                                            <button class="btn btn-primary" type="submit">Save Changes</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                             <!-- /Submit Section -->
 
                         </div>
@@ -152,6 +164,10 @@
         </div>
 
     </div>
+
+
+
+
     @include('layout.partials.custom_scripts')
     <!-- /Page Content -->
 @endsection

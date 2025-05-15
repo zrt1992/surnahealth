@@ -35,9 +35,11 @@
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                     </div>
-                                    <div class="mb-3 form-focus">
+                                    <div class="mb-5 form-focus">
                                         <input type="text" class="form-control floating" name="phone" id="number">
                                         <label class="focus-label">Phone</label>
+                                                                                <span class="text-info">Note : Add number without country code</span>
+
                                         @error('phone')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror

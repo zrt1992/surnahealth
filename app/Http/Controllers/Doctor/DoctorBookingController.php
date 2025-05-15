@@ -72,11 +72,15 @@ class DoctorBookingController extends Controller
             $appointment->title ?? 'No title provided.',
             $appointment->description ?? 'No description provided.',
             $startDateTime,
-            $endDateTime
+            $endDateTime,
+            [
+                ['email' => getAuthUser()->email],
+                ['email' => $appointment->user->email],
+            ]
         );
 
-        $attendee = GoogleClientService::addAttendee($event, $appointment->user->email);
-        
+        // $attendee = GoogleClientService::addAttendee($event, $appointment->user->email);
+
         $startDateTimeForDb = Carbon::parse("$appointment->booking_date $startTime")->format('Y-m-d H:i:s');
         $endDateTimeForDb = Carbon::parse("$appointment->booking_date $endTime")->format('Y-m-d H:i:s');
 
@@ -96,7 +100,7 @@ class DoctorBookingController extends Controller
         ]);
 
         if ($appointment) {
-            $patient = User::where('id',$appointment->user_id)->first();
+            $patient = User::where('id', $appointment->user_id)->first();
             $emailData = [
                 'subject' => 'Appointment Approved',
                 'greeting' => 'Hello ' . $patient->name,
@@ -111,7 +115,7 @@ class DoctorBookingController extends Controller
         if ($appointment) {
             AppointmentRequests::destroy($id);
         }
-        
+
         return response()->json([
             'success' => true,
             'message' => 'Appointment accepted and Google Meet scheduled successfully',
@@ -125,10 +129,10 @@ class DoctorBookingController extends Controller
         // dd($request);
         $data = $request->all();
         $data = $this->bookingRepository->reject($data);
-     
+
         if ($data) {
-            $appointment = AppointmentRequests::where('id',$request->appointment_request_id)->first();
-            $patient = User::where('id',$appointment->user_id)->first();
+            $appointment = AppointmentRequests::where('id', $request->appointment_request_id)->first();
+            $patient = User::where('id', $appointment->user_id)->first();
 
             $emailData = [
                 'subject' => 'Appointment rejected',

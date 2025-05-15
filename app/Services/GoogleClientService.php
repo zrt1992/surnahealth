@@ -37,7 +37,7 @@ class GoogleClientService
     }
     
 
-    public static function createGoogleMeetEvent($title, $description, $startTime, $endTime)
+    public static function createGoogleMeetEvent($title, $description, $startTime, $endTime, array $attendees = [])
     {
       
         $client = self::getClient();
@@ -56,6 +56,7 @@ class GoogleClientService
                 'dateTime' => $endTime,
                 'timeZone' => 'America/Los_Angeles',
             ],
+             'attendees' => $attendees,
             'conferenceData' => [
                 'createRequest' => [
                     'conferenceSolutionKey' => ['type' => 'hangoutsMeet'],
@@ -64,7 +65,10 @@ class GoogleClientService
             ]
         ]);
       
-        $event = $calendarService->events->insert('primary', $event, ['conferenceDataVersion' => 1]);
+      $event = $calendarService->events->insert('primary', $event, [
+        'conferenceDataVersion' => 1,
+        'sendUpdates' => 'all'
+    ]);
         return $event;
     }
 

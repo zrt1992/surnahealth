@@ -24,6 +24,8 @@ return new class extends Migration
             $table->integer('evening')->nullable();
             $table->integer('night')->nullable();
             $table->string('doctor_sign')->nullable();
+            $table->string('dose_spot_prescription_id')->nullable();
+
 
             $table->timestamps();
         });

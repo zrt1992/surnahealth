@@ -2,6 +2,7 @@
 
 use App\Events\MyEvent;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\Api\DoseSpotController;
 use App\Http\Controllers\Auth\DoctorRegistrationController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\RegisteredUserController;
@@ -47,6 +48,10 @@ use App\Http\Middleware\LocalizationMiddleware;
 use Illuminate\Support\Facades\Mail;
 use Pusher\Pusher;
 
+Route::prefix('dosespot')->group(function () {
+    Route::get('/prescriptions', [DoseSpotController::class, 'getPrescriptions']);
+    Route::post('/prescriptions', [DoseSpotController::class, 'createPrescription']);
+});
 
 Route::get('/patient-register-step1', [RegisteredUserController::class, 'step1'])->name('patient-register-step1');
 Route::get('/patient-register-step2', [RegisteredUserController::class, 'step2'])->name('patient-register-step2');
@@ -141,6 +146,9 @@ Route::middleware(['auth', 'role:doctor', CheckRegistrationStep::class,CheckSubs
 
     Route::get('/add-prescription/{id?}', [DoctorPresciptionController::class, 'index'])->name('add-prescription');
     Route::get('/store-prescription', [DoctorPresciptionController::class, 'store'])->name('store-prescription');
+    Route::get('/search-medications', [DoctorPresciptionController::class, 'searchMedications'])
+    ->name('search-medications');
+
 
     Route::get('/doctor-help-and-support', [DoctorHelpAndSupportController::class, 'index'])->name('doctor-help-and-support');
     Route::post('/doctor-create-ticket', [DoctorHelpAndSupportController::class, 'createTicket'])->name('doctor-create-ticket');
@@ -153,7 +161,7 @@ Route::middleware(['auth', 'role:doctor', CheckRegistrationStep::class,CheckSubs
  * Patient dashboard authenticated routes
  */
 
-Route::middleware(['auth', 'role:patient', CheckRegistrationStep::class, CheckSubscription::class])->prefix('patient')->group(function () {
+Route::middleware(['auth', 'role:patient', CheckRegistrationStep::class, CheckSubscription::class,LocalizationMiddleware::class])->prefix('patient')->group(function () {
 
     Route::get('/change-password', [NewPasswordController::class, 'patientChangePassword'])->name('patient.change-password');
     Route::post('/update-password', [NewPasswordController::class, 'UpdatePassword'])->name('patient.update-password');
@@ -899,6 +907,7 @@ Route::get('/send-test-event', function () {
 
     return 'Test event sent!';
 });
+
 
 
 require __DIR__ . '/auth.php';

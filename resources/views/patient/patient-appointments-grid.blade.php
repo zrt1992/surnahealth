@@ -3,10 +3,10 @@
 @section('content')
     @component('components.breadcrumb')
         @slot('title')
-            Patient Appointments
+            {{ __('messages.patient_appointments') }}
         @endslot
         @slot('li_1')
-            Patient Appointments
+            {{ __('messages.patient_appointments') }}
         @endslot
     @endcomponent
 
@@ -22,7 +22,7 @@
 
                 <div class="col-lg-8 col-xl-9">
                     <div class="dashboard-header">
-                        <h3>Appointments</h3>
+                        <h3>{{ __('messages.appointments') }}</h3>
                         <ul class="header-list-btns">
                             <li>
                                 <div class="input-block dash-search-input">
@@ -57,18 +57,19 @@
                                     <button class="nav-link active" id="pills-upcoming-tab" data-bs-toggle="pill"
                                         data-bs-target="#pills-upcoming" type="button" role="tab"
                                         aria-controls="pills-upcoming"
-                                        aria-selected="false">Upcoming<span>0</span></button>
+                                        aria-selected="false">{{ __('messages.upcoming') }}<span>{{ $upcommingCount ?? '0' }}</span></button>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="pills-cancel-tab" data-bs-toggle="pill"
                                         data-bs-target="#pills-cancel" type="button" role="tab"
-                                        aria-controls="pills-cancel" aria-selected="true">Cancelled<span>0</span></button>
+                                        aria-controls="pills-cancel"
+                                        aria-selected="true">{{ __('messages.cancelled') }}<span>{{ $rejectedCount ?? '0' }}</span></button>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="pills-complete-tab" data-bs-toggle="pill"
                                         data-bs-target="#pills-complete" type="button" role="tab"
                                         aria-controls="pills-complete"
-                                        aria-selected="true">Completed<span>0</span></button>
+                                        aria-selected="true">{{ __('messages.completed') }}<span>{{ $completedCount ?? '0' }}</span></button>
                                 </li>
                             </ul>
                         </div>
@@ -82,7 +83,7 @@
                             </div>
                             <div class="form-sorts dropdown">
                                 <a href="javascript:void(0);" class="dropdown-toggle" id="table-filter"><i
-                                        class="fa-solid fa-filter me-2"></i>Filter By</a>
+                                        class="fa-solid fa-filter me-2"></i>{{ __('messages.filter_by') }}</a>
                                 <div class="filter-dropdown-menu">
                                     <div class="filter-set-view">
                                         <div class="accordion" id="accordionExample">
@@ -90,7 +91,7 @@
                                                 <div class="filter-set-content-head">
                                                     <a href="#" data-bs-toggle="collapse"
                                                         data-bs-target="#collapseTwo" aria-expanded="false"
-                                                        aria-controls="collapseTwo">Name<i
+                                                        aria-controls="collapseTwo">{{ __('messages.name') }}<i
                                                             class="fa-solid fa-chevron-right"></i></a>
                                                 </div>
                                                 <div class="filter-set-contents accordion-collapse collapse show"
@@ -111,7 +112,7 @@
                                                 <div class="filter-set-content-head">
                                                     <a href="#" data-bs-toggle="collapse"
                                                         data-bs-target="#collapseOne" aria-expanded="true"
-                                                        aria-controls="collapseOne">Appointment Type<i
+                                                        aria-controls="collapseOne">{{ __('messages.appointment_type') }}<i
                                                             class="fa-solid fa-chevron-right"></i></a>
                                                 </div>
                                                 <div class="filter-set-contents accordion-collapse collapse show"
@@ -122,7 +123,7 @@
                                                                 <label class="checkboxs">
                                                                     <input type="checkbox" checked>
                                                                     <span class="checkmarks"></span>
-                                                                    <span class="check-title">All Type</span>
+                                                                    <span class="check-title">{{ __('messages.all_type') }}</span>
                                                                 </label>
                                                             </div>
                                                         </li>
@@ -131,7 +132,7 @@
                                                                 <label class="checkboxs">
                                                                     <input type="checkbox">
                                                                     <span class="checkmarks"></span>
-                                                                    <span class="check-title">Video Call</span>
+                                                                    <span class="check-title">{{ __('messages.video_call') }}</span>
                                                                 </label>
                                                             </div>
                                                         </li>
@@ -140,7 +141,7 @@
                                                                 <label class="checkboxs">
                                                                     <input type="checkbox">
                                                                     <span class="checkmarks"></span>
-                                                                    <span class="check-title">Audio Call</span>
+                                                                    <span class="check-title">{{ __('messages.audio_call') }}</span>
                                                                 </label>
                                                             </div>
                                                         </li>
@@ -149,16 +150,7 @@
                                                                 <label class="checkboxs">
                                                                     <input type="checkbox">
                                                                     <span class="checkmarks"></span>
-                                                                    <span class="check-title">Chat</span>
-                                                                </label>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="filter-checks">
-                                                                <label class="checkboxs">
-                                                                    <input type="checkbox">
-                                                                    <span class="checkmarks"></span>
-                                                                    <span class="check-title">Direct Visit</span>
+                                                                    <span class="check-title">{{ __('messages.chat') }}</span>
                                                                 </label>
                                                             </div>
                                                         </li>
@@ -169,7 +161,7 @@
                                                 <div class="filter-set-content-head">
                                                     <a href="#" data-bs-toggle="collapse"
                                                         data-bs-target="#collapseThree" aria-expanded="false"
-                                                        aria-controls="collapseThree">Visit Type<i
+                                                        aria-controls="collapseThree">{{ __('messages.visit_type') }}<i
                                                             class="fa-solid fa-chevron-right"></i></a>
                                                 </div>
                                                 <div class="filter-set-contents accordion-collapse collapse show"
@@ -180,7 +172,7 @@
                                                                 <label class="checkboxs">
                                                                     <input type="checkbox" checked>
                                                                     <span class="checkmarks"></span>
-                                                                    <span class="check-title">All Visit</span>
+                                                                    <span class="check-title">{{ __('messages.all_visit') }}</span>
                                                                 </label>
                                                             </div>
 
@@ -190,7 +182,7 @@
                                                                 <label class="checkboxs">
                                                                     <input type="checkbox">
                                                                     <span class="checkmarks"></span>
-                                                                    <span class="check-title">General</span>
+                                                                    <span class="check-title">{{ __('messages.general') }}</span>
                                                                 </label>
                                                             </div>
 
@@ -200,7 +192,7 @@
                                                                 <label class="checkboxs">
                                                                     <input type="checkbox">
                                                                     <span class="checkmarks"></span>
-                                                                    <span class="check-title">Consultation</span>
+                                                                    <span class="check-title">{{ __('messages.consultation') }}</span>
                                                                 </label>
                                                             </div>
 
@@ -210,7 +202,7 @@
                                                                 <label class="checkboxs">
                                                                     <input type="checkbox">
                                                                     <span class="checkmarks"></span>
-                                                                    <span class="check-title">Follow-up</span>
+                                                                    <span class="check-title">{{ __('messages.follow_up') }}</span>
                                                                 </label>
                                                             </div>
 
@@ -220,7 +212,7 @@
                                                                 <label class="checkboxs">
                                                                     <input type="checkbox">
                                                                     <span class="checkmarks"></span>
-                                                                    <span class="check-title">Direct Visit</span>
+                                                                    <span class="check-title">{{ __('messages.direct_visit') }}</span>
                                                                 </label>
                                                             </div>
 
@@ -231,8 +223,8 @@
                                         </div>
 
                                         <div class="filter-reset-btns">
-                                            <a href="{{ url('doctor/doctor-appointments') }}" class="btn btn-light">Reset</a>
-                                            <a href="{{ url('doctor/doctor-appointments') }}" class="btn btn-primary">Filter Now</a>
+                                            <a href="{{ url('doctor/doctor-appointments') }}" class="btn btn-light">{{ __('messages.reset') }}</a>
+                                            <a href="{{ url('doctor/doctor-appointments') }}" class="btn btn-primary">{{ __('messages.filter_now') }}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -246,115 +238,123 @@
                             <div class="row">
                                 <!-- Appointment Grid -->
                                 @foreach ($appointmentRequests as $appointmentRequest)
-                                <div class="col-xl-4 col-lg-6 col-md-12 d-flex">
-                                    <div class="appointment-wrap appointment-grid-wrap">
-                                        <ul>
-                                            <li>
-                                                <div class="appointment-grid-head">
-                                                    <div class="patinet-information">
-                                                        <a href="{{ url('patient-upcoming-appointment') }}">
-                                                            <img src="{{ $appointmentRequest->doctor->profile_image ?? URL::asset('/assets/img/services-six-1.png') }}"
-                                                                alt="User Image">
-                                                        </a>
-                                                        <div class="patient-info">
-                                                            <p>#Apt0001</p>
-                                                            <h6><a href="{{ url('patient-upcoming-appointment') }}">Dr
-                                                                {{ $appointmentRequest->doctor->name }}</a></h6>
-                                                            <p class="visit">General Visit</p>
+                                    <div class="col-xl-4 col-lg-6 col-md-12 d-flex">
+                                        <div class="appointment-wrap appointment-grid-wrap">
+                                            <ul>
+                                                <li>
+                                                    <div class="appointment-grid-head">
+                                                        <div class="patinet-information">
+                                                            <a href="{{ url('patient-upcoming-appointment') }}">
+                                                                <img src="{{ $appointmentRequest->doctor->profile_image ?? URL::asset('/assets/img/services-six-1.png') }}"
+                                                                    alt="User Image">
+                                                            </a>
+                                                            <div class="patient-info">
+                                                                <p>#Apt0001</p>
+                                                                <h6><a href="{{ url('patient-upcoming-appointment') }}">Dr
+                                                                        {{ $appointmentRequest->doctor->name }}</a></h6>
+                                                                <p class="visit">{{ __('messages.video_call') }}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="grid-user-msg">
+                                                            <span class="video-icon"><a href="#"><i
+                                                                        class="fa-solid fa-video"></i></a></span>
                                                         </div>
                                                     </div>
-                                                    <div class="grid-user-msg">
-                                                        <span class="video-icon"><a href="#"><i
-                                                                    class="fa-solid fa-video"></i></a></span>
+                                                </li>
+                                                <li class="appointment-info">
+                                                    <p><i
+                                                            class="fa-solid fa-calendar-check"></i>{{ $appointmentRequest->booking_date ?? '--' }}
+                                                    </p>
+                                                    <p><i
+                                                            class="fa-solid fa-clock"></i>{{ $appointmentRequest->slot->start_time ?? '--' }}
+                                                    </p>
+                                                </li>
+                                                <li class="appointment-action">
+                                                    <ul>
+                                                        <li>
+                                                            <a href="{{ url('patient-upcoming-appointment') }}"><i
+                                                                    class="fa-solid fa-eye"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa-solid fa-comments"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa-solid fa-xmark"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="appointment-detail-btn">
+                                                        <a href="#" class="start-link"><i
+                                                                class="fa-solid fa-calendar-check me-1"></i>Pending</a>
                                                     </div>
-                                                </div>
-                                            </li>
-                                            <li class="appointment-info">
-                                                <p><i class="fa-solid fa-calendar-check"></i>{{ $appointmentRequest->booking_date ?? '--' }}</p>
-                                                <p><i class="fa-solid fa-clock"></i>{{ $appointmentRequest->slot->start_time ?? '--' }}</p>
-                                            </li>
-                                            <li class="appointment-action">
-                                                <ul>
-                                                    <li>
-                                                        <a href="{{ url('patient-upcoming-appointment') }}"><i
-                                                                class="fa-solid fa-eye"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fa-solid fa-comments"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fa-solid fa-xmark"></i></a>
-                                                    </li>
-                                                </ul>
-                                                <div class="appointment-detail-btn">
-                                                    <a href="#" class="start-link"><i
-                                                            class="fa-solid fa-calendar-check me-1"></i>Pending</a>
-                                                </div>
-                                            </li>
-                                        </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                </div>
                                 @endforeach
                                 @foreach ($data as $appointment)
-                                <div class="col-xl-4 col-lg-6 col-md-12 d-flex">
-                                    <div class="appointment-wrap appointment-grid-wrap">
-                                        <ul>
-                                            <li>
-                                                <div class="appointment-grid-head">
-                                                    <div class="patinet-information">
-                                                        <a href="{{ url('patient-upcoming-appointment') }}">
-                                                            <img src="{{ $appointment->doctor->profile_image ?? URL::asset('/assets/img/services-six-1.png') }}"
-                                                                alt="User Image">
-                                                        </a>
-                                                        <div class="patient-info">
-                                                            <p>#Apt0001</p>
-                                                            <h6><a href="{{ url('patient-upcoming-appointment') }}">Dr
-                                                                {{ $appointment->doctor->name }}</a></h6>
-                                                            <p class="visit">General Visit</p>
+                                    <div class="col-xl-4 col-lg-6 col-md-12 d-flex">
+                                        <div class="appointment-wrap appointment-grid-wrap">
+                                            <ul>
+                                                <li>
+                                                    <div class="appointment-grid-head">
+                                                        <div class="patinet-information">
+                                                            <a href="{{ url('patient-upcoming-appointment') }}">
+                                                                <img src="{{ $appointment->doctor->profile_image ?? URL::asset('/assets/img/services-six-1.png') }}"
+                                                                    alt="User Image">
+                                                            </a>
+                                                            <div class="patient-info">
+                                                                <p>#Apt0001</p>
+                                                                <h6><a href="{{ url('patient-upcoming-appointment') }}">Dr
+                                                                        {{ $appointment->doctor->name }}</a></h6>
+                                                                <p class="visit">{{ __('messages.video_call') }}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="grid-user-msg">
+                                                            <span class="video-icon"><a href="#"><i
+                                                                        class="fa-solid fa-video"></i></a></span>
                                                         </div>
                                                     </div>
-                                                    <div class="grid-user-msg">
-                                                        <span class="video-icon"><a href="#"><i
-                                                                    class="fa-solid fa-video"></i></a></span>
+                                                </li>
+                                                <li class="appointment-info">
+                                                    <p><i
+                                                            class="fa-solid fa-calendar-check"></i>{{ \Carbon\Carbon::parse($appointment->start_date)->format('d M Y h:i A') }}
+                                                    </p>
+                                                    <p><i class="fa-solid fa-clock"></i>--</p>
+                                                </li>
+                                                <li class="appointment-action">
+                                                    <ul>
+                                                        <li>
+                                                            <a href="{{ url('patient-upcoming-appointment') }}"><i
+                                                                    class="fa-solid fa-eye"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#"><i class="fa-solid fa-comments"></i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="javascript:void(0)" data-bs-toggle="modal"
+                                                                data-bs-target="#delete_record"
+                                                                data-id="{{ $appointment->id }}"
+                                                                data-route="{{ route('appointments-remove', ':id') }}"><i
+                                                                    class="fa-solid fa-xmark"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="appointment-detail-btn">
+                                                        <a href="{{ $appointment->google_meet_link }}"
+                                                            class="start-link"><i
+                                                                class="fa-solid fa-calendar-check me-1"></i>{{ __('messages.attend') }}</a>
                                                     </div>
-                                                </div>
-                                            </li>
-                                            <li class="appointment-info">
-                                                <p><i class="fa-solid fa-calendar-check"></i>{{ \Carbon\Carbon::parse($appointment->start_date)->format('d M Y h:i A') }}</p>
-                                                <p><i class="fa-solid fa-clock"></i>--</p>
-                                            </li>
-                                            <li class="appointment-action">
-                                                <ul>
-                                                    <li>
-                                                        <a href="{{ url('patient-upcoming-appointment') }}"><i
-                                                                class="fa-solid fa-eye"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fa-solid fa-comments"></i></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:void(0)" data-bs-toggle="modal"
-                                                        data-bs-target="#delete_record" data-id="{{ $appointment->id }}"
-                                                        data-route="{{ route('appointments-remove', ':id') }}"><i
-                                                            class="fa-solid fa-xmark"></i></a>
-                                                    </li>
-                                                </ul>
-                                                <div class="appointment-detail-btn">
-                                                    <a href="{{ $appointment->google_meet_link }}" class="start-link"><i
-                                                            class="fa-solid fa-calendar-check me-1"></i>Attend</a>
-                                                </div>
-                                            </li>
-                                        </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                </div>
                                 @endforeach
                                 <!-- /Appointment Grid -->
 
-                             
+
 
                                 <div class="col-md-12">
                                     <div class="loader-item text-center">
-                                        <a href="javascript:void(0);" class="btn btn-load">Load More</a>
+                                        <a href="javascript:void(0);" class="btn btn-load">{{ __('messages.load_more') }}</a>
                                     </div>
                                 </div>
 
@@ -377,7 +377,7 @@
                                                             <p>#Apt0001</p>
                                                             <h6><a href="{{ url('patient-cancelled-appointment') }}">Dr
                                                                     Edalin Hendry</a></h6>
-                                                            <p class="visit">General Visit</p>
+                                                            <p class="visit">{{ __('messages.video_call') }}</p>
                                                         </div>
                                                     </div>
                                                     <div class="grid-user-msg">
@@ -402,7 +402,7 @@
 
                                 <div class="col-md-12">
                                     <div class="loader-item text-center">
-                                        <a href="javascript:void(0);" class="btn btn-load">Load More</a>
+                                        <a href="javascript:void(0);" class="btn btn-load">{{ __('messages.load_more') }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -425,7 +425,7 @@
                                                             <p>#Apt0001</p>
                                                             <h6><a href="{{ url('patient-completed-appointment') }}">Dr
                                                                     Edalin Hendry</a></h6>
-                                                            <p class="visit">General Visit</p>
+                                                            <p class="visit">{{ __('messages.video_call') }}</p>
                                                         </div>
                                                     </div>
                                                     <div class="grid-user-msg">
@@ -447,11 +447,11 @@
                                 </div> --}}
                                 <!-- /Appointment Grid -->
 
-                              
+
 
                                 <div class="col-md-12">
                                     <div class="loader-item text-center">
-                                        <a href="javascript:void(0);" class="btn btn-load">Load More</a>
+                                        <a href="javascript:void(0);" class="btn btn-load">{{ __('messages.load_more') }}</a>
                                     </div>
                                 </div>
 

@@ -3,10 +3,10 @@
 @section('content')
     @component('components.breadcrumb')
         @slot('title')
-            Patient Dashboard
+            {{ __('messages.patient_dashboard') }}
         @endslot
         @slot('li_1')
-            Patient Dashboard
+            {{ __('messages.patient_dashboard') }}
         @endslot
     @endcomponent
     <!-- Page Content -->
@@ -21,20 +21,20 @@
 
                 <div class="col-lg-8 col-xl-9">
                     <div class="dashboard-header">
-                        <h3>Dashboard</h3>
+                        <h3> {{ __('messages.dashboard') }}</h3>
                     </div>
                     <div class="row">
                         <div class="col-xl-7 d-flex">
                             <div class="dashboard-card w-100">
                                 <div class="dashboard-card-head">
                                     <div class="header-title">
-                                        <h5>Health Records</h5>
+                                        <h5> {{ __('messages.health_records') }}</h5>
                                     </div>
                                     <div class="dropdown header-dropdown">
                                         <a class="dropdown-toggle" data-bs-toggle="dropdown" href="javascript:void(0);">
                                             <img src="{{ URL::asset('/assets/img/doctors-dashboard/profile-06.jpg') }}"
                                                 class="avatar dropdown-avatar" alt="Img">
-                                            {{\Illuminate\Support\Facades\Auth::user()->name}}
+                                            {{ \Illuminate\Support\Facades\Auth::user()->name }}
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-end">
                                             <a href="javascript:void(0);" class="dropdown-item">
@@ -62,38 +62,44 @@
                                             <div class="row">
                                                 <div class="col-lg-6">
                                                     <div class="health-records icon-orange">
-                                                        <span><i class="fa-solid fa-heart"></i>Heart Rate</span>
-                                                        <h3>{{ $medicalDetail->heart_rate ?? '--' }} Bpm <sup> 2%</sup></h3>
+                                                        <span><i
+                                                                class="fa-solid fa-heart"></i>{{ __('messages.heart_rate') }}</span>
+                                                        <h3>{{ $medicalDetail->heart_rate ?? '--' }} Bpm <sup> 2%</sup>
+                                                        </h3>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="health-records icon-amber">
-                                                        <span><i class="fa-solid fa-temperature-high"></i>Body
-                                                            Temprature</span>
+                                                        <span><i
+                                                                class="fa-solid fa-temperature-high"></i>{{ __('messages.body_temperature') }}</span>
                                                         <h3>{{ $medicalDetail->body_temperature ?? '--' }} C</h3>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="health-records icon-dark-blue">
-                                                        <span><i class="fa-solid fa-notes-medical"></i>Glucose Level</span>
+                                                        <span><i
+                                                                class="fa-solid fa-notes-medical"></i>{{ __('messages.glucose_level') }}</span>
                                                         <h3>{{ $medicalDetail->glucose ?? '0 - 0' }}<sup> 0%</sup></h3>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="health-records icon-blue">
-                                                        <span><i class="fa-solid fa-highlighter"></i>SPo2</span>
+                                                        <span><i
+                                                                class="fa-solid fa-highlighter"></i>{{ __('messages.spo2') }}</span>
                                                         <h3>{{ $medicalDetail->spo2 ?? '--' }}%</h3>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="health-records icon-red">
-                                                        <span><i class="fa-solid fa-syringe"></i>Blood Pressure</span>
+                                                        <span><i
+                                                                class="fa-solid fa-syringe"></i>{{ __('messages.blood_pressure') }}</span>
                                                         <h3>{{ $medicalDetail->bp ?? '--' }} mg/dl<sup> 2%</sup></h3>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="health-records icon-purple">
-                                                        <span><i class="fa-solid fa-user-pen"></i>BMI </span>
+                                                        <span><i class="fa-solid fa-user-pen"></i>{{ __('messages.bmi') }}
+                                                        </span>
                                                         <h3>{{ $medicalDetail->bmi ?? '--' }} kg/m2</h3>
                                                     </div>
                                                 </div>
@@ -132,7 +138,8 @@
                                     <div class="dashboard-card-head">
                                         <div class="header-title">
                                             <h5><span class="card-head-icon"><i
-                                                        class="fa-solid fa-calendar-days"></i></span>Appointment</h5>
+                                                        class="fa-solid fa-calendar-days"></i></span>{{ __('messages.appointment') }}
+                                            </h5>
                                         </div>
                                         <div class="card-view-link">
                                             <div class="owl-nav slide-nav text-end nav-control"></div>
@@ -179,440 +186,56 @@
                                             </ul> --}}
 
                                             @if (!empty($appointments) && count($appointments) > 0)
-                                            @foreach ($appointments as $appointment)
-                                                <div class="appointment-dash-card">
-                                                    <div class="doctor-fav-list">
-                                                        <div class="doctor-info-profile">
-                                                            <a href="#" class="table-avatar">
-                                                                <img src="{{ $appointment->doctor->image ?? URL::asset('/assets/img/doctors-dashboard/doctor-profile-img.jpg') }}" alt="Img">
-                                                            </a>
-                                                            <div class="doctor-name-info">
-                                                                <h5><a href="#">Dr. {{ $appointment->doctor->name ?? 'N/A' }}</a></h5>
-                                                                <span>Dentist</span>
+                                                @foreach ($appointments as $appointment)
+                                                    <div class="appointment-dash-card">
+                                                        <div class="doctor-fav-list">
+                                                            <div class="doctor-info-profile">
+                                                                <a href="#" class="table-avatar">
+                                                                    <img src="{{ $appointment->doctor->image ?? URL::asset('/assets/img/doctors-dashboard/doctor-profile-img.jpg') }}"
+                                                                        alt="Img">
+                                                                </a>
+                                                                <div class="doctor-name-info">
+                                                                    <h5><a href="#">Dr.
+                                                                            {{ $appointment->doctor->name ?? 'N/A' }}</a>
+                                                                    </h5>
+                                                                    <span>Dentist</span>
+                                                                </div>
                                                             </div>
+                                                            <a href="#" class="cal-plus-icon"><i
+                                                                    class="fa-solid fa-hospital"></i></a>
                                                         </div>
-                                                        <a href="#" class="cal-plus-icon"><i class="fa-solid fa-hospital"></i></a>
+                                                        <div class="date-time">
+                                                            <p><i class="fa-solid fa-clock"></i>
+                                                                {{ $appointment->doctor->start_date ?? 'Not Available' }}
+                                                            </p>
+                                                        </div>
+                                                        <div class="card-btns">
+                                                            {{-- <a href="{{ url('chat') }}" class="btn btn-gray"><i class="fa-solid fa-comment-dots"></i>Chat Now</a> --}}
+                                                            <a href="{{ $appointment->google_meet_link ?? '#' }}"
+                                                                class="btn btn-outline-primary" target="_blank">
+                                                                <i class="fa-solid fa-calendar-check"></i> Attend
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                    <div class="date-time">
-                                                        <p><i class="fa-solid fa-clock"></i> {{ $appointment->doctor->start_date ?? 'Not Available' }}</p>
-                                                    </div>
-                                                    <div class="card-btns">
-                                                        {{-- <a href="{{ url('chat') }}" class="btn btn-gray"><i class="fa-solid fa-comment-dots"></i>Chat Now</a> --}}
-                                                        <a href="{{ $appointment->google_meet_link ?? '#' }}" class="btn btn-outline-primary" target="_blank">
-                                                            <i class="fa-solid fa-calendar-check"></i> Attend
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            @endforeach
-                                        @else
-                                            <p class="text-center text-muted">No Appointments Available</p>
-                                        @endif
-                                        
-                                           
+                                                @endforeach
+                                            @else
+                                                <p class="text-center text-muted">No Appointments Available</p>
+                                            @endif
+
+
                                         </div>
                                     </div>
 
                                 </div>
-                                {{-- <div class="dashboard-card w-100">
-                                    <div class="dashboard-card-head">
-                                        <div class="header-title">
-                                            <h5>Notifications</h5>
-                                        </div>
-                                        <div class="card-view-link">
-                                            <a href="#">View All</a>
-                                        </div>
-                                    </div>
-                                    <div class="dashboard-card-body">
-                                        <div class="table-responsive">
-                                            <table class="table dashboard-table">
-                                                <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="table-noti-info">
-                                                                <div class="table-noti-icon color-violet">
-                                                                    <i class="fa-solid fa-bell"></i>
-                                                                </div>
 
-                                                                <div class="table-noti-message">
-                                                                    <h6><a href="#">Booking Confirmed on <span> 21
-                                                                                Mar 2024 </span> 10:30 AM</a></h6>
-                                                                    <span class="message-time">Just Now</span>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="table-noti-info">
-                                                                <div class="table-noti-icon color-blue">
-                                                                    <i class="fa-solid fa-star"></i>
-                                                                </div>
-
-                                                                <div class="table-noti-message">
-                                                                    <h6><a href="#">You have a <span> New </span>
-                                                                            Review for your Appointment </a></h6>
-                                                                    <span class="message-time">5 Days ago</span>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="table-noti-info">
-                                                                <div class="table-noti-icon color-red">
-                                                                    <i class="fa-solid fa-calendar-check"></i>
-                                                                </div>
-
-                                                                <div class="table-noti-message">
-                                                                    <h6><a href="#">You have Appointment with <span>
-                                                                                Ahmed </span> by 01:20 PM </a></h6>
-                                                                    <span class="message-time">12:55 PM</span>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="table-noti-info">
-                                                                <div class="table-noti-icon color-yellow">
-                                                                    <i class="fa-solid fa-money-bill-1-wave"></i>
-                                                                </div>
-
-                                                                <div class="table-noti-message">
-                                                                    <h6><a href="#">Sent an amount of <span> $200
-                                                                            </span> for an Appointment by 01:20 PM </a></h6>
-                                                                    <span class="message-time">2 Days ago</span>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="table-noti-info">
-                                                                <div class="table-noti-icon color-blue">
-                                                                    <i class="fa-solid fa-star"></i>
-                                                                </div>
-
-                                                                <div class="table-noti-message">
-                                                                    <h6><a href="#">You have a <span> New </span>
-                                                                            Review for your Appointment </a></h6>
-                                                                    <span class="message-time">5 Days ago</span>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-
-                                </div> --}}
                             </div>
                         </div>
-                        {{-- <div class="col-xl-4 d-flex">
-                            <div class="favourites-dashboard w-100">
-                                <div class="book-appointment-head">
-                                    <h3><span>Book a new</span>Appointment</h3>
-                                    <span class="add-icon"><a href="#"><i
-                                                class="fa-solid fa-circle-plus"></i></a></span>
-                                </div>
-                                <div class="dashboard-card w-100">
-                                    <div class="dashboard-card-head">
-                                        <div class="header-title">
-                                            <h5>Favourites</h5>
-                                        </div>
-                                        <div class="card-view-link">
-                                            <a href="{{ url('favourites') }}">View All</a>
-                                        </div>
-                                    </div>
-                                    <div class="dashboard-card-body">
-                                        <div class="doctor-fav-list">
-                                            <div class="doctor-info-profile">
-                                                <a href="#" class="table-avatar">
-                                                    <img src="{{ URL::asset('/assets/img/doctors-dashboard/doctor-profile-img.jpg') }}"
-                                                        alt="Img">
-                                                </a>
-                                                <div class="doctor-name-info">
-                                                    <h5><a href="#">Dr. Edalin</a></h5>
-                                                    <span>Endodontists</span>
-                                                </div>
-                                            </div>
-                                            <a href="#" class="cal-plus-icon"><i
-                                                    class="fa-solid fa-calendar-plus"></i></a>
-                                        </div>
-                                        <div class="doctor-fav-list">
-                                            <div class="doctor-info-profile">
-                                                <a href="#" class="table-avatar">
-                                                    <img src="{{ URL::asset('/assets/img/doctors/doctor-thumb-11.jpg') }}"
-                                                        alt="Img">
-                                                </a>
-                                                <div class="doctor-name-info">
-                                                    <h5><a href="#">Dr. Maloney</a></h5>
-                                                    <span>Cardiologist</span>
-                                                </div>
-                                            </div>
-                                            <a href="#" class="cal-plus-icon"><i
-                                                    class="fa-solid fa-calendar-plus"></i></a>
-                                        </div>
-                                        <div class="doctor-fav-list">
-                                            <div class="doctor-info-profile">
-                                                <a href="#" class="table-avatar">
-                                                    <img src="{{ URL::asset('/assets/img/doctors/doctor-14.jpg') }}"
-                                                        alt="Img">
-                                                </a>
-                                                <div class="doctor-name-info">
-                                                    <h5><a href="#">Dr. Wayne </a></h5>
-                                                    <span>Dental Specialist</span>
-                                                </div>
-                                            </div>
-                                            <a href="#" class="cal-plus-icon"><i
-                                                    class="fa-solid fa-calendar-plus"></i></a>
-                                        </div>
-                                        <div class="doctor-fav-list">
-                                            <div class="doctor-info-profile">
-                                                <a href="#" class="table-avatar">
-                                                    <img src="{{ URL::asset('/assets/img/doctors/doctor-15.jpg') }}"
-                                                        alt="Img">
-                                                </a>
-                                                <div class="doctor-name-info">
-                                                    <h5><a href="#">Dr. Marla</a></h5>
-                                                    <span>Endodontists</span>
-                                                </div>
-                                            </div>
-                                            <a href="#" class="cal-plus-icon"><i
-                                                    class="fa-solid fa-calendar-plus"></i></a>
-                                        </div>
-                                    </div>
 
-                                </div>
-                            </div>
-                        </div> --}}
-                       
-                        {{-- <div class="col-xl-7 d-flex">
-                            <div class="dashboard-main-col w-100">
-                                <div class="dashboard-card w-100">
-                                    <div class="dashboard-card-head">
-                                        <div class="header-title">
-                                            <h5>Analytics</h5>
-                                        </div>
-                                        <div class="dropdown-links d-flex align-items-center flex-wrap">
-                                            <div class="dropdown header-dropdown">
-                                                <a class="dropdown-toggle" data-bs-toggle="dropdown"
-                                                    href="javascript:void(0);">
-                                                    <img src="{{ URL::asset('/assets/img/doctors-dashboard/profile-06.jpg') }}"
-                                                        class="avatar dropdown-avatar" alt="Img">
-                                                    Hendrita
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a href="javascript:void(0);" class="dropdown-item">
-                                                        <img src="{{ URL::asset('/assets/img/doctors-dashboard/profile-06.jpg') }}"
-                                                            class="avatar dropdown-avatar" alt="Img">
-                                                        Hendrita
-                                                    </a>
-                                                    <a href="javascript:void(0);" class="dropdown-item">
-                                                        <img src="{{ URL::asset('/assets/img/doctors-dashboard/profile-08.jpg') }}"
-                                                            class="avatar dropdown-avatar" alt="Img">
-                                                        Laura
-                                                    </a>
-                                                    <a href="javascript:void(0);" class="dropdown-item">
-                                                        <img src="{{ URL::asset('/assets/img/doctors-dashboard/profile-07.jpg') }}"
-                                                            class="avatar dropdown-avatar" alt="Img">
-                                                        Mathew
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="dropdown header-dropdown header-dropdown-two">
-                                                <a class="dropdown-toggle border-0" data-bs-toggle="dropdown"
-                                                    href="javascript:void(0);">
-                                                    This Week
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a href="javascript:void(0);" class="dropdown-item">
-                                                        This Week
-                                                    </a>
-                                                    <a href="javascript:void(0);" class="dropdown-item">
-                                                        This Month
-                                                    </a>
-                                                    <a href="javascript:void(0);" class="dropdown-item">
-                                                        This Year
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="dashboard-card-body">
-                                        <div class="chart-tabs patient-dash-tab">
-                                            <ul class="nav" role="tablist">
-                                                <li class="nav-item" role="presentation">
-                                                    <a class="nav-link active" href="#" data-bs-toggle="tab"
-                                                        data-bs-target="#heart-rate" aria-selected="false" role="tab"
-                                                        tabindex="-1">Heart Rate</a>
-                                                </li>
-                                                <li class="nav-item" role="presentation">
-                                                    <a class="nav-link " href="#" data-bs-toggle="tab"
-                                                        data-bs-target="#blood-pressure" aria-selected="true"
-                                                        role="tab">Blood Pressure</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="tab-content pt-0">
-
-                                            <!-- Chart -->
-                                            <div class="tab-pane fade active show" id="heart-rate" role="tabpanel">
-                                                <div id="heart-rate-chart"></div>
-                                            </div>
-                                            <!-- /Chart -->
-
-                                            <!-- Chart -->
-                                            <div class="tab-pane fade" id="blood-pressure" role="tabpanel">
-                                                <div id="blood-pressure-chart"></div>
-                                            </div>
-                                            <!-- /Chart -->
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="dashboard-card w-100">
-                                    <div class="dashboard-card-head">
-                                        <div class="header-title">
-                                            <h5>Past Appointments</h5>
-                                        </div>
-                                        <div class="card-view-link">
-                                            <div class="owl-nav slide-nav2 text-end nav-control"></div>
-                                        </div>
-                                    </div>
-                                    <div class="dashboard-card-body">
-                                        <div class="past-appointments-slider owl-carousel">
-                                            <div class="appointment-dash-card past-appointment">
-                                                <div class="appointment-date-info">
-                                                    <h4>Thursday, Mar 2024</h4>
-                                                    <ul>
-                                                        <li>
-                                                            <span><i class="fa-solid fa-clock"></i></span>Time : 04:00 PM -
-                                                            04:30 PM (30 Min)
-                                                        </li>
-                                                        <li>
-                                                            <span><i class="fa-solid fa-location-dot"></i></span>Newyork,
-                                                            United States
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="doctor-fav-list">
-                                                    <div class="doctor-info-profile">
-                                                        <a href="#" class="table-avatar">
-                                                            <img src="{{ URL::asset('/assets/img/doctors-dashboard/doctor-profile-img.jpg') }}"
-                                                                alt="Img">
-                                                        </a>
-                                                        <div class="doctor-name-info">
-                                                            <h5><a href="#">Dr.Edalin Hendry</a></h5>
-                                                            <span>Dental Specialist</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="card-btns">
-                                                    <a href="{{ url('patient-appointments') }}"
-                                                        class="btn btn-outline-primary ms-0 me-3">Reschedule</a>
-                                                    <a href="{{ url('patient-appointment-details') }}"
-                                                        class="btn btn-primary prime-btn">View Details</a>
-                                                </div>
-                                            </div>
-                                            <div class="appointment-dash-card past-appointment">
-                                                <div class="appointment-date-info">
-                                                    <h4>Friday, Mar 2024</h4>
-                                                    <ul>
-                                                        <li>
-                                                            <span><i class="fa-solid fa-clock"></i></span>Time : 03:00 PM -
-                                                            03:30 PM (30 Min)
-                                                        </li>
-                                                        <li>
-                                                            <span><i class="fa-solid fa-location-dot"></i></span>Newyork,
-                                                            United States
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="doctor-fav-list">
-                                                    <div class="doctor-info-profile">
-                                                        <a href="#" class="table-avatar">
-                                                            <img src="{{ URL::asset('/assets/img/doctors/doctor-17.jpg') }}"
-                                                                alt="Img">
-                                                        </a>
-                                                        <div class="doctor-name-info">
-                                                            <h5><a href="#">Dr.Juliet Gabriel</a></h5>
-                                                            <span>Cardiologist</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="card-btns">
-                                                    <a href="{{ url('patient-appointments') }}"
-                                                        class="btn btn-outline-primary ms-0 me-3">Reschedule</a>
-                                                    <a href="{{ url('medical-details') }}"
-                                                        class="btn btn-primary prime-btn">View Details</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="dashboard-card w-100">
-                                    <div class="dashboard-card-head">
-                                        <div class="header-title">
-                                            <h5>Dependant</h5>
-                                        </div>
-                                        <div class="card-view-link">
-                                            <a href="#" class="add-new" data-bs-toggle="modal"
-                                                data-bs-target="#add_dependent"><i
-                                                    class="fa-solid fa-circle-plus me-2"></i>Add New</a>
-                                            <a href="{{ url('dependent') }}">View All</a>
-                                        </div>
-                                    </div>
-                                    <div class="dashboard-card-body">
-                                        <div class="doctor-fav-list">
-                                            <div class="doctor-info-profile">
-                                                <a href="#" class="table-avatar">
-                                                    <img src="{{ URL::asset('/assets/img/patients/patient-20.jpg') }}"
-                                                        alt="Img">
-                                                </a>
-                                                <div class="doctor-name-info">
-                                                    <h5><a href="#">Laura</a></h5>
-                                                    <span>Mother - 58 years 20 days</span>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex align-items-center">
-                                                <a href="#" class="cal-plus-icon me-2"><i
-                                                        class="fa-solid fa-calendar-plus"></i></a>
-                                                <a href="{{ url('dependent') }}" class="cal-plus-icon"><i
-                                                        class="fa-solid fa-eye"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="doctor-fav-list">
-                                            <div class="doctor-info-profile">
-                                                <a href="#" class="table-avatar">
-                                                    <img src="{{ URL::asset('/assets/img/patients/patient-21.jpg') }}"
-                                                        alt="Img">
-                                                </a>
-                                                <div class="doctor-name-info">
-                                                    <h5><a href="#">Mathew</a></h5>
-                                                    <span>Father - 59 years 15 days</span>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex align-items-center">
-                                                <a href="#" class="cal-plus-icon me-2"><i
-                                                        class="fa-solid fa-calendar-plus"></i></a>
-                                                <a href="{{ url('dependent') }}" class="cal-plus-icon"><i
-                                                        class="fa-solid fa-eye"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                        </div> --}}
                         <div class="col-xl-12 d-flex">
                             <div class="dashboard-card w-100">
                                 <div class="dashboard-card-head">
                                     <div class="header-title">
-                                        <h5>Reports</h5>
+                                        <h5>{{ __('messages.reports') }}</h5>
                                     </div>
                                     <div class="dropdown header-dropdown">
                                         <a class="dropdown-toggle" data-bs-toggle="dropdown" href="javascript:void(0);">
@@ -1033,221 +656,49 @@
                                                         <table class="table table-center mb-0">
                                                             <thead>
                                                                 <tr>
-                                                                    <th>ID</th>
-                                                                    <th>Name</th>
-                                                                    <th>Created Date</th>
-                                                                    <th>Prescriped By</th>
-                                                                    <th>Action</th>
+                                                                    <th>{{ __('messages.patient_id') }}</th>
+                                                                    <th>{{ __('messages.created_date') }}</th>
+                                                                    <th>{{ __('messages.prescribed_by') }}</th>
+                                                                    <th>{{ __('messages.prescription_detail') }}</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr>
-                                                                    <td class="text-blue-600"><a href="#"
-                                                                            data-bs-toggle="modal"
-                                                                            data-bs-target="#view_prescription">#PR-123</a>
-                                                                    </td>
-                                                                    <td>
-                                                                        <a href="javascript:void(0);"
-                                                                            class="lab-icon prescription">
-                                                                            <span><i
-                                                                                    class="fa-solid fa-prescription"></i></span>Prescription
-                                                                        </a>
-                                                                    </td>
-                                                                    <td>24 Mar 2024, 10:30 AM</td>
-                                                                    <td>
-                                                                        <h2 class="table-avatar">
-                                                                            <a href="{{ url('doctor-profile') }}"
-                                                                                class="avatar avatar-sm me-2">
-                                                                                <img class="avatar-img rounded-3"
-                                                                                    src="{{ URL::asset('/assets/img/doctors/doctor-thumb-02.jpg') }}"
-                                                                                    alt="User Image">
-                                                                            </a>
-                                                                            <a href="{{ url('doctor-profile') }}">Edalin
-                                                                                Hendry</a>
-                                                                        </h2>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="action-item">
-                                                                            <a href="javascript:void(0);"
-                                                                                data-bs-toggle="modal"
-                                                                                data-bs-target="#view_prescription">
-                                                                                <i class="fa-solid fa-link"></i>
-                                                                            </a>
-                                                                            <a href="javascript:void(0);">
-                                                                                <i class="fa-solid fa-download"></i>
-                                                                            </a>
-                                                                            <a href="javascript:void(0);">
-                                                                                <i class="fa-solid fa-trash-can"></i>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="text-blue-600"><a href="#"
-                                                                            data-bs-toggle="modal"
-                                                                            data-bs-target="#view_prescription">#PR-124</a>
-                                                                    </td>
-                                                                    <td>
-                                                                        <a href="javascript:void(0);"
-                                                                            class="lab-icon prescription">
-                                                                            <span><i
-                                                                                    class="fa-solid fa-prescription"></i></span>Prescription
-                                                                        </a>
-                                                                    </td>
-                                                                    <td>27 Mar 2024, 11:15 AM</td>
-                                                                    <td>
-                                                                        <h2 class="table-avatar">
-                                                                            <a href="{{ url('doctor-profile') }}"
-                                                                                class="avatar avatar-sm me-2">
-                                                                                <img class="avatar-img rounded-3"
-                                                                                    src="{{ URL::asset('/assets/img/doctors/doctor-thumb-05.jpg') }}"
-                                                                                    alt="User Image">
-                                                                            </a>
-                                                                            <a href="{{ url('doctor-profile') }}">John
-                                                                                Homes</a>
-                                                                        </h2>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="action-item">
-                                                                            <a href="javascript:void(0);"
-                                                                                data-bs-toggle="modal"
-                                                                                data-bs-target="#view_prescription">
-                                                                                <i class="fa-solid fa-link"></i>
-                                                                            </a>
-                                                                            <a href="javascript:void(0);">
-                                                                                <i class="fa-solid fa-download"></i>
-                                                                            </a>
-                                                                            <a href="javascript:void(0);">
-                                                                                <i class="fa-solid fa-trash-can"></i>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="text-blue-600"><a href="#"
-                                                                            data-bs-toggle="modal"
-                                                                            data-bs-target="#view_prescription">#PR-125</a>
-                                                                    </td>
-                                                                    <td>
-                                                                        <a href="javascript:void(0);"
-                                                                            class="lab-icon prescription">
-                                                                            <span><i
-                                                                                    class="fa-solid fa-prescription"></i></span>Prescription
-                                                                        </a>
-                                                                    </td>
-                                                                    <td>11 Apr 2024, 09:00 AM</td>
-                                                                    <td>
-                                                                        <h2 class="table-avatar">
-                                                                            <a href="{{ url('doctor-profile') }}"
-                                                                                class="avatar avatar-sm me-2">
-                                                                                <img class="avatar-img rounded-3"
-                                                                                    src="{{ URL::asset('/assets/img/doctors/doctor-thumb-03.jpg') }}"
-                                                                                    alt="User Image">
-                                                                            </a>
-                                                                            <a href="{{ url('doctor-profile') }}">Shanta
-                                                                                Neill</a>
-                                                                        </h2>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="action-item">
-                                                                            <a href="javascript:void(0);"
-                                                                                data-bs-toggle="modal"
-                                                                                data-bs-target="#view_prescription">
-                                                                                <i class="fa-solid fa-link"></i>
-                                                                            </a>
-                                                                            <a href="javascript:void(0);">
-                                                                                <i class="fa-solid fa-download"></i>
-                                                                            </a>
-                                                                            <a href="javascript:void(0);">
-                                                                                <i class="fa-solid fa-trash-can"></i>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="text-blue-600"><a href="#"
-                                                                            data-bs-toggle="modal"
-                                                                            data-bs-target="#view_prescription">#PR-126</a>
-                                                                    </td>
-                                                                    <td>
-                                                                        <a href="javascript:void(0);"
-                                                                            class="lab-icon prescription">
-                                                                            <span><i
-                                                                                    class="fa-solid fa-prescription"></i></span>Prescription
-                                                                        </a>
-                                                                    </td>
-                                                                    <td>15 Apr 2024, 02:30 PM</td>
-                                                                    <td>
-                                                                        <h2 class="table-avatar">
-                                                                            <a href="{{ url('doctor-profile') }}"
-                                                                                class="avatar avatar-sm me-2">
-                                                                                <img class="avatar-img rounded-3"
-                                                                                    src="{{ URL::asset('/assets/img/doctors/doctor-thumb-08.jpg') }}"
-                                                                                    alt="User Image">
-                                                                            </a>
-                                                                            <a href="{{ url('doctor-profile') }}">Anthony
-                                                                                Tran</a>
-                                                                        </h2>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="action-item">
-                                                                            <a href="javascript:void(0);"
-                                                                                data-bs-toggle="modal"
-                                                                                data-bs-target="#view_prescription">
-                                                                                <i class="fa-solid fa-link"></i>
-                                                                            </a>
-                                                                            <a href="javascript:void(0);">
-                                                                                <i class="fa-solid fa-download"></i>
-                                                                            </a>
-                                                                            <a href="javascript:void(0);">
-                                                                                <i class="fa-solid fa-trash-can"></i>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="text-blue-600"><a href="#"
-                                                                            data-bs-toggle="modal"
-                                                                            data-bs-target="#view_prescription">#PR-127</a>
-                                                                    </td>
-                                                                    <td>
-                                                                        <a href="javascript:void(0);"
-                                                                            class="lab-icon prescription">
-                                                                            <span><i
-                                                                                    class="fa-solid fa-prescription"></i></span>Prescription
-                                                                        </a>
-                                                                    </td>
-                                                                    <td>23 Apr 2024, 06:40 PM</td>
-                                                                    <td>
-                                                                        <h2 class="table-avatar">
-                                                                            <a href="{{ url('doctor-profile') }}"
-                                                                                class="avatar avatar-sm me-2">
-                                                                                <img class="avatar-img rounded-3"
-                                                                                    src="{{ URL::asset('/assets/img/doctors/doctor-thumb-01.jpg') }}"
-                                                                                    alt="User Image">
-                                                                            </a>
-                                                                            <a href="{{ url('doctor-profile') }}">Susan
-                                                                                Lingo</a>
-                                                                        </h2>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="action-item">
-                                                                            <a href="javascript:void(0);"
-                                                                                data-bs-toggle="modal"
-                                                                                data-bs-target="#view_prescription">
-                                                                                <i class="fa-solid fa-link"></i>
-                                                                            </a>
-                                                                            <a href="javascript:void(0);">
-                                                                                <i class="fa-solid fa-download"></i>
-                                                                            </a>
-                                                                            <a href="javascript:void(0);">
-                                                                                <i class="fa-solid fa-trash-can"></i>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
+                                                                @if (!empty($formatted) && $formatted->isNotEmpty())
+                                                                    @foreach ($formatted as $group)
+                                                                        <tr>
+                                                                            <td class="fw-bold text-primary bg-light">
+                                                                                {{ $patientId ?? '#' }}
+                                                                            </td>
+                                                                            <td class="fw-bold text-primary bg-light">
+                                                                                <a href="javascript:void(0);"
+                                                                                    class="text-decoration-none view-prescription-date"
+                                                                                    data-date="{{ $group['date'] }}"
+                                                                                    data-items='@json($group['items'])'>
+                                                                                    {{ \Carbon\Carbon::parse($group['date'])->format('F j, Y') }}
+                                                                                </a>
+                                                                            </td>
+                                                                            <td class="fw-bold text-primary bg-light">
+                                                                                {{ $group['doctor_name'] ?? 'Not Linked' }}
+                                                                            </td>
+                                                                            <td class="fw-bold text-primary bg-light">
+                                                                                <a href="javascript:void(0);"
+                                                                                    class="view-prescription view-prescription-date"
+                                                                                    data-date="{{ $group['date'] }}"
+                                                                                    data-items='@json($group['items'])'>
+                                                                                    <i class="fa-solid fa-link"></i>
+                                                                                </a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    @endforeach
+                                                                @else
+                                                                    <tr>
+                                                                        <td colspan="5" class="text-center">No
+                                                                            prescriptions found.</td>
+                                                                    </tr>
+                                                                @endif
                                                             </tbody>
                                                         </table>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -1521,4 +972,6 @@
 
     </div>
     <!-- /Page Content -->
+    @include('layout.partials.custom_scripts')
+
 @endsection

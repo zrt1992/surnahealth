@@ -1640,82 +1640,7 @@
                                 'edit-prescription',
                                 'membership-details',
                             ]))
-                            <!-- Cart -->
-                            {{-- <li class="nav-item dropdown noti-nav view-cart-header me-3">
-                            <a href="#" class="dropdown-toggle nav-link p-0 position-relative"
-                                data-bs-toggle="dropdown">
-                                <i class="fa-solid fa-cart-shopping"></i> <small class="unread-msg1">7</small>
-                            </a>
-                            <div class="dropdown-menu notifications dropdown-menu-end">
-                                <div class="shopping-cart">
-                                    <ul class="shopping-cart-items list-unstyled">
-                                        <li class="clearfix">
-                                            <div class="close-icon"><i class="fa-solid fa-circle-xmark"></i></div>
-                                            <a href="{{ url('product-description') }}"><img
-                                                    class="avatar-img rounded"
-                                                    src="{{ URL::asset('/assets/img/products/product.jpg') }}"
-                                                    alt="User Image"></a>
-                                            <a href="{{ url('product-description') }}"
-                                                class="item-name">Benzaxapine
-                                                Croplex</a>
-                                            <span class="item-price">$849.99</span>
-                                            <span class="item-quantity">Quantity: 01</span>
-                                        </li>
-
-                                        <li class="clearfix">
-                                            <div class="close-icon"><i class="fa-solid fa-circle-xmark"></i></div>
-                                            <a href="{{ url('product-description') }}"><img
-                                                    class="avatar-img rounded"
-                                                    src="{{ URL::asset('/assets/img/products/product1.jpg') }}"
-                                                    alt="User Image"></a>
-                                            <a href="{{ url('product-description') }}" class="item-name">Ombinazol
-                                                Bonibamol</a>
-                                            <span class="item-price">$1,249.99</span>
-                                            <span class="item-quantity">Quantity: 01</span>
-                                        </li>
-
-                                        <li class="clearfix">
-                                            <div class="close-icon"><i class="fa-solid fa-circle-xmark"></i></div>
-                                            <a href="{{ url('product-description') }}"><img
-                                                    class="avatar-img rounded"
-                                                    src="{{ URL::asset('/assets/img/products/product2.jpg') }}"
-                                                    alt="User Image"></a>
-                                            <a href="{{ url('product-description') }}" class="item-name">Dantotate
-                                                Dantodazole</a>
-                                            <span class="item-price">$129.99</span>
-                                            <span class="item-quantity">Quantity: 01</span>
-                                        </li>
-                                    </ul>
-                                    <div class="booking-summary pt-3">
-                                        <div class="booking-item-wrap">
-                                            <ul class="booking-date">
-                                                <li>Subtotal <span>$5,877.00</span></li>
-                                                <li>Shipping <span>$25.00</span></li>
-                                                <li>Tax <span>$0.00</span></li>
-                                                <li>Total <span>$5.2555</span></li>
-                                            </ul>
-                                            <div class="booking-total">
-                                                <ul class="booking-total-list text-align">
-                                                    <li>
-                                                        <div class="clinic-booking pt-3">
-                                                            <a class="apt-btn" href="{{ url('cart') }}">View
-                                                                Cart</a>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="clinic-booking pt-3">
-                                                            <a class="apt-btn"
-                                                                href="{{ url('product-checkout') }}">Checkout</a>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li> --}}
-                            <!-- /Cart -->
+                           
 
                             <!-- Notifications -->
                             @if (Auth::check())
@@ -1974,6 +1899,20 @@
                                     </form>
                                 </div>
                             </li>
+                            <li>
+                                <div class="dropdown lang-dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle nav-link"
+                                        data-bs-toggle="dropdown">
+                                        {{ strtoupper(app()->getLocale()) }}
+                                    </a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="?lang=en">English</a>
+                                        <a class="dropdown-item" href="?lang=fr">Français</a>
+                                        <a class="dropdown-item" href="?lang=es">Español</a>
+                                        <a class="dropdown-item" href="?lang=pt">Português</a>
+                                    </div>
+                                </div>
+                            </li>
                             <!-- /User Menu -->
                         @endif
                         @if (Route::is([
@@ -2055,8 +1994,22 @@
                                         </form>
                                     </div>
                                 </li>
+                                <li>
+                                    <div class="dropdown lang-dropdown">
+                                        <a href="javascript:void(0);" class="dropdown-toggle nav-link"
+                                            data-bs-toggle="dropdown">
+                                            {{ strtoupper(app()->getLocale()) }}
+                                        </a>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="?lang=en">English</a>
+                                            <a class="dropdown-item" href="?lang=fr">Français</a>
+                                            <a class="dropdown-item" href="?lang=es">Español</a>
+                                            <a class="dropdown-item" href="?lang=pt">Português</a>
+                                        </div>
+                                    </div>
+                                </li>
                             @endif
-
+                           
                             <!-- /User Menu -->
                         @endif
                     @endif

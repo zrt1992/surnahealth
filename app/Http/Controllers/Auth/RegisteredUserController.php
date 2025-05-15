@@ -21,6 +21,7 @@ use App\Traits\FileUpload;
 use Illuminate\Support\Facades\Mail;
 use Stripe\Price;
 use Stripe\Stripe;
+use App\Services\DoseSpotService;
 
 class RegisteredUserController extends Controller
 {
@@ -53,7 +54,7 @@ class RegisteredUserController extends Controller
         return view('auth.patient.patient-register-step4');
     }
 
-   
+
 
     /**
      * Handle an incoming registration request.
@@ -66,9 +67,15 @@ class RegisteredUserController extends Controller
         $result = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
-            'phone' => ['required', 'string', 'max:255', 'unique:' . User::class],
+            'phone' => [
+                'required',
+                'string',
+                'regex:/^\d{10}$/', // Accepts exactly 10 digits, US local format
+                'unique:' . User::class,
+            ],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
+        // dd($request);
 
         $role = $request->get('role');
         $user = User::create([
@@ -79,7 +86,7 @@ class RegisteredUserController extends Controller
         ]);
         $user->assignRole('patient');
         //        dd('asd');
-
+        // Send patient data to DoseSpot
 
         event(new Registered($user));
 
@@ -127,11 +134,15 @@ class RegisteredUserController extends Controller
             'existing_medical_conditions' => 'required',
             'preferred_time' => 'required',
         ]);
+
         $userData = [
             'gender' => $request->gender,
             'dob' => $request->age,
             'city' => $request->city,
             'country' => $request->country,
+            'state' => $request->state,
+            'zipcode' => $request->zipcode,
+            'address' => $request->address,
             'known_languages' => $request->preferred_language,
             'registration_step' => '+3',
         ];
@@ -185,7 +196,7 @@ class RegisteredUserController extends Controller
         return redirect()->route('patient-register-step4');
     }
 
-    public function storeStep4(Request $request)
+    public function storeStep4(Request $request, DoseSpotService $doseSpot)
     {
         $request->validate([
             'bank_name' => 'required',
@@ -231,6 +242,26 @@ class RegisteredUserController extends Controller
             Mail::to($authUser->email)->send(new RegistrationEmail($emailData));
         }
 
+        $response = $doseSpot->createPatient([
+            "Prefix" => "Mr.", // Optional
+            "FirstName" => explode(' ', $authUser->name)[0],
+            "LastName" => explode(' ', $authUser->name)[1] ?? '',
+            "DateOfBirth" => $authUser->dob, // Placeholder, update as needed
+            "Gender" => $authUser->gender, // Update as needed
+            "Email" => $authUser->email,
+            "PrimaryPhone" => $authUser->phone,
+            "PrimaryPhoneType" => "4",
+            "Address1" => $authUser->address,
+            "City" => $authUser->city,
+            "State" => $authUser->state,
+            "ZipCode" => $authUser->zipcode,
+            "Active" => true
+        ]);
+
+        if (isset($response['Id'])) {
+            $authUser->dose_spot_patient_id = $response['Id'];
+            $authUser->save();
+        }
         return redirect()->route('patient-dashboard')->with('success', 'Registration completed!');
     }
 }

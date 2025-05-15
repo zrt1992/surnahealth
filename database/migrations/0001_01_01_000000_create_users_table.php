@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('pincode', 20)->nullable(); // Pincode
             $table->string('city', 100)->nullable(); // City
             $table->string('state', 100)->nullable(); // State
+             $table->string('zipcode', 20)->nullable(); // Pincode
             $table->string('address', 255)->nullable(); // Address
             $table->string('years_of_experience')->nullable();
             $table->string('medical_licence_number')->nullable();
@@ -41,6 +42,7 @@ return new class extends Migration
             $table->string('term_and_condition')->nullable();
             $table->string('stripe_customer_id')->nullable();
             $table->string('subscription_active')->nullable();
+             $table->string('dose_spot_patient_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -1,7 +1,7 @@
 <!-- Breadcrumb -->
-<div class="breadcrumb-bar-two">
-    <div class="container">
-        <div class="row align-items-center inner-banner">
+<div class="breadcrumb-bar-two  bg-white">
+    <div class="container bg-white">
+        <div class="row align-items-center inner-banner bg-white">
             <div class="col-md-12 col-12 text-center">
                 <h2 class="breadcrumb-title">{{ $title }}</h2>
                 <nav aria-label="breadcrumb" class="page-breadcrumb">

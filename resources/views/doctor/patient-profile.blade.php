@@ -190,8 +190,9 @@
                                         <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
                                     </div>
                                     <div>
-                                        <a href="{{ route('add-prescription',$patient->id) }}" class="btn btn-primary prime-btn" 
-                                            data-bs-target="#add_prescription">Add New Prescription</a>
+                                        <a href="{{ route('add-prescription', $patient->id) }}"
+                                            class="btn btn-primary prime-btn" data-bs-target="#add_prescription">Add New
+                                            Prescription</a>
                                     </div>
                                 </div>
 
@@ -200,46 +201,47 @@
                                         <table class="table table-center mb-0">
                                             <thead>
                                                 <tr>
-                                                    <th>ID</th>
-                                                    <th>Prescriped By</th>
+                                                    <th>{{ __('messages.patient_id') }}</th>
+                                                    <th>{{ __('messages.patient_name') }}</th>
                                                     {{-- <th>Type</th> --}}
-                                                    <th>Date</th>
-                                                    <th>Action</th>
+                                                     <th>{{ __('messages.created_date') }}</th>
+                                                     <th>{{ __('messages.prescription_detail') }}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @if (!empty($patient->prescriptions) && $patient->prescriptions->isNotEmpty())
-                                                @foreach ($patient->prescriptions as $prescription)
-                                                <tr>
-                                                    <td><a href="javascript:void(0);" class="text-blue-600"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#view_prescription">#Apt123</a></td>
-                                                    <td>
-                                                        <h2 class="table-avatar">
-                                                            <a href="{{ url('doctor-profile') }}"
-                                                                class="avatar avatar-sm me-2">
-                                                                <img class="avatar-img rounded-3"
-                                                                    src="{{ URL::asset('/assets/img/doctors/doctor-thumb-02.jpg') }}"
-                                                                    alt="User Image">
-                                                            </a>
-                                                            <a href="{{ url('doctor-profile-2',$prescription->doctor->id) }}">{{ $prescription->doctor->name ?? '' }}</a>
-                                                        </h2>
-                                                    </td>
-                                                    {{-- <td>Visit</td> --}}
-                                                    <td>{{ $prescription->date ?? '--' }}</td>
-                                                    <td>
-                                                        <div class="action-item">
-                                                            <a href="javascript:void(0);" data-bs-toggle="modal"
-                                                                data-bs-target="#view_prescription">
-                                                                <i class="fa-solid fa-link"></i>
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                @endforeach
+                                                @if (!empty($grouped) && $grouped->isNotEmpty())
+                                                    @foreach ($grouped as $date => $group)
+                                                        @if ($group)
+                                                        
+                                                            <tr>
+                                                                 <td  class="fw-bold text-primary bg-light">
+                                                                   {{ $patient->dose_spot_patient_id ?? '#' }}
+                                                                </td>
+                                                                 <td  class="fw-bold text-primary bg-light">
+                                                                   {{ $patient->name ?? 'Patient' }}
+                                                                </td>
+                                                                <td  class="fw-bold text-primary bg-light">
+                                                                    <a href="javascript:void(0);"
+                                                                        class="text-decoration-none view-prescription-date"
+                                                                        data-date="{{ $date }}"
+                                                                        data-items='@json($group)'>
+                                                                        {{ \Carbon\Carbon::parse($date)->format('F j, Y') }}
+                                                                    </a>
+                                                                </td>
+                                                                <td  class="fw-bold text-primary bg-light">
+                                                                   
+                                                                     <a href="javascript:void(0);" class="view-prescription view-prescription-date"
+                                                                       data-date="{{ $date }}"
+                                                                        data-items='@json($group)'>
+                                                                        <i class="fa-solid fa-link"></i>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        @endif
+                                                    @endforeach
                                                 @endif
-                                              
-                                                
+
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -249,8 +251,7 @@
                                 <div class="pagination dashboard-pagination">
                                     <ul>
                                         <li>
-                                            <a href="#" class="page-link"><i
-                                                    class="fa-solid fa-chevron-left"></i></a>
+                                            <a href="#" class="page-link"><i class="fa-solid fa-chevron-left"></i></a>
                                         </li>
                                         <li>
                                             <a href="#" class="page-link active">1</a>
@@ -629,4 +630,6 @@
 
     </div>
     <!-- /Page Content -->
+    @include('layout.partials.custom_scripts')
+
 @endsection

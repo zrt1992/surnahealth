@@ -677,28 +677,40 @@
         newRow.classList.add('test');
         newRow.innerHTML = `
                         <input type="hidden" name="user_id[]" value="{{ $id ?? '' }}">
-                        <td><input class="form-control" type="text" name="name[]"></td>
+                       <td>
+                           <div class="position-relative">
+                                <input class="form-control medication-autocomplete pr-5"
+                                    type="text" name="name[]">
+                                <!-- Inline loader in input -->
+                                <span class="input-loader position-absolute"
+                                    style="right: 10px; top: 50%; transform: translateY(-50%); display: none;">
+                                    <i class="fa fa-spinner fa-spin text-muted"></i>
+                                </span>
+                            </div>
+                            <ul class="autocomplete-list position-absolute bg-white border mt-1 p-0 list-unstyled"
+                                style="z-index: 9999; display: none;"></ul>
+                        </td>
                         <td><input class="form-control" type="text" name="quantity[]"></td>
                         <td><input class="form-control" type="text" name="days[]"></td>
                         <td>
                         <div class="form-check form-check-inline">
                         <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" name="morning[]"> Morning
+                        <input class="form-check-input" type="checkbox" name="morning[]" value="1"> Morning
                         </label>
                         </div>
                         <div class="form-check form-check-inline">
                         <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" name="afternoon[]"> Afternoon
+                        <input class="form-check-input" type="checkbox" name="afternoon[]" value="1"> Afternoon
                         </label>
                         </div>
                         <div class="form-check form-check-inline">
                         <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" name="evening[]"> Evening
+                        <input class="form-check-input" type="checkbox" name="evening[]" value="1"> Evening
                         </label>
                         </div>
                         <div class="form-check form-check-inline">
                         <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" name="night[]"> Night
+                        <input class="form-check-input" type="checkbox" name="night[]" value="1"> Night
                         </label>
                         </div>
                         </td>
@@ -717,22 +729,81 @@
             if (row) row.remove();
         }
     });
+
+
+    let debounceTimeout;
+
+    document.addEventListener('input', function(e) {
+        if (!e.target.classList.contains('medication-autocomplete')) return;
+
+        const input = e.target;
+        const td = input.closest('td');
+        const list = td.querySelector('.autocomplete-list');
+        const loader = td.querySelector('.input-loader');
+        const query = input.value.trim();
+
+        clearTimeout(debounceTimeout);
+
+        if (query.length < 2) {
+            list.style.display = 'none';
+            list.innerHTML = '';
+            loader.style.display = 'none';
+            return;
+        }
+
+        debounceTimeout = setTimeout(async () => {
+            loader.style.display = 'inline-block'; // Show loader
+            list.style.display = 'none';
+            list.innerHTML = '';
+
+            try {
+                const response = await fetch(
+                    `/doctor/search-medications?q=${encodeURIComponent(query)}`);
+                const data = await response.json();
+                const items = data.Items || [];
+
+                list.innerHTML = items.map(item =>
+                    `<li class="autocomplete-item px-2 py-1" style="cursor: pointer;" data-name="${item.NameWithRouteDoseForm} ${item.Strength}">
+                    ${item.NameWithRouteDoseForm} ${item.Strength}
+                </li>`
+                ).join('');
+                list.style.display = 'block';
+            } catch (err) {
+                console.error('Autocomplete fetch failed:', err);
+            } finally {
+                loader.style.display = 'none'; // Hide loader
+            }
+        }, 300);
+    });
+
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('autocomplete-item')) {
+            const name = e.target.dataset.name;
+            const input = e.target.closest('td').querySelector('input');
+            input.value = name;
+            input.closest('td').querySelector('.autocomplete-list').style.display = 'none';
+        } else {
+            document.querySelectorAll('.autocomplete-list').forEach(list => {
+                list.style.display = 'none';
+            });
+        }
+    });
 </script>
+
 <script>
-    $(document).ready(function () {
-     $(document).on('click', '.reject-popup', function () {
-         console.log('Reject popup clicked!');
- 
-         // Fetch data from the clicked button
-         var reason = $(this).data('reason') || 'No reason provided';
-         var cancelledBy = $(this).data('cancelled-by') || 'Unknown';
-         // Inject data into the modal
-         $('#reason-text').text(reason);
-         $('#reason-details').text('Cancelled By ' + cancelledBy);
-     });
- });
- 
- </script>
+    $(document).ready(function() {
+        $(document).on('click', '.reject-popup', function() {
+            console.log('Reject popup clicked!');
+
+            // Fetch data from the clicked button
+            var reason = $(this).data('reason') || 'No reason provided';
+            var cancelledBy = $(this).data('cancelled-by') || 'Unknown';
+            // Inject data into the modal
+            $('#reason-text').text(reason);
+            $('#reason-details').text('Cancelled By ' + cancelledBy);
+        });
+    });
+</script>
 {{-- Toaster --}}
 <script>
     @if (session('success'))
@@ -750,4 +821,44 @@
             timeOut: 5000
         });
     @endif
+</script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const dateLinks = document.querySelectorAll('.view-prescription-date');
+
+        dateLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                const rawDate = this.dataset.date;
+                const prescriptions = JSON.parse(this.dataset.items || '[]');
+
+                const formattedDate = new Date(rawDate).toDateString();
+                document.querySelector('#view_prescription .modal-title').textContent =
+                    "Prescriptions for " + formattedDate;
+                document.getElementById('prescription-date').textContent = formattedDate;
+
+                let tableRows = '';
+
+                prescriptions.forEach(item => {
+                    tableRows += `
+                        <tr>
+                            <td>${item.DisplayName || '--'}</td>
+                            <td>${item.Quantity || '--'} <span></span></td>
+                            <td>${item.Directions || '--'}</td>
+                            <td>${item.DaysSupply || '--'} days</td>
+                            
+                        </tr>
+                    `;
+                });
+
+                document.getElementById('prescription-table-body').innerHTML = tableRows;
+                document.getElementById('invoice-header').innerHTML = `
+                    <strong>Prescription Date:</strong> ${formattedDate}
+                `;
+
+                new bootstrap.Modal(document.getElementById('view_prescription')).show();
+            });
+        });
+    });
 </script>

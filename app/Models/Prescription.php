@@ -20,7 +20,8 @@ class Prescription extends Model
         'afternoon',
         'evening',
         'night',
-        'doctor_sign'
+        'doctor_sign',
+        'dose_spot_prescription_id',
     ];
 
     public function doctor()
