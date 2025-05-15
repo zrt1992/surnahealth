@@ -61,16 +61,9 @@ class PatientProfileSettingController extends Controller
     {
    
         $request->validate([
-            'first_name' => 'required|string|max:255',
-            'dob' => 'required|string|max:255',
+            
             'phone' => 'required|string|max:15',
             'email' => 'required|email|max:255',
-            'blood_group' => 'required|string|max:255',
-            'address' => 'required|string|max:255',
-            'city' => 'nullable|string',
-            'state' => 'nullable|string',
-            'country' => 'nullable|string',
-            'pincode' => 'nullable|string',
             'profile_image' => 'nullable|image|mimes:jpg,png,svg|max:4096',
         ]);
      

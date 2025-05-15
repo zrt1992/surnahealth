@@ -25,24 +25,24 @@
                                         <input type="text" class="form-control floating" name="name" id="name">
                                         <label class="focus-label">Name</label>
                                         @error('name')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                     <div class="mb-3 form-focus">
                                         <input type="text" class="form-control floating" name="email" id="number">
                                         <label class="focus-label">Email</label>
                                         @error('email')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                     <div class="mb-5 form-focus">
                                         <input type="text" class="form-control floating" name="phone" id="number">
                                         <label class="focus-label">Phone</label>
-                                                                                <span class="text-info">Note : Add number without country code</span>
+                                        <span class="text-info">Note : Add USA number without country code</span>
 
                                         @error('phone')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                     <div class="mb-3 form-focus">
                                         <label class="focus-label">Create Password</label>
@@ -51,15 +51,15 @@
                                                 id="password">
                                         </div>
                                         @error('password')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                     <input type="hidden" name="role" value="patient">
                                     <div class="mb-3 form-focus">
                                         <label class="focus-label">Confirm Password</label>
                                         <div class="pass-group">
-                                            <input class="form-control pass-input floating" type="password" name="password_confirmation"
-                                                   id="password">
+                                            <input class="form-control pass-input floating" type="password"
+                                                name="password_confirmation" id="password">
 
                                         </div>
                                     </div>

@@ -2023,7 +2023,7 @@
     <!-- /Add Dependent Modal-->
 @endif
 
-@if (Route::is(['patient-profile', 'doctor.patient-profile','patient-dashboard']))
+@if (Route::is(['patient-profile', 'doctor.patient-profile','patient-dashboard','patient-prescription']))
     <!--View Prescription -->
     <!-- Modal -->
     <div class="modal fade custom-modals" id="view_prescription" tabindex="-1">

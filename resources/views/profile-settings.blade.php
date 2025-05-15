@@ -31,6 +31,7 @@
                                 <div class="profile-img" id="profileImageContainer">
                                     <!-- If there is a profile image, display it; otherwise, show the default icon -->
                                     @if ($patientProfileSettings->profile_image)
+                                   
                                         <img id="profileImagePreview" src="{{ asset( $patientProfileSettings->profile_image) }}" alt="Profile Image" class="img-thumbnail" width="100" style="display:block;">
                                     @else
                                         <i class="fa-solid fa-file-image" id="profileImageIcon"></i>
@@ -184,6 +185,10 @@
                                     </div>
                                 </div>
                             </div>
+                             <div class="form-set-button">
+                            <button class="btn btn-light" type="button">Cancel</button>
+                            <button class="btn btn-primary" type="submit">Save Changes</button>
+                        </div>
                     </form>
 
                     <div class="dashboard-header">
