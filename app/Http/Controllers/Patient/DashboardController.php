@@ -23,7 +23,8 @@ class DashboardController extends Controller
 
 
 
-        $patientId = getAuthUser()->dose_spot_patient_id;
+        $authUser = getAuthUser();
+        $patientId = $authUser->dose_spot_patient_id;
         $startDate = now()->subMonth()->toIso8601String();
         $endDate = now()->toIso8601String();
 
@@ -32,6 +33,29 @@ class DashboardController extends Controller
             ->get()
             ->keyBy('dose_spot_prescription_id'); // Make it easy to match
 
+        if (!$patientId) {
+            $response = $doseSpotService->createPatient([
+                "Prefix" => "Mr.", // Optional
+                "FirstName" => explode(' ', $authUser->name)[0],
+                "LastName" => explode(' ', $authUser->name)[1] ?? 'Patient',
+                "DateOfBirth" => $authUser->dob,
+                "Gender" => $authUser->gender,
+                "Email" => $authUser->email,
+                "PrimaryPhone" => $authUser->phone,
+                "PrimaryPhoneType" => "4",
+                "Address1" => $authUser->address,
+                "City" => $authUser->city,
+                "State" => $authUser->state,
+                "ZipCode" => $authUser->zipcode,
+                "Active" => true
+            ]);
+
+            if (isset($response['Id'])) {
+                $patientId = $response['Id'];
+                $authUser->dose_spot_patient_id = $patientId;
+                $authUser->save();
+            }
+        }
         // Step 2: Get DoseSpot items
         if ($patientId) {
             $selfReported = $doseSpotService->getSelfReportedMedications($patientId, $startDate, $endDate);
