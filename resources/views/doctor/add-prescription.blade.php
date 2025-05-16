@@ -72,18 +72,20 @@
                                                 <tbody>
                                                     <tr class="test">
                                                         <input type="hidden" name="user_id[]" value="{{ $id }}">
-                                                       <td>
-    <div class="position-relative">
-        <input class="form-control medication-autocomplete pr-5" type="text" name="name[]">
-        <!-- Inline loader in input -->
-        <span class="input-loader position-absolute" style="right: 10px; top: 50%; transform: translateY(-50%); display: none;">
-            <i class="fa fa-spinner fa-spin text-muted"></i>
-        </span>
-    </div>
+                                                        <td>
+                                                            <div class="position-relative">
+                                                                <input class="form-control medication-autocomplete pr-5"
+                                                                    type="text" name="name[]">
+                                                                <!-- Inline loader in input -->
+                                                                <span class="input-loader position-absolute"
+                                                                    style="right: 10px; top: 50%; transform: translateY(-50%); display: none;">
+                                                                    <i class="fa fa-spinner fa-spin text-muted"></i>
+                                                                </span>
+                                                            </div>
 
-    <ul class="autocomplete-list position-absolute bg-white border mt-1 p-0 list-unstyled"
-        style="z-index: 9999; display: none;"></ul>
-</td>
+                                                            <ul class="autocomplete-list position-absolute bg-white border mt-1 p-0 list-unstyled"
+                                                                style="z-index: 9999; display: none;"></ul>
+                                                        </td>
 
 
                                                         <td><input class="form-control" type="number" name="quantity[]">

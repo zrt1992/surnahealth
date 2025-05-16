@@ -26,45 +26,48 @@ class PatientPresciptionController extends Controller
 
         // Step 2: Get DoseSpot items
         $selfReported = $doseSpotService->getSelfReportedMedications($patientId, $startDate, $endDate);
-        $items = collect($selfReported['Items'] ?? []);
 
-        // Step 3: Map items to add doctor name if match found
-        $itemsWithDoctor = $items->map(function ($item) use ($prescriptions) {
-            $doseSpotId = $item['SelfReportedMedicationId'] ?? null;
+        if ($selfReported) {
+            $items = collect($selfReported['Items'] ?? []);
 
-            if ($doseSpotId && isset($prescriptions[$doseSpotId])) {
-                $doctor = $prescriptions[$doseSpotId]->doctor;
-                $item['doctor_name'] = $doctor?->name ?? 'Unknown';
-            } else {
-                $item['doctor_name'] = 'Not Linked';
-            }
+            // Step 3: Map items to add doctor name if match found
+            $itemsWithDoctor = $items->map(function ($item) use ($prescriptions) {
+                $doseSpotId = $item['SelfReportedMedicationId'] ?? null;
 
-            return $item;
-        });
+                if ($doseSpotId && isset($prescriptions[$doseSpotId])) {
+                    $doctor = $prescriptions[$doseSpotId]->doctor;
+                    $item['doctor_name'] = $doctor?->name ?? 'Unknown';
+                } else {
+                    $item['doctor_name'] = 'Not Linked';
+                }
 
-        // Step 4: Group by date
-        $grouped = $itemsWithDoctor->groupBy(function ($item) {
-            return Carbon::parse($item['DatePrescribed'])->format('Y-m-d');
-        });
-
-        $formatted = $grouped->map(function ($itemsForDate, $date) use ($prescriptions) {
-            $firstItemWithMatch = $itemsForDate->first(function ($item) use ($prescriptions) {
-                return isset($prescriptions[$item['SelfReportedMedicationId'] ?? null]);
+                return $item;
             });
 
-            if ($firstItemWithMatch) {
-                $prescription = $prescriptions[$firstItemWithMatch['SelfReportedMedicationId']];
-                $doctorName = $prescription->doctor?->name ?? 'Unknown';
-            } else {
-                $doctorName = 'Not Linked';
-            }
+            // Step 4: Group by date
+            $grouped = $itemsWithDoctor->groupBy(function ($item) {
+                return Carbon::parse($item['DatePrescribed'])->format('Y-m-d');
+            });
 
-            return [
-                'date' => $date,
-                'doctor_name' => $doctorName,
-                'items' => $itemsForDate->values(), // keep items without doctor_name
-            ];
-        })->values(); // reindex for a clean array
+            $formatted = $grouped->map(function ($itemsForDate, $date) use ($prescriptions) {
+                $firstItemWithMatch = $itemsForDate->first(function ($item) use ($prescriptions) {
+                    return isset($prescriptions[$item['SelfReportedMedicationId'] ?? null]);
+                });
+
+                if ($firstItemWithMatch) {
+                    $prescription = $prescriptions[$firstItemWithMatch['SelfReportedMedicationId']];
+                    $doctorName = $prescription->doctor?->name ?? 'Unknown';
+                } else {
+                    $doctorName = 'Not Linked';
+                }
+
+                return [
+                    'date' => $date,
+                    'doctor_name' => $doctorName,
+                    'items' => $itemsForDate->values(), // keep items without doctor_name
+                ];
+            })->values(); // reindex for a clean array
+        }
         return view('patient.patient-prescriptions', get_defined_vars());
     }
 }

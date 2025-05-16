@@ -94,7 +94,7 @@
                                                     <th>Booking Date</th>
                                                     <th>Amount</th>
                                                     <th>Status</th>
-                                                    <th>Action</th>
+                                                  
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -136,13 +136,6 @@
                                                             @endif
                                                         </td>
 
-                                                        <td>
-                                                            <div class="action-item">
-                                                                <a href="{{ url('patient-upcoming-appointment') }}">
-                                                                    <i class="fa-solid fa-link"></i>
-                                                                </a>
-                                                            </div>
-                                                        </td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>

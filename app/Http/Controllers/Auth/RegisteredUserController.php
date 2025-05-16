@@ -245,7 +245,7 @@ class RegisteredUserController extends Controller
         $response = $doseSpot->createPatient([
             "Prefix" => "Mr.", // Optional
             "FirstName" => explode(' ', $authUser->name)[0],
-            "LastName" => explode(' ', $authUser->name)[1] ?? '',
+            "LastName" => explode(' ', $authUser->name)[1] ?? 'Patient',
             "DateOfBirth" => $authUser->dob, // Placeholder, update as needed
             "Gender" => $authUser->gender, // Update as needed
             "Email" => $authUser->email,

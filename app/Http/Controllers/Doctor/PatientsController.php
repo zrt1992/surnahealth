@@ -65,21 +65,21 @@ class PatientsController extends Controller
         $patient =  User::with('appointments.doctor', 'appointments.slot', 'medicalDetails', 'prescriptions.doctor')->find($id);
 
 
-        // $prescription = $doseSpotService->getPrescriptionById($patient->dose_spot_patient_id, 40260616);
-
         $patientId = $patient->dose_spot_patient_id;
         $startDate = now()->subMonth()->toIso8601String();
         $endDate = now()->toIso8601String();
 
-        $selfReported = $doseSpotService->getSelfReportedMedications($patientId, $startDate, $endDate);
-        $items = collect($selfReported['Items'] ?? []);
-        $grouped = $items->groupBy(function ($item) {
-            return Carbon::parse($item['DatePrescribed'])->format('Y-m-d');
-        });
-        // $prescriptions = $doseSpotService->getPrescriptionsByDateRange($patientId, $startDate, $endDate);
+        if ($patientId) {
+            $selfReported = $doseSpotService->getSelfReportedMedications($patientId, $startDate, $endDate);
 
-        // $allergies = $doseSpotService->searchMedications('pan');
-        // dd($grouped);
+            if ($selfReported) {
+                $items = collect($selfReported['Items'] ?? []);
+                $grouped = $items->groupBy(function ($item) {
+                    return Carbon::parse($item['DatePrescribed'])->format('Y-m-d');
+                });
+            }
+        }
+
         return view('doctor.patient-profile', get_defined_vars());
     }
 }
