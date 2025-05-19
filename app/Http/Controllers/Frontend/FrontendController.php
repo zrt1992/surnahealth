@@ -44,6 +44,7 @@ class FrontendController extends Controller
         }
     
         // Filter by Specialization
+    //    dd( $request->select_specialist);
         if ($request->filled('select_specialist')) {
             $specializations = $request->input('select_specialist');
             $query->whereHas('specializations', function ($subQuery) use ($specializations) {

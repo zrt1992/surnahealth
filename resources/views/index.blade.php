@@ -193,9 +193,9 @@
 
                 <!-- Doctor Item -->
                 <div class="item">
-                    <div class="doctor-profile-widget doc-item">
+                    <div class="doctor-profile-widget doc-item" style="min-height: 480px">
                         <div class="doc-pro-img">
-                            <a href="{{ url('doctor-profile') }}">
+                            <a href="#">
                                 <div class="doctor-profile-img">
                                     <img src="{{ URL::asset('/assets/img/work-img.png') }}" class="img-fluid"
                                         alt="Ruby Perrin">
@@ -208,13 +208,11 @@
                         <div class="doc-content">
                             <div class="doc-pro-info">
                                 <div class="doc-pro-name">
-                                    <a href="{{ url('doctor-profile') }}">Dr. Julia Robert</a>
+                                    <a href="#">Dr. Julia Robert</a>
                                     <p>Orthopedic</p>
                                 </div>
                                 <div class="reviews-ratings">
-                                    <p>
-                                        <span><i class="fas fa-star"></i> 4.5</span> (35)
-                                    </p>
+                                    
                                 </div>
                             </div>
                             <div class="doc-pro-location">
@@ -229,9 +227,9 @@
 
                 <!-- Doctor Item -->
                 <div class="item">
-                    <div class="doctor-profile-widget doc-item">
+                    <div class="doctor-profile-widget doc-item" style="min-height: 480px">
                         <div class="doc-pro-img">
-                            <a href="{{ url('doctor-profile') }}">
+                            <a href="#">
                                 <div class="doctor-profile-img">
                                     <img src="{{ URL::asset('/assets/img/services-six-1.png') }}" class="img-fluid"
                                         alt="Paul Richard">
@@ -244,7 +242,7 @@
                         <div class="doc-content">
                             <div class="doc-pro-info">
                                 <div class="doc-pro-name">
-                                    <a href="{{ url('doctor-profile') }}">Dr. John Doe</a>
+                                    <a href="#">Dr. John Doe</a>
                                     <p>Dentist</p>
                                 </div>
                                 <div class="reviews-ratings">
@@ -265,9 +263,9 @@
 
                 <!-- Doctor Item -->
                 <div class="item">
-                    <div class="doctor-profile-widget doc-item">
+                    <div class="doctor-profile-widget doc-item" style="min-height: 480px">
                         <div class="doc-pro-img">
-                            <a href="{{ url('doctor-profile') }}">
+                            <a href="#">
                                 <div class="doctor-profile-img">
                                     <img src="{{ URL::asset('/assets/img/doctor-banner1.png') }}" class="img-fluid"
                                         alt="Darren Elder">
@@ -280,7 +278,7 @@
                         <div class="doc-content">
                             <div class="doc-pro-info">
                                 <div class="doc-pro-name">
-                                    <a href="{{ url('doctor-profile') }}">Dr. Aviles</a>
+                                    <a href="#">Dr. Aviles</a>
                                     <p>Neurology</p>
                                 </div>
                                 <div class="reviews-ratings">
@@ -303,7 +301,7 @@
                 <div class="item">
                     <div class="doctor-profile-widget doc-item">
                         <div class="doc-pro-img">
-                            <a href="{{ url('doctor-profile') }}">
+                            <a href="#">
                                 <div class="doctor-profile-img">
                                     <img src="{{ URL::asset('/assets/img/dr-slider.png') }}" class="img-fluid"
                                         alt="Sofia Brient">
@@ -316,13 +314,11 @@
                         <div class="doc-content">
                             <div class="doc-pro-info">
                                 <div class="doc-pro-name">
-                                    <a href="{{ url('doctor-profile') }}">Dr. Palmore</a>
+                                    <a href="#">Dr. Palmore</a>
                                     <p>Immunologist</p>
                                 </div>
                                 <div class="reviews-ratings">
-                                    <p>
-                                        <span><i class="fas fa-star"></i> 4.5</span> (35)
-                                    </p>
+                                    
                                 </div>
                             </div>
                             <div class="doc-pro-location">
@@ -339,7 +335,7 @@
                 <div class="item">
                     <div class="doctor-profile-widget doc-item">
                         <div class="doc-pro-img">
-                            <a href="{{ url('doctor-profile') }}">
+                            <a href="#">
                                 <div class="doctor-profile-img">
                                     <img src="{{ URL::asset('/assets/img/doctors/doctor-01.jpg') }}" class="img-fluid"
                                         alt="John Doe">
@@ -352,7 +348,7 @@
                         <div class="doc-content">
                             <div class="doc-pro-info">
                                 <div class="doc-pro-name">
-                                    <a href="{{ url('doctor-profile') }}">Dr. Paul Richard</a>
+                                    <a href="#">Dr. Paul Richard</a>
                                     <p>Dentist</p>
                                 </div>
                                 <div class="reviews-ratings">
@@ -387,8 +383,8 @@
                 </div>
             </div>
             <div class="row justify-content-center align-items-center">
-                <div class="col-lg-3 col-sm-12 aos" data-aos="fade-up">
-                    <div class="card pricing-card">
+                <div class="col-xl-3 col-lg-6 col-md-12 aos" data-aos="fade-up">
+                    <div class="card pricing-card" style="height: 670px;">
                         <div class="card-body">
                             <div class="pricing-header">
                                 <div class="pricing-header-info">
@@ -425,8 +421,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-12 aos" data-aos="fade-up">
-                    <div class="card pricing-card pricing-card-active">
+                <div class="col-xl-3 col-lg-6 col-md-12 aos" data-aos="fade-up">
+                    <div class="card pricing-card pricing-card-active" style="height: 670px;">
                         <div class="card-body">
                             <div class="pricing-header">
                                 <div class="pricing-header-info">
@@ -466,7 +462,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-sm-12 aos" data-aos="fade-up">
+                <div class="col-xl-3 col-lg-6 col-md-12 aos" data-aos="fade-up">
                     <div class="card pricing-card h-96 pricing-card-active" style="height: 670px">
                         <div class="card-body">
                             <div class="pricing-header">
@@ -503,7 +499,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-12 aos" data-aos="fade-up">
+                <div class="col-xl-3 col-lg-6 col-md-12 aos" data-aos="fade-up">
                     <div class="card pricing-card" style="height: 670px;">
                         <div class="card-body">
 
@@ -774,42 +770,87 @@
     </section>
     <!-- /Articles Section -->
 
-    <!-- App Section -->
-    <section class="app-section pt-0">
+  
+
+     <!-- Testimonial Section -->
+    <section class="testimonial-section">
         <div class="container">
-            <div class="app-bg">
-                <div class="row align-items-end">
-                    <div class="col-lg-6 col-md-12">
-                        <div class="app-content">
-                            <div class="app-header aos" data-aos="fade-up">
-                                <h5>{{ __('messages.working_for_better_health') }}</h5>
-                                <h2>{{ __('messages.download_the_app') }}</h2>
-                            </div>
-                            <div class="app-scan aos" data-aos="fade-up">
-                                <p>{{ __('messages.scan_qr_to_get_app') }}</p>
-                                <img src="{{ URL::asset('/assets/img/scan-img.png') }}" alt="scan-image">
-                            </div>
-                            <div class="google-imgs aos" data-aos="fade-up">
-                                <a href="javascript:void(0);"><img
-                                        src="{{ URL::asset('/assets/img/icons/google-play-icon.svg') }}"
-                                        alt="img"></a>
-                                <a href="javascript:void(0);"><img
-                                        src="{{ URL::asset('/assets/img/icons/app-store-icon.svg') }}"
-                                        alt="img"></a>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="testimonial-slider slick">
+                        <div class="testimonial-grid">
+                            <div class="testimonial-info">
+                                <div class="testimonial-img">
+                                    {{-- <img src="{{ URL::asset('/assets/img/clients/client-01.jpg') }}" class="img-fluid"
+                                        alt="John Doe"> --}}
+                                </div>
+                                <div class="testimonial-content">
+                                    <div class="section-header-one section-header section-inner-header testimonial-header">
+                                        <h5> {{ __('messages.testimonials') }}</h5>
+                                        <h2 class="section-title"> {{ __('messages.what_our_clients_say') }}</h2>
+                                    </div>
+                                    <div class="testimonial-details">
+                                        <p>Surna exceeded my expectations in healthcare. The seamless booking process,
+                                            coupled with the expertise of the doctors, made my experience exceptional. Their
+                                            commitment to quality care and convenience truly sets them apart. I highly
+                                            recommend Surna for anyone seeking reliable and accessible healthcare
+                                            services.</p>
+                                        <h6><span class="d-block">John Doe</span> New York</h6>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 aos" data-aos="fade-up">
-                        <div class="mobile-img">
-                            <img src="{{ URL::asset('/assets/img/mobile-img.png') }}" class="img-fluid" alt="img">
+                        <div class="testimonial-grid">
+                            <div class="testimonial-info">
+                                <div class="testimonial-img">
+                                    {{-- <img src="{{ URL::asset('/assets/img/clients/client-03.jpg') }}" class="img-fluid"
+                                        alt="Amanda Warren"> --}}
+                                </div>
+                                <div class="testimonial-content">
+                                    <div class="section-header section-inner-header testimonial-header">
+                                        <h5>Testimonials</h5>
+                                        <h2>What Our Client Says</h2>
+                                    </div>
+                                    <div class="testimonial-details">
+                                        <p>As a busy professional, I don't have time to wait on hold or play phone tag to
+                                            schedule doctor appointments. Thanks to Surna, booking appointments has never
+                                            been easier! The user-friendly interface allows me to quickly find available
+                                            appointment slots that fit my schedule and book them with just a few clicks.
+                                            It's a game-changer for anyone looking to streamline their healthcare
+                                            management.</p>
+                                        <h6><span class="d-block">Andrew Denner</span> Nevada</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-grid">
+                            <div class="testimonial-info">
+                                <div class="testimonial-img">
+                                    {{-- <img src="{{ URL::asset('/assets/img/clients/client-11.jpg') }}" class="img-fluid"
+                                        alt="Betty Carlson"> --}}
+                                </div>
+                                <div class="testimonial-content">
+                                    <div class="section-header section-inner-header testimonial-header">
+                                        <h5>Testimonials</h5>
+                                        <h2>What Our Client Says</h2>
+                                    </div>
+                                    <div class="testimonial-details">
+                                        <p>As a parent, coordinating doctor appointments for my family can be overwhelming.
+                                            Surna has simplified the process and made scheduling appointments a breeze! I
+                                            love being able to see all available appointment times in one place and book
+                                            appointments for multiple family members with ease. Plus, the automatic
+                                            reminders ensure we never miss an appointment. I highly recommend Surna to
+                                            other busy parents!</p>
+                                        <h6><span class="d-block">Niya Patel</span> New York</h6>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- /App Section -->
 
     <!-- FAQ Section -->
 
@@ -935,85 +976,7 @@
     </section>
     <!-- /FAQ Section -->
 
-    <!-- Testimonial Section -->
-    <section class="testimonial-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="testimonial-slider slick">
-                        <div class="testimonial-grid">
-                            <div class="testimonial-info">
-                                <div class="testimonial-img">
-                                    {{-- <img src="{{ URL::asset('/assets/img/clients/client-01.jpg') }}" class="img-fluid"
-                                        alt="John Doe"> --}}
-                                </div>
-                                <div class="testimonial-content">
-                                    <div class="section-header-one section-header section-inner-header testimonial-header">
-                                        <h5> {{ __('messages.testimonials') }}</h5>
-                                        <h2 class="section-title"> {{ __('messages.what_our_clients_say') }}</h2>
-                                    </div>
-                                    <div class="testimonial-details">
-                                        <p>Surna exceeded my expectations in healthcare. The seamless booking process,
-                                            coupled with the expertise of the doctors, made my experience exceptional. Their
-                                            commitment to quality care and convenience truly sets them apart. I highly
-                                            recommend Surna for anyone seeking reliable and accessible healthcare
-                                            services.</p>
-                                        <h6><span class="d-block">John Doe</span> New York</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testimonial-grid">
-                            <div class="testimonial-info">
-                                <div class="testimonial-img">
-                                    {{-- <img src="{{ URL::asset('/assets/img/clients/client-03.jpg') }}" class="img-fluid"
-                                        alt="Amanda Warren"> --}}
-                                </div>
-                                <div class="testimonial-content">
-                                    <div class="section-header section-inner-header testimonial-header">
-                                        <h5>Testimonials</h5>
-                                        <h2>What Our Client Says</h2>
-                                    </div>
-                                    <div class="testimonial-details">
-                                        <p>As a busy professional, I don't have time to wait on hold or play phone tag to
-                                            schedule doctor appointments. Thanks to Surna, booking appointments has never
-                                            been easier! The user-friendly interface allows me to quickly find available
-                                            appointment slots that fit my schedule and book them with just a few clicks.
-                                            It's a game-changer for anyone looking to streamline their healthcare
-                                            management.</p>
-                                        <h6><span class="d-block">Andrew Denner</span> Nevada</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testimonial-grid">
-                            <div class="testimonial-info">
-                                <div class="testimonial-img">
-                                    {{-- <img src="{{ URL::asset('/assets/img/clients/client-11.jpg') }}" class="img-fluid"
-                                        alt="Betty Carlson"> --}}
-                                </div>
-                                <div class="testimonial-content">
-                                    <div class="section-header section-inner-header testimonial-header">
-                                        <h5>Testimonials</h5>
-                                        <h2>What Our Client Says</h2>
-                                    </div>
-                                    <div class="testimonial-details">
-                                        <p>As a parent, coordinating doctor appointments for my family can be overwhelming.
-                                            Surna has simplified the process and made scheduling appointments a breeze! I
-                                            love being able to see all available appointment times in one place and book
-                                            appointments for multiple family members with ease. Plus, the automatic
-                                            reminders ensure we never miss an appointment. I highly recommend Surna to
-                                            other busy parents!</p>
-                                        <h6><span class="d-block">Niya Patel</span> New York</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  
     <!-- /Testimonial Section -->
 
     <!-- Partners Section -->

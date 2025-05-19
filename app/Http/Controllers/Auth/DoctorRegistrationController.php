@@ -23,6 +23,11 @@ class DoctorRegistrationController extends Controller
 {
     use FileUpload;
 
+     public function doctorRegister()
+    {
+        return view('doctor-register');
+    }
+
     public function step1()
     {
         return view('auth.doctor.doctor-register-step1');
@@ -47,13 +52,20 @@ class DoctorRegistrationController extends Controller
     public function store(Request $request)
     {
         $result = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
-            'name' => ['required', 'string', 'max:255', 'unique:' . User::class],
-            'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
-            // 'password' => ['required'],
-
-        ]);
+        'name' => ['required', 'string', 'max:255', 'unique:' . User::class],
+        'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+        'password' => [
+            'required',
+            'string',
+            'confirmed',
+            'regex:/^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$/',
+            'min:8',
+        ],
+    ], [
+        'password.regex' => 'The password must contain both letters and numbers, and no special characters.',
+        'password.confirmed' => 'The password confirmation does not match.',
+        'password.min' => 'The password must be at least 8 characters long.',
+    ]);
 
         $user = User::create([
             'name' => $request->name,

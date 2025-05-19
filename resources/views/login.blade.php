@@ -45,7 +45,7 @@
                                         <span class="or-line"></span>
                                         <span class="span-or">or</span>
                                     </div>
-                                    <div class="row social-login">
+                                    {{-- <div class="row social-login">
                                         <div class="col-6">
                                             <a href="javascript:;" class="btn btn-facebook w-100"><i
                                                     class="fab fa-facebook-f me-1"></i> Login</a>
@@ -54,7 +54,7 @@
                                             <a href="javascript:;" class="btn btn-google w-100"><i
                                                     class="fab fa-google me-1"></i> Login</a>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="text-center dont-have">Don’t have an account? <a
                                             href="{{ url('register') }}">Register</a></div>
                                 </form>

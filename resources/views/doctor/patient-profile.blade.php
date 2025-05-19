@@ -54,129 +54,21 @@
                         <!-- Appoitment Tabs -->
                         <div class="appointment-tabs user-tab">
                             <ul class="nav">
+                               
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="#pat_appointments"
-                                        data-bs-toggle="tab">Appointments</a>
+                                    <a class="nav-link active" href="#prescription" data-bs-toggle="tab">Prescription</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#prescription" data-bs-toggle="tab">Prescription</a>
-                                </li>
-                                {{-- <li class="nav-item">
-                                    <a class="nav-link" href="#medical" data-bs-toggle="tab">Medical Records</a>
-                                </li> --}}
-                                {{-- <li class="nav-item">
-                                    <a class="nav-link" href="#billing" data-bs-toggle="tab">Billing</a>
-                                </li> --}}
+                              
                             </ul>
                         </div>
                         <!-- /Appoitment Tabs -->
 
                         <div class="tab-content pt-0">
 
-                            <!-- Appointment Tab -->
-                            <div id="pat_appointments" class="tab-pane fade show active">
-
-                                <div class="search-header">
-                                    <div class="search-field">
-                                        <input type="text" class="form-control" placeholder="Search">
-                                        <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
-                                    </div>
-                                </div>
-
-                                <div class="custom-table">
-                                    <div class="table-responsive">
-                                        <table class="table table-center mb-0">
-                                            <thead>
-                                                <tr>
-                                                    <th>ID</th>
-                                                    <th>Doctor</th>
-                                                    <th>Appt Date</th>
-                                                    <th>Booking Date</th>
-                                                    <th>Amount</th>
-                                                    <th>Status</th>
-                                                  
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($patient->appointments as $appointment)
-                                                    <tr>
-                                                        <td><a class="text-blue-600"
-                                                                href="{{ url('patient-upcoming-appointment') }}">#{{ $appointment->id ?? 'N/A' }}</a>
-                                                        </td>
-                                                        <td>
-                                                            <h2 class="table-avatar">
-                                                                <a href="{{ url('doctor-profile') }}"
-                                                                    class="avatar avatar-sm me-2">
-                                                                    <img class="avatar-img rounded-3"
-                                                                        src="{{ $appointment->doctor->profile_image ?? URL::asset('/assets/img/doctors/doctor-thumb-02.jpg') }}"
-                                                                        alt="User Image">
-                                                                </a>
-                                                                <a
-                                                                    href="{{ url('doctor-profile') }}">{{ $appointment->doctor->name ?? 'N/A' }}</a>
-                                                            </h2>
-                                                        </td>
-                                                        <td>{{ \Carbon\Carbon::parse($appointment->start_date)->format('d M Y h:i A') }}
-                                                        </td>
-                                                        <td>{{ \Carbon\Carbon::parse($appointment->created_at)->format('d M Y h:i A') }}
-                                                        </td>
-                                                        <td>${{ $appointment->slot->appointment_fees ?? '0' }}</td>
-                                                        <td>
-                                                            @if (in_array($appointment->status, ['approved', 'accepted', 'upcoming']))
-                                                                <span
-                                                                    class="badge badge-yellow status-badge">Upcoming</span>
-                                                            @elseif($appointment->status == 'completed')
-                                                                <span
-                                                                    class="badge badge-green status-badge">Completed</span>
-                                                            @elseif(in_array($appointment->status, ['cancelled', 'rejected']))
-                                                                <span
-                                                                    class="badge badge-danger status-badge">Cancelled</span>
-                                                            @else
-                                                                <span
-                                                                    class="badge badge-secondary status-badge">Unknown</span>
-                                                            @endif
-                                                        </td>
-
-                                                    </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-
-                                <!-- Pagination -->
-                                <div class="pagination dashboard-pagination">
-                                    <ul>
-                                        <li>
-                                            <a href="#" class="page-link"><i class="fa-solid fa-chevron-left"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="page-link active">1</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="page-link ">2</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="page-link">3</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="page-link">4</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="page-link">...</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="page-link"><i
-                                                    class="fa-solid fa-chevron-right"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <!-- /Pagination -->
-
-                            </div>
-                            <!-- /Appointment Tab -->
+                       
 
                             <!-- Prescription Tab -->
-                            <div class="tab-pane fade" id="prescription">
+                            <div class="tab-pane fade show active" id="prescription">
                                 <div class="search-header">
                                     <div class="search-field">
                                         <input type="text" class="form-control" placeholder="Search">

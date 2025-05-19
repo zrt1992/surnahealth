@@ -20,7 +20,7 @@
                     <div class="doctor-widget">
                         <div class="doc-info-left">
                             <div class="doctor-img">
-                                <img src="{{ $doctor->profile_image ?? URL::asset('/assets/img/doctors/doctor-thumb-02.jpg') }}"
+                                <img src="{{ !empty($doctor->profile_image) ? $doctor->profile_image : asset('assets/img/profile-image.avif') }}"
                                     class="img-fluid" alt="User Image">
                             </div>
                             <div class="doc-info-cont">
@@ -45,74 +45,16 @@
                                      @endif
                                 </p>
                                 
-                                <div class="rating">
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star"></i>
-                                    <span class="d-inline-block average-rating">(0)</span>
-                                </div>
-                                <div class="clinic-details">
-                                    <p class="doc-location"><i class="fas fa-map-marker-alt"></i>
-                                        {{ $doctor->city ?? '--' }},{{ $doctor->state ?? '--' }} - <a
-                                            href="javascript:void(0);">Get Directions</a></p>
-                                    <ul class="clinic-gallery">
-                                        @if (!empty($doctor->doctorClinic) && $doctor->doctorClinic->isNotEmpty())
-                                        @foreach ($doctor->doctorClinic->first()->gallery as $gallery)
-                                        <li>
-                                            <a href="{{ $gallery->image ?? URL::asset('/assets/img/features/feature-01.jpg') }}"
-                                                data-fancybox="gallery">
-                                                <img src="{{ $gallery->image ?? URL::asset('/assets/img/features/feature-01.jpg') }}"
-                                                    alt="Feature">
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                            @else
-                                                No doctor clinic available.
-                                            @endif
-                                     
-                                    </ul>
-                                </div>
-                                <div class="clinic-services">
-                                    <span>clinic service 1</span>
-                                    <span>clinic service 2</span>
-                                </div>
                             </div>
                         </div>
                         <div class="doc-info-right">
-                            <div class="clini-infos">
-                                <ul>
-                                    <li><i class="far fa-thumbs-up"></i> 0%</li>
-                                    <li><i class="far fa-comment"></i> 0 Feedback</li>
-                                    <li><i class="fas fa-map-marker-alt"></i> {{ $doctor->state ?? '--' }},
-                                        {{ $doctor->country ?? '--' }}</li>
-                                    <li>
-                                        <i class="far fa-money-bill-alt"></i>
-                                        @if (!empty($doctor->availableTimings) && $doctor->availableTimings->isNotEmpty())
-                                            ${{ $doctor->availableTimings->min('appointment_fees') ?? 'N/A' }} - 
-                                            ${{ $doctor->availableTimings->max('appointment_fees') ?? 'N/A' }}
-                                        @else
-                                            N/A - N/A
-                                        @endif
-                                        <i class="fas fa-info-circle" data-bs-toggle="tooltip" title="Lorem Ipsum"></i>
-                                    </li>
-
-                                </ul>
-                            </div>
+                        
                             <div class="doctor-action">
-                                <a href="javascript:void(0)" class="btn btn-white fav-btn">
-                                    <i class="far fa-bookmark"></i>
-                                </a>
+                               
                                 <a href="{{ url('patient/chat/'. optional($doctor)->id) }}" class="btn btn-white msg-btn">
                                     <i class="far fa-comment-alt"></i>
                                 </a>
-                                {{-- <a href="{{ url('voice-call') }}" class="btn btn-white call-btn">
-                                    <i class="fas fa-phone"></i>
-                                </a>
-                                <a href="{{ url('video-call') }}" class="btn btn-white call-btn">
-                                    <i class="fas fa-video"></i>
-                                </a> --}}
+                               
                             </div>
                             <div class="clinic-booking">
                                 <a class="apt-btn" href="{{ url('booking/' . optional($doctor)->id) }}">Book Appointment</a>
@@ -133,12 +75,12 @@
                             <li class="nav-item">
                                 <a class="nav-link active" href="#doc_overview" data-bs-toggle="tab">Overview</a>
                             </li>
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a class="nav-link" href="#doc_locations" data-bs-toggle="tab">Locations</a>
-                            </li>
-                            <li class="nav-item">
+                            </li> --}}
+                            {{-- <li class="nav-item">
                                 <a class="nav-link" href="#doc_reviews" data-bs-toggle="tab">Reviews</a>
-                            </li>
+                            </li> --}}
                             <li class="nav-item">
                                 <a class="nav-link" href="#doc_business_hours" data-bs-toggle="tab">Business Hours</a>
                             </li>

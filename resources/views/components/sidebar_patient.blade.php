@@ -6,7 +6,7 @@
         <div class="widget-profile pro-widget-content">
             <div class="profile-info-widget">
                 <a href="{{ route('profile-settings') }}" class="booking-doc-img">
-                    <img src="{{ \Illuminate\Support\Facades\Auth::user()->profile_image ?? URL::asset('/assets/img/doctors/doc-profile-img.jpg') }}"
+                    <img src="{{ !empty(Auth::user()->profile_image) ? Auth::user()->profile_image : asset('assets/img/profile-image.avif') }}"
                         alt="User Image">
                 </a>
                 <div class="profile-det-info">

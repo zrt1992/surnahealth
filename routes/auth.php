@@ -19,22 +19,26 @@ Route::middleware('guest')->group(function () {
     Route::post('register', [RegisteredUserController::class, 'store'])->name('register.store');
 
     Route::get('/login', function () {
-//        dd('asd');
+        //        dd('asd');
         return view('login');
     })->name('login');
 
     Route::post('login', [AuthenticatedSessionController::class, 'store'])->name('login-admin');
-
+Route::post('check-otp', [PasswordResetLinkController::class, 'verifyOtp'])
+        ->name('check.otp');
     Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
         ->name('password.request');
 
     Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
         ->name('password.email');
-
-    Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
+    Route::get('otp-verification', [PasswordResetLinkController::class, 'otpVerification'])
+        ->name('otp.verification');
+    Route::post('verify-otp', [PasswordResetLinkController::class, 'verifyOtp'])
+        ->name('verify.otp');
+    Route::get('reset-password', [PasswordResetLinkController::class, 'resetPassword'])
         ->name('password.reset');
 
-    Route::post('reset-password', [NewPasswordController::class, 'store'])
+    Route::post('reset-password-store', [PasswordResetLinkController::class, 'resetPasswordStore'])
         ->name('password.store');
 });
 
@@ -63,22 +67,20 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::prefix('doctor-registration')->name('doctor-registration.')->group(function () {
-   
+
     Route::post('register', [DoctorRegistrationController::class, 'store'])->name('register');
     Route::post('/step1', [DoctorRegistrationController::class, 'storeStep1'])->name('store.step1');
     Route::post('/step2', [DoctorRegistrationController::class, 'storeStep2'])->name('store.step2');
     Route::post('/step3', [DoctorRegistrationController::class, 'storeStep3'])->name('store.step3');
     Route::post('/step4', [DoctorRegistrationController::class, 'storeStep4'])->name('store.step4');
     Route::post('/step5', [DoctorRegistrationController::class, 'storeStep5'])->name('store.step5');
-
 });
 
 Route::prefix('user-registration')->name('user-registration.')->group(function () {
-   
+
     Route::post('register', [RegisteredUserController::class, 'store'])->name('register');
     Route::post('/step1', [RegisteredUserController::class, 'storeStep1'])->name('store.step1');
     Route::post('/step2', [RegisteredUserController::class, 'storeStep2'])->name('store.step2');
     Route::post('/step3', [RegisteredUserController::class, 'storeStep3'])->name('store.step3');
     Route::post('/step4', [RegisteredUserController::class, 'storeStep4'])->name('store.step4');
 });
-

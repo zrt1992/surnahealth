@@ -31,28 +31,28 @@
                                 <div class="step-process-col mt-4">
                                  
                                     <div class="mb-3">
-                                        <label class="mb-2">Insurance provider name</label>
+                                        <label class="mb-2">Insurance provider name (Optional)</label>
                                         <input type="text" name="insurance_provider_name"  class="form-control" id="insurance_provider_name" value="{{ old('insurance_provider_name') }}">
                                         @error('insurance_provider_name')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                     </div>
                                     <div class="mb-3">
-                                        <label class="mb-2">Insurance Id</label>
+                                        <label class="mb-2">Insurance Id  (Optional)</label>
                                         <input type="text" class="form-control"  id="insurance_id" name="insurance_id" value="{{ old('insurance_id') }}">
                                         @error('insurance_id')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                     </div>
                                     <div class="mb-3">
-                                        <label class="mb-2">Emergency_contact</label>
+                                        <label class="mb-2">Emergency_contact  (Optional)</label>
                                         <input type="text" class="form-control"  id="emergency_contact" name="emergency_contact" value="{{ old('emergency_contact') }}">
                                         @error('emergency_contact')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                     </div>
                                     <div class="mb-3">
-                                        <label class="mb-2">Name</label>
+                                        <label class="mb-2">Name  (Optional)</label>
                                         <input type="text" class="form-control"  id="name" name="name" value="{{ old('name') }}">
                                         @error('name')
                                         <span class="text-danger">{{ $message }}</span>
@@ -60,14 +60,14 @@
                                     </div>
                                    
                                     <div class="mb-3">
-                                        <label class="mb-2">Relationship</label>
+                                        <label class="mb-2">Relationship  (Optional)</label>
                                         <input type="text" class="form-control"  id="relationship" name="relationship" value="{{ old('relationship') }}">
                                         @error('relationship')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                     </div>
                                     <div class="mb-3">
-                                        <label class="mb-2">Phone number</label>
+                                        <label class="mb-2">Phone number  (Optional)</label>
                                         <input type="text" class="form-control"  id="phone_number" name="phone_number" value="{{ old('phone_number') }}">
                                         @error('phone_number')
                                         <span class="text-danger">{{ $message }}</span>

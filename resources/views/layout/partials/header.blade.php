@@ -1778,7 +1778,7 @@
                                                 'patient-cancelled-appointment',
                                             ]))
                                             <img class="rounded-circle"
-                                                src="{{ \Illuminate\Support\Facades\Auth::user()->profile_image ?? URL::asset('/assets/img/doctors/doc-profile-img.jpg') }}"
+                                               src="{{ !empty(Auth::user()->profile_image) ? Auth::user()->profile_image : asset('assets/img/profile-image.avif') }}"
                                                 width="31" alt="Darren Elder">
                                         @endif
                                         @if (Route::is([
@@ -1795,7 +1795,7 @@
                                                 'patient-cancelled-appointment',
                                             ]))
                                             <img class="rounded-circle"
-                                                src="{{ \Illuminate\Support\Facades\Auth::user()->profile_image ?? URL::asset('/assets/img/doctors/doc-profile-img.jpg') }}"
+                                               src="{{ !empty(Auth::user()->profile_image) ? Auth::user()->profile_image : asset('assets/img/profile-image.avif') }}"
                                                 width="31" alt="Darren Elder">
                                         @endif
                                     </span>
@@ -1818,8 +1818,9 @@
                                         ]))
                                         <div class="user-header">
                                             <div class="avatar avatar-sm">
-                                                <img src="{{ \Illuminate\Support\Facades\Auth::user()->profile_image ?? URL::asset('/assets/img/doctors/doc-profile-img.jpg') }}"
-                                                    alt="User Image" class="avatar-img rounded-circle">
+                                               <img src="{{ !empty(Auth::user()->profile_image) ? Auth::user()->profile_image : asset('assets/img/profile-image.avif') }}"
+     alt="User Image" class="avatar-img rounded-circle">
+
                                             </div>
                                             <div class="user-text">
                                                 <h6>{{ \Illuminate\Support\Facades\Auth::user()->name }}</h6>
@@ -1844,7 +1845,7 @@
                                         ]))
                                         <div class="user-header">
                                             <div class="avatar avatar-sm">
-                                                <img src="{{ \Illuminate\Support\Facades\Auth::user()->profile_image ?? URL::asset('/assets/img/doctors/doc-profile-img.jpg') }}"
+                                                <img src="{{ !empty(Auth::user()->profile_image) ? Auth::user()->profile_image : asset('assets/img/profile-image.avif') }}"
                                                     alt="User Image" class="avatar-img rounded-circle">
                                             </div>
                                             <div class="user-text">
@@ -1950,12 +1951,12 @@
                                         <span class="user-img">
                                             @if (!Route::is(['doctor-profile', 'doctor-profile-2']))
                                                 <img class="rounded-circle"
-                                                    src="{{ \Illuminate\Support\Facades\Auth::user()->profile_image ?? URL::asset('/assets/img/doctors/doc-profile-img.jpg') }}"
+                                                    src="{{ !empty(Auth::user()->profile_image) ? Auth::user()->profile_image : asset('assets/img/profile-image.avif') }}"
                                                     width="31" alt="Darren Elder">
                                             @endif
                                             @if (Route::is(['doctor-profile', 'doctor-profile-2']))
                                                 <img class="rounded-circle"
-                                                    src="{{ \Illuminate\Support\Facades\Auth::user()->profile_image ?? URL::asset('/assets/img/doctors/doc-profile-img.jpg') }}"
+                                                    src="{{ !empty(Auth::user()->profile_image) ? Auth::user()->profile_image : asset('assets/img/profile-image.avif') }}"
                                                     width="31" alt="Darren Elder">
                                             @endif
                                         </span>
@@ -1964,11 +1965,11 @@
                                         <div class="user-header">
                                             <div class="avatar avatar-sm">
                                                 @if (!Route::is(['doctor-profile', 'doctor-profile-2']))
-                                                    <img src="{{ \Illuminate\Support\Facades\Auth::user()->profile_image ?? URL::asset('/assets/img/doctors/doc-profile-img.jpg') }}"
+                                                    <img src="{{ !empty(Auth::user()->profile_image) ? Auth::user()->profile_image : asset('assets/img/profile-image.avif') }}"
                                                         alt="User Image" class="avatar-img rounded-circle">
                                                 @endif
                                                 @if (Route::is(['doctor-profile', 'doctor-profile-2']))
-                                                    <img src="{{ \Illuminate\Support\Facades\Auth::user()->profile_image ?? URL::asset('/assets/img/doctors/doc-profile-img.jpg') }}"
+                                                    <img src="{{ !empty(Auth::user()->profile_image) ? Auth::user()->profile_image : asset('assets/img/profile-image.avif') }}"
                                                         alt="User Image" class="avatar-img rounded-circle">
                                                 @endif
                                             </div>

@@ -5,7 +5,7 @@
 <!-- Fontawesome CSS -->
 <link rel="stylesheet" href="{{ url('/assets/plugins/fontawesome/css/fontawesome.min.css') }}">
 <link rel="stylesheet" href="{{ url('/assets/plugins/fontawesome/css/all.min.css') }}">
-@if (Route::is(['index']))
+@if (Route::is(['index','home-page']))
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
@@ -58,6 +58,7 @@
         'schedule-timings',
         'search-2',
         'search',
+        'frontend.search',
         'index-12',
         'index-13',
         'dependent',
@@ -117,6 +118,7 @@
         'index-10',
         'index-11',
         'index',
+        'home-page',
         'index-12',
         'index-13',
         'onboarding-availability',
@@ -134,6 +136,7 @@
         'product-healthcare',
         'profile-settings',
         'search',
+        'frontend.search',
         'my-patients',
         'patient-dashboard',
         'profile-settings',
@@ -191,6 +194,7 @@
         'product-description',
         'product-healthcare',
         'search',
+        'frontend.search',
         'index-10',
     ]))
     <!-- Fancybox CSS -->
@@ -230,6 +234,7 @@
 
 @if (Route::is([
         'index',
+         'home-page',
         'index-2',
         'index-3',
         'index-4',
@@ -262,6 +267,7 @@
         'index-12',
         'index-13',
         'index',
+         'home-page',
         'onboarding-availability',
         'onboarding-consultation',
         'onboarding-cost',

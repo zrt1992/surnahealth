@@ -115,7 +115,7 @@ Route::middleware('auth')->group(function () {
  * doctors dashboard authenticated routes
  */
 
-Route::middleware(['auth', 'role:doctor', CheckRegistrationStep::class,CheckSubscription::class])->prefix('doctor')->group(function () {
+Route::middleware(['auth', 'role:doctor', CheckRegistrationStep::class])->prefix('doctor')->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('doctor-dashboard');
 
@@ -517,9 +517,11 @@ Route::get('/doctor-profile', function () {
 
 
 
-Route::get('/doctor-register', function () {
-    return view('doctor-register');
-})->name('doctor-register');
+// Route::get('/doctor-register', function () {
+//     return view('doctor-register');
+// })->name('doctor-register');
+ Route::get('doctor-register', [DoctorRegistrationController::class, 'doctorRegister'])
+        ->name('doctor-register');
 Route::get('/doctor-search-grid', function () {
     return view('doctor-search-grid');
 })->name('doctor-search-grid');

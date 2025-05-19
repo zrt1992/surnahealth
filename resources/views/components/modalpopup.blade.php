@@ -5756,8 +5756,7 @@
                             <div class="modal-button">
                                 <div class="row gx-3">
                                     <div class="col-sm-6">
-                                        <button type="submit" class="btn btn-gray w-100">No, I change my
-                                            mind</button>
+                                        <button type="submit" class="btn btn-danger w-100">Reject</button>
                                         {{-- <a href="#" class="btn btn-gray w-100">No, I change my mind</a> --}}
                                     </div>
                                     <div class="col-sm-6">

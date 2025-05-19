@@ -28977,6 +28977,7 @@ span.refund {
   background: #ffffff;
   border-radius: 10px;
   margin-bottom: 24px;
+  min-height: 670px;
 }
 .main-wrapper.home-ten .pricing-section.pricing-section-ten .pricing-card .pricing-btn {
   margin-bottom: 30px;

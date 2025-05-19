@@ -98,7 +98,7 @@
                                 <div class="doc-info-left">
                                     <div class="doctor-img">
                                         <a href="{{ url('doctor-profile-2') }}">
-                                            <img src="{{$doctor->profile_image ?? URL::asset('/assets/img/doctors/doctor-thumb-01.jpg') }}"
+                                            <img src="{{ !empty($doctor->profile_image) ? $doctor->profile_image : asset('assets/img/profile-image.avif') }}"
                                                 class="img-fluid" alt="User Image">
                                         </a>
                                     </div>
@@ -117,55 +117,13 @@
                                         <h5 class="doc-department"><img
                                                 src="{{ URL::asset('/assets/img/specialities/specialities-05.png') }}"
                                                 class="img-fluid" alt="Speciality">{{ $doctor->doctorSpecialization->first()->name ?? '--' }}</h5>
-                                        <div class="rating">
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star"></i>
-                                            <span class="d-inline-block average-rating">(0)</span>
-                                        </div>
-                                        <div class="clinic-details">
-                                            <p class="doc-location"><i class="fas fa-map-marker-alt"></i>{{ $doctor->city ?? '--' }}, {{ $doctor->state ?? '--' }},
-                                                {{ $doctor->country ?? '--' }}</p>
-                                            <ul class="clinic-gallery">
-                                                @if (!empty($doctor->doctorClinic) && $doctor->doctorClinic->isNotEmpty())
-                                               
-                                         
-                                                @foreach ($doctor->doctorClinic->first()->gallery as $gallery )
-                                                <li>
-                                                    <a href="{{$gallery->image ?? URL::asset('/assets/img/features/feature-01.jpg') }}"
-                                                        data-fancybox="gallery">
-                                                        <img src="{{$gallery->image ?? URL::asset('/assets/img/features/feature-01.jpg') }}"
-                                                            alt="Feature">
-                                                    </a>
-                                                </li>
-                                                @endforeach
-                                                @else
-                                                No doctor clinic available.
-                                            @endif
-                                            </ul>
-                                        </div>
-                                        <div class="clinic-services">
-                                            <span>clinic service 1</span>
-                                            <span>clinic service 2</span>
-                                        </div>
+                                       
+                                       
+                                       
                                     </div>
                                 </div>
                                 <div class="doc-info-right">
-                                    <div class="clini-infos">
-                                        <ul>
-                                            <li><i class="far fa-thumbs-up"></i> 0%</li>
-                                            <li><i class="far fa-comment"></i> 0 Feedback</li>
-                                            <li><i class="fas fa-map-marker-alt"></i> {{ $doctor->state ?? '--' }},  {{ $doctor->country ?? '--' }}</li>
-                                            <li>
-                                                <i class="far fa-money-bill-alt"></i>
-                                                ${{ $doctor->availableTimings->min('appointment_fees') ?? 'N/A' }} - ${{ $doctor->availableTimings->max('appointment_fees') ?? 'N/A' }}
-                                                <i class="fas fa-info-circle" data-bs-toggle="tooltip" title="Lorem Ipsum"></i>
-                                            </li>
-                                            
-                                        </ul>
-                                    </div>
+                                    
                                     <div class="clinic-booking">
                                         <a class="view-pro-btn" href="{{ url('doctor-profile-2/'. $doctor->id) }}">View Profile</a>
                                         <a class="apt-btn" href="{{ url('booking/'. $doctor->id) }}">Book Appointment</a>

@@ -15,22 +15,21 @@
                             </div>
                             <div class="col-md-12 col-lg-6 login-right">
                                 <div class="login-header">
-                                    <h3>Forgot Password?</h3>
-                                    <p class="small text-muted">Enter your email to get a password reset link</p>
+                                    <h3>Verify OTP</h3>
+                                    <p class="small text-muted">Enter your otp to verify.</p>
                                 </div>
 
                                 <!-- Forgot Password Form -->
-                                <form action="{{ route('password.email') }}" method="post">
+                                <form action="{{ route('check.otp') }}" method="post">
                                     @csrf
+                                      {{-- <input type="hidden" name="email" value="{{ session('email') }}"> --}}
                                     <div class="mb-3 form-focus">
-                                        <input type="email" class="form-control floating" name="email">
-                                        <label class="focus-label">Email</label>
+                                        <input type="text" class="form-control floating" name="otp">
+                                        <label class="focus-label">Enter OTP</label>
                                     </div>
-                                    <div class="text-end">
-                                        <a class="forgot-link" href="{{ url('login') }}">Remember your password?</a>
-                                    </div>
-                                    <button class="btn btn-primary w-100 btn-lg login-btn" type="submit">Reset
-                                        Password</button>
+                                   
+                                    <button class="btn btn-primary w-100 btn-lg login-btn" type="submit">Verify
+                                        </button>
                                 </form>
                                 <!-- /Forgot Password Form -->
 

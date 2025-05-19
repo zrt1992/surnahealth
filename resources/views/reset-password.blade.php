@@ -24,36 +24,33 @@
                                 <h3>Reset Password</h3>
                                 <p>Your new password must be different from previous used passwords.</p>
                             </div>
-                            <form action="#">
+                            <form action="{{ route('password.store') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="email" value="{{ session('email') }}">
+
                                 <div class="mb-3">
                                     <label class="mb-2">New Password</label>
                                     <div class="pass-group" id="passwordInput">
-                                        <input type="password" class="form-control pass-input" placeholder="*************">
+                                        <input type="password" name="password" class="form-control pass-input"
+                                            placeholder="*************" required>
                                         <span class="toggle-password feather-eye-off"></span>
                                         <span class="pass-checked"><i class="feather-check"></i></span>
                                     </div>
-                                    <div class="password-strength" id="passwordStrength">
-                                        <span id="poor"></span>
-                                        <span id="weak"></span>
-                                        <span id="strong"></span>
-                                        <span id="heavy"></span>
-                                    </div>
-                                    <div id="passwordInfo"></div>
-                                    <div class="password-info">
-                                        <p>Use 8 or more characters with a mix of letters, numbers & symbols.</p>
-                                    </div>
                                 </div>
+
                                 <div class="mb-3">
                                     <div class="pass-group">
-                                        <input type="password" class="form-control pass-input-sub"
-                                            placeholder="*************">
-                                            <span class="feather-eye-off toggle-password-sub"></span>
+                                        <input type="password" name="password_confirmation"
+                                            class="form-control pass-input-sub" placeholder="*************" required>
+                                        <span class="feather-eye-off toggle-password-sub"></span>
                                     </div>
                                 </div>
+
                                 <div class="mb-3 mb-0">
                                     <button class="btn w-100" type="submit">Submit</button>
                                 </div>
                             </form>
+
                         </div>
                     </div>
                 </div>

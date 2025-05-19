@@ -73,7 +73,17 @@ class RegisteredUserController extends Controller
                 'regex:/^\d{10}$/', // Accepts exactly 10 digits, US local format
                 'unique:' . User::class,
             ],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password' => [
+                'required',
+                'string',
+                'confirmed',
+                'regex:/^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$/',
+                'min:8',
+            ],
+        ], [
+            'password.regex' => 'The password must contain both letters and numbers, and no special characters.',
+            'password.confirmed' => 'The password confirmation does not match.',
+            'password.min' => 'The password must be at least 8 characters long.',
         ]);
         // dd($request);
 

@@ -124,6 +124,7 @@
         'pharmacy-register-step2',
         'pharmacy-register-step3',
         'pharmacy-register',
+        'doctor-register',
         'register',
         'reset-password',
         'signup-success',
@@ -204,7 +205,7 @@
 
     <body class="pharmacy-body">
 @endif
-@if (Route::is(['/','index']))
+@if (Route::is(['/','index','home-page']))
 
     <body class="bg-gradient-teal">
 @endif
@@ -286,7 +287,7 @@
     <!-- Onboarding Availability -->
     <div class="onboard-wrapper">
 @endif
-@if (Route::is(['/','index']))
+@if (Route::is(['/','index','home-page']))
     <div class="main-wrapper bg-gradient-teal">
 @endif
 @if (Route::is(['index-3']))

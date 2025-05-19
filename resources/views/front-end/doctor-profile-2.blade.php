@@ -45,78 +45,15 @@
 
                                      @endif
                                 </p>
-                                
-                                {{-- <div class="rating">
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star"></i>
-                                    <span class="d-inline-block average-rating">(0)</span>
-                                </div> --}}
-                                <div class="clinic-details">
-                                    {{-- <p class="doc-location"><i class="fas fa-map-marker-alt"></i>
-                                        {{ $doctor->city ?? '--' }},{{ $doctor->state ?? '--' }} - <a
-                                            href="javascript:void(0);">{{ __('messages.get_directions')}}
-                                        </a></p> --}}
-                                    <ul class="clinic-gallery">
-                                        @if (!empty($doctor->doctorClinic) && $doctor->doctorClinic->isNotEmpty())
-                                        @foreach ($doctor->doctorClinic->first()->gallery as $gallery)
-                                        <li>
-                                            <a href="{{ $gallery->image ?? URL::asset('/assets/img/features/feature-01.jpg') }}"
-                                                data-fancybox="gallery">
-                                                <img src="{{ $gallery->image ?? URL::asset('/assets/img/features/feature-01.jpg') }}"
-                                                    alt="Feature">
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                            @else
-                                            {{ __('messages.no_clinic')}}
-
-                                            @endif
-                                     
-                                    </ul>
-                                </div>
-                                {{-- <div class="clinic-services">
-                                    <span>clinic service 1</span>
-                                    <span>clinic service 2</span>
-                                </div> --}}
+                             
                             </div>
                         </div>
                         <div class="doc-info-right">
-                            <div class="clini-infos">
-                                <ul>
-                                    {{-- <li><i class="far fa-thumbs-up"></i> 0%</li>
-                                    <li><i class="far fa-comment"></i> 0 {{ __('messages.feedback')}}
-                                    </li> --}}
-                                    <li><i class="fas fa-map-marker-alt"></i> {{ $doctor->state ?? '--' }},
-                                        {{ $doctor->country ?? '--' }}</li>
-                                    <li>
-                                        <i class="far fa-money-bill-alt"></i>
-                                        @if (!empty($doctor->availableTimings) && $doctor->availableTimings->isNotEmpty())
-                                            ${{ $doctor->availableTimings->min('appointment_fees') ?? 'N/A' }} - 
-                                            ${{ $doctor->availableTimings->max('appointment_fees') ?? 'N/A' }}
-                                        @else
-                                            N/A - N/A
-                                        @endif
-                                        <i class="fas fa-info-circle" data-bs-toggle="tooltip" title="Lorem Ipsum"></i>
-                                    </li>
-
-                                </ul>
-                            </div>
+                           
                             <div class="doctor-action">
-                                {{-- <a href="javascript:void(0)" class="btn btn-white fav-btn">
-                                    <i class="far fa-bookmark"></i>
-                                </a> --}}
                                 <a href="{{ url('chat') }}" class="btn btn-white msg-btn">
                                     <i class="far fa-comment-alt"></i>
                                 </a>
-                                {{-- <a href="{{ url('voice-call') }}" class="btn btn-white call-btn">
-                                    <i class="fas fa-phone"></i>
-                                </a>
-                                <a href="{{ url('video-call') }}" class="btn btn-white call-btn">
-                                    <i class="fas fa-video"></i>
-                                </a> --}}
                             </div>
                             <div class="clinic-booking">
                                 <a class="apt-btn" href="{{ url('frontend/booking/' . optional($doctor)->id) }}">{{ __('messages.book_appointment')}}</a>

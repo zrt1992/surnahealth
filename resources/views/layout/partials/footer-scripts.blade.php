@@ -1,4 +1,3 @@
-
 <!-- jQuery -->
 <script src="{{ URL::asset('/assets/js/jquery-3.7.1.min.js') }}"></script>
 
@@ -25,6 +24,7 @@
         'index-12',
         'index-13',
         'index',
+        'home-page',
         'login-email-otp',
         'login-email',
         'login-phone-otp',
@@ -43,11 +43,13 @@
         'privacy-policy',
         'reset-password',
         'search-2',
+        'search',
+        'frontend.search',
         'signup-success',
         'signup',
         'terms-condition',
         'paitent-details',
-        'index-14'
+        'index-14',
     ]))
     <!-- Feather Icon JS -->
     <script src="{{ URL::asset('/assets/js/feather.min.js') }}"></script>
@@ -69,8 +71,9 @@
         'index-12',
         'index-13',
         'index',
+        'home-page',
         'pharmacy-index',
-        'index-14'
+        'index-14',
     ]))
     <!-- Slick JS -->
     <script src="{{ URL::asset('/assets/js/slick.js') }}"></script>
@@ -122,6 +125,8 @@
         'schedule-timings',
         'search-2',
         'search',
+        'frontend.search',
+        'search',
         'social-media',
         'doctor-request',
         'doctor-appointment-start',
@@ -147,8 +152,7 @@
         'doctor-clinics-settings',
         'doctor-education-settings',
         'doctor-insurance-settings',
-        'doctor-cancelled-appointment-2'
-        
+        'doctor-cancelled-appointment-2',
     ]))
     <!-- Sticky Sidebar JS -->
     <script src="{{ URL::asset('/assets/plugins/theia-sticky-sidebar/ResizeSensor.js') }}"></script>
@@ -196,6 +200,7 @@
         'index-10',
         'index-11',
         'index',
+        'home-page',
         'index-12',
         'index-13',
         'onboarding-availability',
@@ -225,7 +230,7 @@
         'available-timings',
         'medical-records',
         'medical-details',
-        'index-14'
+        'index-14',
     ]))
     <!-- Datetimepicker JS -->
     <script src="{{ URL::asset('/assets/js/moment.min.js') }}"></script>
@@ -276,6 +281,8 @@
         'schedule-timings',
         'search-2',
         'search',
+        'frontend.search',
+        'search',
         'add-dependent',
         'index-12',
         'index-13',
@@ -319,7 +326,7 @@
         'doctor-cancelled-appointment-2',
         'index-14',
         'booking-success-one',
-        'consultation'
+        'consultation',
     ]))
     <!-- Select2 JS -->
     <script src="{{ URL::asset('/assets/plugins/select2/js/select2.min.js') }}"></script>
@@ -330,7 +337,7 @@
     <script src="{{ URL::asset('/assets/js/map.js') }}"></script>
 @endif
 
-@if (Route::is(['about-us', 'index-6', 'index']))
+@if (Route::is(['about-us', 'index-6', 'index', 'home-page']))
     <!-- Counter JS -->
     <script src="{{ URL::asset('/assets/js/counter.js') }}"></script>
 @endif
@@ -352,31 +359,32 @@
         'patient-appointments-grid',
         'doctor-cancelled-appointment-2',
     ]))
-       <script>
+    <script>
         let currentDate = new Date();
-        let currentSelectedSlot = null;  // To keep track of the selected slot
-        let weekOffset = 0;  // Keeps track of the current week offset (0 for current week, 1 for next week, -1 for previous week)
-    
+        let currentSelectedSlot = null; // To keep track of the selected slot
+        let weekOffset =
+        0; // Keeps track of the current week offset (0 for current week, 1 for next week, -1 for previous week)
+
         // Function to get the date of the Monday of the week for the current date
         function getMonday(date) {
             const day = date.getDay(),
                 diff = date.getDate() - day + (day === 0 ? -6 : 1); // adjust when day is Sunday
             return new Date(date.setDate(diff));
         }
-    
+
         // Function to populate the week with the current week's dates and handle week offset
         function populateWeek(startDate) {
             const weekContainer = document.getElementById("week-container");
             // Clear previous week days
             weekContainer.querySelectorAll(".day").forEach(day => day.remove());
-    
+
             let current = new Date(startDate);
             const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-            
+
             daysOfWeek.forEach((day, index) => {
                 const li = document.createElement("li");
                 li.classList.add("day");
-                li.dataset.date = current.toISOString();  // Add the date as a data attribute for later use
+                li.dataset.date = current.toISOString(); // Add the date as a data attribute for later use
                 li.innerHTML = `
                     <span>${day}</span>
                     <span class="slot-date">${current.toLocaleDateString("en-US", { day: "2-digit", month: "short" })}
@@ -386,31 +394,31 @@
                 current.setDate(current.getDate() + 1);
             });
         }
-    
+
         // Function to go to the next week
         function nextWeek() {
             weekOffset++;
             currentDate.setDate(currentDate.getDate() + 7);
             populateWeek(getMonday(currentDate));
         }
-    
+
         // Function to go to the previous week
         function previousWeek() {
             weekOffset--;
             currentDate.setDate(currentDate.getDate() - 7);
             populateWeek(getMonday(currentDate));
         }
-    
+
         // Initialize current week on page load
         populateWeek(getMonday(currentDate));
-    
+
         // Slot selection logic
         function selectSlot(slotId, startTime, endTime, day) {
             // Remove 'selected' class from the previously selected slot, if any
             if (currentSelectedSlot) {
                 currentSelectedSlot.classList.remove('selected');
             }
-    
+
             // Find the clicked slot element and add the 'selected' class
             const slotElements = document.querySelectorAll(".timing");
             slotElements.forEach(slot => {
@@ -419,38 +427,42 @@
                     currentSelectedSlot = slot;
                 }
             });
-    
+
             // Update the hidden fields for form submission
             document.getElementById('start_time').value = startTime;
             document.getElementById('slot_id').value = slotId;
-    
+
             // Set the booking date based on the selected day of the week
             const selectedDate = getDateFromWeekday(day);
             document.getElementById('booking_date').value = selectedDate.toISOString().split("T")[0];
-            
+
             // Highlight the selected day in the week container
             highlightSelectedDay(selectedDate);
         }
-    
+
         // Get date based on the day of the week and current week offset
         function getDateFromWeekday(day) {
             const today = new Date();
-            const selectedDayIndex = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"].indexOf(day);
+            const selectedDayIndex = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"].indexOf(
+                day);
             const currentWeekMonday = getMonday(today);
-            
+
             // Adjust the current date for the selected week offset (current, next, or previous)
             currentWeekMonday.setDate(currentWeekMonday.getDate() + (weekOffset * 7));
-            
+
             // Get the correct date for the selected day
             return new Date(currentWeekMonday.setDate(currentWeekMonday.getDate() + selectedDayIndex));
         }
-    
+
         // Highlight the selected day in the week container
         function highlightSelectedDay(date) {
             const daySlots = document.querySelectorAll("#week-container .day");
             daySlots.forEach(day => day.classList.remove("highlighted"));
-    
-            const selectedDateStr = date.toLocaleDateString("en-US", { day: "2-digit", month: "short" });
+
+            const selectedDateStr = date.toLocaleDateString("en-US", {
+                day: "2-digit",
+                month: "short"
+            });
             daySlots.forEach(day => {
                 const slotDate = day.querySelector(".slot-date");
                 if (slotDate && slotDate.textContent.includes(selectedDateStr)) {
@@ -541,10 +553,11 @@
         'index-10',
         'index-11',
         'index',
+        'home-page',
         'index-12',
         'index-13',
         'pharmacy-index',
-        'index-14'
+        'index-14',
     ]))
     <!-- BacktoTop JS -->
     <script src="{{ URL::asset('/assets/js/backToTop.js') }}"></script>
@@ -564,6 +577,7 @@
         'index-10',
         'index-11',
         'index',
+        'home-page',
         'index-12',
         'index-13',
         'onboarding-availability',
@@ -595,7 +609,7 @@
         'patient-completed-appointment',
         'patient-upcoming-appointment',
         'index-14',
-        'doctor-profile'
+        'doctor-profile',
     ]))
     <!-- Owl Carousel JS -->
     <script src="{{ URL::asset('/assets/js/owl.carousel.min.js') }}"></script>
@@ -606,7 +620,7 @@
     <script src="{{ URL::asset('/assets/plugins/swiper/js/swiper-bundle.min.js') }}"></script>
 @endif
 
-@if (Route::is(['index-11', 'index-10', 'index-12', 'index-13','index-7','index-14']))
+@if (Route::is(['index-11', 'index-10', 'index-12', 'index-13', 'index-7', 'index-14']))
     <!-- counterup JS -->
     <script src="{{ URL::asset('/assets/js/jquery.waypoints.js') }}"></script>
     <script src="{{ URL::asset('/assets/js/jquery.counterup.min.js') }}"></script>
@@ -623,14 +637,14 @@
 <!-- Toastr JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
 <script>
-    @if(session('success'))
+    @if (session('success'))
         toastr.success("{{ session('success') }}", "Success", {
             closeButton: true,
             progressBar: true,
             positionClass: "toast-top-right",
             timeOut: 5000
         });
-    @elseif(session('error'))
+    @elseif (session('error'))
         toastr.error("{{ session('error') }}", "Error", {
             closeButton: true,
             progressBar: true,
@@ -642,53 +656,82 @@
 
 {{-- search script --}}
 <script>
-   document.addEventListener('DOMContentLoaded', function () {
-    const searchForm = document.getElementById('searchForm');
-    const searchInput = document.getElementById('searchInput');
-    const searchIcon = document.getElementById('searchIcon');
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchForm = document.getElementById('searchForm');
+        const searchInput = document.getElementById('searchInput');
+        const searchIcon = document.getElementById('searchIcon');
 
-    // Check if the elements exist before adding event listeners
-    if (searchForm && searchInput) {
-        // Submit form on Enter key press
-        searchInput.addEventListener('keypress', function (event) {
-            if (event.key === 'Enter') {
-                event.preventDefault(); // Prevent default form submission
+        // Check if the elements exist before adding event listeners
+        if (searchForm && searchInput) {
+            // Submit form on Enter key press
+            searchInput.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault(); // Prevent default form submission
+                    searchForm.submit();
+                }
+            });
+        }
+
+        if (searchForm && searchIcon) {
+            // Submit form on search icon click
+            searchIcon.addEventListener('click', function() {
                 searchForm.submit();
-            }
-        });
-    }
-
-    if (searchForm && searchIcon) {
-        // Submit form on search icon click
-        searchIcon.addEventListener('click', function () {
-            searchForm.submit();
-        });
-    }
-});
-
+            });
+        }
+    });
 </script>
 
+
+
+@if (Route::is(['register','doctor-register']))
+<script>
+    function togglePasswordVisibility() {
+        const input = document.getElementById('password');
+        const icon = document.querySelector('.custom-toggle-password i');
+
+        if (!input || !icon) return;
+
+        const isPassword = input.type === 'password';
+        input.type = isPassword ? 'text' : 'password';
+        icon.classList.toggle('fa-eye', !isPassword);
+        icon.classList.toggle('fa-eye-slash', isPassword);
+    }
+
+    function toggleConfirmPassword() {
+        const input = document.getElementById('password_confirmation');
+        const icon = document.querySelector('.custom-toggle-confirm-password i');
+
+        if (!input || !icon) return;
+
+        const isPassword = input.type === 'password';
+        input.type = isPassword ? 'text' : 'password';
+        icon.classList.toggle('fa-eye', !isPassword);
+        icon.classList.toggle('fa-eye-slash', isPassword);
+    }
+</script>
+@endif
+
 {{-- stripe assesment checkout --}}
-@if (!Route::is(['patient-register-step4','doctor-register-step4']))
+@if (!Route::is(['register','doctor-register', 'patient-register-step4', 'doctor-register-step4','frontend.search']))
     <!-- Swiper Slider -->
     <script src="https://js.stripe.com/v3/"></script>
     <script>
         const stripe = Stripe('{{ config('services.stripe.key') }}');
-    
+
         // Function to handle checkout for both buttons
         const handleCheckout = async (buttonId, formId, loaderId, amountId, successUrlId) => {
             const checkoutButton = document.getElementById(buttonId);
             const loader = document.getElementById(loaderId);
-    
+
             checkoutButton.addEventListener('click', async () => {
                 // Show the loader and disable the button
                 loader.style.display = 'block';
                 checkoutButton.disabled = true;
                 checkoutButton.innerHTML = 'Processing...';
-    
+
                 const paymentAmount = document.getElementById(amountId).value;
                 const successUrl = document.getElementById(successUrlId).value;
-    
+
                 try {
                     const response = await fetch("{{ url('frontend/assesment-stripe-checkout') }}", {
                         method: "POST",
@@ -701,7 +744,7 @@
                             success_url: successUrl
                         }),
                     });
-    
+
                     const session = await response.json();
                     if (session.id) {
                         // Redirect to Stripe Checkout
@@ -722,12 +765,13 @@
                 }
             });
         };
-    
+
         // Initialize checkout handlers for both forms
-        handleCheckout('assesment-checkout-button-1', 'payment-form-1', 'payment-loader-1', 'payment-amount-1', 'success-url-1');
-        handleCheckout('assesment-checkout-button-2', 'payment-form-2', 'payment-loader-2', 'payment-amount-2', 'success-url-2');
-        handleCheckout('assesment-checkout-button-3', 'payment-form-3', 'payment-loader-3', 'payment-amount-3', 'success-url-3');
+        handleCheckout('assesment-checkout-button-1', 'payment-form-1', 'payment-loader-1', 'payment-amount-1',
+            'success-url-1');
+        handleCheckout('assesment-checkout-button-2', 'payment-form-2', 'payment-loader-2', 'payment-amount-2',
+            'success-url-2');
+        handleCheckout('assesment-checkout-button-3', 'payment-form-3', 'payment-loader-3', 'payment-amount-3',
+            'success-url-3');
     </script>
 @endif
-
-

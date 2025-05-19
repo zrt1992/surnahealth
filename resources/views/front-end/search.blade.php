@@ -3,10 +3,10 @@
 @section('content')
     @component('components.breadcrumb')
         @slot('title')
-           {{ __('messages.search')}}
+            {{ __('messages.search') }}
         @endslot
         @slot('li_1')
-           {{ __('messages.search')}}
+            {{ __('messages.search') }}
         @endslot
     @endcomponent
     <!-- Page Content -->
@@ -17,54 +17,64 @@
                     <!-- Search Filter -->
                     <div class="card search-filter">
                         <div class="card-header">
-                            <h4 class="card-title mb-0">{{ __('messages.search_filter')}}</h4>
+                            <h4 class="card-title mb-0">{{ __('messages.search_filter') }}</h4>
                         </div>
                         <form action="{{ route('frontend.search') }}" method="GET">
                             <div class="card-body">
                                 <div class="filter-widget">
                                     <div class="">
-                                        <input type="date" name="date" class="form-control datetimepicker" placeholder="Select Date" value="{{ request('date') }}">
+                                        <input type="date" name="date" class="form-control datetimepicker"
+                                            placeholder="Select Date" value="{{ request('date') }}">
                                     </div>
                                 </div>
-                        
+
                                 <div class="filter-widget">
                                     <h4>{{ __('messages.gender') }}</h4>
                                     <div>
                                         <label class="custom_check">
-                                            <input type="radio" name="gender_type" value="male" {{ request('gender_type') == 'male' ? 'checked' : '' }}>
+                                            <input type="radio" name="gender_type" value="male"
+                                                {{ request('gender_type') == 'male' ? 'checked' : '' }}>
                                             <span class="checkmark"></span> Male Doctor
                                         </label>
                                     </div>
                                     <div>
                                         <label class="custom_check">
-                                            <input type="radio" name="gender_type" value="female" {{ request('gender_type') == 'female' ? 'checked' : '' }}>
+                                            <input type="radio" name="gender_type" value="female"
+                                                {{ request('gender_type') == 'female' ? 'checked' : '' }}>
                                             <span class="checkmark"></span> Female Doctor
                                         </label>
                                     </div>
                                 </div>
-                        
+
                                 <div class="filter-widget">
                                     <h4>{{ __('messages.select_specialist') }}</h4>
                                     @php
-                                        $specializations = ['Urology', 'Neurology', 'Dentist', 'Orthopedic', 'Cardiologist'];
+                                        $specializations = [
+                                            'Urology',
+                                            'Neurology',
+                                            'Dentist',
+                                            'Orthopedic',
+                                            'Cardiology',
+                                        ];
                                     @endphp
                                     @foreach ($specializations as $specialization)
                                         <div>
                                             <label class="custom_check">
-                                                <input type="checkbox" name="select_specialist[]" value="{{ $specialization }}" 
+                                                <input type="checkbox" name="select_specialist[]"
+                                                    value="{{ $specialization }}"
                                                     {{ in_array($specialization, (array) request('select_specialist', [])) ? 'checked' : '' }}>
                                                 <span class="checkmark"></span> {{ $specialization }}
                                             </label>
                                         </div>
                                     @endforeach
                                 </div>
-                        
+
                                 <div class="btn-search">
                                     <button type="submit" class="btn w-100">{{ __('messages.search') }}</button>
                                 </div>
                             </div>
                         </form>
-                        
+
                     </div>
                     <!-- /Search Filter -->
 
@@ -74,67 +84,53 @@
 
                     <!-- Doctor Widget -->
                     @foreach ($allDoctors as $doctor)
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="doctor-widget">
-                                <div class="doc-info-left">
-                                    <div class="doctor-img">
-                                        <a href="{{ url('/frontend/doctor-profile') }}">
-                                            <img src="{{$doctor->profile_image ?? URL::asset('/assets/img/doctors/doctor-thumb-01.jpg') }}"
-                                                class="img-fluid" alt="User Image">
-                                        </a>
-                                    </div>
-                                    <div class="doc-info-cont">
-                                        <h4 class="doc-name"><a href="{{ url('/frontend/doctor-profile') }}">Dr. {{ $doctor->name ?? '--' }}</a></h4>
-                                        <p class="doc-speciality">
-                                            @if (!empty($doctor->doctorEducation) && $doctor->doctorEducation->isNotEmpty())
-                                                @foreach ($doctor->doctorEducation as $education)
-                                                    {{ $education->course ?? 'doctor education' }}
-                                                @endforeach
-                                            @else
-                                                No education details available.
-                                            @endif
-                                        </p>
-                                        
-                                        <h5 class="doc-department"><img
-                                                src="{{ URL::asset('/assets/img/specialities/specialities-05.png') }}"
-                                                class="img-fluid" alt="Speciality">{{ $doctor->doctorSpecialization->first()->name ?? '--' }}</h5>
-                                        <div class="clinic-details">
-                                            <p class="doc-location"><i class="fas fa-map-marker-alt"></i>{{ $doctor->city ?? '--' }}, {{ $doctor->state ?? '--' }},
-                                                {{ $doctor->country ?? '--' }}</p>
-                                            <ul class="clinic-gallery">
-                                                @if (!empty($doctor->doctorClinic) && $doctor->doctorClinic->isNotEmpty())
-                                               
-                                         
-                                                @foreach ($doctor->doctorClinic->first()->gallery as $gallery )
-                                                <li>
-                                                    <a href="{{$gallery->image ?? URL::asset('/assets/img/features/feature-01.jpg') }}"
-                                                        data-fancybox="gallery">
-                                                        <img src="{{$gallery->image ?? URL::asset('/assets/img/features/feature-01.jpg') }}"
-                                                            alt="Feature">
-                                                    </a>
-                                                </li>
-                                                @endforeach
-                                                @else
-                                                No doctor clinic available.
-                                            @endif
-                                            </ul>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="doctor-widget">
+                                    <div class="doc-info-left">
+                                        <div class="doctor-img">
+                                            <a href="{{ url('/frontend/doctor-profile') }}">
+                                                
+                                                <img src="{{ !empty($doctor->profile_image) ? $doctor->profile_image : asset('assets/img/profile-image.avif') }}"
+                                                    class="img-fluid" alt="User Image">
+                                            </a>
                                         </div>
-                                      
+                                        <div class="doc-info-cont">
+                                            <h4 class="doc-name"><a href="{{ url('/frontend/doctor-profile') }}">Dr.
+                                                    {{ $doctor->name ?? '--' }}</a></h4>
+                                            <p class="doc-speciality">
+                                                @if (!empty($doctor->doctorEducation) && $doctor->doctorEducation->isNotEmpty())
+                                                    @foreach ($doctor->doctorEducation as $education)
+                                                        {{ $education->course ?? 'doctor education' }}
+                                                    @endforeach
+                                                @else
+                                                    No education details available.
+                                                @endif
+                                            </p>
+
+                                            <h5 class="doc-department"><img
+                                                    src="{{ URL::asset('/assets/img/specialities/specialities-05.png') }}"
+                                                    class="img-fluid"
+                                                    alt="Speciality">{{ $doctor->doctorSpecialization->first()->name ?? '--' }}
+                                            </h5>
+                                          
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="doc-info-right">
-                                    <div class="clinic-booking">
-                                        <a class="view-pro-btn" href="{{ url('frontend/doctor-profile/'. $doctor->id) }}">{{ __('messages.view_profile')}}</a>
-                                        <a class="apt-btn" href="{{ url('frontend/booking/'. $doctor->id) }}">{{ __('messages.book_appointment')}}</a>
+                                    <div class="doc-info-right">
+                                        <div class="clinic-booking">
+                                            <a class="view-pro-btn"
+                                                href="{{ url('frontend/doctor-profile/' . $doctor->id) }}">{{ __('messages.view_profile') }}</a>
+                                            <a class="apt-btn"
+                                                href="{{ url('frontend/booking/' . $doctor->id) }}">{{ __('messages.book_appointment') }}</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     @endforeach
                     <div class="load-more text-center">
-                        <a class="btn btn-primary btn-sm prime-btn" href="javascript:void(0);">{{ __('messages.load_more')}}</a>
+                        <a class="btn btn-primary btn-sm prime-btn"
+                            href="javascript:void(0);">{{ __('messages.load_more') }}</a>
                     </div>
                 </div>
             </div>
