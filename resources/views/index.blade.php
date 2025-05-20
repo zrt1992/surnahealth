@@ -383,7 +383,7 @@
                 </div>
             </div>
             <div class="row justify-content-center align-items-center">
-                <div class="col-xl-3 col-lg-6 col-md-12 aos" data-aos="fade-up">
+                <div class="col-xl-5 col-lg-6 col-md-12 aos" data-aos="fade-up">
                     <div class="card pricing-card" style="height: 670px;">
                         <div class="card-body">
                             <div class="pricing-header">
@@ -421,7 +421,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-6 col-md-12 aos" data-aos="fade-up">
+                <div class="col-xl-5 col-lg-6 col-md-12 aos" data-aos="fade-up">
                     <div class="card pricing-card pricing-card-active" style="height: 670px;">
                         <div class="card-body">
                             <div class="pricing-header">
@@ -462,7 +462,7 @@
                     </div>
                 </div>
 
-                <div class="col-xl-3 col-lg-6 col-md-12 aos" data-aos="fade-up">
+                <div class="col-xl-5 col-lg-6 col-md-12 aos" data-aos="fade-up">
                     <div class="card pricing-card h-96 pricing-card-active" style="height: 670px">
                         <div class="card-body">
                             <div class="pricing-header">
@@ -499,7 +499,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-6 col-md-12 aos" data-aos="fade-up">
+                <div class="col-xl-5 col-lg-6 col-md-12 aos" data-aos="fade-up">
                     <div class="card pricing-card" style="height: 670px;">
                         <div class="card-body">
 

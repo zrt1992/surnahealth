@@ -27,15 +27,20 @@
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                     </div>
-                                    <div class="mb-3 form-focus">
-                                        <label class="focus-label">Password</label>
-                                        <div class="pass-group">
-                                            <input class="form-control pass-input floating" type="password"
-                                                name="password" id="password">
+                                   <div class="mb-3 form-focus">
+                                        <label class="focus-label">Create Password</label>
+                                        <div class="pass-group position-relative">
+                                            <input class="form-control pass-input floating" type="password" name="password"
+                                                id="password">
+                                            <span
+                                                class="custom-toggle-password position-absolute end-0 top-50 translate-middle-y me-3 cursor-pointer"
+                                                onclick="togglePasswordVisibility()">
+                                                <i class="fa fa-eye"></i>
+                                            </span>
                                         </div>
                                         @error('password')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                     <div class="text-end">
                                         <a class="forgot-link" href="{{ url('forgot-password') }}">Forgot Password ?</a>

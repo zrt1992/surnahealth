@@ -683,7 +683,7 @@
 
 
 
-@if (Route::is(['register','doctor-register']))
+@if (Route::is(['register','doctor-register','login']))
 <script>
     function togglePasswordVisibility() {
         const input = document.getElementById('password');
