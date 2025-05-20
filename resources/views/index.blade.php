@@ -193,7 +193,7 @@
 
                 <!-- Doctor Item -->
                 <div class="item">
-                    <div class="doctor-profile-widget doc-item" style="min-height: 480px">
+                    <div class="doctor-profile-widget doc-item" style="min-height: 500px">
                         <div class="doc-pro-img">
                             <a href="#">
                                 <div class="doctor-profile-img">
@@ -227,7 +227,7 @@
 
                 <!-- Doctor Item -->
                 <div class="item">
-                    <div class="doctor-profile-widget doc-item" style="min-height: 480px">
+                    <div class="doctor-profile-widget doc-item" style="min-height: 500px">
                         <div class="doc-pro-img">
                             <a href="#">
                                 <div class="doctor-profile-img">
@@ -263,7 +263,7 @@
 
                 <!-- Doctor Item -->
                 <div class="item">
-                    <div class="doctor-profile-widget doc-item" style="min-height: 480px">
+                    <div class="doctor-profile-widget doc-item" style="min-height: 500px">
                         <div class="doc-pro-img">
                             <a href="#">
                                 <div class="doctor-profile-img">
@@ -299,7 +299,7 @@
 
                 <!-- Doctor Item -->
                 <div class="item">
-                    <div class="doctor-profile-widget doc-item">
+                    <div class="doctor-profile-widget doc-item" style="min-height: 500px">
                         <div class="doc-pro-img">
                             <a href="#">
                                 <div class="doctor-profile-img">
