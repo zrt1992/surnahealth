@@ -1642,7 +1642,7 @@
                             ]))
                            
 
-                            <!-- Notifications -->
+                            {{-- <!-- Notifications -->
                             @if (Auth::check())
                                 <li class="nav-item dropdown noti-nav me-3 pe-0">
                                     <a href="#" class="dropdown-toggle nav-link p-0" data-bs-toggle="dropdown">
@@ -1730,7 +1730,7 @@
                                     </div>
                                 </li>
                             @endif
-                            <!-- /Notifications -->
+                            <!-- /Notifications --> --}}
                         @endif
                         @if (
                             !Route::is([
