@@ -71,10 +71,7 @@
                                         aria-selected="true">{{ __('messages.completed') }}<span>{{ $completedCount ?? '0' }}</span></button>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="pills-preferences-tab" data-bs-toggle="pill"
-                                        data-bs-target="#pills-preferences" type="button" role="tab"
-                                        aria-controls="pills-preferences"
-                                        aria-selected="true">{{ __('messages.preferences') }}<span></span></button>
+                                    <a class="nav-link" href="{{ route('patient-preferences') }}">{{ __('messages.preferences') }}<span></span></a>
                                 </li>
                             </ul>
                         </div>
@@ -128,7 +125,8 @@
                                                                 <label class="checkboxs">
                                                                     <input type="checkbox" checked>
                                                                     <span class="checkmarks"></span>
-                                                                    <span class="check-title">{{ __('messages.all_type') }}</span>
+                                                                    <span
+                                                                        class="check-title">{{ __('messages.all_type') }}</span>
                                                                 </label>
                                                             </div>
                                                         </li>
@@ -137,7 +135,8 @@
                                                                 <label class="checkboxs">
                                                                     <input type="checkbox">
                                                                     <span class="checkmarks"></span>
-                                                                    <span class="check-title">{{ __('messages.video_call') }}</span>
+                                                                    <span
+                                                                        class="check-title">{{ __('messages.video_call') }}</span>
                                                                 </label>
                                                             </div>
                                                         </li>
@@ -146,7 +145,8 @@
                                                                 <label class="checkboxs">
                                                                     <input type="checkbox">
                                                                     <span class="checkmarks"></span>
-                                                                    <span class="check-title">{{ __('messages.audio_call') }}</span>
+                                                                    <span
+                                                                        class="check-title">{{ __('messages.audio_call') }}</span>
                                                                 </label>
                                                             </div>
                                                         </li>
@@ -155,7 +155,8 @@
                                                                 <label class="checkboxs">
                                                                     <input type="checkbox">
                                                                     <span class="checkmarks"></span>
-                                                                    <span class="check-title">{{ __('messages.chat') }}</span>
+                                                                    <span
+                                                                        class="check-title">{{ __('messages.chat') }}</span>
                                                                 </label>
                                                             </div>
                                                         </li>
@@ -177,7 +178,8 @@
                                                                 <label class="checkboxs">
                                                                     <input type="checkbox" checked>
                                                                     <span class="checkmarks"></span>
-                                                                    <span class="check-title">{{ __('messages.all_visit') }}</span>
+                                                                    <span
+                                                                        class="check-title">{{ __('messages.all_visit') }}</span>
                                                                 </label>
                                                             </div>
 
@@ -187,7 +189,8 @@
                                                                 <label class="checkboxs">
                                                                     <input type="checkbox">
                                                                     <span class="checkmarks"></span>
-                                                                    <span class="check-title">{{ __('messages.general') }}</span>
+                                                                    <span
+                                                                        class="check-title">{{ __('messages.general') }}</span>
                                                                 </label>
                                                             </div>
 
@@ -197,7 +200,8 @@
                                                                 <label class="checkboxs">
                                                                     <input type="checkbox">
                                                                     <span class="checkmarks"></span>
-                                                                    <span class="check-title">{{ __('messages.consultation') }}</span>
+                                                                    <span
+                                                                        class="check-title">{{ __('messages.consultation') }}</span>
                                                                 </label>
                                                             </div>
 
@@ -207,7 +211,8 @@
                                                                 <label class="checkboxs">
                                                                     <input type="checkbox">
                                                                     <span class="checkmarks"></span>
-                                                                    <span class="check-title">{{ __('messages.follow_up') }}</span>
+                                                                    <span
+                                                                        class="check-title">{{ __('messages.follow_up') }}</span>
                                                                 </label>
                                                             </div>
 
@@ -217,7 +222,8 @@
                                                                 <label class="checkboxs">
                                                                     <input type="checkbox">
                                                                     <span class="checkmarks"></span>
-                                                                    <span class="check-title">{{ __('messages.direct_visit') }}</span>
+                                                                    <span
+                                                                        class="check-title">{{ __('messages.direct_visit') }}</span>
                                                                 </label>
                                                             </div>
 
@@ -228,8 +234,10 @@
                                         </div>
 
                                         <div class="filter-reset-btns">
-                                            <a href="{{ url('doctor/doctor-appointments') }}" class="btn btn-light">{{ __('messages.reset') }}</a>
-                                            <a href="{{ url('doctor/doctor-appointments') }}" class="btn btn-primary">{{ __('messages.filter_now') }}</a>
+                                            <a href="{{ url('doctor/doctor-appointments') }}"
+                                                class="btn btn-light">{{ __('messages.reset') }}</a>
+                                            <a href="{{ url('doctor/doctor-appointments') }}"
+                                                class="btn btn-primary">{{ __('messages.filter_now') }}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -278,13 +286,7 @@
                                         </li>
                                         <li class="appointment-action">
                                             <ul>
-                                                <li>
-                                                    <a href="{{ url('patient-upcoming-appointment') }}"><i
-                                                            class="fa-solid fa-eye"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><i class="fa-solid fa-comments"></i></a>
-                                                </li>
+                                               
                                                 <li>
                                                     <a href="javascript:void(0)" data-bs-toggle="modal"
                                                         data-bs-target="#delete_record"
@@ -335,15 +337,9 @@
                                         </li>
                                         <li class="appointment-action">
                                             <ul>
+                                               
                                                 <li>
-                                                    <a href="{{ url('patient-upcoming-appointment') }}"><i
-                                                            class="fa-solid fa-eye"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><i class="fa-solid fa-comments"></i></a>
-                                                </li>
-                                                <li>
-                                                    
+
                                                     <a href="javascript:void(0)" data-bs-toggle="modal"
                                                         data-bs-target="#delete_record" data-id="{{ $appointment->id }}"
                                                         data-route="{{ route('appointments-remove', ':id') }}"><i
@@ -354,7 +350,8 @@
                                         <li class="appointment-detail-btn">
 
                                             <a href="{{ $appointment->google_meet_link }}" class="start-link"
-                                                target="_blank"><i class="fa-solid fa-calendar-check me-1"></i>{{ __('messages.attend') }}</a>
+                                                target="_blank"><i
+                                                    class="fa-solid fa-calendar-check me-1"></i>{{ __('messages.attend') }}</a>
                                         </li>
                                     </ul>
                                 @endforeach
@@ -400,7 +397,8 @@
                                         </li>
                                         <li class="appointment-detail-btn">
                                             <a href="{{ route('patient-cancelled-appointment', $rejectedRequest->id) }}"
-                                                class="start-link">{{ __('messages.view_details') }}<i class="fa-regular fa-circle-right ms-1"></i></a>
+                                                class="start-link">{{ __('messages.view_details') }}<i
+                                                    class="fa-regular fa-circle-right ms-1"></i></a>
                                         </li>
                                     </ul>
                                 @endforeach
@@ -444,25 +442,29 @@
 
                                         </li>
                                         <li class="appointment-detail-btn">
-                                            <a href="{{ url('patient-completed-appointment') }}" class="start-link">{{ __('messages.view_details') }}<i class="fa-regular fa-circle-right ms-1"></i></a>
+                                            <a href="{{ url('patient-completed-appointment') }}"
+                                                class="start-link">{{ __('messages.view_details') }}<i
+                                                    class="fa-regular fa-circle-right ms-1"></i></a>
                                         </li>
                                     </ul>
                                 @endforeach
 
                             </div>
-                          
-                          <div class="pagination dashboard-pagination">
+
+                            <div class="pagination dashboard-pagination">
                                 {{ $data->links('vendor.pagination.custom') }}
                             </div>
                         </div>
-                        
-                        <div class="tab-pane fade" id="pills-preferences" role="tabpanel"
+
+                        {{-- <div class="tab-pane fade" id="pills-preferences" role="tabpanel"
                             aria-labelledby="pills-preferences-tab">
-                            <form action="{{ route('patient-preferences-update', $appointmentPreferences->id ?? auth()->id()) }}" method="POST">
+                            <form
+                                action="{{ route('patient-preferences-update', $appointmentPreferences->id ?? auth()->id()) }}"
+                                method="POST">
                                 @csrf
-                               
+
                                 <div class="setting-card">
-                                   
+
                                     <div class="setting-title">
                                         <h5>{{ __('messages.appointment_preferences') }}</h5>
                                     </div>
@@ -470,19 +472,23 @@
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="form-wrap">
-                                                    <label class="col-form-label">{{ __('messages.preferred_doctor') }} <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control" name="preferred_doctor" class="form-control"
-                                                        value="{{ old('preferred_doctor', $appointmentPreferences->preferred_doctor ?? '')  }}">
+                                                    <label class="col-form-label">{{ __('messages.preferred_doctor') }}
+                                                        <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control" name="preferred_doctor"
+                                                        class="form-control"
+                                                        value="{{ old('preferred_doctor', $appointmentPreferences->preferred_doctor ?? '') }}">
                                                     @error('preferred_doctor')
                                                         <div class="text-danger">{{ $message }}</div>
                                                     @enderror
                                                 </div>
-                                                
+
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-wrap">
-                                                    <label class="col-form-label">Preferred time <span class="text-danger">*</span></label>
-                                                    <input type="time" class="form-control" name="preferred_time" class="form-control"
+                                                    <label class="col-form-label">Preferred time <span
+                                                            class="text-danger">*</span></label>
+                                                    <input type="time" class="form-control" name="preferred_time"
+                                                        class="form-control"
                                                         value="{{ old('preferred_time', $appointmentPreferences->preferred_time ?? '') }}">
                                                     @error('preferred_time')
                                                         <div class="text-danger">{{ $message }}</div>
@@ -491,57 +497,54 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-wrap">
-                                                    <label class="col-form-label">{{ __('messages.preferred_consultation_mode') }} <span class="text-danger">*</span></label>
-                                                    
+                                                    <label
+                                                        class="col-form-label">{{ __('messages.preferred_consultation_mode') }}
+                                                        <span class="text-danger">*</span></label>
+
                                                     <div class="remember-me-col d-flex justify-content-between">
                                                         <label class="custom_check">{{ __('messages.video_call') }}
-                                                            <input type="checkbox" 
-                                                                id="video_call" 
-                                                                name="video_call" 
+                                                            <input type="checkbox" id="video_call" name="video_call"
                                                                 value="1"
                                                                 {{ old('video_call', $appointmentPreferences->video_call ?? '') == 1 ? 'checked' : '' }}>
                                                             <span class="checkmark"></span>
                                                         </label>
                                                     </div>
-                                            
+
                                                     <div class="remember-me-col d-flex justify-content-between">
                                                         <label class="custom_check">{{ __('messages.audio_call') }}
-                                                            <input type="checkbox" 
-                                                                id="audio_call" 
-                                                                name="audio_call" 
+                                                            <input type="checkbox" id="audio_call" name="audio_call"
                                                                 value="1"
                                                                 {{ old('audio_call', $appointmentPreferences->audio_call ?? '') == 1 ? 'checked' : '' }}>
                                                             <span class="checkmark"></span>
                                                         </label>
                                                     </div>
-                                            
+
                                                     <div class="remember-me-col d-flex justify-content-between">
                                                         <label class="custom_check">{{ __('messages.chat') }}
-                                                            <input type="checkbox" 
-                                                                id="chat" 
-                                                                name="chat" 
+                                                            <input type="checkbox" id="chat" name="chat"
                                                                 value="1"
                                                                 {{ old('chat', $appointmentPreferences->chat ?? '') == 1 ? 'checked' : '' }}>
                                                             <span class="checkmark"></span>
                                                         </label>
                                                     </div>
-                                            
+
                                                 </div>
                                             </div>
-                                            
-                                          
+
+
                                         </div>
                                     </div>
                                     <div class="modal-btn text-end">
                                         <a href="#" class="btn btn-gray">{{ __('messages.cancel') }}</a>
-                                        <button type="submit" class="btn btn-primary prime-btn">{{ __('messages.save_changes') }}</button>
+                                        <button type="submit"
+                                            class="btn btn-primary prime-btn">{{ __('messages.save_changes') }}</button>
                                     </div>
-        
+
                             </form>
 
-                        </div>
+                        </div> --}}
                     </div>
-
+                   
                 </div>
             </div>
 

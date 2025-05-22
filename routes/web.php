@@ -229,6 +229,7 @@ Route::middleware(['auth', 'role:patient', CheckRegistrationStep::class, CheckSu
     Route::get('/patient-appointments-grid', [BookingController::class, 'getPatientAppointmentsGrid'])->name('patient-appointments-grid');
     Route::get('/patient-cancelled-appointments/{id?}', [BookingController::class, 'getPatientCancelledAppointments'])->name('patient-cancelled-appointment');
     Route::get('/patient-reschedule-appointment/{doctorId?}/{appointmentReqId?}', [BookingController::class, 'showBookingForm'])->name('patient-reschedule-appointment');
+    Route::get('/patient-preferences', [BookingController::class, 'preferencesForm'])->name('patient-preferences');
     Route::post('/patient-preferences-update/{id?}', [BookingController::class, 'updatePreferences'])->name('patient-preferences-update');
 
     Route::get('/patient-help-and-support', [PatientHelpAndSupportController::class, 'index'])->name('patient-help-and-support');

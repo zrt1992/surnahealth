@@ -3,10 +3,10 @@
 @section('content')
     @component('components.breadcrumb')
         @slot('title')
-            {{ __('messages.patient_appointments') }}
+            {{ __('messages.patient_appointments_grid') }}
         @endslot
         @slot('li_1')
-            {{ __('messages.patient_appointments') }}
+            {{ __('messages.patient_appointments_grid') }}
         @endslot
     @endcomponent
 
@@ -339,9 +339,8 @@
                                                         </li>
                                                     </ul>
                                                     <div class="appointment-detail-btn">
-                                                        <a href="{{ $appointment->google_meet_link }}"
-                                                            class="start-link"><i
-                                                                class="fa-solid fa-calendar-check me-1"></i>{{ __('messages.attend') }}</a>
+                                                        <a href="{{ $appointment->google_meet_link }}" class="start-link"
+                                                target="_blank"><i class="fa-solid fa-calendar-check me-1"></i>{{ __('messages.attend') }}</a>
                                                     </div>
                                                 </li>
                                             </ul>

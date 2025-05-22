@@ -83,7 +83,11 @@ class BookingController extends Controller
 
         return view('patient.patient-cancelled-appointment', get_defined_vars());
     }
-
+    public function preferencesForm()
+    {
+        $appointmentPreferences = PatientAppoitmentPreferences::where('user_id', auth()->user()->id)->first();
+        return view('patient.preferences-form', get_defined_vars());
+    }
     public function updatePreferences(Request $request,  $preferencesId = null)
     {
         $appointmentPreferences = [
@@ -239,6 +243,4 @@ class BookingController extends Controller
             return redirect('/')->with('error', 'Failed to confirm booking. ' . $e->getMessage());
         }
     }
-
-   
 }

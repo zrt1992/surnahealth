@@ -216,6 +216,7 @@
                                                 data-bs-toggle="modal" data-bs-target="#delete_record"
                                                 data-id="{{ $appointment->id }}"
                                                 data-route="{{ route('appointments-remove', ':id') }}" ><i class="fa-solid fa-xmark"></i></a>
+                                              
                                             </li>
                                         </ul>
                                     </li>
